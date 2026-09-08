@@ -1,0 +1,17 @@
+== dispat: fixture
+fixture ready: /work/dispat dispat
+== dispat: baseline publish (all six at 1.0.0)
+== dispat: release run 1 with cli DENIED
+exit=1
+CLI TAGS after failed run (must be empty beyond 1.0.0):
+cli@1.0.0
+REGISTRY cli: 1.0.0  core: 1.1.0
+== dispat: release run 2, deny cleared
+exit=0
+CLI TAGS now:
+cli@1.0.0
+cli@1.0.1
+REGISTRY cli now: 1.0.1
+== dispat: run 3 must be empty
+releasing: []
+== done

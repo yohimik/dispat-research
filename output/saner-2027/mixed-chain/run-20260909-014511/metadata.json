@@ -1,0 +1,10 @@
+{
+  "date": "2026-09-09",
+  "binary": "/Users/yohimik/.local/bin/dispat",
+  "binary_sha256": "33cc5af84b7b76fa464e1290df8aa6817036612c691f285839ed38b2da156614",
+  "version": "\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\ndispat 1.8.2 (darwin_arm64)\n",
+  "node": "v24.18.0",
+  "npm": "12.0.1",
+  "docker": "29.6.1",
+  "description": "Local registry, actual npm build/publish and Docker build/push/pull; explicit app pull tests registry availability, not isolated Docker daemons; three-second npm publish and two-second base publish delays are controls, not performance measurements."
+}

@@ -1,0 +1,6 @@
+🦋 changeset v3.0.1
+
+Packages to be bumped:
+- patch
+  - core -> 1.1.1
+    - .changeset/describe-the-package.md

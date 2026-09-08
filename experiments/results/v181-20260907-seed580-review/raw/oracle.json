@@ -1,0 +1,93 @@
+{
+ "p00": {
+  "changed": true,
+  "next": "3.0.0",
+  "bump": "major",
+  "channel": "stable",
+  "guard": false
+ },
+ "p01": {
+  "changed": false,
+  "next": "3.1.4",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p02": {
+  "changed": false,
+  "next": "3.1.1",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p03": {
+  "changed": true,
+  "next": "3.0.0",
+  "bump": "major",
+  "channel": "stable",
+  "guard": false
+ },
+ "p04": {
+  "changed": true,
+  "next": "1.3.1",
+  "bump": "patch",
+  "channel": "stable",
+  "guard": false
+ },
+ "p05": {
+  "changed": true,
+  "next": "2.6.10",
+  "bump": "patch",
+  "channel": "stable",
+  "guard": false
+ },
+ "p06": {
+  "changed": false,
+  "next": "3.9.6",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p07": {
+  "changed": false,
+  "next": "2.7.4",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p08": {
+  "changed": false,
+  "next": "2.4.5",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p09": {
+  "changed": false,
+  "next": "1.6.7",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p10": {
+  "changed": false,
+  "next": "1.7.7",
+  "bump": "none",
+  "channel": "stable"
+ },
+ "p11": {
+  "changed": true,
+  "next": "2.7.7",
+  "bump": "patch",
+  "channel": "stable",
+  "guard": false
+ },
+ "p12": {
+  "changed": true,
+  "next": "3.2.0",
+  "bump": "minor",
+  "channel": "stable",
+  "guard": false
+ },
+ "p13": {
+  "changed": true,
+  "next": "1.2.7",
+  "bump": "patch",
+  "channel": "stable",
+  "guard": false
+ }
+}

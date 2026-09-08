@@ -1,0 +1,62 @@
+name: Action
+
+# The composite action and the installer under it, exercised on all three runner
+# operating systems. This is the only place install.ps1 runs on real Windows, so
+# a change to either script is only really tested here.
+on:
+  pull_request:
+    paths:
+      - action.yml
+      - install.sh
+      - install.ps1
+      - scripts/check-action.sh
+      - .github/workflows/action.yml
+  push:
+    branches: [main]
+    paths:
+      - action.yml
+      - install.sh
+      - install.ps1
+      - scripts/check-action.sh
+      - .github/workflows/action.yml
+
+permissions:
+  contents: read
+
+# A version is pinned here — unlike the other workflows, which take the empty
+# default most callers take — because this workflow asserts that the action
+# installs exactly what it was told to, and that assertion needs a version it
+# can state up front.
+env:
+  DISPAT_PIN: 1.0.0
+
+jobs:
+  action:
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+
+      # `uses: ./` is the action as a caller gets it, rather than the scripts it
+      # happens to wrap: the inputs, the outputs and the PATH entry are all part
+      # of what is being tested.
+      - id: setup
+        uses: ./
+        with:
+          version: ${{ env.DISPAT_PIN }}
+
+      # The same assertions the release's post-release job makes against the
+      # version it just published, so the two cannot drift: this one runs on a
+      # change to the action or an installer, that one on a change to what they
+      # install.
+      - name: The action reports and installs what it said it would
+        shell: bash
+        run: |
+          sh scripts/check-action.sh \
+            "${{ env.DISPAT_PIN }}" \
+            "${{ steps.setup.outputs.version }}" \
+            "${{ steps.setup.outputs.path }}"

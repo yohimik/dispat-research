@@ -1,0 +1,1 @@
+{"name": "chain17d3b79335-assets", "version": "1.5.0", "scripts": {"build": "node build.cjs"}, "files": ["dist"]}

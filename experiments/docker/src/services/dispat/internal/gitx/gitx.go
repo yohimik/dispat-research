@@ -1,0 +1,1027 @@
+// Package gitx wraps the git operations the tool needs behind an interface,
+// with a CLI implementation that shells out to the git binary (matching CI
+// environments exactly).
+package gitx
+
+import (
+	"bytes"
+	"context"
+	"errors"
+	"fmt"
+	"os/exec"
+	"path/filepath"
+	"strings"
+	"sync"
+	"time"
+
+	"github.com/rs/zerolog"
+
+	"github.com/yohimik/dispat/pkg/ccme"
+)
+
+// Tag is a "pkg@version" release tag. When the newest tag's version is not
+// strict MAJOR.MINOR.PATCH (e.g. "pkg@0.0.1-0.0.0"), Parsed is false: Name is
+// still usable as a git revision, but Version is meaningless and the caller
+// must take the baseline from elsewhere (config initials).
+type Tag struct {
+	Name    string
+	Version ccme.Version
+	Parsed  bool
+	// Commit is the commit the tag points at, annotated tags peeled. For a
+	// stable tag this is stableCommit(P) of §12.3, which is the origin of the
+	// package's pending window (§13.3) and the operand of the ancestry screen
+	// in §13.7b.
+	Commit string
+}
+
+// TagFormat is a template for release tag names. Four placeholders are
+// substituted; every other byte is literal:
+//
+//	{name}     the package name
+//	{version}  the SemVer version, with no "v" prefix of its own
+//	{channel}  the prerelease channel, e.g. "beta"
+//	{counter}  the prerelease counter, e.g. "4"
+//
+// §14 makes only "{name}@{version}" normative and leaves other formats
+// implementation-defined, which is what allows the common local conventions —
+// a "v" prefix, or a path prefix mirroring a monorepo's layout:
+//
+//	{name}@{version}            core@1.2.3
+//	{name}@v{version}           core@v1.2.3
+//	services/{name}@v{version}  services/core@v1.2.3
+//
+// {channel} and {counter} spell the prerelease out instead of leaving it
+// inside {version}, for the conventions that do not write it the way SemVer
+// does. They are used together — a counter with no channel cannot tell two
+// trains apart, and a channel with no counter gives every prerelease of a
+// train the same tag — and their presence narrows {version} to the
+// MAJOR.MINOR.PATCH core:
+//
+//	{name}@{version}-{channel}{counter}   core@1.2.3-beta4
+//	{name}@{version}.{channel}.{counter}  core@1.2.3.beta.4
+//
+// On a stable version there is no channel to write, so the whole prerelease
+// section — the two placeholders and the literal text glued to them — is
+// dropped and "core@1.2.3" is what both of those render. Only the tag's shape
+// changes: the version itself is SemVer throughout, and it is the parsed
+// version, never the tag text, that orders releases (§11.3).
+//
+// The format is a property of a space rather than of the repository, because
+// the convention usually follows the toolchain a group of packages is built
+// with — Go modules want the path form, npm packages the plain one — and a
+// monorepo mixing the two is the case worth supporting.
+type TagFormat string
+
+// DefaultTagFormat is the format §14 makes normative.
+const DefaultTagFormat TagFormat = "{name}@{version}"
+
+// LockTagName is the one tag name dispat reserves for itself: the release
+// lock (see release.Lock), which says a release is running against this
+// repository. It is a coordination ref and never a release record, so Tags
+// keeps it out of every package's history whatever the tag format is broad
+// enough to match — and it lives here, beside the reading of tags, because
+// that is where the reservation has to hold.
+const LockTagName = "dispat-release-lock"
+
+const (
+	tagNamePlaceholder    = "{name}"
+	tagVersionPlaceholder = "{version}"
+	tagChannelPlaceholder = "{channel}"
+	tagCounterPlaceholder = "{counter}"
+	// Alias-only: the three numbers of the core version on their own.
+	tagMajorPlaceholder = "{major}"
+	tagMinorPlaceholder = "{minor}"
+	tagPatchPlaceholder = "{patch}"
+)
+
+// WithDefault returns the format, or DefaultTagFormat when it is empty.
+func (f TagFormat) WithDefault() TagFormat {
+	if f == "" {
+		return DefaultTagFormat
+	}
+	return f
+}
+
+// Validate reports whether the format can both render and parse a tag, and
+// whether what it renders is a name git will accept.
+//
+// The second half matters more than it looks. A format is only exercised at
+// the very end of a release — after the artefact is published — so an
+// unacceptable name fails at the worst possible moment, leaving a package
+// published and untagged, which is exactly the state the next run reads as
+// "never released". Rejecting it at load time costs nothing and prevents that
+// entirely. The leading slash in "/services/{name}@v{version}" is the mistake
+// this is for: it reads naturally and git refuses it.
+//
+// The round trip is checked for the same reason. A format free to place
+// {version} next to {channel} is also free to place them so that no reader can
+// tell where one ends and the other begins; rendering a sample and parsing it
+// back is the cheap way to find that out now rather than one run later, when
+// the ambiguous tag is already the baseline.
+func (f TagFormat) Validate() error {
+	tpl, err := f.template()
+	if err != nil {
+		return fmt.Errorf("tag format %q: %w", string(f), err)
+	}
+	samples := []ccme.Version{{Minor: 1}}
+	if tpl.spellsPrerelease() {
+		samples = append(samples, ccme.Version{Minor: 1, Prerelease: []string{"beta", "4"}})
+	}
+	for _, v := range samples {
+		// Validate what the format renders, not the template: the template
+		// legitimately contains "@{", which git forbids in a ref name.
+		sample := tpl.render("pkg", v)
+		if err := validRefName(sample); err != nil {
+			return fmt.Errorf("tag format %q would produce %q, which git rejects: %w",
+				string(f), sample, err)
+		}
+		back, ok := tpl.parseVersion("pkg", sample)
+		if !ok || back.String() != v.String() {
+			return fmt.Errorf("tag format %q renders %s as %q but cannot read it back",
+				string(f), v.String(), sample)
+		}
+	}
+	return nil
+}
+
+// validRefName applies the rules of git-check-ref-format that a tag template
+// can plausibly violate. It is deliberately not the complete grammar: the
+// point is to catch a misconfiguration early, and git remains the authority.
+func validRefName(name string) error {
+	switch {
+	case name == "":
+		return errors.New("a ref name may not be empty")
+	case strings.HasPrefix(name, "/"), strings.HasSuffix(name, "/"):
+		return errors.New("a ref name may not begin or end with '/'")
+	case strings.HasPrefix(name, "-"):
+		return errors.New("a ref name may not begin with '-'")
+	case strings.HasPrefix(name, "."), strings.HasSuffix(name, "."):
+		return errors.New("a ref name may not begin or end with '.'")
+	case strings.HasSuffix(name, ".lock"):
+		return errors.New("a ref name may not end with '.lock'")
+	case strings.Contains(name, "//"), strings.Contains(name, ".."), strings.Contains(name, "@{"):
+		return errors.New("a ref name may not contain '//', '..' or '@{'")
+	}
+	for i := 0; i < len(name); i++ {
+		c := name[i]
+		if c <= ' ' || c == 0x7f {
+			return errors.New("a ref name may not contain whitespace or control characters")
+		}
+		if strings.IndexByte("~^:?*[\\", c) >= 0 {
+			return fmt.Errorf("a ref name may not contain %q", string(c))
+		}
+	}
+	return nil
+}
+
+// Render builds the tag name for a package version.
+func (f TagFormat) Render(pkg string, v ccme.Version) string {
+	tpl, err := f.template()
+	if err != nil {
+		// Unreachable for a validated format; rendering something is still
+		// better than rendering nothing at the end of a release.
+		return DefaultTagFormat.Render(pkg, v)
+	}
+	return tpl.render(pkg, v)
+}
+
+// RenderVersion builds only the version section of a tag: the {version}
+// placeholder through {counter}, with the literals between them, and nothing
+// of the name or the decoration around it — under
+// "{name}@v{version}-{channel}{counter}" a 1.2.3-beta.4 renders as
+// "1.2.3-beta4" (the "v" belongs to the tag, not the version). A format that
+// leaves the prerelease inside {version} renders the plain SemVer string.
+func (f TagFormat) RenderVersion(v ccme.Version) string {
+	tpl, err := f.template()
+	if err != nil {
+		return v.String()
+	}
+	return tpl.renderVersion(v)
+}
+
+// Glob builds the `git tag --list` pattern matching every version of one
+// package.
+//
+// It is built from the stable shape, whose "*" spans the prerelease section
+// too, so one pattern covers both shapes. The pattern is only a filter: Matches
+// re-checks every candidate.
+func (f TagFormat) Glob(pkg string) string {
+	prefix, suffix, ok := f.split(pkg)
+	if !ok {
+		return pkg + "*"
+	}
+	return prefix + "*" + suffix
+}
+
+// split returns the literal text surrounding the version for one package: what
+// precedes it, and what follows the whole prerelease section.
+func (f TagFormat) split(pkg string) (prefix, suffix string, ok bool) {
+	tpl, err := f.template()
+	if err != nil {
+		return "", "", false
+	}
+	return tpl.split(pkg)
+}
+
+// ParseVersion extracts the version from a tag name.
+//
+// The tag is matched against the format itself rather than split on a
+// separator. That matters for the reason §12.1 gives about splitting at the
+// last "@": package names may contain the separator and versions never do, and
+// a format-driven match is right for every convention rather than for one. A
+// format spelling the prerelease out is tried in its prerelease shape first
+// and its stable shape second, so "core@1.2.3" and "core@1.2.3-beta4" both
+// read back under one format.
+func (f TagFormat) ParseVersion(pkg, tag string) (ccme.Version, bool) {
+	tpl, err := f.template()
+	if err != nil {
+		return ccme.Version{}, false
+	}
+	return tpl.parseVersion(pkg, tag)
+}
+
+// Matches reports whether a tag belongs to a package under this format. A tag
+// can match the shape and still carry an unparseable version, which is the
+// case the initials fallback exists for — so this is deliberately the loose
+// literal check and not ParseVersion.
+func (f TagFormat) Matches(pkg, tag string) bool {
+	prefix, suffix, ok := f.split(pkg)
+	if !ok {
+		return false
+	}
+	return len(tag) > len(prefix)+len(suffix) &&
+		strings.HasPrefix(tag, prefix) && strings.HasSuffix(tag, suffix)
+}
+
+// TagName renders a release tag under the default format. Callers that know a
+// package's space should use its format instead.
+//
+// It is also what DISPAT_SEMVER_TAG carries: the same release named under the
+// normative "{name}@{version}", so a script written against SemVer keeps a
+// stable input whatever local convention the space's tagFormat encodes.
+func TagName(pkg string, v ccme.Version) string { return DefaultTagFormat.Render(pkg, v) }
+
+// AliasFormat is a template for an alias tag: an extra name a release is
+// written under, beside the tag its package's TagFormat produces.
+//
+// It is deliberately a distinct type from TagFormat rather than the same one
+// with looser rules. The two are validated differently and, more importantly,
+// used differently: a TagFormat is written *and read*, and is how a package's
+// history is found, while an AliasFormat is only ever written. Keeping them
+// apart means no code path can read an alias back by accident, which is the
+// one thing that would turn a convenience ref into a package's baseline.
+//
+// It accepts everything TagFormat does plus {major}, {minor} and {patch}, and
+// needs at least one of those or {version}:
+//
+//	v{version}                  v1.4.2
+//	v{major}                    v1
+//	{name}-{major}.{minor}      core-1.4
+type AliasFormat string
+
+// Validate reports whether the format renders a name git will accept.
+func (f AliasFormat) Validate() error {
+	tpl := compileTagFormat(string(f))
+	if err := tpl.validateAlias(); err != nil {
+		return fmt.Errorf("alias tag format %q: %w", string(f), err)
+	}
+	samples := []ccme.Version{{Minor: 1}, {Minor: 1, Prerelease: []string{"beta", "4"}}}
+	for _, v := range samples {
+		sample := tpl.render("pkg", v)
+		if err := validRefName(sample); err != nil {
+			return fmt.Errorf("alias tag format %q would produce %q, which git rejects: %w",
+				string(f), sample, err)
+		}
+	}
+	return nil
+}
+
+// Render builds the alias name for a package version.
+func (f AliasFormat) Render(pkg string, v ccme.Version) string {
+	return compileTagFormat(string(f)).render(pkg, v)
+}
+
+// Commit is one commit of a pending window.
+type Commit struct {
+	// SHA identifies the commit. It is the key a pending window is a set of
+	// (§13.3), so it must be present for propagation to be admitted against
+	// the right window at all.
+	SHA string
+	// Parents are the commit's parent SHAs, first parent first. They let the
+	// planner answer ancestor-or-self questions (§10.4) without a git call per
+	// pair.
+	Parents []string
+	Message string
+	// Files are the paths the commit changed, used for file-derived scope
+	// resolution (§6.2). For a merge commit these are the changes against the
+	// first parent.
+	Files []string
+}
+
+// Tags are one package's reachable release tags, newest first by creation
+// date. Both baselines of §12.3 are selections over this one list, which is
+// why it is the primitive: a planner that asked for them separately would run
+// the same `git tag` query twice per package.
+type Tags []Tag
+
+// Baseline is the highest tag by SemVer precedence, prereleases included: what
+// the package last published, and what its channel is derived from.
+func (t Tags) Baseline() (Tag, bool) {
+	return t.highest(func(Tag) bool { return true })
+}
+
+// StableBaseline is the highest tag with no prerelease component.
+//
+// This — not Baseline — is what a pending window is measured from. The
+// distinction is invisible for a package on the stable channel, where the two
+// coincide, and load-bearing for one on a prerelease train: the window has to
+// span the whole train so that the train's target can be recomputed from the
+// stable baseline on every run, which is what makes a breaking change arriving
+// mid-train move the whole train.
+func (t Tags) StableBaseline() (Tag, bool) {
+	return t.highest(func(tag Tag) bool { return !tag.Version.IsPrerelease() })
+}
+
+// highest picks the highest-precedence tag satisfying keep.
+//
+// An unparseable newest tag short-circuits both selections identically: a
+// baseline that cannot be read makes every older tag untrustworthy too, so the
+// caller falls back to a configured initial version while still measuring the
+// window from the tag — which is what stops already-released commits being
+// counted twice.
+func (t Tags) highest(keep func(Tag) bool) (Tag, bool) {
+	if len(t) == 0 {
+		return Tag{}, false
+	}
+	if !t[0].Parsed {
+		return t[0], true
+	}
+	best, found := Tag{}, false
+	for _, tag := range t {
+		if !tag.Parsed || !keep(tag) {
+			continue
+		}
+		if !found || best.Version.Compare(tag.Version) < 0 {
+			best, found = tag, true
+		}
+	}
+	return best, found
+}
+
+// Git abstracts the repository operations used by planning and publishing.
+type Git interface {
+	// Tags returns every reachable tag of the package under format, newest
+	// first by creation date. Callers select a baseline from it with
+	// Tags.Baseline or Tags.StableBaseline. The planner calls it for many
+	// packages concurrently, so implementations must be safe for concurrent
+	// use.
+	Tags(ctx context.Context, pkg string, format TagFormat) (Tags, error)
+	// Commits lists commit messages lines reachable from HEAD, newest first.
+	// When sinceTag is non-empty only commits after that tag are listed;
+	// otherwise the whole history down to the first commit is used.
+	Commits(ctx context.Context, sinceTag string) ([]Commit, error)
+	// CreateTag creates an annotated tag at target, or at HEAD when target
+	// is empty.
+	CreateTag(ctx context.Context, name, message, target string) error
+	// IsAncestor reports whether commit a is an ancestor-or-self of commit b
+	// (§10.4). An implementation without ancestry knowledge — a test double
+	// whose commits carry parent pointers instead — returns ErrNoAncestry
+	// (embed NoAncestry for exactly that) and the planner falls back to those
+	// pointers. Any other error aborts planning: a silently wrong ancestry
+	// answer would change cancellation and prerelease-train containment.
+	IsAncestor(ctx context.Context, a, b string) (bool, error)
+	// IsShallow reports whether the repository's history is incomplete — a
+	// shallow clone or a graft. The planner refuses to plan over one (§16
+	// E196): hidden commits and tags make every window silently wrong.
+	IsShallow(ctx context.Context) (bool, error)
+}
+
+// ErrNoAncestry is the IsAncestor answer of a Git implementation that cannot
+// answer ancestry questions at all. It is a capability statement, not a
+// failure: the caller uses its fallback for every ancestry question.
+var ErrNoAncestry = errors.New("gitx: ancestry not available")
+
+// NoAncestry is an embeddable IsAncestor stub for Git implementations that
+// have no ancestry knowledge of their own.
+type NoAncestry struct{}
+
+// IsAncestor always answers ErrNoAncestry.
+func (NoAncestry) IsAncestor(context.Context, string, string) (bool, error) {
+	return false, ErrNoAncestry
+}
+
+// CLI is the Git implementation backed by the git executable.
+type CLI struct {
+	Dir string // repository root
+	// Name and Email, when set, are the identity every commit and annotated
+	// tag is created under (passed as `-c user.name/-c user.email`), so a CI
+	// run needs no `git config` step. Empty fields fall back to git's own
+	// configuration.
+	Name  string
+	Email string
+
+	// Log traces every git invocation. The zero value discards, so a CLI
+	// built without one still works; commands that have a logger set it, and
+	// what comes out is the single most useful thing in a bug report about a
+	// release: which git commands ran, in which order, and which one failed.
+	// Trace rather than debug, because one run makes hundreds of these and
+	// debug is where the release's own story is told — except the mutating
+	// calls (commit, tag, push, the revert's checkout/clean), which are O(few)
+	// per run and are exactly what a debug reader needs between those story
+	// lines.
+	Log zerolog.Logger
+
+	// The ancestry DAG, loaded lazily by the first IsAncestor and shared by
+	// every later one. Loaded once per CLI value: a release run creates
+	// commits after planning, but planning's ancestry questions are all
+	// asked against the history that existed when it started.
+	dagOnce sync.Once
+	dag     map[string][]string
+	dagErr  error
+}
+
+var _ Git = (*CLI)(nil)
+
+// mutates reports whether a git invocation changes repository state — the
+// calls whose trace line rises to debug level. "tag --list" is the one
+// read-only spelling sharing a subcommand with a mutation.
+func mutates(args []string) bool {
+	if len(args) == 0 {
+		return false
+	}
+	switch args[0] {
+	case "push", "commit", "add", "checkout", "clean":
+		return true
+	case "tag":
+		return len(args) > 1 && args[1] != "--list"
+	}
+	return false
+}
+
+func (c *CLI) run(ctx context.Context, args ...string) (string, error) {
+	base := []string{"-C", c.Dir}
+	if c.Name != "" {
+		base = append(base, "-c", "user.name="+c.Name)
+	}
+	if c.Email != "" {
+		base = append(base, "-c", "user.email="+c.Email)
+	}
+	cmd := exec.CommandContext(ctx, "git", append(base, args...)...)
+	var out, stderr bytes.Buffer
+	cmd.Stdout = &out
+	cmd.Stderr = &stderr
+	// git spawns no long-lived children here, but if one ever held the output
+	// pipes past its exit, WaitDelay turns a silent hang into an error.
+	cmd.WaitDelay = 10 * time.Second
+	started := time.Now()
+	err := cmd.Run()
+	// Logged whether it worked or not, and with the same fields either way, so
+	// a trace can be read as the sequence of git calls the run actually made.
+	// The arguments are the command's own, never the repository path or the
+	// identity flags, which are the same on every line and say nothing.
+	level := zerolog.TraceLevel
+	if mutates(args) {
+		level = zerolog.DebugLevel
+	}
+	ev := c.Log.WithLevel(level).Strs("args", args).Dur("took", time.Since(started))
+	if err != nil {
+		ev.Err(err).Str("stderr", strings.TrimSpace(stderr.String())).Msg("git failed")
+		return "", fmt.Errorf("git %s: %w: %s",
+			strings.Join(args, " "), err, strings.TrimSpace(stderr.String()))
+	}
+	ev.Int("outBytes", out.Len()).Msg("git")
+	return out.String(), nil
+}
+
+// Tags returns every reachable tag of the package, newest first by creation
+// date (ties broken by version-aware name order), with its peeled target
+// commit.
+//
+// This is one `git tag --list` per package and the only tag query planning
+// makes: both baselines are selections over the result. Only tags reachable
+// from HEAD are considered, so a tag on an unmerged branch does not affect
+// this branch's computation and per-branch release lines work with no
+// configuration.
+func (c *CLI) Tags(ctx context.Context, pkg string, format TagFormat) (Tags, error) {
+	format = format.WithDefault()
+	// The last --sort key is primary: creation date desc, name as tie-break.
+	// Tabs separate the fields; a ref name can contain neither a tab nor a
+	// space, and %(*objectname) is empty for a lightweight tag.
+	out, err := c.run(ctx, "tag", "--list", "--merged", "HEAD",
+		"--sort=-v:refname", "--sort=-creatordate",
+		"--format=%(refname:short)\t%(objectname)\t%(*objectname)",
+		format.Glob(pkg))
+	if err != nil {
+		return nil, err
+	}
+	var tags Tags
+	for _, line := range strings.Split(out, "\n") {
+		if strings.TrimSpace(line) == "" {
+			continue
+		}
+		f := strings.Split(line, "\t")
+		if len(f) < 2 {
+			continue
+		}
+		name := strings.TrimSpace(f[0])
+		if name == LockTagName {
+			// dispat's own coordination ref, which is on HEAD for the whole of
+			// the run doing the planning. A format broad enough to match it —
+			// "{version}" makes the glob "*" — would otherwise adopt it as the
+			// package's newest tag and read the window as empty.
+			continue
+		}
+		// The glob is not precise enough on its own: "*" matches any run of
+		// characters, so under "{name}@{version}" the pattern "core@*" also
+		// matches a tag of a package called "core@extra". Re-checking the
+		// shape against the format is what keeps someone else's tags out
+		// (§12.1).
+		if !format.Matches(pkg, name) {
+			continue
+		}
+		t := Tag{Name: name, Commit: strings.TrimSpace(f[1])}
+		// An annotated tag's %(objectname) is the tag object; the commit is
+		// the peeled %(*objectname). Lightweight tags leave it empty.
+		if len(f) > 2 {
+			if peeled := strings.TrimSpace(f[2]); peeled != "" {
+				t.Commit = peeled
+			}
+		}
+		if v, ok := format.ParseVersion(pkg, name); ok {
+			t.Version, t.Parsed = v, true
+		}
+		tags = append(tags, t)
+	}
+	return tags, nil
+}
+
+// IsAncestor reports whether commit a is an ancestor-or-self of commit b.
+//
+// Ancestry rather than commit or tag dates is what keeps cancellation (§10.4)
+// and the staleness screen (§13.7b) deterministic under merges, rebases and
+// equal timestamps.
+func (c *CLI) IsAncestor(ctx context.Context, a, b string) (bool, error) {
+	if a == "" || b == "" {
+		return false, nil
+	}
+	if a == b {
+		return true, nil
+	}
+	// One `git rev-list --parents HEAD` loads the whole reachable DAG, after
+	// which every ancestry question is an in-process walk. Planning asks this
+	// question hundreds of times per run (baseline containment, cancels,
+	// train windows), and paying a git process per question was the single
+	// largest cost of `dispat status`.
+	parents, err := c.commitDAG(ctx)
+	if err != nil {
+		return false, err
+	}
+	pa, pb := parents[a], parents[b]
+	if pa != nil && pb != nil {
+		return dagIsAncestor(parents, a, b), nil
+	}
+	// A commit outside HEAD's ancestry (or an abbreviated SHA): answer the
+	// one question authoritatively instead of guessing from a partial graph.
+	return c.mergeBaseIsAncestor(ctx, a, b)
+}
+
+// commitDAG returns the parent pointers of every commit reachable from HEAD,
+// loaded once per CLI and reused for every ancestry question.
+func (c *CLI) commitDAG(ctx context.Context) (map[string][]string, error) {
+	c.dagOnce.Do(func() {
+		out, err := c.run(ctx, "rev-list", "--parents", "HEAD")
+		if err != nil {
+			c.dagErr = err
+			return
+		}
+		dag := make(map[string][]string)
+		for line := range strings.Lines(out) {
+			fields := strings.Fields(line)
+			if len(fields) == 0 {
+				continue
+			}
+			dag[fields[0]] = fields[1:]
+		}
+		c.dag = dag
+	})
+	return c.dag, c.dagErr
+}
+
+// dagIsAncestor walks b's ancestry looking for a. The DAG is the repository's
+// own history, so a plain iterative DFS with a seen-set is enough.
+func dagIsAncestor(parents map[string][]string, a, b string) bool {
+	seen := make(map[string]bool)
+	stack := []string{b}
+	for len(stack) > 0 {
+		cur := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
+		if cur == a {
+			return true
+		}
+		if seen[cur] {
+			continue
+		}
+		seen[cur] = true
+		stack = append(stack, parents[cur]...)
+	}
+	return false
+}
+
+// mergeBaseIsAncestor is the per-question fallback for commits the loaded DAG
+// does not cover.
+func (c *CLI) mergeBaseIsAncestor(ctx context.Context, a, b string) (bool, error) {
+	cmd := exec.CommandContext(ctx, "git", "-C", c.Dir,
+		"merge-base", "--is-ancestor", a, b)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	cmd.WaitDelay = 10 * time.Second // same backstop as run()
+	err := cmd.Run()
+	if err == nil {
+		return true, nil
+	}
+	// Exit status 1 is the answer "no"; anything else is a real failure.
+	var ee *exec.ExitError
+	if errors.As(err, &ee) && ee.ExitCode() == 1 {
+		return false, nil
+	}
+	return false, fmt.Errorf("git merge-base --is-ancestor %s %s: %w: %s",
+		a, b, err, strings.TrimSpace(stderr.String()))
+}
+
+// IsShallow reports whether the repository is a shallow clone.
+func (c *CLI) IsShallow(ctx context.Context) (bool, error) {
+	out, err := c.run(ctx, "rev-parse", "--is-shallow-repository")
+	if err != nil {
+		return false, err
+	}
+	return strings.TrimSpace(out) == "true", nil
+}
+
+// Record and field separators for the commit log. Both are ASCII control
+// characters that cannot occur in a commit message, a SHA or a path, so the
+// output splits unambiguously.
+//
+// The explicit field separator after %B is what makes the parse correct at
+// all: a CCME message is *expected* to contain blank lines — the one after the
+// header is required, and the footer block is preceded by another (§4.4) — so
+// a parser that treats the first blank line as the end of the message
+// truncates almost every well-formed message and reads its body and footers as
+// file paths.
+const (
+	logRecordSep = "\x1e"
+	logFieldSep  = "\x1f"
+)
+
+func (c *CLI) Commits(ctx context.Context, sinceTag string) ([]Commit, error) {
+	rangeArg := "HEAD"
+	if sinceTag != "" {
+		rangeArg = sinceTag + "..HEAD"
+	}
+
+	out, err := c.run(ctx,
+		"log",
+		"--format="+logRecordSep+"%H"+logFieldSep+"%P"+logFieldSep+"%B"+logFieldSep,
+		"--name-only",
+		// §6.2: a merge commit's changed-file list is its diff against the
+		// *first parent*. Without this git shows no diff for merges at all, so
+		// every file-derived scope inside a merge silently resolves to nothing.
+		// This does not change which commits are traversed — the window is
+		// still every commit reachable from HEAD (§13.3).
+		"--diff-merges=first-parent",
+		rangeArg,
+	)
+	if err != nil {
+		return nil, err
+	}
+	if strings.TrimSpace(out) == "" {
+		return nil, nil
+	}
+
+	var commits []Commit
+	for _, record := range strings.Split(out, logRecordSep) {
+		if strings.TrimSpace(record) == "" {
+			continue
+		}
+		fields := strings.SplitN(record, logFieldSep, 4)
+		if len(fields) < 3 {
+			continue
+		}
+		commit := Commit{
+			SHA:     strings.TrimSpace(fields[0]),
+			Parents: strings.Fields(fields[1]),
+			Message: strings.Trim(fields[2], "\n"),
+		}
+		if len(fields) > 3 {
+			for _, line := range strings.Split(fields[3], "\n") {
+				if line = strings.TrimRight(line, "\r"); line != "" {
+					commit.Files = append(commit.Files, line)
+				}
+			}
+		}
+		commits = append(commits, commit)
+	}
+
+	return commits, nil
+}
+
+// CreateTag creates an annotated tag at target (any commit-ish), or at HEAD
+// when target is empty.
+func (c *CLI) CreateTag(ctx context.Context, name, message, target string) error {
+	return c.createTag(ctx, name, message, target, false)
+}
+
+// CreateTagForce is CreateTag with `git tag -f`: a name the repository already
+// carries is rewritten instead of refused.
+//
+// It is what a moving tag needs — an alias like "v1" means "the newest 1.x"
+// and has to be re-pointed on every release — and what keeps a run from
+// dying on a tag some earlier attempt left behind. It is deliberately a
+// separate method rather than a flag on CreateTag: overwriting a release
+// record is not something a caller should be able to do by passing false.
+func (c *CLI) CreateTagForce(ctx context.Context, name, message, target string) error {
+	return c.createTag(ctx, name, message, target, true)
+}
+
+func (c *CLI) createTag(ctx context.Context, name, message, target string, force bool) error {
+	args := []string{"tag"}
+	if force {
+		args = append(args, "-f")
+	}
+	args = append(args, "-a", name, "-m", message)
+	if target != "" {
+		args = append(args, target)
+	}
+	_, err := c.run(ctx, args...)
+	return err
+}
+
+// DeleteTag removes a tag from this repository. It fails when the tag is not
+// there, which callers that are cleaning up are free to ignore.
+func (c *CLI) DeleteTag(ctx context.Context, name string) error {
+	_, err := c.run(ctx, "tag", "-d", name)
+	return err
+}
+
+// PushTag pushes one tag ref and nothing else: no branch moves, and no other
+// tag travels with it.
+//
+// **It never forces, and must never learn to.** Unlike Push, whose tags are
+// this run's own records and may be rewritten under commit.force, the caller
+// here is contending for a name someone else may already hold. A rejection is
+// the answer the caller asked for, not an obstacle to push through: forcing it
+// would overwrite the holder's ref and tell both of them they won.
+func (c *CLI) PushTag(ctx context.Context, remote, name string) error {
+	_, err := c.run(ctx, "push", remote, "refs/tags/"+name)
+	return err
+}
+
+// DeleteRemoteTag removes a tag from the remote. Deleting a ref the remote
+// does not have succeeds: git warns and reports the deletion, because the
+// fully qualified refspec leaves nothing to guess about. Cleanup is therefore
+// idempotent on this side, unlike DeleteTag.
+func (c *CLI) DeleteRemoteTag(ctx context.Context, remote, name string) error {
+	_, err := c.run(ctx, "push", remote, "--delete", "refs/tags/"+name)
+	return err
+}
+
+// TagExists reports whether the named tag exists in this repository.
+func (c *CLI) TagExists(ctx context.Context, name string) (bool, error) {
+	_, err := c.run(ctx, "rev-parse", "-q", "--verify", "refs/tags/"+name)
+	if err != nil {
+		var exit *exec.ExitError
+		if errors.As(err, &exit) {
+			return false, nil
+		}
+		return false, err
+	}
+	return true, nil
+}
+
+// RemoteTagMessage reads an annotated tag's message from the remote without
+// touching this clone's refs: the fetch lands the object in FETCH_HEAD only.
+// A lightweight tag has no message and comes back empty.
+func (c *CLI) RemoteTagMessage(ctx context.Context, remote, name string) (string, error) {
+	if _, err := c.run(ctx, "fetch", "--no-tags", remote, "refs/tags/"+name); err != nil {
+		return "", err
+	}
+	out, err := c.run(ctx, "cat-file", "-p", "FETCH_HEAD")
+	if err != nil {
+		return "", err
+	}
+	// An annotated tag prints its headers, a blank line, then the message; a
+	// peeled or lightweight ref prints a commit instead, which has no message
+	// of the tag's own to offer.
+	if !strings.HasPrefix(out, "object ") {
+		return "", nil
+	}
+	if i := strings.Index(out, "\n\n"); i >= 0 {
+		return out[i+2:], nil
+	}
+	return "", nil
+}
+
+// pathspec renders dir relative to the repo root, avoiding symlinked-tempdir
+// mismatches in git pathspecs.
+func (c *CLI) pathspec(dir string) string {
+	if rel, err := filepath.Rel(c.Dir, dir); err == nil {
+		return rel
+	}
+	return dir
+}
+
+// RevertDir discards all local changes inside dir: tracked files are restored
+// from HEAD and untracked files and folders are removed. Note this also wipes
+// any pre-existing uncommitted changes in that folder — CI runs from a clean
+// checkout, which is the intended environment.
+func (c *CLI) RevertDir(ctx context.Context, dir string) error {
+	spec := c.pathspec(dir)
+	if _, err := c.run(ctx, "checkout", "--", spec); err != nil {
+		return err
+	}
+	_, err := c.run(ctx, "clean", "-fd", "--", spec)
+	return err
+}
+
+// CommitDirs stages all changes inside the given directories and creates a
+// single commit. It reports whether a commit was actually created: when the
+// staged set turns out empty (e.g. changelogs disabled and no manifest
+// changes) no commit is made and (false, nil) is returned.
+func (c *CLI) CommitDirs(ctx context.Context, dirs []string, message string) (bool, error) {
+	args := []string{"add", "--"}
+	for _, d := range dirs {
+		args = append(args, c.pathspec(d))
+	}
+	if _, err := c.run(ctx, args...); err != nil {
+		return false, err
+	}
+	// diff --cached --quiet exits non-zero when something is staged.
+	if _, err := c.run(ctx, "diff", "--cached", "--quiet"); err == nil {
+		return false, nil // nothing staged
+	}
+	if _, err := c.run(ctx, "commit", "-m", message); err != nil {
+		return false, err
+	}
+	return true, nil
+}
+
+// HeadSHA returns the full SHA of the current HEAD commit.
+func (c *CLI) HeadSHA(ctx context.Context) (string, error) {
+	return c.ResolveCommit(ctx, "HEAD")
+}
+
+// ResolveCommit resolves any commit-ish (a short SHA, a ref, HEAD) to its
+// full commit SHA, peeling tags on the way.
+func (c *CLI) ResolveCommit(ctx context.Context, rev string) (string, error) {
+	out, err := c.run(ctx, "rev-parse", rev+"^{commit}")
+	if err != nil {
+		return "", err
+	}
+	return strings.TrimSpace(out), nil
+}
+
+// VerifyRemote checks that the remote exists, is reachable and authenticated.
+// Meant to run before any release work so misconfigured credentials fail fast.
+func (c *CLI) VerifyRemote(ctx context.Context, remote string) error {
+	_, err := c.run(ctx, "ls-remote", "--heads", remote)
+	return err
+}
+
+// CurrentBranch returns the name of the checked-out branch, or "" when HEAD is
+// detached.
+func (c *CLI) CurrentBranch(ctx context.Context) (string, error) {
+	out, err := c.run(ctx, "rev-parse", "--abbrev-ref", "HEAD")
+	if err != nil {
+		return "", err
+	}
+	name := strings.TrimSpace(out)
+	if name == "HEAD" { // rev-parse's spelling of "detached"
+		return "", nil
+	}
+	return name, nil
+}
+
+// BehindRemote reports whether the remote's tip of branch holds commits HEAD
+// does not: the checkout is stale, so a release planned here would be planned
+// against tags someone else has already moved past.
+//
+// Two cases are deliberately not "behind". A branch the remote does not have
+// yet is not behind, because the first push is what creates it. A remote tip
+// this clone has never fetched is behind by definition — that is exactly the
+// unfetched-someone-else's-commit case the check exists for — which is why a
+// failed ResolveCommit answers true rather than propagating: the object is
+// missing because it is new, and the caller's remedy (pull) is the same either
+// way.
+func (c *CLI) BehindRemote(ctx context.Context, remote, branch string) (bool, error) {
+	ref := "refs/heads/" + branch
+	out, err := c.run(ctx, "ls-remote", remote, ref)
+	if err != nil {
+		return false, err
+	}
+	// ls-remote arguments are tail-matching patterns, so a branch literally
+	// named "x/refs/heads/main" would list too: keep only the exact ref.
+	var tip string
+	for _, line := range strings.Split(out, "\n") {
+		if sha, name, ok := strings.Cut(strings.TrimSpace(line), "\t"); ok && name == ref {
+			tip = sha
+			break
+		}
+	}
+	if tip == "" {
+		return false, nil
+	}
+	if _, err := c.ResolveCommit(ctx, tip); err != nil {
+		return true, nil
+	}
+	head, err := c.HeadSHA(ctx)
+	if err != nil {
+		return false, err
+	}
+	contained, err := c.IsAncestor(ctx, tip, head)
+	if err != nil {
+		return false, err
+	}
+	return !contained, nil
+}
+
+// RemoteTags returns the names of the tags that exist on the remote.
+func (c *CLI) RemoteTags(ctx context.Context, remote string) (map[string]bool, error) {
+	out, err := c.run(ctx, "ls-remote", "--tags", remote)
+	if err != nil {
+		return nil, err
+	}
+	tags := make(map[string]bool)
+	for _, line := range strings.Split(out, "\n") {
+		_, ref, ok := strings.Cut(line, "\t")
+		if !ok {
+			continue
+		}
+		// Annotated tags list twice: refs/tags/x and the peeled refs/tags/x^{}.
+		name := strings.TrimSuffix(strings.TrimPrefix(ref, "refs/tags/"), "^{}")
+		if name != "" && name != ref {
+			tags[name] = true
+		}
+	}
+	return tags, nil
+}
+
+// PushReport says what the push did about tags the remote already carried.
+// Exactly one of the two lists is ever populated, decided by force.
+type PushReport struct {
+	// Skipped are tags left as they were, because the remote already had
+	// them and force was off.
+	Skipped []string
+	// Replaced are tags the remote already had and that were overwritten.
+	Replaced []string
+}
+
+// Push pushes the current branch (HEAD) and then the given tags to the remote.
+// Requires a checked-out branch (not a detached HEAD).
+//
+// With force, the tags are pushed with --force and a tag the remote already
+// carries is overwritten; the report names those, because replacing a
+// published ref is worth saying out loud even when it is what was asked for.
+// Without it, such a tag is left alone and reported as skipped, so a re-run
+// after a partially pushed release converges instead of dying on "already
+// exists".
+//
+// **The branch is never force pushed.** A rejected branch push means someone
+// else pushed while this run was working, and the answer to that is to look,
+// not to overwrite their commits. Only the tag refs — dispat's own namespace —
+// are ever forced.
+func (c *CLI) Push(ctx context.Context, remote string, tags []string, force bool) (PushReport, error) {
+	var report PushReport
+	if _, err := c.run(ctx, "push", remote, "HEAD"); err != nil {
+		return report, err
+	}
+	if len(tags) == 0 {
+		return report, nil
+	}
+	existing, err := c.RemoteTags(ctx, remote)
+	if err != nil {
+		return report, err
+	}
+	refs := make([]string, 0, len(tags))
+	for _, t := range tags {
+		switch {
+		case !existing[t]:
+		case force:
+			report.Replaced = append(report.Replaced, t)
+		default:
+			report.Skipped = append(report.Skipped, t)
+			continue
+		}
+		refs = append(refs, "refs/tags/"+t)
+	}
+	if len(refs) == 0 {
+		return report, nil
+	}
+	args := []string{"push"}
+	if force {
+		args = append(args, "--force")
+	}
+	args = append(args, remote)
+	if _, err := c.run(ctx, append(args, refs...)...); err != nil {
+		return report, err
+	}
+	return report, nil
+}

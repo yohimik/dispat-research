@@ -1,0 +1,17 @@
+npm notice
+npm notice package: api@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 82B package.json
+npm notice Tarball Details
+npm notice name: api
+npm notice version: 1.0.1
+npm notice filename: api-1.0.1.tgz
+npm notice package size: 196 B
+npm notice unpacked size: 88 B
+npm notice shasum: 19c8c79f08d4ac355ed6d971090a6d911f56fd07
+npm notice integrity: sha512-d1xXEFDNeundk[...]meyOsDSJPHHtw==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://127.0.0.1:4873/ with tag latest and default access
++ api@1.0.1

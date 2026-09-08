@@ -1,0 +1,66 @@
+/**
+ * The global stylesheet. Infima, the framework the classic theme bundles, reads
+ * one primary colour and six shades around it, so the palette below is the
+ * whole of the site's colouring.
+ *
+ * Dark pine: a deep forest green at hue 147, anchored on #102c1b, which is the
+ * light ramp's darkest shade. The light shades carry text on white, where the
+ * base holds 10.8:1 and the weakest shade 7.5:1. Dark mode keeps a sage accent
+ * (an accent as dark as the anchor would vanish there) and instead carries the
+ * pine in its background: near-black tinted toward the anchor's hue. On it the
+ * base holds 7.0:1, and the weakest of the fourteen shades, dark mode's
+ * darkest on its surface colour, still holds 4.6:1.
+ */
+:root {
+  --ifm-color-primary: #17462c;
+  --ifm-color-primary-dark: #154028;
+  --ifm-color-primary-darker: #143d26;
+  --ifm-color-primary-darkest: #102c1b;
+  --ifm-color-primary-light: #194d30;
+  --ifm-color-primary-lighter: #1b5334;
+  --ifm-color-primary-lightest: #206040;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(23, 70, 44, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #6fae8a;
+  --ifm-color-primary-dark: #5ea27a;
+  --ifm-color-primary-darker: #55996f;
+  --ifm-color-primary-darkest: #4f9269;
+  --ifm-color-primary-light: #79b592;
+  --ifm-color-primary-lighter: #84bc9b;
+  --ifm-color-primary-lightest: #8fc3a5;
+  --ifm-background-color: #101713;
+  --ifm-background-surface-color: #151d18;
+  --docusaurus-highlighted-code-line-bg: rgba(111, 174, 138, 0.12);
+}
+
+/*
+ * Inline code wraps when it must: a long module path, variable or URL in a
+ * code span would otherwise set the column's minimum width and push a phone
+ * layout sideways (the landing's project cards, concepts.md and ci.md all
+ * carry such tokens). Fenced blocks are untouched: their white-space is pre,
+ * which leaves overflow-wrap nothing to break, and they scroll on their own.
+ */
+:not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+/*
+ * The footer's three columns spread across the row instead of clustering
+ * left. `wrap` matters: flex-wrap is not inherited, so `unset` would compute
+ * to nowrap and crush the columns into one unreadable line on a phone.
+ */
+.footer__links {
+  display: flex;
+  justify-content: space-between;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+.footer__col {
+  --ifm-col-width: unset;
+  width: unset;
+  min-width: 0;
+}

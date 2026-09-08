@@ -1,0 +1,141 @@
+
+ NX   Running release version for project: theme
+
+theme 🏷️  Resolved the current version as 1.0.0 from git tag "theme@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+theme 📄 Resolved the specifier as "patch" using git history and the conventional commits standard
+theme ❓ Applied semver relative bump "patch", because a dependency was bumped, to get new version 1.0.1
+theme ✍️  New version 1.0.1 written to manifest: packages/theme/package.json
+theme ❓ Applied semver relative bump "patch", derived from conventional commits data, to get new version 1.0.1
+theme ✍️  New version 1.0.1 written to manifest: packages/theme/package.json
+theme ✍️  Updated 1 dependency in manifest: packages/theme/package.json
+
+ NX   Running release version for project: core
+
+core 🏷️  Resolved the current version as 1.0.0 from git tag "core@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+core 📄 Resolved the specifier as "minor" using git history and the conventional commits standard
+core ❓ Applied semver relative bump "minor", derived from conventional commits data, to get new version 1.1.0
+core ✍️  New version 1.1.0 written to manifest: packages/core/package.json
+
+ NX   Running release version for project: docs
+
+docs 🏷️  Resolved the current version as 1.0.0 from git tag "docs@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+docs 📄 Resolved the specifier as "patch" using git history and the conventional commits standard
+docs ❓ Applied semver relative bump "patch", because a dependency was bumped, to get new version 1.0.1
+docs ✍️  New version 1.0.1 written to manifest: packages/docs/package.json
+docs ❓ Applied semver relative bump "patch", derived from conventional commits data, to get new version 1.0.1
+docs ✍️  New version 1.0.1 written to manifest: packages/docs/package.json
+docs ✍️  Updated 1 dependency in manifest: packages/docs/package.json
+
+ NX   Running release version for project: api
+
+api 🏷️  Resolved the current version as 1.0.0 from git tag "api@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+api 📄 Resolved the specifier as "patch" using git history and the conventional commits standard
+api ❓ Applied semver relative bump "patch", because a dependency was bumped, to get new version 1.0.1
+api ✍️  New version 1.0.1 written to manifest: packages/api/package.json
+api ❓ Applied semver relative bump "patch", derived from conventional commits data, to get new version 1.0.1
+api ✍️  New version 1.0.1 written to manifest: packages/api/package.json
+api ✍️  Updated 1 dependency in manifest: packages/api/package.json
+
+ NX   Running release version for project: cli
+
+cli 🏷️  Resolved the current version as 1.0.0 from git tag "cli@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+cli 📄 Resolved the specifier as "patch" using git history and the conventional commits standard
+cli ❓ Applied semver relative bump "patch", because a dependency was bumped, to get new version 1.0.1
+cli ✍️  New version 1.0.1 written to manifest: packages/cli/package.json
+cli ❓ Applied semver relative bump "patch", derived from conventional commits data, to get new version 1.0.1
+cli ✍️  New version 1.0.1 written to manifest: packages/cli/package.json
+cli ✍️  Updated 1 dependency in manifest: packages/cli/package.json
+
+ NX   Running release version for project: ui
+
+ui 🏷️  Resolved the current version as 1.0.0 from git tag "ui@1.0.0", based on releaseTag.pattern "{projectName}@{version}"
+ui 📄 Resolved the specifier as "patch" using git history and the conventional commits standard
+ui ❓ Applied semver relative bump "patch", because a dependency was bumped, to get new version 1.0.1
+ui ✍️  New version 1.0.1 written to manifest: packages/ui/package.json
+ui ❓ Applied semver relative bump "patch", derived from conventional commits data, to get new version 1.0.1
+ui ✍️  New version 1.0.1 written to manifest: packages/ui/package.json
+ui ✍️  Updated 1 dependency in manifest: packages/ui/package.json
+
+UPDATE packages/core/package.json
+
+   "name": "core",
+-  "version": "1.0.0",
++  "version": "1.1.0",
+   "dependencies": {}
+
+UPDATE packages/api/package.json
+
+   "name": "api",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "dependencies": {
+-   "core": "~1.0.0"
++   "core": "~1.1.0"
+   }
+
+UPDATE packages/cli/package.json
+
+   "name": "cli",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "dependencies": {
+-   "core": "~1.0.0"
++   "core": "~1.1.0"
+   }
+
+UPDATE packages/ui/package.json
+
+   "name": "ui",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "dependencies": {
+-   "core": "~1.0.0"
++   "core": "~1.1.0"
+   }
+
+UPDATE packages/theme/package.json
+
+   "name": "theme",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "dependencies": {
+-   "ui": "~1.0.0"
++   "ui": "~1.0.1"
+   }
+
+UPDATE packages/docs/package.json
+
+   "name": "docs",
+-  "version": "1.0.0",
++  "version": "1.0.1",
+   "dependencies": {
+-   "ui": "~1.0.0"
++   "ui": "~1.0.1"
+   }
+
+
+ NX   Updating npm lock file
+
+
+ NX   Staging changed files with git
+
+
+ NX   Pushing to git remote "origin"
+
+
+ NX   Unexpected git push error: colleague pushed c54b0af: fix(core): describe the package
+
+error: atomic push failed for ref refs/heads/main. status: 5
+
+fatal: the remote end hung up unexpectedly
+To /work/nx-origin.git
+ ! [rejected]        main -> main (fetch first)
+error: failed to push some refs to '/work/nx-origin.git'
+hint: Updates were rejected because the remote contains work that you do
+hint: not have locally. This is usually caused by another repository pushing
+hint: to the same ref. You may want to first integrate the remote changes
+hint: (e.g., 'git pull ...') before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Pass --verbose to see the stacktrace.
+

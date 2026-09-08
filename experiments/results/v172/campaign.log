@@ -1,0 +1,35 @@
+=== build runtime (23:17:58)
+sha256:ebfce5d80f99b1bf5cee3be76ec04eb6d7eaf4e506d473befb28351977e7e0e2
+exit=0
+=== build node (23:18:36)
+sha256:33c8dd581ec3235342c97586b9c9d55e5263dee970ec6624e00ccbb41c334786
+exit=0
+=== version (23:18:37)
+
+████████████
+██        ██
+██        ██
+██    ████████████
+██    ████████████
+██████████████████
+      ████████████
+      ████████████
+      ████████████
+
+dispat 1.7.2 (linux_arm64)
+=== golden (23:18:38)
+golden: PASS
+exit=0
+=== e1 core n=1000 seed0=1 (23:18:38)
+{"profile": "core", "instances": 1000, "clean": 1000, "divergence_classes": {}, "dispat": "dispat 1.7.2 (linux_arm64)"}
+exit=0
+=== e1 core n=500 seed0=5001 (23:18:48)
+{"profile": "core", "instances": 500, "clean": 500, "divergence_classes": {}, "dispat": "dispat 1.7.2 (linux_arm64)"}
+exit=0
+=== e1 full n=1000 seed0=1 (23:18:53)
+{"profile": "full", "instances": 1000, "clean": 412, "divergence_classes": {"PG2": 240, "PG3?": 390, "PG2x": 58, "PG1": 409}, "dispat": "dispat 1.7.2 (linux_arm64)"}
+exit=0
+=== e1 full n=500 seed0=5001 (23:19:03)
+{"profile": "full", "instances": 500, "clean": 222, "divergence_classes": {"PG1": 182, "PG2": 135, "PG3?": 200, "PG2x": 23}, "dispat": "dispat 1.7.2 (linux_arm64)"}
+exit=0
+=== done (23:19:08)

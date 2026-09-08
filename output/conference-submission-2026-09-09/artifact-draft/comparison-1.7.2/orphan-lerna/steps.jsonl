@@ -1,0 +1,6 @@
+{"step":"version","exit":0}
+{"step":"publish","exit":1}
+{"step":"recovery","exit":1}
+{"step":"cleanup","exit":0}
+{"step":"recovery2","exit":0}
+{"step":"changed","exit":1}

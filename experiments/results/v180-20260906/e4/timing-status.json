@@ -1,0 +1,21 @@
+{
+ "valid_cells": [
+  "100-layered-U200-pad0",
+  "1000-layered-U200-pad0",
+  "10000-layered-U200-pad0",
+  "1000-chain-U200-pad0",
+  "10000-chain-U200-pad0",
+  "1000-star-U200-pad0",
+  "1000-layered-U1000-pad0",
+  "1000-layered-U200-pad5000"
+ ],
+ "invalid_fixture_cells": [],
+ "incomplete_cells": [],
+ "invalid_fixture_evidence": "failures/1000-layered-1000-0",
+ "notes": [
+  "Earlier U1000 and pad5000 attempts produced invalid fixtures with missing commit parents; those failed fixtures remain evidence and are excluded.",
+  "The final U1000 fixture passed git fsck before measurement.",
+  "The final pad5000 fixture used the commit-tree generator after exact small-fixture commit, tag, message, log, and fsck equivalence checks; it passed git fsck before measurement.",
+  "All valid timings were collected under 2 CPU and 4 GiB caps on a contended host."
+ ]
+}

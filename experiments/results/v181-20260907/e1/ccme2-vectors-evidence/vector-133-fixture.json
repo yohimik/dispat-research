@@ -1,0 +1,45 @@
+{
+ "packages": [
+  "p"
+ ],
+ "edges": [],
+ "commits": [
+  {
+   "id": "c0",
+   "units": []
+  },
+  {
+   "id": "c1",
+   "units": [
+    {
+     "type": "fix",
+     "scope": [
+      "p"
+     ],
+     "pd": 0,
+     "pcd": 0,
+     "breaking": false,
+     "pb": null,
+     "channel": null,
+     "pchannel": null,
+     "releaseAs": null
+    }
+   ]
+  }
+ ],
+ "tags": [
+  {
+   "pkg": "p",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "p",
+   "version": "1.0.1-beta.0",
+   "commit": "c1"
+  }
+ ],
+ "features": {
+  "prerelease": []
+ }
+}

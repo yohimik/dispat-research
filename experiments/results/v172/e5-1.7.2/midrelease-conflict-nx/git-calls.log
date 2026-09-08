@@ -1,0 +1,24 @@
+{"time": "1788476785.310380", "cwd": "/work/nx", "kind": "call", "args": ["-c", "versionsort.suffix=-", "tag", "--sort", "-v:refname", "--merged"]}
+{"time": "1788476785.336127", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.355857", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "theme@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476785.382126", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.401073", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "core@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476785.420547", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.439473", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "docs@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476785.458992", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.478177", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "api@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476785.497836", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.517146", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "cli@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476785.536630", "cwd": "/work/nx", "kind": "call", "args": ["rev-parse", "--show-toplevel"]}
+{"time": "1788476785.555868", "cwd": "/work/nx", "kind": "call", "args": ["--no-pager", "log", "ui@1.0.0..HEAD", "--pretty=\"|@-------@|%n%s\u00a7\u00a7\u00a7%h\u00a7\u00a7\u00a7%an\u00a7\u00a7\u00a7%ae%n%b\"", "--name-status"]}
+{"time": "1788476786.212377", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/core/package.json"]}
+{"time": "1788476786.232461", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/api/package.json"]}
+{"time": "1788476786.252030", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/cli/package.json"]}
+{"time": "1788476786.271959", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/ui/package.json"]}
+{"time": "1788476786.291290", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/theme/package.json"]}
+{"time": "1788476786.310559", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "packages/docs/package.json"]}
+{"time": "1788476786.329719", "cwd": "/work/nx", "kind": "call", "args": ["check-ignore", "package-lock.json"]}
+{"time": "1788476786.348833", "cwd": "/work/nx", "kind": "call", "args": ["add", "packages/core/package.json", "packages/api/package.json", "packages/cli/package.json", "packages/ui/package.json", "packages/theme/package.json", "packages/docs/package.json", "package-lock.json"]}
+{"time": "1788476786.371052", "cwd": "/work/nx", "kind": "call", "args": ["push", "--follow-tags", "--no-verify", "--atomic"]}
+{"time": "1788476786.386065", "cwd": "/work/nx", "kind": "inject", "args": ["push", "--follow-tags", "--no-verify", "--atomic"]}
+{"time": "1788476786.431255", "cwd": "/work/nx", "kind": "inject-done", "args": ["exit=0"]}

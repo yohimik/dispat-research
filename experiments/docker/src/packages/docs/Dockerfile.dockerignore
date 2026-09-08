@@ -1,0 +1,42 @@
+# The build context of packages/docs/Dockerfile alone. BuildKit reads a
+# <dockerfile>.dockerignore in preference to the one at the repository root, so
+# this widens the context for this build without touching the root file, whose
+# deny-all keeps the four image contexts down to install.sh.
+#
+# Nested re-inclusion needs every level spelled out: an exception cannot reach
+# into a folder the line above excluded, so packages/ is let back in before its
+# children are filtered.
+*
+!package.json
+!pnpm-lock.yaml
+!pnpm-workspace.yaml
+!imgs
+!packages
+packages/*
+!packages/docs
+
+# The landing page is built from the repository README and the CLI one
+# (plugins/readme). The second is the only thing this build wants from
+# services/, so every level is spelled out, as above: an exception cannot reach
+# into a folder the line before it excluded.
+!README.md
+!services
+services/*
+!services/dispat
+services/dispat/*
+!services/dispat/README.md
+
+# .git is here on purpose: showLastUpdateTime reads the history of every page.
+!.git
+
+# Everything under the package that is output rather than source. node_modules
+# in particular must not be copied over the tree pnpm installed in the image.
+packages/docs/node_modules
+packages/docs/build
+packages/docs/.docusaurus
+packages/docs/.cache-loader
+
+# The demo-rendering tooling: the site build plays the committed assets in
+# imgs/ and never runs Remotion, so its sources, dependencies and renders
+# have no business in the image.
+packages/docs/demo

@@ -1,0 +1,58 @@
+[
+  {
+    "id": "revfinder",
+    "url": "https://naist.repo.nii.ac.jp/record/5130/files/10061_12737.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "b7b50f03079c6f128b7b7b63a95b493b78b34d0abafa89632d80e2485b9054fe",
+    "file_pages": 11,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "satd",
+    "url": "https://das.encs.concordia.ca/pdf/Wehaibi_SANER2016.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "a70fbfd4f969ccb19a1b720660bebad68b06a7a5682cd687768a4bb504c0c3e0",
+    "file_pages": 10,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "model-consistency",
+    "url": "https://wesleyklewerton.github.io/publications/SANER24.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "07b717a4c80e612a35c69542d9c0108174a5ba3063681df8897581add6c7eeda",
+    "file_pages": 12,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "stellar",
+    "url": "https://tsigalko18.github.io/assets/pdf/2026-Sorokin-SANER.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "74233e32998691a4cefd54aed1542fb353472ffc5daa61c938faa10ee5c476f1",
+    "file_pages": 12,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "release-engineering",
+    "url": "https://rebels.cs.uwaterloo.ca/papers/saner2016_adams.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "51384d2dca434f67d9394704d8ab1f6e77f096d796c32bf124e71e6454deecd5",
+    "file_pages": 13,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "anvil",
+    "url": "https://www.wisdom.weizmann.ac.il/~padon/anvil-osdi2024.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "7a642dff7a038e15efd6bf8b1133521aac7746da27dbfa4e49ce19eb08b5af0c",
+    "file_pages": 19,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  },
+  {
+    "id": "build-systems",
+    "url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2018/03/build-systems.pdf",
+    "downloaded": "2026-09-09",
+    "sha256": "d6c175a48cc908ca3f185e1fb4620e3278c5655218ac687d83dfa7f405624ede",
+    "file_pages": 29,
+    "review_scope": "section structure, motivation, method, evaluation and limitations; not independent reproduction"
+  }
+]

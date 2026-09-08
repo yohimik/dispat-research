@@ -1,0 +1,21 @@
+{
+ "exit": 0,
+ "plan": {
+  "p": {
+   "changed": false,
+   "next": "1.0.1-beta.0",
+   "bump": "none",
+   "channel": "beta",
+   "reason": "",
+   "dueTo": []
+  }
+ },
+ "ready": {
+  "level": "info",
+  "packages": 1,
+  "releasing": 0,
+  "held": 0,
+  "time": "2026-09-06T23:19:49Z",
+  "message": "release plan ready"
+ }
+}

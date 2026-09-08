@@ -1,0 +1,51 @@
+\begin{thebibliography}{9}
+
+\bibitem{ccme}
+\emph{Conventional Commits: Monorepo Extension (CCME) 2.0.0}.
+\href{https://github.com/yohimik/dispat/blob/d3ce8ae637232908ced82efb5cda550f60ed2fdf/specs/ccme-spec/SPEC.md}{\texttt{released CCME 2.0.0}}, \texttt{github.com/yohimik/dispat}. The historical audit uses the
+\href{https://github.com/yohimik/dispat/blob/713f1a0b/pkg/ccme/SPEC.md}{\texttt{CCME 1.0.0 snapshot}}. GPL-3.0-or-later.
+Cited throughout as \SPEC{}.
+
+\bibitem{ccme301}
+\emph{Conventional Commits: Monorepo Extension (CCME) 3.0.1}.
+\href{https://github.com/yohimik/dispat/blob/8238e2465670b39609f8dcf5a8a5d34ea71d3db1/specs/ccme-spec/SPEC.md}{\texttt{released CCME 3.0.1}},
+\texttt{github.com/yohimik/dispat}. Corrected algorithm guidance; not an
+implementation or experimental subject of this report.
+
+\bibitem{dispat}
+\emph{dispat}: a release engine for polyglot monorepositories.
+\texttt{github.com/yohimik/dispat}. The reference implementation; the release
+computation discussed here is \texttt{services/dispat/internal/plan}.
+
+\bibitem{cc}
+\emph{Conventional Commits 1.0.0}. \texttt{conventionalcommits.org}. CCME is a
+strict superset.
+
+\bibitem{semver}
+T.~Preston-Werner. \emph{Semantic Versioning 2.0.0}. \texttt{semver.org}.
+Supplies the version precedence of \cref{def:version}.
+
+\bibitem{rfc2119}
+S.~Bradner. \emph{Key words for use in RFCs to Indicate Requirement Levels}.
+RFC 2119, IETF, 1997. The requirement levels \SPEC{} is written in.
+
+\bibitem{sagas}
+H.~Garcia-Molina and K.~Salem. \emph{Sagas}. In Proceedings of the ACM SIGMOD
+International Conference on Management of Data, 1987. The pattern the publish
+protocol of \cref{sec:protocol} implements, with git tags as the log.
+
+\bibitem{kahn}
+A.~B.~Kahn. \emph{Topological sorting of large networks}. Communications of the
+ACM 5(11), 1962. The publish order of \cref{prop:order}.
+
+\bibitem{git}
+S.~Chacon and B.~Straub. \emph{Pro Git}, 2nd edition. Apress, 2014. The commit
+DAG, reachability and tags of \cref{def:history,def:state}.
+
+\bibitem{holguard}
+Semyon F. (yohimik). \emph{HOL Guard pull request 2813: opt-in Dispat release-start
+review}. \href{https://github.com/hashgraph-online/hol-guard/pull/2813}{Open,
+unmerged pull request}, revision
+\texttt{132bb5d105e1234b9f81fddf69267ec488e2990a}, 6 September 2026.
+
+\end{thebibliography}

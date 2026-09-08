@@ -1,0 +1,11 @@
+{
+  "Id": "sha256:4dff2f294ebecc7bde6e0456ca7776d6ad20e21aa8fc9729ad0c926dc66a86c9",
+  "RepoTags": [
+    "dispat-saner:20260909-locked"
+  ],
+  "RepoDigests": [
+    "dispat-saner@sha256:4dff2f294ebecc7bde6e0456ca7776d6ad20e21aa8fc9729ad0c926dc66a86c9"
+  ],
+  "Architecture": "arm64",
+  "Os": "linux"
+}

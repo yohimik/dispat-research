@@ -1,0 +1,1 @@
+{"level":"error","error":"plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b","time":"2026-09-06T20:23:32Z","message":"planning failed"}

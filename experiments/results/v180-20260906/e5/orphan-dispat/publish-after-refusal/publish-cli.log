@@ -1,0 +1,19 @@
+npm notice
+npm notice package: cli@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 82B package.json
+npm notice Tarball Details
+npm notice name: cli
+npm notice version: 1.0.1
+npm notice filename: cli-1.0.1.tgz
+npm notice package size: 196 B
+npm notice unpacked size: 88 B
+npm notice shasum: 9620194170db45c5e990922e439402b10da17a39
+npm notice integrity: sha512-SnDPKD5PHf3+N[...]8PVtayK0+/hhA==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://127.0.0.1:4873/ with tag latest and default access
+npm error code E502
+npm error 502 Bad Gateway - PUT http://127.0.0.1:4873/cli - injected fault
+npm error A complete log of this run can be found in: /root/.npm/_logs/2026-09-06T13_52_32_193Z-debug-0.log

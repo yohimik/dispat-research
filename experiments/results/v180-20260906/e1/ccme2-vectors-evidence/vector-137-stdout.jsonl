@@ -1,0 +1,5 @@
+{"level":"warn","code":"W193","package":"app","time":"2026-09-06T13:51:20Z","message":"catch-up release at 1.0.1: discharging work already published by core@1.0.1"}
+{"level":"info","warnings":1,"errors":0,"time":"2026-09-06T13:51:20Z","message":"plan diagnostics"}
+{"level":"info","package":"core","space":"packages","version":"1.0.1","channel":"stable","time":"2026-09-06T13:51:20Z","message":"unchanged"}
+{"level":"info","package":"app","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"catch-up from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T13:51:20Z","message":"↻ catch-up"}
+{"level":"info","packages":2,"releasing":1,"held":0,"time":"2026-09-06T13:51:20Z","message":"release plan ready"}

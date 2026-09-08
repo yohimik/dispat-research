@@ -1,0 +1,18 @@
+
+Found 6 packages to publish:
+ - api => 1.0.1
+ - cli => 1.0.1
+ - core => 1.1.0
+ - docs => 1.0.1
+ - theme => 1.0.1
+ - ui => 1.0.1
+
+lerna WARN ENOLICENSE Packages api, cli, core, docs, theme, and ui are missing a license.
+lerna WARN ENOLICENSE One way to fix this is to add a LICENSE.md file to the root of this repository.
+lerna WARN ENOLICENSE See https://choosealicense.com for additional guidance.
+lerna WARN notice Package failed to publish: cli
+lerna ERR! E502 injected fault
+lerna ERR! errno "undefined" is not a valid exit code - exiting with code 1
+lerna WARN notice Package failed to publish: docs
+lerna ERR! E400 400 Bad request syntax ('{"_id":"cli","name":"cli","dist-tags":{"latest":"1.0.1"},"versions":{"1.0.1":{"name":"cli","version":"1.0.1","dependencies":{"core":"^1.1.0"},"gitHead":"df9a2c21846cd87dc4f8319714865cdb4b33ed22","_nodeVersion":"22.23.2","_npmVersion":"lerna/8.2.4/node@v22.23.2+arm64 (linux)","_id":"cli@1.0.1","dist":{"integrity":"sha512-IJz9u99KT+rc3LxXqfjw/1dgAFf8nNXdxRmXRpN9nXB0PJ+yk8omXQTBj9zx1OZknCJCOz6L6/VMg9DgZnptgA==","shasum":"909630807d593520936095bfeffc8ef1d6757353","tarball":"http://failproxy:4873/cli/-/cli-1.0.1.tgz"}}},"access":null,"_attachments":{"cli-1.0.1.tgz":{"content_type":"application/octet-stream","data":"H4sIAAAAAAAA/+2UQWvbMBTHfdaneDiXJCyyZDuOm9NKGO2hdIfBLqUDRXpxlMqSsZV0o/S7l9jpKO2gh7UNG/5dZP7vmScdfq8S8kYUGGmr8CfdNME7wBjL0hT+lHdkECTTjHGeZSyFgHE2izkE7D0u85xt40UdsL+e1b0Efp//CFEEO06OfYueY1Ed/D+cdNM4+9YzXvE/5vFz//k07f3/EO4IhFaUGM4hlEaHnwiEO6wb7ew+4pRR3oYKK7QKrdTYhHO4IwChdHX74w9OOWUhgft9Z6H9OQq1L6jViYhlzPM0kyqfKZmu8oSfzHiaZ1OplukySVDFcUju+x10FB79X5yfXp59ufh6Rkv11jNe8T9Npi/8Z7Ok9/8jGMBiLWyBcOEKQk6NAeu8WBoE2eYNeAd+rRuoardB6eFWGwNLBOXktkTrUYG2XctKG6TkGyJcLZzdofXaWWFg4cpS++Z6uPa+auZRJJ9UZVekri5GsHI1dAEUW63QaIsNJWQwgKt2F10Pb119ExmsrZi4WhfaRtKVlagxkkZ/3jcxSunjNx/BMGZxNmH5JJ6NCBmPL53H+XgM37s1B8ttWYGz5lc7/SAESKP7ldTT0/M/8wCFkXABABAAAA==","length":472}}}PUT /docs HTTP/1.1') - PUT http://failproxy:4873/docs
+lerna ERR! errno "undefined" is not a valid exit code - exiting with code 1

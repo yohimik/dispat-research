@@ -1,0 +1,196 @@
+# The workflow is the repository's test suite — the lint gate, the suite dispat
+# selects from the commits, and the build gate that used to be two workflows of
+# its own — so both the file and its name (what the README badge renders) say
+# "tests" rather than the generic "CI".
+#
+# What is deliberately not here: the coverage badge. A run selected by --since
+# tests part of the monorepo, so a merged total from it would be a number about
+# whichever packages happened to change. The badge is computed from the full
+# --since all suite in the release workflow instead.
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+# The composite action installs the previous published release as a
+# bootstrap only; right after it, every job builds dispat from the checkout
+# and puts that build first on PATH, so every gate is driven by the same
+# dispat the changes describe. With 1.0.0 out, the
+# bootstrap resolves the latest stable release itself.
+env:
+  # Our own modules come directly from the repository, skipping the proxy
+  # and the sum database, exactly as in the release workflow: both lag
+  # fresh tags, and a tag ever recreated at different content leaves the
+  # proxy's first copy pinned for good.
+  GOPRIVATE: github.com/yohimik/dispat
+
+jobs:
+  lint:
+    name: Format and vet
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0      # full history: dispat reads tags and commit ranges
+
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version: '1.26'
+          cache: true
+
+      - name: Set up dispat
+        uses: ./
+
+      # The bootstrap-then-fresh pair (see the workflow's env comment).
+      - name: Build dispat from the checkout
+        run: |
+          go build -C services/dispat -o "$RUNNER_TEMP/dispat-fresh/dispat" .
+          echo "$RUNNER_TEMP/dispat-fresh" >> "$GITHUB_PATH"
+
+      # The negated grep fails the step exactly when gofmt lists a file, and
+      # the list itself is the message.
+      - name: gofmt
+        run: "! gofmt -l . | grep ."
+
+      # One name swept across the monorepo instead of a module list to keep in
+      # step by hand: each Go space defines what `vet` means for its packages,
+      # tools and tests/integration carry their own as script-only packages
+      # (versioning: none), and a new module is vetted without touching this
+      # file. Their tests are the ordinary sweeps' too, so nothing in the
+      # workspace goes ungated.
+      - name: go vet
+        run: dispat run vet --since all
+
+      # The two ways a `--link-local` bracket leaks. The dispat package's
+      # verify-unlinked script checks both before its build reports success;
+      # this is the same pair asked of every commit, because either one only
+      # fails for whoever consumes the published module, long after the tag
+      # exists. From the repository root the scanner reads every module's
+      # replace directives the way go.mod means them (a parenthesised block
+      # included) instead of grepping for one spelling. The go.sum half stays
+      # a grep until the scanner grows a sum gate: `go work sync` pruning an
+      # entry is a toolchain fact no manifest scan can see today.
+      - name: No local link survived a build
+        run: |
+          dispat scanner --verify-unlinked
+          for m in ccme manifest models scanner writer; do
+            if ! grep -q "^github.com/yohimik/dispat/pkg/$m " services/dispat/go.sum; then
+              echo "services/dispat/go.sum lost its entry for pkg/$m; a go work sync pruned it"
+              exit 1
+            fi
+          done
+
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0      # full history: dispat reads tags and commit ranges
+
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version: '1.26'
+          cache: true
+
+      - name: Set up dispat
+        uses: ./
+
+      # The bootstrap-then-fresh pair (see the workflow's env comment).
+      - name: Build dispat from the checkout
+        run: |
+          go build -C services/dispat -o "$RUNNER_TEMP/dispat-fresh/dispat" .
+          echo "$RUNNER_TEMP/dispat-fresh" >> "$GITHUB_PATH"
+
+      # The bracket the release binary build puts around itself, put around the
+      # suite as well: `link` writes the replace directives into
+      # services/dispat/go.mod, so the tests run in the same module state a
+      # release build does rather than leaving go.work to stand in for it. The
+      # pkg/* versions that go.mod pins are only as fresh as the last release
+      # that bumped them, so a provider changed on this very commit would
+      # otherwise be tested as its published copy.
+      #
+      # `link` and `unlink` are the scripts in services/dispat/dispat.yaml, so
+      # this gate and the release cannot disagree about what the bracket is.
+      - name: Link the workspace dependencies
+        run: dispat run link --since all -p dispat
+
+      # HEAD~1 is the whole window on both triggers, which is why no base
+      # revision has to be worked out: a push to main lands one commit, and a
+      # pull_request is checked out as its merge commit, whose first parent is
+      # the base branch tip.
+      #
+      # --consumers is the point of running this through dispat: a change to
+      # pkg/manifest tests scanner, writer and the CLI too, because they are
+      # what the change can break.
+      - name: Run the tests dispat selects
+        run: dispat run tests --since HEAD~1 --consumers
+
+      # always(): the redirects must not outlive the job whatever the suite
+      # did, and unlink is idempotent, so closing an already-closed bracket is
+      # a no-op. verify-unlinked catches both ways it leaks — a surviving
+      # replace directive, and the go.sum entries anything that reconciles the
+      # workspace drops while the links are in place — which is the same pair
+      # the lint job asks of the commit itself.
+      - name: Unlink the workspace dependencies
+        if: always()
+        run: |
+          dispat run unlink --since all -p dispat
+          dispat run verify-unlinked --since all -p dispat
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0      # dispat reads tags to work out the plan
+
+      - name: Set up Go
+        uses: actions/setup-go@40f1582b2485089dde7abd97c1529aa768e1baff # v5.6.0
+        with:
+          go-version: '1.26'
+          cache: true
+
+      # The docker space builds two architectures per image, so the arm64 legs
+      # run emulated. The alternative is a second job on a native arm64 runner
+      # and a digest merge, which is a lot of moving parts for a gate that only
+      # has to answer "does this still build".
+      - uses: docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130 # v3.7.0
+      - uses: docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f # v3.12.0
+
+      - name: Set up dispat
+        uses: ./
+
+      # The bootstrap-then-fresh pair (see the workflow's env comment).
+      - name: Build dispat from the checkout
+        run: |
+          go build -C services/dispat -o "$RUNNER_TEMP/dispat-fresh/dispat" .
+          echo "$RUNNER_TEMP/dispat-fresh" >> "$GITHUB_PATH"
+
+      # No link bracket here, unlike the test job: every package this gate
+      # reaches builds inside a container from a context copied out of the
+      # checkout, and the dispat package's `build` script opens and closes the
+      # bracket itself.
+      #
+      # This is what used to be the docs and images workflows, and the --since
+      # window is what used to be their `paths:` filters: a docker change
+      # builds the images, a docs change builds the site (which is also the
+      # link checker, since docusaurus.config.ts throws on a broken link), a
+      # dispat change cross-compiles the binaries.
+      #
+      # Deliberately without --consumers, unlike the test sweep: every image
+      # depends on the CLI, so consumers would turn any pkg/* change into four
+      # emulated multi-arch image builds.
+      - name: Build what changed
+        run: dispat run build --since HEAD~1

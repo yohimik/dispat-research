@@ -1,0 +1,10 @@
+{"level":"error","code":"E195","package":"p04","time":"2026-09-06T23:17:01Z","message":"computed version 3.6.8-beta.0 is not greater than the baseline 3.7.0-beta.0"}
+{"level":"warn","code":"W170","package":"p03","commit":"c38195845a21","time":"2026-09-06T23:17:01Z","message":"cancel discarded nothing; already released work cannot be retracted (§10.3); to stop a pending catch-up, cancel the consumer (§13.7d)"}
+{"level":"info","warnings":1,"errors":1,"time":"2026-09-06T23:17:01Z","message":"plan diagnostics"}
+{"level":"info","package":"p00","space":"packages","version":"1.8.4","channel":"stable","time":"2026-09-06T23:17:01Z","message":"unchanged"}
+{"level":"info","package":"p01","space":"packages","bump":"patch","version":"3.4.6 -> 3.4.7","channel":"stable","reason":"direct","ownCommits":2,"dueToProviders":[],"time":"2026-09-06T23:17:01Z","message":"● changed"}
+{"level":"info","package":"p02","space":"packages","dependsOn":["p01"],"bump":"patch","version":"1.5.3 -> 1.5.4","channel":"stable","reason":"direct","ownCommits":3,"dueToProviders":[],"time":"2026-09-06T23:17:01Z","message":"● changed"}
+{"level":"info","package":"p03","space":"packages","version":"1.8.0","channel":"stable","time":"2026-09-06T23:17:01Z","message":"unchanged"}
+{"level":"info","package":"p04","space":"packages","dependsOn":["p02"],"bump":"patch","version":"3.7.0-beta.0 -> 3.6.8-beta.0","channel":"beta","reason":"direct","ownCommits":1,"dueToProviders":["p02"],"time":"2026-09-06T23:17:01Z","message":"● changed"}
+{"level":"info","packages":5,"releasing":3,"held":0,"time":"2026-09-06T23:17:01Z","message":"release plan ready"}
+{"level":"error","reason":"the repository cannot produce a correct plan (§16 repository-scoped error)","time":"2026-09-06T23:17:01Z","message":"refusing to release"}

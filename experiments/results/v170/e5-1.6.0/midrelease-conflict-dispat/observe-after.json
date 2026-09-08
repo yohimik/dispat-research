@@ -1,0 +1,133 @@
+{
+ "label": "after",
+ "local": {
+  "aheadOfOrigin": "1",
+  "behindOrigin": "1",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "03c6ac93fc4c",
+   "subject": "chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "92e6922caa49"
+  },
+  "release": {
+   "onFirstParentChain": false,
+   "onOriginMain": false,
+   "sha": "03c6ac93fc4c"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "92e6922caa49"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "92e6922caa49",
+   "subject": "fix(core): describe the package"
+  },
+  "tags": {
+   "api@1.0.0": "face2005b493",
+   "cli@1.0.0": "face2005b493",
+   "core@1.0.0": "face2005b493",
+   "docs@1.0.0": "face2005b493",
+   "theme@1.0.0": "face2005b493",
+   "ui@1.0.0": "face2005b493"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    },
+    "1.0.1": {
+     "local": "03c6ac93fc4c",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    },
+    "1.0.1": {
+     "local": "03c6ac93fc4c",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    },
+    "1.1.0": {
+     "local": "03c6ac93fc4c",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    },
+    "1.0.1": {
+     "local": "03c6ac93fc4c",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  }
+ }
+}

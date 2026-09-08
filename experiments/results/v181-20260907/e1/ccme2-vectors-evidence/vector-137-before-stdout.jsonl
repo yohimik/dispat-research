@@ -1,0 +1,3 @@
+{"level":"info","package":"core","space":"packages","bump":"patch","version":"1.0.1-beta.0 -> 1.0.1","channel":"beta -> stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","package":"app","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1-beta.0","channel":"stable -> beta","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","packages":2,"releasing":2,"held":0,"time":"2026-09-06T20:02:51Z","message":"release plan ready"}

@@ -1,0 +1,5 @@
+.git
+.npm-cache
+*.log
+*.oci.tar
+events.jsonl

@@ -1,0 +1,710 @@
+[
+  {
+    "n": 16,
+    "p_fail": 0.1,
+    "seed": 100,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 16,
+        "remaining": 2,
+        "published_log_events": 14,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 2,
+        "remaining": 0,
+        "published_log_events": 2,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 14,
+    "p_fail": 0.1,
+    "seed": 101,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 14,
+        "remaining": 2,
+        "published_log_events": 12,
+        "failed_log_events": 1,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 2,
+        "planned": 2,
+        "remaining": 1,
+        "published_log_events": 2,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 15,
+    "p_fail": 0.1,
+    "seed": 102,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 15,
+        "remaining": 1,
+        "published_log_events": 14,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 14,
+    "p_fail": 0.1,
+    "seed": 103,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 14,
+        "remaining": 2,
+        "published_log_events": 12,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 2,
+        "remaining": 1,
+        "published_log_events": 1,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 10,
+    "p_fail": 0.1,
+    "seed": 104,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 10,
+        "remaining": 1,
+        "published_log_events": 9,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 16,
+    "p_fail": 0.3,
+    "seed": 100,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 16,
+        "remaining": 3,
+        "published_log_events": 13,
+        "failed_log_events": 3,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 3,
+        "remaining": 2,
+        "published_log_events": 2,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 2,
+        "remaining": 0,
+        "published_log_events": 2,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 14,
+    "p_fail": 0.3,
+    "seed": 101,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 14,
+        "remaining": 8,
+        "published_log_events": 6,
+        "failed_log_events": 5,
+        "blocked_log_events": 3
+      },
+      {
+        "run": 2,
+        "planned": 8,
+        "remaining": 2,
+        "published_log_events": 8,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 2,
+        "remaining": 0,
+        "published_log_events": 2,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 15,
+    "p_fail": 0.3,
+    "seed": 102,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 15,
+        "remaining": 3,
+        "published_log_events": 12,
+        "failed_log_events": 3,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 3,
+        "remaining": 2,
+        "published_log_events": 3,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 2,
+        "remaining": 0,
+        "published_log_events": 2,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 14,
+    "p_fail": 0.3,
+    "seed": 103,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 14,
+        "remaining": 8,
+        "published_log_events": 6,
+        "failed_log_events": 4,
+        "blocked_log_events": 4
+      },
+      {
+        "run": 2,
+        "planned": 8,
+        "remaining": 5,
+        "published_log_events": 3,
+        "failed_log_events": 2,
+        "blocked_log_events": 3
+      },
+      {
+        "run": 3,
+        "planned": 5,
+        "remaining": 0,
+        "published_log_events": 5,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 10,
+    "p_fail": 0.3,
+    "seed": 104,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 10,
+        "remaining": 4,
+        "published_log_events": 6,
+        "failed_log_events": 3,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 2,
+        "planned": 4,
+        "remaining": 1,
+        "published_log_events": 3,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 50,
+    "p_fail": 0.1,
+    "seed": 100,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 50,
+        "remaining": 3,
+        "published_log_events": 47,
+        "failed_log_events": 3,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 2,
+        "planned": 3,
+        "remaining": 0,
+        "published_log_events": 3,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 22,
+    "p_fail": 0.1,
+    "seed": 101,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 22,
+        "remaining": 4,
+        "published_log_events": 18,
+        "failed_log_events": 2,
+        "blocked_log_events": 2
+      },
+      {
+        "run": 2,
+        "planned": 4,
+        "remaining": 0,
+        "published_log_events": 4,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 51,
+    "p_fail": 0.1,
+    "seed": 102,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 51,
+        "remaining": 3,
+        "published_log_events": 48,
+        "failed_log_events": 2,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 2,
+        "planned": 3,
+        "remaining": 0,
+        "published_log_events": 3,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 56,
+    "p_fail": 0.1,
+    "seed": 103,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 56,
+        "remaining": 15,
+        "published_log_events": 41,
+        "failed_log_events": 5,
+        "blocked_log_events": 10
+      },
+      {
+        "run": 2,
+        "planned": 15,
+        "remaining": 3,
+        "published_log_events": 15,
+        "failed_log_events": 2,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 3,
+        "planned": 3,
+        "remaining": 0,
+        "published_log_events": 3,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 26,
+    "p_fail": 0.1,
+    "seed": 104,
+    "runs": 2,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 26,
+        "remaining": 7,
+        "published_log_events": 19,
+        "failed_log_events": 1,
+        "blocked_log_events": 6
+      },
+      {
+        "run": 2,
+        "planned": 7,
+        "remaining": 0,
+        "published_log_events": 7,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 50,
+    "p_fail": 0.3,
+    "seed": 100,
+    "runs": 5,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 50,
+        "remaining": 19,
+        "published_log_events": 31,
+        "failed_log_events": 12,
+        "blocked_log_events": 7
+      },
+      {
+        "run": 2,
+        "planned": 19,
+        "remaining": 6,
+        "published_log_events": 14,
+        "failed_log_events": 2,
+        "blocked_log_events": 4
+      },
+      {
+        "run": 3,
+        "planned": 6,
+        "remaining": 4,
+        "published_log_events": 2,
+        "failed_log_events": 2,
+        "blocked_log_events": 2
+      },
+      {
+        "run": 4,
+        "planned": 4,
+        "remaining": 2,
+        "published_log_events": 4,
+        "failed_log_events": 1,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 5,
+        "planned": 2,
+        "remaining": 0,
+        "published_log_events": 2,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 22,
+    "p_fail": 0.3,
+    "seed": 101,
+    "runs": 3,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 22,
+        "remaining": 10,
+        "published_log_events": 12,
+        "failed_log_events": 7,
+        "blocked_log_events": 3
+      },
+      {
+        "run": 2,
+        "planned": 10,
+        "remaining": 1,
+        "published_log_events": 9,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 51,
+    "p_fail": 0.3,
+    "seed": 102,
+    "runs": 7,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 51,
+        "remaining": 29,
+        "published_log_events": 22,
+        "failed_log_events": 9,
+        "blocked_log_events": 20
+      },
+      {
+        "run": 2,
+        "planned": 29,
+        "remaining": 11,
+        "published_log_events": 19,
+        "failed_log_events": 5,
+        "blocked_log_events": 6
+      },
+      {
+        "run": 3,
+        "planned": 11,
+        "remaining": 8,
+        "published_log_events": 6,
+        "failed_log_events": 3,
+        "blocked_log_events": 5
+      },
+      {
+        "run": 4,
+        "planned": 8,
+        "remaining": 4,
+        "published_log_events": 8,
+        "failed_log_events": 3,
+        "blocked_log_events": 1
+      },
+      {
+        "run": 5,
+        "planned": 4,
+        "remaining": 2,
+        "published_log_events": 4,
+        "failed_log_events": 2,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 6,
+        "planned": 2,
+        "remaining": 1,
+        "published_log_events": 2,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 7,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 56,
+    "p_fail": 0.3,
+    "seed": 103,
+    "runs": 4,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 56,
+        "remaining": 31,
+        "published_log_events": 25,
+        "failed_log_events": 10,
+        "blocked_log_events": 21
+      },
+      {
+        "run": 2,
+        "planned": 31,
+        "remaining": 10,
+        "published_log_events": 24,
+        "failed_log_events": 4,
+        "blocked_log_events": 6
+      },
+      {
+        "run": 3,
+        "planned": 10,
+        "remaining": 4,
+        "published_log_events": 6,
+        "failed_log_events": 2,
+        "blocked_log_events": 2
+      },
+      {
+        "run": 4,
+        "planned": 4,
+        "remaining": 0,
+        "published_log_events": 4,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  },
+  {
+    "n": 26,
+    "p_fail": 0.3,
+    "seed": 104,
+    "runs": 4,
+    "converged": true,
+    "g_ok": true,
+    "invariant_errors": [],
+    "trace": [
+      {
+        "run": 1,
+        "planned": 26,
+        "remaining": 10,
+        "published_log_events": 16,
+        "failed_log_events": 4,
+        "blocked_log_events": 6
+      },
+      {
+        "run": 2,
+        "planned": 10,
+        "remaining": 3,
+        "published_log_events": 7,
+        "failed_log_events": 3,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 3,
+        "planned": 3,
+        "remaining": 1,
+        "published_log_events": 3,
+        "failed_log_events": 1,
+        "blocked_log_events": 0
+      },
+      {
+        "run": 4,
+        "planned": 1,
+        "remaining": 0,
+        "published_log_events": 1,
+        "failed_log_events": 0,
+        "blocked_log_events": 0
+      }
+    ]
+  }
+]

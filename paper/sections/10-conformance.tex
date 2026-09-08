@@ -1,0 +1,152 @@
+\section{Conformance}
+\label{sec:conformance}
+
+Each result below is testable, and most are already tested. The table maps
+every theorem to the specification section it formalises, the conformance
+vectors of \SPEC{} Appendix B that exercise it, and the test in the
+reference implementation
+(\code{services/dispat/internal/plan/}) that stands behind it. The point of the
+mapping is that a result with no vector and no test is a claim resting on the
+proof alone, and the last column is where that shows.
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}L{3.0cm}L{1.5cm}L{1.8cm}L{8.0cm}@{}}
+\toprule
+Result & \SPEC{} & Vectors & Test \\
+\midrule
+\endhead
+\cref{thm:g1} (\G{1}) & 13.7c & 67, 68 & \code{TestPropagationDepthIsShortestPath} \\
+\cref{thm:g2} (\G{2}) & 13.7c & 66, 74, 76 & \code{TestCatchUpAfterConsumerFailure}, \code{TestCatchUpForNeverReleasedConsumer} \\
+\cref{thm:g3} (\G{3}) & 13.7c & 70, 84, 137 & \code{TestCatchUpOnATrainWithPublishedOwnWork} \\
+\cref{thm:g4} (\G{4}) & 13.7c & 66, 83, 133 & \code{TestCatchUpDischargesExactlyOnce} \\
+\cref{thm:g5} (\G{5}) & 13.7c & 67, 68, 134 & \code{TestCatchUpNeverWidensBlastRadius} \\
+\cref{thm:g6} (\G{6}) & 13.7c, 19.6 & 77, 77a, 133 & \code{TestPrereleaseTrainConvergesAfterRelease}, \code{TestPropagatedTrainWorkConverges} \\
+\cref{prop:tagall} & 13.10a & 77, 77a & \code{TestFixedConvergesWhenNothingPending} \\
+\cref{thm:g7} (\G{7}) & 13.7c, 9.3 & 60r, 97c & \code{TestChannelAxisConverges}, \code{TestTransitionIsIdempotent} \\
+\cref{thm:g8} (\G{8}) & 13.7c, 9.2 & 94, 95, 97, 136 & \code{TestPropagatedStableNeverGraduates}, \code{TestCaretAloneDoesNotDragConsumersOntoATrain} \\
+\cref{thm:determinism} & 17.2 & 82 & \code{TestConflictingDirectChannelsPickTheNewest}, \code{TestConflictingPropagatedChannelsPickTheNewest} \\
+\cref{cor:idempotency} & 17.2 & 82, 83 & \code{TestNoCatchUpWhenConsumerIsFresh} \\
+\cref{thm:resumption} & 17.2, 19.3 & 70, 84 & \code{TestCatchUpAfterConsumerFailure} \\
+\cref{thm:duality} & 13.7b & 135 & \code{TestStaleSourcesAgreesWithPropagation} \\
+\cref{prop:screen} & 13.7b & --- & --- \\
+\cref{prop:order} & 19.2 & 69, 80a & --- (executor, outside \code{plan}) \\
+\cref{prop:windows} & 13.11 & --- & \code{TestPlanningQueriesGitOncePerPackage} \\
+\cref{prop:bucket} & 13.11 & 82c--82j, 138 & --- (no traversal reuse implemented) \\
+\cref{prop:hoist} & 9.3a, 13.11 & 82c, 82d & \code{TestCaretAloneDoesNotDragConsumersOntoATrain} \\
+\cref{prop:invert} & 13.8, 13.11 & 82e, 82f & \code{TestDirectChannelBeatsPropagated} \\
+\cref{prop:parse} & 20.7 & 99 & \code{FuzzParse} (\code{pkg/ccme}) \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+Three rows deserve comment.
+
+\Cref{thm:duality} has a test, and the test cannot fail. As
+\cref{ob:duality} records, \code{Plan.StaleSources} returns the rows the
+downward traversal recorded, so \code{TestStaleSourcesAgreesWithPropagation}
+compares a quantity with itself. That is a reasonable engineering choice (an
+independent upward walk would be a second implementation of the same rule, with
+its own bugs) but it means the duality is asserted rather than checked here,
+and it is the reason \cref{ob:duality} went unnoticed. The randomised
+cross-check \spec{13.7b} recommends is the thing that would catch it, and it
+needs a workspace with a prerelease train to do so.
+
+\Cref{thm:g6} is the row whose test predates the normative CCME 2.0.0 fresh-window rule. \code{TestPrereleaseTrainConvergesAfterRelease}
+opens with the words ``the reported bug'': a package that entered a beta train
+and published \code{1.0.0-beta.0} re-appeared in every subsequent plan as
+\code{beta.1}, \code{beta.2}, and so on. That is exactly \cref{ob:pre}, found
+in operation rather than on paper, and fixed in the engine. CCME 2.0.0 now
+specifies $W_{\rm fresh}$, so a second implementation following the current
+text discharges the prerelease work as the engine does.
+
+\Cref{prop:bucket} has vectors and no test because the reference
+implementation does not perform the optimisation the vectors are about. Its
+traversal is per unit (\code{propagate.go}), which is the literal reading and
+is trivially correct. The vectors of Appendix B.7a exist for implementations
+that do optimise, and \cref{ob:bucket} adds one more.
+
+\subsection*{Randomised differential validation}
+
+After this report was written, its model was validated differentially
+against the reference implementation, most recently in the historical campaign
+with the released \code{v1.7.2} binary (the \code{v1.4.0}, \code{v1.6.0}, \code{v1.7.0} and
+\code{v1.7.2} campaigns agree per-seed on all 3{,}000 instances, so the figures below
+hold for those releases): a $\sim$300-line oracle implementing the report model as it stood against the 1.0.0 snapshot, a seeded generator
+of instances (5--20 packages, layered graphs, 4--12 units, mixed tag
+states), and a realiser turning each instance into a real repository
+for the binary to plan.
+
+On 1{,}500 instances inside the historical premises then called (H1) and (H2), across two disjoint
+seed ranges, the two plans agreed
+\emph{exactly}: package sets, versions, bumps and channels. On
+1{,}000 instances over the full directive grammar the 1{,}097
+divergent package-rows classified \emph{completely} into four
+predicted classes and none outside them: 240 prerelease-train
+discharges and 58 suppression-lapse and downstream-cascade variants
+are \cref{ob:pre,ob:g5}
+observed at scale; 409 channel-entry patches are \SPEC{}~\S11.4's
+deliberate one-patch rule (\diag{W204}), which neither this report's
+model nor the companion article's transcribes; and 390 bump-axis
+liveness cases arise because the oracle implements the companion
+article's compact admission, which drops this report's clause
+\ref{a:live}, a transcription gap of the article, caught by the
+differential run exactly as intended. The obligations plus these two
+recorded omissions form a complete divergence taxonomy for the grammar
+exercised, which is the strongest empirical statement this historical campaign
+makes about its scope. These records do not validate changed CCME 2.0.0
+admission.
+
+The fresh 7 September 2026 E1 campaign used the released
+\code{dispat 1.8.2 (linux\_arm64)} binary on 3{,}000 generated instances. The
+runner validates Git fixtures and CLI exits. All 1{,}500 core instances agreed
+with no invalid sample. The full profile intentionally generates regressive
+prereleases: 997 plans were accepted, of which 546 matched the historical
+oracle, while 503 complete diagnostic plans were semantically refused with
+\diag{E195}. Four refused dossiers had no row difference, so 550 comparisons
+were diagnostic-clean. All proposed regression package sets in the 503
+dossiers were independently checked, including held proposals. The full
+profile had 1{,}914 divergent package rows, assigned by the campaign's heuristic
+classifier to PG1 862, PG2 375, PG2x 14, and PG3? 663, with zero unclassified
+rows. The canonical manifest binds all four shards to extractor SHA-256
+\code{3d5eef3e...11e52}; its paths and hashes identify the four records used
+for these totals. Because the oracle
+implements the historical model and the labels---especially PG3?---are
+heuristic, these counts are taxonomy evidence, not CCME 2.0.0 conformance.
+
+E1 uses tmpfs and pre-run \code{git fsck}; the revised exit checker separates
+validated E195 refusals from execution failures. The first stopped attempt
+and the 1.8.1 records remain preserved. Seed 580's earlier invalid fixture
+remains unresolved; its fresh success is not a product-fix claim, since
+planner source is unchanged and the fixture environment changed.
+
+A separate check in the 7 September 2026 campaign ran vectors 133--138 against the released
+Dispat 1.8.2 binary; all six passed. The retained raw before/after plan streams
+for 134 and 137 confirm package counts, versions and catch-up behaviour. Vector
+135 exercises the observable downward eligibility result; it is not an
+independent implementation of the upward audit, so the proof remains the
+support for full duality. This is selected conformance evidence, not an
+exhaustive proof of the specification.
+
+
+The official image is
+\code{yohimik/dispat-alpine@sha256:4c0ad4b8...e7bfd}. The provenance bundle
+fixes peeled release tag commit \code{a7011cbcb9e8} and verifies the official
+binary against its release asset. All 753 files in the final checksum
+manifest and all eight completion/identity markers verified. The same bundle records the other
+fresh checks without converting
+them into proof claims. E2 repeated orphan recovery twice: no refused tag, the
+same recovered version, then an empty third plan. E3 reproduced the established
+historical replay profile over five releases per repository (36/42 exact for
+\code{google-cloud-node}, 7/64 for \code{conventional-changelog}); it does not
+claim those releases followed CCME. E4's two recovery repetitions converged in
+24/24 episodes within four runs (31 and 32 total runs) with no structural G3/G5 errors. Its eight
+fresh timing cells span 100--10{,}000 packages: medians range from 0.017 s for
+the 100-package layered case to 19.354 s for the 10{,}000-package chain, with
+15--118 MiB observed maximum RSS. The recorded fixtures passed \code{git fsck};
+the pad generator was used only after a small fixture matched the ordinary
+generator's commit IDs, refs, messages, and log output. Measurements used a
+contended Apple-silicon Docker host capped at two CPUs and 4 GiB, so they are
+observations rather than clean comparisons. E5 freshly reran its orphan,
+clean concurrent-push and conflicting concurrent-push Dispat cells; their
+8, 12, and 14 checks passed. Its nine competitor cells remain historical evidence.

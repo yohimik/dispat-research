@@ -1,0 +1,53 @@
+• turbo 2.10.12
+ WARNING  An issue occurred while attempting to parse /work/turbo/package-lock.json. Turborepo will still function, but some features may not be available:
+   x Could not resolve workspace.
+  |-> Unable to convert from json: missing field `lockfileVersion` at line 1
+  |   column 2
+  `-> missing field `lockfileVersion` at line 1 column 2
+
+
+   • Packages in scope: api, cli, core, docs, theme, ui
+   • Running build in 6 packages
+   • Remote caching disabled
+
+core:build: cache miss, executing 7b9ee0804d76658f
+core:build: npm warn config ignoring workspace config at /work/turbo/packages/core/.npmrc
+core:build: 
+core:build: > core@1.0.0 build
+core:build: > node -e 0
+core:build: 
+api:build: cache miss, executing 4f6a950591567000
+ui:build: cache miss, executing ce763e703db4379c
+cli:build: cache miss, executing 75ba79d165e47d53
+ui:build: npm warn config ignoring workspace config at /work/turbo/packages/ui/.npmrc
+cli:build: npm warn config ignoring workspace config at /work/turbo/packages/cli/.npmrc
+api:build: npm warn config ignoring workspace config at /work/turbo/packages/api/.npmrc
+ui:build: 
+ui:build: > ui@1.0.0 build
+ui:build: > node -e 0
+ui:build: 
+cli:build: 
+api:build: 
+cli:build: > cli@1.0.0 build
+api:build: > api@1.0.0 build
+cli:build: > node -e 0
+api:build: > node -e 0
+cli:build: 
+api:build: 
+theme:build: cache miss, executing 33342b0821ed2da4
+docs:build: cache miss, executing 38647302a29d9aa8
+docs:build: npm warn config ignoring workspace config at /work/turbo/packages/docs/.npmrc
+theme:build: npm warn config ignoring workspace config at /work/turbo/packages/theme/.npmrc
+docs:build: 
+docs:build: > docs@1.0.0 build
+docs:build: > node -e 0
+docs:build: 
+theme:build: 
+theme:build: > theme@1.0.0 build
+theme:build: > node -e 0
+theme:build: 
+
+ Tasks:    6 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    188ms 
+

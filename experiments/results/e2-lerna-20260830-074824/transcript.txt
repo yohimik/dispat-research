@@ -1,0 +1,31 @@
+== lerna: fixture
+fixture ready: /work/lerna lerna
+== lerna: version under test: 10.0.1
+== lerna: baseline publish (all six at 1.0.0)
+== lerna: version (conventional commits)
+TAGS_AFTER_VERSION:
+api@1.0.0
+api@1.0.1
+cli@1.0.0
+cli@1.0.1
+core@1.0.0
+core@1.1.0
+docs@1.0.0
+docs@1.0.1
+theme@1.0.0
+theme@1.0.1
+ui@1.0.0
+ui@1.0.1
+== lerna: publish from-git with cli DENIED
+exit=1
+REGISTRY cli: 1.0.0  core: 1.1.0  ui: 1.0.1
+CLI TAGS (exist despite failed publish?):
+cli@1.0.0
+cli@1.0.1
+== lerna: recovery via from-package after clearing deny
+exit=1 (dirty-tree block)  REGISTRY cli: 1.0.0
+lerna ERR! EUNCOMMIT Working tree has uncommitted changes, please commit or remove the following changes before continuing:
+lerna ERR! EUNCOMMIT  M packages/api/package.json
+== lerna: manual cleanup, then from-package again
+exit=0  REGISTRY cli now: 1.0.1
+== done

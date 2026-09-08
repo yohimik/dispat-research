@@ -1,0 +1,3 @@
+#!/bin/sh
+[ "$1" = "--build" ] && [ "$2" = "build" ] || exit 9
+printf "fixture-build:%s\n" "$PWD"

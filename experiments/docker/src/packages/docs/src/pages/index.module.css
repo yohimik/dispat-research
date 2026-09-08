@@ -1,0 +1,231 @@
+/**
+ * Landing page only. Everything here is scoped through the CSS module, and the
+ * colours come from Infima variables so light and dark modes both work without
+ * a second rule set.
+ */
+
+.hero {
+  padding: 3rem 0 2rem;
+  text-align: center;
+  background: var(--ifm-color-emphasis-100);
+  border-bottom: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.logo {
+  height: 128px;
+  width: 128px;
+}
+
+.title {
+  margin-bottom: 0.5rem;
+  font-size: 3rem;
+}
+
+
+/* Readable line length for the long paragraphs on an otherwise wide page. */
+.lead,
+.sectionLead {
+  max-width: 52rem;
+  margin: 0 auto 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.badges img {
+  display: block;
+  height: 20px;
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+/* Each section opens like a slide: a hairline, the territory chip, and a
+   mono title, so the page below the deck speaks the deck's language. */
+.section {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+  padding: 3rem 0 3.25rem;
+}
+
+.chip {
+  margin: 0 0 0.9rem;
+  text-align: center;
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ifm-color-primary);
+}
+
+.sectionTitle {
+  text-align: center;
+  font-family: 'JetBrains Mono', var(--ifm-font-family-monospace);
+  font-size: 1.5rem;
+  margin-bottom: 1.4rem;
+}
+
+.sectionLead {
+  text-align: center;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 996px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .title {
+    font-size: 2.25rem;
+  }
+}
+
+/* The three modules side by side, the way the deck rows three package
+   cards: equal columns keep every card's measure readable. */
+.libraries {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+@media (max-width: 996px) {
+  .libraries {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A card shaped like the deck's package cards: rounded, hairline border,
+   left-set text at a comfortable size. */
+.feature {
+  padding: 1.35rem 1.5rem 1.45rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+  text-align: left;
+  /* A grid child's min-width is auto, so one long token inside a card would
+     otherwise size the whole column past a phone's viewport. */
+  min-width: 0;
+}
+
+.feature p {
+  margin-bottom: 0;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.featureTitle {
+  font-family: 'JetBrains Mono', var(--ifm-font-family-monospace);
+  font-size: 0.98rem;
+  margin-bottom: 0.75rem;
+}
+
+.tableTitle {
+  margin-top: 2.25rem;
+  text-align: center;
+  font-family: 'JetBrains Mono', var(--ifm-font-family-monospace);
+  font-size: 1.05rem;
+}
+
+/* The manifest table, panelled like the deck's terminal: wide by nature, so
+   it scrolls on a phone rather than squeezing the file names. */
+.manifests {
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 0.5rem 1.25rem 1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 14px;
+  background: var(--ifm-background-surface-color);
+  overflow-x: auto;
+}
+
+.manifests table {
+  width: 100%;
+  font-size: 0.92rem;
+}
+
+/* Infima left-aligns table headers; centre them with the rest of the page. */
+.manifests th,
+.manifests td,
+.manifests p {
+  text-align: center;
+}
+
+.manifests p {
+  margin: 0.75rem 0 0;
+  font-size: 0.92rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.manifests code {
+  font-size: 0.85em;
+}
+
+.reference {
+  max-width: 52rem;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  text-align: center;
+  /* Centred text with markers hanging outside the box reads as misaligned, so
+     the bullets flow with the line instead. */
+  list-style-position: inside;
+  padding-left: 0;
+}
+
+/* The two Unix blocks share the first row and Windows takes the second in
+   full width; everything stacks on a phone. */
+.install {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.install > :last-child {
+  grid-column: 1 / -1;
+}
+
+@media (max-width: 996px) {
+  .install {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* A command is one long URL: wrap it inside its block rather than clipping
+   or scrolling it. */
+.install pre,
+.install code {
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* A grid track sized in `fr` takes its content's minimum size, and an install
+   command is one unbreakable ~90-character URL, so without this the column
+   refuses to shrink below that URL and takes the whole document with it: on a
+   phone the page ends up twice the viewport wide and every section is
+   clipped. Allowing it to shrink is what lets the code block's own
+   overflow-x do its job and scroll the URL inside the block instead. */
+.install > * {
+  margin-bottom: 0;
+  min-width: 0;
+}

@@ -1,0 +1,11 @@
+{
+  "containers": [
+    "saner-chain-cf6a5ae572",
+    "saner-chain-cdf93acd35"
+  ],
+  "removed": true,
+  "images": [
+    "127.0.0.1:49863/chaind84ea61807/base:0.8.3",
+    "127.0.0.1:49863/chaind84ea61807/app:2.1.1"
+  ]
+}

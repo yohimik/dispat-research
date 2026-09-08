@@ -1,0 +1,12 @@
+{"level":"error","code":"E195","package":"p03","time":"2026-09-06T23:17:00Z","message":"computed version 1.6.1-beta.0 is not greater than the baseline 1.7.0-beta.2"}
+{"level":"info","warnings":0,"errors":1,"time":"2026-09-06T23:17:00Z","message":"plan diagnostics"}
+{"level":"info","package":"p00","space":"packages","version":"2.0.5","channel":"stable","time":"2026-09-06T23:17:00Z","message":"unchanged"}
+{"level":"info","package":"p01","space":"packages","version":"3.0.3","channel":"stable","time":"2026-09-06T23:17:00Z","message":"unchanged"}
+{"level":"info","package":"p02","space":"packages","dependsOn":["p00","p01"],"bump":"major","version":"1.7.3 -> 2.0.0","channel":"stable","reason":"direct","ownCommits":2,"dueToProviders":[],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","package":"p03","space":"packages","dependsOn":["p00","p01"],"bump":"patch","version":"1.7.0-beta.2 -> 1.6.1-beta.0","channel":"beta","reason":"direct","ownCommits":2,"dueToProviders":[],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","package":"p04","space":"packages","dependsOn":["p02","p03"],"bump":"patch","version":"1.2.7 -> 1.2.8","channel":"stable","reason":"propagated from p02","ownCommits":0,"dueToProviders":["p02"],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","package":"p05","space":"packages","dependsOn":["p01","p04"],"bump":"patch","version":"2.6.0 -> 2.6.1","channel":"stable","reason":"direct","ownCommits":3,"dueToProviders":[],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","package":"p06","space":"packages","dependsOn":["p01","p03","p04"],"bump":"minor","version":"3.5.8 -> 3.6.0-beta.0","channel":"stable -> beta","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","package":"p07","space":"packages","dependsOn":["p01","p03","p04"],"bump":"major","version":"3.4.5 -> 4.0.0","channel":"stable","reason":"direct","ownCommits":2,"dueToProviders":[],"time":"2026-09-06T23:17:00Z","message":"● changed"}
+{"level":"info","packages":8,"releasing":6,"held":0,"time":"2026-09-06T23:17:00Z","message":"release plan ready"}
+{"level":"error","reason":"the repository cannot produce a correct plan (§16 repository-scoped error)","time":"2026-09-06T23:17:00Z","message":"refusing to release"}

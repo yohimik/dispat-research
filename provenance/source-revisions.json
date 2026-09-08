@@ -1,0 +1,11 @@
+{
+  "copied_on": "2026-09-09",
+  "source_repository": "https://github.com/yohimik/dispat",
+  "source_checkout_head": "5d93d800ca42de8a9b58aafeda639afd5e9ea9c3",
+  "paper_origin": "uncommitted working files; use migration hashes, not HEAD, to identify this paper snapshot",
+  "experiment_origin": "sibling dispat-experiments working directory",
+  "active_measured_release": "Dispat 1.8.2; earlier campaigns retain earlier versions",
+  "source_files_retained": true,
+  "research_remote": "https://github.com/yohimik/dispat-research",
+  "visibility": "private"
+}

@@ -1,0 +1,181 @@
+\section{Introduction}
+\label{sec:intro}
+
+\subsection{The problem}
+
+A workspace is a repository holding many independently versioned packages that
+depend on one another. Releasing it means choosing a new version for each
+package that needs one, writing those versions into manifests, uploading
+artefacts to registries, and recording what happened.
+
+The recording is the hard part. Registries have no transactions. A publish is an
+irreversible write to a service the release tool does not control, several
+registries may be involved (npm, a container registry, a language-specific
+index), and there is no coordinator that can commit or abort them as a unit. A
+run that publishes seven packages is seven independent, individually fallible
+writes; it may finish having done four of them.
+
+CCME\footnote{\emph{Conventional Commits: Monorepo Extension}, version 2.0.0,
+\code{specs/ccme-spec/SPEC.md} in the \code{dispat} repository. Referred to throughout
+as \SPEC{}, cited by section number.} answers this the way a saga
+does. There is no external state file, no lock service, and no registry polling.
+The release plan is a pure function of the repository at a fixed commit; each
+completed leg of the transaction is recorded by an annotated git tag written
+immediately after that leg succeeds; and recovery is re-execution: run the
+engine again and it recomputes the same transaction, skipping the legs already
+recorded.
+
+That design only works if re-execution is well behaved, and \spec{13.7c} states
+the eight properties that say it is:
+
+\begin{description}[leftmargin=3.2em,style=nextline,font=\normalfont\bfseries]
+  \item[\G{1} termination] propagation halts, whatever the declared depth.
+  \item[\G{2} completeness] a contribution admitted to a dependent survives in
+    every later run until that dependent releases it; there are no orphans.
+  \item[\G{3} version stability] a package released late is released at the
+    version it was originally planned at.
+  \item[\G{4} no double ledger delivery] a contribution does not survive its
+    tag-ledger discharge; this says nothing unconditional about external effects.
+  \item[\G{5} no blast-radius widening] under the retry invariant, later
+    targets are a subset of the first run's.
+  \item[\G{6} restricted convergence] under the retry invariant, repeated
+    successful progress empties the initial plan.
+  \item[\G{7} channel discharge] a prerelease channel is proposed to a package
+    only until it is released on it.
+  \item[\G{8} one-way axis independence] suppressing a version bump does not
+    suppress a channel change; resolved channels may suppress bumps.
+\end{description}
+
+\subsection{Why formalise them}
+
+The specification proves each property briefly, while the algorithm is spread
+across prose and pseudocode. This report writes the algorithm down once,
+formally (\cref{sec:model,sec:propagation,sec:protocol}), and proves the
+guarantees inside that model (\cref{sec:guarantees}), along with the
+determinism and idempotency obligations of \spec{17.2}
+(\cref{sec:determinism}), the duality of \spec{13.7b}
+(\cref{sec:duality}), and the cost bounds and optimisation-equivalence claims
+of \specs{13.11}{20.7} (\cref{sec:complexity}).
+
+CCME 2.0.0 states the cross-run retry invariant explicitly and separates the
+train window from the undelivered window. The proofs below transcribe those
+conditions. \Cref{sec:obligations} preserves the six counterexample classes
+found in 1.0.0 and records how 2.0.0 resolves each one; none is presented as a
+current normative defect.
+
+CCME 3.0.0 is the historical first disclosure of a future VCS and rollback
+design. Released CCME 3.0.1~\cite{ccme301} corrects its algorithm and cost guidance. Dispat
+1.8.2 implements neither 3.0 release. The definitions, proofs and E1--E5
+experiments concern the implemented CCME 2.0 model; no 3.0 property is used as
+evidence for them.
+
+\subsection{Scope, and what this is not}
+
+The subject is the release computation of \spec{13} and the publish protocol of
+\spec{19}, which are joint: the guarantees are properties of the two together,
+and no separation of them is meaningful. Message syntax (\spec{4}--\spec{8}) is
+taken as given: units arrive already parsed, with their scope-sets resolved and
+their corrections applied, which is what \specs{13.4}{13.4b} deliver to
+\spec{13.5} onwards. The one exception is \cref{prop:parse}, which states the
+parser's linearity because \spec{18.3} depends on it.
+
+Four things a complete account would also cover are deliberately outside the
+model, and no theorem below should be read as saying anything about them:
+manifest range reconciliation (\spec{9.4}, \spec{19.5}), which happens at
+publish time and does not feed back into the plan; the diagnostic registry of
+\spec{16}, of which only the codes naming a suppression are mentioned, as
+labels; the concurrency and scheduling of the executor, which is an
+implementation concern that \spec{17.2} constrains only by forbidding
+observable non-determinism; and shared-version groups, a feature of the
+reference implementation (\code{versioning: fixed}) that \SPEC{} does not
+define and that changes which packages release together.
+
+The report makes no novelty claim for the underlying patterns: sagas,
+idempotent consumers and breadth-first search. Its contribution is the formal
+model, corrected hypotheses, counterexamples and conformance obligations.
+
+\subsection{Implementation examples outside the model}
+
+Two small implementation examples show how the executor can be composed with
+other controls; neither extends the theorem scope above. A developer using
+Windows locally and a Linux CI runner can share one release graph and lifecycle
+while choosing a shell explicitly. Keep these three files in the repository root:
+\begin{speccode}
+# global.yaml: shared graph, scripts and lifecycle
+scripts:
+  build: cmake --build build
+flow:
+  build: [build]
+packages:
+  app:
+    path: app
+
+# linux.yaml: Linux overrides only
+$ref: ./global.yaml
+shell: ["/bin/sh", "-c"]
+
+# windows.yaml: Windows overrides only
+$ref: ./global.yaml
+shell: ["powershell.exe", "-NoProfile", "-NonInteractive",
+        "-Command"]
+\end{speccode}
+The platform files inherit the shared configuration and replace only
+\code{shell}. References resolve relative to the file containing them.
+Overrides replace whole keys, not nested fields: overriding \code{scripts}
+would replace that entire map. Individual scripts can instead reference
+separate files with \code{\$ref}.
+
+From Windows, preview with \code{dispat --config windows.yaml status};
+on the Linux runner, use \code{dispat --config linux.yaml status}.
+After its release gates, CI can run \code{dispat --config linux.yaml} to
+execute the release. Where a compatible POSIX shell is available, one selector
+can choose the preview configuration:
+\begin{speccode}
+dispat if OS=Windows_NT \
+  --then 'dispat --config windows.yaml status' \
+  --else 'dispat --config linux.yaml status'
+\end{speccode}
+\code{OS=Windows\_NT} tests an environment value; it is not host detection.
+Here the non-Windows branch assumes a Linux runner. Dispat~1.8.2 executes
+\code{if} branches through \code{/bin/sh -c} without reading configuration;
+the child invocation then loads its platform shell. Thus the selector needs
+\code{/bin/sh}, even though the Windows configuration names PowerShell.
+A native Windows user can invoke the Windows configuration directly instead.
+The example assumes CMake is installed and \code{app/build} is already configured.
+It does not establish native Windows execution coverage.
+
+A shared \code{dispat for Debug Release --do "dispat exec build-one"}
+can likewise pass each build configuration through \code{DISPAT\_ITEM} to a
+named script. A configuration-free literal \code{for} loop also requires
+\code{/bin/sh}; platform-specific leaf commands must still be valid for the
+chosen shell. These are composition examples, not additional protocol guarantees.
+
+For an agent-assisted release, complementary gates keep evidence attached to
+the inputs being published: a lock-free
+\code{dispat status --require-release --strict}; an all-package workspace suite
+with temporary links and cleanup that runs and is verified under
+\code{always()}; and package checks after version/lockfile reconciliation plus
+smoke tests of the exact built artefact before publish. These commands inspect
+or test inputs; they do not implicitly execute the computed release plan. Every wrapper must
+preserve exit status, and these checks neither start a release nor change the
+required authorization policy. HOL Guard PR~\cite{holguard} adds opt-in review
+when a Dispat release starts, but at its cited open, unmerged revision it is not
+an implementation or experimental validation of this whole gate stack; that
+integration remains in progress.
+
+\subsection{How to read it}
+
+\Cref{sec:model} is definitional and dense; a reader who wants the results
+first can read \cref{sec:guarantees} directly, following the macro names back
+to \cref{sec:model} as needed. \Cref{appendix:notation} is the symbol table.
+Every definition names the specification section it transcribes, and every
+theorem names the guarantee it formalises, so the report can be read beside its
+source. \Cref{sec:conformance} maps each result to the conformance vectors of
+\SPEC{} Appendix B and to the test in the reference implementation that
+exercises it.
+
+\subsection{Licence}
+
+\SPEC{} is licensed GPL-3.0-or-later, and this report reproduces its
+definitions and pseudocode; it is therefore distributed under the same licence.
+See \code{paper/LICENSE}.

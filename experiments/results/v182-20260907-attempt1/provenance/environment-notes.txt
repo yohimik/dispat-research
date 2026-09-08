@@ -1,0 +1,1 @@
+E1 uses tmpfs /workspaces (1GiB) with fixture git fsck; E4 retains original container filesystem.

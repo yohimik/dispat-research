@@ -1,0 +1,41 @@
+{
+  "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+  "date": "2026-09-09",
+  "binary": "/Users/yohimik/.local/bin/dispat",
+  "binary_sha256": "33cc5af84b7b76fa464e1290df8aa6817036612c691f285839ed38b2da156614",
+  "version": "\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\ndispat 1.8.2 (darwin_arm64)\n",
+  "node": "v24.18.0",
+  "npm": "12.0.1",
+  "docker": "29.6.1",
+  "description": "Private Docker-network registry, npm build/publish, BuildKit build and cached push; app uses FROM the published base. Separate OCI output ensures no local Docker-daemon FROM shortcut. Three-second npm and two-second base publication delays are controls, not performance measurements.",
+  "images": [
+    {
+      "Id": "sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33",
+      "RepoTags": [
+        "registry:3"
+      ],
+      "RepoDigests": [
+        "registry@sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33"
+      ]
+    },
+    {
+      "Id": "sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801",
+      "RepoTags": [
+        "verdaccio/verdaccio:6"
+      ],
+      "RepoDigests": [
+        "verdaccio/verdaccio@sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801"
+      ]
+    },
+    {
+      "Id": "sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8",
+      "RepoTags": [
+        "moby/buildkit:buildx-stable-1"
+      ],
+      "RepoDigests": [
+        "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+      ]
+    }
+  ],
+  "buildx": "github.com/docker/buildx v0.35.0-desktop.2 b554ce1decd8b509893b1e7c6227eabfb923d094"
+}

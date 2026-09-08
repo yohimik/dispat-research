@@ -1,0 +1,5 @@
+(node:62) Warning: Verdaccio doesn't need superuser privileges. don't run it under root
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62) Warning: Verdaccio doesn't need superuser privileges. Don't run it under root.
+warn --- This is a deprecated method, please use runServer instead
+warn --- http address - http://127.0.0.1:4874/ - verdaccio/6.2.0

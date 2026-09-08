@@ -1,0 +1,1 @@
+{"name": "chaind84ea61807-assets", "version": "1.4.2", "scripts": {"build": "node build.cjs"}, "files": ["dist"]}

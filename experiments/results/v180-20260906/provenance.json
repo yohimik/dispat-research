@@ -1,0 +1,28 @@
+{
+ "recorded_at": "2026-09-06",
+ "host_condition": "contended Apple-silicon Docker Desktop host",
+ "limits": {"cpus": 2, "memory_gib": 4},
+ "dispat": {
+  "version": "1.8.0",
+  "tag_commit": "9a33b9282499eb1fdd7929c29e3ff37c50955f24",
+  "image": "docker.io/yohimik/dispat-alpine@sha256:32d6b64509d6f35830c9b9e3846060dc3d2e4840f9d2d226279d99f5fa6cff5c",
+  "binary_report": "dispat 1.8.0 (linux_arm64)"
+ },
+ "ccme": {
+  "version": "2.0.0",
+  "implementation_commit": "cc2883d6cb8cd0ca07a16655f64c20255fc6a1db",
+  "spec_commit": "d3ce8ae637232908ced82efb5cda550f60ed2fdf",
+  "spec_sha256": "f625f85a01910953cf9b837cb8d74e69b4745b5ba43e34668683db415945e4e8"
+ },
+ "seeds": {
+  "e1_core_shards": [{"first": 1, "count": 1000}, {"first": 5001, "count": 500}],
+  "e1_full_shards": [{"first": 1, "count": 1000}, {"first": 5001, "count": 500}],
+  "e4_recovery": [0, 1, 2],
+  "e4_timing": 42
+ },
+ "experiment_images": {
+  "runtime": "sha256:d4a42648510d6f1f9e750c4fac1ffad03686967bfa7b3b51676e2f8e714df222",
+  "node": "sha256:79f81d170077d584feddac2359bdf1bdcf4b8761cb889782d6619c16edf9da2b",
+  "e5": "sha256:3db6fd22b87f541015ced552641a659c8f326fa9de5f6f036f9fc2fe809c7dbd"
+ }
+}

@@ -1,0 +1,33 @@
+== nx: fixture
+fixture ready: /work/nx nx
+== nx: version under test: - Global: Not found
+== nx: baseline publish (all six at 1.0.0)
+exit=0  REGISTRY core: 1.0.0  cli: 1.0.0
+== nx: version+tag (conventional commits, publish skipped)
+exit=0
+TAGS_AFTER_VERSION:
+api@1.0.0
+api@1.0.1
+cli@1.0.0
+cli@1.0.1
+core@1.0.0
+core@1.1.0
+docs@1.0.0
+docs@1.0.1
+theme@1.0.0
+theme@1.0.1
+ui@1.0.0
+ui@1.0.1
+== nx: release publish with cli DENIED
+exit=1
+REGISTRY cli: 1.0.0  core: 1.1.0  ui: 1.0.1
+CLI TAGS (exist despite failed publish?):
+cli@1.0.0
+cli@1.0.1
+== nx: recovery via release publish after clearing deny
+exit=0  REGISTRY cli now: 1.0.1
+Skipped package "core" because v1.1.0 already exists in http://failproxy:4873 with tag "latest"
+Skipped package "ui" because v1.0.1 already exists in http://failproxy:4873 with tag "latest"
+Skipped package "api" because v1.0.1 already exists in http://failproxy:4873 with tag "latest"
+Skipped package "theme" because v1.0.1 already exists in http://failproxy:4873 with tag "latest"
+== done

@@ -1,0 +1,188 @@
+\section{Guarantees and Proof Arguments}
+\label{sec:guarantees}
+
+Cross-run claims use the \emph{retry invariant}: the corrected tuple
+stream, source sets, graph, scope/depth predicates, target baselines, and
+resolved source/target channel admission of every outstanding unit remain
+unchanged, except for baseline tags written for successful packages.
+Two recurring components deserve names. \textbf{(H1)} says every baseline
+channel read by \code{Propagate-Channel: inherit} remains unchanged;
+\textbf{(H2)} says no contribution initially suppressed by cancellation,
+hold, or correction is later released at the same $h$. H1 and H2 are
+necessary in their respective cases but are not, by themselves, the full
+retry invariant. Neither is needed for one invocation's determinism.
+
+\begin{lemma}[window antitonicity]
+\label{lem:w}
+For $\sigma' = \mathit{run}(\sigma,F)$, $W^\circ_{\sigma'}(p)=\emptyset$
+if $p$ published and $W^\circ_{\sigma'}(p)=W^\circ_\sigma(p)$ otherwise.
+The train window $W$ also empties after a stable release, but may remain
+unchanged after a prerelease release.
+\end{lemma}
+\begin{proof}
+The run adds only tags at $h$. If $p$ gained none, both baseline commits
+are unchanged. If it published, $\mathit{basec}_{\sigma'}(p)=h$, so
+Eq.~\ref{eq:fresh} subtracts $\mathit{reach}(h)$ and is empty. Only a
+stable release also makes $\mathit{scom}_{\sigma'}(p)=h$.
+\end{proof}
+
+\begin{lemma}[source stability]
+\label{lem:s}
+Under the retry invariant, $\mathit{src}_{\sigma_j}(u)$ is constant for
+every outstanding unit throughout a valid run sequence.
+\end{lemma}
+\begin{proof}
+The corrected tuple stream and its cancellation, hold, correction, and
+source-set predicates are fixed components of the invariant. H2 is the
+component excluding later release of an initially suppressed contribution.
+Arbitrary tag-set inclusion outside a valid run sequence implies no such
+monotonicity, because a higher-version tag may point to an earlier commit.
+\end{proof}
+
+\begin{lemma}[retry stability]
+\label{lem:c}
+Under the retry invariant, an unreleased package's resolved channel,
+each outstanding unit's source-channel set, and
+$\mathit{rsv}(u,d)$ remain constant.
+\end{lemma}
+\begin{proof}
+These are precisely the channel and source-set components fixed by the
+retry invariant. Definition~\ref{def:chan} then selects the same direct
+or propagated proposal, and Eq.~\ref{eq:resolvable} reads the same sets.
+\end{proof}
+
+\begin{remarknum}
+\label{rem:drift}
+(H1) cannot be replaced by requiring stable completed releases: \code{inherit} reads
+$\mathit{ch}(\mathit{base}_\sigma(q))$, which the origin's own
+graduation moves: with \code{core} at baseline \code{1.5.0-beta.0} and
+commits \code{feat(core)\^{}++1:~x} and
+\code{release(core)\%stable:~graduate}, run 1 plans the consumer at
+\code{2.0.1-beta.0} (inherited \code{beta}) while \code{core}
+graduates; if the consumer fails, run 2 plans it at \code{2.0.1}:
+same package, both plans, different versions, every completed release
+stable. Thus unchanged inherited-channel state must be an explicit component of the
+retry invariant; successful stable releases alone do not imply version stability.
+\end{remarknum}
+
+\begin{theorem}[the eight guarantees]
+\label{thm:g}
+Write $\mathit{adm}_j$ for $\mathit{adm}_{\sigma_j}$ and $n =
+|\Pi(\sigma_1)|$. Under the retry invariant, for every unit $u$, consumer
+$D$ and run $j \geq 1$:
+\begin{description}
+  \item[\G{1}] \textbf{termination.} propagation halts after $O(|\mathcal{U}|
+    \cdot (|\mathcal{P}|{+}|E|))$ work, whatever the declared depths.
+  \item[\G{2}] \textbf{no orphans.} $\mathit{adm}_1(u,D) \Rightarrow
+    \mathit{adm}_j(u,D)$ until $D$ releases at a commit containing
+    $c_u$.
+  \item[\G{3}] \textbf{version stability.} if $D \in \Pi(\sigma_1)$ and $D$ is not
+    released before run $k$, then $D \in \Pi(\sigma_k)$ and $\nu_k(D) =
+    \nu_1(D)$.
+  \item[\G{4}] \textbf{no double ledger delivery.} once $D$ releases past $c_u$,
+    $\mathit{adm}_j(u,D)$ never holds again; with \G{2}, ledger discharge is
+    exactly-once for every contribution whose target eventually succeeds.
+    This does not make external side effects exactly-once.
+  \item[\G{5}] \textbf{no widening.} $\{D : \mathit{adm}_j(u,D)\} \subseteq
+    \{D : \mathit{adm}_1(u,D)\}$.
+  \item[\G{6}] \textbf{convergence.} $\Pi(\sigma_{n+1}) = \emptyset$, provided
+    each nonempty retry admits and publishes at least one initially
+    publishable, non-held package.
+  \item[\G{7}] \textbf{channel discharge.} a propagated channel contribution is
+    admitted only while its commit remains in $W^\circ(D)$; baseline
+    equality and transition matching independently remove no-op proposals.
+  \item[\G{8}] \textbf{one-way axis independence.} bump-axis suppression alone
+    does not suppress a channel change. The converse is false: resolved channels
+    are an input to bump admission in Eq.~\ref{eq:resolvable}.
+\end{description}
+\end{theorem}
+
+\begin{proof}
+\G{1}: the traversal computing $R$ marks each package seen at most
+once, so it does $O(|\mathcal{P}|{+}|E|)$ work per unit regardless of
+depth or cycles; acyclicity is needed for the publish order, not here.
+\G{2}: compare Eq.~\ref{eq:admission} clause by clause. Source set,
+depth, graph, scope, cancellation and channel admission are fixed by the
+retry invariant. The consumer's fresh window is unchanged until $D$
+releases (Lemma~\ref{lem:w}); that release is the only event that can
+make its admission clause false.
+\G{3}: $D$ gained no tag, so its baselines, windows and
+$\mathit{dir}$ are unchanged; the propagated join is unchanged by \G{2}
+($\geq$) and \G{5} ($\leq$), whose proofs below use only the lemmas; so
+$\mathit{eff}$ is unchanged and the channel is unchanged
+(Lemma~\ref{lem:c}). Thus bump-only and channel-only membership remain;
+an exact \code{Release-As} remains the same because its unit is fixed by the
+invariant. In every case $\nu$ is the same function of unchanged inputs.
+\G{4}: by Lemma~\ref{lem:w}, $W^\circ(D)$ empties after either a stable
+or prerelease tag, killing fresh direct and propagated admission. This
+also makes $\mathit{pin}_\sigma(D)$ undefined. This is discharge in the tag
+ledger; an interruption after an external publish
+but before its tag requires content-identity reconciliation or safe publisher repetition, not
+an exactly-once claim about the external operation.
+\G{5}: every clause of Eq.~\ref{eq:admission} is constant except the
+window, which is antitone (Lemma~\ref{lem:w}); a conjunction of
+constant and antitone predicates is antitone.
+\G{6}: $\Pi(\sigma_{j+1}) \subseteq \Pi(\sigma_j)$, since a member of
+the later plan was not released (else its fresh windows and pins are empty and its channel equals its new baseline) and each disjunct of
+$\Pi$ is then unchanged or smaller; by the premise each nonempty retry
+removes at least one initially publishable package (\G{4}), so $|\Pi|$
+strictly decreases to $0$ within
+$n$ runs. The bound assumes progress on every counted nonempty run; it does not bound
+the number of failed attempts that make no progress.
+\G{7}: the channel-axis admission test uses $c_u\in W^\circ(D)$, so
+Lemma~\ref{lem:w} discharges it. While fresh, equality with the baseline
+and a transition's \code{<from>} check separately reject no-ops.
+\G{8}: the channel pass runs first and reads no bump-axis output; the bump
+pass then reads its resolved channels through Eq.~\ref{eq:resolvable}.
+\end{proof}
+
+\begin{proposition}[tagging every admitted release]
+\label{prop:tagall}
+If a released package with no artefact to upload and a non-empty effective
+bump were versioned but not tagged, its window would never advance
+(Lemma~\ref{lem:w}), it would re-enter every plan forever, and \G{6} would
+fail. Hence
+Definition~\ref{def:run} tags whatever is released, and a fully successful model run has an empty subsequent plan. Held
+packages are excluded from admission. This necessity is relative to a
+tag-only ledger; another protocol could use other durable completion records.
+\end{proposition}
+
+Three consequences explain the operational behavior. \emph{Resumption}:
+after a partial failure, $\Pi(\sigma_2)=F\cup B$ at the original versions
+(\G{2}--\G{5}), provided the retry invariant holds. \emph{Idempotence}:
+let $\mathit{release}(s)=\mathit{run}(s,\emptyset)$ denote a fully successful
+transformation with fixed reviewed inputs and valid records. Then
+\[
+  \mathit{release}(s)=\mathit{release}(\mathit{release}(s)),
+\]
+under the retry invariant, because the first transformation discharges every
+admitted obligation and the second has an empty plan (\G{4}--\G{6}). Determinism of an unchanged preview is a
+separate property (Theorem~\ref{thm:det}). \emph{Scope preservation}: \G{5}
+makes the original plan an upper bound on retry publication under the same
+invariant. This is not an authorization guarantee against changed commands,
+rewritten tags, or changed credentials.
+
+The idempotence equation concerns recorded release state. If a publisher
+succeeds but its completion record is lost, its outcome must be reconciled,
+or the publisher must safely accept repetition. Arbitrary shell-side effects
+are not made exactly-once by a tag ledger.
+
+
+\begin{table}[t]
+\centering
+\caption{Running example after one downstream failure. Planned versions are
+assets 1.5.0, base 0.8.3, and app 2.1.1. This is a model trace, not a timing
+measurement. A no-progress attempt may be inserted without violating safety;
+it is excluded from the progress premise of the convergence bound.}
+\label{tab:runs}
+\small
+\begin{tabular}{@{}llll@{}}
+\toprule
+Run & Plan & Recorded success & Failure \\
+\midrule
+1 & assets, base, app & assets, base & app \\
+2 & app 2.1.1 & app & none \\
+3 & empty & none & none \\
+\bottomrule
+\end{tabular}
+\end{table}

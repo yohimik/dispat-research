@@ -1,0 +1,63 @@
+
+ NX   Running target nx-release-publish for 6 projects:
+
+- theme
+- core
+- docs
+- api
+- cli
+- ui
+
+
+
+> nx run core:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/core/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "core" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+> nx run cli:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/cli/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "cli" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+> nx run api:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/api/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "api" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+> nx run ui:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/ui/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "ui" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+> nx run theme:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/theme/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "theme" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+> nx run docs:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/docs/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "docs" because v1.0.0 already exists in http://failproxy:4873 with tag "latest"
+
+
+
+ NX   Successfully ran target nx-release-publish for 6 projects
+
+
+  Run duration:      1.3s
+  Cache:             0/6 hit (0%)
+  Critical path:     1.3s (3 tasks)
+  Recoverable time:  <1ms

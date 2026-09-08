@@ -1,0 +1,6 @@
+events.jsonl
+*.log
+fail-*
+published/
+**/built/
+**/test-tool

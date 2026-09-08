@@ -1,0 +1,4 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+lerna notice Current HEAD is already released, skipping change detection.
+lerna info No changed packages found

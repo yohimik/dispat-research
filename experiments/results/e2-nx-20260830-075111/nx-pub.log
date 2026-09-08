@@ -1,0 +1,147 @@
+
+ NX   Running target nx-release-publish for 6 projects:
+
+- theme
+- core
+- docs
+- api
+- cli
+- ui
+
+
+
+> nx run core:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/core/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  core@1.1.0
+[35m=== Tarball Contents ===[39m
+
+19B index.js    
+61B package.json
+[35m=== Tarball Details ===[39m
+name:          core                                    
+version:       1.1.0                                   
+filename:      core-1.1.0.tgz                          
+package size:  191 B                                   
+unpacked size: 80 B                                    
+shasum:        5b099dbd9fcea6e3c9103ca5423877281d623e36
+integrity:     sha512-DRsJ4BlgykeZV[...]xVC30dyGKGafA==
+total files:   2                                       
+ 
+Published to http://failproxy:4873 with tag "latest"
+
+> nx run api:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/api/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  api@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+81B package.json
+[35m=== Tarball Details ===[39m
+name:          api                                     
+version:       1.0.1                                   
+filename:      api-1.0.1.tgz                           
+package size:  195 B                                   
+unpacked size: 87 B                                    
+shasum:        cfd2687f6cb44bfc85c0ddc84443d4b6fae32046
+integrity:     sha512-UK2MWuJGxkqFu[...]aM/x+WdgqmS3A==
+total files:   2                                       
+ 
+Published to http://failproxy:4873 with tag "latest"
+
+> nx run ui:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/ui/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  ui@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+80B package.json
+[35m=== Tarball Details ===[39m
+name:          ui                                      
+version:       1.0.1                                   
+filename:      ui-1.0.1.tgz                            
+package size:  195 B                                   
+unpacked size: 86 B                                    
+shasum:        5c8ba4fe4e52cbc45e28779456ced62dfa669d3c
+integrity:     sha512-ZT/d0MuNX2Nq0[...]eHh3UIz2a1gQQ==
+total files:   2                                       
+ 
+Published to http://failproxy:4873 with tag "latest"
+
+> nx run docs:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/docs/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  docs@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+80B package.json
+[35m=== Tarball Details ===[39m
+name:          docs                                    
+version:       1.0.1                                   
+filename:      docs-1.0.1.tgz                          
+package size:  195 B                                   
+unpacked size: 86 B                                    
+shasum:        fcf2800183b9140dd4942fda092144f55cf583c5
+integrity:     sha512-Cp7MHshDSPcYF[...]w/2HggshfeMvQ==
+total files:   2                                       
+ 
+Published to http://failproxy:4873 with tag "latest"
+
+> nx run theme:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/theme/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  theme@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+81B package.json
+[35m=== Tarball Details ===[39m
+name:          theme                                   
+version:       1.0.1                                   
+filename:      theme-1.0.1.tgz                         
+package size:  195 B                                   
+unpacked size: 87 B                                    
+shasum:        be5aa3d2da5f68569af9bbddfe29a09c143b51e6
+integrity:     sha512-95mluogsfcj3/[...]xd39/9fr40mXA==
+total files:   2                                       
+ 
+Published to http://failproxy:4873 with tag "latest"
+
+> nx run cli:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/cli/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+npm publish error:
+400 Bad request syntax ('{"_id":"cli","name":"cli","dist-tags":{"latest":"1.0.1"},"versions":{"1.0.1":{"name":"cli","version":"1.0.1","dependencies":{"core":"^1.0.0"},"_id":"cli@1.0.1","readme":"ERROR: No README data found!","gitHead":"10af5edebcd313d84cf009b8c2c155b415c53894","_nodeVersion":"22.23.2","_npmVersion":"10.9.8","dist":{"integrity":"sha512-t5ef1vZLU7HQ4I4qo3rHe9bDo4cx9gmLaD+ZmClQVxajRdW2BlqPv8S3KAtKw0ffibZlRCsgbKRLrb+eJ7hkMg==","shasum":"3ce4ddd95d85bf82a22dfcedfa714e974acf8988","tarball":"http://failproxy:4873/cli/-/cli-1.0.1.tgz"}}},"access":null,"_attachments":{"cli-1.0.1.tgz":{"content_type":"application/octet-stream","data":"H4sIAAAAAAAC/+3TwQrCMAyA4Z77FKFn6RLtKuxhhNIV6dRurDqEsXeXzSEIHnUw7HcJhPTQw98YezJHl/lQurusIvsBRNRKwaf9kwa2yzUSaY0KGBLutwQM2QJu8WpahviFTyIivOZKZBl0xFnyp5q5/3nKKtZh4f5pbP29f8oVpv6X0HMQwVycKEDYsxcbDqJzbfR1GFckUdK0LF3jQumC9S6KAnoOIGzdTg8P4xkKDgMfUlJJkiSr8ACwyoLVAAwAAA==","length":196}}}PUT /cli HTTP/1.1') - PUT http://failproxy:4873/cli
+
+
+
+ NX   Running target nx-release-publish for 6 projects failed
+
+Failed tasks:
+
+- cli:nx-release-publish
+
+  Run duration:      11.1s
+  Cache:             0/5 hit (0%)
+  Critical path:     11.1s (2 tasks)
+  Recoverable time:  <1ms

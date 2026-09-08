@@ -1,0 +1,1102 @@
+[
+  {
+    "case": "mixed",
+    "rep": 0,
+    "exit": 0,
+    "retries": [],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 15278000,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 258026166,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10825666,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10926291,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 254392958,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3287310416,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 14885791,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2274571791,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11927666,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 236406416,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11837916,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 222574291,
+        "version": "2.1.1",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain3150ee1014",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "serialized",
+    "rep": 0,
+    "exit": 0,
+    "retries": [],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11307458,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 161847208,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10281500,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3221747125,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11633000,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 235045166,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10765791,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2261653750,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11546041,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 209355666,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11110291,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 203146458,
+        "version": "2.1.1",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chainf8dc5f68a2",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "missing-barrier",
+    "rep": 0,
+    "exit": 1,
+    "retries": [],
+    "final_exit": null,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10365708,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 152787500,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11347833,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11376000,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 228056541,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11372166,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 188744208,
+        "version": "2.1.1",
+        "code": 37
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3218784375,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11606708,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2273923833,
+        "version": "0.8.3",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain7644342a04",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "base-failure",
+    "rep": 0,
+    "exit": 1,
+    "retries": [
+      0
+    ],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10627958,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 150910916,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10966791,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11064125,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 221416833,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3213482041,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10376541,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2014863833,
+        "version": "0.8.3",
+        "code": 37
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain53eb1488b7",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "app-failure",
+    "rep": 0,
+    "exit": 1,
+    "retries": [
+      0
+    ],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10410708,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 159094833,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11856125,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11873125,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 223809250,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3216773583,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10567666,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2223087333,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10587208,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 10677500,
+        "version": "2.1.1",
+        "code": 37
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chainb4e57bc7fa",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "mixed",
+    "rep": 1,
+    "exit": 0,
+    "retries": [],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10504583,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 159328625,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11432750,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11639791,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 221773541,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3220634875,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10666833,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2258135125,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11634166,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 200660875,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11273500,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 211091458,
+        "version": "2.1.1",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chainf5ff6fb2fa",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "serialized",
+    "rep": 1,
+    "exit": 0,
+    "retries": [],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11618041,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 159770250,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10774833,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3213862291,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11033750,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 210529000,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 10739875,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2256920375,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11732291,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 192372416,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 12542125,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 217152958,
+        "version": "2.1.1",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain9fa38e4fe8",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "missing-barrier",
+    "rep": 1,
+    "exit": 1,
+    "retries": [],
+    "final_exit": null,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11820333,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 163783375,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 12244041,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 12579125,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 223835000,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11130791,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 187724083,
+        "version": "2.1.1",
+        "code": 37
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3210218333,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 12213250,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2254543333,
+        "version": "0.8.3",
+        "code": 0
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain1bbf6772d9",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "base-failure",
+    "rep": 1,
+    "exit": 1,
+    "retries": [
+      0
+    ],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11079125,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 158850375,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11522041,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11801166,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 224667916,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3220053416,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11032166,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2014996125,
+        "version": "0.8.3",
+        "code": 37
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chain4b46b477ec",
+    "builder": "saner-builder-b15b6fb2"
+  },
+  {
+    "case": "app-failure",
+    "rep": 1,
+    "exit": 1,
+    "retries": [
+      0
+    ],
+    "final_exit": 0,
+    "first_events": [
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 10422291,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 155048750,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11565041,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11558333,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 231543291,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "assets",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 3223508500,
+        "version": "1.5.0",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "start",
+        "monotonic_ns": 11213041,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "base",
+        "stage": "publish",
+        "event": "end",
+        "monotonic_ns": 2262895250,
+        "version": "0.8.3",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "start",
+        "monotonic_ns": 11974958,
+        "version": "2.1.1",
+        "code": 0
+      },
+      {
+        "package": "app",
+        "stage": "build",
+        "event": "end",
+        "monotonic_ns": 12080666,
+        "version": "2.1.1",
+        "code": 37
+      }
+    ],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "app@2.1.1",
+      "assets@1.4.2",
+      "assets@1.5.0",
+      "base@0.8.2",
+      "base@0.8.3"
+    ],
+    "namespace": "chaina00b33f5bd",
+    "builder": "saner-builder-b15b6fb2"
+  }
+]

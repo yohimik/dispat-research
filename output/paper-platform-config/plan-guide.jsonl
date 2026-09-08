@@ -1,0 +1,224 @@
+{"level":"warn","code":"W131","commit":"c81dc454a45a","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: instruct agents to reade guide"}
+{"level":"warn","code":"W120","commit":"057f0adfabf3","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"9408388c492c","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"63a3a7c82105","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"e97ff51c2101","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"0395d2e7798c","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"bd1212c88bbf","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"7bea19bbbcc5","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"0cf871a90407","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs: config and infra in where to go"}
+{"level":"warn","code":"W120","commit":"ae3f31596ed8","time":"2026-09-07T13:53:41+04:00","message":"description is 112 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"7901715b3916","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: dispat's own records link their commits and dependencies"}
+{"level":"warn","code":"W120","commit":"80dbf70b2955","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"error","code":"E130","package":"internals","commit":"ba67c422ea31","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"ba67c422ea31","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): the fork clears the board at 0.42.0-net.4"}
+{"level":"error","code":"E130","package":"tinygo","commit":"d323058181bb","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"d323058181bb","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci(tinygo): the spike asks the fork that hears signals"}
+{"level":"error","code":"E130","package":"internals","commit":"923bd72f7736","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"923bd72f7736","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): fork sizes and caveats at 0.42.0-net.3"}
+{"level":"error","code":"E130","package":"tinygo","commit":"12fe7c927b01","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"12fe7c927b01","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci(tinygo): the spike asks the fork that spawns in a group"}
+{"level":"error","code":"E130","package":"internals","commit":"d5342fdfc9b3","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"d5342fdfc9b3","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): what the spawning fork answered"}
+{"level":"error","code":"E130","package":"internals","commit":"c5959a473fd2","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"c5959a473fd2","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): fork sizes at 0.42.0-net.2"}
+{"level":"error","code":"E130","package":"tinygo","commit":"b0085d6ddd2d","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"b0085d6ddd2d","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci(tinygo): the spike asks the fork that spawns"}
+{"level":"error","code":"E130","package":"internals","commit":"47eee4899cf9","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"47eee4899cf9","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): what the first fork run answered"}
+{"level":"error","code":"E130","package":"tinygo","commit":"185e53c64037","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"185e53c64037","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(tinygo): the darwin half builds against the workspace again"}
+{"level":"error","code":"E130","package":"cli","commit":"da2cb3051a12","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"da2cb3051a12","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(cli): the version test names where \"dev\" comes from"}
+{"level":"error","code":"E130","package":"tinygo","commit":"d18692415cd1","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"d18692415cd1","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(tinygo): the self-update log says what it measured"}
+{"level":"error","code":"E130","package":"internals","commit":"191451c0f351","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"191451c0f351","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(internals): the TinyGo spike page"}
+{"level":"error","code":"E130","package":"tinygo","commit":"3996ec9fe7bc","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"3996ec9fe7bc","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(tinygo): the darwin half of the self-update e2e"}
+{"level":"error","code":"E130","package":"tinygo","commit":"fe0e186ec166","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"fe0e186ec166","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(tinygo): self-update e2e over real TLS in the spike"}
+{"level":"error","code":"E130","package":"cli","commit":"4fb82373c4a5","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"4fb82373c4a5","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix(cli): a bare Version so TinyGo's -X can stamp it"}
+{"level":"error","code":"E130","package":"cli","commit":"1bf26dd83313","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"1bf26dd83313","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(cli): a flag of another command is a usage error"}
+{"level":"warn","code":"W131","commit":"02ada1de7880","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: darwin rows for the net probe, skips recorded"}
+{"level":"warn","code":"W131","commit":"86e569e135f6","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: host-run darwin half of the tinygo spike"}
+{"level":"warn","code":"W131","commit":"426bbf2fa638","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: tinygo spike asserts TLS reality at the wire"}
+{"level":"error","code":"E130","package":"cli","commit":"b2c3d0353400","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"b2c3d0353400","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(cli): --draft flag on dispat github"}
+{"level":"error","code":"E130","package":"app","commit":"844992d69d44","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"844992d69d44","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(app): wire github draft through releaser and step"}
+{"level":"error","code":"E130","package":"github","commit":"7913cc6ac667","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"7913cc6ac667","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(github): draft releases and draft-aware lookup"}
+{"level":"warn","code":"W131","commit":"d78a3e59005a","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: a tinygo spike probes the toolchain as a release compiler"}
+{"level":"warn","code":"W120","commit":"255f9a7c1857","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"590543e134ad","time":"2026-09-07T13:53:41+04:00","message":"description is 112 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"b9b146706bfd","time":"2026-09-07T13:53:41+04:00","message":"description is 105 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"3c2ce78f63d5","time":"2026-09-07T13:53:41+04:00","message":"description is 135 characters, limit is 100"}
+{"level":"warn","code":"W140","commit":"627a8f567c21","time":"2026-09-07T13:53:41+04:00","message":"unknown type \"config\" mapped to bump none"}
+{"level":"warn","code":"W131","commit":"b6032365e68b","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs: pin v1"}
+{"level":"warn","code":"W120","commit":"3a5436d2eb79","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"4e62a899f6fd","time":"2026-09-07T13:53:41+04:00","message":"description is 135 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"e5882157591b","time":"2026-09-07T13:53:41+04:00","message":"description is 135 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"e0bed4f536f1","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: the bootstrap resolves the stable line itself"}
+{"level":"warn","code":"W120","commit":"8aebe73f09ef","time":"2026-09-07T13:53:41+04:00","message":"description is 134 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"33f5745367a9","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"ff9dbb3b7055","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"03ae192dc412","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"ce1b35137d74","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"9b5eeff7bdf1","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"1d743373193f","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"56fd74921ab1","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"81f8b716f57f","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"af751b65110e","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"e5e19fd3234d","time":"2026-09-07T13:53:41+04:00","message":"description is 164 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"16a4b19784c2","time":"2026-09-07T13:53:41+04:00","message":"description is 159 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"4ab5387c21cf","time":"2026-09-07T13:53:41+04:00","message":"description is 159 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"bf01f3765fb5","time":"2026-09-07T13:53:41+04:00","message":"description is 159 characters, limit is 100"}
+{"level":"warn","code":"W120","commit":"df442dd05d61","time":"2026-09-07T13:53:41+04:00","message":"description is 159 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"ed19ee1041b6","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: our modules bypass the proxy, whose first copy is forever"}
+{"level":"warn","code":"W131","commit":"0f49d7e7e2be","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: the checkout's own build drives every action"}
+{"level":"warn","code":"W120","commit":"f269bf096ec8","time":"2026-09-07T13:53:41+04:00","message":"description is 309 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"0a81d5874c39","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: the composite action installs the driver"}
+{"level":"warn","code":"W120","commit":"20bf38fea128","time":"2026-09-07T13:53:41+04:00","message":"description is 159 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"b5cd5bdfdd60","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: refresh the bootstrap driver for the wired stages"}
+{"level":"warn","code":"W131","commit":"abc9c146f943","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: the actions are pinned by commit and hold only what they use"}
+{"level":"warn","code":"W131","commit":"8ae612c368eb","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: the release offers all three installers"}
+{"level":"warn","code":"W132","commit":"3234847b271f","time":"2026-09-07T13:53:41+04:00","message":"1 of 2 units carry no scope-set and therefore all resolve to the same derived set"}
+{"level":"warn","code":"W132","commit":"9eb6da6b6c77","time":"2026-09-07T13:53:41+04:00","message":"2 of 2 units carry no scope-set and therefore all resolve to the same derived set"}
+{"level":"warn","code":"W132","commit":"16a22603a46d","time":"2026-09-07T13:53:41+04:00","message":"1 of 2 units carry no scope-set and therefore all resolve to the same derived set"}
+{"level":"warn","code":"W131","commit":"b3d033eda528","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: refresh the bootstrap driver for the new config"}
+{"level":"warn","code":"W131","commit":"cc4ff776d301","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: link the release bodies to installers, images and docs"}
+{"level":"warn","code":"W131","commit":"8b859ca28d8b","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: sweep tools and the integration tests as script-only packages"}
+{"level":"warn","code":"W131","commit":"77c01653db05","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: check link leaks with the scanner and inline the gofmt gate"}
+{"level":"warn","code":"W131","commit":"2ee8ed55d009","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: the post-release-outputs else branch never ran"}
+{"level":"warn","code":"W131","commit":"f61e94e485e6","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: sweep go vet through dispat run"}
+{"level":"warn","code":"W131","commit":"7c3490e01059","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: route the release stages through dispat scripts"}
+{"level":"warn","code":"W131","commit":"7b8c48a51379","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: drive workflows with a committed bootstrap dispat until 1.0.0"}
+{"level":"warn","code":"W131","commit":"af5b26602e67","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs: examples wording in the readme tour"}
+{"level":"warn","code":"W131","commit":"5a71f26b1638","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: verify links with the scanner"}
+{"level":"warn","code":"W131","commit":"d37185bd2d1e","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: ci: carry the test report to the release job"}
+{"level":"warn","code":"W131","commit":"3ff07d3a283a","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: record what every test run did"}
+{"level":"error","code":"E130","package":"cli","commit":"0f63bfe2abbb","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"0f63bfe2abbb","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: refactor(cli): split the entry point into ordered phases"}
+{"level":"error","code":"E130","package":"tests","commit":"2021d64c5f21","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"2021d64c5f21","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(tests): the three new integration goals"}
+{"level":"error","code":"E130","package":"gitx","commit":"35939fa36b8c","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"35939fa36b8c","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix(gitx): reserve the release lock tag name"}
+{"level":"error","code":"E130","package":"gitx","commit":"fae583ea0454","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"fae583ea0454","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(gitx): tag push and delete"}
+{"level":"error","code":"E130","package":"records","commit":"2f5a98613515","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"2f5a98613515","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(records): cover lines, filters and variables"}
+{"level":"error","code":"E130","package":"records","commit":"1334d0c62c37","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"1334d0c62c37","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(records): a file title, a release name, header and footer lines"}
+{"level":"error","code":"E130","package":"plan","commit":"57b0a5bf5cbe","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"57b0a5bf5cbe","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: refactor(plan): release variables move next to the release"}
+{"level":"error","code":"E130","package":"compute","commit":"d52211a5e6d2","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"d52211a5e6d2","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: refactor(compute): tidy the baseline helpers"}
+{"level":"error","code":"E130","package":"compute","commit":"f6c2231d74ee","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"f6c2231d74ee","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(compute): drive the interactive prompt through the binary"}
+{"level":"error","code":"E130","package":"compute","commit":"da0623283ac3","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"da0623283ac3","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: test(compute): cover the manifest baselines end to end"}
+{"level":"error","code":"E130","package":"compute","commit":"4fbbfe7ced61","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"4fbbfe7ced61","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat(compute): suggest initials from manifest versions"}
+{"level":"error","code":"E130","package":"tests","commit":"e751d6816f29","time":"2026-09-07T13:53:41+04:00","message":"scope names no package at HEAD"}
+{"level":"warn","code":"W131","commit":"e751d6816f29","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs(tests): document the test cases the plan was missing"}
+{"level":"warn","code":"W131","commit":"f2f011e112de","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: ignore"}
+{"level":"warn","code":"W131","commit":"26165e543427","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: switch release flow to step commands"}
+{"level":"warn","code":"W131","commit":"2843bfd2c80e","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs: format"}
+{"level":"warn","code":"W120","commit":"f9ca41fa6284","time":"2026-09-07T13:53:41+04:00","message":"description is 148 characters, limit is 100"}
+{"level":"warn","code":"W131","commit":"bd1252dfa14a","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: commit mode release flow"}
+{"level":"error","code":"E120","commit":"dca3d32caa36","time":"2026-09-07T13:53:41+04:00","message":"expected ':' but found \"@\""}
+{"level":"warn","code":"W131","commit":"9bc1b3edd222","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: ci"}
+{"level":"warn","code":"W131","commit":"1017fd7de5b5","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: release config and ci"}
+{"level":"warn","code":"W131","commit":"be099e379f17","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: self release config"}
+{"level":"warn","code":"W131","commit":"1abf5e0a54f3","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: docs: scanner and writer in where to go"}
+{"level":"warn","code":"W131","commit":"4e26a38ce9be","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: remove logo.txt"}
+{"level":"warn","code":"W131","commit":"eac9d39b663f","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: README.md"}
+{"level":"warn","code":"W131","commit":"c4038723167d","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: README.md"}
+{"level":"warn","code":"W131","commit":"6bf01f2092e2","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: scripts, hooks, prerelease convergence, run config"}
+{"level":"warn","code":"W131","commit":"7b7e61aa26a5","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: docs"}
+{"level":"warn","code":"W131","commit":"d2f76260eb33","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: docs"}
+{"level":"error","code":"E100","commit":"af58bd324f47","time":"2026-09-07T13:53:41+04:00","message":"a blank line is required between the header and the body"}
+{"level":"warn","code":"W131","commit":"ba93a2481b3f","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: chore: license, todo, usage"}
+{"level":"warn","code":"W131","commit":"0e284e769ec9","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: go sum"}
+{"level":"warn","code":"W131","commit":"dee04223ae0c","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: deps"}
+{"level":"warn","code":"W131","commit":"4e587566dc2a","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: go mod"}
+{"level":"warn","code":"W131","commit":"f01a39b9571c","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: log format"}
+{"level":"warn","code":"W131","commit":"a5f8c7a55e4f","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: rename"}
+{"level":"warn","code":"W131","commit":"02c938433766","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: wf"}
+{"level":"warn","code":"W131","commit":"2052575dd67b","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: wf"}
+{"level":"warn","code":"W131","commit":"d80471d406eb","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: ci"}
+{"level":"warn","code":"W131","commit":"7ef0fa7a2f1d","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: fix: docs"}
+{"level":"warn","code":"W131","commit":"7aada3049d19","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: config release options"}
+{"level":"warn","code":"W131","commit":"4685597b955c","time":"2026-09-07T13:53:41+04:00","message":"unit resolved to no package and is inert: feat: multi concurrency"}
+{"level":"error","code":"E101","commit":"1fd472c70c4c","time":"2026-09-07T13:53:41+04:00","message":"illegal character \" \" in type"}
+{"level":"warn","code":"W209","package":"models","commit":"f17f6ef0d490","time":"2026-09-07T13:53:41+04:00","message":"Edits: 3e8b58492eead9b5a503e0e11975c3a2709e5b19#1 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme","commit":"8de3dc07cd84","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 1efa6a404dab623178cfab0668d2a4a48a67ef4b#3 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"agent-guide","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme-spec","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-alpine","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-debian","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-dind","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-ubuntu","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"docs","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"manifest","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"models","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"scanner","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"writer","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Edits: 5e771789c74f5ac5083a52e45ba47e46109999c7 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"agent-guide","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme-spec","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-alpine","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-debian","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-dind","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-ubuntu","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"docs","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"manifest","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"models","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"scanner","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"writer","commit":"1efa6a404dab","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 71280c59afce3a6c507ca15acd863c07e563b021 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"agent-guide","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"ccme-spec","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"config","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-alpine","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-debian","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-dind","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"dispat-ubuntu","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"docs","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"infra","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"manifest","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"models","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"scanner","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W209","package":"writer","commit":"8ca336157fba","time":"2026-09-07T13:53:41+04:00","message":"Deletes: 6fe44be0ba264d7aafba6c5f77fe884385c791e0 is already released for this package; a correction reaches only undischarged work (§7.4.2)"}
+{"level":"warn","code":"W153","package":"ccme","commit":"8ac47666e4de","time":"2026-09-07T13:53:41+04:00","message":"2 Release-As directives are pending; the newest (\"none\") wins"}
+{"level":"warn","code":"W233","package":"group:ccme","time":"2026-09-07T13:53:41+04:00","message":"members of versioning group \"ccme\" are on different major versions: ccme-spec is at 3.0.1 while ccme is at 2.0.0; the group versions from the newest, so every member moves to major 3"}
+{"level":"warn","code":"W170","package":"agent-guide,ccme,ccme-spec,config,dispat,dispat-alpine,dispat-debian,dispat-dind,dispat-ubuntu,docs,experiments,infra,integration,manifest,models,scanner,tools,writer","commit":"29cf1eb8bb96","time":"2026-09-07T13:53:41+04:00","message":"cancel discarded nothing; already released work cannot be retracted (§10.3); to stop a pending catch-up, cancel the consumer (§13.7d)"}
+{"level":"warn","code":"W170","package":"agent-guide,ccme,ccme-spec,config,dispat,dispat-alpine,dispat-debian,dispat-dind,dispat-ubuntu,docs,experiments,infra,integration,manifest,models,scanner,tools,writer","commit":"7ef90598a7f6","time":"2026-09-07T13:53:41+04:00","message":"cancel discarded nothing; already released work cannot be retracted (§10.3); to stop a pending catch-up, cancel the consumer (§13.7d)"}
+{"level":"warn","code":"W170","package":"agent-guide,ccme,ccme-spec,config,dispat,dispat-alpine,dispat-debian,dispat-dind,dispat-ubuntu,docs,experiments,infra,integration,manifest,models,scanner,tools,writer","commit":"f91ba5f27438","time":"2026-09-07T13:53:41+04:00","message":"cancel discarded nothing; already released work cannot be retracted (§10.3); to stop a pending catch-up, cancel the consumer (§13.7d)"}
+{"level":"info","warnings":170,"errors":34,"time":"2026-09-07T13:53:41+04:00","message":"plan diagnostics"}
+{"level":"info","package":"agent-guide","space":"agent-guide","bump":"patch","version":"1.8.0 -> 1.8.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-07T13:53:41+04:00","message":"● changed"}
+{"level":"info","package":"ccme","space":"pkg","version":"2.0.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"ccme-spec","space":"ccme-spec","version":"3.0.1","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"config","space":"pkg","version":"1.0.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"experiments","space":"experiments","version":"0.0.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"infra","space":"infra","version":"0.0.1","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"manifest","space":"pkg","version":"1.2.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"models","space":"pkg","dependsOn":["ccme"],"version":"1.8.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"scanner","space":"pkg","dependsOn":["manifest"],"version":"1.2.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"tools","space":"tools","ownCommits":3,"time":"2026-09-07T13:53:41+04:00","message":"∅ script-only (versioning: none)"}
+{"level":"info","package":"writer","space":"pkg","dependsOn":["manifest"],"version":"1.2.0","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"dispat","space":"services","dependsOn":["ccme","config","manifest","models","scanner","writer"],"version":"1.8.2","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"dispat-alpine","space":"docker","dependsOn":["dispat"],"version":"1.8.2","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"dispat-debian","space":"docker","dependsOn":["dispat"],"version":"1.8.2","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"dispat-dind","space":"docker","dependsOn":["dispat"],"version":"1.8.2","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"dispat-ubuntu","space":"docker","dependsOn":["dispat"],"version":"1.8.2","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["dispat","dispat-alpine","infra"],"version":"1.8.6","channel":"stable","time":"2026-09-07T13:53:41+04:00","message":"unchanged"}
+{"level":"info","package":"integration","space":"integration","dependsOn":["models","dispat"],"ownCommits":5,"time":"2026-09-07T13:53:41+04:00","message":"∅ script-only (versioning: none)"}
+{"level":"info","packages":18,"releasing":1,"held":0,"scriptOnly":2,"time":"2026-09-07T13:53:41+04:00","message":"release plan ready"}

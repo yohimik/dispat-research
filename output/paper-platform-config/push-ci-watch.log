@@ -1,0 +1,143 @@
+Refreshing run status every 30 seconds. Press Ctrl+C to quit.
+
+* main tests · 34108558673
+Triggered via push about 1 minute ago
+
+JOBS
+* Format and vet (ID 101699176406)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ gofmt
+  ✓ shellcheck
+  ✓ CI selection and test-plan references
+  * go vet
+  * No local link survived a build
+  * Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  * Post Checkout code
+✓ Native ARM64 export in 22s (ID 101699176624)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Verify the native builder architecture
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Build the ARM64 CLI export when affected
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Post Checkout code
+  ✓ Complete job
+✓ Build in 26s (ID 101699176648)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Build what changed
+  ✓ Build the AMD64 CLI export for integration changes
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Post Checkout code
+  ✓ Complete job
+✓ Tests in 24s (ID 101699176673)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Link the workspace dependencies
+  ✓ Run the tests dispat selects
+  ✓ Unlink the workspace dependencies
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Checkout code
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f, docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Native ARM64 export: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f, docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Tests: .github#2
+
+✓ main tests · 34108558673
+Triggered via push about 2 minutes ago
+
+JOBS
+✓ Format and vet in 2m0s (ID 101699176406)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ gofmt
+  ✓ shellcheck
+  ✓ CI selection and test-plan references
+  ✓ go vet
+  ✓ No local link survived a build
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Checkout code
+  ✓ Complete job
+✓ Native ARM64 export in 22s (ID 101699176624)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Verify the native builder architecture
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Build the ARM64 CLI export when affected
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Post Checkout code
+  ✓ Complete job
+✓ Build in 26s (ID 101699176648)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Build what changed
+  ✓ Build the AMD64 CLI export for integration changes
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Run docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130
+  ✓ Post Checkout code
+  ✓ Complete job
+✓ Tests in 24s (ID 101699176673)
+  ✓ Set up job
+  ✓ Checkout code
+  ✓ Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Run crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124
+  ✓ Set up dispat
+  ✓ Build dispat from the checkout
+  ✓ Link the workspace dependencies
+  ✓ Run the tests dispat selects
+  ✓ Unlink the workspace dependencies
+  ✓ Post Run docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f
+  ✓ Post Checkout code
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f, docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Native ARM64 export: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f, docker/setup-qemu-action@c7c53464625b32c7a7e944ae62b3e17d2b600130. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build: .github#2
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11d5960a326750d5838078e36cf38b85af677262, crazy-max/ghaction-github-runtime@3cb05d89e1f492524af3d41a1c98c83bc3025124, docker/setup-buildx-action@8d2750c68a42422c14e847fe6c8ac0403b4cbd6f. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Tests: .github#2
+

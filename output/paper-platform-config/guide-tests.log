@@ -1,0 +1,111 @@
+Agent guide 1.8.0 is internally consistent
+13:52:03 INF release started packages=["agent-guide"] requireRelease=true root=.
+13:52:03 INF release narrowed to the selection releasing=["agent-guide"] selection=agent-guide
+13:52:03 INF ● changed baselineFromInitials=true bump=none channel=stable dueToProviders=[] ownCommits=0 package=agent-guide reason=pinned space=agent-guide version="0.0.0 -> 1.0.0"
+13:52:03 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:03 INF release plan ready held=0 packages=2 releasing=1
+13:52:03 INF Agent guide 0.0.0 is internally consistent package=agent-guide stage=version version=1.0.0
+13:52:03 INF file reconciled file=README.md occurrences=1 package=agent-guide stage=version version=1.0.0
+13:52:03 INF file reconciled file=VERSION occurrences=1 package=agent-guide stage=version version=1.0.0
+13:52:03 INF version succeeded package=agent-guide stage=version version=1.0.0
+13:52:03 INF build started package=agent-guide stage=build version=1.0.0
+13:52:03 INF Agent guide 1.0.0 is internally consistent package=agent-guide stage=build version=1.0.0
+13:52:03 INF build succeeded package=agent-guide stage=build version=1.0.0
+13:52:03 INF publish started package=agent-guide stage=publish version=1.0.0
+13:52:03 INF 13:52:03 INF created release commit package=agent-guide tag=specs/agent-guide/v1.0.0 package=agent-guide stage=publish version=1.0.0
+13:52:04 INF 13:52:04 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=agent-guide stage=publish version=1.0.0
+13:52:04 INF published, tag deferred to the release commit package=agent-guide plannedTag=specs/agent-guide/v1.0.0 stage=publish version=1.0.0
+13:52:04 WRN tag already exists at the release commit, skipped code=W223 tag=specs/agent-guide/v1.0.0
+13:52:04 INF summary channel=stable package=agent-guide status=published tag=specs/agent-guide/v1.0.0 took=170.064958 version="0.0.0 -> 1.0.0"
+13:52:04 INF done cancelled=0 failed=0 held=0 published=1 skipped=0 took=217.428333 unchanged=1
+13:52:04 INF release started packages=["agent-guide"] root=.
+13:52:04 INF release narrowed to the selection releasing=[] selection=agent-guide
+13:52:04 INF unchanged channel=stable package=agent-guide space=agent-guide version=1.0.0
+13:52:04 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:04 INF release plan ready held=0 packages=2 releasing=0
+13:52:04 INF done cancelled=0 failed=0 held=0 published=0 skipped=0 took=0.003 unchanged=2
+13:52:04 INF release started packages=["agent-guide"] requireRelease=true root=.
+13:52:04 INF release narrowed to the selection releasing=["agent-guide"] selection=agent-guide
+13:52:04 INF ● changed bump=patch channel=stable dueToProviders=[] ownCommits=1 package=agent-guide reason=direct space=agent-guide version="1.0.0 -> 1.0.1"
+13:52:04 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:04 INF release plan ready held=0 packages=2 releasing=1
+13:52:04 INF Agent guide 1.0.0 is internally consistent package=agent-guide stage=version version=1.0.1
+13:52:04 INF file reconciled file=README.md occurrences=1 package=agent-guide stage=version version=1.0.1
+13:52:04 INF file reconciled file=VERSION occurrences=1 package=agent-guide stage=version version=1.0.1
+13:52:04 INF version succeeded package=agent-guide stage=version version=1.0.1
+13:52:04 INF build started package=agent-guide stage=build version=1.0.1
+13:52:04 INF Agent guide 1.0.1 is internally consistent package=agent-guide stage=build version=1.0.1
+13:52:04 INF build succeeded package=agent-guide stage=build version=1.0.1
+13:52:04 INF publish started package=agent-guide stage=publish version=1.0.1
+13:52:04 INF 13:52:04 INF created release commit package=agent-guide tag=specs/agent-guide/v1.0.1 package=agent-guide stage=publish version=1.0.1
+13:52:04 INF 13:52:04 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=agent-guide stage=publish version=1.0.1
+13:52:04 INF published, tag deferred to the release commit package=agent-guide plannedTag=specs/agent-guide/v1.0.1 stage=publish version=1.0.1
+13:52:04 WRN tag already exists at the release commit, skipped code=W223 tag=specs/agent-guide/v1.0.1
+13:52:04 INF summary channel=stable package=agent-guide status=published tag=specs/agent-guide/v1.0.1 took=192.883 version="1.0.0 -> 1.0.1"
+13:52:04 INF done cancelled=0 failed=0 held=0 published=1 skipped=0 took=237.293417 unchanged=1
+Agent guide 1.0.1 is internally consistent
+13:52:04 INF release started requireRelease=true root=.
+13:52:04 WRN released at 1.8.0 with no changes of its own, catching up to versioning group "cli"'s published version code=W234 package=agent-guide
+13:52:04 INF plan diagnostics errors=0 warnings=1
+13:52:04 INF ● changed bump=none channel=stable dueToProviders=[] ownCommits=0 package=agent-guide reason="fixed group versioning" space=agent-guide version="1.0.0 -> 1.8.0"
+13:52:04 INF ● changed bump=patch channel=stable dueToProviders=[] ownCommits=1 package=dispat reason=direct space=dispat version="1.8.1 -> 1.8.2"
+13:52:04 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:04 INF release plan ready held=0 packages=3 releasing=2
+13:52:04 INF build succeeded package=dispat stage=build version=1.8.2
+13:52:04 INF publish started package=dispat stage=publish version=1.8.2
+13:52:04 INF Agent guide 1.0.0 is internally consistent package=agent-guide stage=version version=1.8.0
+13:52:04 INF file reconciled file=README.md occurrences=1 package=agent-guide stage=version version=1.8.0
+13:52:04 INF file reconciled file=VERSION occurrences=1 package=agent-guide stage=version version=1.8.0
+13:52:04 INF version succeeded package=agent-guide stage=version version=1.8.0
+13:52:04 INF build started package=agent-guide stage=build version=1.8.0
+13:52:04 INF Agent guide 1.8.0 is internally consistent package=agent-guide stage=build version=1.8.0
+13:52:04 INF build succeeded package=agent-guide stage=build version=1.8.0
+13:52:04 INF publish started package=agent-guide stage=publish version=1.8.0
+13:52:04 INF 13:52:04 WRN released at 1.8.0 with no changes of its own, catching up to versioning group "cli"'s published version code=W234 package=agent-guide package=dispat stage=publish version=1.8.2
+13:52:04 INF 13:52:04 INF plan diagnostics errors=0 warnings=1 package=dispat stage=publish version=1.8.2
+13:52:04 INF 13:52:04 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=dispat stage=publish version=1.8.2
+13:52:04 INF 13:52:04 WRN released at 1.8.0 with no changes of its own, catching up to versioning group "cli"'s published version code=W234 package=agent-guide package=agent-guide stage=publish version=1.8.0
+13:52:04 INF 13:52:04 INF plan diagnostics errors=0 warnings=1 package=agent-guide stage=publish version=1.8.0
+13:52:04 INF published, tag deferred to the release commit package=dispat plannedTag=dispat@1.8.2 stage=publish version=1.8.2
+13:52:04 INF 13:52:04 INF created release commit package=agent-guide tag=specs/agent-guide/v1.8.0 package=agent-guide stage=publish version=1.8.0
+13:52:04 INF 13:52:04 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=agent-guide stage=publish version=1.8.0
+13:52:04 INF published, tag deferred to the release commit package=agent-guide plannedTag=specs/agent-guide/v1.8.0 stage=publish version=1.8.0
+13:52:05 WRN tag already exists at the release commit, skipped code=W223 tag=specs/agent-guide/v1.8.0
+13:52:05 WRN tag already exists at the release commit, skipped code=W223 tag=dispat@1.8.2
+13:52:05 INF summary channel=stable package=agent-guide status=published tag=specs/agent-guide/v1.8.0 took=206.854917 version="1.0.0 -> 1.8.0"
+13:52:05 INF summary channel=stable package=dispat status=published tag=dispat@1.8.2 took=128.542583 version="1.8.1 -> 1.8.2"
+13:52:05 INF done cancelled=0 failed=0 held=0 published=2 skipped=0 took=274.612459 unchanged=1
+13:52:05 INF release started requireRelease=true root=.
+13:52:05 INF ● changed bump=patch channel=stable dueToProviders=[] ownCommits=1 package=agent-guide reason=direct space=agent-guide version="1.8.0 -> 1.8.1"
+13:52:05 INF unchanged channel=stable package=dispat space=dispat version=1.8.2
+13:52:05 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:05 INF release plan ready held=0 packages=3 releasing=1
+13:52:05 INF Agent guide 1.8.0 is internally consistent package=agent-guide stage=version version=1.8.1
+13:52:05 INF file reconciled file=README.md occurrences=1 package=agent-guide stage=version version=1.8.1
+13:52:05 INF file reconciled file=VERSION occurrences=1 package=agent-guide stage=version version=1.8.1
+13:52:05 INF version succeeded package=agent-guide stage=version version=1.8.1
+13:52:05 INF build started package=agent-guide stage=build version=1.8.1
+13:52:05 INF Agent guide 1.8.1 is internally consistent package=agent-guide stage=build version=1.8.1
+13:52:05 INF build succeeded package=agent-guide stage=build version=1.8.1
+13:52:05 INF publish started package=agent-guide stage=publish version=1.8.1
+13:52:05 INF 13:52:05 INF created release commit package=agent-guide tag=specs/agent-guide/v1.8.1 package=agent-guide stage=publish version=1.8.1
+13:52:05 INF 13:52:05 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=agent-guide stage=publish version=1.8.1
+13:52:05 INF published, tag deferred to the release commit package=agent-guide plannedTag=specs/agent-guide/v1.8.1 stage=publish version=1.8.1
+13:52:05 WRN tag already exists at the release commit, skipped code=W223 tag=specs/agent-guide/v1.8.1
+13:52:05 INF summary channel=stable package=agent-guide status=published tag=specs/agent-guide/v1.8.1 took=209.495625 version="1.8.0 -> 1.8.1"
+13:52:05 INF done cancelled=0 failed=0 held=0 published=1 skipped=0 took=254.29175 unchanged=2
+13:52:05 INF release started requireRelease=true root=.
+13:52:05 INF unchanged channel=stable package=agent-guide space=agent-guide version=1.8.1
+13:52:05 INF ● changed bump=patch channel=stable dueToProviders=[] ownCommits=1 package=dispat reason=direct space=dispat version="1.8.2 -> 1.8.3"
+13:52:05 INF unchanged channel=stable package=unrelated space=unrelated version=0.0.0
+13:52:05 INF release plan ready held=0 packages=3 releasing=1
+13:52:05 INF build succeeded package=dispat stage=build version=1.8.3
+13:52:05 INF publish started package=dispat stage=publish version=1.8.3
+13:52:05 INF 13:52:05 INF commit finished failed=0 ran=1 skipped=0 stage=commit package=dispat stage=publish version=1.8.3
+13:52:05 INF published, tag deferred to the release commit package=dispat plannedTag=dispat@1.8.3 stage=publish version=1.8.3
+13:52:05 WRN tag already exists at the release commit, skipped code=W223 tag=dispat@1.8.3
+13:52:05 INF summary channel=stable package=dispat status=published tag=dispat@1.8.3 took=135.877584 version="1.8.2 -> 1.8.3"
+13:52:05 INF done cancelled=0 failed=0 held=0 published=1 skipped=0 took=179.729625 unchanged=2
+Agent guide 1.0.0+build.01 is internally consistent
+Agent guide 1.0.0+meta-01 is internally consistent
+Agent guide release tests passed

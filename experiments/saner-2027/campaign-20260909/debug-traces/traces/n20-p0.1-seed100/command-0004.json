@@ -1,0 +1,1 @@
+{"args": ["git", "fsck", "--no-dangling"], "cwd": "/tmp/e4c-57jncr4o", "exit": 0, "stdout": "", "stderr": ""}

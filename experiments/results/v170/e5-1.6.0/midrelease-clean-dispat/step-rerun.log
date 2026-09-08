@@ -1,0 +1,3 @@
+{"level":"info","root":".","time":"2026-09-02T06:50:36Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-02T06:50:36Z","message":"release lock acquired"}
+{"level":"error","error":"the checkout is behind origin/main; pull before releasing","remote":"origin","time":"2026-09-02T06:50:36Z","message":"refusing to release"}

@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chaind2d2b77f70/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 0,
+    "body": "{\"name\":\"chaind2d2b77f70/app\",\"tags\":[\"2.1.1\"]}\n"
+  },
+  "assets": {
+    "name": "chaind2d2b77f70-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chaind2d2b77f70-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "be8c82acd6c11d68de25c6dfd2c271d976b015b5",
+        "_id": "chaind2d2b77f70-assets@1.5.0",
+        "_nodeVersion": "24.18.0",
+        "_npmVersion": "12.0.1",
+        "dist": {
+          "integrity": "sha512-K6B1wUhPpn77oCoxRqoGsuAfdoqiUe9PcZODvBLcsdznmXQ856ou/648hap6ervvEfBkk5TfD2ATDt8RJAK23w==",
+          "shasum": "4ec5461c73352ed36bf7edd4f31b27a67dbdb4c1",
+          "tarball": "http://127.0.0.1:50558/chaind2d2b77f70-assets/-/chaind2d2b77f70-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:41:00.524Z",
+      "created": "2026-09-08T22:41:00.524Z",
+      "1.5.0": "2026-09-08T22:41:00.524Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-e596a72fffbaee48",
+    "_id": "chaind2d2b77f70-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

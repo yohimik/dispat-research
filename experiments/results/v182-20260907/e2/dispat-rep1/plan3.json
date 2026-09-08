@@ -1,0 +1,50 @@
+{
+ "api": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.1",
+  "reason": ""
+ },
+ "cli": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.1",
+  "reason": ""
+ },
+ "core": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.1.0",
+  "reason": ""
+ },
+ "docs": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.0",
+  "reason": ""
+ },
+ "theme": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.0",
+  "reason": ""
+ },
+ "ui": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.1",
+  "reason": ""
+ }
+}

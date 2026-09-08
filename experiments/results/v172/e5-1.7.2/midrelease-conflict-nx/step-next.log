@@ -1,0 +1,48 @@
+
+ NX   Running release version for project: theme
+
+theme 🏷️  Resolved the current version as 1.0.1 from git tag "theme@1.0.1", based on releaseTag.pattern "{projectName}@{version}"
+theme 🚫 No changes were detected using git history and the conventional commits standard
+
+ NX   Running release version for project: core
+
+core 🏷️  Resolved the current version as 1.1.0 from git tag "core@1.1.0", based on releaseTag.pattern "{projectName}@{version}"
+core 🚫 No changes were detected using git history and the conventional commits standard
+
+ NX   Running release version for project: docs
+
+docs 🏷️  Resolved the current version as 1.0.1 from git tag "docs@1.0.1", based on releaseTag.pattern "{projectName}@{version}"
+docs 🚫 No changes were detected using git history and the conventional commits standard
+
+ NX   Running release version for project: api
+
+api 🏷️  Resolved the current version as 1.0.1 from git tag "api@1.0.1", based on releaseTag.pattern "{projectName}@{version}"
+api 🚫 No changes were detected using git history and the conventional commits standard
+
+ NX   Running release version for project: cli
+
+cli 🏷️  Resolved the current version as 1.0.1 from git tag "cli@1.0.1", based on releaseTag.pattern "{projectName}@{version}"
+cli 🚫 No changes were detected using git history and the conventional commits standard
+
+ NX   Running release version for project: ui
+
+ui 🏷️  Resolved the current version as 1.0.1 from git tag "ui@1.0.1", based on releaseTag.pattern "{projectName}@{version}"
+ui 🚫 No changes were detected using git history and the conventional commits standard
+
+
+ NX   No files would be changed as a result of running versioning
+
+
+ NX   Updating npm lock file
+
+
+ NX   Committing changes with git
+
+
+ NX   Tagging commit with git
+
+
+ NX   Skipped publishing packages.
+
+
+NOTE: The "dryRun" flag means no changes were made.

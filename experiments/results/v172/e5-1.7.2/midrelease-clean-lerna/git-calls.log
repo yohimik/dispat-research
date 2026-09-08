@@ -1,0 +1,66 @@
+{"time": "1788476739.006731", "cwd": "/work/lerna", "kind": "call", "args": ["rev-parse"]}
+{"time": "1788476739.062577", "cwd": "/work/lerna", "kind": "call", "args": ["rev-list", "--count", "--all", "--max-count=1"]}
+{"time": "1788476739.085162", "cwd": "/work/lerna", "kind": "call", "args": ["rev-parse", "--abbrev-ref", "HEAD"]}
+{"time": "1788476739.107930", "cwd": "/work/lerna", "kind": "call", "args": ["show-ref", "--verify", "refs/remotes/origin/main"]}
+{"time": "1788476739.128250", "cwd": "/work/lerna", "kind": "call", "args": ["remote", "update"]}
+{"time": "1788476739.153227", "cwd": "/work/lerna", "kind": "call", "args": ["rev-list", "--left-right", "--count", "origin/main...main"]}
+{"time": "1788476739.173396", "cwd": "/work/lerna", "kind": "call", "args": ["tag"]}
+{"time": "1788476739.192945", "cwd": "/work/lerna", "kind": "call", "args": ["describe", "--always", "--long", "--dirty", "--first-parent"]}
+{"time": "1788476739.212805", "cwd": "/work/lerna", "kind": "call", "args": ["rev-list", "--count", "d71e643"]}
+{"time": "1788476739.236503", "cwd": "/work/lerna", "kind": "call", "args": ["describe", "--always", "--long", "--dirty", "--first-parent"]}
+{"time": "1788476739.259358", "cwd": "/work/lerna", "kind": "call", "args": ["rev-list", "--count", "d71e643"]}
+{"time": "1788476739.286881", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.309170", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "api@1.0.0..HEAD", "--", "/work/lerna/packages/api"]}
+{"time": "1788476739.329073", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.349251", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "cli@1.0.0..HEAD", "--", "/work/lerna/packages/cli"]}
+{"time": "1788476739.369285", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.388779", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "core@1.0.0..HEAD", "--", "/work/lerna/packages/core"]}
+{"time": "1788476739.409764", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.429836", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "docs@1.0.0..HEAD", "--", "/work/lerna/packages/docs"]}
+{"time": "1788476739.449715", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.469529", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "theme@1.0.0..HEAD", "--", "/work/lerna/packages/theme"]}
+{"time": "1788476739.489218", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.508744", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "ui@1.0.0..HEAD", "--", "/work/lerna/packages/ui"]}
+{"time": "1788476739.537969", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.558463", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.578280", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.598500", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.617790", "cwd": "/work/lerna/packages/core", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "core@1.0.0..HEAD", "--", "/work/lerna/packages/core"]}
+{"time": "1788476739.641537", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.661533", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.681064", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.704571", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.705958", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.710550", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.730121", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.731644", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.731742", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.754873", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.755696", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.761816", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.780624", "cwd": "/work/lerna/packages/cli", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "cli@1.0.0..HEAD", "--", "/work/lerna/packages/cli"]}
+{"time": "1788476739.781846", "cwd": "/work/lerna/packages/ui", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "ui@1.0.0..HEAD", "--", "/work/lerna/packages/ui"]}
+{"time": "1788476739.783234", "cwd": "/work/lerna/packages/api", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "api@1.0.0..HEAD", "--", "/work/lerna/packages/api"]}
+{"time": "1788476739.803149", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.822102", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["config", "--get", "remote.origin.url"]}
+{"time": "1788476739.842259", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.843663", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["config", "--get", "--", "remote.origin.url"]}
+{"time": "1788476739.862084", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.863624", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["log", "--decorate", "--no-color", "--date-order", "--end-of-options", "HEAD"]}
+{"time": "1788476739.882464", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.884147", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["rev-parse", "--verify", "--end-of-options", "HEAD"]}
+{"time": "1788476739.902425", "cwd": "/work/lerna/packages/docs", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "docs@1.0.0..HEAD", "--", "/work/lerna/packages/docs"]}
+{"time": "1788476739.903913", "cwd": "/work/lerna/packages/theme", "kind": "call", "args": ["log", "--format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------", "--no-merges", "--end-of-options", "theme@1.0.0..HEAD", "--", "/work/lerna/packages/theme"]}
+{"time": "1788476739.924384", "cwd": "/work/lerna", "kind": "call", "args": ["add", "--", "packages/core/package.json", "packages/core/CHANGELOG.md", "packages/cli/package.json", "packages/api/package.json", "packages/ui/package.json", "packages/cli/CHANGELOG.md", "packages/ui/CHANGELOG.md", "packages/docs/package.json", "packages/theme/package.json", "packages/api/CHANGELOG.md", "packages/docs/CHANGELOG.md", "packages/theme/CHANGELOG.md"]}
+{"time": "1788476739.945629", "cwd": "/work/lerna", "kind": "call", "args": ["diff", "--staged", "--quiet"]}
+{"time": "1788476739.965771", "cwd": "/work/lerna", "kind": "call", "args": ["commit", "-F", "/tmp/c8f3c4b0-66b2-4e97-9cac-511e6eaf4ee4/lerna-commit.txt"]}
+{"time": "1788476739.999668", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "cli@1.0.1", "-m", "cli@1.0.1"]}
+{"time": "1788476740.001827", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "core@1.1.0", "-m", "core@1.1.0"]}
+{"time": "1788476740.006459", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "api@1.0.1", "-m", "api@1.0.1"]}
+{"time": "1788476740.010055", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "docs@1.0.1", "-m", "docs@1.0.1"]}
+{"time": "1788476740.018289", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "theme@1.0.1", "-m", "theme@1.0.1"]}
+{"time": "1788476740.019509", "cwd": "/work/lerna", "kind": "call", "args": ["tag", "ui@1.0.1", "-m", "ui@1.0.1"]}
+{"time": "1788476740.039804", "cwd": "/work/lerna", "kind": "call", "args": ["push", "--follow-tags", "--no-verify", "--atomic", "origin", "main"]}
+{"time": "1788476740.054840", "cwd": "/work/lerna", "kind": "inject", "args": ["push", "--follow-tags", "--no-verify", "--atomic", "origin", "main"]}
+{"time": "1788476740.093818", "cwd": "/work/lerna", "kind": "inject-done", "args": ["exit=0"]}
+{"time": "1788476740.115563", "cwd": "/work/lerna", "kind": "call", "args": ["push", "--follow-tags", "--no-verify", "origin", "main"]}

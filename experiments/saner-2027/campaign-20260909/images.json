@@ -1,0 +1,29 @@
+{
+  "dispat-exp:v182-runtime": {
+    "Id": "sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75",
+    "RepoTags": [
+      "dispat-exp:v182-runtime"
+    ],
+    "RepoDigests": [
+      "dispat-exp@sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75"
+    ]
+  },
+  "dispat-exp:v182-node": {
+    "Id": "sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d",
+    "RepoTags": [
+      "dispat-exp:v182-node"
+    ],
+    "RepoDigests": [
+      "dispat-exp@sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d"
+    ]
+  },
+  "yohimik/dispat-alpine:1.8.2": {
+    "Id": "sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd",
+    "RepoTags": [
+      "yohimik/dispat-alpine:1.8.2"
+    ],
+    "RepoDigests": [
+      "yohimik/dispat-alpine@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd"
+    ]
+  }
+}

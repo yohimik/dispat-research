@@ -1,0 +1,7 @@
+
+ NX   Release group "__default__" matches no projects. Please ensure all release groups match at least one project:
+
+The relevant config is defined here: nx.json.
+
+Read more about Nx Release at https://nx.dev/features/manage-releases.
+

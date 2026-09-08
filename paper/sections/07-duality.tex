@@ -1,0 +1,138 @@
+\section{The staleness dual}
+\label{sec:duality}
+
+\spec{9.2} walks \emph{down} from the packages a commit changed. An audit
+command wants the opposite walk: given a package, which of its dependencies is
+it behind, and by how much? \spec{13.7b} gives that walk and asserts that the
+two agree, calling disagreement an implementation bug. This section proves the
+agreement under the normative CCME 2.0.0 eligibility checks.
+
+\begin{speccode}
+staleSources(D):
+    W     = freshWindow(D)                       # the *target's* window
+    edges = graph.restrictedTo(config.propagation.kinds)
+    dist  = shortestPathsUp(D, edges)   # P -> edge count of shortest P -> ... -> D
+    out   = {}
+    for u in unitsIn(W):
+        if bumpOf(u) == none:                             continue
+        b = (u.propagate == 'inherit') ? bumpOf(u) : u.propagate
+        if b == none or u.depth == 0:                     continue
+        sources = sourcePackages(u)
+        if sources is empty:                              continue
+        if D in sources:                                  continue
+        reaching = { P in sources : P in dist }
+        if reaching is empty:                             continue
+        level = min({ dist[P] for P in reaching })
+        if level > u.depth:                               continue
+        if D not in resolve(u.propagateScope):            continue
+        if cancelledFor(commitOf(u), D):                  continue
+        if not resolvableBy(sources, D, channel):          continue
+        for P in reaching:
+            out |= { (P, u, level, b) }
+    return out
+\end{speccode}
+
+\begin{definition}
+\label{def:stale}
+$\mathrm{stale}_{\st}(d) = \{(p,u,\ell,b)\}$ is the set the procedure returns,
+with $\ell = \dist{\srcp{\st}{u}}{d}$ and $b = \pbump{u}$.
+\end{definition}
+
+\begin{theorem}[duality]
+\label{thm:duality}
+For every state \st{} and package $d$,
+\[
+  \mathrm{stale}_{\st}(d) \neq \emptyset
+  \iff \propb{\st}{d} \neq \bnone,
+  \qquad\text{and}\qquad
+  \bigsqcup\{\, b : (p,u,\ell,b) \in \mathrm{stale}_{\st}(d) \,\} = \propb{\st}{d}.
+\]
+\end{theorem}
+
+\begin{proof}
+It suffices to show that $u$ contributes a row to $\mathrm{stale}_{\st}(d)$
+exactly when $\admit{\st}{u}{d}$, since the contributed rows all carry
+$b = \pbump{u}$ and $\propb{\st}{d}$ is the join of $\pbump{u}$ over admitted
+units (\cref{def:propagated}).
+
+The guards map one for one. \code{bumpOf(u) == none}, \code{b == none} and
+\code{u.depth == 0} are \cref{a:live}. \code{sources is empty} and the
+\code{level > u.depth} test are \cref{a:reach}: by \cref{lem:reach} the
+traversal admits $d$ iff $\dist{\srcp{\st}{u}}{d} \leq \pdepth{u}$ and $d
+\notin \srcp{\st}{u}$, and \code{level} is exactly that distance, because
+\code{shortestPathsUp} gives $\dist{\{p\}}{d}$ for each $p$ and the minimum
+over $p \in \code{reaching}$ is $\dist{\srcp{\st}{u}}{d}$ (a shortest chain
+from a set is the shortest among the chains from its members). \code{if D in
+sources: continue} is the $d \notin \srcp{\st}{u}$ of \cref{def:reach}, read
+from the other end: it is the same clause as seeding \code{seen} with the
+sources. \code{D not in resolve(u.propagateScope)} is \cref{a:scope};
+\code{unitsIn(W)} with $W$ the target's window is \cref{a:window};
+\code{cancelledFor} is \cref{a:cancel}; \code{resolvableBy} is
+\cref{a:resolvable}. So the guarded set is the admitted set.
+
+Finally $\code{out}$ is non-empty iff at least one unit passes, and each such
+unit has $\pbump{u} \neq \bnone$, so non-emptiness is equivalent to
+$\propb{\st}{d} \neq \bnone$.
+\end{proof}
+
+\begin{example}[the audit, on the failed run]
+\label{ex:stale}
+At $\st_1$ of \cref{ex:orphan}, where \code{core} has published and \code{cli}
+has not, the audit run for $d = \code{cli}$ walks up from \code{cli}, finds
+\code{core} at $\code{dist}[\code{core}] = 1$, and returns the single row
+\[
+  \mathrm{stale}_{\st_1}(\code{cli}) =
+  \bigl\{\,(\code{core},\ u,\ 1,\ \bpatch)\,\bigr\},
+\]
+whose join is \bpatch{} $= \propb{\st_1}{\code{cli}}$, as \cref{thm:duality}
+requires. Run the same audit for \code{ui}, which did publish, and it is empty:
+$C \notin \Winf{\st_1}{\code{ui}}$ removes the only candidate. This is the
+question an operator actually asks after a failed run (which of my packages
+are behind, and behind what), answered without recomputing a plan.
+\end{example}
+
+The three clauses the proof leans on are exactly the three \spec{13.7b} warns
+an implementation drifts on, and it is worth naming what each drift produces.
+Excluding $d$ from its own unit's sources: without it, a package that both
+changes and consumes a sibling in one unit audits as behind itself. Measuring
+\code{level} from the whole source set rather than per ancestor: taking
+$\code{dist}[p]$ for each $p$ separately over-reports the level and so
+under-reports staleness, exactly in the diamond cases. And resolving
+\code{inherit} to the unit's own bump before testing it against \bnone.
+
+\begin{proposition}[the tag-level screen is necessary, not sufficient]
+\label{prop:screen}
+The screen of \spec{13.7b} is only a candidate test. If $\admit{\st}{u}{d}$ for some unit $u$ with a source $p$ that has
+released the work in $\cof{u}$, then $\basec{\st}{p}$ is not an
+ancestor-or-self of $\basec{\st}{d}$. The converse fails.
+\end{proposition}
+
+\begin{proof}
+Suppose $\basec{\st}{p} \anc \basec{\st}{d}$. Since $p$ released the
+work, $\cof{u} \anc \basec{\st}{p}$, so $\cof{u} \anc \basec{\st}{d}$ by
+transitivity, hence $\cof{u} \in \Rch{\basec{\st}{d}}$ and, by
+\cref{def:window}, $\cof{u} \notin \Winf{\st}{d}$, contradicting
+\cref{a:window}.
+
+For the converse, a provider may be legitimately ahead of a consumer with
+nothing owed: the units between them may all declare \code{\^{}none} or depth
+\code{+0}, may be excluded by \code{Propagate-Scope}, may reach $d$ only beyond
+their declared depth, or may travel edges of a kind not in
+\code{propagation.kinds}. Each gives a state where the screen fires and no bump
+is admitted.
+\end{proof}
+
+The screen is therefore a way to \emph{find} candidates cheaply, by comparing
+two tags rather than walking a window, and never a way to decide releases;
+using it to decide would manufacture bumps that no commit asked for. There is
+also a case it cannot see at all: $p$ and $d$ released at the same commit, in
+the same run, with $d$ published first. Ancestry cannot distinguish them and no
+rule over tags can. That case is prevented rather than detected, by publishing
+in dependency order (\cref{def:order}).
+
+\begin{remark}[historical source of the eligibility guard]
+\label{rem:duality-hyp}
+CCME 1.0.0 omitted this guard, so wherever \spec{9.3a} suppressed a bump the
+two formulations disagreed. \Cref{ob:duality} preserves the counterexample;
+CCME 2.0.0 makes the repair normative.
+\end{remark}

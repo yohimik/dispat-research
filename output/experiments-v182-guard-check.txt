@@ -1,0 +1,1 @@
+503 semantic-rejection dossiers checked: complete JSON stream; E195 package set exactly equals all proposed regressing versions (including held proposals); baseline/next SemVer and refusal verified.

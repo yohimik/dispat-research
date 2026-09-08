@@ -1,0 +1,12 @@
+n=13 p=0.1 seed=0 runs=1 converged=True g_ok=True
+n=11 p=0.1 seed=1 runs=2 converged=True g_ok=True
+n=7 p=0.1 seed=2 runs=2 converged=True g_ok=True
+n=13 p=0.3 seed=0 runs=2 converged=True g_ok=True
+n=11 p=0.3 seed=1 runs=3 converged=True g_ok=True
+n=7 p=0.3 seed=2 runs=2 converged=True g_ok=True
+n=44 p=0.1 seed=0 runs=2 converged=True g_ok=True
+n=45 p=0.1 seed=1 runs=3 converged=True g_ok=True
+n=21 p=0.1 seed=2 runs=3 converged=True g_ok=True
+n=44 p=0.3 seed=0 runs=3 converged=True g_ok=True
+n=45 p=0.3 seed=1 runs=5 converged=True g_ok=True
+n=21 p=0.3 seed=2 runs=3 converged=True g_ok=True

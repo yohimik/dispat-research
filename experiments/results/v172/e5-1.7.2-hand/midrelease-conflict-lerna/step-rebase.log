@@ -1,0 +1,11 @@
+From /work/lerna-origin
+ * branch            main       -> FETCH_HEAD
+   566ac99..9c8658d  main       -> origin/main
+Rebasing (1/1)Auto-merging packages/core/package.json
+CONFLICT (content): Merge conflict in packages/core/package.json
+error: could not apply 8559e2a... Publish
+hint: Resolve all conflicts manually, mark them as resolved with
+hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+hint: You can instead skip this commit: run "git rebase --skip".
+hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+Could not apply 8559e2a... Publish

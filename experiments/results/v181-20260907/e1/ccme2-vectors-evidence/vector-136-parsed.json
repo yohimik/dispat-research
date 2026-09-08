@@ -1,0 +1,29 @@
+{
+ "exit": 0,
+ "plan": {
+  "core": {
+   "changed": true,
+   "next": "1.1.0-beta.0",
+   "bump": "minor",
+   "channel": "beta",
+   "reason": "direct",
+   "dueTo": []
+  },
+  "app": {
+   "changed": true,
+   "next": "1.0.1-rc.0",
+   "bump": "none",
+   "channel": "rc",
+   "reason": "channel from core",
+   "dueTo": []
+  }
+ },
+ "ready": {
+  "level": "info",
+  "packages": 2,
+  "releasing": 2,
+  "held": 0,
+  "time": "2026-09-06T20:02:51Z",
+  "message": "release plan ready"
+ }
+}

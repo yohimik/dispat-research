@@ -1,0 +1,22 @@
+Traceback (most recent call last):
+  File "/exp/e4/recovery.py", line 103, in episode
+    checked(["git", "init", "-q", "--bare", origin], None)
+    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/exp/e4/recovery.py", line 55, in checked
+    r = sh(args, cwd)
+  File "/exp/e4/recovery.py", line 48, in sh
+    with open(os.path.join(TRACE_DIR, f"command-{TRACE_INDEX:04}.json"), "w") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/results/recovery/traces/n20-p0.1-seed100/command-0001.json'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/results/recovery-holdout.py", line 8, in <module>
+    row=episode(n,probability,seed,str(out/'failures'));rows.append(row)
+  File "/exp/e4/recovery.py", line 166, in episode
+    fsck = sh(["git", "fsck", "--no-dangling"], w)
+  File "/exp/e4/recovery.py", line 48, in sh
+    with open(os.path.join(TRACE_DIR, f"command-{TRACE_INDEX:04}.json"), "w") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/results/recovery/traces/n20-p0.1-seed100/command-0002.json'

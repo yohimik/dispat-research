@@ -1,0 +1,53 @@
+\documentclass[11pt,a4paper]{article}
+
+\input{preamble}
+\input{macros}
+
+\title{The CCME Release Guarantees\\[2mm]
+       \large A formal model, with proofs, of the eight properties of \S13.7c}
+\author{Semen Fediukovich}
+\date{September 2026 \\[2mm]
+      \normalsize Technical report accompanying \texttt{specs/ccme-spec/SPEC.md} 2.0.0\\
+      \normalsize \texttt{github.com/yohimik/dispat}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Releasing interdependent packages is a distributed transaction without a
+coordinator or rollback: each publish is an irreversible write to an
+independent registry. CCME defines a resumable release algorithm and states
+eight guarantees: termination, completeness, version stability, exactly-once
+tag-ledger delivery, retry-invariant non-widening and convergence, channel
+discharge and one-way axis independence.
+
+This report formalises the 2.0.0 algorithm and proves the guarantees under its
+explicit retry invariant, together with the determinism and idempotency requirements of
+\spec{17.2}, the duality of \spec{13.7b}, and analyses the cost and optimisation bounds of \specs{13.11}{20.7}, qualifying them where ancestry and output work add terms. It preserves an audit of six failure classes in the
+1.0.0 rules, with minimal counterexamples, repairs, and conformance vectors.
+CCME 2.0.0 incorporates those six repairs; the historical audit is provenance. A separate current obligation records an inconsistency between the specific graduation rule of \spec{11.5} and its \spec{13.9} summary.
+\end{abstract}
+
+\paragraph{Specification snapshot.}
+The normative subject is released CCME 2.0.0 at repository commit
+\texttt{d3ce8ae637232908ced82efb5cda550f60ed2fdf}. Section~\ref{sec:obligations} records one current 2.0.0 textual obligation, then separately audits CCME 1.0.0 at \texttt{713f1a0b}; the latter six defect statements and counterexamples are historical.\par
+
+\tableofcontents
+\newpage
+
+\input{sections/01-introduction}
+\input{sections/02-model}
+\input{sections/03-propagation}
+\input{sections/04-protocol}
+\input{sections/05-guarantees}
+\input{sections/06-determinism}
+\input{sections/07-duality}
+\input{sections/08-complexity}
+\input{sections/09-obligations}
+\input{sections/10-conformance}
+
+\appendix
+\input{appendix/a-notation}
+\input{sections/99-references}
+
+\end{document}

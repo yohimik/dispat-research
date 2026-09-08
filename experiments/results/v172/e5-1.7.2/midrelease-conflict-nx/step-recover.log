@@ -1,0 +1,7 @@
+From /work/nx-origin
+ * branch            main       -> FETCH_HEAD
+   81873e6..d292609  main       -> origin/main
+Updating 81873e6..d292609
+Fast-forward
+ packages/core/package.json | 1 +
+ 1 file changed, 1 insertion(+)

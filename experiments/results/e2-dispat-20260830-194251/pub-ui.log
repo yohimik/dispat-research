@@ -1,0 +1,17 @@
+npm notice
+npm notice package: ui@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 80B package.json
+npm notice Tarball Details
+npm notice name: ui
+npm notice version: 1.0.1
+npm notice filename: ui-1.0.1.tgz
+npm notice package size: 195 B
+npm notice unpacked size: 86 B
+npm notice shasum: 558e11b1a7820786c764bec4b92ead517926f05c
+npm notice integrity: sha512-sM7f0YWThSRRy[...]9wGdutocAx4pg==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
++ ui@1.0.1

@@ -1,0 +1,1011 @@
+Recoverable Releases Across Package Registries:
+A Git-Backed Saga Protocol
+Abstract—Releasing interdependent packages writes irreversibly to independent registries without a coordinator or
+rollback. A partial failure can therefore leave a consumer
+permanently behind a dependency that was published.
+This paper presents CCME, a commit-message language and
+release protocol for resumable releases, and dispat, its opensource implementation for single-package repositories, monorepos, and polyrepos joined through a control repository. In the
+formal model, release state consists of git tags, the plan is
+a pure function of repository history, dependency graph and
+conﬁguration, and propagated work is admitted against the consumer’s pending window. We prove eight guarantees, including
+no orphans, exactly-once ledger discharge and convergence under
+an explicit retry invariant. Minimal counterexamples establish
+why delivery must be tracked per consumer, why prerelease
+aggregation needs a separate window, and why retry guarantees
+require stable channel and suppression predicates.
+Against the ofﬁcial dispat 1.8.2 image, the fresh campaign
+passes six selected CCME 2.0 regressions, agrees with a restricted
+reference oracle on all 1,500 core instances, recovers 24/24
+injected-failure episodes within four runs, and completes eight
+scale cells. The full proﬁle intentionally generates regressive
+prereleases: 997 plans were accepted and 503 complete diagnostic
+plans were rejected with E195. All 1,914 differing rows retain
+their heuristic classiﬁcation and stated coverage limits.
+Index Terms—release engineering, semantic versioning, sagas,
+partial failure, idempotency, deterministic replay
+
+I. I NTRODUCTION
+A release workspace can contain one package, several
+packages in a monorepo, or packages drawn from separately maintained repositories (a polyrepo). Releasing it means
+choosing versions for the packages that need them, writing
+those versions into manifests, building artefacts, uploading
+them to registries, and recording what happened. In a modern
+project the registries are plural and heterogeneous: an npm
+package sits next to a Go module, a Docker image, and a
+documentation site, all wired into one dependency graph.
+The recording is the hard part. Independent registries offer
+no atomic transaction spanning the release: each publish leg
+may succeed or fail, and the outcome may be lost before
+the corresponding git tag is written. This is a long-running
+transaction over separately committed resources, the setting
+for sagas [1]; recovery must complete or reconcile successful
+legs rather than assume a cross-registry rollback.
+Existing tools expose different ledgers and recovery boundaries. Lerna, Nx [18], release-please, and Changesets [16]
+automate releases, while semantic-release [17] targets one
+package per repository. Their pinned fault experiments below
+show that registry queries, intent ﬁles, and tag timing answer
+
+different parts of what an interrupted cross-registry run still
+owes.
+This paper treats the release as the transaction it is, and
+makes three contributions:
+a commit-message language, CCME, in which release intent (blast radius on two separate, one-way-coupled axes,
+version bumps and prerelease channels) is reviewable text
+in the commit (Section III);
+• a formal model of the release computation and publish
+protocol, self-contained in this paper, with eight guarantees proved over it (Sections IV and V); minimal
+counterexamples identify necessary design choices and
+the explicit invariant under which retries preserve the
+guarantees (Section VIII-C);
+• dispat, an ecosystem-agnostic implementation in which a
+package is a directory and a stage is a shell command,
+evaluated by differential validation, selected CCME 2.0
+vectors, recovery campaigns, replay, and pinned fault
+experiments (Sections VII and VIII).
+•
+
+II. M OTIVATING E XAMPLE
+A workspace holds a library core and three consumers
+cli, ui, api, each depending on core. A commit C lands
+with the message feat(core)ˆ: streaming reader:
+core takes a minor bump, and the caret propagates a patch
+bump one edge outward. The run publishes core@1.5.0,
+ui@0.9.2 and api@1.2.1, tagging each on success, and
+then cli’s publish fails, for any of the reasons registry writes
+fail.
+The natural expectation is that re-running ﬁnishes the job.
+Whether it does depends on one deﬁnition. Suppose the engine
+keeps a commit’s release intent alive only while the commit’s
+own package still has it pending, the natural reading. Then on
+the second run core has released C, so the unit has no source
+packages, propagates to nothing, and cli is never released,
+on this or any future run. cli is orphaned: permanently one
+patch behind a dependency it declares, with no diagnostic,
+because from the engine’s point of view nothing is pending.
+The failure is silent, and grows more likely with the fan-out.
+The repair is a one-line change of deﬁnition: a unit propagates to a dependent exactly while the dependent’s pending
+window still contains the unit’s commit (Deﬁnition 10). Catchup then needs no repair pass or side state when prior outcomes
+are conﬁrmed by tags; an uncertain external publish/tag gap
+still requires identity reconciliation. Section V proves the
+guarantee this buys (G2, no orphans) and its siblings.
+
+III. CCME: T HE L ANGUAGE
+CCME is a strict superset of Conventional Commits 1.0.0 [7] over a stated conforming subset. One commit
+message is a sequence of units separated by a whole-line separator (--), each an independent conventional-commit-shaped
+block with its own header, body and footers, so a squashmerged pull request describes several unrelated changes without one lie of a type for all of them:
+feat(@acme/core)^^minor%beta++*: reader
+--fix(@acme/cli): correct exit code on SIGINT
+--cancel(@acme/legacy-adapter): reset state
+
+Scopes name packages, or are derived. The scope is
+a comma-separated package set, globs with exclusions
+(feat(*,-docs)), or absent, in which case the affected
+set is derived from the ﬁles the commit changed, package
+by owning directory. Derivation makes ordinary unscoped
+commits release the packages they touched.
+Two axes, two depths. A commit answers two separate
+questions about its dependents: how far does the version bump
+travel, and how far does the prerelease channel travel. Both
+default to depth zero: a commit that says nothing releases its
+own packages and nothing else. The bump axis is written ˆ
+(direct consumers), ˆˆ (transitive closure) or +N; the channel
+axis % (own packages change channel), %% (dependents do),
+++N (how far). Every sigil desugars to a footer; the header
+above desugars to
+feat(@acme/core): reader
+Propagate: minor
+Channel: beta
+Propagate-Depth: all
+Propagate-Channel-Depth: all
+
+reading: core takes a minor bump and enters the
+beta line, every transitive dependent takes a minor
+bump and follows it onto beta. Channel values may
+be transitions <from»<to>: move only packages currently on <from>. Transitions make graduation idempotent: release(@acme/*)%beta>stable: ship graduates whatever is still on beta and can be replayed safely after
+a partial failure.
+Cancellation and corrections. The type cancel discards
+a scope’s accumulated unreleased release metadata; a unit
+is cancelled for a package when its commit is an ancestoror-self of the cancelling commit; ancestry, unlike timestamps, is deterministic under merges and rebases. The footers
+Edits: <sha> and Deletes: <sha> restate or discard
+a named past record: a commit fix(core): rewrite
+internals carrying Edits: <sha of A> replaces A’s
+pending major with this unit’s patch, so core releases
+1.4.3 rather than 2.0.0. Corrections reach only unreleased work and only strict ancestors; the newest correction
+wins; a correction whose own record is discarded is void.
+Release-As: none holds a package until lifted; an exact
+Release-As pins one version.
+
+IV. T HE M ODEL
+This section deﬁnes the release computation and the publish
+protocol; Section V proves the guarantees over these deﬁnitions and nothing else.
+A. Workspace, State, Windows
+Deﬁnition 1 (history). The history is a ﬁnite DAG of commits
+with a distinguished HEAD = h; reach(c) is the set of
+commits reachable from c by parent edges, including c; write
+c′ ⪯ c for c′ ∈ reach(c). h is ﬁxed throughout. This reading
+of a repository is the standard one: the commit DAG with
+reachability is the working model of git history in repository
+mining [9], and the same structure underlies formal derivations
+of git’s three-way merge from least common ancestors [10].
+Unlike the patch-theoretic accounts of version control [11],
+[12], [13], this model tracks no ﬁle contents at all, only history,
+tags and messages, which is what makes the plan a pure
+function of the repository.
+Deﬁnition 2 (workspace). P is the ﬁnite set of packages at h;
+E ⊆ P ×P contains (a, b) when a declares a dependency on b
+of a conﬁgured kind; dep(p) = {d : (d, p) ∈ E}. The graph is
+acyclic (a cycle is a repository-scoped error: no publish order
+exists for it, so whichever member went ﬁrst would declare a
+range on a version that does not exist). For S ⊆ P, δ(S, d) is
+the least number of edges on a chain from a member of S to
+d against the arrows, ∞ if none.
+Deﬁnition 3 (bumps, versions, channels). B = {none <
+patch < minor < major} is a chain, hence a join-semilattice
+under ⊔ = max. Versions are SemVer 2.0.0 [6] with its precedence; ch(v) is stable for a non-prerelease v and otherwise v’s
+ﬁrst prerelease identiﬁer; core(v) and cnt(v) are the numeric
+triple and the prerelease counter; apply(v, b) applies a bump.
+Deﬁnition 4 (state). A state σ is a ﬁnite set of release tags
+(p, v, c) with c ⪯ h; states are ordered by inclusion. base σ (p)
+is the highest-precedence version among p’s tags, sbase σ (p)
+the highest-precedence non-prerelease one, basec σ (p) and
+scom σ (p) their commits; ch(base σ (p)) = stable by convention when p has no tag. Tags are never moved or deleted,
+so states only grow: a tag is the record that a leg of the
+transaction completed, and a rewritten record is what makes
+a saga unrecoverable. Tag write access is therefore release
+authority; a manifest’s version ﬁeld is not the release ledger.
+Manifests, conﬁguration, and derived scopes remain trusted
+planning inputs.
+Deﬁnition 5 (train and fresh-work windows).
+
+and
+
+Wσ (P ) = reach(h) \ reach(scom σ (P )),
+
+(1)
+
+Wσ◦ (P ) = Wσ (P ) \ reach(basec σ (P )),
+
+(2)
+
+with an empty subtracted reach when P has no tag. Wσ is the
+train window; Wσ◦ is the fresh-work window. When P has no
+stable baseline, Wσ (P ) = reach(h): an unreleased package’s
+ﬁrst release accounts for its whole history, which is also why
+
+TABLE I
+H EADER EXAMPLES .
+
+Header
+
+Meaning
+
+feat: add retry
+fix(api): null guard
+perf(core)ˆpatch+1: x
+refactor(core)ˆˆmajor!: x
+feat(cli)%beta: watch mode
+feat(core)ˆ%beta++1: x
+release(a)%beta>stable: ship
+cancel(*): reset state
+
+derived scope, minor bump
+api, patch bump
+patch to direct consumers
+breaking; major to closure
+cli onto the beta line
+self beta; consumers follow
+graduate those still on beta
+discard pending records
+
+adoption on an existing repository needs no migration step.
+The window is measured from the last stable tag so that a
+prerelease train can recompute its target over the whole train
+(Eq. 8). Direct admission, propagation admission and ledger
+discharge use W ◦ instead. Thus a prerelease tag discharges
+delivered work without erasing the earlier records needed to
+recompute the train target.
+B. Units, Suppression, Admission
+Deﬁnition
+6 (units). U is the set of units carried by commits in
+∪
+W
+(P
+),
+parsed and with scopes resolved and corrections
+σ
+P
+applied. For u ∈ U : cu is its commit, scope(u) ⊆ P its
+resolved scope, bump(u) ∈ B the bump its type and ! map
+to; its bump axis is pb(u) ∈ B (the stated value, or bump(u)
+under inherit; the default once propagation is asked for
+is patch, the honest signal for a dependent whose own API
+did not change), pd (u) ∈ N ∪ {∞} (default 0), ps(u) a scope
+ﬁlter; its channel axis is a channel value pc(u), a depth pcd (u)
+(default 0) and a ﬁlter pcs(u).
+Deﬁnition 7 (suppression and sources). canc(c, p) holds when
+c is an ancestor-or-self of a cancel commit whose scope
+contains p; held (p) when p’s effective Release-As is none.
+Both are functions of h and the conﬁguration alone. With
+disch σ (p, c) ≡ c ∈
+/ Wσ◦ (p),
+src σ (u) = {p ∈ scope(u) : disch σ (p, cu )
+∨ ¬(canc(cu , p) ∨ held (p))}.
+(3)
+Suppression applies only to undischarged work: once p has
+published the version carrying u, the artefact its consumers
+are owed is public, and neither a later cancel nor a later hold
+may retroactively strand them.
+Deﬁnition 8 (reach). R(S, ℓ) = {d ∈ P \ S : δ(S, d) ≤
+ℓ}. Excluding all of S means a unit never propagates to a
+package it bumps directly; depth is shortest-path and always
+measured from the originating source set, and a propagated
+effect never cascades its own propagation, so the depth written
+in the message is the whole blast radius in every run.
+Deﬁnition 9 (channels). chan σ (P ), resolved for every package: the value proposed by the newest direct Channel
+directive naming P with cu ∈ Wσ◦ (P ); else the value proposed
+for P by the newest channel-axis unit u with pcd (u) >
+
+0, P ∈ R(src σ (u), pcd (u)) ∩ pcs(u), cu ∈ Wσ◦ (P ) and
+¬canc(cu , P ); else ch(base σ (P )). A proposal is computed
+against cur = ch(base σ (P )) (the tag, never a value computed
+this run) and is empty when it proposes cur itself; a transition
+proposes only where cur matches its <from>; a propagated
+non-transition stable never graduates a prerelease package
+(graduation must be deliberate); inherit resolves to the
+unit’s own Channel value if any, else to ch(base σ (q)) for
+its sources q, bytewise least name deciding a disagreement.
+Deﬁnition 10 (admission and effective bump). Let live(u)
+mean bump(u) ̸= none, pb(u) ̸= none, and pd (u) > 0. With
+srcCh σ (u) equal to {chan σ (p) : p ∈ src σ (u)} and
+rsv σ (u, D) ≡ stable ∈ srcCh σ (u) ∨ chan σ (D) ∈ srcCh σ (u)
+(4)
+(an installer selects a prerelease only on its own line, so a
+bump across a channel boundary is not a real obligation),
+adm σ (u, D) ≡
+D ∈ R(src σ (u), pd (u)) (reached)
+∧ D ∈ ps(u)
+(in scope)
+◦
+∧ cu ∈ Wσ (D)
+(fresh window)
+∧ ¬ canc(cu , D)
+(not discarded)
+∧ live(u)
+(bump-live)
+∧ rsv σ (u, D)
+(resolvable),
+eﬀ σ (P ) = dir σ (P ) ⊔
+
+⊔
+
+(5)
+{ pb(u) : adm σ (u, P ) },
+
+(6)
+
+⊔
+where dir σ (P ) =
+{bump(u) : P ∈ src σ (u) ∩
+scope(u), cu ∈ Wσ◦ (P )}. Because ⊔ is a join, a package
+with its own feat pending is unaffected by an incoming
+propagated patch, propagation can only raise a version, and
+gathering order cannot matter.
+The consumer-side staleness audit is the upward dual of
+Eq. 5, not merely reverse reachability. For candidate D it scans
+units in Wσ◦ (D), excludes D when it is itself a source of that
+unit, and applies the same shortest depth, scope, cancellation,
+live, and resolved-channel predicate rsv . These clauses make
+the upward answer exactly equal to the downward planner’s
+obligations, including prerelease workspaces.
+
+run(σ, F ) = σ ∪ {(p, νσ (p), h) : p ∈ Π(σ) \ (F ∪ B)}. A run
+sequence is σ1 ≤ σ2 ≤ · · · with σk+1 = run(σk , Fk ).
+
+TABLE II
+E Q . 8 TRACING ONE TRAIN .
+
+Baseline
+
+Pending bump, channel
+
+Next
+
+1.2.3
+1.3.0-beta.0
+1.3.0-beta.0
+1.3.0-beta.1
+1.3.0-beta.2
+1.3.0-beta.2
+1.3.0-rc.1
+
+minor, beta
+no fresh commit
+a fresh minor commit
+minor + a new ﬁx
+a breaking change lands
+none, switch to rc
+none, stable
+
+1.3.0-beta.0
+empty plan
+1.3.0-beta.1
+1.3.0-beta.2
+2.0.0-beta.0
+1.3.0-rc.0
+1.3.0
+
+C. Plan, Versions, Runs
+Deﬁnition 11 (plan and versions). Write pin σ (P ) = v when
+the effective surviving exact Release-As: v unit for P
+has cu ∈ Wσ◦ (P ); otherwise pin σ (P ) is undeﬁned. Thus a
+successful tag discharges a pin just like other fresh work, and
+the directive is ﬁxed during a retry.
+Π(σ) = { P : ¬held (P ) ∧ (eﬀ σ (P ) ̸= none
+∨ chan σ (P ) ̸= ch(base σ (P ))
+∨ pin σ (P ) ↓) },
+
+(7)
+
+each member carrying νσ (P ). Let S = sbase σ (P ), B =
+base σ (P ), and E be the train aggregate over Wσ (P ). If
+pin σ (P ) ↓, it supplies that exact version. A stable package that remains stable uses apply(S, eﬀ σ (P )); a prerelease
+package graduating to stable uses apply(S, E) as required by
+CCME 2.0 §11.5. Otherwise, with ch the target channel,
+t = apply(S, E),
+
+
+t-ch.(cnt(B)+1)
+νσ (P ) =
+
+
+t-ch.0
+
+if core(B) = t and
+ch(B) = ch,
+otherwise,
+
+(8)
+
+with one guard: every computed or pinned version must exceed
+base σ (P ) in precedence, or the run refuses. Recomputing t
+from the stable baseline every run is what moves a whole train
+to 2.0.0-beta.0 when a breaking change lands mid-train
+(Table II).
+Deﬁnition 12 (run). A run from σ is parameterised by an
+adversarially chosen set F ⊆ Π(σ) of failing publishes,
+which induces the blocked set B = {p ∈ Π(σ) \ F : p
+transitively depends on some q ∈ F }, computed over the
+full workspace graph (a package with no bump this run
+is still a path from a dependent to a failed dependency).
+Publication proceeds in a topological order of the full graph,
+ties broken bytewise by name, ﬁltered to the plan last:
+inducing the graph on the plan ﬁrst deletes ordering paths
+that run through unplanned packages. Each package is tagged
+immediately after its own publish succeeds, never before (a
+tag for an unpublished version makes it unrecoverable, since
+Eq. 1 treats it as released), never batched (a mid-run failure
+could repeat an external write, which a target may reject or
+may perform twice), and whatever its publish target, including
+targets that upload nothing (Proposition 1). The run yields
+
+For scale, let H, A count reachable commits and parent
+edges, C commits in the union window, U units, I resolved unit–package incidences, and Z retained or emitted
+contribution/provenance incidences. Window classes can share
+immutable reachability sets, but constructing them costs in
+H + A, not only C; stable and fresh windows require different
+boundary keys. Literal propagation costs O(U (|P|+|E|)+Z).
+A graph walk may be cached safely when source set, depth
+and edge kinds match; merging by window and directive
+spelling is unsafe because admission, cancellation, scope,
+self-source exclusion, inherited channel and provenance remain per unit. Lexical parsing may be cached by repository,
+immutable record, parser/schema and parsing-conﬁguration
+identities. Scope and changed-path resolution has a distinct
+workspace/path/graph key and must be recomputed or cached
+separately. Channel incidence inversion costs O(U + I + |P|).
+These are informative implementation costs, not required endto-end bounds; semantic equivalence and deterministic output,
+including provenance, remain normative.
+Order matters for a reason tags cannot express: a dependent
+published before its dependency carries a range reconciled
+against the old version, both land at the same commit, and
+no later run can detect the inversion from ancestry, so it is
+prevented, not diagnosed. When a publish is rejected because
+the version already exists (a run died between publish and
+tag), CCME 2.0 requires content-identity veriﬁcation before
+adoption and otherwise aborts: tagging a foreign artefact
+would enrol it into the release lineage. This is a protocol
+obligation, not a claim that dispat can inspect arbitrary userdeﬁned publish scripts; such integrations must supply an
+idempotency or identity check.
+Theorem 1 (determinism). Π(σ), νσ , the publish order and
+the diagnostics are functions of (σ, h, conﬁg) alone.
+Proof. Every deﬁnition above is a closed expression in those
+inputs; the three choice points (competing directives, competing propagated channels, publish-order ties) are each resolved
+by a stated total order: newest commit then last unit within it,
+and bytewise least name.
+D. Instantiation: What the Theorems Say About a Repository
+The deﬁnitions above are parametric, and a theorem about
+the model is worth nothing to an operator unless it is a theorem
+about their repository. A concrete repository at a commit
+determines one instance
+I = (commits and parent edges, h, P, E, U , σ, conﬁg) :
+the commit DAG and HEAD are read from the repository, the
+packages and edges from its manifests and conﬁguration, the
+units from its commit messages, and σ from its tags. Every
+quantity the model deﬁnes is a computable function of I: the
+sets are ﬁnite, ancestry is decidable, and no deﬁnition consults
+anything outside I. The model is a fragment of repository
+
+behaviour: it abstracts artefact contents, hook semantics, and
+conﬁguration features not represented in I. The theorems of
+Section V are universally quantiﬁed over instances of that
+fragment, subject to acyclicity, the version guard of Deﬁnition 11, and the retry invariant stated below. The latter is a
+property of the run sequence, checked again before each retry,
+rather than a static property of one instance. What remains
+between the theorems and a running binary is a reﬁnement
+claim, that the implementation computes this model’s Π(σ)
+and νσ and executes Deﬁnition 12’s protocol. That claim is
+not proved here; it is tested, by Section VIII-B’s vectors (each
+ﬁxes a small instance and the plan the model assigns it) and
+by Section VIII-A on randomised instances.
+V. G UARANTEES , WITH P ROOFS
+Cross-run claims use the retry invariant: the corrected
+tuple stream, source sets, graph, scope/depth predicates, target
+baselines, and resolved source/target channel admission of
+every outstanding unit remain unchanged, except for baseline
+tags written for successful packages. Two recurring components deserve names. (H1) says every baseline channel read
+by Propagate-Channel: inherit remains unchanged;
+(H2) says no contribution initially suppressed by cancellation,
+hold, or correction is later released at the same h. H1 and
+H2 are necessary in their respective cases but are not, by
+themselves, the full retry invariant. Neither is needed for one
+invocation’s determinism.
+Lemma 1 (window antitonicity). For σ ′ = run(σ, F ),
+Wσ◦′ (p) = ∅ if p published and Wσ◦′ (p) = Wσ◦ (p) otherwise.
+The train window W also empties after a stable release, but
+may remain unchanged after a prerelease release.
+Proof. The run adds only tags at h. If p gained none, both
+baseline commits are unchanged. If it published, basec σ′ (p) =
+h, so Eq. 2 subtracts reach(h) and is empty. Only a stable
+release also makes scom σ′ (p) = h.
+Lemma 2 (source stability). Under the retry invariant,
+src σj (u) is constant for every outstanding unit throughout a
+valid run sequence.
+Proof. The corrected tuple stream and its cancellation, hold,
+correction, and source-set predicates are ﬁxed components of
+the invariant. H2 is the component excluding later release of
+an initially suppressed contribution. Arbitrary tag-set inclusion
+outside a valid run sequence implies no such monotonicity,
+because a higher-version tag may point to an earlier commit.
+Lemma 3 (retry stability). Under the retry invariant, an unreleased package’s resolved channel, each outstanding unit’s
+source-channel set, and rsv (u, d) remain constant.
+Proof. These are precisely the channel and source-set components ﬁxed by the retry invariant. Deﬁnition 9 then selects the
+same direct or propagated proposal, and Eq. 4 reads the same
+sets.
+
+Remark 1. (H1) cannot be replaced by requiring stable
+completed releases: inherit reads ch(base σ (q)), which
+the origin’s own graduation moves: with core at baseline
+1.5.0-beta.0 and commits feat(core)ˆ++1: x and
+release(core)%stable: graduate, run 1 plans the
+consumer at 2.0.1-beta.0 (inherited beta) while core
+graduates; if the consumer fails, run 2 plans it at 2.0.1:
+same package, both plans, different versions, every completed
+release stable. Thus unchanged inherited-channel state must be
+an explicit component of the retry invariant; successful stable
+releases alone do not imply version stability.
+Theorem 2 (the eight guarantees). Write adm j for adm σj
+and n = |Π(σ1 )|. Under the retry invariant, for every unit u,
+consumer D and run j ≥ 1:
+G1
+termination. propagation halts after O(|U| ·
+(|P|+|E|)) work, whatever the declared depths.
+G2
+no orphans. adm 1 (u, D) ⇒ adm j (u, D) until D
+releases at a commit containing cu .
+G3
+version stability. if D ∈ Π(σ1 ) and D is not released
+before run k, then D ∈ Π(σk ) and νk (D) = ν1 (D).
+G4
+no double ledger delivery. once D releases past cu ,
+adm j (u, D) never holds again; with G2, ledger discharge is exactly-once for every contribution whose
+target eventually succeeds. This does not make external side effects exactly-once.
+G5
+no widening. {D : adm j (u, D)} ⊆ {D :
+adm 1 (u, D)}.
+G6
+convergence. Π(σn+1 ) = ∅, provided each nonempty
+retry admits and publishes at least one initially
+publishable, non-held package.
+G7
+channel discharge. a propagated channel contribution is admitted only while its commit remains in
+W ◦ (D); baseline equality and transition matching
+independently remove no-op proposals.
+G8
+one-way axis independence. suppressing a bump
+never suppresses a channel change. The converse
+is false: resolved channels are an input to bump
+admission in Eq. 4.
+Proof. G1: the traversal computing R marks each package
+seen at most once, so it does O(|P|+|E|) work per unit
+regardless of depth or cycles; acyclicity is needed for the
+publish order, not here. G2: compare Eq. 5 clause by clause.
+Source set, depth, graph, scope, cancellation and channel
+admission are ﬁxed by the retry invariant. The consumer’s
+fresh window is unchanged until D releases (Lemma 1);
+that release is the only event that can make its admission
+clause false. G3: D gained no tag, so its baselines, windows
+and dir are unchanged; the propagated join is unchanged
+by G2 (≥) and G5 (≤), whose proofs below use only the
+lemmas; so eﬀ is unchanged and the channel is unchanged
+(Lemma 3). Thus bump-only and channel-only membership
+remain; an exact Release-As remains the same because its
+unit is ﬁxed by the invariant. In every case ν is the same
+function of unchanged inputs. G4: by Lemma 1, W ◦ (D)
+empties after either a stable or prerelease tag, killing fresh
+
+direct and propagated admission. This also makes pin σ (D)
+undeﬁned. This is discharge in the tag ledger; an interruption
+after an external publish but before its tag is handled by
+content-identity reconciliation, not by an exactly-once claim
+about the external operation. G5: every clause of Eq. 5 is
+constant except the window, which is antitone (Lemma 1); a
+conjunction of constant and antitone predicates is antitone. G6:
+Π(σj+1 ) ⊆ Π(σj ), since a member of the later plan was not
+released (else G4) and each disjunct of Π is then unchanged
+or smaller; by the premise each nonempty retry removes at
+least one initially publishable package (G4), so |Π| strictly
+decreases to 0 within n runs. A run that publishes nothing has
+not failed partially and is surfaced as a hard error, not retried.
+G7: the channel-axis admission test uses cu ∈ W ◦ (D), so
+Lemma 1 discharges it. While fresh, equality with the baseline
+and a transition’s <from> check separately reject no-ops. G8:
+the channel pass runs ﬁrst and reads no bump-axis output; the
+bump pass then reads its resolved channels through Eq. 4.
+Proposition 1 (universal tagging is necessary). If a released
+package with no artefact to upload and a non-empty effective
+bump were versioned but not tagged, its window would never
+advance (Lemma 1), it would re-enter every plan forever, and
+G6 would fail. Hence Deﬁnition 12 tags whatever is released,
+and the convergence check (re-plan after a fully successful run;
+a non-empty result is an error) admits exactly one exclusion,
+held packages.
+Three corollaries carry the operational weight. Resumption:
+after a partial failure, Π(σ2 ) = F ∪ B at the versions of run 1
+(G2–G5), so the next run does the rest of the same job with
+no ﬂags and no cleanup. Idempotency: running twice with no
+intervening commits, tag changes, or conﬁguration changes
+gives the same plan (Theorem 1); running after full success
+gives the empty plan (G4). Review soundness: while the retry
+invariant holds, by G5 the plan a reviewer approves before
+the ﬁrst attempt is an upper bound on everything every retry
+can publish, so an attacker who can induce a publish failure
+cannot enlarge what a commit releases, and no resume needs
+re-approval.
+VI. R ELEASE -T OOL C OMPARISON
+In the pinned conﬁgurations we executed, Lerna and nx
+derive bumps from commits and tag before publish, so a
+failed upload is absent from their tag ledger; release-please
+has the same ordering in its documented workﬂow. Changesets
+tags after publish, consumes intent ﬁles, and queries npm
+during recovery. CCME tags each package after its publish
+leg and therefore retains debt in git, subject to the external
+publish/tag reconciliation limit of Deﬁnition 12. The observed
+propagation policies were unconditional for Lerna/nx, rangegated for Changesets, and per-commit for CCME. Table IV
+summarises the resulting operational distinctions; the artifact
+contains the full command transcripts. The refusal and push
+ﬁxtures pin Lerna 10.0.1, Nx 23.1.2, and Changesets 3.0.1.
+Lerna/nx tagged the denied version before its failed upload;
+Changesets left it untagged and recovered by querying npm.
+
+In the concurrent push ﬁxture, compared runs left tags outside
+branch ancestry, while dispat merged before its ﬁnal push and
+planned the colleague’s commit next.
+VII. I MPLEMENTATION
+dispat is a statically linked Go binary whose releaseplanning state is only conﬁguration, history, and tags. Packages
+are folders and lifecycle stages are shell commands; scanners
+and byte-preserving writers cover 35 manifest formats in
+twenty ecosystems. The planner implements the deﬁnitions
+above; topological execution continues independent subtrees
+after a failure and skips consumers of failed packages. A
+remote reserved tag serialises release runs. Successful external effects are not rolled back: later tag, record, or push
+failure leaves reconciliation work under the publish-thenrecord protocol. Invoked tools, including Terraform, retain
+responsibility for their operational state and identity checks.
+The implementation is tested through vectors, black-box CLI
+runs, fuzzing, real manifests, and the campaigns below.
+a) Repository layouts and saga granularity.: For a
+single-package repository, P = {p} and E = ∅: propagation
+is vacuous, but version planning, publish-then-tag recording
+and recovery still apply. This is the one-leg case of the
+saga protocol. Dispat requires the package in a subfolder; the
+conﬁguration and release ledger remain at the root. Multiple
+destinations inside one publish script still share one completion tag, so partial external success requires reconciliation;
+separate package legs provide separate completion records.
+A single source project can expose its CLI, container image
+and documentation as such legs. For a polyrepo, a control
+repository pins linked repositories as git submodules inside
+package wrapper folders. Its pointer-update commits express
+release intent; its history and tags provide the model’s single h
+and σ. The linked repositories retain their own histories. This
+supplies one release graph without merging the source repositories, rather than a distributed transaction over independent
+git histories. This construction establishes applicability; the
+evaluation does not measure polyrepo operational scale.
+b) Reusable automation.: A Windows developer and
+a Linux CI runner can share global.yaml (graph,
+scripts and lifecycle). Each platform ﬁle references it
+with $ref: ./global.yaml; linux.yaml sets
+shell: ["/bin/sh", "-c"], while windows.yaml
+sets
+["powershell.exe", "-NoProfile",
+"-Command"] as its shell. Only platform overrides are
+repeated; references are ﬁle-relative and replace whole
+keys, not nested ﬁelds. Preview with dispat -config
+windows.yaml status locally or dispat -config
+linux.yaml status on the runner; CI runs the latter
+conﬁguration without status after its release gates. dispat
+if OS=Windows_NT can select these commands through
+-then and -else, but 1.8.2 executes those branches
+through /bin/sh before the child reads its conﬁguration.
+Native Windows can select its ﬁle directly; the conditional
+wrapper still needs a POSIX shell. Named scripts can
+themselves use $ref; dispat for Debug Release
+
+TABLE III
+S ECTION II UNDER A SCHEDULE THAT LOSES C L I TWICE . G2: C L I IS IN EVERY PLAN UNTIL IT PUBLISHES . G3: AT 2.0.1 IN ALL OF THEM . G4: THE
+THREE THAT PUBLISHED LEAVE . G5: NOTHING NEW ENTERS . G6: THE PLAN REACHES EMPTY. RUN 2 PUBLISHES NOTHING , WHICH G6 TREATS AS THE
+HARD - ERROR CASE RATHER THAN THE PARTIAL - FAILURE ONE .
+
+Run
+
+Plan
+
+Published
+
+Failed
+
+1
+2
+3
+4
+
+core, cli, ui, api
+cli 2.0.1
+cli 2.0.1
+∅
+
+core 1.5.0, ui 0.9.2, api 1.2.1
+—
+cli 2.0.1
+—
+
+cli
+cli
+—
+—
+
+TABLE IV
+P INNED RELEASE - TOOL CONFIGURATIONS .
+
+bump source
+tag time
+propagation
+recovery ledger
+external gap
+
+lerna / nx
+
+changesets
+
+CCME / dispat
+
+commits
+before publish
+unconditional
+tags / CI
+manual/query
+
+intent ﬁles
+after publish
+range-gated
+npm
+npm query
+
+commits
+after each leg
+per commit
+git tags
+reconcile identity
+
+-do "dispat exec build-one" passes each value
+through DISPAT_ITEM.
+c) Agent release gates.: A lock-free status
+-require-release -strict check can precede an
+all-package workspace suite with veriﬁed temporary-link
+cleanup. Package checks then validate reconciled versions
+and lockﬁles, followed by smoke tests of the exact artifacts
+before publication. Wrappers preserve failures, and release
+authorization remains separate.
+VIII. E VALUATION
+The primary campaign uses the ofﬁcial dispat 1.8.2 image and implemented CCME 2.0 semantics [8]. Release-tool
+comparisons retain their pinned 1.7.x measurements and are
+not represented as new 1.8.2 experiments. The artifact records
+images, seeds, raw streams, checksums, and harness versions.
+A. Differential Validation of the Reﬁnement Claim
+Section IV-D left one obligation open: that the binary computes this paper’s model. We test it with selected speciﬁcation
+vectors and a restricted reference oracle in approximately
+300 lines of Python. The oracle predates the complete model
+presented here: agreement within its core domain is evidence
+for that fragment, not a proof of reﬁnement of the full model.
+A seeded generator produces instances with 5–20 packages,
+layered DAGs, 4–12 units, and mixed tag states. Each instance
+becomes a real Git repository and is planned by the oracle and
+the released binary. Golden cases gate the comparison.
+The core proﬁle isolates the oracle’s shared semantic domain. The full proﬁle deliberately exercises prerelease baselines, channel-only entries, and bump-less directive types
+outside that domain. Differences in the latter are classiﬁed
+diagnostically; they are not counted as passing conformance
+checks. The current campaign below reports both proﬁles,
+
+including rejected plans and the limits of its heuristic classiﬁcation.
+B. Released-Binary Evaluation
+We reran released CCME 2.0.0 against the ofﬁcial dispat 1.8.2 ARM64 image. The campaign identity
+binds source tag commit a7011cbcb9e8, image digest
+sha256:4c0ad4b8...e7bfd, the veriﬁed release binary,
+and 753 artifacts.
+The revised runner validates Git ﬁxtures and CLI exits,
+uses tmpfs for E1, and distinguishes semantic refusals from
+execution failures. These timings are not compared with runs
+using an earlier harness. All 1,500 core instances agreed,
+with no invalid sample. Of 1,500 full-proﬁle histories, which
+include regressive prereleases, 997 produced accepted plans
+(546 clean comparisons) and 503 produced complete E195 diagnostic refusals; four refused dossiers had no row difference,
+giving 550 diagnostic-clean instances overall. Every proposed
+regression set in the 503 dossiers was independently checked.
+The remaining 1,914 package-row differences retained PG1
+862, PG2 375, PG2x 14, and PG3? 663, with UNKNOWN
+0. Rejected diagnostic plans are neither executable release
+plans nor conformance results. The CLI also passed selected
+2.0 vectors 133–138 (fresh discharge, suppression, channel
+eligibility/order, inherited-channel drift, and source exclusion).
+Vector 135 observes downward W208, not the upward API;
+six cases do not prove reﬁnement.
+Two orphan repetitions recovered the same version to an
+empty third plan; two campaigns converged in 24/24 episodes
+within four runs with zero structural G3/G5 errors. Fiverelease replay reproduced 36/42 google-cloud-node and 7/64
+conventional-changelog versions, without implying those releases used CCME. Three fresh dispat fault cells passed
+8 orphan, 12 clean-push, and 14 conﬂicting-push checks;
+competitor cells were not rerun.
+All eight timing cells are valid contended-host observations
+under a two-CPU, 4-GiB cap, not cross-tool comparisons.
+Medians span 0.017 s for 100 layered packages to 19.354 s
+for a 10,000-package chain; observed maximum RSS spans
+15–118 MiB. U1000 took 0.290 s/26 MiB and 5,000 padding
+commits took 0.664 s/30 MiB. The recorded ﬁxtures passed
+git fsck, and the commit-tree generator matched the
+ordinary small ﬁxture’s commit IDs, refs, messages, and log
+output.
+
+C. Defect-Finding Power of the Formalisation
+Minimal counterexamples identify why several apparently
+simpler designs fail. They serve as regression obligations and
+explain the model’s assumptions.
+1) Aggregation is not discharge. Reusing a stable-baseline
+train window for fresh admission can produce beta.1,
+beta.2, . . . without new commits. Separate W and W ◦
+retain train intent while discharging delivered work.
+2) Suppression must remain stable across retries. If a
+cancelled or corrected source is later released, its discharged record can change the source set and reach new
+consumers. H2 excludes this widening within a reviewed
+retry sequence; changing it requires a new plan.
+3) Inherited channels are mutable inputs. The graduation
+example in Remark 1 changes a failed consumer’s next
+version unless H1 preserves its inherited-channel inputs.
+4) Reverse audits need the full admission predicate. A
+consumer-side staleness audit that omits channel eligibility or target self-exclusion can disagree with forward
+propagation.
+5) Axis independence is one-way. Resolving channels can
+make a dependency ineligible and suppress a bump;
+suppressing a bump does not suppress a channel change.
+Resolving channels ﬁrst preserves this order.
+6) Shared graph traversal does not merge unit identity.
+Subtracting a union of source sets excludes legitimate
+targets of other units; admitting every traversed node can
+include a unit’s own source. Traversal may be shared,
+but admission and provenance remain per unit.
+These counterexamples motivated the released rules used in
+the model. Their role here is to establish design necessities,
+not to claim defects in the current speciﬁcation. The selected
+released-binary vectors cover six cases; they do not establish
+full implementation reﬁnement.
+IX. T HREATS TO VALIDITY
+Internal. The vectors, the tests and the formal model were
+produced by the same author as the system, so they share assumptions and their agreement cannot catch an error common
+to all three. The guarantees are proved of the model, not of
+the Go code; the link is the vector suite, the tests and the
+differential run of Section VIII-A, which covers the planner
+but not the run’s protocol. The concurrent-push experiment
+is the strongest evidence for that protocol, and it is one
+deterministic interleaving per tool, not a sweep over every
+point a push could land. External. The self-hosting study is one
+repository of moderate size administered by the tool’s author;
+it demonstrates feasibility and recovery on real history, not
+usability at organisational scale. Ecosystem generality is by
+construction plus tested writers and manifest ﬁxtures, chosen
+by us rather than a ﬁeld study. Construct. Conformance is
+measured against a contract the implementation co-evolved
+with; Section VIII-C shows this cuts both ways. No user
+study supports reviewability claims; we claim only that the
+blast radius is written in the message, not that authors write it
+
+correctly. The characterisation of release-please is read from
+its documentation; Lerna, nx and Changesets are executed on
+two faults in the pinned six-package ﬁxture summarised in
+Section VI. The check counts recorded for those tools describe
+what each leaves behind against the questions dispat’s protocol
+answers, not a score on a shared scale. The experiments
+run in containers on one machine and one CI provider; the
+replay conﬁgurations for the subject repositories were reverseengineered from their layouts and may misread conventions
+their tools resolve differently.
+X. R ELATED W ORK
+Adams and McIntosh survey release engineering as a ﬁrstclass subject [20]; Potvin and Levenberg document Google’s
+monorepo practice [21], whose build layer solves ordering
+and caching but not versioned publication to external registries. Among release tools, semantic-release [17] established commit-driven versioning; Lerna [15], changesets [16],
+Nx [18] and release-please [19] extend automation to monorepos within, predominantly, one ecosystem each; Section VI
+states their computations as instances of this paper’s model
+and locates the structural difference in the tag discipline.
+Empirical studies show declared version semantics and actual compatibility diverge [22], [23]; Decan et al. study
+dependency-network evolution across ecosystems [24]. Together they motivate explicit release intent over a dependency
+graph. Formal treatments of version control (semantics of VCS
+operations [11], patch theories as higher inductive types [12],
+merges as pushouts [13]) model contents and merging; this
+paper’s model keeps only the DAG, tags and messages, the objects repository mining treats as git’s model [9] and mergeabletype derivations build on [10]. Packages and dependency
+graphs as formal objects go back to the EDOS work on
+distribution consistency [14]. Within the literature surveyed
+here, we found no earlier composition of these objects into
+this release protocol. The protocol adapts sagas [1] to legs
+for which no acceptable compensating action is available; we
+therefore choose forward recovery in light of transaction limits
+described by Gray [2]. Helland’s arguments for independently
+committed, idempotently reprocessable steps [3], [4] describe
+the discipline G2–G6 impose. Kahn’s algorithm [5] underlies
+the publish order; Mokhov et al.’s build-system taxonomy [25]
+clariﬁes what dispat is not: it has no incremental rebuild layer,
+because unchanged packages are absent from the plan rather
+than cached. Fuzzing is reported under the cautions of Klees et
+al. [26]. The nearest formal-guarantees work in operations is
+Anvil [27], which veriﬁes that Kubernetes controllers reconcile
+to a desired state; convergence here instead comes from a
+ledger, replay, and explicit reconciliation of uncertain external
+outcomes.
+XI. C ONCLUSION
+Across single-package repositories, monorepos and controlrepository polyrepos, CCME treats release publication as a
+saga. It records intent in commit messages, completed publication legs in tags, and admits propagated work against
+
+each consumer’s own fresh-work window. Under the retry
+invariant, its eight guarantees make deterministic replay a
+correct recovery procedure. Minimal counterexamples show
+why separate admission windows, stable retry predicates,
+and per-unit provenance are necessary. The pinned releasetool fault experiments support the operational distinction in
+the pinned conﬁgurations: dispat resumes a refused upload
+and preserves tag reachability across a concurrent push; the
+compared runs required external recovery.
+Remaining work is to mechanise the model and proofs in
+Lean or TLA+ [28] and extend differential validation from
+plans to complete runs, including randomised interleavings of
+tagging and merging.
+ACKNOWLEDGMENTS : AI A SSISTANCE
+OpenAI Codex agents assisted with drafting and revising
+the exposition and proof arguments throughout Sections I–XI,
+writing experiment harness code, running experiments, and
+summarising the resulting records. This assistance extended
+beyond language editing. Reported measurements were obtained from program executions rather than language-model
+predictions. The human author remains accountable for the
+claims, proofs, references, and experimental interpretation.
+DATA AVAILABILITY
+Released source and speciﬁcations are available at an
+author-identifying public repository, omitted for anonymous
+review. A local supplementary bundle retains proof details,
+vectors, ﬁxtures, harnesses, checksums, and raw records. A
+curated review bundle contains experiment scripts, selected
+raw and summary records, and hashes of the original ﬁles.
+It is not linked in this initial submission: the complete Git
+provenance and execution records expose author and environment information, and anonymized distribution is still being
+arranged. The review bundle can be provided through the
+program chairs. Binaries, container images and complete Git
+histories remain outside that non-executable draft. The complete archival replication package is planned for publication
+with the accepted paper.
+R EFERENCES
+[1] H. Garcia-Molina and K. Salem. Sagas. In Proceedings of the ACM
+SIGMOD International Conference on Management of Data, pages 249–
+259, 1987.
+[2] J. Gray. The transaction concept: Virtues and limitations. In Proceedings
+of the 7th International Conference on Very Large Data Bases (VLDB),
+pages 144–154, 1981.
+[3] P. Helland. Life beyond distributed transactions: an apostate’s opinion. In
+Proceedings of the 3rd Biennial Conference on Innovative Data Systems
+Research (CIDR), 2007.
+[4] P. Helland. Idempotence is not a medical condition. Communications of
+the ACM, 55(5):56–65, 2012.
+[5] A. B. Kahn. Topological sorting of large networks. Communications of
+the ACM, 5(11):558–562, 1962.
+[6] T. Preston-Werner. Semantic Versioning 2.0.0. https://semver.org/spec/
+v2.0.0.html, accessed 2026.
+[7] Conventional Commits 1.0.0. https://www.conventionalcommits.org/en/
+v1.0.0/, accessed 2026.
+[8] CCME Speciﬁcation 2.0.0. Public source URL omitted for anonymous
+review, accessed 2026.
+
+[9] C. Bird, P. C. Rigby, E. T. Barr, D. J. Hamilton, D. M. Germán, and
+P. Devanbu. The promises and perils of mining Git. In Proceedings
+of the 6th IEEE International Working Conference on Mining Software
+Repositories (MSR), 2009.
+[10] G. Kaki, S. Priya, K. C. Sivaramakrishnan, and S. Jagannathan. Mergeable replicated data types. Proceedings of the ACM on Programming
+Languages, 3(OOPSLA), Article 154, 2019.
+[11] W. Swierstra and A. Löh. The semantics of version control. In Proceedings of the ACM International Symposium on New Ideas, New
+Paradigms, and Reﬂections on Programming & Software (Onward!),
+pages 43–54, 2014.
+[12] C. Angiuli, E. Morehouse, D. R. Licata, and R. Harper. Homotopical
+patch theory. In Proceedings of the 19th ACM SIGPLAN International
+Conference on Functional Programming (ICFP), 2014.
+[13] S. Mimram and C. Di Giusto. A categorical theory of patches. Electronic
+Notes in Theoretical Computer Science, 298, 2013.
+[14] F. Mancinelli, J. Boender, R. Di Cosmo, J. Vouillon, B. Durak, X. Leroy,
+and R. Treinen. Managing the complexity of large free and open
+source package-based software distributions. In Proceedings of the 21st
+IEEE/ACM International Conference on Automated Software Engineering (ASE), 2006.
+[15] Lerna: a fast, modern build system for managing and publishing multiple JavaScript packages from the same repository. https://lerna.js.org/,
+accessed 2026.
+[16] Changesets: a way to manage your versioning and changelogs. https:
+//github.com/changesets/changesets, accessed 2026.
+[17] semantic-release: fully automated version management and package publishing. https://github.com/semantic-release/semantic-release, accessed
+2026.
+[18] Nx: smart monorepos, fast CI. https://nx.dev/, accessed 2026.
+[19] release-please: automated releases based on conventional commits. https:
+//github.com/googleapis/release-please, accessed 2026.
+[20] B. Adams and S. McIntosh. Modern release engineering in a nutshell:
+Why researchers should care. In Proceedings of the 23rd IEEE International Conference on Software Analysis, Evolution, and Reengineering
+(SANER), 2016.
+[21] R. Potvin and J. Levenberg. Why Google stores billions of lines of code
+in a single repository. Communications of the ACM, 59(7):78–87, 2016.
+[22] S. Raemaekers, A. van Deursen, and J. Visser. Semantic versioning versus breaking changes: A study of the Maven repository. In Proceedings
+of the 14th IEEE International Working Conference on Source Code
+Analysis and Manipulation (SCAM), 2014.
+[23] C. Bogart, C. Kästner, J. Herbsleb, and F. Thung. How to break an API:
+Cost negotiation and community values in three software ecosystems.
+In Proceedings of the 24th ACM SIGSOFT International Symposium on
+Foundations of Software Engineering (FSE), 2016.
+[24] A. Decan, T. Mens, and P. Grosjean. An empirical comparison of
+dependency network evolution in seven software packaging ecosystems.
+Empirical Software Engineering, 24(1):381–416, 2019.
+[25] A. Mokhov, N. Mitchell, and S. Peyton Jones. Build systems à la carte.
+Proceedings of the ACM on Programming Languages, 2(ICFP):79:1–
+79:29, 2018.
+[26] G. Klees, A. Ruef, B. Cooper, S. Wei, and M. Hicks. Evaluating fuzz
+testing. In Proceedings of the ACM SIGSAC Conference on Computer
+and Communications Security (CCS), pages 2123–2138, 2018.
+[27] X. Sun, W. Ma, J. T. Gu, Z. Ma, T. Chajed, J. Howell, A. Lattuada,
+O. Padon, L. Suresh, A. Szekeres, and T. Xu. Anvil: Verifying liveness
+of cluster management controllers. In Proceedings of the 18th USENIX
+Symposium on Operating Systems Design and Implementation (OSDI),
+2024.
+[28] L. Lamport. Specifying Systems: The TLA+ Language and Tools for
+Hardware and Software Engineers. Addison-Wesley, 2002.
+
+

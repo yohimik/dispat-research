@@ -1,0 +1,23 @@
+{
+  "tools": {
+    "path": "tools",
+    "scripts": {
+      "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+    }
+  },
+  "schema": {
+    "path": "schema",
+    "scripts": {
+      "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+    }
+  },
+  "client": {
+    "path": "client",
+    "scripts": {
+      "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+    },
+    "dependencies": [
+      "schema"
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+small_normal_fsck=0
+small_commit_tree_fsck=0
+small_equivalent=yes
+u1000_normal_fsck=0
+u1000_commit_tree_fsck=0
+u1000_heads_equal=yes
+pad5000_commit_tree_fsck=0

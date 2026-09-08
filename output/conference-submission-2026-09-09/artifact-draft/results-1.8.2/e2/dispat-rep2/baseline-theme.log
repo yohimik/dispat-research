@@ -1,0 +1,17 @@
+npm notice
+npm notice package: theme@1.0.0
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 81B package.json
+npm notice Tarball Details
+npm notice name: theme
+npm notice version: 1.0.0
+npm notice filename: theme-1.0.0.tgz
+npm notice package size: 195 B
+npm notice unpacked size: 87 B
+npm notice shasum: 166a610a0c623b09c2475bd907d91af047bf8307
+npm notice integrity: sha512-btD+qxJ9Ct68l[...]ME8M0D7jxOsIQ==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
++ theme@1.0.0

@@ -1,0 +1,50 @@
+{"time": "1788476767.829718", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-f", "-a", "dispat-release-lock", "-m", "dispat release lock\n\nhost e01967e64af8\npid 294\nat 2026-09-03T23:06:07.814067675Z\n", "HEAD"]}
+{"time": "1788476767.848639", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "origin", "refs/tags/dispat-release-lock"]}
+{"time": "1788476767.874391", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "ls-remote", "--heads", "origin"]}
+{"time": "1788476767.893912", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "--abbrev-ref", "HEAD"]}
+{"time": "1788476767.912319", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "ls-remote", "origin", "refs/heads/main"]}
+{"time": "1788476767.931913", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "80e5c8a54b27c3f4ae0b7d97b0cbfdbce52fc931^{commit}"]}
+{"time": "1788476767.949811", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "HEAD^{commit}"]}
+{"time": "1788476767.968382", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "--is-shallow-repository"]}
+{"time": "1788476767.993176", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "core@*"]}
+{"time": "1788476767.997032", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "ui@*"]}
+{"time": "1788476768.006935", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "cli@*"]}
+{"time": "1788476768.007510", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "api@*"]}
+{"time": "1788476768.007510", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "theme@*"]}
+{"time": "1788476768.008661", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "docs@*"]}
+{"time": "1788476768.028160", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "api@1.0.0..HEAD"]}
+{"time": "1788476768.045869", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "cli@1.0.0..HEAD"]}
+{"time": "1788476768.063805", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "core@1.0.0..HEAD"]}
+{"time": "1788476768.082191", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "docs@1.0.0..HEAD"]}
+{"time": "1788476768.100532", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "theme@1.0.0..HEAD"]}
+{"time": "1788476768.118797", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "log", "--format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f", "--name-only", "--diff-merges=first-parent", "ui@1.0.0..HEAD"]}
+{"time": "1788476769.394312", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "add", "--", "packages/core", "packages/api", "packages/cli", "packages/ui"]}
+{"time": "1788476769.413733", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "diff", "--cached", "--quiet"]}
+{"time": "1788476769.432634", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "commit", "-m", "chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1"]}
+{"time": "1788476769.453783", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "core@*"]}
+{"time": "1788476769.472363", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-f", "-a", "core@1.1.0", "-m", "release core@1.1.0"]}
+{"time": "1788476769.490805", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "api@*"]}
+{"time": "1788476769.509514", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-f", "-a", "api@1.0.1", "-m", "release api@1.0.1"]}
+{"time": "1788476769.528000", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "cli@*"]}
+{"time": "1788476769.546570", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-f", "-a", "cli@1.0.1", "-m", "release cli@1.0.1"]}
+{"time": "1788476769.564909", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "--list", "--merged", "HEAD", "--sort=-v:refname", "--sort=-creatordate", "--format=%(refname:short)\t%(objectname)\t%(*objectname)", "ui@*"]}
+{"time": "1788476769.582824", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-f", "-a", "ui@1.0.1", "-m", "release ui@1.0.1"]}
+{"time": "1788476769.600911", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "origin", "HEAD"]}
+{"time": "1788476769.615781", "cwd": "/work/dispat", "kind": "inject", "args": ["-C", ".", "push", "origin", "HEAD"]}
+{"time": "1788476769.660681", "cwd": "/work/dispat", "kind": "inject-done", "args": ["exit=0"]}
+{"time": "1788476769.679882", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "--abbrev-ref", "HEAD"]}
+{"time": "1788476769.697521", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "rev-parse", "HEAD^{commit}"]}
+{"time": "1788476769.715394", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "ls-remote", "--tags", "origin"]}
+{"time": "1788476769.734518", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "fetch", "--no-tags", "origin", "main"]}
+{"time": "1788476769.761204", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "merge", "--no-ff", "--no-edit", "-m", "chore(release): merge origin/main into the release commit\n\nCommits landed on origin/main while the release ran, so the release\ncommit 000d86609898 was merged with them rather than replaced. The tags this\nrelease wrote (core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1) still name that commit, so the commits\nthat arrived are outside the release and belong to the next run.\n", "FETCH_HEAD"]}
+{"time": "1788476769.782200", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "diff", "--name-only", "--diff-filter=U"]}
+{"time": "1788476769.800363", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "checkout", "--ours", "--", "packages/core/package.json"]}
+{"time": "1788476769.818960", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "add", "--", "packages/core/package.json"]}
+{"time": "1788476769.837231", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "ls-remote", "--heads", "origin", "refs/heads/release-conflicts/core-1.1.0-api-1.0.1-cli-1.0.1-ui-1.0.1-20260903-230609"]}
+{"time": "1788476769.856720", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "origin", "FETCH_HEAD:refs/heads/release-conflicts/core-1.1.0-api-1.0.1-cli-1.0.1-ui-1.0.1-20260903-230609"]}
+{"time": "1788476769.883680", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "commit", "--no-edit"]}
+{"time": "1788476769.903949", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "origin", "HEAD"]}
+{"time": "1788476769.934786", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "ls-remote", "--tags", "origin"]}
+{"time": "1788476769.954407", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "--force", "origin", "refs/tags/core@1.1.0", "refs/tags/api@1.0.1", "refs/tags/cli@1.0.1", "refs/tags/ui@1.0.1"]}
+{"time": "1788476769.982985", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "push", "origin", "--delete", "refs/tags/dispat-release-lock"]}
+{"time": "1788476770.004252", "cwd": "/work/dispat", "kind": "call", "args": ["-C", ".", "tag", "-d", "dispat-release-lock"]}

@@ -1,0 +1,34 @@
+{"level":"info","root":".","time":"2026-09-06T13:49:31Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-06T13:49:31Z","message":"release lock acquired"}
+{"level":"info","package":"core","space":"packages","bump":"minor","version":"1.0.0 -> 1.1.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T13:49:31Z","message":"● changed"}
+{"level":"info","package":"api","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T13:49:31Z","message":"● changed"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T13:49:31Z","message":"● changed"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T13:49:31Z","message":"● changed"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T13:49:31Z","message":"unchanged"}
+{"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T13:49:31Z","message":"unchanged"}
+{"level":"info","packages":6,"releasing":4,"held":0,"time":"2026-09-06T13:49:31Z","message":"release plan ready"}
+{"level":"info","package":"core","stage":"version","version":"1.1.0","manifest":"package.json","ranges":0,"versionWritten":true,"time":"2026-09-06T13:49:31Z","message":"manifest reconciled"}
+{"level":"info","package":"core","stage":"version","version":"1.1.0","time":"2026-09-06T13:49:31Z","message":"version succeeded"}
+{"level":"info","package":"core","stage":"build","version":"1.1.0","time":"2026-09-06T13:49:31Z","message":"build succeeded"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.0","time":"2026-09-06T13:49:31Z","message":"publish started"}
+{"level":"info","package":"cli","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-06T13:49:31Z","message":"manifest reconciled"}
+{"level":"info","package":"cli","stage":"version","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"version succeeded"}
+{"level":"info","package":"cli","stage":"build","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"build succeeded"}
+{"level":"info","package":"ui","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-06T13:49:31Z","message":"manifest reconciled"}
+{"level":"info","package":"ui","stage":"version","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"version succeeded"}
+{"level":"info","package":"ui","stage":"build","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"build succeeded"}
+{"level":"info","package":"api","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-06T13:49:31Z","message":"manifest reconciled"}
+{"level":"info","package":"api","stage":"version","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"version succeeded"}
+{"level":"info","package":"api","stage":"build","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"build succeeded"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.0","tag":"core@1.1.0","time":"2026-09-06T13:49:31Z","message":"published"}
+{"level":"info","package":"ui","stage":"publish","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"publish started"}
+{"level":"info","package":"api","stage":"publish","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"publish started"}
+{"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-06T13:49:31Z","message":"publish started"}
+{"level":"info","package":"api","stage":"publish","version":"1.0.1","tag":"api@1.0.1","time":"2026-09-06T13:49:32Z","message":"published"}
+{"level":"info","package":"ui","stage":"publish","version":"1.0.1","tag":"ui@1.0.1","time":"2026-09-06T13:49:32Z","message":"published"}
+{"level":"error","package":"cli","stage":"publish","version":"1.0.1","error":"exit status 1","time":"2026-09-06T13:49:42Z","message":"publish script failed"}
+{"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":288.965917,"time":"2026-09-06T13:49:42Z","message":"summary"}
+{"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":1096.444417,"time":"2026-09-06T13:49:42Z","message":"summary"}
+{"level":"error","error":"publish: exit status 1","failedStage":"publish","package":"cli","status":"failed","version":"1.0.0 -> 1.0.1","channel":"stable","took":10621.334088,"time":"2026-09-06T13:49:42Z","message":"summary"}
+{"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":1096.370084,"time":"2026-09-06T13:49:42Z","message":"summary"}
+{"level":"info","published":3,"failed":1,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":10623.22763,"time":"2026-09-06T13:49:42Z","message":"done"}

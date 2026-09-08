@@ -1,0 +1,120 @@
+\section{The publish protocol}
+\label{sec:protocol}
+
+The guarantees are joint properties of the computation and the protocol that
+writes the state the next computation reads. \spec{19} says so explicitly: they
+do not survive an implementation that gets this section wrong. Three
+obligations are used in the proofs.
+
+\subsection{Tag after, immediately, and always}
+
+\begin{definition}[tagging, \spec{19.1}]
+\label{def:tagging}
+For each released package: the tag is created at \Head{}; \emph{after} that
+package's publish succeeds, never before; \emph{immediately} after it, not
+batched to the end of the run; and for every released package whatever its
+publish target, including targets that upload no artefact at all.
+\end{definition}
+
+Each clause excludes a specific failure. Tagging before publishing makes the
+version unrecoverable, because \cref{def:window} will treat it as released.
+Batching tags to the end of a run makes a mid-run failure republish everything
+already published, which most registries reject outright. Tagging only what
+uploads an artefact is the subject of \cref{prop:tagall}.
+
+\subsection{Order}
+
+\begin{definition}[publish order, \spec{19.2}]
+\label{def:order}
+Let $G$ be the workspace graph restricted to \code{publish.orderKinds} over
+\emph{all} packages. Publication proceeds in a topological order of $G$, ties
+broken by byte-wise least name, filtered to the plan at the end.
+\end{definition}
+
+\begin{proposition}[the order exists, is total, and is deterministic]
+\label{prop:order}
+\Cref{def:order} is well defined and yields the same sequence on every machine
+and in every conforming implementation.
+\end{proposition}
+
+\begin{proof}
+$G$ is acyclic by \cref{def:graph}, so a topological order exists. Ties are
+broken by a total order on names (byte-wise comparison of distinct names), so
+the order is total and independent of any container's iteration order. The
+filter is applied to a sequence, preserving it.
+\end{proof}
+
+\begin{remark}[order over the whole graph, then filter]
+\label{rem:filter-last}
+Inducing the graph on the planned packages \emph{first} is a defect, not an
+optimisation. With $A \to B \to C$ where $B$ has no bump this run (the
+common case in any incremental release), the induced subgraph on $\{A, C\}$
+has no edge at all, so $A$ may publish against a $C$ that has not published
+yet. The constraint is real even though $B$ is not released, because $A$ still
+resolves $C$ through $B$ at install time. This is why the model orders over
+\Pkgs{} and filters last, and why an implementation detecting a violation must
+raise \diag{E197}.
+\end{remark}
+
+Order matters for a reason no later run can repair. A dependent published
+before its dependency carries a range reconciled against the dependency's old
+version, and both land at the same commit, so no ancestry test can tell
+afterwards that anything is wrong (\spec{13.7b}). The inconsistency is
+undetectable after the fact, which is why it is prevented rather than
+diagnosed.
+
+\subsection{Partial failure}
+
+\begin{definition}[blocking, \spec{19.3}]
+\label{def:blocking}
+On a failure, every package in the plan that transitively depends on the failed
+one over \code{publish.blockingKinds} is \emph{blocked} (\diag{W194}): planned,
+but not attempted in this run. The closure is computed over the full workspace
+graph, so it traverses packages that are not in the plan. Packages that are not
+blocked continue to publish.
+\end{definition}
+
+Ordering and blocking use different edge-kind sets, and the asymmetry is
+deliberate: \code{orderKinds} includes optional dependencies, because an
+optional dependency should still be available before its dependent, while
+\code{blockingKinds} excludes them, because a missing optional dependency does
+not break an install and a missing required one does.
+
+\begin{example}[an infrastructure leg]
+\label{ex:terraform}
+Nothing in \cref{def:tagging,def:run} requires a publish leg to be a registry
+upload. A \code{terraform apply} may be such a leg: its build stage imports the
+explicitly configured live resources and writes a plan, and its publish stage
+applies that plan before the release tag is written. The tag records that this
+version of the configuration completed successfully. It is not Terraform
+resource state, does not prove that every live resource was imported, and does
+not make applying an arbitrary configuration externally idempotent. Application
+builds may overlap the apply; only their publication waits for the
+infrastructure publish edge.
+\end{example}
+
+\begin{remark}[recorded-success abstraction]
+\Cref{def:run} models confirmed successful legs by their tags. It proves
+properties of that release ledger, not convergence of an external registry or
+infrastructure state. A publish may take effect before its tag is recorded;
+then the repository alone is insufficient and \cref{def:reconcile} or a
+publish-target-specific idempotence contract is required. Terraform likewise
+needs its own state or an explicit, complete import boundary before a plan can
+safely describe existing resources.
+\end{remark}
+
+\begin{definition}[reconciliation, \spec{19.4}]
+\label{def:reconcile}
+When a publish fails because the version already exists, the implementation
+verifies by registry digest or provenance attestation that the published
+artefact is the one this run would have published; if it matches, the publish
+counts as successful and the tag is written (\diag{W196}); if it does not
+match, or identity cannot be established, the run stops with \diag{E198}.
+\end{definition}
+
+This is the one place where the model's ``a publish either succeeds or fails''
+abstraction meets a third outcome, that it already happened, and
+\cref{def:reconcile} maps it back onto success. Verification is what makes that
+safe: without it, adopting a version published by something other than this run
+would enrol a foreign artefact into the release lineage, which is a
+supply-chain vulnerability rather than a convenience.

@@ -1,0 +1,68 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+lerna info Assuming all packages changed
+lerna info getChangelogConfig Successfully resolved preset "conventional-changelog-angular"
+
+Changes:
+ - api: 1.0.0 => 1.0.1
+ - cli: 1.0.0 => 1.0.1
+ - core: 1.0.0 => 1.1.0
+ - docs: 1.0.0 => 1.0.1
+ - theme: 1.0.0 => 1.0.1
+ - ui: 1.0.0 => 1.0.1
+
+lerna info auto-confirmed 
+lerna info execute Skipping releases
+lerna info git Pushing tags...
+lerna WARN gitPush colleague pushed a78f188: fix(core): describe the package
+lerna WARN gitPush error: atomic push failed for ref refs/heads/main. status: 5
+lerna WARN gitPush 
+lerna WARN gitPush fatal: the remote end hung up unexpectedly
+lerna WARN gitPush To /work/lerna-origin.git
+lerna WARN gitPush  ! [rejected]        main -> main (fetch first)
+lerna WARN gitPush  ! [rejected]        api@1.0.1 -> api@1.0.1 (atomic push failed)
+lerna WARN gitPush  ! [rejected]        cli@1.0.1 -> cli@1.0.1 (atomic push failed)
+lerna WARN gitPush  ! [rejected]        core@1.1.0 -> core@1.1.0 (atomic push failed)
+lerna WARN gitPush  ! [rejected]        docs@1.0.1 -> docs@1.0.1 (atomic push failed)
+lerna WARN gitPush  ! [rejected]        theme@1.0.1 -> theme@1.0.1 (atomic push failed)
+lerna WARN gitPush  ! [rejected]        ui@1.0.1 -> ui@1.0.1 (atomic push failed)
+lerna WARN gitPush error: failed to push some refs to '/work/lerna-origin.git'
+lerna WARN gitPush hint: Updates were rejected because the remote contains work that you do
+lerna WARN gitPush hint: not have locally. This is usually caused by another repository pushing
+lerna WARN gitPush hint: to the same ref. You may want to first integrate the remote changes
+lerna WARN gitPush hint: (e.g., 'git pull ...') before pushing again.
+lerna WARN gitPush hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+lerna info gitPush --atomic failed, attempting non-atomic push
+lerna ERR! Error: Command failed with exit code 1: git push --follow-tags --no-verify origin main
+lerna ERR! To /work/lerna-origin.git
+lerna ERR!  * [new tag]         api@1.0.1 -> api@1.0.1
+lerna ERR!  * [new tag]         cli@1.0.1 -> cli@1.0.1
+lerna ERR!  * [new tag]         core@1.1.0 -> core@1.1.0
+lerna ERR!  * [new tag]         docs@1.0.1 -> docs@1.0.1
+lerna ERR!  * [new tag]         theme@1.0.1 -> theme@1.0.1
+lerna ERR!  * [new tag]         ui@1.0.1 -> ui@1.0.1
+lerna ERR!  ! [rejected]        main -> main (fetch first)
+lerna ERR! error: failed to push some refs to '/work/lerna-origin.git'
+lerna ERR! hint: Updates were rejected because the remote contains work that you do
+lerna ERR! hint: not have locally. This is usually caused by another repository pushing
+lerna ERR! hint: to the same ref. You may want to first integrate the remote changes
+lerna ERR! hint: (e.g., 'git pull ...') before pushing again.
+lerna ERR! hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+lerna ERR!     at makeError (/opt/tools/node_modules/execa/lib/error.js:59:11)
+lerna ERR!     at handlePromise (/opt/tools/node_modules/execa/index.js:114:26)
+lerna ERR!     at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+lerna ERR! lerna Command failed with exit code 1: git push --follow-tags --no-verify origin main
+lerna ERR! lerna To /work/lerna-origin.git
+lerna ERR! lerna  * [new tag]         api@1.0.1 -> api@1.0.1
+lerna ERR! lerna  * [new tag]         cli@1.0.1 -> cli@1.0.1
+lerna ERR! lerna  * [new tag]         core@1.1.0 -> core@1.1.0
+lerna ERR! lerna  * [new tag]         docs@1.0.1 -> docs@1.0.1
+lerna ERR! lerna  * [new tag]         theme@1.0.1 -> theme@1.0.1
+lerna ERR! lerna  * [new tag]         ui@1.0.1 -> ui@1.0.1
+lerna ERR! lerna  ! [rejected]        main -> main (fetch first)
+lerna ERR! lerna error: failed to push some refs to '/work/lerna-origin.git'
+lerna ERR! lerna hint: Updates were rejected because the remote contains work that you do
+lerna ERR! lerna hint: not have locally. This is usually caused by another repository pushing
+lerna ERR! lerna hint: to the same ref. You may want to first integrate the remote changes
+lerna ERR! lerna hint: (e.g., 'git pull ...') before pushing again.
+lerna ERR! lerna hint: See the 'Note about fast-forwards' in 'git push --help' for details.

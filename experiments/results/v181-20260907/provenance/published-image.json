@@ -1,0 +1,60 @@
+[
+    {
+        "Id": "sha256:0096da187ec55d8079eb28778975381ae3ad54c8c76a77542afea65e41531fe9",
+        "RepoTags": [
+            "yohimik/dispat-alpine:1.8.1"
+        ],
+        "RepoDigests": [
+            "yohimik/dispat-alpine@sha256:0096da187ec55d8079eb28778975381ae3ad54c8c76a77542afea65e41531fe9"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-06T19:40:03.109863832Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "DISPAT_UPDATE_CHECK=0"
+            ],
+            "Cmd": [
+                "dispat",
+                "--help"
+            ],
+            "WorkingDir": "/workspace",
+            "Labels": {
+                "io.dispat.cli.version": "1.8.1",
+                "org.opencontainers.image.description": "The dispat release orchestrator, on Alpine",
+                "org.opencontainers.image.licenses": "MIT",
+                "org.opencontainers.image.source": "https://github.com/yohimik/dispat",
+                "org.opencontainers.image.title": "dispat",
+                "org.opencontainers.image.url": "https://dispat.dev"
+            },
+            "ArgsEscaped": true
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 16694617,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+                "sha256:3c2e9f46b590bdbd90d0964a727734c43ef23ad8a796049aa99b3a1de45d0845",
+                "sha256:174370528a33e9f0627ec20fa426fd31a1e5ebcd748b526ec743e0f90e0812d3",
+                "sha256:1578c7820d22f9298e2be748375692cb092be19a0cb50117a1cf745392fabb77"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-06T20:01:07.34157209Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:0096da187ec55d8079eb28778975381ae3ad54c8c76a77542afea65e41531fe9",
+            "size": 1609
+        },
+        "Identity": {
+            "Pull": [
+                {
+                    "Repository": "docker.io/yohimik/dispat-alpine"
+                }
+            ]
+        }
+    }
+]

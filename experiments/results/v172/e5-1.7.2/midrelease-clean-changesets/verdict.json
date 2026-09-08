@@ -1,0 +1,59 @@
+{
+  "experiment": "midrelease",
+  "tool": "changesets",
+  "scenario": "clean",
+  "dispat": "dispat 1.7.2 (linux_amd64)",
+  "steps": [
+    {
+      "step": "version",
+      "exit": 0
+    },
+    {
+      "step": "commit",
+      "exit": 0
+    },
+    {
+      "step": "publish",
+      "exit": 0
+    },
+    {
+      "step": "push",
+      "exit": 1
+    },
+    {
+      "step": "rebase",
+      "exit": 0
+    },
+    {
+      "step": "push2",
+      "exit": 0
+    },
+    {
+      "step": "status",
+      "exit": 0
+    }
+  ],
+  "checks": [
+    {
+      "check": "publish exited 0",
+      "ok": true
+    },
+    {
+      "check": "registry serves core 1.1.0",
+      "ok": true
+    },
+    {
+      "check": "the release commit is on origin/main after recovery",
+      "ok": false
+    },
+    {
+      "check": "every released package is consistent after recovery",
+      "ok": false
+    },
+    {
+      "check": "the next plan is the colleague's change and its dependents alone",
+      "ok": true
+    }
+  ],
+  "passed": false
+}

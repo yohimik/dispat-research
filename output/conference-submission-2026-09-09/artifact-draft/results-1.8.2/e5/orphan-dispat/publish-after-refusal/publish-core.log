@@ -1,0 +1,17 @@
+npm notice
+npm notice package: core@1.1.0
+npm notice Tarball Contents
+npm notice 19B index.js
+npm notice 62B package.json
+npm notice Tarball Details
+npm notice name: core
+npm notice version: 1.1.0
+npm notice filename: core-1.1.0.tgz
+npm notice package size: 193 B
+npm notice unpacked size: 81 B
+npm notice shasum: d89dcec882f547189aba0dba9a92ebd20b2c89ce
+npm notice integrity: sha512-2xVO5hhkDCNT1[...]iKO4haPsxy2dw==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://127.0.0.1:4873/ with tag latest and default access
++ core@1.1.0

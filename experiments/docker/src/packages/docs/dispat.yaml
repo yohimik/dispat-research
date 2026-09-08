@@ -1,0 +1,100 @@
+# The docs package's own configuration: everything unusual about the
+# documentation site, beside the Dockerfile that builds it.
+tagFormat: packages/docs/v{version}
+versionGroup: cli
+dependencies:
+  - provider: dispat
+    keep: true
+  # The infra package applies the site's Google Cloud footprint; this edge
+  # orders that apply ahead of the deploy below, and propagates: an infra
+  # release patch-bumps the docs, so the site redeploys onto the footprint
+  # that just changed. A patch stays the docs' own under the cli group's
+  # fixedMajorMinor mode, so the CLI is not dragged along.
+  - provider: infra
+    keep: true
+scripts:
+  # Publish stage: sync the built site into the bucket behind dispat.dev.
+  #
+  # The workflow authenticates the run to Google Cloud through Workload
+  # Identity Federation before dispat starts, so gcloud here already acts as
+  # the releaser service account; no key ever exists. The bucket and URL map
+  # names are identifiers this repository deliberately does not carry, so
+  # they arrive as environment variables (GitHub repository variables in CI;
+  # infra/README.md lists them), and the guards fail the run early and by
+  # name when one is missing.
+  #
+  # Three commands, one cache story. The rsync uploads everything with a
+  # five-minute TTL, comparing checksums rather than mtimes because the
+  # Docker export refreshes every mtime. The second pass marks the
+  # content-hashed files under assets/ immutable for a year; a changed asset
+  # is a new name, so those never need to expire. The CDN honours both
+  # because the backend bucket runs in USE_ORIGIN_HEADERS mode, and the one
+  # wildcard invalidation per release makes the new pages visible at once,
+  # with the TTLs as the safety net around it. Invalidation is free and
+  # rate-limited per URL map; a release performs exactly one, --async because
+  # nothing here depends on its completion.
+  #
+  # The tag is the record that this leg committed, so a deploy must only ever
+  # happen inside the release run: without the `dispat if` guard on the first
+  # line, `dispat run deploy-docs` would publish a developer's working tree to
+  # the live site.
+  deploy-docs: |
+    set -eu
+    dispat if 'CI!=true' --then 'echo "refusing to deploy outside CI (set CI=true to override)" >&2; exit 1'
+    : "${DOCS_BUCKET:?DOCS_BUCKET is required (the bucket name is not committed; see infra/README.md)}"
+    : "${DOCS_URL_MAP:?DOCS_URL_MAP is required (the URL map name is not committed; see infra/README.md)}"
+    gcloud storage rsync --recursive --delete-unmatched-destination-objects \
+      --checksums-only \
+      --cache-control='public, max-age=300, must-revalidate' \
+      build "gs://${DOCS_BUCKET}"
+    gcloud storage objects update --recursive \
+      --cache-control='public, max-age=31536000, immutable' \
+      "gs://${DOCS_BUCKET}/assets/**"
+    gcloud compute url-maps invalidate-cdn-cache "${DOCS_URL_MAP}" \
+      --path '/*' --async
+    echo "deployed ${DISPAT_NEW_VERSION} to gs://${DOCS_BUCKET}"
+  # The site, and the version snapshot that goes in it, from one build.
+  #
+  # `docs` and `dispat` share the `cli` version group, so they release
+  # together, always: there is no run in which the docs are built
+  # without a CLI version to document, and no reason to freeze the
+  # snapshot in a stage of its own ahead of the build. Cutting it here
+  # means the site that ships is the one built *with* it, and the
+  # tracked files it writes — versioned_docs, versioned_sidebars,
+  # versions.json — are staged by the finalize release commit along
+  # with everything else the release changed.
+  #
+  # A snapshot per minor, not per patch: 1.2.3 and 1.2.4 document the
+  # same surface, and a copy each would grow the repository for
+  # nothing. An empty DOCS_VERSION means no cut at all, which is what a
+  # prerelease gets.
+  #
+  # dest is the package folder, not a dist/ of its own, because half of
+  # what comes back is source rather than output.
+  #
+  # DOCS_REQUIRE_REPORT is set for a release and nothing else. The
+  # coverage and test-results pages are built from a report the run
+  # that gated this release measured, handed over as a CI artifact;
+  # a release that lost it would publish those pages with the figures
+  # silently missing, so the build refuses instead. DISPAT_STAGE is
+  # "build" only in a real release — the CI build gate is "run:build",
+  # has no report, and renders the pages without figures on purpose.
+  build: |
+    DOCS_VERSION=""
+    if [ "${DISPAT_IS_PRERELEASE:-false}" != "true" ]; then
+      DOCS_VERSION="${DISPAT_VERSION%.*}"
+    fi
+    DOCS_REQUIRE_REPORT=""
+    if [ "$DISPAT_STAGE" = "build" ]; then
+      DOCS_REQUIRE_REPORT="1"
+    fi
+    docker buildx build --file Dockerfile --target export \
+      --build-arg DOCS_VERSION="$DOCS_VERSION" \
+      --build-arg DOCS_REQUIRE_REPORT="$DOCS_REQUIRE_REPORT" \
+      --output "type=local,dest=$PWD" ../..
+# No record steps: the docs package's changelog, tag and GitHub release are
+# the finalize phase's. The site deploy is the publish; the records follow at
+# the end of the run.
+flow:
+  build: build
+  publish: deploy-docs

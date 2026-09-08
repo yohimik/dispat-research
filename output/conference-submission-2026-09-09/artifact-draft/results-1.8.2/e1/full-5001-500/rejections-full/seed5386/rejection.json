@@ -1,0 +1,352 @@
+{
+ "seed": 5386,
+ "kind": "semantic-rejection",
+ "code": "E195",
+ "returncode": 1,
+ "stdout": "{\"level\":\"warn\",\"code\":\"W204\",\"package\":\"p01\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"channel-entry patch applied: 3.0.5-rc.0 would not have exceeded the baseline 3.1.0-beta.1, so 3.0.6-rc.0 is released instead\"}\n{\"level\":\"error\",\"code\":\"E195\",\"package\":\"p01\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"computed version 3.0.6-rc.0 is not greater than the baseline 3.1.0-beta.1\"}\n{\"level\":\"warn\",\"code\":\"W202\",\"package\":\"p01\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"channel-only release at 3.0.6-rc.0: beta -> rc\"}\n{\"level\":\"warn\",\"code\":\"W170\",\"package\":\"p12\",\"commit\":\"f8c29b0dd114\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"cancel discarded nothing; already released work cannot be retracted (\u00a710.3); to stop a pending catch-up, cancel the consumer (\u00a713.7d)\"}\n{\"level\":\"info\",\"warnings\":3,\"errors\":1,\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"plan diagnostics\"}\n{\"level\":\"info\",\"package\":\"p00\",\"space\":\"packages\",\"version\":\"3.0.4\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p01\",\"space\":\"packages\",\"bump\":\"none\",\"version\":\"3.1.0-beta.1 -> 3.0.6-rc.0\",\"channel\":\"beta -> rc\",\"reason\":\"channel beta -> rc\",\"ownCommits\":0,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25c8 channel-only\"}\n{\"level\":\"info\",\"package\":\"p02\",\"space\":\"packages\",\"version\":\"2.6.0\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p03\",\"space\":\"packages\",\"dependsOn\":[\"p01\",\"p02\"],\"bump\":\"major\",\"version\":\"2.9.5 -> 3.0.0\",\"channel\":\"stable\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"p04\",\"space\":\"packages\",\"dependsOn\":[\"p03\"],\"version\":\"2.3.0-beta.2\",\"channel\":\"beta\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p05\",\"space\":\"packages\",\"dependsOn\":[\"p01\"],\"bump\":\"minor\",\"version\":\"1.7.2 -> 1.8.0\",\"channel\":\"stable\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"p06\",\"space\":\"packages\",\"dependsOn\":[\"p00\",\"p01\"],\"version\":\"1.7.9\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p07\",\"space\":\"packages\",\"dependsOn\":[\"p04\",\"p06\"],\"version\":\"1.2.0-beta.2\",\"channel\":\"beta\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p08\",\"space\":\"packages\",\"dependsOn\":[\"p04\"],\"bump\":\"patch\",\"version\":\"3.3.7 -> 3.3.8\",\"channel\":\"stable\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"p09\",\"space\":\"packages\",\"dependsOn\":[\"p05\",\"p08\"],\"version\":\"3.6.0-beta.0\",\"channel\":\"beta\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p10\",\"space\":\"packages\",\"dependsOn\":[\"p04\"],\"bump\":\"patch\",\"version\":\"1.2.3 -> 1.2.4-rc.0\",\"channel\":\"stable -> rc\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"p11\",\"space\":\"packages\",\"version\":\"3.2.9\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p12\",\"space\":\"packages\",\"dependsOn\":[\"p02\",\"p11\"],\"version\":\"1.5.4\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p13\",\"space\":\"packages\",\"dependsOn\":[\"p03\",\"p06\"],\"version\":\"1.2.0-beta.3\",\"channel\":\"beta\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"p14\",\"space\":\"packages\",\"bump\":\"minor\",\"version\":\"2.7.3 -> 2.8.0\",\"channel\":\"stable\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"p15\",\"space\":\"packages\",\"version\":\"3.6.9\",\"channel\":\"stable\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"packages\":16,\"releasing\":6,\"held\":0,\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"release plan ready\"}\n{\"level\":\"error\",\"reason\":\"the repository cannot produce a correct plan (\u00a716 repository-scoped error)\",\"time\":\"2026-09-06T23:19:46Z\",\"message\":\"refusing to release\"}\n",
+ "stderr": "",
+ "inst": {
+  "packages": [
+   "p00",
+   "p01",
+   "p02",
+   "p03",
+   "p04",
+   "p05",
+   "p06",
+   "p07",
+   "p08",
+   "p09",
+   "p10",
+   "p11",
+   "p12",
+   "p13",
+   "p14",
+   "p15"
+  ],
+  "edges": [
+   [
+    "p03",
+    "p01"
+   ],
+   [
+    "p03",
+    "p02"
+   ],
+   [
+    "p04",
+    "p03"
+   ],
+   [
+    "p05",
+    "p01"
+   ],
+   [
+    "p06",
+    "p01"
+   ],
+   [
+    "p06",
+    "p00"
+   ],
+   [
+    "p07",
+    "p04"
+   ],
+   [
+    "p07",
+    "p06"
+   ],
+   [
+    "p08",
+    "p04"
+   ],
+   [
+    "p09",
+    "p05"
+   ],
+   [
+    "p09",
+    "p08"
+   ],
+   [
+    "p10",
+    "p04"
+   ],
+   [
+    "p12",
+    "p11"
+   ],
+   [
+    "p12",
+    "p02"
+   ],
+   [
+    "p13",
+    "p03"
+   ],
+   [
+    "p13",
+    "p06"
+   ]
+  ],
+  "commits": [
+   {
+    "id": "c0",
+    "units": []
+   },
+   {
+    "id": "c1",
+    "units": [
+     {
+      "type": "perf",
+      "scope": [
+       "p09"
+      ],
+      "breaking": true,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c2",
+    "units": [
+     {
+      "type": "feat",
+      "scope": [
+       "p05",
+       "p14"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c3",
+    "units": [
+     {
+      "type": "fix",
+      "scope": [
+       "p03"
+      ],
+      "breaking": true,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c4",
+    "units": [
+     {
+      "type": "docs",
+      "scope": [
+       "p13"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c5",
+    "units": [
+     {
+      "type": "docs",
+      "scope": [
+       "p01",
+       "p10"
+      ],
+      "breaking": false,
+      "pd": 0,
+      "channel": "rc"
+     }
+    ]
+   },
+   {
+    "id": "c6",
+    "units": [
+     {
+      "type": "fix",
+      "scope": [
+       "p08"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c7",
+    "units": [
+     {
+      "type": "chore",
+      "scope": [
+       "p04"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c8",
+    "units": [
+     {
+      "type": "perf",
+      "scope": [
+       "p10"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c9",
+    "units": [
+     {
+      "type": "cancel",
+      "scope": [
+       "p12"
+      ],
+      "breaking": false,
+      "pd": 0
+     }
+    ]
+   },
+   {
+    "id": "c10",
+    "units": [
+     {
+      "type": "chore",
+      "scope": [
+       "p15"
+      ],
+      "breaking": false,
+      "pd": -1
+     }
+    ]
+   }
+  ],
+  "tags": [
+   {
+    "pkg": "p00",
+    "version": "3.0.4",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p01",
+    "version": "3.0.5",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p02",
+    "version": "2.6.0",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p03",
+    "version": "2.9.5",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p04",
+    "version": "2.2.7",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p05",
+    "version": "1.7.2",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p06",
+    "version": "1.7.9",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p07",
+    "version": "1.1.7",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p08",
+    "version": "3.3.7",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p09",
+    "version": "3.5.7",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p10",
+    "version": "1.2.3",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p11",
+    "version": "3.2.9",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p12",
+    "version": "1.5.4",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p13",
+    "version": "1.1.3",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p14",
+    "version": "2.7.3",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p15",
+    "version": "3.6.9",
+    "commit": "c0"
+   },
+   {
+    "pkg": "p01",
+    "version": "3.1.0-beta.1",
+    "commit": "c2"
+   },
+   {
+    "pkg": "p04",
+    "version": "2.3.0-beta.2",
+    "commit": "c4"
+   },
+   {
+    "pkg": "p07",
+    "version": "1.2.0-beta.2",
+    "commit": "c1"
+   },
+   {
+    "pkg": "p09",
+    "version": "3.6.0-beta.0",
+    "commit": "c4"
+   },
+   {
+    "pkg": "p13",
+    "version": "1.2.0-beta.3",
+    "commit": "c9"
+   }
+  ],
+  "head": "c10",
+  "seed": 5386,
+  "profile": "full",
+  "features": {
+   "prerelease": [
+    "p01",
+    "p04",
+    "p07",
+    "p09",
+    "p13"
+   ]
+  }
+ }
+}

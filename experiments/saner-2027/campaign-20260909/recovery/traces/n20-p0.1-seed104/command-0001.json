@@ -1,0 +1,1 @@
+{"args": ["git", "init", "-q", "--bare", "/workspaces/e4c-origin-i6ue4e7t/o.git"], "cwd": null, "exit": 0, "stdout": "", "stderr": ""}

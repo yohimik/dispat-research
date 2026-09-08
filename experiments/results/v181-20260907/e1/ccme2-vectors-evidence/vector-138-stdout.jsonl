@@ -1,0 +1,4 @@
+{"level":"info","package":"core","space":"packages","bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","package":"utils","space":"packages","bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core","utils"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":["utils"],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","packages":3,"releasing":3,"held":0,"time":"2026-09-06T20:02:51Z","message":"release plan ready"}

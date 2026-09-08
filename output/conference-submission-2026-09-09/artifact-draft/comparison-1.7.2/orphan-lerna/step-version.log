@@ -1,0 +1,17 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+lerna info Assuming all packages changed
+lerna info getChangelogConfig Successfully resolved preset "conventional-changelog-angular"
+
+Changes:
+ - api: 1.0.0 => 1.0.1
+ - cli: 1.0.0 => 1.0.1
+ - core: 1.0.0 => 1.1.0
+ - docs: 1.0.0 => 1.0.1
+ - theme: 1.0.0 => 1.0.1
+ - ui: 1.0.0 => 1.0.1
+
+lerna info auto-confirmed 
+lerna info execute Skipping releases
+lerna info git Pushing tags...
+lerna success version finished

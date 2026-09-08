@@ -1,0 +1,648 @@
+note: Running TeX ...
+(icsa-draft.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+
+LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 503.
+
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+-- This is a 10 point document.
+
+LaTeX Font Warning: Font shape `TU/ptm/bx/n' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
+
+
+LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
+
+
+LaTeX Font Warning: Font shape `TU/ptm/bx/it' undefined
+(Font)              using `TU/ptm/bx/n' instead on input line 1090.
+
+) (fontenc.sty (t1ptm.fd)) (amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (amsthm.sty) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty
+) (graphics.cfg) (xetex.def))) (url.sty) (hyperref.sty (ltxcmds.sty) (iftex.sty
+) (pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)
+(pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)
+(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def) (bitset.sty
+(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (stringenc.sty)
+(rerunfilecheck.sty (atveryend-ltx.sty) (uniquecounter.sty))) (booktabs.sty)
+(l3backend-xetex.def)
+No file icsa-draft.aux.
+(ts1cmr.fd)
+-- Lines per column: 56 (exact).
+(nameref.sty (refcount.sty) (gettitlestring.sty))
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: No \author given.
+
+
+warning: icsa-draft.tex:35: Underfull \hbox (badness 2012) in paragraph at lines 31--35
+Underfull \hbox (badness 2012) in paragraph at lines 31--35
+[]\T1/ptm/b/it/9 Abstract\T1/ptm/b/n/9 ---Releasing in-ter-de-pen-dent pack-age
+s writes ir-re-
+
+LaTeX Warning: Citation `sagas' on page 1 undefined on input line 77.
+
+
+LaTeX Warning: Citation `nx' on page 1 undefined on input line 81.
+
+
+LaTeX Warning: Citation `changesets' on page 1 undefined on input line 81.
+
+
+LaTeX Warning: Citation `semanticrelease' on page 1 undefined on input line 82.
+
+
+(umsa.fd) (umsb.fd)
+
+LaTeX Warning: Reference `sec:ccme' on page 1 undefined on input line 93.
+
+
+LaTeX Warning: Reference `sec:model' on page 1 undefined on input line 96.
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 1 undefined on input line 96.
+
+
+
+LaTeX Warning: Reference `sec:eval:formal' on page 1 undefined on input line 98
+.
+
+
+LaTeX Warning: Reference `sec:impl' on page 1 undefined on input line 102.
+
+
+LaTeX Warning: Reference `sec:eval' on page 1 undefined on input line 102.
+
+(t1pcr.fd)
+
+LaTeX Warning: Reference `def:adm' on page 1 undefined on input line 129.
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 1 undefined on input line 132
+.
+
+
+LaTeX Warning: Citation `cc' on page 1 undefined on input line 138.
+
+
+warning: icsa-draft.tex:144: Underfull \hbox (badness 5878) in paragraph at lines 138--144
+Underfull \hbox (badness 5878) in paragraph at lines 138--144
+[]\T1/ptm/m/n/10 CCME is a strict su-per-set of Con-ven-tional Com-
+
+warning: icsa-draft.tex:144: Underfull \vbox (badness 1033) has occurred while \output is active
+Underfull \vbox (badness 1033) has occurred while \output is active [1]
+warning: icsa-draft.tex:160: Underfull \hbox (badness 3049) in paragraph at lines 155--160
+Underfull \hbox (badness 3049) in paragraph at lines 155--160
+\T1/ptm/m/n/10 a comma-separated pack-age set, globs with ex-clu-sions
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 5374) in paragraph at lines 180--187
+Underfull \hbox (badness 5374) in paragraph at lines 180--187
+\T1/ptm/m/n/10 reading: \T1/pcr/m/n/10 core \T1/ptm/m/n/10 takes a mi-nor bump 
+and en-ters the
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 7777) in paragraph at lines 180--187
+Underfull \hbox (badness 7777) in paragraph at lines 180--187
+\T1/ptm/m/n/10 beta line, ev-ery tran-si-tive de-pen-dent takes a mi-nor
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 1810) in paragraph at lines 180--187
+Underfull \hbox (badness 1810) in paragraph at lines 180--187
+\T1/ptm/m/n/10 bump and fol-lows it onto \T1/pcr/m/n/10 beta\T1/ptm/m/n/10 . Ch
+an-nel val-ues may
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 1867) in paragraph at lines 180--187
+Underfull \hbox (badness 1867) in paragraph at lines 180--187
+\T1/ptm/m/n/10 be \T1/ptm/m/it/10 tran-si-tions \T1/pcr/m/n/10 <from>><to>\T1/p
+tm/m/n/10 : move only pack-ages cur-
+
+LaTeX Warning: Reference `sec:guarantees' on page 2 undefined on input line 226
+.
+
+
+LaTeX Warning: Citation `birdgit' on page 2 undefined on input line 237.
+
+
+LaTeX Warning: Citation `mrdt' on page 2 undefined on input line 239.
+
+
+LaTeX Warning: Citation `swierstraloh' on page 2 undefined on input line 241.
+
+
+LaTeX Warning: Citation `hpt' on page 2 undefined on input line 241.
+
+
+LaTeX Warning: Citation `mimram' on page 2 undefined on input line 241.
+
+
+LaTeX Warning: Citation `semver' on page 2 undefined on input line 260.
+
+
+LaTeX Warning: Reference `eq:train' on page 2 undefined on input line 303.
+
+[2]
+warning: icsa-draft.tex:418: Underfull \hbox (badness 2512) in paragraph at lines 412--418
+Underfull \hbox (badness 2512) in paragraph at lines 412--418
+\T1/ptm/m/n/10 where $[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 ) 
+= []\OMS/cmsy/m/n/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 ) : 
+\OML/cmm/m/it/10 P \OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\O
+T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 \
+
+LaTeX Warning: Reference `eq:admission' on page 3 undefined on input line 421.
+
+[3]
+
+LaTeX Warning: Reference `tab:train' on page 4 undefined on input line 470.
+
+
+LaTeX Warning: Reference `eq:train' on page 4 undefined on input line 475.
+
+
+LaTeX Warning: Reference `eq:window' on page 4 undefined on input line 506.
+
+
+LaTeX Warning: Reference `prop:tagall' on page 4 undefined on input line 510.
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 4 undefined on input line 574
+.
+
+
+LaTeX Warning: Reference `def:plan' on page 4 undefined on input line 576.
+
+
+LaTeX Warning: Reference `def:run' on page 4 undefined on input line 581.
+
+
+LaTeX Warning: Reference `sec:eval:fresh' on page 4 undefined on input line 582
+.
+
+
+LaTeX Warning: Reference `sec:eval:diff' on page 4 undefined on input line 584.
+
+
+[4]
+
+LaTeX Warning: Reference `eq:fresh' on page 5 undefined on input line 610.
+
+
+LaTeX Warning: Reference `def:chan' on page 5 undefined on input line 635.
+
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 636.
+
+
+
+warning: icsa-draft.tex:661: Underfull \hbox (badness 10000) in paragraph at lines 659--661
+Underfull \hbox (badness 10000) in paragraph at lines 659--661
+[]\T1/ptm/b/it/10 termination. \T1/ptm/m/it/10 prop-a-ga-tion halts af-ter $\OM
+L/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 jUj ^^A
+
+warning: icsa-draft.tex:673: Underfull \hbox (badness 1990) in paragraph at lines 671--673
+Underfull \hbox (badness 1990) in paragraph at lines 671--673
+[]\T1/ptm/b/it/10 no widen-ing. $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 D \OT1/cmr/
+m/n/10 : [][](\OML/cmm/m/it/10 u; D\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g ^^R f\OM
+L/cmm/m/it/10 D \OT1/cmr/m/n/10 :
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 681.
+
+
+
+LaTeX Warning: Reference `eq:admission' on page 5 undefined on input line 689.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 692.
+
+
+LaTeX Warning: Reference `lem:c' on page 5 undefined on input line 698.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 701.
+
+
+LaTeX Warning: Reference `eq:admission' on page 5 undefined on input line 707.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 708.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 718.
+
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 721.
+
+
+[5]
+
+LaTeX Warning: Reference `lem:w' on page 6 undefined on input line 728.
+
+
+LaTeX Warning: Reference `def:run' on page 6 undefined on input line 730.
+
+
+LaTeX Warning: Reference `thm:det' on page 6 undefined on input line 740.
+
+
+LaTeX Warning: Reference `sec:motivation' on page 6 undefined on input line 753
+.
+
+
+LaTeX Warning: Reference `def:run' on page 6 undefined on input line 779.
+
+
+LaTeX Warning: Reference `tab:compare' on page 6 undefined on input line 781.
+
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3240) in paragraph at lines 842--859
+Underfull \hbox (badness 3240) in paragraph at lines 842--859
+\T1/ptm/m/n/10 a Linux CI run-ner can share \T1/pcr/m/n/10 global.yaml \T1/ptm/
+m/n/10 (graph,
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3098) in paragraph at lines 842--859
+Underfull \hbox (badness 3098) in paragraph at lines 842--859
+\T1/ptm/m/n/10 scripts and life-cy-cle). Each plat-form file ref-er-ences it
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 10000) in paragraph at lines 842--859
+Underfull \hbox (badness 10000) in paragraph at lines 842--859
+\T1/ptm/m/n/10 with \T1/pcr/m/n/10 $ref: ./global.yaml\T1/ptm/m/n/10 ; \T1/pcr/
+m/n/10 linux.yaml \T1/ptm/m/n/10 sets
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 10000) in paragraph at lines 842--859
+Underfull \hbox (badness 10000) in paragraph at lines 842--859
+\T1/ptm/m/n/10 sets \T1/pcr/m/n/10 ["powershell.exe", "-NoProfile",
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 2884) in paragraph at lines 842--859
+Underfull \hbox (badness 2884) in paragraph at lines 842--859
+\T1/ptm/m/n/10 re-peated; ref-er-ences are file-relative and re-place whole
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 1735) in paragraph at lines 842--859
+Underfull \hbox (badness 1735) in paragraph at lines 842--859
+\T1/pcr/m/n/10 --then \T1/ptm/m/n/10 and \T1/pcr/m/n/10 --else\T1/ptm/m/n/10 , 
+but 1.8.2 ex-e-cutes those branches
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 1540) in paragraph at lines 842--859
+Underfull \hbox (badness 1540) in paragraph at lines 842--859
+\T1/ptm/m/n/10 wrap-per still needs a POSIX shell. Named scripts can
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 2460) in paragraph at lines 842--859
+Underfull \hbox (badness 2460) in paragraph at lines 842--859
+\T1/ptm/m/n/10 them-selves use \T1/pcr/m/n/10 $ref\T1/ptm/m/n/10 ; \T1/pcr/m/n/
+10 dispat for Debug Release
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3148) in paragraph at lines 842--859
+Underfull \hbox (badness 3148) in paragraph at lines 842--859
+\T1/pcr/m/n/10 --do "dispat exec build-one" \T1/ptm/m/n/10 passes each value
+[6]
+warning: icsa-draft.tex:866: Underfull \hbox (badness 10000) in paragraph at lines 861--866
+Underfull \hbox (badness 10000) in paragraph at lines 861--866
+ \T1/ptm/m/it/10 c) Agent re-lease gates.: [][] \T1/ptm/m/n/10 A lock-free \T1/
+pcr/m/n/10 status
+
+warning: icsa-draft.tex:866: Underfull \hbox (badness 1990) in paragraph at lines 861--866
+Underfull \hbox (badness 1990) in paragraph at lines 861--866
+\T1/pcr/m/n/10 --require-release --strict \T1/ptm/m/n/10 check can pre-cede an
+
+warning: icsa-draft.tex:866: Underfull \hbox (badness 1546) in paragraph at lines 861--866
+Underfull \hbox (badness 1546) in paragraph at lines 861--866
+\T1/ptm/m/n/10 all-package workspace suite with ver-i-fied temporary-link
+
+LaTeX Warning: Citation `ccme2' on page 7 undefined on input line 870.
+
+
+LaTeX Warning: Reference `sec:model:inst' on page 7 undefined on input line 877
+.
+
+
+warning: icsa-draft.tex:899: Underfull \hbox (badness 8019) in paragraph at lines 896--899
+Underfull \hbox (badness 8019) in paragraph at lines 896--899
+[]\T1/ptm/m/n/10 We reran re-leased CCME 2.0.0 against the of-fi-
+[7]
+
+LaTeX Warning: Reference `rem:drift' on page 8 undefined on input line 946.
+
+
+LaTeX Warning: Reference `sec:eval:diff' on page 8 undefined on input line 973.
+
+
+
+LaTeX Warning: Reference `sec:eval:formal' on page 8 undefined on input line 98
+4.
+
+
+LaTeX Warning: Reference `sec:compare' on page 8 undefined on input line 989.
+
+
+LaTeX Warning: Citation `adams' on page 8 undefined on input line 1001.
+
+
+LaTeX Warning: Citation `potvin' on page 8 undefined on input line 1002.
+
+
+LaTeX Warning: Citation `semanticrelease' on page 8 undefined on input line 100
+4.
+
+
+LaTeX Warning: Citation `lerna' on page 8 undefined on input line 1005.
+
+
+LaTeX Warning: Citation `changesets' on page 8 undefined on input line 1006.
+
+
+LaTeX Warning: Citation `nx' on page 8 undefined on input line 1006.
+
+
+LaTeX Warning: Citation `releaseplease' on page 8 undefined on input line 1007.
+
+
+
+LaTeX Warning: Reference `sec:compare' on page 8 undefined on input line 1008.
+
+
+LaTeX Warning: Citation `raemaekers' on page 8 undefined on input line 1012.
+
+
+LaTeX Warning: Citation `bogart' on page 8 undefined on input line 1012.
+
+
+LaTeX Warning: Citation `decan' on page 8 undefined on input line 1013.
+
+
+LaTeX Warning: Citation `swierstraloh' on page 8 undefined on input line 1015.
+
+
+LaTeX Warning: Citation `hpt' on page 8 undefined on input line 1016.
+
+
+LaTeX Warning: Citation `mimram' on page 8 undefined on input line 1017.
+
+
+LaTeX Warning: Citation `birdgit' on page 8 undefined on input line 1019.
+
+
+LaTeX Warning: Citation `mrdt' on page 8 undefined on input line 1020.
+
+
+LaTeX Warning: Citation `edos' on page 8 undefined on input line 1022.
+
+
+LaTeX Warning: Citation `sagas' on page 8 undefined on input line 1024.
+
+
+LaTeX Warning: Citation `gray' on page 8 undefined on input line 1026.
+
+
+LaTeX Warning: Citation `helland07' on page 8 undefined on input line 1028.
+
+
+LaTeX Warning: Citation `helland12' on page 8 undefined on input line 1028.
+
+
+LaTeX Warning: Citation `kahn' on page 8 undefined on input line 1029.
+
+
+LaTeX Warning: Citation `mokhov' on page 8 undefined on input line 1030.
+
+
+LaTeX Warning: Citation `klees' on page 8 undefined on input line 1034.
+
+
+LaTeX Warning: Citation `anvil' on page 8 undefined on input line 1035.
+
+[8]
+
+LaTeX Warning: Citation `lamport' on page 9 undefined on input line 1053.
+
+
+LaTeX Warning: Reference `sec:intro' on page 9 undefined on input line 1058.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 9 undefined on input line 105
+8.
+
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[9] (icsa-draft.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `icsa-draft.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)
+Output written on icsa-draft.xdv (9 pages, 82392 bytes).
+Transcript written on icsa-draft.log.
+note: Rerunning TeX because "icsa-draft.out" changed ...
+(icsa-draft.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (IEEEtran.cls
+Document Class: IEEEtran 2015/08/26 V1.8b by Michael Shell
+-- See the "IEEEtran_HOWTO" manual for usage information.
+-- http://www.michaelshell.org/tex/ieeetran/
+
+LaTeX Font Warning: Font shape `TU/ptm/m/n' undefined
+(Font)              using `TU/lmr/m/n' instead on input line 503.
+
+-- Using 8.5in x 11in (letter) paper.
+-- Using DVI output.
+-- This is a 10 point document.
+
+LaTeX Font Warning: Font shape `TU/ptm/bx/n' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
+
+
+LaTeX Font Warning: Font shape `TU/ptm/m/it' undefined
+(Font)              using `TU/ptm/m/n' instead on input line 1090.
+
+
+LaTeX Font Warning: Font shape `TU/ptm/bx/it' undefined
+(Font)              using `TU/ptm/bx/n' instead on input line 1090.
+
+) (fontenc.sty (t1ptm.fd)) (amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (amssymb.sty
+(amsfonts.sty)) (amsthm.sty) (graphicx.sty (keyval.sty) (graphics.sty (trig.sty
+) (graphics.cfg) (xetex.def))) (url.sty) (hyperref.sty (ltxcmds.sty) (iftex.sty
+) (pdftexcmds.sty (infwarerr.sty)) (kvsetkeys.sty) (kvdefinekeys.sty)
+(pdfescape.sty) (hycolor.sty) (letltxmacro.sty) (auxhook.sty) (kvoptions.sty)
+(pd1enc.def) (intcalc.sty) (etexcmds.sty) (puenc.def) (bitset.sty
+(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (stringenc.sty)
+(rerunfilecheck.sty (atveryend-ltx.sty) (uniquecounter.sty))) (booktabs.sty)
+(l3backend-xetex.def) (icsa-draft.aux) (ts1cmr.fd)
+-- Lines per column: 56 (exact).
+(nameref.sty (refcount.sty) (gettitlestring.sty)) (icsa-draft.out)
+(icsa-draft.out)
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: No \author given.
+
+
+LaTeX Warning: No \author given.
+
+
+warning: icsa-draft.tex:35: Underfull \hbox (badness 2012) in paragraph at lines 31--35
+Underfull \hbox (badness 2012) in paragraph at lines 31--35
+[]\T1/ptm/b/it/9 Abstract\T1/ptm/b/n/9 ---Releasing in-ter-de-pen-dent pack-age
+s writes ir-re-
+(umsa.fd) (umsb.fd) (t1pcr.fd)
+warning: icsa-draft.tex:144: Underfull \hbox (badness 5878) in paragraph at lines 138--144
+Underfull \hbox (badness 5878) in paragraph at lines 138--144
+[]\T1/ptm/m/n/10 CCME is a strict su-per-set of Con-ven-tional Com-
+[1]
+warning: icsa-draft.tex:160: Underfull \hbox (badness 3049) in paragraph at lines 155--160
+Underfull \hbox (badness 3049) in paragraph at lines 155--160
+\T1/ptm/m/n/10 a comma-separated pack-age set, globs with ex-clu-sions
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 5374) in paragraph at lines 180--187
+Underfull \hbox (badness 5374) in paragraph at lines 180--187
+\T1/ptm/m/n/10 reading: \T1/pcr/m/n/10 core \T1/ptm/m/n/10 takes a mi-nor bump 
+and en-ters the
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 7777) in paragraph at lines 180--187
+Underfull \hbox (badness 7777) in paragraph at lines 180--187
+\T1/ptm/m/n/10 beta line, ev-ery tran-si-tive de-pen-dent takes a mi-nor
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 1810) in paragraph at lines 180--187
+Underfull \hbox (badness 1810) in paragraph at lines 180--187
+\T1/ptm/m/n/10 bump and fol-lows it onto \T1/pcr/m/n/10 beta\T1/ptm/m/n/10 . Ch
+an-nel val-ues may
+
+warning: icsa-draft.tex:187: Underfull \hbox (badness 1867) in paragraph at lines 180--187
+Underfull \hbox (badness 1867) in paragraph at lines 180--187
+\T1/ptm/m/n/10 be \T1/ptm/m/it/10 tran-si-tions \T1/pcr/m/n/10 <from>><to>\T1/p
+tm/m/n/10 : move only pack-ages cur-
+[2]
+warning: icsa-draft.tex:418: Underfull \hbox (badness 2512) in paragraph at lines 412--418
+Underfull \hbox (badness 2512) in paragraph at lines 412--418
+\T1/ptm/m/n/10 where $[][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 P\OT1/cmr/m/n/10 ) 
+= []\OMS/cmsy/m/n/10 f[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\OT1/cmr/m/n/10 ) : 
+\OML/cmm/m/it/10 P \OMS/cmsy/m/n/10 2 [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 u\O
+T1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 \
+[3] [4]
+warning: icsa-draft.tex:661: Underfull \hbox (badness 10000) in paragraph at lines 659--661
+Underfull \hbox (badness 10000) in paragraph at lines 659--661
+[]\T1/ptm/b/it/10 termination. \T1/ptm/m/it/10 prop-a-ga-tion halts af-ter $\OM
+L/cmm/m/it/10 O\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 jUj ^^A
+
+warning: icsa-draft.tex:673: Underfull \hbox (badness 1990) in paragraph at lines 671--673
+Underfull \hbox (badness 1990) in paragraph at lines 671--673
+[]\T1/ptm/b/it/10 no widen-ing. $\OMS/cmsy/m/n/10 f\OML/cmm/m/it/10 D \OT1/cmr/
+m/n/10 : [][](\OML/cmm/m/it/10 u; D\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 g ^^R f\OM
+L/cmm/m/it/10 D \OT1/cmr/m/n/10 :
+[5]
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3240) in paragraph at lines 842--859
+Underfull \hbox (badness 3240) in paragraph at lines 842--859
+\T1/ptm/m/n/10 a Linux CI run-ner can share \T1/pcr/m/n/10 global.yaml \T1/ptm/
+m/n/10 (graph,
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3098) in paragraph at lines 842--859
+Underfull \hbox (badness 3098) in paragraph at lines 842--859
+\T1/ptm/m/n/10 scripts and life-cy-cle). Each plat-form file ref-er-ences it
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 10000) in paragraph at lines 842--859
+Underfull \hbox (badness 10000) in paragraph at lines 842--859
+\T1/ptm/m/n/10 with \T1/pcr/m/n/10 $ref: ./global.yaml\T1/ptm/m/n/10 ; \T1/pcr/
+m/n/10 linux.yaml \T1/ptm/m/n/10 sets
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 10000) in paragraph at lines 842--859
+Underfull \hbox (badness 10000) in paragraph at lines 842--859
+\T1/ptm/m/n/10 sets \T1/pcr/m/n/10 ["powershell.exe", "-NoProfile",
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 2884) in paragraph at lines 842--859
+Underfull \hbox (badness 2884) in paragraph at lines 842--859
+\T1/ptm/m/n/10 re-peated; ref-er-ences are file-relative and re-place whole
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 1735) in paragraph at lines 842--859
+Underfull \hbox (badness 1735) in paragraph at lines 842--859
+\T1/pcr/m/n/10 --then \T1/ptm/m/n/10 and \T1/pcr/m/n/10 --else\T1/ptm/m/n/10 , 
+but 1.8.2 ex-e-cutes those branches
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 1540) in paragraph at lines 842--859
+Underfull \hbox (badness 1540) in paragraph at lines 842--859
+\T1/ptm/m/n/10 wrap-per still needs a POSIX shell. Named scripts can
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 2460) in paragraph at lines 842--859
+Underfull \hbox (badness 2460) in paragraph at lines 842--859
+\T1/ptm/m/n/10 them-selves use \T1/pcr/m/n/10 $ref\T1/ptm/m/n/10 ; \T1/pcr/m/n/
+10 dispat for Debug Release
+
+warning: icsa-draft.tex:859: Underfull \hbox (badness 3148) in paragraph at lines 842--859
+Underfull \hbox (badness 3148) in paragraph at lines 842--859
+\T1/pcr/m/n/10 --do "dispat exec build-one" \T1/ptm/m/n/10 passes each value
+[6]
+warning: icsa-draft.tex:866: Underfull \hbox (badness 10000) in paragraph at lines 861--866
+Underfull \hbox (badness 10000) in paragraph at lines 861--866
+ \T1/ptm/m/it/10 c) Agent re-lease gates.: [][] \T1/ptm/m/n/10 A lock-free \T1/
+pcr/m/n/10 status
+
+warning: icsa-draft.tex:866: Underfull \hbox (badness 1990) in paragraph at lines 861--866
+Underfull \hbox (badness 1990) in paragraph at lines 861--866
+\T1/pcr/m/n/10 --require-release --strict \T1/ptm/m/n/10 check can pre-cede an
+
+warning: icsa-draft.tex:866: Underfull \hbox (badness 1546) in paragraph at lines 861--866
+Underfull \hbox (badness 1546) in paragraph at lines 861--866
+\T1/ptm/m/n/10 all-package workspace suite with ver-i-fied temporary-link
+
+warning: icsa-draft.tex:899: Underfull \hbox (badness 8019) in paragraph at lines 896--899
+Underfull \hbox (badness 8019) in paragraph at lines 896--899
+[]\T1/ptm/m/n/10 We reran re-leased CCME 2.0.0 against the of-fi-
+[7] [8]
+
+** Conference Paper **
+Before submitting the final camera ready copy, remember to:
+
+ 1. Manually equalize the lengths of two columns on the last page
+ of your paper;
+
+ 2. Ensure that any PostScript and/or PDF output post-processing
+ uses only Type 1 fonts and that every step in the generation
+ process uses the appropriate paper size.
+
+[9] (icsa-draft.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)
+Output written on icsa-draft.xdv (9 pages, 94012 bytes).
+Transcript written on icsa-draft.log.
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+[1][2][3][4][5][6][7][8][9]126663 bytes written
+note: Writing `output/conference-submission-2026-09-09/icsa-draft.pdf` (123.6943359375 KiB)
+note: Writing `output/conference-submission-2026-09-09/icsa-draft.log` (17.0634765625 KiB)
+note: Skipped writing 2 intermediate files (use --keep-intermediates to keep them)

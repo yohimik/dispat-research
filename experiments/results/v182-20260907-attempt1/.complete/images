@@ -1,0 +1,7 @@
+version=1.8.2
+tag=services/dispat/v1.8.2
+commit=a7011cbcb9e88e52e7336f6fc8f1b207a8e7a311
+image=yohimik/dispat-alpine@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+harness=62bc0eef5775622b82d86ff4733f1d2a1bef65aa77923c4f706873b6b386f1ec
+gcn=54e244b4980e362ac9194d29c299b949ff778fda
+cc=340ad83ee93939fc4a8c8f2da1bf728111299941

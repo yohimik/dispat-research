@@ -1,0 +1,56 @@
+{
+ "api": {
+  "bump": "patch",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [
+   "core"
+  ],
+  "next": "1.0.1",
+  "reason": "propagated from core"
+ },
+ "cli": {
+  "bump": "patch",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [
+   "core"
+  ],
+  "next": "1.0.1",
+  "reason": "propagated from core"
+ },
+ "core": {
+  "bump": "minor",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.1.0",
+  "reason": "direct"
+ },
+ "docs": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.0",
+  "reason": ""
+ },
+ "theme": {
+  "bump": "none",
+  "changed": false,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.0.0",
+  "reason": ""
+ },
+ "ui": {
+  "bump": "patch",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [
+   "core"
+  ],
+  "next": "1.0.1",
+  "reason": "propagated from core"
+ }
+}

@@ -1,0 +1,70 @@
+% Preamble: packages, theorem environments, and page furniture.
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+\usepackage[a4paper,margin=27mm]{geometry}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{verbatim}
+\usepackage{xcolor}
+\usepackage{fancyvrb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+
+% Identifiers and paths set in \texttt are the only things in this document
+% long enough to overflow a line; htt lets TeX hyphenate them, and the
+% emergency stretch absorbs what is left.
+\usepackage[htt]{hyphenat}
+\setlength{\emergencystretch}{2.5em}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalise,noabbrev]{cleveref}
+
+% One shared counter for every numbered result, so a reference to "Theorem 12"
+% can never collide with "Lemma 12" and the reader can find any of them by
+% counting forwards.
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{obligation}[theorem]{Proof obligation}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\crefname{obligation}{proof obligation}{proof obligations}
+\Crefname{obligation}{Proof obligation}{Proof obligations}
+
+% Pseudocode transcribed from the specification. Kept verbatim rather than
+% reset in a pretty algorithm environment: the whole point is that the reader
+% can diff it against SPEC.md by eye.
+\DefineVerbatimEnvironment{speccode}{Verbatim}%
+  {fontsize=\small,frame=leftline,framerule=0.6pt,%
+   xleftmargin=10pt,framesep=8pt}
+
+% Table columns hold package names, test identifiers and other unbreakable
+% strings; ragged right is the only setting under which they do not overflow.
+\newcolumntype{L}[1]{>{\RaggedRight\arraybackslash}p{#1}}
+
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+\setlength{\parskip}{0.4em}
+\setlength{\parindent}{0pt}
+
+\hypersetup{
+  pdftitle={The CCME release guarantees: a formal model and proofs},
+  pdfsubject={Formal properties of the Conventional Commits Monorepo Extension release algorithm},
+  pdfkeywords={release engineering, monorepo, semantic versioning, convergence, distributed transactions}
+}

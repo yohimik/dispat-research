@@ -1,0 +1,332 @@
+[
+ {
+  "n": 13,
+  "p_fail": 0.1,
+  "seed": 0,
+  "runs": 1,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 13,
+    "published": 13,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 11,
+  "p_fail": 0.1,
+  "seed": 1,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 11,
+    "published": 9,
+    "failed": 2,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 2,
+    "published": 2,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 7,
+  "p_fail": 0.1,
+  "seed": 2,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 7,
+    "published": 5,
+    "failed": 2,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 2,
+    "published": 2,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 13,
+  "p_fail": 0.3,
+  "seed": 0,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 13,
+    "published": 11,
+    "failed": 2,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 2,
+    "published": 2,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 11,
+  "p_fail": 0.3,
+  "seed": 1,
+  "runs": 3,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 11,
+    "published": 6,
+    "failed": 4,
+    "blocked": 1
+   },
+   {
+    "run": 2,
+    "planned": 5,
+    "published": 4,
+    "failed": 1,
+    "blocked": 0
+   },
+   {
+    "run": 3,
+    "planned": 1,
+    "published": 1,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 7,
+  "p_fail": 0.3,
+  "seed": 2,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 7,
+    "published": 5,
+    "failed": 2,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 2,
+    "published": 2,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 44,
+  "p_fail": 0.1,
+  "seed": 0,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 44,
+    "published": 37,
+    "failed": 1,
+    "blocked": 6
+   },
+   {
+    "run": 2,
+    "planned": 7,
+    "published": 7,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 45,
+  "p_fail": 0.1,
+  "seed": 1,
+  "runs": 2,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 45,
+    "published": 38,
+    "failed": 6,
+    "blocked": 1
+   },
+   {
+    "run": 2,
+    "planned": 7,
+    "published": 7,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 21,
+  "p_fail": 0.1,
+  "seed": 2,
+  "runs": 3,
+  "converged": true,
+  "g_ok": false,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 21,
+    "published": 18,
+    "failed": 3,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 3,
+    "published": 3,
+    "failed": 1,
+    "blocked": 0
+   },
+   {
+    "run": 3,
+    "planned": 1,
+    "published": 1,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 44,
+  "p_fail": 0.3,
+  "seed": 0,
+  "runs": 3,
+  "converged": true,
+  "g_ok": false,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 44,
+    "published": 31,
+    "failed": 7,
+    "blocked": 6
+   },
+   {
+    "run": 2,
+    "planned": 13,
+    "published": 11,
+    "failed": 4,
+    "blocked": 0
+   },
+   {
+    "run": 3,
+    "planned": 4,
+    "published": 4,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 45,
+  "p_fail": 0.3,
+  "seed": 1,
+  "runs": 5,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 45,
+    "published": 20,
+    "failed": 15,
+    "blocked": 10
+   },
+   {
+    "run": 2,
+    "planned": 25,
+    "published": 20,
+    "failed": 3,
+    "blocked": 2
+   },
+   {
+    "run": 3,
+    "planned": 5,
+    "published": 2,
+    "failed": 2,
+    "blocked": 1
+   },
+   {
+    "run": 4,
+    "planned": 3,
+    "published": 2,
+    "failed": 1,
+    "blocked": 0
+   },
+   {
+    "run": 5,
+    "planned": 1,
+    "published": 1,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ },
+ {
+  "n": 21,
+  "p_fail": 0.3,
+  "seed": 2,
+  "runs": 3,
+  "converged": true,
+  "g_ok": true,
+  "trace": [
+   {
+    "run": 1,
+    "planned": 21,
+    "published": 16,
+    "failed": 5,
+    "blocked": 0
+   },
+   {
+    "run": 2,
+    "planned": 5,
+    "published": 4,
+    "failed": 1,
+    "blocked": 0
+   },
+   {
+    "run": 3,
+    "planned": 1,
+    "published": 1,
+    "failed": 0,
+    "blocked": 0
+   }
+  ]
+ }
+]

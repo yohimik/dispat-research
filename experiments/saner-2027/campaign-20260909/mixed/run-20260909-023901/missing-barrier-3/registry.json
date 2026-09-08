@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chain5d2676fc2b/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 1,
+    "body": "wget: server returned error: HTTP/1.1 404 Not Found\n"
+  },
+  "assets": {
+    "name": "chain5d2676fc2b-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chain5d2676fc2b-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "1b3a9c02fc35ab0713a79b1d94a47dd86137bf08",
+        "_id": "chain5d2676fc2b-assets@1.5.0",
+        "_nodeVersion": "24.18.0",
+        "_npmVersion": "12.0.1",
+        "dist": {
+          "integrity": "sha512-gUaaWxa0wTzJciS7Im7XrZLWWbeOR2w+Tr+Icj5qJ1w1OWSHi3Bfnq6MlNwNkX9G6vDWwiImnGAOz7LZ6MSkxw==",
+          "shasum": "79922aff931ff5d0240677553b3344942d1c0fb8",
+          "tarball": "http://127.0.0.1:50558/chain5d2676fc2b-assets/-/chain5d2676fc2b-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:42:15.380Z",
+      "created": "2026-09-08T22:42:15.380Z",
+      "1.5.0": "2026-09-08T22:42:15.380Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-3437fdae52a349e1",
+    "_id": "chain5d2676fc2b-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

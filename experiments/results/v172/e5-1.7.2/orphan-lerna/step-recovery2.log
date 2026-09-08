@@ -1,0 +1,33 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+
+Found 1 package to publish:
+ - cli => 1.0.1
+
+lerna info auto-confirmed 
+lerna info publish Publishing packages to npm...
+lerna notice Skipping all user and access validation due to third-party registry
+lerna notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+lerna WARN ENOLICENSE Package cli is missing a license.
+lerna WARN ENOLICENSE One way to fix this is to add a LICENSE.md file to the root of this repository.
+lerna WARN ENOLICENSE See https://choosealicense.com for additional guidance.
+lerna success published cli 1.0.1
+lerna notice 
+lerna notice package: cli@1.0.1
+lerna notice === Tarball Contents === 
+lerna notice 6B   index.js    
+lerna notice 138B package.json
+lerna notice 289B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          cli                                     
+lerna notice version:       1.0.1                                   
+lerna notice filename:      cli-1.0.1.tgz                           
+lerna notice package size:  472 B                                   
+lerna notice unpacked size: 433 B                                   
+lerna notice shasum:        890e5cd4c25868bce0c42bf4c52bd13d9cef3ace
+lerna notice integrity:     sha512-eUfkC5HrNr/vE[...]mZLHUO+p+Lufg==
+lerna notice total files:   3                                       
+lerna notice 
+Successfully published:
+ - cli@1.0.1
+lerna success published 1 package

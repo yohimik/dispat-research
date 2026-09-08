@@ -1,0 +1,469 @@
+Published image binary matches official linux-arm64 release asset sha256:78b0b37b4b74ed393f366ff4d36a98aa69a48fa781cc6a704ad17a0160107a68
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/python:3.12-alpine
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/alpine:3
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [runtime 1/5] FROM docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31
+#6 resolve docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31 0.0s done
+#6 DONE 0.0s
+
+#7 [relimg 1/2] FROM docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+#7 resolve docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b 0.0s done
+#7 DONE 0.0s
+
+#8 [official 1/1] FROM docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#8 resolve docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd 0.0s done
+#8 DONE 0.0s
+
+#9 [runtime 4/5] RUN git config --global user.email exp@dispat.dev &&     git config --global user.name exp &&     git config --global init.defaultBranch main
+#9 CACHED
+
+#10 [relimg 2/2] COPY --from=official /usr/local/bin/dispat /out/dispat
+#10 CACHED
+
+#11 [runtime 3/5] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#11 CACHED
+
+#12 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#12 CACHED
+
+#13 [runtime 5/5] WORKDIR /work
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:ec996af26fd17a63e3383e801918974399ba963ce1bea05889872bff49c71629 done
+#14 exporting config sha256:a1dd15bd35f542950663ed400076171bc879cbe5fad380e5f8640e8083d6deaf done
+#14 exporting attestation manifest sha256:7470a42e834076ff0ece30a446b13ab2188a72a0abdbad10e454cda8256b6d4c
+#14 exporting attestation manifest sha256:7470a42e834076ff0ece30a446b13ab2188a72a0abdbad10e454cda8256b6d4c 0.0s done
+#14 exporting manifest list sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75 done
+#14 naming to docker.io/library/dispat-exp:v182-runtime done
+#14 unpacking to docker.io/library/dispat-exp:v182-runtime done
+#14 DONE 0.1s
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/node:22-slim
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/alpine:3
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [node 1/6] FROM docker.io/library/node:22-slim@sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5
+#6 resolve docker.io/library/node:22-slim@sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5 0.0s done
+#6 DONE 0.0s
+
+#7 [official 1/1] FROM docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#7 resolve docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd 0.0s done
+#7 DONE 0.0s
+
+#8 [relimg 1/2] FROM docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+#8 resolve docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b 0.0s done
+#8 DONE 0.0s
+
+#9 [node 2/6] RUN apt-get update && apt-get install -y --no-install-recommends git python3 ca-certificates && rm -rf /var/lib/apt/lists/*
+#9 CACHED
+
+#10 [node 5/6] RUN mkdir -p /opt/tools && cd /opt/tools && npm init -y >/dev/null &&     npm i --no-audit --no-fund lerna@10.0.1 nx@23.1.2 @nx/js@23.1.2 turbo@2.10.12 @changesets/cli@3.0.1 &&     npm cache clean --force >/dev/null 2>&1
+#10 CACHED
+
+#11 [relimg 2/2] COPY --from=official /usr/local/bin/dispat /out/dispat
+#11 CACHED
+
+#12 [node 4/6] RUN git config --global user.email exp@dispat.dev && git config --global user.name exp && git config --global init.defaultBranch main
+#12 CACHED
+
+#13 [node 3/6] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#13 CACHED
+
+#14 [node 6/6] WORKDIR /work
+#14 CACHED
+
+#15 exporting to image
+#15 exporting layers done
+#15 exporting manifest sha256:1b32736a2e6a8f27a27431312b9a21f1e32fd96f633ade8f95e6642e163f3e47 done
+#15 exporting config sha256:83dd139f64559115a6b7d56822e8cde9741e6296802fb218d937036d6424150a done
+#15 exporting attestation manifest sha256:92711b2d4810b8557b49d864b361940456c166775ce7340d0cb26d10b58c1a6b 0.0s done
+#15 exporting manifest list sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d
+#15 exporting manifest list sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d done
+#15 naming to docker.io/library/dispat-exp:v182-node done
+#15 unpacking to docker.io/library/dispat-exp:v182-node done
+#15 DONE 0.1s
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.87kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 0.7s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
+#3 resolve docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32 done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/node:22-slim
+#5 DONE 0.7s
+
+#6 [internal] load .dockerignore
+#6 transferring context: 2B done
+#6 DONE 0.0s
+
+#7 [official 1/1] FROM docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#7 resolve docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd done
+#7 DONE 0.0s
+
+#8 [runtime  1/12] FROM docker.io/library/node:22-slim@sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5
+#8 resolve docker.io/library/node:22-slim@sha256:83f487e0a63425e5b4d146fb5e5be574bcbe1b7b843d3ebafdd95eaf7767a7e5 done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 723B done
+#9 DONE 0.0s
+
+#10 [runtime  6/12] RUN git config --global user.email experiments@dispat.dev  && git config --global user.name experiments  && git config --global init.defaultBranch main  && git config --global advice.detachedHead false
+#10 CACHED
+
+#11 [runtime  7/12] COPY lib /exp/lib
+#11 CACHED
+
+#12 [runtime  8/12] COPY orphan /exp/orphan
+#12 CACHED
+
+#13 [runtime 10/12] COPY run.sh /exp/run.sh
+#13 CACHED
+
+#14 [runtime  9/12] COPY midrelease /exp/midrelease
+#14 CACHED
+
+#15 [runtime  3/12] COPY tools/package.json tools/package-lock.json /opt/tools/
+#15 CACHED
+
+#16 [runtime  4/12] RUN cd /opt/tools && npm ci --no-audit --no-fund  && npm cache clean --force >/dev/null 2>&1
+#16 CACHED
+
+#17 [runtime  5/12] COPY --from=official /usr/local/bin/dispat /usr/local/bin/dispat
+#17 CACHED
+
+#18 [runtime  2/12] RUN apt-get update  && apt-get install -y --no-install-recommends git python3 ca-certificates curl jq  && rm -rf /var/lib/apt/lists/*
+#18 CACHED
+
+#19 [runtime 11/12] RUN chmod +x /exp/run.sh /exp/lib/git-shim
+#19 CACHED
+
+#20 [runtime 12/12] WORKDIR /work
+#20 CACHED
+
+#21 exporting to image
+#21 exporting layers done
+#21 exporting manifest sha256:38ddcc6a5f6af2c4d3bbacfaed70d55f0a2a26687ca228cf31421ada10733d12 done
+#21 exporting config sha256:d4e921e8bb2728784b3e9cbbf753462ceb710991ad12d1eb3d3ba5b649958cc5 done
+#21 exporting attestation manifest sha256:126f1c57b90aad22dbd8f36d98f1d56bbd7e03874bd2e3ba6f0a856055110db2 done
+#21 exporting manifest list sha256:6748c967a6257d2d3a1784dc2c6a51a5e43885833e536f499c0be4b0793f5fe5 done
+#21 naming to docker.io/library/dispat-experiments:v182 done
+#21 unpacking to docker.io/library/dispat-experiments:v182 done
+#21 DONE 0.0s
+{"profile": "core", "instances": 1000, "clean": 1000, "invalid": 0, "rejected": 0, "divergence_classes": {}, "dispat": "dispat 1.8.2 (linux_arm64)"}
+{"profile": "core", "instances": 500, "clean": 500, "invalid": 0, "rejected": 0, "divergence_classes": {}, "dispat": "dispat 1.8.2 (linux_arm64)"}
+{"profile": "full", "instances": 1000, "clean": 356, "invalid": 0, "rejected": 343, "divergence_classes": {"PG2": 240, "PG3?": 442, "PG1": 572, "PG2x": 9}, "dispat": "dispat 1.8.2 (linux_arm64)"}
+{"profile": "full", "instances": 500, "clean": 194, "invalid": 0, "rejected": 160, "divergence_classes": {"PG1": 290, "PG2": 135, "PG3?": 221, "PG2x": 5}, "dispat": "dispat 1.8.2 (linux_arm64)"}
+{"spec": "CCME 2.0.0", "vectors": "133-138", "passed": 6, "total": 6, "results": [{"vector": 133, "pass": true, "failures": []}, {"vector": 134, "pass": true, "failures": []}, {"vector": 135, "pass": true, "failures": []}, {"vector": 136, "pass": true, "failures": []}, {"vector": 137, "pass": true, "failures": []}, {"vector": 138, "pass": true, "failures": []}], "dispat": "dispat 1.8.2 (linux_arm64)"}
+== dispat: fixture
+fixture ready: /work/dispat dispat
+== dispat: baseline publish (all six at 1.0.0)
+== dispat: release run 1 with cli DENIED
+exit=1
+CLI TAGS after failed run (must be empty beyond 1.0.0):
+cli@1.0.0
+REGISTRY cli: 1.0.0  core: 1.1.0
+== dispat: release run 2, deny cleared
+exit=0
+CLI TAGS now:
+cli@1.0.0
+cli@1.0.1
+REGISTRY cli now: 1.0.1
+== dispat: run 3 must be empty
+releasing: []
+== done
+== dispat: fixture
+fixture ready: /work/dispat dispat
+== dispat: baseline publish (all six at 1.0.0)
+== dispat: release run 1 with cli DENIED
+exit=1
+CLI TAGS after failed run (must be empty beyond 1.0.0):
+cli@1.0.0
+REGISTRY cli: 1.0.0  core: 1.1.0
+== dispat: release run 2, deny cleared
+exit=0
+CLI TAGS now:
+cli@1.0.0
+cli@1.0.1
+REGISTRY cli now: 1.0.1
+== dispat: run 3 must be empty
+releasing: []
+== done
+{"sha": "c9314c28e695572242b186e6e94eed9db1e4f533", "released": 1, "planned": 9, "exact": 1, "missing": [], "extra_n": 8, "verdiff": {}}
+{"sha": "fc7a7268df279aae357583e9bd0aa067ea55c49c", "released": 22, "planned": 27, "exact": 17, "missing": ["mapmanagement"], "extra_n": 6, "verdiff": {"bigquery-storage-api": ["0.4.0", "1.0.0"], "bigtable-api": ["0.4.0", "1.0.0"], "ftp": ["0.1.0", "0.0.1"], "workloadidentity": ["0.1.0", "0.0.1"]}}
+{"sha": "9af22f9491e4c74e0c407183c01a50d51912ee21", "released": 11, "planned": 19, "exact": 11, "missing": [], "extra_n": 8, "verdiff": {}}
+{"sha": "f5ab60921411bd347bae8326e67866678696d839", "released": 7, "planned": 14, "exact": 6, "missing": [], "extra_n": 7, "verdiff": {"firestore-api": ["0.5.0", "1.0.0"]}}
+{"sha": "5e35298c65b1cc45938c464ca04fe7c5d2552d2d", "released": 1, "planned": 8, "exact": 1, "missing": [], "extra_n": 7, "verdiff": {}}
+{"sha": "cc567b98facf71315f4b1620d81ce01d155efaca", "released": 20, "planned": 2, "exact": 2, "missing": ["conventional-changelog", "conventional-changelog-angular", "conventional-changelog-atom", "conventional-changelog-cli", "conventional-changelog-codemirror", "conventional-changelog-conventionalcommits", "conventional-changelog-core", "conventional-changelog-ember"], "extra_n": 0, "verdiff": {
+{"sha": "be1246c68f5dc4e6f28996129951a75bbf1cf307", "released": 8, "planned": 3, "exact": 3, "missing": ["conventional-changelog", "conventional-changelog-conventionalcommits", "conventional-recommended-bump", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "3dedddc397e7cbcf5a2ff971ca933992b9e4d11f", "released": 9, "planned": 1, "exact": 1, "missing": ["conventional-changelog", "conventional-changelog-angular", "conventional-changelog-cli", "conventional-changelog-core", "conventional-changelog-jshint", "conventional-changelog-writer", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "c5ae3ab67c59e04f79eb19d317c92800df618435", "released": 6, "planned": 0, "exact": 0, "missing": ["conventional-changelog", "conventional-changelog-cli", "conventional-changelog-core", "conventional-changelog-writer", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "83643c5a0d2c4d7c9ba14cbf990ffbc577a51e8c", "released": 21, "planned": 21, "exact": 1, "missing": [], "extra_n": 0, "verdiff": {"conventional-changelog-angular": ["5.0.10", "6.0.0"], "conventional-changelog-atom": ["2.0.7", "3.0.0"], "conventional-changelog-cli": ["2.0.33", "3.0.0"], "conventional-changelog-codemirror": ["2.0.7", "3.0.0"], "conventional-changelog-conventionalcommits": ["4.
+n=13 p=0.1 seed=0 runs=1 converged=True g_ok=True
+n=11 p=0.1 seed=1 runs=3 converged=True g_ok=True
+n=7 p=0.1 seed=2 runs=2 converged=True g_ok=True
+n=13 p=0.3 seed=0 runs=2 converged=True g_ok=True
+n=11 p=0.3 seed=1 runs=4 converged=True g_ok=True
+n=7 p=0.3 seed=2 runs=2 converged=True g_ok=True
+n=44 p=0.1 seed=0 runs=2 converged=True g_ok=True
+n=45 p=0.1 seed=1 runs=2 converged=True g_ok=True
+n=21 p=0.1 seed=2 runs=3 converged=True g_ok=True
+n=44 p=0.3 seed=0 runs=4 converged=True g_ok=True
+n=45 p=0.3 seed=1 runs=3 converged=True g_ok=True
+n=21 p=0.3 seed=2 runs=3 converged=True g_ok=True
+n=13 p=0.1 seed=0 runs=1 converged=True g_ok=True
+n=11 p=0.1 seed=1 runs=3 converged=True g_ok=True
+n=7 p=0.1 seed=2 runs=2 converged=True g_ok=True
+n=13 p=0.3 seed=0 runs=2 converged=True g_ok=True
+n=11 p=0.3 seed=1 runs=3 converged=True g_ok=True
+n=7 p=0.3 seed=2 runs=2 converged=True g_ok=True
+n=44 p=0.1 seed=0 runs=2 converged=True g_ok=True
+n=45 p=0.1 seed=1 runs=3 converged=True g_ok=True
+n=21 p=0.1 seed=2 runs=3 converged=True g_ok=True
+n=44 p=0.3 seed=0 runs=4 converged=True g_ok=True
+n=45 p=0.3 seed=1 runs=4 converged=True g_ok=True
+n=21 p=0.3 seed=2 runs=3 converged=True g_ok=True
+experiment=orphan tool=dispat scenario=none
+dispat 1.8.2 (linux_arm64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/dispat dispat
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core)^: streaming reader local 0 ahead 0 behind
+
+== release1: dispat release --log-format json
+exit=1
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-06T23:26:53Z","message":"publish started"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-06T23:26:53Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-06T23:26:53Z","message":"published, tag deferred to the release commit"}
+   | {"level":"error","package":"cli","stage":"publish","version":"1.0.1","error":"exit status 1","time":"2026-09-06T23:28:03Z","message":"publish script failed"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-06T23:28:03Z","message":"reverted local changes in package folder"}
+   | {"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, ui@1.0.1","time":"2026-09-06T23:28:03Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["core@1.1.0","api@1.0.1","ui@1.0.1"],"time":"2026-09-06T23:28:03Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":184.693625,"time":"2026-09-06T23:28:03Z","message":"summary"}
+   | {"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":498.818542,"time":"2026-09-06T23:28:03Z","message":"summary"}
+   | {"level":"error","error":"publish: exit status 1","failedStage":"publish","package":"cli","status":"failed","version":"1.0.0 -> 1.0.1","channel":"stable","took":70446.882699,"time":"2026-09-06T23:28:03Z","message":"summary"}
+   | {"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":498.193459,"time":"2026-09-06T23:28:03Z","message":"summary"}
+   | {"level":"info","published":3,"failed":1,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":70481.023699,"time":"2026-09-06T23:28:03Z","message":"done"}
+   codes reported: 
+   after-refusal: api=1.0.1/consistent cli=1.0.0/baseline core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): core@1.1.0, api@1.0.1, ui@1.0.1 local 0 ahead 0 behind
+   cli publish log: npm error 502 Bad Gateway - PUT http://127.0.0.1:4873/cli - injected fault npm error A complete log of this run can be found in: /root/.npm/_logs/2026-09-06T23_26_53_039Z-debug-0.log 
+
+== release2: dispat release --log-format json
+exit=0
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T23:28:03Z","message":"release plan ready"}
+   | {"level":"warn","package":"cli","stage":"version","version":"1.0.1","code":"W197","manifest":"package.json","provider":"core","range":"~1.0.0 -> ^1.1.0","time":"2026-09-06T23:28:03Z","message":"range caught up to a provider released outside this run"}
+   | {"level":"info","package":"cli","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-06T23:28:03Z","message":"manifest reconciled"}
+   | {"level":"info","package":"cli","stage":"version","version":"1.0.1","time":"2026-09-06T23:28:03Z","message":"version succeeded"}
+   | {"level":"info","package":"cli","stage":"build","version":"1.0.1","time":"2026-09-06T23:28:03Z","message":"build succeeded"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-06T23:28:03Z","message":"publish started"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-06T23:28:03Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): cli@1.0.1","time":"2026-09-06T23:28:03Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["cli@1.0.1"],"time":"2026-09-06T23:28:03Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":178.142667,"time":"2026-09-06T23:28:03Z","message":"summary"}
+   | {"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":194.899708,"time":"2026-09-06T23:28:03Z","message":"done"}
+   after-recovery: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): cli@1.0.1 local 0 ahead 0 behind
+
+== status: dispat status --log-format json
+exit=0
+   | {"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:03Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":0,"held":0,"time":"2026-09-06T23:28:03Z","message":"release plan ready"}
+   next plan: 
+   ok    the refused run exited non-zero
+   ok    the refused package is neither tagged nor on the registry after the refusal
+   ok    the packages that published are consistent after the refusal
+   ok    the failed package rollback left the worktree clean
+   ok    the recovery run exited 0
+   ok    the recovery published the refused package and tagged it
+   ok    the recovery republished nothing
+   ok    the next plan is empty
+VERDICT: all expectations hold
+experiment=midrelease tool=dispat scenario=clean
+dispat 1.8.2 (linux_arm64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/dispat dispat
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core)^: streaming reader local 0 ahead 0 behind
+
+== release: with_shim dispat release --log-format json
+exit=0
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-06T23:28:07Z","message":"publish started"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-06T23:28:07Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-06T23:28:07Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-06T23:28:07Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1","time":"2026-09-06T23:28:07Z","message":"created release commit"}
+   | {"level":"warn","code":"W242","remote":"origin","branch":"main","attempt":1,"time":"2026-09-06T23:28:07Z","message":"pulled the branch during the release to sync changes that landed while it ran; the release tags point at the tree that was planned and the release commit was merged on top"}
+   | {"level":"info","remote":"origin","tags":["core@1.1.0","api@1.0.1","cli@1.0.1","ui@1.0.1"],"time":"2026-09-06T23:28:07Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":181.103667,"time":"2026-09-06T23:28:07Z","message":"summary"}
+   | {"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":540.366876,"time":"2026-09-06T23:28:07Z","message":"summary"}
+   | {"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":541.207334,"time":"2026-09-06T23:28:07Z","message":"summary"}
+   | {"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":540.96775,"time":"2026-09-06T23:28:07Z","message":"summary"}
+   | {"level":"info","published":4,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":812.607709,"time":"2026-09-06T23:28:07Z","message":"done"}
+   codes reported:  1 W242 
+   after: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): merge origin/main into the release commit local 0 ahead 0 behind colleague on main release on main
+   release lock on origin: 0  local: 0
+   branches on origin: main 
+
+== status: dispat status --log-format json
+exit=0
+   | {"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","package":"api","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.1 -> 1.0.2","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:28:07Z","message":"● changed"}
+   | {"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T23:28:07Z","message":"release plan ready"}
+   next plan: api 1.0.1 -> 1.0.2 (direct);
+
+== rerun: dispat release --log-format json
+exit=0
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:07Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T23:28:07Z","message":"release plan ready"}
+   | {"level":"info","package":"api","stage":"version","version":"1.0.2","manifest":"package.json","ranges":0,"versionWritten":true,"time":"2026-09-06T23:28:07Z","message":"manifest reconciled"}
+   | {"level":"info","package":"api","stage":"version","version":"1.0.2","time":"2026-09-06T23:28:07Z","message":"version succeeded"}
+   | {"level":"info","package":"api","stage":"build","version":"1.0.2","time":"2026-09-06T23:28:07Z","message":"build succeeded"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.2","time":"2026-09-06T23:28:07Z","message":"publish started"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.2","plannedTag":"api@1.0.2","time":"2026-09-06T23:28:08Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): api@1.0.2","time":"2026-09-06T23:28:08Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["api@1.0.2"],"time":"2026-09-06T23:28:08Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"api@1.0.2","package":"api","status":"published","version":"1.0.1 -> 1.0.2","channel":"stable","took":181.523625,"time":"2026-09-06T23:28:08Z","message":"summary"}
+   | {"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":198.705625,"time":"2026-09-06T23:28:08Z","message":"done"}
+   codes reported: 
+   after-rerun: api=1.0.2/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): api@1.0.2 local 0 ahead 0 behind colleague on main release on main
+   ok    release exited 0
+   ok    registry serves core 1.1.0 and the three consumers at 1.0.1
+   ok    every released package is consistent (tag on origin, on main, matching the registry)
+   ok    the colleague's commit is on origin/main
+   ok    the release commit is on origin/main's first-parent chain
+   ok    the colleague's commit is outside the tagged tree
+   ok    the tag names a release commit, not a merge
+   ok    the clone is level with origin, nothing in progress
+   ok    the release lock was returned
+   ok    the branch was joined, not refused (W242)
+   ok    the next plan is the colleague's change and its dependents alone
+   ok    the next run released the colleague's change from the same clone
+VERDICT: all expectations hold
+experiment=midrelease tool=dispat scenario=conflict
+dispat 1.8.2 (linux_arm64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/dispat dispat
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core)^: streaming reader local 0 ahead 0 behind
+
+== release: with_shim dispat release --log-format json
+exit=0
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-06T23:28:11Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-06T23:28:11Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-06T23:28:11Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1","time":"2026-09-06T23:28:11Z","message":"created release commit"}
+   | {"level":"warn","code":"W243","remote":"origin","branch":"main","paths":["packages/core/package.json"],"keptAt":"release-conflicts/core-1.1.0-api-1.0.1-cli-1.0.1-ui-1.0.1-20260906-232812","time":"2026-09-06T23:28:12Z","message":"commits landed on the branch during the release and changed the same content; this release's side was kept and theirs was pushed to a branch of its own to be reconciled"}
+   | {"level":"warn","code":"W242","remote":"origin","branch":"main","attempt":1,"time":"2026-09-06T23:28:12Z","message":"pulled the branch during the release to sync changes that landed while it ran; the release tags point at the tree that was planned and the release commit was merged on top"}
+   | {"level":"info","remote":"origin","tags":["core@1.1.0","api@1.0.1","cli@1.0.1","ui@1.0.1"],"time":"2026-09-06T23:28:12Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":170.318333,"time":"2026-09-06T23:28:12Z","message":"summary"}
+   | {"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":523.228126,"time":"2026-09-06T23:28:12Z","message":"summary"}
+   | {"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":523.472959,"time":"2026-09-06T23:28:12Z","message":"summary"}
+   | {"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":523.023167,"time":"2026-09-06T23:28:12Z","message":"summary"}
+   | {"level":"info","published":4,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":879.147209,"time":"2026-09-06T23:28:12Z","message":"done"}
+   codes reported:  1 W242 1 W243 
+   after: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): merge origin/main into the release commit local 0 ahead 0 behind colleague on main release on main
+   release lock on origin: 0  local: 0
+   branches on origin: main release-conflicts/core-1.1.0-api-1.0.1-cli-1.0.1-ui-1.0.1-20260906-232812 
+
+== status: dispat status --log-format json
+exit=0
+   | {"level":"info","package":"core","space":"packages","bump":"patch","version":"1.1.0 -> 1.1.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:28:12Z","message":"● changed"}
+   | {"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T23:28:12Z","message":"release plan ready"}
+   next plan: core 1.1.0 -> 1.1.1 (direct);
+
+== rerun: dispat release --log-format json
+exit=0
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T23:28:12Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T23:28:12Z","message":"release plan ready"}
+   | {"level":"info","package":"core","stage":"version","version":"1.1.1","manifest":"package.json","ranges":0,"versionWritten":true,"time":"2026-09-06T23:28:12Z","message":"manifest reconciled"}
+   | {"level":"info","package":"core","stage":"version","version":"1.1.1","time":"2026-09-06T23:28:12Z","message":"version succeeded"}
+   | {"level":"info","package":"core","stage":"build","version":"1.1.1","time":"2026-09-06T23:28:12Z","message":"build succeeded"}
+   | {"level":"info","package":"core","stage":"publish","version":"1.1.1","time":"2026-09-06T23:28:12Z","message":"publish started"}
+   | {"level":"info","package":"core","stage":"publish","version":"1.1.1","plannedTag":"core@1.1.1","time":"2026-09-06T23:28:12Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): core@1.1.1","time":"2026-09-06T23:28:12Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["core@1.1.1"],"time":"2026-09-06T23:28:12Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"core@1.1.1","package":"core","status":"published","version":"1.1.0 -> 1.1.1","channel":"stable","took":173.340834,"time":"2026-09-06T23:28:12Z","message":"summary"}
+   | {"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":190.673625,"time":"2026-09-06T23:28:12Z","message":"done"}
+   codes reported: 
+   after-rerun: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.1/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): core@1.1.1 local 0 ahead 0 behind colleague on main release on main
+   ok    release exited 0
+   ok    registry serves core 1.1.0 and the three consumers at 1.0.1
+   ok    every released package is consistent (tag on origin, on main, matching the registry)
+   ok    the colleague's commit is on origin/main
+   ok    the release commit is on origin/main's first-parent chain
+   ok    the colleague's commit is outside the tagged tree
+   ok    the tag names a release commit, not a merge
+   ok    the clone is level with origin, nothing in progress
+   ok    the release lock was returned
+   ok    the conflict was reported (W243) and the release still landed (W242)
+   ok    the colleague's side is kept on a release-conflicts branch
+   ok    the merge carries the release's side of the conflicted file
+   ok    the next plan is the colleague's change and its dependents alone
+   ok    the next run released the colleague's change from the same clone
+VERDICT: all expectations hold

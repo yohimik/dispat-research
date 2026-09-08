@@ -1,0 +1,3 @@
+{"time": "1788477394.638487", "cwd": "/work/changesets", "kind": "call", "args": ["push", "--follow-tags", "origin", "main"]}
+{"time": "1788477394.659598", "cwd": "/work/changesets", "kind": "inject", "args": ["push", "--follow-tags", "origin", "main"]}
+{"time": "1788477394.711802", "cwd": "/work/changesets", "kind": "inject-done", "args": ["exit=0"]}

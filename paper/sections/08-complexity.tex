@@ -1,0 +1,244 @@
+\section{Cost}
+\label{sec:complexity}
+
+CCME 3.0.1 makes \spec{13.11} normative for semantic equivalence and
+informative for cost and technique. An implementation must produce the plan
+\spec{13} defines, but need not attain any bound below. The accounting assumes
+decoded, indexed inputs; comparison, allocation, adapter, matching and emitted
+output costs remain. This section states safe transformations and the parser
+bound \spec{18.3} relies on; it makes no general optimality claim.
+
+Notation: $P$ packages, $E$ edges, $N$ commits and $M$ parent edges reachable from \Head{}, $C$ commits in the union windows, $U$ units, $B$ input bytes, $T$ tags, $R$ scope and changed-path resolution work, $I=\sum_u|\scopef{u}|$ resolved unit-to-package incidences, and $Z$ contribution/provenance incidences. Per unit, $D$ is the number of targets it reaches, $S$ its
+source-set size and $\Sigma$ its resolved scope-set size.
+
+\begin{center}
+\small
+\begin{tabular}{@{}L{4.6cm}L{2.6cm}L{3.4cm}L{3.4cm}@{}}
+\toprule
+Phase & Literal & Achievable & Proved in \\
+\midrule
+Train/fresh windows (\spec{13.3}) & $O(P(N+M))$ & $O((k_s+k_f+2)(N+M))$      & \cref{prop:windows} \\
+Candidate traversals (\spec{13.7}) & $O(U(P+E))$ & input-dependent $+O(Z)$ & \cref{thm:g1}, \cref{prop:bucket} \\
+Per-target predicates (\spec{9.3a}) & $O(D(S+\Sigma))$  & $O(D+S+\Sigma)$     & \cref{prop:hoist} \\
+Channel resolution (\spec{13.8})  & $O(P \cdot U)$      & $O(U + I + P)$      & \cref{prop:invert} \\
+Publish order (\spec{19.2})       & historical $O(P + E)$ & $O(P \log P + E)$ & \cref{prop:order} \\
+Parse/resolve (\spec{13.4}, \spec{20.7}) & --- & $O(B+R+I)$; lexing linear & \cref{prop:parse} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The candidate-traversal row is not a bound on the complete planner. A cached
+walk can safely be reused when its source set, depth and edge kinds are
+identical; it must retain each unit's own distance, fresh-window membership,
+cancellation, channel eligibility, self-source exclusion, and provenance.
+Even outside the merged source set, a nearby ineligible unit cannot lend its
+short distance to a farther eligible unit. Per-unit predicate checks and output
+construction add work; this report does not prove that all such work fits the
+bucket traversal bound. The proposition below proves a geometric candidate-set
+relation, not full semantic equivalence of an unannotated merged traversal.
+
+The publish-order row reads differently from the others: the historical
+CCME 3.0.0 bound $O(P+E)$ holds for an arbitrary topological order, while
+CCME 3.0.1 accounts for the bytewise-least ready package that \spec{19.2}
+requires at every step.
+Selecting it is an extract-min over the ready set, so the achievable cost is
+$O(P \log P + E)$ with a binary heap (each package enters and leaves the heap
+once, each edge is relaxed once), and \cref{prop:order} proves that this
+order is well defined and machine independent, not that it is linear.
+
+\subsection{Windows}
+
+\begin{proposition}[window bucketing]
+\label{prop:windows}
+$\{\Win{\st}{p} : p \in \Pkgs\}$ has at most $k_s+1$ distinct members, where $k_s$
+is the number of distinct defined values of $\stcommit{\st}{\cdot}$. Computing
+$\Rch{\cdot}$ once per distinct baseline commit and testing membership by
+lookup costs $O((k_s+1)(N+M))$ reachability work and, after restricting membership to the $C$ candidate commits, $O((k_s+1) \cdot C)$ bits.
+\end{proposition}
+
+\begin{proof}
+By \cref{def:window}, $\Win{\st}{p}$ depends on $p$ only through
+$\stcommit{\st}{p}$; packages sharing a baseline commit share a window, and
+packages with no stable baseline share $\Rch{\Head}$. So the map from the $k_s$
+baseline commits (plus the undefined case) onto distinct windows is surjective,
+giving the count. The costs follow: $k_s+1$ traversals of at most $N$ commits and $M$ parent edges, followed by $C$ membership bits per distinct window.
+\end{proof}
+
+The fresh window is determined by the pair $(\stcommit{\st}{p},\basec{\st}{p})$ and likewise has at most $k_f+1$ classes. Both $k_s$ and $k_f$ can be as large as $P$, and the added one accounts for packages without a baseline. Commit-generation numbers can reject candidates and bound a walk but cannot prove ancestry across branches. A positive result still needs a reachability query or a precomputed index. These $(N+M)$-sensitive bounds correct the historical 3.0.0 $C$-only row; 3.0.1 accounts for reachable history. $C$ bounds stored candidate membership, not necessarily the history visited to establish ancestry.
+
+\subsection{Safe traversal reuse}
+
+The superseded bucketing proposal grouped units by window class and directive
+tuple and traversed from the union of their sources. That key is insufficient:
+unit identity affects admission, cancellation, scope, inherited channel,
+self-source exclusion and output provenance. CCME 3.0.1 removes the proposal
+and identifies identical graph-walk inputs as one safe memoisation key. Other
+optimisations still require an equivalence argument. The following historical
+result characterises why the naive merge is unsafe.
+
+\begin{definition}
+For $S \subseteq \Pkgs$ let $\delta^{+}(S,d)$ be the least length of a chain of
+\emph{at least one} edge from a member of $S$ to $d$, and $\reachset{S}{\ell}^{+}
+= \{d : \delta^{+}(S,d) \leq \ell\}$. This is the naive positive-edge candidate set; CCME 2.0.0 additionally requires attribution to an eligible unit and that unit's self-source exclusion.
+\end{definition}
+
+\begin{proposition}[limit of naive merged bucketing]
+\label{prop:bucket}
+Let $u_1,\dots,u_m$ share a depth $\ell$ and let $S_i = \srcp{\st}{u_i}$,
+$S = \bigcup_i S_i$. Then
+\[
+  \bigcup_{i} \reachset{S_i}{\ell} \;\subseteq\; \reachset{S}{\ell}^{+},
+\]
+the two sides agree on every $d \notin S$, and they differ exactly on the
+packages
+\[
+  X \;=\; \bigl\{\, d \in S \;:\; \delta^{+}(S,d) \leq \ell
+      \ \text{ and }\ \forall i,\ d \in S_i \text{ or } \dist{S_i}{d} > \ell \,\bigr\},
+\]
+which $\reachset{S}{\ell}^{+}$ admits and no individual traversal does. In
+particular, if no $\srcp{\st}{u_i}$ contains a package reachable from that same
+set within $\ell$ edges, then $X = \emptyset$ and bucketing is exact.
+\end{proposition}
+
+\begin{proof}
+Inclusion: if $d \in \reachset{S_i}{\ell}$ then $d \notin S_i$ and
+$\dist{S_i}{d} \leq \ell$, so the witnessing chain has length at least $1$ and
+starts in $S$, giving $\delta^{+}(S,d) \leq \ell$.
+
+Agreement off $S$: let $d \notin S$ and $\delta^{+}(S,d) \leq \ell$. The
+witnessing chain starts at some $p \in S_i$, and $d \notin S_i$, so
+$d \in \reachset{S_i}{\ell}$.
+
+The difference: for $d \in S$, membership of $\reachset{S}{\ell}^{+}$ says only
+that some chain of length $1..\ell$ reaches $d$ from $S$, whereas membership of
+$\bigcup_i \reachset{S_i}{\ell}$ requires some $i$ with $d \notin S_i$ and
+$\dist{S_i}{d}\leq\ell$. Negating the latter gives the stated $X$.
+\end{proof}
+
+\begin{example}[the bucket that over-admits]
+\label{ex:bucket}
+On \cref{fig:workspace}, take the single unit
+\[
+  u \;=\; \code{fix(core,ui)\^{}major: x},
+\]
+so $S_1 = \{\code{core},\code{ui}\}$ and $\ell = 1$. Per \cref{ex:reach},
+$\reachset{S_1}{1}$ excludes \code{ui}, which takes the unit's own \bpatch{}
+directly. But $\delta^{+}(S_1,\code{ui}) = 1$ by the edge
+$\code{ui} \to \code{core}$, so $\code{ui} \in \reachset{S_1}{1}^{+}$: the
+merged rule gives \code{ui} the propagated \bmajor{} as well, publishing it two
+levels higher than the specification says, with no diagnostic to show for it.
+Here $X = \{\code{ui}\}$.
+\end{example}
+
+\begin{remark}[what $X$ costs, and what \spec{13.11} says about it]
+\label{rem:bucket}
+The warning box in \spec{13.11} is about the opposite error, subtracting the
+merged source set $S$, which withholds the bumps of a package that is a source
+of one unit and a legitimate target of another, and now requires a per-unit self-source test. Merely using $\reachset{S}{\ell}^{+}$ over-admits on $X$: a unit whose own scope-set
+contains both a package and a dependent of it within the depth bound. Then the
+dependent, which \spec{9.2} excludes from that unit's targets because the unit
+bumps it directly, receives the unit's \emph{propagated} bump as well, a
+difference whenever \code{Propagate} names a value above the unit's own bump,
+as in \code{fix(core,cli)\^{}major}. \Cref{ob:bucket} preserves the 1.0.0 counterexample that motivated the current rule.
+\end{remark}
+
+\subsection{Hoisting}
+
+\begin{proposition}[the resolvability predicate is loop-invariant]
+\label{prop:hoist}
+$\resolv{\st}{u}{d}$ as computed by the source scan
+\[
+  \exists p \in \srcp{\st}{u}:\ \chanres{\st}{p} = \stable \ \lor\
+  \chanres{\st}{p} = \chanres{\st}{d}
+\]
+is equal, for every $d$, to the membership test of \cref{def:resolvable}
+against the precomputed set $\srcch{\st}{u}$. Evaluating it once per unit and
+testing membership per target costs $O(D + S)$ where the literal form costs
+$O(D \cdot S)$; hoisting $\cof{u}$ and $\pscope{u}$ likewise takes the unit
+from $O(D(S+\Sigma))$ to $O(D + S + \Sigma)$.
+\end{proposition}
+
+\begin{proof}
+A set contains $\chanres{\st}{d}$ exactly when some $p \in \srcp{\st}{u}$ has
+$\chanres{\st}{p} = \chanres{\st}{d}$, and contains \stable{} exactly when some
+$p$ has $\chanres{\st}{p} = \stable$; the disjunction of the two membership
+tests is therefore the disjunction of the two existentials, which is the source
+scan. The set has one entry per \emph{distinct} channel among the sources.
+The predicate reads $d$ only in that one comparison, and \cref{a:scope}
+and $\cof{u}$ do not read $d$ at all, so all three may be computed before the
+target loop.
+\end{proof}
+
+The cost matters because of where it lands: a unit carrying \code{\^{}\^{}}
+across a wide scope-set admits thousands of targets from a source set of one or
+two packages, and the literal reading re-walks those sources thousands of times
+to re-derive an answer that never changed. Hoisting is not an optimisation to
+be justified by profiling; it is what the predicate's own dependency structure
+already says.
+
+\subsection{Inverted channel resolution}
+
+\begin{proposition}[inversion]
+\label{prop:invert}
+Building the candidate lists by pushing from units to the packages their
+scope-sets resolve to yields, for each $p$, the same list as scanning the
+window for directives naming $p$, provided units are pushed in \spec{11.6}
+precedence order. It costs $O(U + I + P)$ against the literal $O(P \cdot U)$; the incidence term cannot be omitted because those appends are output work.
+\end{proposition}
+
+\begin{proof}
+A package $p$ appears in the pushed list of $u$ exactly when $u$ carries a
+\code{Channel} directive, $p \in \scopef{u}$, and $\cof{u} \in \Winf{\st}{p}$,
+which is the pulled form's membership condition read in the other
+direction, so the two lists have the same elements. They have the same order
+because the push visits units in the order the pull would sort them into.
+The push performs one pass over units, each contributing $|\scopef{u}|$
+appends against scope resolutions \spec{13.4} has already paid for, and one
+flat pass over packages.
+\end{proof}
+
+Two obligations come with the inversion and neither is optional. Units must be
+pushed in \spec{11.6} order, or the first-match-wins loop below silently picks
+a different directive, a determinism bug that surfaces only when one package
+is named by two commits. And the \diag{W186} count is over the whole candidate
+list, not the prefix examined before the winner was found, so the list must be
+complete before it is read; an implementation that fuses the two passes and
+evaluates a package as soon as its first candidate arrives loses \diag{W186}.
+
+\subsection{Parsing}
+
+Lexical parsing and resolution have distinct cache keys. Lexing is pure in the
+repository identity, immutable record identity, parser/schema identity and
+parsing configuration. Scope and changed-path resolution additionally depends
+on the workspace package/path index, graph and resolution configuration. A
+lexical cache hit therefore does not cache $R$ or $I$, and record immutability
+does not imply a whole-plan cache. Vectors 82h--82j exercise direct-channel
+resolution, inherited-channel provenance and per-unit admission; they do not
+exhaustively validate these cache keys.
+
+\begin{proposition}[linear parsing, \spec{20.7}]
+\label{prop:parse}
+A conforming parser reads a message of $n$ bytes in $O(n)$ time and $O(1)$
+auxiliary space beyond the parsed result, with no input causing superlinear
+behaviour.
+\end{proposition}
+
+\begin{proof}[Proof sketch]
+\spec{20} specifies every step as a forward index scan over the byte array with
+no backtracking: separator detection compares a fixed token at line starts;
+header parsing advances a cursor through type, scope-set, inline directives,
+\code{!} and \code{:~}, each transition determined by the current byte and a
+bounded amount of already-scanned state; footer detection tests each line
+against a fixed set of key shapes. Each byte is examined a bounded number of
+times, and the working state is a fixed number of indices and flags. No
+construct requires re-examining a prefix, which is the property that
+distinguishes it from a backtracking regular-expression engine and is why
+\spec{18.3} can promise bounded work on untrusted commit messages.
+\end{proof}
+
+This is the one bound in the table stated for the parser rather than the
+planner, and it is here because \spec{18.1}'s threat model includes commit
+messages authored by anyone who can open a pull request. A superlinear parser
+would make that a denial-of-service surface in CI; \cref{prop:parse} is why the
+specification prescribes an index scan and relegates regular expressions to an
+appendix.

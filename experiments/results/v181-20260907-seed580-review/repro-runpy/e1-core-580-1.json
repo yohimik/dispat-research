@@ -1,0 +1,47 @@
+{
+ "summary": {
+  "profile": "core",
+  "instances": 1,
+  "clean": 0,
+  "divergence_classes": {
+   "UNKNOWN": 7
+  },
+  "dispat": "dispat 1.8.1 (linux_arm64)"
+ },
+ "rows": [
+  {
+   "seed": 580,
+   "packages": 14,
+   "diffs": [
+    [
+     "p00",
+     "UNKNOWN"
+    ],
+    [
+     "p03",
+     "UNKNOWN"
+    ],
+    [
+     "p04",
+     "UNKNOWN"
+    ],
+    [
+     "p05",
+     "UNKNOWN"
+    ],
+    [
+     "p11",
+     "UNKNOWN"
+    ],
+    [
+     "p12",
+     "UNKNOWN"
+    ],
+    [
+     "p13",
+     "UNKNOWN"
+    ]
+   ]
+  }
+ ]
+}

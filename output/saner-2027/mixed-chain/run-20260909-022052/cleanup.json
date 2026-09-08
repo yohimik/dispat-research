@@ -1,0 +1,29 @@
+{
+  "containers": [
+    "saner-chain-42e8144ce6",
+    "saner-reg-913e4242"
+  ],
+  "removed": true,
+  "images": [
+    "saner-reg-913e4242:5000/chain3150ee1014/base:0.8.3",
+    "saner-reg-913e4242:5000/chain3150ee1014/app:2.1.1",
+    "saner-reg-913e4242:5000/chainf8dc5f68a2/base:0.8.3",
+    "saner-reg-913e4242:5000/chainf8dc5f68a2/app:2.1.1",
+    "saner-reg-913e4242:5000/chain7644342a04/base:0.8.3",
+    "saner-reg-913e4242:5000/chain7644342a04/app:2.1.1",
+    "saner-reg-913e4242:5000/chain53eb1488b7/base:0.8.3",
+    "saner-reg-913e4242:5000/chain53eb1488b7/app:2.1.1",
+    "saner-reg-913e4242:5000/chainb4e57bc7fa/base:0.8.3",
+    "saner-reg-913e4242:5000/chainb4e57bc7fa/app:2.1.1",
+    "saner-reg-913e4242:5000/chainf5ff6fb2fa/base:0.8.3",
+    "saner-reg-913e4242:5000/chainf5ff6fb2fa/app:2.1.1",
+    "saner-reg-913e4242:5000/chain9fa38e4fe8/base:0.8.3",
+    "saner-reg-913e4242:5000/chain9fa38e4fe8/app:2.1.1",
+    "saner-reg-913e4242:5000/chain1bbf6772d9/base:0.8.3",
+    "saner-reg-913e4242:5000/chain1bbf6772d9/app:2.1.1",
+    "saner-reg-913e4242:5000/chain4b46b477ec/base:0.8.3",
+    "saner-reg-913e4242:5000/chain4b46b477ec/app:2.1.1",
+    "saner-reg-913e4242:5000/chaina00b33f5bd/base:0.8.3",
+    "saner-reg-913e4242:5000/chaina00b33f5bd/app:2.1.1"
+  ]
+}

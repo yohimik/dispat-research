@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chain4f652dc285/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 1,
+    "body": "wget: server returned error: HTTP/1.1 404 Not Found\n"
+  },
+  "assets": {
+    "name": "chain4f652dc285-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chain4f652dc285-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "dce04f0606b59341ace30367259d6131e74e37b3",
+        "_id": "chain4f652dc285-assets@1.5.0",
+        "_nodeVersion": "24.18.0",
+        "_npmVersion": "12.0.1",
+        "dist": {
+          "integrity": "sha512-0o7AywJ9sSEi9L0Y3zQHGMBee+nPE8SPmCUBPXRBR8KiQ1rKiBUDZ/KxO03FgF2SAsRHBbUiIa/J5eWPvTOuNA==",
+          "shasum": "ff6a916e23c1738ada053e5abd0ee72f734b9a2e",
+          "tarball": "http://127.0.0.1:50558/chain4f652dc285-assets/-/chain4f652dc285-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:41:07.637Z",
+      "created": "2026-09-08T22:41:07.637Z",
+      "1.5.0": "2026-09-08T22:41:07.637Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-d57dd7f206593e7f",
+    "_id": "chain4f652dc285-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

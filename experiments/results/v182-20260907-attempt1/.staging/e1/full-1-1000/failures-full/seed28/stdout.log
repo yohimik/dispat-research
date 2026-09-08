@@ -1,0 +1,16 @@
+{"level":"warn","code":"W204","package":"p04","time":"2026-09-06T23:16:44Z","message":"channel-entry patch applied: 2.4.1-rc.0 would not have exceeded the baseline 2.4.1, so 2.4.2-rc.0 is released instead"}
+{"level":"warn","code":"W204","package":"p05","time":"2026-09-06T23:16:44Z","message":"channel-entry patch applied: 2.1.9-rc.0 would not have exceeded the baseline 2.1.9, so 2.1.10-rc.0 is released instead"}
+{"level":"error","code":"E195","package":"p06","time":"2026-09-06T23:16:44Z","message":"computed version 1.3.6-beta.0 is not greater than the baseline 1.4.0-beta.2"}
+{"level":"warn","code":"W202","package":"p04","time":"2026-09-06T23:16:44Z","message":"channel-only release at 2.4.2-rc.0: stable -> rc"}
+{"level":"warn","code":"W202","package":"p05","time":"2026-09-06T23:16:44Z","message":"channel-only release at 2.1.10-rc.0: stable -> rc"}
+{"level":"info","warnings":4,"errors":1,"time":"2026-09-06T23:16:44Z","message":"plan diagnostics"}
+{"level":"info","package":"p00","space":"packages","version":"1.7.0-beta.0","channel":"beta","time":"2026-09-06T23:16:44Z","message":"unchanged"}
+{"level":"info","package":"p01","space":"packages","version":"2.6.0-beta.0","channel":"beta","time":"2026-09-06T23:16:44Z","message":"unchanged"}
+{"level":"info","package":"p02","space":"packages","dependsOn":["p00"],"bump":"patch","version":"3.8.4 -> 3.8.5","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:16:44Z","message":"● changed"}
+{"level":"info","package":"p03","space":"packages","dependsOn":["p02"],"bump":"patch","version":"3.7.2 -> 3.7.3-rc.0","channel":"stable -> rc","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:16:44Z","message":"● changed"}
+{"level":"info","package":"p04","space":"packages","dependsOn":["p01","p03"],"bump":"none","version":"2.4.1 -> 2.4.2-rc.0","channel":"stable -> rc","reason":"channel from p02","ownCommits":0,"dueToProviders":[],"time":"2026-09-06T23:16:44Z","message":"◈ channel-only"}
+{"level":"info","package":"p05","space":"packages","dependsOn":["p03"],"bump":"none","version":"2.1.9 -> 2.1.10-rc.0","channel":"stable -> rc","reason":"channel from p02","ownCommits":0,"dueToProviders":[],"time":"2026-09-06T23:16:44Z","message":"◈ channel-only"}
+{"level":"info","package":"p06","space":"packages","dependsOn":["p01"],"bump":"patch","version":"1.4.0-beta.2 -> 1.3.6-beta.0","channel":"beta","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:16:44Z","message":"● changed"}
+{"level":"info","package":"p07","space":"packages","dependsOn":["p01"],"version":"2.8.0-beta.3","channel":"beta","time":"2026-09-06T23:16:44Z","message":"unchanged"}
+{"level":"info","packages":8,"releasing":5,"held":0,"time":"2026-09-06T23:16:44Z","message":"release plan ready"}
+{"level":"error","reason":"the repository cannot produce a correct plan (§16 repository-scoped error)","time":"2026-09-06T23:16:44Z","message":"refusing to release"}

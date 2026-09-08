@@ -1,0 +1,285 @@
+\section{Propagation}
+\label{sec:propagation}
+
+This section transcribes \spec{9.2}, the three-phase procedure that assigns
+each package a propagated channel, resolves every package's channel, and then
+assigns propagated bumps. The phase order is forced: phase 3 reads what phase 2
+produces, and \spec{9.2} forbids fusing them.
+
+\subsection{The traversal}
+
+\begin{definition}[reach, \spec{9.2}]
+\label{def:reach}
+For $S \subseteq \Pkgs$ and $\ell \in \mathbb{N}\cup\{\infty\}$,
+\[
+  \reachset{S}{\ell} \;=\;
+  \{\, d \in \Pkgs \setminus S \;:\; \dist{S}{d} \leq \ell \,\},
+\]
+and each $d \in \reachset{S}{\ell}$ carries the level $\dist{S}{d}$.
+\end{definition}
+
+\begin{speccode}
+reach(edges, sources, depth):
+    frontier = sources
+    seen     = set(sources)      # a unit never reaches its own packages
+    out      = {}                # package -> level
+    for level in 1 .. depth:     # 'all' => until frontier is empty
+        next = {}
+        for p in frontier:
+            for d in edges.dependentsOf(p):
+                if d in seen: continue
+                seen.add(d); next.add(d)
+        if next is empty: break
+        for d in next: out[d] = level
+        frontier = next
+    return out
+\end{speccode}
+
+\begin{lemma}[the traversal computes \cref{def:reach}]
+\label{lem:reach}
+On termination, \code{out} has domain $\reachset{S}{\ell}$ and
+$\code{out}[d] = \dist{S}{d}$.
+\end{lemma}
+
+\begin{proof}
+Standard breadth-first search from the set $S$, seeded at level $0$. By
+induction on \code{level}: \code{frontier} at the start of iteration $n$ is
+exactly $\{d : \dist{S}{d} = n-1\} \setminus S$ for $n>1$ and $S$ for $n=1$,
+because \code{seen} contains precisely the packages at distance $\leq n-1$
+(together with $S$ at level zero), and a package first enqueued at iteration $n$ has a chain of
+length $n$ from $S$ and none shorter. Membership of \code{seen} is tested
+before insertion and never cleared, so each package is assigned at most one
+level, its least. The loop runs for $\ell$ iterations or until the frontier is
+empty. Seeding $\code{seen} = S$ removes $S$ from the output, which is
+\cref{def:reach}'s $\Pkgs \setminus S$.
+\end{proof}
+
+Three properties recorded by \spec{9.2} are visible in this statement and are
+used repeatedly below. Depth is shortest-path, so a package reachable at both
+depth $1$ and depth $3$ is included by \code{+1}. Depth is measured from the
+originating source set as a whole and never recomputed from an intermediate
+package, so a unit written \code{+1} reaches exactly the direct consumers of its
+own packages in every run, whatever released in between. And a package reached
+by several paths is visited once, so a diamond does not double-count.
+
+\begin{example}[depth, on \cref{fig:workspace}]
+\label{ex:reach}
+Take $S = \{\code{core}\}$, the source set of a unit scoped \code{(core)}:
+
+\begin{center}\small
+\begin{tabular}{@{}L{2.6cm}L{5.4cm}L{4.6cm}@{}}
+\toprule
+Written & $\reachset{S}{\ell}$ & Note \\
+\midrule
+\code{feat(core)} & $\emptyset$ & $\ell = 0$, the default \\
+\code{feat(core)\^{}} & $\{\code{cli},\code{ui},\code{api}\}$ & direct consumers \\
+\code{feat(core)+2} & $\reachset{S}{1} \cup \{\code{docs-site},\code{@acme/theme}\}$ & two edges out \\
+\code{feat(core)\^{}\^{}} & the same set & $\ell = \infty$; the graph is only two deep \\
+\bottomrule
+\end{tabular}
+\end{center}
+Now take the two-package source set $S' = \{\code{core},\code{ui}\}$, as a unit
+scoped \code{(core,ui)} would have. Then $\reachset{S'}{1} =
+\{\code{cli},\code{api},\code{docs-site},\code{@acme/theme}\}$: \code{ui} is
+\emph{absent} although it is a dependent of \code{core} at distance $1$,
+because \cref{def:reach} removes the whole of $S'$. The unit bumps \code{ui}
+directly, and a package is never both a direct and a propagated target of the
+same unit. \Cref{prop:bucket} is about exactly this clause.
+\end{example}
+
+\begin{remark}[self-exclusion is per unit]
+\label{rem:selfex}
+$\reachset{S}{\ell}$ excludes all of $S$, not merely the source a given path
+started from. This is what stops a unit from propagating to a package it
+already bumps directly. It is also the clause that makes the bucketed traversal
+of \spec{13.11} unsound if transcribed naively; see \cref{prop:bucket}.
+\end{remark}
+
+\subsection{Phase 1: the channel axis}
+
+\begin{definition}[proposed channel, \spec{9.3}]
+\label{def:propchan}
+For a unit $u$ and package $d$, let $cur = \chanof{\base{\st}{d}}$ (\stable{}
+if $d$ has no baseline). Then $\mathrm{pcf}_{\st}(u,d) \in \Chans \cup
+\{\NONE\}$ is:
+\begin{itemize}
+  \item if $\pchan{u}$ is a transition $\langle f \to t \rangle$: \NONE{} if
+    $f = t$ (\diag{W207}); \NONE{} if $cur$ does not match $f$, where $f = *$
+    matches any $cur \neq \stable$ and otherwise $f$ matches only $cur = f$;
+    else $target = t$;
+  \item otherwise $target$ is $\pchan{u}$, or the origin channel of $u$ where
+    that is \code{inherit}; and if $target = \stable$ while $cur \neq \stable$,
+    the result is \NONE{} (\diag{W200}: a propagated channel never graduates
+    implicitly);
+  \item in either case, if $target = cur$ the result is \NONE{} (\diag{W199});
+    otherwise it is $target$.
+\end{itemize}
+The origin channel of $u$ is the channel $u$'s own \code{Channel} directive
+assigns to its sources if it carries one, and otherwise
+$\chanof{\base{\st}{p}}$ for its sources $p$, taking the value of the
+byte-wise least name if they disagree (\diag{W160}).
+\end{definition}
+
+The final clause complements the target \Winf{} admission gate: it compares
+$target$ against the package's \emph{baseline} channel rather than against
+anything computed in the current run. This no-op check is the other premise of
+\G{7}, and \cref{thm:g7} is its consequence.
+
+\begin{definition}[phase 1 output, \spec{9.2}]
+\label{def:phase1}
+$\mathrm{prop}\chi_{\st}(d)$ is the value $\mathrm{pcf}_{\st}(u,d)$ of the
+$\prec$-greatest unit $u$ (newest commit first, then last unit within a commit,
+\spec{11.6}) satisfying: $\pcdepth{u} \neq 0$; $\pchan{u} \neq \code{none}$;
+$\srcp{\st}{u} \neq \emptyset$; $d \in \reachset{\srcp{\st}{u}}{\pcdepth{u}}$;
+$d \in \pcscope{u}$; $\cof{u} \in \Winf{\st}{d}$; $\lnot\canc{\cof{u}}{d}$; and
+$\mathrm{pcf}_{\st}(u,d) \neq \NONE$. It is undefined if no unit qualifies.
+\end{definition}
+
+\subsection{Phase 2: channel resolution}
+
+\begin{definition}[channel resolution, \spec{13.8}]
+\label{def:channels}
+For every $p \in \Pkgs$, whether or not it will be released, let $base =
+\chanof{\base{\st}{p}}$ and let $D_{\st}(p)$ be the value proposed by the
+$\prec$-greatest unit $u$ with $p \in \scopef{u}$, $\cof{u} \in \Winf{\st}{p}$,
+$\lnot\canc{\cof{u}}{p}$, that carries a \code{Channel} directive proposing
+something for $p$ (a transition matching $base$, or a value differing from
+$base$; a directive proposing nothing is not a competitor and does not count
+towards \diag{W186}). Then
+\[
+  \chanres{\st}{p} \;=\;
+  \begin{cases}
+    D_{\st}(p) & \text{if defined,}\\
+    \mathrm{prop}\chi_{\st}(p) & \text{else if defined,}\\
+    base & \text{otherwise.}
+  \end{cases}
+\]
+\end{definition}
+
+A direct directive beats every propagated one regardless of age; among direct
+directives, and separately among propagated ones, the newest commit wins and
+then the last unit within it. A package named by nothing keeps its baseline
+channel, which is why an established train needs no directives to stay
+together.
+
+\subsection{Phase 3: the bump axis}
+
+\begin{definition}[resolvability, \spec{9.3a}]
+\label{def:resolvable}
+$\srcch{\st}{u} = \{\chanres{\st}{p} : p \in \srcp{\st}{u}\}$ and
+\[
+  \resolv{\st}{u}{d} \;\equiv\;
+  \stable \in \srcch{\st}{u} \;\lor\; \chanres{\st}{d} \in \srcch{\st}{u}.
+\]
+\end{definition}
+
+A bump is a claim that the dependent has something new to pick up, and across a
+channel boundary the claim is false: a stable consumer resolves a
+beta-releasing dependency by its stable range exactly as before, so a
+republished consumer would contain byte-for-byte what its predecessor
+contained. Suppression is reported per suppressed pair as \diag{W208}.
+
+\begin{example}[a caret that reaches and does not bump: \SPEC{} vector 95]
+\label{ex:resolvable}
+The unit \code{feat(core)\^{}\%beta: x} on \cref{fig:workspace}. The \code{\%}
+puts \code{core} on \code{beta}; the \code{\^{}} reaches
+$\{\code{cli},\code{ui},\code{api}\}$. Phase 2 leaves the three consumers where
+their baselines put them, on \stable, so
+\[
+  \srcch{\st}{u} = \{\code{beta}\},\qquad
+  \stable \notin \srcch{\st}{u},\qquad
+  \chanres{\st}{\code{cli}} = \stable \notin \srcch{\st}{u},
+\]
+and \cref{a:resolvable} fails for every one of them: three \diag{W208}
+diagnostics, and $\plan{\st} = \{\code{core}\}$ alone. The caret was honoured
+and reached its targets; what it would have delivered is not resolvable by
+them. Writing \code{feat(core)\^{}\%beta++1} instead moves the same three onto
+\code{beta} in phase 1, so $\chanres{\st}{\code{cli}} = \code{beta} \in
+\srcch{\st}{u}$ and all four packages release, which is the form that keeps a
+train installable as a set.
+\end{example}
+
+\begin{definition}[admission, \spec{9.2}, \spec{13.4a}]
+\label{def:admission}
+For $u \in \Units$ and $d \in \Pkgs$, $\admit{\st}{u}{d}$ holds iff all of:
+\begin{enumerate}[label=(A\arabic*),leftmargin=3.2em]
+  \item $\bumpof{u} \neq \bnone$, $\pbump{u} \neq \bnone$, $\pdepth{u} \neq 0$;
+    \label{a:live}
+  \item $\srcp{\st}{u} \neq \emptyset$ and
+    $d \in \reachset{\srcp{\st}{u}}{\pdepth{u}}$; \label{a:reach}
+  \item $d \in \pscope{u}$; \label{a:scope}
+  \item $\cof{u} \in \Winf{\st}{d}$; \label{a:window}
+  \item $\lnot\canc{\cof{u}}{d}$; \label{a:cancel}
+  \item $\resolv{\st}{u}{d}$. \label{a:resolvable}
+\end{enumerate}
+\end{definition}
+
+\begin{definition}[propagated and direct bumps, \spec{13.6}, \spec{13.7}]
+\label{def:propagated}
+\label{def:direct}
+\begin{align*}
+  \propb{\st}{d} &= \bigsqcup \{\, \pbump{u} \;:\; u \in \Units,\ \admit{\st}{u}{d} \,\}, \\
+  \dirb{\st}{p} &= \bigsqcup \{\, \bumpof{u} \;:\; p \in \srcp{\st}{u} \cap \scopef{u},\
+     \cof{u} \in \Winf{\st}{p} \,\},
+\end{align*}
+both empty joins being \bnone. Then $\effb{\st}{p} = \dirb{\st}{p} \sqcup
+\propb{\st}{p}$.
+\end{definition}
+
+\Cref{a:window} is the load-bearing clause of the entire design, and it is
+worth being explicit about what it is not. It tests the \emph{target's} window,
+not the source's. \spec{13.7a} shows what the other reading costs: with
+retention governed by the source's window, a dependent whose publish failed
+while its provider's succeeded is silently orphaned, permanently one patch
+behind a dependency it declares, with no diagnostic, because from the engine's
+point of view nothing is pending. Every guarantee in \cref{sec:guarantees}
+rests on \cref{a:window} being the target's window; \cref{thm:g2} is where that
+is used.
+
+\begin{example}[the orphan, in sets: \SPEC{} vector 66]
+\label{ex:orphan}
+One commit $C = \Head$ on the workspace of \cref{ex:workspace} carrying the
+unit $u$ = \code{feat(core)\^{}: streaming reader}. So $\scopef{u} =
+\{\code{core}\}$, $\bumpof{u} = \bminor$, $\pbump{u} = \bpatch$ (the default of
+\cref{def:unit}) and $\pdepth{u} = 1$.
+
+Run 1 evaluates \cref{def:admission} with $\st_0$. All of \code{cli}, \code{ui},
+\code{api} lie in $\reachset{\{\code{core}\}}{1}$, none is cancelled, all are
+on \stable{} as is \code{core}, and $C \in \Win{\st_0}{d}$ for each, so all
+three are admitted and
+\[
+  \plan{\st_0} = \{\code{core},\code{cli},\code{ui},\code{api}\},\qquad
+  \vers{\st_0}{\code{core}} = 1.5.0,\quad
+  \vers{\st_0}{\code{cli}} = 2.0.1 .
+\]
+Suppose \code{core}, \code{ui} and \code{api} publish and \code{cli} fails, so
+\[
+  \st_1 = \st_0 \cup \{\code{core@1.5.0},\ \code{ui@0.9.2},\ \code{api@1.2.1}\}.
+\]
+Run 2 is where the two readings of \cref{a:window} separate:
+\[
+\begin{array}{@{}ll@{}}
+  \text{target's window (normative):}
+    & C \in \Win{\st_1}{\code{cli}} = \{C\}
+      \ \Rightarrow\ \code{cli}\ \text{admitted},\\[1mm]
+  \text{source's window (the trap):}
+    & C \notin \Win{\st_1}{\code{core}} = \emptyset
+      \ \Rightarrow\ u\ \text{reaches nobody}.
+\end{array}
+\]
+Under the normative rule $\plan{\st_1} = \{\code{cli}\}$ at the version run 1
+planned, and $\plan{\st_2} = \emptyset$. Under the trap $\plan{\st_1} =
+\emptyset$ and \code{cli} is never released, on this run or any later one, with
+no diagnostic anywhere. One membership test, evaluated against a different
+package, is the whole difference.
+\end{example}
+
+\begin{remark}[catch-up is not a mode]
+There is no separate catch-up pass in this model, and none in the
+specification. A ``catch-up release'' is a label for a release whose entire
+cause is a propagation from a package not itself in the run's plan
+(\diag{W193}); the engine does nothing different to produce it. It does not
+widen depth, resurrect a cancelled contribution, release a held package, change
+a planned version, or propagate onward from the catching-up package; each of
+which is a property of \cref{def:admission} rather than a rule about catch-up.
+\end{remark}

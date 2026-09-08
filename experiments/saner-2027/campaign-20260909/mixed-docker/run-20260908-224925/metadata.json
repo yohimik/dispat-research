@@ -1,0 +1,42 @@
+{
+  "python": "3.14.7 (main, Aug 15 2026, 07:18:27) [GCC 15.2.0]",
+  "date": "2026-09-08",
+  "binary": "/usr/local/bin/dispat",
+  "binary_sha256": "78b0b37b4b74ed393f366ff4d36a98aa69a48fa781cc6a704ad17a0160107a68",
+  "version": "\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\ndispat 1.8.2 (linux_arm64)\n",
+  "node": "v24.18.1",
+  "npm": "11.12.1",
+  "docker": "29.6.1",
+  "description": "Private Docker-network registry, npm build/publish, BuildKit build and cached push; app uses FROM the published base. Separate OCI output ensures no local Docker-daemon FROM shortcut. Three-second npm and two-second base publication delays are controls, not performance measurements.",
+  "images": [
+    {
+      "Id": "sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33",
+      "RepoTags": [
+        "registry:3"
+      ],
+      "RepoDigests": [
+        "registry@sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33"
+      ]
+    },
+    {
+      "Id": "sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801",
+      "RepoTags": [
+        "verdaccio/verdaccio:6"
+      ],
+      "RepoDigests": [
+        "verdaccio/verdaccio@sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801"
+      ]
+    },
+    {
+      "Id": "sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8",
+      "RepoTags": [
+        "moby/buildkit:buildx-stable-1",
+        "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+      ],
+      "RepoDigests": [
+        "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+      ]
+    }
+  ],
+  "buildx": "github.com/docker/buildx v0.37.0 ac30b249211430b85fb8f37b6e7154b5c47ba0b6"
+}

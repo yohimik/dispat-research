@@ -1,0 +1,212 @@
+[
+ {
+  "run": 1,
+  "returncode": 0,
+  "elapsed_seconds": 0.019241792033426464,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 2,
+  "returncode": 1,
+  "elapsed_seconds": 0.0031772080110386014,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "run": 3,
+  "returncode": 0,
+  "elapsed_seconds": 0.0038579159881919622,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 4,
+  "returncode": 0,
+  "elapsed_seconds": 0.0055570839904248714,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 5,
+  "returncode": 0,
+  "elapsed_seconds": 0.003945208038203418,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 6,
+  "returncode": 0,
+  "elapsed_seconds": 0.003954333020374179,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 7,
+  "returncode": 0,
+  "elapsed_seconds": 0.004023792105726898,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 8,
+  "returncode": 0,
+  "elapsed_seconds": 0.003876624978147447,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 9,
+  "returncode": 0,
+  "elapsed_seconds": 0.0046247499994933605,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 10,
+  "returncode": 0,
+  "elapsed_seconds": 0.003997792024165392,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 11,
+  "returncode": 0,
+  "elapsed_seconds": 0.004276999970898032,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 12,
+  "returncode": 0,
+  "elapsed_seconds": 0.004042292013764381,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 13,
+  "returncode": 0,
+  "elapsed_seconds": 0.004046542104333639,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 14,
+  "returncode": 0,
+  "elapsed_seconds": 0.003925208002328873,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 15,
+  "returncode": 1,
+  "elapsed_seconds": 0.002390708075836301,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "run": 16,
+  "returncode": 0,
+  "elapsed_seconds": 0.004047916969284415,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 17,
+  "returncode": 0,
+  "elapsed_seconds": 0.003955708001740277,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 18,
+  "returncode": 0,
+  "elapsed_seconds": 0.0040086249355226755,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 19,
+  "returncode": 1,
+  "elapsed_seconds": 0.0035108330193907022,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nfatal: Failed to traverse parents of commit f119ed7fe73f9da3661939e4afb235a80711ea91"
+ },
+ {
+  "run": 20,
+  "returncode": 1,
+  "elapsed_seconds": 0.0034694999922066927,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b"
+ },
+ {
+  "run": 21,
+  "returncode": 0,
+  "elapsed_seconds": 0.003963708993978798,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 22,
+  "returncode": 0,
+  "elapsed_seconds": 0.003964582923799753,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 23,
+  "returncode": 0,
+  "elapsed_seconds": 0.004749792045913637,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 24,
+  "returncode": 1,
+  "elapsed_seconds": 0.00322916591539979,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "run": 25,
+  "returncode": 1,
+  "elapsed_seconds": 0.003842624952085316,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "run": 26,
+  "returncode": 0,
+  "elapsed_seconds": 0.004247999982908368,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 27,
+  "returncode": 1,
+  "elapsed_seconds": 0.002779874950647354,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "run": 28,
+  "returncode": 1,
+  "elapsed_seconds": 0.003247083048336208,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "run": 29,
+  "returncode": 0,
+  "elapsed_seconds": 0.004412250011228025,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "run": 30,
+  "returncode": 0,
+  "elapsed_seconds": 0.0042997910641133785,
+  "parsed_packages": 14,
+  "error": ""
+ }
+]

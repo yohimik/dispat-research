@@ -1,0 +1,83 @@
+\section{Determinism, idempotency, resumption}
+\label{sec:determinism}
+
+\spec{17.2} states three obligations that are usually treated as informal
+quality properties. They are provable in this model, and two of them are
+corollaries of \cref{sec:guarantees}.
+
+\begin{theorem}[determinism]
+\label{thm:determinism}
+$\plan{\st}$, the versions $\vers{\st}{\cdot}$, the planned publish order and the ordered planning
+diagnostic list are functions of $(\st, \Head, \mathrm{config})$ alone. Two
+conforming implementations, on two machines, at two times, produce identical plan output. Concurrent task completion, logs, and other operational events are outside this claim.
+\end{theorem}
+
+\begin{proof}
+Every quantity in \cref{sec:model,sec:propagation} is defined by a closed
+expression in $\st$, \Head{} and the configuration:
+\cref{def:window,def:sources} from ancestry and tags;
+\cref{def:unit} from commit messages and the configured types, separator and
+limits; \cref{def:reach} from the graph at \Head{};
+\cref{def:propchan,def:phase1,def:channels,def:resolvable,def:admission} from
+those; \cref{def:plan,def:order} from those. None mentions wall-clock time,
+commit dates, tag creation order, or the run history.
+
+Three points admit a choice and each is resolved by a stated total order.
+Conflicting propagated channels and disagreeing origin channels resolve to the
+byte-wise least package name (\diag{W160}, \cref{def:propchan}). Competing
+directives resolve by \spec{11.6} precedence: newest commit first, then last
+unit within the commit, a total order on units, since commits carry a
+topological index and units an index within their commit. Publish-order ties
+resolve by byte-wise least name (\cref{prop:order}). \spec{17.2} additionally
+requires every collection reaching the output to be sorted by package name,
+then commit topological index, then unit index, so no unordered container's
+iteration order is observable. A function of fixed inputs with all ties broken
+by total orders is single-valued.
+\end{proof}
+
+\begin{corollary}[idempotency]
+\label{cor:idempotency}
+Running the engine twice with no intervening commits and no publish yields the
+same plan. Under the retry invariant, running it after a fully successful publish yields the
+empty plan.
+\end{corollary}
+
+\begin{proof}
+The first is \cref{thm:determinism}: the state is unchanged, so the plan is.
+The second is \cref{thm:g4} applied to each $p \in \plan{\st_1}$, which is
+\cref{thm:g6} with $n$ reached in one run; the invariant excludes both input drift and newly visible catch-up.
+\end{proof}
+
+\begin{theorem}[resumption after partial failure]
+\label{thm:resumption}
+Assume the retry invariant. Let $\st_2 = \Run{\st_1}{F}$ with induced blocked set
+$B$. Then
+\[
+  \plan{\st_2} \;=\; F \cup B,
+  \qquad\text{and}\qquad
+  \vers{\st_2}{p} = \vers{\st_1}{p} \ \text{ for every } p \in F \cup B.
+\]
+\end{theorem}
+
+\begin{proof}
+$\subseteq$: $\plan{\st_2} \subseteq \plan{\st_1}$ by the first paragraph of
+the proof of \cref{thm:g6}, and every $p \in \plan{\st_1} \setminus (F\cup B)$
+was published, hence excluded by \cref{thm:g4}.
+$\supseteq$ and the version equality: each $p \in F \cup B$ was planned in run
+$1$ and not released, so \cref{thm:g3} applies verbatim.
+\end{proof}
+
+\Cref{thm:resumption} is the exact statement of what the operator is promised
+after a failed run under the retry invariant: the next run does the rest of the same job, at the same
+numbers without coordinator state to clean up. An ambiguous external publish outcome still requires \spec{19.4} reconciliation. It is also what
+\spec{19.6} checks. After a run in which nothing failed or was blocked, $F \cup
+B = \emptyset$, so the re-planned set must be empty; a non-empty one is \diag{E199}. Inside the retry invariant it contradicts \cref{thm:resumption}; outside it, \spec{19.6} reports the changed admission inputs for renewed review.
+
+\begin{remark}[what determinism forbids]
+\Cref{thm:determinism} is the reason \spec{13.11} may permit
+optimisation of the computation but not of its result. An implementation may
+cache identical traversals, invert loops, cache lexical parses and publish concurrently; it may
+not introduce parallelism whose scheduling affects the iteration order of any
+collection that reaches the output. \Cref{sec:complexity} records the precise
+conditions under which such transformations preserve those observables.
+\end{remark}

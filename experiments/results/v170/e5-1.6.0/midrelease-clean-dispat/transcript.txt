@@ -1,0 +1,59 @@
+experiment=midrelease tool=dispat scenario=clean
+dispat 1.6.0 (linux_arm64)  lerna 10.0.1  nx v23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+fixture ready: /work/dispat dispat
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core)^: streaming reader local 0 ahead 0 behind
+
+== release: with_shim dispat release --log-format json
+exit=1
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","time":"2026-09-02T06:50:35Z","message":"publish started"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-02T06:50:35Z","message":"publish started"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-02T06:50:36Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-02T06:50:36Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-02T06:50:36Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1","time":"2026-09-02T06:50:36Z","message":"created release commit"}
+   | {"level":"error","error":"git push origin HEAD: exit status 1: To /work/dispat-origin.git\n ! [rejected]        HEAD -> main (fetch first)\nerror: failed to push some refs to '/work/dispat-origin.git'\nhint: Updates were rejected because the remote contains work that you do\nhint: not have locally. This is usually caused by another repository pushing\nhint: to the same ref. You may want to first integrate the remote changes\nhint: (e.g., 'git pull ...') before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.","code":"E224","remote":"origin","time":"2026-09-02T06:50:36Z","message":"push failed"}
+   | {"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":161.702583,"time":"2026-09-02T06:50:36Z","message":"summary"}
+   | {"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":430.547209,"time":"2026-09-02T06:50:36Z","message":"summary"}
+   | {"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":430.640042,"time":"2026-09-02T06:50:36Z","message":"summary"}
+   | {"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":430.569125,"time":"2026-09-02T06:50:36Z","message":"summary"}
+   | {"level":"info","published":4,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":465.257083,"time":"2026-09-02T06:50:36Z","message":"done"}
+   codes reported:  1 E224 
+   after: api=1.0.1/unpushed cli=1.0.1/unpushed core=1.1.0/unpushed docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/unpushed
+   origin/main=fix(api): concurrent change local 1 ahead 1 behind colleague on main release NOT on main
+   release lock on origin: 0  local: 0
+   branches on origin: main 
+
+== status: dispat status --log-format json
+exit=0
+   | {"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:50:36Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":0,"held":0,"time":"2026-09-02T06:50:36Z","message":"release plan ready"}
+   next plan: 
+
+== rerun: dispat release --log-format json
+exit=1
+   | {"level":"info","root":".","time":"2026-09-02T06:50:36Z","message":"release started"}
+   | {"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-02T06:50:36Z","message":"release lock acquired"}
+   | {"level":"error","error":"the checkout is behind origin/main; pull before releasing","remote":"origin","time":"2026-09-02T06:50:36Z","message":"refusing to release"}
+   codes reported: 
+   after-rerun: api=1.0.1/unpushed cli=1.0.1/unpushed core=1.1.0/unpushed docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/unpushed
+   origin/main=fix(api): concurrent change local 1 ahead 1 behind colleague on main release NOT on main
+   FAIL  release exited 0
+   ok    registry serves core 1.1.0 and the three consumers at 1.0.1
+   FAIL  every released package is consistent (tag on origin, on main, matching the registry)
+   ok    the colleague's commit is on origin/main
+   FAIL  the release commit is on origin/main's first-parent chain
+   ok    the colleague's commit is outside the tagged tree
+   ok    the tag names a release commit, not a merge
+   FAIL  the clone is level with origin, nothing in progress
+   ok    the release lock was returned
+   FAIL  the branch was joined, not refused (W242)
+   FAIL  the next plan is the colleague's change and its dependents alone
+   FAIL  the next run released the colleague's change from the same clone
+VERDICT: release exited 0; every released package is consistent (tag on origin, on main, matching the registry); the release commit is on origin/main's first-parent chain; the clone is level with origin, nothing in progress; the branch was joined, not refused (W242); the next plan is the colleague's change and its dependents alone; the next run released the colleague's change from the same clone

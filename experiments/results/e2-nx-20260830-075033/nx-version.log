@@ -1,0 +1,31 @@
+nx release
+
+Orchestrate versioning and publishing of applications and libraries.
+
+Commands:
+  nx release [specifier]          Create a version and release for the workspace, generate a changelog, and optionally publish the packages.  [default]
+  nx release version [specifier]  Create a version and release for one or more applications and libraries.  [aliases: v]
+  nx release changelog [version]  Generate a changelog for one or more projects, and optionally push to Github.  [aliases: c]
+  nx release publish              Publish a versioned project to a registry.  [aliases: p]
+  nx release plan [bump]          Create a version plan file to specify the desired semver bump for one or more projects or groups, as well as the relevant changelog entry.  [aliases: pl]
+  nx release plan:check           Ensure that all touched projects have an applicable version plan created for them.
+
+Positionals:
+  specifier  Exact version or semver keyword to apply to the selected release group.  [string]
+
+Options:
+      --version              Show version number  [boolean]
+      --verbose              Prints additional information about the commands (e.g., stack traces).  [boolean]
+  -g, --groups, --group      One or more release groups to target with the current command.  [string]
+  -p, --projects             Projects to run. (comma/space delimited project names and/or patterns).  [string]
+  -d, --dry-run              Preview the changes without updating files/creating releases.  [boolean] [default: false]
+      --printConfig          Print the resolved nx release configuration that would be used for the current command and then exit.  [string]
+      --preid                The optional prerelease identifier to apply to the version. This will only be applied in the case that the specifier argument has been set to `prerelease` OR when conventional commits are enabled, in which case it will modify the resolved specifier from conventional commits to be its prerelease equivalent. E.g. minor -> preminor.  [string] [default: ""]
+  -y, --yes                  Automatically answer yes to the confirmation prompt for publishing.  [boolean]
+      --skip-publish         Skip publishing by automatically answering no to the confirmation prompt for publishing.  [boolean]
+      --otp                  A one-time password for publishing to a registry that requires 2FA.  [number]
+      --dockerVersionScheme  Exact docker version scheme to apply to the selected release group. Warning: Docker support is experimental. Breaking changes may occur and not adhere to semver versioning.  [string]
+      --dockerVersion        Exact docker version to use, bypassing the version scheme logic. Warning: Docker support is experimental. Breaking changes may occur and not adhere to semver versioning.  [string]
+      --first-release        Indicates that this is the first release for the selected release group. If the current version cannot be determined as usual, the version on disk will be used as a fallback. This is useful when using git or the registry to determine the current version of packages, since those sources are only available after the first release. Also indicates that changelog generation should not assume a previous git tag exists and that publishing should not check for the existence of the package before running.  [boolean]
+
+The --yes and --skip-publish options are mutually exclusive, please use one or the other.

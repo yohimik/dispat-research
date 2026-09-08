@@ -1,0 +1,19 @@
+{"level":"info","root":".","time":"2026-09-03T23:06:31Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-03T23:06:31Z","message":"release lock acquired"}
+{"level":"warn","code":"W193","package":"cli","time":"2026-09-03T23:06:31Z","message":"catch-up release at 1.0.1: discharging work already published by core@1.1.0"}
+{"level":"info","warnings":1,"errors":0,"time":"2026-09-03T23:06:31Z","message":"plan diagnostics"}
+{"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-03T23:06:31Z","message":"unchanged"}
+{"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-03T23:06:31Z","message":"unchanged"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"catch-up from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-03T23:06:31Z","message":"↻ catch-up"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-03T23:06:31Z","message":"unchanged"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-03T23:06:31Z","message":"unchanged"}
+{"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-03T23:06:31Z","message":"unchanged"}
+{"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-03T23:06:31Z","message":"release plan ready"}
+{"level":"info","package":"cli","stage":"version","version":"1.0.1","time":"2026-09-03T23:06:31Z","message":"version succeeded"}
+{"level":"info","package":"cli","stage":"build","version":"1.0.1","time":"2026-09-03T23:06:31Z","message":"build succeeded"}
+{"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-03T23:06:31Z","message":"publish started"}
+{"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-03T23:06:31Z","message":"published, tag deferred to the release commit"}
+{"level":"info","message":"chore(release): cli@1.0.1","time":"2026-09-03T23:06:31Z","message":"created release commit"}
+{"level":"info","remote":"origin","tags":["cli@1.0.1"],"time":"2026-09-03T23:06:31Z","message":"pushed release commit and tags"}
+{"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":372.347613,"time":"2026-09-03T23:06:31Z","message":"summary"}
+{"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":413.974724,"time":"2026-09-03T23:06:31Z","message":"done"}

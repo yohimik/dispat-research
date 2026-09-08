@@ -1,0 +1,19 @@
+{
+  "venue": "ICSA 2027",
+  "track": "Research Track",
+  "submission_number": 33,
+  "easychair_submission_id": 7809462,
+  "status": "submitted; saved by EasyChair",
+  "confirmation": "The submission has been saved!",
+  "url": "https://easychair.org/conferences/submitted?a=37609434&submission=7809462",
+  "portal_timestamp": "Sep 08, 20:29",
+  "local_date": "2026-09-09",
+  "title": "Recoverable Releases Across Package Registries: A Git-Backed Saga Protocol",
+  "uploaded_filename": "ICSA2027_paper_33.pdf",
+  "source_file": "icsa-draft.pdf",
+  "sha256": "e5cd8589c5576a8acf5a5e4da72dafa40a476c90cdb4e508c5c07c228ed0af02",
+  "pages": 9,
+  "artifact_uploaded": false,
+  "artifact_status": "Local draft only; anonymous distribution pending and explained in submitted paper.",
+  "current_status": "withdrawn 2026-09-09"
+}

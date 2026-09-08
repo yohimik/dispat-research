@@ -1,0 +1,18 @@
+{"level":"info","root":".","time":"2026-09-06T13:55:11Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-06T13:55:11Z","message":"release lock acquired"}
+{"level":"info","package":"core","space":"packages","bump":"patch","version":"1.1.0 -> 1.1.1","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T13:55:11Z","message":"● changed"}
+{"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T13:55:11Z","message":"unchanged"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T13:55:11Z","message":"unchanged"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-06T13:55:11Z","message":"unchanged"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T13:55:11Z","message":"unchanged"}
+{"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-06T13:55:11Z","message":"unchanged"}
+{"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-06T13:55:11Z","message":"release plan ready"}
+{"level":"info","package":"core","stage":"version","version":"1.1.1","manifest":"package.json","ranges":0,"versionWritten":true,"time":"2026-09-06T13:55:11Z","message":"manifest reconciled"}
+{"level":"info","package":"core","stage":"version","version":"1.1.1","time":"2026-09-06T13:55:11Z","message":"version succeeded"}
+{"level":"info","package":"core","stage":"build","version":"1.1.1","time":"2026-09-06T13:55:11Z","message":"build succeeded"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.1","time":"2026-09-06T13:55:11Z","message":"publish started"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.1","plannedTag":"core@1.1.1","time":"2026-09-06T13:55:12Z","message":"published, tag deferred to the release commit"}
+{"level":"info","message":"chore(release): core@1.1.1","time":"2026-09-06T13:55:12Z","message":"created release commit"}
+{"level":"info","remote":"origin","tags":["core@1.1.1"],"time":"2026-09-06T13:55:12Z","message":"pushed release commit and tags"}
+{"level":"info","tag":"core@1.1.1","package":"core","status":"published","version":"1.1.0 -> 1.1.1","channel":"stable","took":989.923709,"time":"2026-09-06T13:55:12Z","message":"summary"}
+{"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":1228.806542,"time":"2026-09-06T13:55:12Z","message":"done"}

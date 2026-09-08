@@ -1,0 +1,188 @@
+package graph
+
+import (
+	"context"
+	"fmt"
+)
+
+// Scheduler is the incremental core of Kahn's algorithm: a dependency graph
+// consumed node by node while something else — a worker pool, a sort loop —
+// decides when and in what order the ready nodes actually run.
+//
+// It is generic because its two users track different node types over the same
+// bookkeeping: the planner sorts package names, the executor schedules
+// (package, stage) task nodes. Both need exactly this and nothing more —
+// nodes, edges, the ready frontier, and "this one finished, what became
+// ready?" — so this is the whole API.
+//
+// Ready and Done return nodes in insertion order (of nodes and edges
+// respectively), so a caller that wants a specific order — the sorter's
+// alphabetical tie-break, say — imposes it on top, and a caller that does not
+// still gets deterministic behaviour for free.
+type Scheduler[N comparable] struct {
+	nodes      []N
+	indeg      map[N]int
+	dependents map[N][]N
+	handed     map[N]bool // already returned by Ready or Done
+}
+
+// NewScheduler returns an empty scheduler.
+func NewScheduler[N comparable]() *Scheduler[N] {
+	return &Scheduler[N]{
+		indeg:      make(map[N]int),
+		dependents: make(map[N][]N),
+		handed:     make(map[N]bool),
+	}
+}
+
+// Add registers a node; adding one twice is a no-op. Nodes named by AddEdge
+// are registered implicitly, so Add is only needed for isolated nodes.
+func (s *Scheduler[N]) Add(n N) {
+	if _, ok := s.indeg[n]; ok {
+		return
+	}
+	s.indeg[n] = 0
+	s.nodes = append(s.nodes, n)
+}
+
+// AddEdge records that after may only run once before has completed. Both
+// nodes are registered as a side effect.
+func (s *Scheduler[N]) AddEdge(before, after N) {
+	s.Add(before)
+	s.Add(after)
+	s.indeg[after]++
+	s.dependents[before] = append(s.dependents[before], after)
+}
+
+// Len is the total number of nodes.
+func (s *Scheduler[N]) Len() int { return len(s.nodes) }
+
+// Ready returns the nodes with no pending dependencies that have not been
+// handed out yet, in insertion order. The initial frontier, on a fresh
+// scheduler.
+func (s *Scheduler[N]) Ready() []N {
+	var out []N
+	for _, n := range s.nodes {
+		if s.indeg[n] == 0 && !s.handed[n] {
+			s.handed[n] = true
+			out = append(out, n)
+		}
+	}
+	return out
+}
+
+// Done marks a node complete and returns the nodes that just became ready, in
+// edge insertion order.
+func (s *Scheduler[N]) Done(n N) []N {
+	var out []N
+	for _, dep := range s.dependents[n] {
+		s.indeg[dep]--
+		if s.indeg[dep] == 0 && !s.handed[dep] {
+			s.handed[dep] = true
+			out = append(out, dep)
+		}
+	}
+	return out
+}
+
+// Blocked returns the nodes that still have pending dependencies, in insertion
+// order. After every handed-out node is Done, a non-empty Blocked is exactly
+// the members of dependency cycles — which is how TopoSort names them.
+func (s *Scheduler[N]) Blocked() []N {
+	var out []N
+	for _, n := range s.nodes {
+		if s.indeg[n] > 0 {
+			out = append(out, n)
+		}
+	}
+	return out
+}
+
+// Drain consumes the scheduler with bounded parallelism: every node runs
+// exactly once in a goroutine of its own, edges respected, with at most
+// budget(class(n)) slots of one class occupied at a time (a budget below 1
+// is treated as 1). Classes exist because budgets can be independent — the
+// executor caps its build and publish stages separately — and each class
+// keeps its own ready queue, so a stalled class never blocks another class's
+// budget. Drain returns nil once every node has completed.
+//
+// weight is how many of its class's slots a node occupies, clamped to
+// [1, budget] so a node can always launch on an idle class — a package
+// weighted past the budget simply runs alone. It must be pure: it is read
+// again on completion to release the slots. A node that does not fit waits
+// at the head of its queue and nothing behind it overtakes; the head-of-line
+// discipline is what makes a heavy node's wait finite instead of starvable.
+//
+// Two things end it early, both only after every in-flight node has been
+// awaited, so no goroutine outlives the call. A cancelled ctx stops new
+// launches: nodes not yet launched never run at all and ctx.Err() is
+// returned — the caller decides what a never-ran node means. And a graph
+// whose remaining nodes can never become ready (a dependency cycle) is
+// reported as an error instead of the coordinator blocking forever; callers
+// validate their graphs first (the planner rejects cycles as E200), so
+// hitting it is a programming error, but a diagnosed one.
+//
+// This is the one scheduling pump in the program: the executor drains
+// (package, stage) tasks over two budgets, the run command drains package
+// names over one. run is responsible for its own synchronisation; Drain
+// guarantees only the ordering the edges state, plus the happens-before
+// between a node's completion and its dependents' starts that the completion
+// channel provides.
+func Drain[N comparable, C comparable](ctx context.Context, s *Scheduler[N], class func(N) C, budget func(C) int, weight func(N) int, run func(N)) error {
+	ready := make(map[C][]N)
+	var classes []C // first-seen order, so launch scanning is deterministic
+	push := func(n N) {
+		c := class(n)
+		if _, ok := ready[c]; !ok {
+			classes = append(classes, c)
+		}
+		ready[c] = append(ready[c], n)
+	}
+	for _, n := range s.Ready() {
+		push(n)
+	}
+	cost := func(n N, limit int) int { return min(max(1, weight(n)), limit) }
+
+	inFlight := make(map[C]int)
+	inFlightTotal := 0
+	done := make(chan N)
+	finished, total := 0, s.Len()
+	for finished < total {
+		if ctx.Err() == nil {
+			for _, c := range classes {
+				queue := ready[c]
+				limit := max(1, budget(c))
+				for len(queue) > 0 {
+					n := queue[0]
+					w := cost(n, limit)
+					if inFlight[c]+w > limit {
+						break // head of line waits; nothing overtakes it
+					}
+					queue = queue[1:]
+					inFlight[c] += w
+					inFlightTotal++
+					go func(n N) {
+						run(n)
+						done <- n
+					}(n)
+				}
+				ready[c] = queue
+			}
+		}
+		if inFlightTotal == 0 {
+			if err := ctx.Err(); err != nil {
+				return err
+			}
+			return fmt.Errorf("graph: %d node(s) can never become ready (dependency cycle)", len(s.Blocked()))
+		}
+		n := <-done
+		c := class(n)
+		inFlight[c] -= cost(n, max(1, budget(c)))
+		inFlightTotal--
+		finished++
+		for _, next := range s.Done(n) {
+			push(next)
+		}
+	}
+	return nil
+}

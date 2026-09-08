@@ -1,0 +1,7 @@
+From /work/nx-origin
+ * branch            main       -> FETCH_HEAD
+   509adff..c54b0af  main       -> origin/main
+Updating 509adff..c54b0af
+Fast-forward
+ packages/core/package.json | 1 +
+ 1 file changed, 1 insertion(+)

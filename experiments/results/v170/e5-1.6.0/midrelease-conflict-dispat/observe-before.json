@@ -1,0 +1,102 @@
+{
+ "label": "before",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "e0086746998b",
+   "subject": "feat(core)^: streaming reader"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "e0086746998b"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "e0086746998b",
+   "subject": "feat(core)^: streaming reader"
+  },
+  "tags": {
+   "api@1.0.0": "face2005b493",
+   "cli@1.0.0": "face2005b493",
+   "core@1.0.0": "face2005b493",
+   "docs@1.0.0": "face2005b493",
+   "theme@1.0.0": "face2005b493",
+   "ui@1.0.0": "face2005b493"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "face2005b493",
+     "onMain": true,
+     "origin": "face2005b493"
+    }
+   }
+  }
+ }
+}

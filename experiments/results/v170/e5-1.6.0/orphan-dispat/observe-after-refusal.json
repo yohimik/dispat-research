@@ -1,0 +1,120 @@
+{
+ "label": "after-refusal",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "43e90fb12c7c",
+   "subject": "chore(release): core@1.1.0, api@1.0.1, ui@1.0.1"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "43e90fb12c7c"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "43e90fb12c7c",
+   "subject": "chore(release): core@1.1.0, api@1.0.1, ui@1.0.1"
+  },
+  "tags": {
+   "api@1.0.0": "bc40675eea7e",
+   "api@1.0.1": "43e90fb12c7c",
+   "cli@1.0.0": "bc40675eea7e",
+   "core@1.0.0": "bc40675eea7e",
+   "core@1.1.0": "43e90fb12c7c",
+   "docs@1.0.0": "bc40675eea7e",
+   "theme@1.0.0": "bc40675eea7e",
+   "ui@1.0.0": "bc40675eea7e",
+   "ui@1.0.1": "43e90fb12c7c"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    },
+    "1.0.1": {
+     "local": "43e90fb12c7c",
+     "onMain": true,
+     "origin": "43e90fb12c7c"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    },
+    "1.1.0": {
+     "local": "43e90fb12c7c",
+     "onMain": true,
+     "origin": "43e90fb12c7c"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "bc40675eea7e",
+     "onMain": true,
+     "origin": "bc40675eea7e"
+    },
+    "1.0.1": {
+     "local": "43e90fb12c7c",
+     "onMain": true,
+     "origin": "43e90fb12c7c"
+    }
+   }
+  }
+ }
+}

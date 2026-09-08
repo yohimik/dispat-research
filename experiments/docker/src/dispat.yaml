@@ -1,0 +1,170 @@
+# The monorepo's shared configuration: what every space needs, and nothing any
+# one of them owns. Each space carries its own dispat.yaml in its folder, and
+# the packages with exceptions of their own (packages/docs, services/dispat
+# and infra) carry a package file beside their code — see
+# https://dispat.dev/examples/layout/.
+scripts:
+  go-mod-tidy: go mod tidy
+  pnpm-install: pnpm install
+  changelog: dispat changelog
+  commit: dispat commit --tag --push
+  github: dispat github
+
+  # The release workflow's own stages, as dispat scripts rather than workflow
+  # bash, so the release logic lives here and the workflow stays plumbing.
+  # Only a `--since all` suite run leaves the complete profile set the badge
+  # is a number about, which is why the release workflow is their one caller.
+  coverage-badge: sh scripts/coverage-badge.sh
+  test-report: go run github.com/yohimik/dispat/tools/testreport build -commit "$GITHUB_SHA"
+
+  # Publish the coverage badge: force-push coverage/coverage.json to an orphan
+  # badges branch, a single commit with no history, the same mechanism
+  # deploy-docs uses for the site. README reads the file through the shields.io
+  # endpoint URL. The `dispat if` guard keeps it inside CI: a release run is
+  # the only context in which the push is a record rather than an accident.
+  push-badge: |
+    set -eu
+    dispat if 'CI!=true' --then 'echo "refusing to push the badge outside CI (set CI=true to override)" >&2; exit 1'
+    : "${GITHUB_TOKEN:?GITHUB_TOKEN is required to push the badges branch}"
+    : "${GITHUB_REPOSITORY:?GITHUB_REPOSITORY is required to push the badges branch}"
+    rm -rf badge && mkdir badge && cp coverage/coverage.json badge/
+    cd badge
+    git init -q -b badges
+    git config user.name "github-actions[bot]"
+    git config user.email "github-actions[bot]@users.noreply.github.com"
+    git add coverage.json
+    git commit -qm "chore: update coverage badge"
+    git push -f "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" badges
+    echo "pushed the coverage badge to the badges branch"
+
+versionGroups:
+  manifests:
+    versioning: fixed
+  cli:
+    versioning: fixedMajorMinor
+
+# A space's existence and its path live here; everything else it says about
+# itself lives in <space>/dispat.yaml.
+spaces:
+  pkg:
+    path: pkg
+  packages:
+    path: packages
+  services:
+    path: services
+  docker:
+    path: docker
+
+# The two workspace modules that are repository tooling rather than something
+# dispat ships: never versioned, never tagged, never published — but swept by
+# `dispat run vet`, `tests` and `build` like every real package, so the lint
+# and test gates need no hand-kept module list beside the sweep.
+packages:
+  tools:
+    path: tools
+    versioning: none
+    scripts:
+      vet: go vet ./...
+      # Into a throwaway directory: `go build` writes a lone main package's
+      # binary into the working folder, where `testreport` is a directory.
+      build: go build -o "$(mktemp -d)" ./...
+      # Through `testreport test` like every Go suite, so the repository
+      # tooling's own runs land in the site's test-results page too.
+      tests: go run github.com/yohimik/dispat/tools/testreport test tools -- ./... -count=1
+  integration:
+    path: tests/integration
+    versioning: none
+    # The module requires pkg/models; declared so `dispat compute --check`
+    # stays quiet about the derived edge. No `tests` script on purpose: the
+    # black-box suite is the dispat package's own gate (tests:integration in
+    # services/dispat/dispat.yaml), attributed there for coverage, and a
+    # second name for the same run would execute it twice per sweep.
+    dependencies: [models]
+    scripts:
+      vet: go vet ./...
+      # The same throwaway target as the tools build, for the same reason:
+      # a compile gate must leave no artifact in the checkout.
+      build: go build -o "$(mktemp -d)" ./...
+  # The Google Cloud footprint that serves dispat.dev, released like code.
+  # Only the existence and the folder live here; everything the package says
+  # about itself lives in infra/dispat.yaml, beside the Terraform it
+  # configures.
+  infra:
+    path: infra
+
+# The version of the dispat CLI its in-repo consumers take: the docker images
+# hand it to install.sh, and anything else that needs the CLI's version reads
+# the same name instead of deriving its own. It defaults to the version dispat
+# carries at the end of the current run — the planned version when dispat is
+# releasing, which is right because the images build only after it publishes,
+# and its released baseline otherwise, so a docs- or image-only release
+# installs the CLI that is actually out. The docker build gate overrides it
+# for the one case the default cannot cover (a planned version nobody
+# published yet); see the build script in docker/dispat.yaml.
+env:
+  INSTALL_DISPAT_VERSION: ${DISPAT_WORKSPACE_DISPAT_VERSION}
+
+concurrency: [0, 1]
+
+changelog:
+  enabled: true
+
+commit:
+  enabled: true
+  push: true
+  name: github-actions[bot]
+  email: github-actions[bot]@users.noreply.github.com
+
+github:
+  enabled: true
+  allPackages: true
+  # Every release body closes with where what shipped can be fetched and read,
+  # under the change sections: the page is about what changed, and the way to
+  # install it is the next thing you want rather than the first. The rule leads
+  # the block so the sections above it end cleanly. The lines interpolate the
+  # releasing package's own DISPAT_* variables, and the package/space filters
+  # write each block only for the releases it is about. The installer is
+  # fetched from this release's own v{version} alias tag, so a prerelease
+  # installs with the installer it shipped with.
+  #
+  # The rule is also what `dispat self-update` cuts on when it prints a
+  # release's notes to a terminal, so everything below it stays out of the
+  # summary a user reads after an update.
+  footer:
+    - line:
+        - "---"
+        - ""
+    - package: [dispat]
+      # The same three install variants the README offers, pinned to this
+      # release's own installer via its v{version} alias tag. The PowerShell
+      # line passes -Version rather than setting $env:DISPAT_VERSION, because
+      # these lines run through the ${VAR} expansion and a literal $env would
+      # be read as a variable named "env".
+      line:
+        - "**Install this version:**"
+        - ""
+        - "```sh"
+        - "# Linux and macOS"
+        - "curl -fsSL https://raw.githubusercontent.com/yohimik/dispat/v${DISPAT_NEW_VERSION}/install.sh | DISPAT_VERSION=${DISPAT_NEW_VERSION} sh"
+        - "```"
+        - ""
+        - "```sh"
+        - "# ...or with wget"
+        - "wget -qO- https://raw.githubusercontent.com/yohimik/dispat/v${DISPAT_NEW_VERSION}/install.sh | DISPAT_VERSION=${DISPAT_NEW_VERSION} sh"
+        - "```"
+        - ""
+        - "```powershell"
+        - "# Windows, in PowerShell"
+        - "irm https://raw.githubusercontent.com/yohimik/dispat/v${DISPAT_NEW_VERSION}/install.ps1 -OutFile install.ps1; ./install.ps1 -Version ${DISPAT_NEW_VERSION}"
+        - "```"
+        - ""
+        - "[Documentation](https://dispat.dev/) · [dispat in CI](https://dispat.dev/reference/ci/) · [Container images](https://hub.docker.com/u/yohimik)"
+    - space: [docker]
+      line:
+        - "`docker pull yohimik/${DISPAT_PACKAGE}:${DISPAT_NEW_VERSION}` · [Docker Hub](https://hub.docker.com/r/yohimik/${DISPAT_PACKAGE}) · [The dispat images](https://dispat.dev/reference/ci/#the-container-images)"
+    - space: [pkg]
+      line:
+        - "[pkg.go.dev](https://pkg.go.dev/github.com/yohimik/dispat/pkg/${DISPAT_PACKAGE}@v${DISPAT_NEW_VERSION}) · [Documentation](https://dispat.dev/)"
+    - package: [docs]
+      line:
+        - "[The documentation site](https://dispat.dev/) this release deploys."

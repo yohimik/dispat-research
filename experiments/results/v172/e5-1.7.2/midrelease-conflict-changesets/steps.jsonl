@@ -1,0 +1,8 @@
+{"step":"version","exit":0}
+{"step":"commit","exit":0}
+{"step":"publish","exit":0}
+{"step":"push","exit":1}
+{"step":"rebase","exit":1}
+{"step":"resolve","exit":0}
+{"step":"push2","exit":0}
+{"step":"status","exit":0}

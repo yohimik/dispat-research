@@ -1,0 +1,75 @@
+{
+ "packages": [
+  "core",
+  "utils",
+  "cli"
+ ],
+ "edges": [
+  [
+   "cli",
+   "core"
+  ],
+  [
+   "cli",
+   "utils"
+  ]
+ ],
+ "commits": [
+  {
+   "id": "c0",
+   "units": []
+  },
+  {
+   "id": "c1",
+   "units": [
+    {
+     "type": "fix",
+     "scope": [
+      "cli",
+      "core"
+     ],
+     "pd": 1,
+     "pcd": 0,
+     "breaking": false,
+     "pb": null,
+     "channel": null,
+     "pchannel": null,
+     "releaseAs": null
+    },
+    {
+     "type": "fix",
+     "scope": [
+      "utils"
+     ],
+     "pd": 1,
+     "pcd": 0,
+     "breaking": false,
+     "pb": null,
+     "channel": null,
+     "pchannel": null,
+     "releaseAs": null
+    }
+   ]
+  }
+ ],
+ "tags": [
+  {
+   "pkg": "core",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "utils",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "cli",
+   "version": "1.0.0",
+   "commit": "c0"
+  }
+ ],
+ "features": {
+  "prerelease": []
+ }
+}

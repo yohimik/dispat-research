@@ -1,0 +1,11 @@
+{"level":"error","code":"E195","package":"p05","time":"2026-09-06T23:17:02Z","message":"computed version 3.7.1-beta.0 is not greater than the baseline 3.8.0-beta.0"}
+{"level":"info","warnings":0,"errors":1,"time":"2026-09-06T23:17:02Z","message":"plan diagnostics"}
+{"level":"info","package":"p00","space":"packages","bump":"major","version":"3.8.5 -> 4.0.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:17:02Z","message":"● changed"}
+{"level":"info","package":"p01","space":"packages","dependsOn":["p00"],"version":"2.5.0-beta.0","channel":"beta","time":"2026-09-06T23:17:02Z","message":"unchanged"}
+{"level":"info","package":"p02","space":"packages","dependsOn":["p01"],"bump":"major","version":"2.4.2 -> 3.0.0-beta.0","channel":"stable -> beta","reason":"direct","ownCommits":2,"dueToProviders":["p00","p01","p06"],"time":"2026-09-06T23:17:02Z","message":"● changed"}
+{"level":"info","package":"p03","space":"packages","dependsOn":["p01","p02"],"version":"3.8.0-beta.2","channel":"beta","time":"2026-09-06T23:17:02Z","message":"unchanged"}
+{"level":"info","package":"p04","space":"packages","dependsOn":["p03"],"bump":"minor","version":"1.0.8 -> 1.1.0-beta.0","channel":"stable -> beta","reason":"direct","ownCommits":1,"dueToProviders":["p00","p03","p06"],"time":"2026-09-06T23:17:02Z","message":"● changed"}
+{"level":"info","package":"p05","space":"packages","dependsOn":["p02","p03"],"bump":"patch","version":"3.8.0-beta.0 -> 3.7.1-beta.0","channel":"beta","reason":"direct","ownCommits":1,"dueToProviders":["p00","p03","p06"],"time":"2026-09-06T23:17:02Z","message":"● changed"}
+{"level":"info","package":"p06","space":"packages","bump":"major","version":"2.6.5 -> 3.0.0","channel":"stable","reason":"direct","ownCommits":4,"dueToProviders":[],"time":"2026-09-06T23:17:02Z","message":"● changed"}
+{"level":"info","packages":7,"releasing":5,"held":0,"time":"2026-09-06T23:17:02Z","message":"release plan ready"}
+{"level":"error","reason":"the repository cannot produce a correct plan (§16 repository-scoped error)","time":"2026-09-06T23:17:02Z","message":"refusing to release"}

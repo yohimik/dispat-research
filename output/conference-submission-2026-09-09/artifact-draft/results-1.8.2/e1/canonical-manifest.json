@@ -1,0 +1,35 @@
+{
+ "canonical": true,
+ "dispat": "1.8.2",
+ "extractor_sha256": "3d5eef3ef2bf87de7876ddf6d04e852028b72091dd2417ce4943c96e48011e52",
+ "shards": [
+  {
+   "profile": "core",
+   "first": 1,
+   "count": 1000,
+   "path": "core-1-1000/e1-core-1-1000.json",
+   "sha256": "e64aea39fc0ce2e252b74bdef50e54fa631774466d2b774d805f27483dd3037d"
+  },
+  {
+   "profile": "core",
+   "first": 5001,
+   "count": 500,
+   "path": "core-5001-500/e1-core-5001-500.json",
+   "sha256": "bbc083693fd706546656fcaa76af42c788d2432e2443d8695ec6b21a376194ec"
+  },
+  {
+   "profile": "full",
+   "first": 1,
+   "count": 1000,
+   "path": "full-1-1000/e1-full-1-1000.json",
+   "sha256": "8516e43a22494b2694e076f9bfe70e1f8b16aabb1f3739226046f1e09c90044b"
+  },
+  {
+   "profile": "full",
+   "first": 5001,
+   "count": 500,
+   "path": "full-5001-500/e1-full-5001-500.json",
+   "sha256": "e65c8164a6f114231ac943e2bb903927007cf3dd17bfb88395c97ffb8e25ff35"
+  }
+ ]
+}

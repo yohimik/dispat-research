@@ -1,0 +1,22 @@
+== nx: fixture
+fixture ready: /work/nx nx
+== nx: version under test: - Global: Not found
+== nx: baseline publish (all six at 1.0.0)
+exit=1  REGISTRY core: absent  cli: absent
+== nx: version+tag (conventional commits, publish skipped)
+exit=1
+TAGS_AFTER_VERSION:
+api@1.0.0
+cli@1.0.0
+core@1.0.0
+docs@1.0.0
+theme@1.0.0
+ui@1.0.0
+== nx: release publish with cli DENIED
+exit=1
+REGISTRY cli: absent  core: absent  ui: absent
+CLI TAGS (exist despite failed publish?):
+cli@1.0.0
+== nx: recovery via release publish after clearing deny
+exit=1  REGISTRY cli now: absent
+== done

@@ -1,0 +1,11 @@
+🦋 changeset v3.0.1
+
+Error: Found changeset streaming-reader for package core which is not in the workspace
+    at mapGetOrThrow (file:///opt/tools/node_modules/@changesets/assemble-release-plan/dist/index.mjs:35:27)
+    at getRelevantChangesets (file:///opt/tools/node_modules/@changesets/assemble-release-plan/dist/index.mjs:321:67)
+    at assembleReleasePlan (file:///opt/tools/node_modules/@changesets/assemble-release-plan/dist/index.mjs:271:29)
+    at version (file:///opt/tools/node_modules/@changesets/cli/dist/version.mjs:59:22)
+    at async CAC.<anonymous> (file:///opt/tools/node_modules/@changesets/cli/dist/index.mjs:60:2)
+    at async file:///opt/tools/node_modules/@changesets/cli/dist/index.mjs:117:2
+🦋 Exited with code 1
+

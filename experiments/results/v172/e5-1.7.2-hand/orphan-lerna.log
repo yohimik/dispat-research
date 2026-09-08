@@ -1,0 +1,88 @@
+experiment=orphan tool=lerna scenario=none
+dispat 1.7.2 (linux_amd64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/lerna lerna
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core): streaming reader local 0 ahead 0 behind
+
+== version: lerna version --conventional-commits --yes
+exit=0
+   | Changes:
+   |  - api: 1.0.0 => 1.0.1
+   |  - cli: 1.0.0 => 1.0.1
+   |  - core: 1.0.0 => 1.1.0
+   |  - docs: 1.0.0 => 1.0.1
+   |  - theme: 1.0.0 => 1.0.1
+   |  - ui: 1.0.0 => 1.0.1
+   | 
+   | lerna info auto-confirmed 
+   | lerna info execute Skipping releases
+   | lerna info git Pushing tags...
+   | lerna success version finished
+   after-version: api=1.0.0/orphan cli=1.0.0/orphan core=1.0.0/orphan docs=1.0.0/orphan theme=1.0.0/orphan ui=1.0.0/orphan
+   origin/main=Publish local 0 ahead 0 behind
+
+== publish: lerna publish from-git --yes
+exit=1
+   | lerna notice 138B package.json
+   | lerna notice 295B CHANGELOG.md
+   | lerna notice === Tarball Details === 
+   | lerna notice name:          theme                                   
+   | lerna notice version:       1.0.1                                   
+   | lerna notice filename:      theme-1.0.1.tgz                         
+   | lerna notice package size:  472 B                                   
+   | lerna notice unpacked size: 439 B                                   
+   | lerna notice shasum:        d06221cfa26b0470ccba9f37bf4df5effd05da5e
+   | lerna notice integrity:     sha512-C6kvRQpj/jY0q[...]vPcCLUn+aw8nw==
+   | lerna notice total files:   3                                       
+   | lerna notice 
+   after-refusal: api=1.0.1/consistent cli=1.0.0/orphan core=1.1.0/consistent docs=1.0.1/consistent theme=1.0.1/consistent ui=1.0.1/consistent
+   origin/main=Publish local 0 ahead 0 behind
+
+== recovery: lerna publish from-package --yes
+exit=1
+   | lerna notice cli v10.0.1
+   | lerna info versioning independent
+   | lerna ERR! EUNCOMMIT Working tree has uncommitted changes, please commit or remove the following changes before continuing:
+   | lerna ERR! EUNCOMMIT  M packages/api/package.json
+   | lerna ERR! EUNCOMMIT  M packages/cli/package.json
+   | lerna ERR! EUNCOMMIT  M packages/core/package.json
+   | lerna ERR! EUNCOMMIT  M packages/docs/package.json
+   | lerna ERR! EUNCOMMIT  M packages/theme/package.json
+   | lerna ERR! EUNCOMMIT  M packages/ui/package.json
+
+== cleanup: git checkout -q -- .
+exit=0
+
+== recovery2: lerna publish from-package --yes
+exit=0
+   | lerna notice name:          cli                                     
+   | lerna notice version:       1.0.1                                   
+   | lerna notice filename:      cli-1.0.1.tgz                           
+   | lerna notice package size:  474 B                                   
+   | lerna notice unpacked size: 433 B                                   
+   | lerna notice shasum:        0a611d6efc191e86310af3f970f22be499b615b8
+   | lerna notice integrity:     sha512-pfkGyFSqfhni1[...]hYN1X+7T+C0oA==
+   | lerna notice total files:   3                                       
+   | lerna notice 
+   | Successfully published:
+   |  - cli@1.0.1
+   | lerna success published 1 package
+   after-recovery: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.1/consistent theme=1.0.1/consistent ui=1.0.1/consistent
+   origin/main=Publish local 0 ahead 0 behind
+
+== changed: lerna changed --all --long
+exit=1
+   | lerna notice cli v10.0.1
+   | lerna info versioning independent
+   | lerna notice Current HEAD is already released, skipping change detection.
+   | lerna info No changed packages found
+   next plan: 
+   ok    the refused run exited non-zero
+   FAIL  the refused package carries no tag for an unpublished version
+         | false
+   ok    the recovery published the refused package
+   FAIL  the recovery needed no manual cleanup
+   ok    the next plan is empty
+VERDICT: the refused package carries no tag for an unpublished version; the recovery needed no manual cleanup

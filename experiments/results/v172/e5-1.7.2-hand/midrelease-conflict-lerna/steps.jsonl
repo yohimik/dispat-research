@@ -1,0 +1,6 @@
+{"step":"version","exit":1}
+{"step":"publish","exit":0}
+{"step":"rebase","exit":1}
+{"step":"resolve","exit":0}
+{"step":"push","exit":0}
+{"step":"changed","exit":0}

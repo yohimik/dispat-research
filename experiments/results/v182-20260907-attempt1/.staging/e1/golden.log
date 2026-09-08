@@ -1,0 +1,36 @@
+=== raw JSON events ===
+{
+ "cli": {
+  "bump": "patch",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [
+   "core"
+  ],
+  "next": "1.0.1",
+  "reason": "propagated from core"
+ },
+ "core": {
+  "bump": "minor",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [],
+  "next": "1.1.0",
+  "reason": "direct"
+ },
+ "ui": {
+  "bump": "patch",
+  "changed": true,
+  "channel": "stable",
+  "dueTo": [
+   "core"
+  ],
+  "next": "1.0.1",
+  "reason": "propagated from core"
+ }
+}
+=== full stream tail ===
+{"level":"info","package":"core","space":"packages","bump":"minor","version":"1.0.0 -> 1.1.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T23:16:15Z","message":"● changed"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T23:16:15Z","message":"● changed"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-06T23:16:15Z","message":"● changed"}
+{"level":"info","packages":3,"releasing":3,"held":0,"time":"2026-09-06T23:16:15Z","message":"release plan ready"}

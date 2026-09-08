@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chaince5c33c8d6/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 0,
+    "body": "{\"name\":\"chaince5c33c8d6/app\",\"tags\":[\"2.1.1\"]}\n"
+  },
+  "assets": {
+    "name": "chaince5c33c8d6-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chaince5c33c8d6-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "88e53d50a9463b8793489795747c317db464ad3d",
+        "_id": "chaince5c33c8d6-assets@1.5.0",
+        "_nodeVersion": "24.18.0",
+        "_npmVersion": "12.0.1",
+        "dist": {
+          "integrity": "sha512-8L168VuUcp3Y0DCavkYYs1EYNndWKgpLU976fARqhAfz/6uuUcWoqRg5KtEvw/Csnft/937PxHqQtGq04C+58A==",
+          "shasum": "c9216847e3a5c89fccc2d662bec1f48527d9726a",
+          "tarball": "http://127.0.0.1:50558/chaince5c33c8d6-assets/-/chaince5c33c8d6-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:39:51.494Z",
+      "created": "2026-09-08T22:39:51.494Z",
+      "1.5.0": "2026-09-08T22:39:51.494Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-0edb5b805bbed2e1",
+    "_id": "chaince5c33c8d6-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

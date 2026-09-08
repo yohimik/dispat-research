@@ -1,0 +1,120 @@
+[
+  {
+    "args": [
+      "git",
+      "init",
+      "-q"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "git",
+      "add",
+      "global.yaml",
+      "linux.yaml",
+      "windows.yaml",
+      "app/README.md"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "git",
+      "-c",
+      "user.name=Fixture",
+      "-c",
+      "user.email=fixture@example.invalid",
+      "commit",
+      "--allow-empty",
+      "-qm",
+      "chore: fixture"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "dispat",
+      "--config",
+      "windows.yaml",
+      "status"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "13:51:39 WRN unit resolved to no package and is inert: chore: fixture code=W131 commit=ced847f9bd4d\n13:51:39 INF plan diagnostics errors=0 warnings=1\n13:51:39 INF unchanged channel=stable package=app space=app version=0.0.0\n13:51:39 INF release plan ready held=0 packages=1 releasing=0\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "dispat",
+      "--config",
+      "linux.yaml",
+      "status"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "13:51:39 WRN unit resolved to no package and is inert: chore: fixture code=W131 commit=ced847f9bd4d\n13:51:39 INF plan diagnostics errors=0 warnings=1\n13:51:39 INF unchanged channel=stable package=app space=app version=0.0.0\n13:51:39 INF release plan ready held=0 packages=1 releasing=0\n",
+    "stderr": ""
+  },
+  {
+    "args": [
+      "dispat",
+      "if",
+      "OS=Windows_NT",
+      "--then",
+      "dispat --config windows.yaml status --log-level debug",
+      "--else",
+      "dispat --config linux.yaml status --log-level debug"
+    ],
+    "env": {
+      "OS": "Windows_NT"
+    },
+    "exit": 0,
+    "stdout": "13:51:39 DBG configuration loaded config=windows.yaml configFiles=2 explicitConfig=true packageEntries=1 root=. scripts=1 spaces=0 webhooks=0\n13:51:39 DBG package resolved package=app scope=app space=app versioning=independent\n13:51:39 DBG plan: windows loaded commits=2 packages=1\n13:51:39 DBG plan: direct bumps resolved held=0 pinned=0\n13:51:39 DBG release authors collected fresh=1 package=app window=1\n13:51:39 WRN unit resolved to no package and is inert: chore: fixture code=W131 commit=ced847f9bd4d\n13:51:39 INF plan diagnostics errors=0 warnings=1\n13:51:39 INF unchanged channel=stable package=app space=app version=0.0.0\n13:51:39 INF release plan ready held=0 packages=1 releasing=0\n",
+    "stderr": "13:51:39 DBG config.tree.loaded duration=\"88.375\u00b5s\" files=2 path=windows.yaml\n13:51:39 DBG config.overrides.applied count=1\n"
+  },
+  {
+    "args": [
+      "dispat",
+      "if",
+      "OS=Windows_NT",
+      "--then",
+      "dispat --config windows.yaml status --log-level debug",
+      "--else",
+      "dispat --config linux.yaml status --log-level debug"
+    ],
+    "env": {
+      "OS": "Linux"
+    },
+    "exit": 0,
+    "stdout": "13:51:39 DBG configuration loaded config=linux.yaml configFiles=2 explicitConfig=true packageEntries=1 root=. scripts=1 spaces=0 webhooks=0\n13:51:39 DBG package resolved package=app scope=app space=app versioning=independent\n13:51:39 DBG plan: windows loaded commits=2 packages=1\n13:51:39 DBG plan: direct bumps resolved held=0 pinned=0\n13:51:39 DBG release authors collected fresh=1 package=app window=1\n13:51:39 WRN unit resolved to no package and is inert: chore: fixture code=W131 commit=ced847f9bd4d\n13:51:39 INF plan diagnostics errors=0 warnings=1\n13:51:39 INF unchanged channel=stable package=app space=app version=0.0.0\n13:51:39 INF release plan ready held=0 packages=1 releasing=0\n",
+    "stderr": "13:51:39 DBG config.tree.loaded duration=\"85.291\u00b5s\" files=2 path=linux.yaml\n13:51:39 DBG config.overrides.applied count=1\n"
+  },
+  {
+    "args": [
+      "dispat",
+      "--config",
+      "linux.yaml",
+      "exec",
+      "build",
+      "--for",
+      "pkg:app",
+      "--in",
+      "pkg:app",
+      "--fallback"
+    ],
+    "env": {},
+    "exit": 0,
+    "stdout": "fixture-build:/Users/yohimik/Projects/dispat/output/paper-platform-config/app\n",
+    "stderr": ""
+  }
+]

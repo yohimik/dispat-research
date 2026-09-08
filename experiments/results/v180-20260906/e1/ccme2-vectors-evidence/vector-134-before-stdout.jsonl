@@ -1,0 +1,3 @@
+{"level":"info","package":"core","space":"packages","version":"1.0.0","channel":"stable","time":"2026-09-06T13:51:20Z","message":"unchanged"}
+{"level":"info","package":"app","space":"packages","dependsOn":["core"],"version":"1.0.0","channel":"stable","time":"2026-09-06T13:51:20Z","message":"unchanged"}
+{"level":"info","packages":2,"releasing":0,"held":0,"time":"2026-09-06T13:51:20Z","message":"release plan ready"}

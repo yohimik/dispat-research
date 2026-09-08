@@ -1,0 +1,36 @@
+{"level":"info","root":".","time":"2026-09-02T06:50:39Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-02T06:50:39Z","message":"release lock acquired"}
+{"level":"info","package":"core","space":"packages","bump":"minor","version":"1.0.0 -> 1.1.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-02T06:50:39Z","message":"● changed"}
+{"level":"info","package":"api","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-02T06:50:39Z","message":"● changed"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-02T06:50:39Z","message":"● changed"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.0 -> 1.0.1","channel":"stable","reason":"propagated from core","ownCommits":0,"dueToProviders":["core"],"time":"2026-09-02T06:50:39Z","message":"● changed"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:50:39Z","message":"unchanged"}
+{"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:50:39Z","message":"unchanged"}
+{"level":"info","packages":6,"releasing":4,"held":0,"time":"2026-09-02T06:50:39Z","message":"release plan ready"}
+{"level":"info","package":"core","stage":"version","version":"1.1.0","manifest":"package.json","ranges":0,"versionWritten":true,"time":"2026-09-02T06:50:39Z","message":"manifest reconciled"}
+{"level":"info","package":"core","stage":"version","version":"1.1.0","time":"2026-09-02T06:50:39Z","message":"version succeeded"}
+{"level":"info","package":"core","stage":"build","version":"1.1.0","time":"2026-09-02T06:50:39Z","message":"build succeeded"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.0","time":"2026-09-02T06:50:39Z","message":"publish started"}
+{"level":"info","package":"cli","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-02T06:50:39Z","message":"manifest reconciled"}
+{"level":"info","package":"cli","stage":"version","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"version succeeded"}
+{"level":"info","package":"cli","stage":"build","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"build succeeded"}
+{"level":"info","package":"api","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-02T06:50:39Z","message":"manifest reconciled"}
+{"level":"info","package":"api","stage":"version","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"version succeeded"}
+{"level":"info","package":"api","stage":"build","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"build succeeded"}
+{"level":"info","package":"ui","stage":"version","version":"1.0.1","manifest":"package.json","ranges":1,"versionWritten":true,"time":"2026-09-02T06:50:39Z","message":"manifest reconciled"}
+{"level":"info","package":"ui","stage":"version","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"version succeeded"}
+{"level":"info","package":"ui","stage":"build","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"build succeeded"}
+{"level":"info","package":"core","stage":"publish","version":"1.1.0","plannedTag":"core@1.1.0","time":"2026-09-02T06:50:39Z","message":"published, tag deferred to the release commit"}
+{"level":"info","package":"ui","stage":"publish","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"publish started"}
+{"level":"info","package":"api","stage":"publish","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"publish started"}
+{"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-02T06:50:39Z","message":"publish started"}
+{"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-02T06:50:39Z","message":"published, tag deferred to the release commit"}
+{"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-02T06:50:39Z","message":"published, tag deferred to the release commit"}
+{"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-02T06:50:39Z","message":"published, tag deferred to the release commit"}
+{"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1","time":"2026-09-02T06:50:39Z","message":"created release commit"}
+{"level":"error","error":"git push origin HEAD: exit status 1: To /work/dispat-origin.git\n ! [rejected]        HEAD -> main (fetch first)\nerror: failed to push some refs to '/work/dispat-origin.git'\nhint: Updates were rejected because the remote contains work that you do\nhint: not have locally. This is usually caused by another repository pushing\nhint: to the same ref. You may want to first integrate the remote changes\nhint: (e.g., 'git pull ...') before pushing again.\nhint: See the 'Note about fast-forwards' in 'git push --help' for details.","code":"E224","remote":"origin","time":"2026-09-02T06:50:39Z","message":"push failed"}
+{"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":160.3335,"time":"2026-09-02T06:50:39Z","message":"summary"}
+{"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":427.936083,"time":"2026-09-02T06:50:39Z","message":"summary"}
+{"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":428.030542,"time":"2026-09-02T06:50:39Z","message":"summary"}
+{"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":427.427333,"time":"2026-09-02T06:50:39Z","message":"summary"}
+{"level":"info","published":4,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":468.848375,"time":"2026-09-02T06:50:39Z","message":"done"}

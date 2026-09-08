@@ -1,0 +1,7 @@
+{"level":"warn","code":"W208","package":"app","commit":"7eea95d69819","time":"2026-09-06T20:02:51Z","message":"propagated bump from core suppressed: core releases on \"beta\", which app (on \"rc\") cannot resolve"}
+{"level":"warn","code":"W204","package":"app","time":"2026-09-06T20:02:51Z","message":"channel-entry patch applied: 1.0.0-rc.0 would not have exceeded the baseline 1.0.0, so 1.0.1-rc.0 is released instead"}
+{"level":"warn","code":"W202","package":"app","time":"2026-09-06T20:02:51Z","message":"channel-only release at 1.0.1-rc.0: stable -> rc"}
+{"level":"info","warnings":3,"errors":0,"time":"2026-09-06T20:02:51Z","message":"plan diagnostics"}
+{"level":"info","package":"core","space":"packages","bump":"minor","version":"1.0.0 -> 1.1.0-beta.0","channel":"stable -> beta","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T20:02:51Z","message":"● changed"}
+{"level":"info","package":"app","space":"packages","dependsOn":["core"],"bump":"none","version":"1.0.0 -> 1.0.1-rc.0","channel":"stable -> rc","reason":"channel from core","ownCommits":0,"dueToProviders":[],"time":"2026-09-06T20:02:51Z","message":"◈ channel-only"}
+{"level":"info","packages":2,"releasing":2,"held":0,"time":"2026-09-06T20:02:51Z","message":"release plan ready"}

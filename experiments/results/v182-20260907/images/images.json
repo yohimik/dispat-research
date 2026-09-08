@@ -1,0 +1,185 @@
+[
+    {
+        "Id": "sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75",
+        "RepoTags": [
+            "dispat-exp:v182-runtime"
+        ],
+        "RepoDigests": [
+            "dispat-exp@sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-06T23:15:22.097292714Z",
+        "Config": {
+            "Env": [
+                "PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "GPG_KEY=7169605F62C751356D054A26A821E680E5FA6305",
+                "PYTHON_VERSION=3.12.14",
+                "PYTHON_SHA256=5c8462af5790baf43a321a1559dbe0db06d1be4300fb85fb53c40060668e548a"
+            ],
+            "Cmd": [
+                "python3"
+            ],
+            "WorkingDir": "/work"
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 30949983,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409",
+                "sha256:e2150578517314f82f2271db9ff7eb9bd6bbc8d7fd2251eb9996c2d7933cdeb9",
+                "sha256:66b1954bc200338d29079f4f1415f69a72897fd13bbf8eb4ef1cc7990d79d72f",
+                "sha256:40eac2f905b4405434497b7887a6c3bc3a869235b4592b6525a9921762e98fb5",
+                "sha256:02a78c04b3e82aed8643deeb21f293cfa382fa4cf1aa42815e4d603d7c46dba7",
+                "sha256:e8f9f3f595c993adc498ba523a4ce1d8cb4663043e80db0f138157ea4fe942c7",
+                "sha256:dd48dff4edeef2f37f55ef17d2056fa3e97fdf3b0ae265c42413e5a79e4403eb",
+                "sha256:f00ce5a318b97dc1db8920b574bb5d1550c0b52d77cb80990a2dcdca6d4f554f"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-06T23:18:47.45651067Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:6344948a97b83fd26dc35cf47d7858453fdf8e700ee7ece4f66e5ae3cefe1a75",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "ttx2lt5ekl5rxqwl3k3vgf6co",
+                    "CreatedAt": "2026-09-06T23:18:47.467264795Z"
+                }
+            ]
+        }
+    },
+    {
+        "Id": "sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d",
+        "RepoTags": [
+            "dispat-exp:v182-node"
+        ],
+        "RepoDigests": [
+            "dispat-exp@sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-06T23:16:06.343756345Z",
+        "Config": {
+            "Env": [
+                "PATH=/opt/tools/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22"
+            ],
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Cmd": [
+                "node"
+            ],
+            "WorkingDir": "/work"
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 193570347,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:13a56b6535801be2adde694dabaf1c2df1d862a390661907dac821c42cd565cc",
+                "sha256:8210408c024978a3f9ec7d58636f2b59797225225b0f3d5d93b1679a9a005dff",
+                "sha256:5c23cae2678088d24e0e80836fb49caa544a68d70bffaa609026f3370ca689e2",
+                "sha256:7cbbdcb6e25d6961c4f5f1d3144e2bc0ae000c36872db18135e1a0ef3d0c9e65",
+                "sha256:3af0428f92ee075caa519f4956ed6289b9e148996291f150e48abeeb46bda901",
+                "sha256:b6909d235facd11e72b1d370ef34fdc53208c7ed000897e26f94feaca92d27ab",
+                "sha256:0e5a248fe01a72d4def57ad38cf46ee027644acec5e88969b7e5acf5419c4103",
+                "sha256:dd48dff4edeef2f37f55ef17d2056fa3e97fdf3b0ae265c42413e5a79e4403eb",
+                "sha256:d63abbec129214e688fc53b438eabb2a4f56aeeb4fe79db11cbdb5dab09b12c8",
+                "sha256:8f805e41a7e217074ded838441165693f71905fffd9c7e850280b83562baee8f"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-06T23:18:47.874266961Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:d061bacaae4a1edec2a76368f3cc18bd2b397b7519e6af8ec2ab5a2d09772f1d",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "jq70ockp4ufx1m2zxlna7iyso",
+                    "CreatedAt": "2026-09-06T23:18:47.884251253Z"
+                }
+            ]
+        }
+    },
+    {
+        "Id": "sha256:6748c967a6257d2d3a1784dc2c6a51a5e43885833e536f499c0be4b0793f5fe5",
+        "RepoTags": [
+            "dispat-experiments:v182"
+        ],
+        "RepoDigests": [
+            "dispat-experiments@sha256:6748c967a6257d2d3a1784dc2c6a51a5e43885833e536f499c0be4b0793f5fe5"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2026-09-06T23:16:13.800686626Z",
+        "Config": {
+            "Env": [
+                "PATH=/opt/tools/node_modules/.bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NODE_VERSION=22.23.2",
+                "YARN_VERSION=1.22.22",
+                "DISPAT_UPDATE_CHECK=0",
+                "NX_DAEMON=false",
+                "NX_TUI=false",
+                "NX_NO_CLOUD=true",
+                "TURBO_TELEMETRY_DISABLED=1",
+                "NPM_CONFIG_UPDATE_NOTIFIER=false"
+            ],
+            "Entrypoint": [
+                "/exp/run.sh"
+            ],
+            "WorkingDir": "/work"
+        },
+        "Architecture": "arm64",
+        "Os": "linux",
+        "Size": 192814288,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:13a56b6535801be2adde694dabaf1c2df1d862a390661907dac821c42cd565cc",
+                "sha256:8210408c024978a3f9ec7d58636f2b59797225225b0f3d5d93b1679a9a005dff",
+                "sha256:5c23cae2678088d24e0e80836fb49caa544a68d70bffaa609026f3370ca689e2",
+                "sha256:7cbbdcb6e25d6961c4f5f1d3144e2bc0ae000c36872db18135e1a0ef3d0c9e65",
+                "sha256:3af0428f92ee075caa519f4956ed6289b9e148996291f150e48abeeb46bda901",
+                "sha256:5a47d34b7d4ca40056dc33eb35035f9dd2b9eef635c31e13bba3aba74ee2734b",
+                "sha256:7c75143567e93ab340e2cd55e3f29800038c6336d632a709ec4affed65490366",
+                "sha256:c6b45c5ae6af63dfe22a11e7a1f029f18eaf79568246f41f4cf7c9ba2788933d",
+                "sha256:918eb101a6da35603fb9c691d5267b05043a5845b44d93f4ccfe4a6e756d94b5",
+                "sha256:ad641859d677987354f03619a236b8b9bc8bc0c155ba58dd846ee85337fd0bf7",
+                "sha256:d40304c3deee4b85b72cc54e8362acfd8d59161a2bdce468af28b113a478c66e",
+                "sha256:26122e113b62acc774fc7a2e50dcfd1ebc0c3ed07022d62dfed8a22706b34946",
+                "sha256:b00d574d94f997dff797a39ec27e9e4c29c35622f0063d734b6fa050016e5bbc",
+                "sha256:0bd114376a634f1c60acbf228f758c4adfe67f8726b376687b88ddef48f5d439",
+                "sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef",
+                "sha256:9ec1e76ae0ac00ac6ca6672a744c85f44e85127a5245f58726b27fe929c6a000"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-09-06T23:18:49.701680171Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:6748c967a6257d2d3a1784dc2c6a51a5e43885833e536f499c0be4b0793f5fe5",
+            "size": 856
+        },
+        "Identity": {
+            "Build": [
+                {
+                    "Ref": "mrk3g6vxigm3ldl2w55ienoi2",
+                    "CreatedAt": "2026-09-06T23:18:49.707761212Z"
+                }
+            ]
+        }
+    }
+]

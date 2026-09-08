@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chain89f7809a51/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 0,
+    "body": "{\"name\":\"chain89f7809a51/app\",\"tags\":[\"2.1.1\"]}\n"
+  },
+  "assets": {
+    "name": "chain89f7809a51-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chain89f7809a51-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "68921f2387171ec174dda2f11d0ea857d379487c",
+        "_id": "chain89f7809a51-assets@1.5.0",
+        "_nodeVersion": "24.18.0",
+        "_npmVersion": "12.0.1",
+        "dist": {
+          "integrity": "sha512-RhKRIpbjEpTKeeUB60Z5nmYmbERRKDsAV7PG9NBzJnNYqBzjuZhr2GHARt20k4YTEN/KXhD6WeYHKoqsxRvXTA==",
+          "shasum": "dac049f8ff3d81ffbd737a223a538a99202e3324",
+          "tarball": "http://127.0.0.1:50558/chain89f7809a51-assets/-/chain89f7809a51-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:40:53.623Z",
+      "created": "2026-09-08T22:40:53.623Z",
+      "1.5.0": "2026-09-08T22:40:53.623Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-8bc2108b05c27120",
+    "_id": "chain89f7809a51-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

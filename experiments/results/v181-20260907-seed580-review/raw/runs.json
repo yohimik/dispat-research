@@ -1,0 +1,42 @@
+[
+ {
+  "run": 1,
+  "returncode": 0,
+  "elapsed_seconds": 0.019922000006772578,
+  "stdout_bytes": 3283,
+  "stderr_bytes": 0,
+  "parsed_packages": 14
+ },
+ {
+  "run": 2,
+  "returncode": 0,
+  "elapsed_seconds": 0.020284041995182633,
+  "stdout_bytes": 3283,
+  "stderr_bytes": 0,
+  "parsed_packages": 14
+ },
+ {
+  "run": 3,
+  "returncode": 0,
+  "elapsed_seconds": 0.01866245805285871,
+  "stdout_bytes": 3283,
+  "stderr_bytes": 0,
+  "parsed_packages": 14
+ },
+ {
+  "run": 4,
+  "returncode": 0,
+  "elapsed_seconds": 0.019202374969609082,
+  "stdout_bytes": 3283,
+  "stderr_bytes": 0,
+  "parsed_packages": 14
+ },
+ {
+  "run": 5,
+  "returncode": 0,
+  "elapsed_seconds": 0.019680417026393116,
+  "stdout_bytes": 3283,
+  "stderr_bytes": 0,
+  "parsed_packages": 14
+ }
+]

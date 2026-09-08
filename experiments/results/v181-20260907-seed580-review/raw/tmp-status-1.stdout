@@ -1,0 +1,1 @@
+{"level":"error","error":"plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit","time":"2026-09-06T20:23:32Z","message":"planning failed"}

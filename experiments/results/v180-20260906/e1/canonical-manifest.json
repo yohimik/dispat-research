@@ -1,0 +1,40 @@
+{
+ "extractor": {
+  "path": "shared/planjson.py",
+  "sha256": "3d5eef3ef2bf87de7876ddf6d04e852028b72091dd2417ce4943c96e48011e52"
+ },
+ "canonical_shards": [
+  {
+   "profile": "core", "seed0": 1, "count": 1000,
+   "path": "results/v180-20260906/e1/corrected-parser/e1-core-1-1000.json",
+   "sha256": "504fd06dd4fdea6c19899a3b3de0ea346aac7a8cd235484c32c68550aec2568f"
+  },
+  {
+   "profile": "core", "seed0": 5001, "count": 500,
+   "path": "results/v180-20260906/e1/corrected-parser/e1-core-5001-500.json",
+   "sha256": "03182cf88081a5400effc7b106ed46468828cae9712ed38e5b0fc54678ec8c86"
+  },
+  {
+   "profile": "full", "seed0": 1, "count": 1000,
+   "path": "results/v180-20260906/e1/e1-full-1-1000.json",
+   "sha256": "99ebc4561787a881bf36db4bdec75c7632c6123d150a1f11cf7a49b5d7088b4c"
+  },
+  {
+   "profile": "full", "seed0": 5001, "count": 500,
+   "path": "results/v180-20260906/e1/corrected-parser/e1-full-5001-500.json",
+   "sha256": "9f6b1a364da04522127b2f814de1534a4647c3373189e76f131837ba5928b6c5"
+  }
+ ],
+ "audit_only_pre_fix": {
+  "profile": "full", "seed0": 5001, "count": 500,
+  "path": "results/v180-20260906/e1/e1-full-5001-500.json",
+  "sha256": "14e13270262ea93ef44ea50069feedaf085fcec349910a7966197c8eb88a1d98",
+  "extractor_sha256": "e8e098abc1644c3bb691d2d5bb9c31643805a965f0932d35e4de6dd18af04b82",
+  "canonical": false
+ },
+ "notes": [
+  "Both core shards were rerun with the corrected extractor; their hashes are byte-identical to the earlier files because the core generator has no channel directives or prerelease baselines.",
+  "Counts in full-profile divergence_classes are classified package rows, not instances.",
+  "PG3? is a heuristic class and zero UNKNOWN rows is not an exhaustive conformance result."
+ ]
+}

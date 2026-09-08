@@ -1,0 +1,27 @@
+logFormat: json
+spaces:
+  packages:
+    path: packages
+packages:
+  p02:
+    dependencies: [p00, p01]
+  p03:
+    dependencies: [p00, p01]
+  p04:
+    dependencies: [p02]
+  p05:
+    dependencies: [p02, p04]
+  p06:
+    dependencies: [p02, p04, p05]
+  p07:
+    dependencies: [p06]
+  p08:
+    dependencies: [p04, p05, p06]
+  p09:
+    dependencies: [p01, p06]
+  p11:
+    dependencies: [p04]
+  p12:
+    dependencies: [p10, p11]
+  p13:
+    dependencies: [p03, p04, p10]

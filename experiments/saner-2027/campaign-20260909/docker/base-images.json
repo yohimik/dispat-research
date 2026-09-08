@@ -1,0 +1,4 @@
+{
+  "docker:29-cli": "docker@sha256:eccaacfeed644c7de222ff047483568cb988dde95476fbaaf10ea2d04921bb66",
+  "yohimik/dispat-alpine:1.8.2": "yohimik/dispat-alpine@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd"
+}

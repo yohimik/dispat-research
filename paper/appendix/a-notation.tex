@@ -1,0 +1,46 @@
+\section{Notation}
+\label{appendix:notation}
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{4.0cm}L{7.2cm}L{2.9cm}@{}}
+\toprule
+Symbol & Meaning & Defined \\
+\midrule
+\endhead
+\Cmts, \Head & commits; the fixed HEAD & \cref{def:history} \\
+$\Rch{c}$, $c' \anc c$ & ancestors-or-self of $c$; $c'$ is one of them & \cref{def:history} \\
+\Pkgs, \Edges, $\Dep{p}$ & packages; dependency edges; dependents of $p$ & \cref{def:graph} \\
+$\dist{S}{d}$ & least edge count from a member of $S$ to $d$ & \cref{def:dist} \\
+$\reachset{S}{\ell}$ & the traversal: $\{d \notin S : \dist{S}{d} \le \ell\}$ & \cref{def:reach} \\
+\Bumps, $\sqcup$ & $\bnone<\bpatch<\bminor<\bmajor$; their join & \cref{def:bump} \\
+\Vers, \Chans, \stable & versions; channels; the stable channel & \cref{def:version} \\
+$\chanof{v}$, $\coreof{v}$, $\cntof{v}$ & channel, core triple, prerelease counter of $v$ & \cref{def:version} \\
+$\applyb{v}{b}$ & $v$ with bump $b$ applied & \cref{def:version} \\
+\st, $\st\le\st'$ & engine state (the reachable tags); inclusion & \cref{def:state} \\
+$\base{\st}{p}$, $\basec{\st}{p}$ & baseline version of $p$; its commit & \cref{def:state} \\
+$\stbase{\st}{p}$, $\stcommit{\st}{p}$ & stable baseline of $p$; its commit & \cref{def:state} \\
+$\Win{\st}{p}$ & train window of $p$ & \cref{def:window} \\
+$\Winf{\st}{p}$ & undelivered (fresh-admission) window & \cref{def:window} \\
+\Units, $\cof{u}$, $\scopef{u}$ & units; a unit's commit; its resolved scope-set & \cref{def:unit} \\
+$\bumpof{u}$ & the bump $u$'s type and \code{!} map to & \cref{def:unit} \\
+$\pbump{u}$, $\pdepth{u}$, $\pscope{u}$ & bump-axis directives of $u$ & \cref{def:unit} \\
+$\pchan{u}$, $\pcdepth{u}$, $\pcscope{u}$ & channel-axis directives of $u$ & \cref{def:unit} \\
+$\canc{c}{p}$, $\held{p}$ & the two suppressors & \cref{def:sources} \\
+$\disch{\st}{p}{c}$ & $p$ has already released the work in $c$ & \cref{def:sources} \\
+$\srcp{\st}{u}$ & source packages of $u$ & \cref{def:sources} \\
+$\srcch{\st}{u}$ & channels of $u$'s sources & \cref{def:resolvable} \\
+$\resolv{\st}{u}{d}$ & $d$ can resolve what $u$'s sources release & \cref{def:resolvable} \\
+$\admit{\st}{u}{d}$ & $u$ propagates to $d$ & \cref{def:admission} \\
+$\chanres{\st}{p}$ & the channel $p$ is released on & \cref{def:channels} \\
+$\dirb{\st}{p}$, $\propb{\st}{p}$, $\effb{\st}{p}$ & direct, propagated, effective bump & \cref{def:propagated} \\
+$\plan{\st}$, $\vers{\st}{p}$ & the plan; $p$'s planned version & \cref{def:plan} \\
+$\Run{\st}{F}$ & one run, failing on $F$ & \cref{def:run} \\
+$\mathrm{stale}_{\st}(d)$ & the upward audit of \spec{13.7b} & \cref{def:stale} \\
+(H1), (H2) & standing hypotheses & \cref{sec:guarantees} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+Diagnostic codes (\diag{E200}, \diag{W208}, and the rest) are those of
+\spec{16} and are used here with their registry meanings.

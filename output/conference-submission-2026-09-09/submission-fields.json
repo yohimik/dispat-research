@@ -1,0 +1,26 @@
+{
+  "status": "withdrawn 2026-09-09; preparing SANER, not submitted",
+  "venue": "ICSA 2027 Research Papers",
+  "title": "Recoverable Releases Across Package Registries: A Git-Backed Saga Protocol",
+  "author": {
+    "name": "Semen Fediukovich",
+    "email": "yohimik@gmail.com",
+    "affiliation": "Independent Researcher",
+    "country": "United Arab Emirates"
+  },
+  "abstract": "Releasing interdependent packages writes irreversibly to independent registries without a coordinator or rollback. A partial failure can therefore leave a consumer permanently behind a dependency that was published. This paper presents CCME, a commit-message language and release protocol for resumable releases, and dispat, its open-source implementation for single-package repositories, monorepos, and polyrepos joined through a control repository. In the formal model, release state consists of git tags, the plan is a pure function of repository history, dependency graph and configuration, and propagated work is admitted against the consumer's pending window. We prove eight guarantees, including no orphans, exactly-once ledger discharge and convergence under an explicit retry invariant. Minimal counterexamples establish why delivery must be tracked per consumer, why prerelease aggregation needs a separate window, and why retry guarantees require stable channel and suppression predicates. Against the official dispat 1.8.2 image, the fresh campaign passes six selected CCME 2.0 regressions, agrees with a restricted reference oracle on all 1,500 core instances, recovers 24/24 injected-failure episodes within four runs, and completes eight scale cells. The full profile intentionally generates regressive prereleases: 997 plans were accepted and 503 complete diagnostic plans were rejected with E195. All 1,914 differing rows retain their heuristic classification and stated coverage limits.",
+  "keywords": [
+    "release engineering",
+    "sagas",
+    "partial failure",
+    "idempotency",
+    "deterministic replay",
+    "software architecture"
+  ],
+  "pdf": "icsa-draft.pdf",
+  "supplement": "artifact-draft.zip",
+  "not_under_review_elsewhere": "confirmed by author 2026-09-09",
+  "public_preprint_status": "not yet confirmed",
+  "submission_number": 33,
+  "artifact_uploaded": false
+}

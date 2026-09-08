@@ -1,0 +1,10 @@
+
+ NX   Unable to resolve the default "versionActions" implementation for project "theme" at path: "@nx/js/src/release/version-actions"
+
+
+- If this is a JavaScript/TypeScript project, it is likely that you simply need to install the "@nx/js" plugin.
+
+- If this not a JavaScript/TypeScript project, you can should provide an alternative "versionActions" implementation path via the "release.version.versionActions" configuration option.
+
+Pass --verbose to see the stacktrace.
+

@@ -1,0 +1,17 @@
+npm notice
+npm notice package: cli@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 81B package.json
+npm notice Tarball Details
+npm notice name: cli
+npm notice version: 1.0.1
+npm notice filename: cli-1.0.1.tgz
+npm notice package size: 196 B
+npm notice unpacked size: 87 B
+npm notice shasum: a92ee2da70f2adc7b6e1387fd458c01030e726fc
+npm notice integrity: sha512-uq7y3CoFS1DQp[...]qKJ/UqpclA35Q==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
++ cli@1.0.1

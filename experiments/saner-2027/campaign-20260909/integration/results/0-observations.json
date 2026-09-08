@@ -1,0 +1,365 @@
+{
+  "snapshots": [
+    {
+      "label": "baseline",
+      "exit": 0,
+      "events": [
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "tools",
+          "stage": "build",
+          "version": "1.1.0"
+        },
+        {
+          "package": "tools",
+          "stage": "publish",
+          "version": "1.1.0"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        }
+      },
+      "tags": [
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "add-spec",
+      "exit": 0,
+      "events": [
+        {
+          "package": "schema",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "schema",
+          "stage": "build",
+          "version": "1.1.0"
+        },
+        {
+          "package": "schema",
+          "stage": "publish",
+          "version": "1.1.0"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        }
+      },
+      "tags": [
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "add-consumer",
+      "exit": 0,
+      "events": [
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "schema",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "client",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "client",
+          "stage": "build",
+          "version": "1.1.0"
+        },
+        {
+          "package": "client",
+          "stage": "publish",
+          "version": "1.1.0"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "client": {
+          "path": "client",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          },
+          "dependencies": [
+            "schema"
+          ]
+        }
+      },
+      "tags": [
+        "client@1.0.0",
+        "client@1.1.0",
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "failed-test",
+      "exit": 1,
+      "events": [
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "schema",
+          "stage": "tests",
+          "version": "1.2.0"
+        },
+        {
+          "package": "client",
+          "stage": "tests",
+          "version": "1.1.1"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "client": {
+          "path": "client",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          },
+          "dependencies": [
+            "schema"
+          ]
+        }
+      },
+      "tags": [
+        "client@1.0.0",
+        "client@1.1.0",
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "missing-test",
+      "exit": 1,
+      "events": [],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "client": {
+          "path": "client",
+          "scripts": {},
+          "dependencies": [
+            "schema"
+          ]
+        }
+      },
+      "tags": [
+        "client@1.0.0",
+        "client@1.1.0",
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "repair",
+      "exit": 0,
+      "events": [
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "schema",
+          "stage": "tests",
+          "version": "1.2.0"
+        },
+        {
+          "package": "client",
+          "stage": "tests",
+          "version": "1.1.1"
+        },
+        {
+          "package": "schema",
+          "stage": "build",
+          "version": "1.2.0"
+        },
+        {
+          "package": "schema",
+          "stage": "publish",
+          "version": "1.2.0"
+        },
+        {
+          "package": "client",
+          "stage": "build",
+          "version": "1.1.1"
+        },
+        {
+          "package": "client",
+          "stage": "publish",
+          "version": "1.1.1"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "client": {
+          "path": "client",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          },
+          "dependencies": [
+            "schema"
+          ]
+        }
+      },
+      "tags": [
+        "client@1.0.0",
+        "client@1.1.0",
+        "client@1.1.1",
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "schema@1.2.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    },
+    {
+      "label": "unchanged",
+      "exit": 0,
+      "events": [
+        {
+          "package": "schema",
+          "stage": "tests",
+          "version": "1.2.0"
+        },
+        {
+          "package": "tools",
+          "stage": "tests",
+          "version": "1.1.0"
+        },
+        {
+          "package": "client",
+          "stage": "tests",
+          "version": "1.1.1"
+        }
+      ],
+      "packages": {
+        "tools": {
+          "path": "tools",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "schema": {
+          "path": "schema",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          }
+        },
+        "client": {
+          "path": "client",
+          "scripts": {
+            "tests": "python3 \"$EXPERIMENT_ROOT/tasks.py\" tests"
+          },
+          "dependencies": [
+            "schema"
+          ]
+        }
+      },
+      "tags": [
+        "client@1.0.0",
+        "client@1.1.0",
+        "client@1.1.1",
+        "schema@1.0.0",
+        "schema@1.1.0",
+        "schema@1.2.0",
+        "tools@1.0.0",
+        "tools@1.1.0"
+      ]
+    }
+  ],
+  "entrypoint_hashes": {
+    "ci.sh": "f520b370180adeb1205c612c8708fe83394d581f69816cefa687a373b86a959e",
+    "validate-gates.py": "46a73de6c19ef71cb3684af026583f10b95dbc9492193e71d4ec46fd7b7a4f43",
+    "global.json": "c2561602d06c4040e69df27cc51a5a327b88a8c1aee466adce12727daab4fe63",
+    "dispat.json": "5e49fc9ee7b6a59c440d326fa77734db6cf3c31807e7a7a5ae378f3d06140529"
+  }
+}

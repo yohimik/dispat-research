@@ -1,0 +1,93 @@
+# The docker space: the four published images. Authentication belongs to the
+# space, not to any one image, so docker-login lives here with the flow.login
+# slot that runs it once per space and run.
+tagFormat: docker/{name}/v{version}
+autoVersion:
+  enabled: true
+# `tests` validates the manifest rather than building it: it proves the
+# DISPAT_WORKSPACE_DISPAT_VERSION interpolation and the channel overlay
+# still resolve — the breakage that would otherwise surface first at
+# release time — in a second. The images themselves are built by `build`,
+# which the CI gate reaches only when a docker package actually changed.
+scripts:
+  docker-login: printf '%s' "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
+  # The compose files interpolate INSTALL_DISPAT_VERSION — the top-level env
+  # default, ${DISPAT_WORKSPACE_DISPAT_VERSION} — into the DISPAT_VERSION
+  # build arg, and the Dockerfiles hand it to install.sh. The default is right
+  # everywhere but one place: in a release the images build after the CLI
+  # published, and in a run where dispat is not releasing the workspace
+  # version is its published baseline. The exception is the CI build gate
+  # (`dispat run build`, DISPAT_STAGE "run:build") while dispat has commits
+  # pending: the workspace version is then a plan nobody published, install.sh
+  # would 404 on it, and the gate's question is only whether the image still
+  # builds — so that one case substitutes the newest version that exists.
+  build: |
+    if [ "$DISPAT_STAGE" != "build" ] && [ "$DISPAT_WORKSPACE_DISPAT_RELEASING" = "true" ]; then
+      tag=$(git tag -l 'services/dispat/v*' --sort=-v:refname | head -n 1)
+      INSTALL_DISPAT_VERSION=${tag##*/v}
+      export INSTALL_DISPAT_VERSION
+      echo "gate: dispat $DISPAT_WORKSPACE_DISPAT_VERSION is planned and unpublished; building against $INSTALL_DISPAT_VERSION"
+    fi
+    docker compose -f docker-compose.yml -f "$DISPAT_CHANNEL.yml" build
+  tests: docker compose -f docker-compose.yml -f $DISPAT_CHANNEL.yml config -q
+  # `build --push`, not `push`: the images build multi-platform, and a
+  # multi-platform result lives in the buildx builder's cache rather than in
+  # the engine's image store, so a separate `compose push` finds no local tag
+  # to send ("tag does not exist"). Rebuilding here is the builder replaying
+  # its hot cache from the build stage; the push is the only new work, and it
+  # ships the manifest list with every tag the channel file adds.
+  push-image: docker compose -f docker-compose.yml -f $DISPAT_CHANNEL.yml build --push
+  # The Docker Hub repository description, from the README.docker.md beside
+  # each image. The Hub does not read it from the pushed image, so it is
+  # PATCHed through the API after the publish; jq builds both JSON bodies so
+  # no credential or readme byte ever meets shell quoting. curl and jq are
+  # preinstalled on the ubuntu runners the release runs on. Guarded to CI like
+  # every other script that writes something public.
+  push-readme: |
+    set -eu
+    dispat if 'CI!=true' --then 'echo "refusing to update the Docker Hub readme outside CI (set CI=true to override)" >&2; exit 1'
+    : "${DOCKERHUB_USERNAME:?DOCKERHUB_USERNAME is required to update the Docker Hub readme}"
+    : "${DOCKERHUB_TOKEN:?DOCKERHUB_TOKEN is required to update the Docker Hub readme}"
+    token=$(jq -n --arg u "$DOCKERHUB_USERNAME" --arg p "$DOCKERHUB_TOKEN" '{username: $u, password: $p}' \
+      | curl -fsS -H "Content-Type: application/json" -d @- https://hub.docker.com/v2/users/login/ \
+      | jq -r .token)
+    jq -n --rawfile d README.docker.md '{full_description: $d}' \
+      | curl -fsS -X PATCH "https://hub.docker.com/v2/repositories/yohimik/${DISPAT_PACKAGE}/" \
+        -H "Content-Type: application/json" -H "Authorization: Bearer ${token}" -d @- > /dev/null
+    echo "updated the Docker Hub readme for yohimik/${DISPAT_PACKAGE}"
+# No record steps here: the images' changelogs, tags and GitHub release pages
+# are the finalize phase's, at the end of the run. Nothing downstream needs
+# them earlier — the images themselves install the CLI release the dispat
+# leg's publish already created.
+flow:
+  login: docker-login
+  build: build
+  publish: push-image
+  # After a successful publish, warn-only: the images are out either way, and
+  # a Hub API hiccup must not fail a release that already shipped.
+  postPublish: push-readme
+packages:
+  dispat-ubuntu:
+    versionGroup: cli
+    dependencies:
+      - provider: dispat
+        keep: true
+    manifestNames: [docker.io/yohimik/dispat-ubuntu]
+  dispat-debian:
+    versionGroup: cli
+    dependencies:
+      - provider: dispat
+        keep: true
+    manifestNames: [docker.io/yohimik/dispat-debian]
+  dispat-alpine:
+    versionGroup: cli
+    dependencies:
+      - provider: dispat
+        keep: true
+    manifestNames: [docker.io/yohimik/dispat-alpine]
+  dispat-dind:
+    versionGroup: cli
+    dependencies:
+      - provider: dispat
+        keep: true
+    manifestNames: [docker.io/yohimik/dispat-dind]

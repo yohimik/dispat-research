@@ -1,0 +1,40 @@
+== turbo: fixture
+fixture ready: /work/turbo turbo
+== turbo: versions under test: turbo 2.10.12, changesets 3.0.1
+== turbo: baseline publish (all six at 1.0.0)
+REGISTRY core: 1.0.0  cli: 1.0.0
+== turbo: pipeline (turbo run build)
+exit=0
+6 successful, 6 total
+== turbo: changeset version (core major -> out-of-range patches on cli,ui,api)
+exit=1
+  core -> 1.0.0
+  cli -> 1.0.0
+  ui -> 1.0.0
+  api -> 1.0.0
+  theme -> 1.0.0
+  docs -> 1.0.0
+TAGS_AFTER_VERSION (expect none new):
+api@1.0.0
+cli@1.0.0
+core@1.0.0
+docs@1.0.0
+theme@1.0.0
+ui@1.0.0
+== turbo: changeset publish with cli DENIED
+exit=0
+REGISTRY cli: 1.0.0  core: 1.0.0  ui: 1.0.0
+CLI TAGS (tag-after-publish, so none expected):
+cli@1.0.0
+ALL TAGS now:
+api@1.0.0
+cli@1.0.0
+core@1.0.0
+docs@1.0.0
+theme@1.0.0
+ui@1.0.0
+== turbo: recovery via changeset publish after clearing deny
+exit=0  REGISTRY cli now: 1.0.0
+CLI TAGS now:
+cli@1.0.0
+== done

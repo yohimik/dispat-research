@@ -1,0 +1,41 @@
+{
+  "id": "/",
+  "name": "dispat: the release tool for polyglot monorepos",
+  "short_name": "dispat",
+  "description": "A monorepo release tool that reads your conventional commits, works out every version, and publishes each changed package in dependency order.",
+  "lang": "en",
+  "dir": "ltr",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#101713",
+  "theme_color": "#101713",
+  "categories": ["developer", "productivity"],
+  "icons": [
+    {
+      "src": "/img/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/img/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {"name": "Getting started", "url": "/getting-started/"},
+    {"name": "CLI reference", "url": "/cli/"},
+    {"name": "Configuration", "url": "/configuration/"},
+    {"name": "API reference", "url": "/api/"}
+  ]
+}

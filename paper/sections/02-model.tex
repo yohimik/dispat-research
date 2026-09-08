@@ -1,0 +1,364 @@
+\section{The model}
+\label{sec:model}
+
+Everything in this report is stated over the objects defined here. Each
+definition transcribes a numbered section of \SPEC{} and cites it. Where
+the transcription makes a choice the source leaves implicit, the choice is
+flagged in a remark rather than buried.
+
+\subsection{History}
+
+\begin{definition}[commit history, \spec{12.2}]
+\label{def:history}
+The history is a finite directed acyclic graph on a set of commits \Cmts, with
+an edge from a commit to each of its parents. A distinguished commit
+$\Head \in \Cmts$ is \emph{HEAD}. For $c \in \Cmts$,
+$\Rch{c} \subseteq \Cmts$ is the set of commits reachable from $c$ by following
+parent edges, including $c$ itself. Write $c' \anc c$ for $c' \in \Rch{c}$
+(``$c'$ is an ancestor-or-self of $c$'').
+\end{definition}
+
+\Head{} is fixed for the whole report. The retry and convergence guarantees of \spec{13.7c} are stated at a fixed \Head{}; advancing it may legitimately add, remove, or redirect work. Structural termination and single-state determinism do not need that restriction.
+
+\begin{remark}
+Ancestry, not commit date or log order, is the only ordering used. This is what
+makes cancellation deterministic under merges and rebases (\spec{10.4}) and
+what lets the model ignore clocks entirely.
+\end{remark}
+
+\subsection{Workspace}
+
+\begin{definition}[workspace graph, \spec{13.1}, \spec{8.4}]
+\label{def:graph}
+\Pkgs{} is the finite set of packages present at \Head{}. For a fixed set of
+edge kinds $K$ (the configured \code{propagation.kinds}), $\Edges \subseteq
+\Pkgs \times \Pkgs$ contains $(a,b)$ when $a$ declares a dependency on $b$ of a
+kind in $K$. The \emph{dependents} of $p$ are $\Dep{p} = \{d : (d,p) \in
+\Edges\}$. The graph $(\Pkgs, \Edges)$ is acyclic.
+\end{definition}
+
+Acyclicity is an assumption the model may make because the engine enforces it:
+a cycle over the propagation or publish-ordering kinds is the repository-scoped
+error \diag{E200} and aborts the run before any plan is computed. \spec{13.1}
+justifies rejecting rather than accommodating cycles: no publish order exists
+for a cycle, so whichever member goes first declares a range on a version that
+does not yet exist, and if the run then fails that state is permanent.
+
+Propagation travels \emph{against} the dependency edges, from a changed package
+to the packages that consume it; that is, along \Dep{\cdot}.
+
+\begin{example}[the running workspace, \spec{22}]
+\label{ex:workspace}
+The running examples use the six-package workspace shared by many conformance vectors:
+\[
+  \Pkgs = \{\,\code{core},\ \code{cli},\ \code{ui},\ \code{api},\
+            \code{docs-site},\ \code{@acme/theme}\,\},
+\]
+\[
+  \Edges = \{\,(\code{cli},\code{core}),\ (\code{ui},\code{core}),\
+              (\code{api},\code{core}),\ (\code{docs-site},\code{ui}),\
+              (\code{@acme/theme},\code{ui})\,\},
+\]
+drawn in \cref{fig:workspace}, with the initial tag state
+\[
+  \st_0 = \{\ \code{core@1.4.2},\ \code{cli@2.0.0},\ \code{ui@0.9.1},\
+              \code{api@1.2.0},\ \code{@acme/theme@1.0.0}\ \}.
+\]
+\code{docs-site} has never been released, so it has no baseline; it is private
+and publishes to an internal registry, which by \spec{13.10a} exempts it from
+nothing.
+\end{example}
+
+\begin{figure}[t]
+\centering
+\begin{tikzpicture}[
+    >={Stealth[width=5pt,length=5pt]},
+    pkg/.style={draw,rounded corners=2pt,inner sep=4pt,font=\small\ttfamily},
+    every edge/.style={draw,->}]
+  \node[pkg] (core) at (0,0) {core};
+  \node[pkg] (cli)  at (-2.6,1.5) {cli};
+  \node[pkg] (ui)   at (0,1.5)    {ui};
+  \node[pkg] (api)  at (2.6,1.5)  {api};
+  \node[pkg] (theme) at (-1.5,3.0) {@acme/theme};
+  \node[pkg] (docs)  at (1.5,3.0)  {docs-site};
+  \draw[->] (cli)   -- (core);
+  \draw[->] (ui)    -- (core);
+  \draw[->] (api)   -- (core);
+  \draw[->] (theme) -- (ui);
+  \draw[->] (docs)  -- (ui);
+  \node[font=\footnotesize,anchor=west] at (3.2,0.75)
+    {$A \rightarrow B$: $A$ depends on $B$};
+  \node[font=\footnotesize,anchor=west] at (3.2,0.15)
+    {propagation runs upward};
+\end{tikzpicture}
+\caption{The running workspace of \cref{ex:workspace}. Distances from
+$S=\{\code{core}\}$ are $\dist{S}{\code{cli}} = \dist{S}{\code{ui}} =
+\dist{S}{\code{api}} = 1$ and $\dist{S}{\code{docs-site}} =
+\dist{S}{\code{@acme/theme}} = 2$.}
+\label{fig:workspace}
+\end{figure}
+
+\begin{definition}[distance, \spec{9.2}]
+\label{def:dist}
+For $S \subseteq \Pkgs$ and $d \in \Pkgs$, $\dist{S}{d}$ is the least $n$ for
+which there are $p_0 \in S$ and $p_1,\dots,p_n = d$ with $p_{i+1} \in
+\Dep{p_i}$ for all $i$, and $\infty$ if no such chain exists. Note
+$\dist{S}{d} = 0$ exactly when $d \in S$.
+\end{definition}
+
+\subsection{Bumps and versions}
+
+\begin{definition}[bumps, \spec{7.1}, \spec{9.1}]
+\label{def:bump}
+$\Bumps = \{\bnone, \bpatch, \bminor, \bmajor\}$ ordered
+$\bnone < \bpatch < \bminor < \bmajor$. Being a finite chain, $(\Bumps, \leq)$
+is a join-semilattice with least element \bnone{} and join $\sqcup = \max$.
+\end{definition}
+
+The whole of \spec{9.1}'s ``bumps accumulate'' is the statement that the
+combining operator is this join. Two consequences that \SPEC{} states
+separately are then immediate and are used without further comment: combination
+is associative, commutative and idempotent, so the order in which contributions
+are gathered cannot matter; and $x \sqcup y \geq x$, so propagation can only
+ever raise a package's bump, never lower or replace a direct decision.
+
+\begin{definition}[versions and channels, \spec{11.1}--\spec{11.4}]
+\label{def:version}
+\Vers{} is the set of SemVer 2.0.0 versions with SemVer precedence. $\Chans =
+\{\stable\} \cup \mathcal{N}$ for a set $\mathcal{N}$ of channel names.
+$\chanof{v} = \stable$ if $v$ carries no prerelease identifier, and otherwise
+the first (alphanumeric) prerelease identifier of $v$. $\coreof{v}$ is the
+\texttt{major.minor.patch} triple of $v$ and $\cntof{v}$ the numeric counter of
+a prerelease. $\applyb{v}{b}$ applies bump $b$ to $v$, with $\applyb{v}{\bnone}
+= v$.
+\end{definition}
+
+\subsection{State}
+
+Everything above is fixed by \Head{} and the configuration. Exactly one thing
+changes from run to run, and isolating it is what makes the guarantees provable
+as statements about a sequence.
+
+\begin{definition}[engine state, \spec{13.2}, \spec{12.3}]
+\label{def:state}
+A state \st{} is a finite set of release tags $(p, v, c) \in \Pkgs \times \Vers
+\times \Cmts$ with $c \anc \Head$. States are ordered by inclusion,
+$\st \leq \st'$ iff $\st \subseteq \st'$. From \st{}:
+\begin{itemize}
+  \item $\base{\st}{p}$ is the highest-precedence version among the tags of $p$
+    in \st{}, undefined if there are none;
+  \item $\basec{\st}{p}$ is the commit of that tag;
+  \item $\stbase{\st}{p}$ is the highest-precedence non-prerelease version among
+    them, and $\stcommit{\st}{p}$ its commit.
+\end{itemize}
+Where $\base{\st}{p}$ is undefined, $\chanof{\base{\st}{p}} = \stable$ by
+convention (\spec{11.1}): a never-released package is graduated by nothing and
+is put on a train by any directive naming it.
+\end{definition}
+
+The baseline functions additionally assume a unique highest-precedence
+reachable tag for each package and each stable baseline. States with tied
+precedence and different commits need a specified tie rule and are outside
+this proof's domain. Operational lock and temporary refs are not release tags
+and are not members of $\st$.
+
+That release-tag states only ever grow is not an assumption about tidy operators; it is
+normative. \spec{19.1} forbids moving or deleting a pushed tag and \spec{12.4}
+makes tags authoritative over manifests, because a tag is the record that a leg
+of the transaction completed and an unwritten-back or rewritten record is
+exactly what makes a saga unrecoverable.
+
+\begin{definition}[train and undelivered windows, \spec{13.3}]
+\label{def:window}
+\begin{equation}
+  \Win{\st}{p} \;=\; \Rch{\Head} \setminus \Rch{\stcommit{\st}{p}},
+  \label{eq:window}
+\end{equation}
+and $\Win{\st}{p} = \Rch{\Head}$ when $p$ has no stable baseline in \st{}.
+The undelivered window is
+\[
+  \Winf{\st}{p}=\Win{\st}{p}\setminus\Rch{\basec{\st}{p}},
+\]
+with an empty subtracted set when $p$ has no baseline tag.
+\end{definition}
+
+$\Win{\st}{p}$ is the train window used to aggregate a prerelease target from
+its stable base. $\Winf{\st}{p}$ is the fresh-admission window for direct
+work, corrections, channels, and propagation to dependent $p$. For a stable
+baseline they coincide; on a train they must not be conflated.
+
+\begin{example}[windows]
+\label{ex:window}
+Let the history be $c_0 \to c_1 \to c_2 = \Head$ with $\st_0$ of
+\cref{ex:workspace}, where the tags sit at $c_0$. Then
+\[
+  \Win{\st_0}{\code{core}} = \{c_1, c_2\},
+  \qquad
+  \Win{\st_0}{\code{docs-site}} = \{c_0, c_1, c_2\},
+\]
+the second because a package with no stable baseline has the whole reachable
+history pending: \spec{12.5} makes an unreleased package's first release
+account for everything, which is also why adopting the engine on an existing
+repository does not need a migration step.
+\end{example}
+
+\begin{remark}[the window is measured from the last \emph{stable} tag]
+\label{rem:stable-window}
+This is deliberate and it serves \spec{11.4}: a package on a prerelease train
+must accumulate every commit since its last \emph{stable} release, because the
+train's target version is recomputed from the stable baseline on every run so
+that a breaking change arriving mid-train moves the whole train. The
+consequence, which \cref{sec:obligations} returns to at length, is that a
+commit already published in a prerelease of $p$ is still a member of
+$\Win{\st}{p}$.
+\end{remark}
+
+\subsection{Units}
+
+\begin{definition}[units, \spec{4.4}, \spec{13.4}, \spec{13.4b}]
+\label{def:unit}
+\Units{} is the set of units carried by commits in $\bigcup_{p}\Win{\st}{p}$,
+after parsing (\spec{20}), scope resolution (\spec{6}) and the application of
+corrections (\spec{13.4b}). For $u \in \Units$:
+$\cof{u} \in \Cmts$ is its commit; $\scopef{u} \subseteq \Pkgs$ its resolved
+scope-set; $\bumpof{u} \in \Bumps$ the bump its type and \code{!} map to; and
+its directives are
+\[
+  \pbump{u} \in \Bumps,\quad
+  \pdepth{u} \in \mathbb{N} \cup \{\infty\},\quad
+  \pscope{u} \subseteq \Pkgs,\quad
+  \pchan{u},\quad
+  \pcdepth{u},\quad
+  \pcscope{u} \subseteq \Pkgs,
+\]
+where $\pbump{u}$ is the \emph{effective} propagated bump: the value the unit
+states, or $\bumpof{u}$ where it states \code{inherit}. The two axes default
+differently and the asymmetry is deliberate (\spec{8.1}). \code{Propagate}
+defaults to \bpatch, not to \code{inherit}: a dependent reached by propagation
+has had a dependency change under it but no change to its own public API, so
+\bpatch{} is the honest signal, and \code{feat(core)\^{}} therefore gives its
+consumers a patch rather than a minor. \code{Propagate-Channel} defaults to
+\code{inherit}, since a channel is not a quantity that can be understated.
+Both defaults apply only once the corresponding depth is non-zero, and both
+depths default to $0$ (\spec{8.3}, \spec{8.3a}): a unit that says nothing
+releases its own packages and nothing else. $\pchan{u}$ is a channel value: a
+name, \stable, \code{inherit}, \code{none}, or a transition
+$\langle f \to t\rangle$.
+\end{definition}
+
+Taking corrections as already applied is what \spec{13.4b} prescribes: it
+requires \code{Edits} and \code{Deletes} to be resolved into the tuple stream
+before cancellation runs, and notes that every later phase operates on the
+corrected stream, which downstream phases cannot distinguish from one that was
+authored that way.
+
+\begin{remark}[the corrected stream depends on \st{}]
+\label{rem:corrections}
+It does not follow, and \spec{13.4b} does not claim, that the stream is
+independent of the state. A correction reaches only \emph{undischarged} work:
+it applies to a $(\text{package}, \text{unit})$ pair only while that package's
+window still contains the target commit, and once the package has released the
+target the correction is a no-op for it (\diag{W209}, \spec{7.4.2}). So
+$\Units{}$ is properly a function $\Units_{\st}$, and a record suppressed by a
+\code{Deletes} for a package returns to the stream for that package once the
+package releases. This matters in exactly one place, and it is the same place
+that a lapsed cancellation matters: \cref{ob:g5}. Everywhere else the two
+readings coincide, because a released package's own window is empty and its
+direct contribution is therefore already spent, so the notation
+$\Units{}$ is kept unindexed below.
+\end{remark}
+
+\begin{definition}[suppression and source packages, \spec{13.4a}]
+\label{def:sources}
+$\canc{c}{p}$ holds when $c$ is an ancestor-or-self of some \code{cancel} commit
+whose resolved scope contains $p$ (\spec{10.3}); $\held{p}$ holds when $p$'s
+effective \code{Release-As} directive is \code{none} (\spec{13.6a}). Both are
+computed from the corrected stream, \Head{}, configuration, and release-tag state. They are constant across retries only where the retry invariant says those inputs remain fixed. Write
+\[
+  \disch{\st}{p}{c} \;\equiv\; c \notin \Winf{\st}{p},
+\]
+and then
+\[
+  \srcp{\st}{u} \;=\;
+    \bigl\{\, p \in \scopef{u} \;:\;
+       \disch{\st}{p}{\cof{u}} \;\lor\;
+       \lnot\bigl(\canc{\cof{u}}{p} \lor \held{p}\bigr) \,\bigr\}.
+\]
+\end{definition}
+
+The disjunction is the normative content of \spec{13.4a}: suppression applies
+only to \emph{undischarged} work. Once $p$ has published the version carrying
+$u$, the artefact its consumers are owed is public, and neither a later
+\code{cancel} (a no-op, \diag{W170}) nor a later hold may retroactively strand
+those consumers. \Cref{ob:g5} shows that this clause, and not the traversal, is
+where \G{5} is decided.
+
+\subsection{Runs}
+
+\begin{definition}[plan]
+\label{def:plan}
+Given \st{}, the release computation of \spec{13} yields the bumps
+$\dirb{\st}{p}$ and $\propb{\st}{p}$ (\cref{def:direct,def:propagated}), the
+channels $\chanres{\st}{p}$ (\cref{def:channels}), and
+$\effb{\st}{p} = \dirb{\st}{p} \sqcup \propb{\st}{p}$. The plan is
+\begin{align*}
+  \plan{\st} \;=\; \bigl\{\, p \in \Pkgs \;:\;
+    &\lnot\held{p} \;\land\;
+    \bigl(\effb{\st}{p} \neq \bnone \\[-1mm]
+    &\;\lor\; \chanres{\st}{p} \neq \chanof{\base{\st}{p}}
+    \;\lor\; p \text{ has an applicable exact } \code{Release-As} \\[-1mm]
+    &\hspace{35mm}\text{in }\Winf{\st}{p} \bigr) \,\bigr\},
+\end{align*}
+each $p \in \plan{\st}$ carrying the version $\vers{\st}{p}$ of \spec{13.9}. The fresh bumps above decide whether work is newly admissible; they are not by themselves the prerelease target. On a train, the intended calculation aggregates the surviving corrected units in $\Win{\st}{p}$ from the stable baseline, including work already delivered to an earlier prerelease. For graduation, the model applies the specific rule of \spec{11.5}: publish that same train target without a prerelease suffix. The generic summary in \spec{13.9} is inconsistent with this rule; \cref{ob:graduation} records the textual obligation.
+\end{definition}
+
+\begin{remark}[\plan{\st} is the released set, not the printed one]
+\label{rem:plan-held}
+\spec{13.9} computes a would-be version for a held package too, and \spec{13.6a}
+requires the engine to report it (\diag{W154}) so that the number needed to lift
+the hold is available without hand computation. That reported entry is part of
+what an operator calls ``the plan'', but it is not a release: \spec{13.10}
+excludes it. \plan{\st} above is the released set, which is why \cref{thm:g6}
+needs no exception for holds and why the convergence check of \spec{19.6} states
+one: the two are reading the same word differently, and only \spec{19.6}'s
+reading has to be told about held packages.
+\end{remark}
+
+\begin{definition}[run, \spec{19.1}--\spec{19.3}]
+\label{def:run}
+A run from \st{} is parameterised by a set $F \subseteq \plan{\st}$ of
+publishes that fail. It induces the blocked set
+\begin{align*}
+  B \;=\; \{\, p \in \plan{\st}\setminus F \;:\;
+    &\ p \text{ transitively depends on some } q \in F \\[-1mm]
+    &\ \text{over } \code{publish.blockingKinds} \,\},
+\end{align*}
+publishes $\plan{\st} \setminus (F \cup B)$ in the order of \spec{19.2}, and
+yields
+\[
+  \Run{\st}{F} \;=\; \st \;\cup\;
+  \bigl\{\,(p, \vers{\st}{p}, \Head) \;:\; p \in \plan{\st}\setminus(F\cup B)\,\bigr\}.
+\]
+\end{definition}
+
+Three features of this definition carry weight later.
+
+$F$ is chosen adversarially and independently on each run. The guarantees are
+claims about \emph{every} failure schedule, not about a well-behaved one; a
+proof that appeals to what usually fails proves nothing about a system whose
+purpose is to survive what does not usually happen.
+
+Every tag is written at \Head{}, never at the commit the work arrived in
+(\spec{19.1}). This is what makes \cref{lem:window} a two-case statement rather
+than an argument about which commits a tag covers.
+
+A package is tagged if it is released, whatever its publish target, including
+targets of \code{none} that upload nothing (\spec{13.10a}). \Cref{prop:tagall}
+shows this is forced: the alternative is a permanent hole in \G{6}.
+
+\begin{definition}[run sequence]
+\label{def:seq}
+A \emph{run sequence} at \Head{} is $\st_1 \leq \st_2 \leq \cdots$ with
+$\st_{k+1} = \Run{\st_k}{F_k}$ for some $F_k \subseteq \plan{\st_k}$. By
+\cref{def:run} it is monotone: $\st_k \subseteq \st_{k+1}$.
+\end{definition}

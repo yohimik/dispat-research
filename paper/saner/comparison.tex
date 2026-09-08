@@ -1,0 +1,39 @@
+\section{Release-Tool Comparison}
+\label{sec:compare}
+
+In the pinned configurations we executed, Lerna and nx derive bumps from
+commits and tag before publish, so a failed upload is absent from their tag
+ledger; release-please has the same ordering in its documented workflow.
+Changesets tags after publish, consumes intent files, and queries npm during
+recovery.
+CCME tags each package after its publish leg and therefore retains debt in git,
+subject to the external publish/tag reconciliation limit of
+Definition~\ref{def:run}. The observed propagation policies were unconditional
+for Lerna/nx, range-gated for Changesets, and per-commit for CCME.
+Table~\ref{tab:compare}
+summarises the resulting operational distinctions; the artifact contains the
+full command transcripts.
+The refusal and push fixtures pin Lerna~10.0.1, Nx~23.1.2, and
+Changesets~3.0.1. Lerna/nx tagged the denied version before its failed upload;
+Changesets left it untagged and recovered by querying npm. In the concurrent
+push fixture, compared runs left tags outside branch ancestry, while dispat
+merged before its final push and planned the colleague's commit next.
+
+\begin{table}[t]
+\caption{Pinned release-tool configurations.}
+\label{tab:compare}
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llll@{}}
+\toprule
+ & lerna / nx & changesets & CCME / dispat \\
+\midrule
+bump source & commits & intent files & commits \\
+tag time & before publish & after publish & after each leg \\
+propagation & unconditional & range-gated & per commit \\
+recovery ledger & tags / CI & npm & git tags \\
+external gap & manual/query & npm query & reconcile identity \\
+\bottomrule
+\end{tabular}}
+\end{table}
+

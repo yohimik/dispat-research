@@ -1,0 +1,95 @@
+experiment=orphan tool=nx scenario=none
+dispat 1.7.2 (linux_amd64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/nx nx
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core): streaming reader local 0 ahead 0 behind
+
+== version: nx release --skip-publish
+exit=0
+   | 
+   |  NX   Pushing to git remote "origin"
+   | 
+   | 
+   |  NX   Committing changes with git
+   | 
+   | 
+   |  NX   Tagging commit with git
+   | 
+   | 
+   |  NX   Skipped publishing packages.
+   | 
+   after-version: api=1.0.0/orphan cli=1.0.0/orphan core=1.0.0/orphan docs=1.0.0/orphan theme=1.0.0/orphan ui=1.0.0/orphan
+   origin/main=feat(core): streaming reader local 1 ahead 0 behind
+
+== publish: nx release publish --registry http://127.0.0.1:4873
+exit=1
+   | Failed tasks:
+   | 
+   | - cli:nx-release-publish
+   | 
+   |   Run duration:      1m 13s
+   |   Cache:             0/5 hit (0%)
+   |   Critical path:     1m 13s (2 tasks)
+   |   Recoverable time:  7ms (0% of the run)
+   | 
+   |   Recommendations:
+   |     - Speed up or split the longest tasks on the critical path:
+   |         cli:nx-release-publish    1m 12s
+   after-refusal: api=1.0.1/unpushed cli=1.0.0/orphan core=1.1.0/unpushed docs=1.0.1/unpushed theme=1.0.1/unpushed ui=1.0.1/unpushed
+   origin/main=feat(core): streaming reader local 1 ahead 0 behind
+
+== recovery: nx release publish --registry http://127.0.0.1:4873
+exit=0
+   | [93m[39m
+   | Skipped package "theme" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest"
+   | 
+   | 
+   | 
+   |  NX   Successfully ran target nx-release-publish for 6 projects
+   | 
+   | 
+   |   Run duration:      3.2s
+   |   Cache:             0/6 hit (0%)
+   |   Critical path:     3.2s (3 tasks)
+   |   Recoverable time:  <1ms
+   after-recovery: api=1.0.1/unpushed cli=1.0.1/unpushed core=1.1.0/unpushed docs=1.0.1/unpushed theme=1.0.1/unpushed ui=1.0.1/unpushed
+   origin/main=feat(core): streaming reader local 1 ahead 0 behind
+   recovery said: Skipped package "core" because v1.1.0 already exists in http://127.0.0.1:4873 with tag "latest";Skipped package "api" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest";Skipped package "ui" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest";
+
+== push: git push --follow-tags origin main
+exit=0
+   | To /work/nx-origin.git
+   |    32562e3..0a1d140  main -> main
+   |  * [new tag]         api@1.0.1 -> api@1.0.1
+   |  * [new tag]         cli@1.0.1 -> cli@1.0.1
+   |  * [new tag]         core@1.1.0 -> core@1.1.0
+   |  * [new tag]         docs@1.0.1 -> docs@1.0.1
+   |  * [new tag]         theme@1.0.1 -> theme@1.0.1
+   |  * [new tag]         ui@1.0.1 -> ui@1.0.1
+   after-push: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.1/consistent theme=1.0.1/consistent ui=1.0.1/consistent
+   origin/main=chore(release): publish local 0 ahead 0 behind
+
+== next: nx release --dry-run --skip-publish
+exit=0
+   | 
+   | 
+   |  NX   Committing changes with git
+   | 
+   | 
+   |  NX   Tagging commit with git
+   | 
+   | 
+   |  NX   Skipped publishing packages.
+   | 
+   | 
+   | NOTE: The "dryRun" flag means no changes were made.
+   next plan: 
+   ok    the refused run exited non-zero
+   FAIL  the refused package carries no tag for an unpublished version
+         | false
+   ok    the recovery published the refused package
+   ok    every released package is consistent once pushed
+   ok    the next plan is empty
+VERDICT: the refused package carries no tag for an unpublished version

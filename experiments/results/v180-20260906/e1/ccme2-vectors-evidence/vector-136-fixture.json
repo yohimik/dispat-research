@@ -1,0 +1,51 @@
+{
+ "packages": [
+  "core",
+  "app"
+ ],
+ "edges": [
+  [
+   "app",
+   "core"
+  ]
+ ],
+ "commits": [
+  {
+   "id": "c0",
+   "units": []
+  },
+  {
+   "id": "c1",
+   "units": [
+    {
+     "type": "feat",
+     "scope": [
+      "core"
+     ],
+     "pd": 1,
+     "pcd": 1,
+     "breaking": false,
+     "pb": null,
+     "channel": "beta",
+     "pchannel": "rc",
+     "releaseAs": null
+    }
+   ]
+  }
+ ],
+ "tags": [
+  {
+   "pkg": "core",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "app",
+   "version": "1.0.0",
+   "commit": "c0"
+  }
+ ],
+ "features": {
+  "prerelease": []
+ }
+}

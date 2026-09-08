@@ -1,0 +1,6 @@
+events.jsonl
+*.log
+fail-*
+.npm-cache/
+assets/dist/
+*.oci.tar

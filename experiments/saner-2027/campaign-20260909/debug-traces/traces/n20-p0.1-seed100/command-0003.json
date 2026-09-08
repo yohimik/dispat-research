@@ -1,0 +1,1 @@
+{"args": ["git", "push", "-q", "origin", "main"], "cwd": "/tmp/e4c-57jncr4o", "exit": 1, "stdout": "", "stderr": "error: src refspec main does not match any\nerror: failed to push some refs to '/tmp/e4c-origin-xqy7d4a1/o.git'\n"}

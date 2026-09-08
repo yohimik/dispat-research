@@ -1,0 +1,19 @@
+Verified 1108 review-copy hashes.
+{
+  "core": {
+    "instances": 1500,
+    "matching": 1500,
+    "accepted": 1500,
+    "rejected": 0,
+    "differing_rows": 0
+  },
+  "full": {
+    "instances": 1500,
+    "matching": 550,
+    "accepted": 997,
+    "rejected": 503,
+    "differing_rows": 1914
+  }
+}
+6 vectors; 24 recovered episodes, maximum 4 runs; 8 timing cells; 3 fault scenarios.
+PASS: selected claims agree with saved records. This is not an experiment rerun.

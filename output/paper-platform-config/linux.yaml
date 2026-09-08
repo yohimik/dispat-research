@@ -1,0 +1,2 @@
+$ref: ./global.yaml
+shell: ["/bin/sh", "-c"]

@@ -1,0 +1,32 @@
+{
+  "provenance": "Read from local image cache after the retained run on 2026-09-09, not an in-run image provenance attestation.",
+  "images": [
+    {
+      "Id": "sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33",
+      "RepoTags": [
+        "registry:3"
+      ],
+      "RepoDigests": [
+        "registry@sha256:1be55279f18a2fe1a74edf2664cac61c1bea305b7b4642dab412e7affdcb3e33"
+      ]
+    },
+    {
+      "Id": "sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801",
+      "RepoTags": [
+        "verdaccio/verdaccio:6"
+      ],
+      "RepoDigests": [
+        "verdaccio/verdaccio@sha256:fcb86134563534e2f634752e6c6c3edcdb78242ec16578c73ce39d1dadbaa801"
+      ]
+    },
+    {
+      "Id": "sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8",
+      "RepoTags": [
+        "moby/buildkit:buildx-stable-1"
+      ],
+      "RepoDigests": [
+        "moby/buildkit@sha256:28a898719c18a33f4e8000685287fa36fd0dd9560c6440227d3a732d79bb41d8"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+{"level":"warn","code":"W208","package":"app","commit":"1f1f009dcb3d","time":"2026-09-06T13:51:20Z","message":"propagated bump from core suppressed: core releases on \"beta\", which app (on \"rc\") cannot resolve"}
+{"level":"info","warnings":1,"errors":0,"time":"2026-09-06T13:51:20Z","message":"plan diagnostics"}
+{"level":"info","package":"core","space":"packages","bump":"minor","version":"1.0.0 -> 1.1.0-beta.0","channel":"stable -> beta","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-06T13:51:20Z","message":"● changed"}
+{"level":"info","package":"app","space":"packages","dependsOn":["core"],"version":"1.0.1-rc.0","channel":"rc","time":"2026-09-06T13:51:20Z","message":"unchanged"}
+{"level":"info","packages":2,"releasing":1,"held":0,"time":"2026-09-06T13:51:20Z","message":"release plan ready"}

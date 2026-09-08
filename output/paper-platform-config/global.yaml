@@ -1,0 +1,7 @@
+scripts:
+  build: cmake --build build
+flow:
+  build: [build]
+packages:
+  app:
+    path: app

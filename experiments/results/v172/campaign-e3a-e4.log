@@ -1,0 +1,47 @@
+=== e3a gcn k=5 (02:58:34)
+{"sha": "c9314c28e6", "released": 1, "planned": 9, "exact": 1, "missing": [], "extra_n": 8, "verdiff": {}}
+{"sha": "fc7a7268df", "released": 22, "planned": 27, "exact": 17, "missing": ["mapmanagement"], "extra_n": 6, "verdiff": {"bigquery-storage-api": ["0.4.0", "1.0.0"], "bigtable-api": ["0.4.0", "1.0.0"], "ftp": ["0.1.0", "0.0.1"], "workloadidentity": ["0.1.0", "0.0.1"]}}
+{"sha": "9af22f9491", "released": 11, "planned": 19, "exact": 11, "missing": [], "extra_n": 8, "verdiff": {}}
+{"sha": "f5ab609214", "released": 7, "planned": 14, "exact": 6, "missing": [], "extra_n": 7, "verdiff": {"firestore-api": ["0.5.0", "1.0.0"]}}
+{"sha": "5e35298c65", "released": 1, "planned": 8, "exact": 1, "missing": [], "extra_n": 7, "verdiff": {}}
+exit=0
+=== e3a cc k=5 (03:00:23)
+{"sha": "cc567b98fa", "released": 20, "planned": 2, "exact": 2, "missing": ["conventional-changelog", "conventional-changelog-angular", "conventional-changelog-atom", "conventional-changelog-cli", "conventional-changelog-codemirror", "conventional-changelog-conventionalcommits", "conventional-changelog-core", "conventional-changelog-ember"], "extra_n": 0, "verdiff": {}}
+{"sha": "be1246c68f", "released": 8, "planned": 3, "exact": 3, "missing": ["conventional-changelog", "conventional-changelog-conventionalcommits", "conventional-recommended-bump", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "3dedddc397", "released": 9, "planned": 1, "exact": 1, "missing": ["conventional-changelog", "conventional-changelog-angular", "conventional-changelog-cli", "conventional-changelog-core", "conventional-changelog-jshint", "conventional-changelog-writer", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "c5ae3ab67c", "released": 6, "planned": 0, "exact": 0, "missing": ["conventional-changelog", "conventional-changelog-cli", "conventional-changelog-core", "conventional-changelog-writer", "gulp-conventional-changelog", "standard-changelog"], "extra_n": 0, "verdiff": {}}
+{"sha": "83643c5a0d", "released": 21, "planned": 21, "exact": 1, "missing": [], "extra_n": 0, "verdiff": {"conventional-changelog-angular": ["5.0.10", "6.0.0"], "conventional-changelog-atom": ["2.0.7", "3.0.0"], "conventional-changelog-cli": ["2.0.33", "3.0.0"], "conventional-changelog-codemirror": ["2.0.7", "3.0.0"], "conventional-changelog-conventionalcommits": ["4.3.0", "5.0.0"], "conventional-
+exit=0
+=== e4b timing rep1 (03:00:24)
+exit=0
+=== e4c recovery rep1 (04:13:26)
+n=13 p=0.1 seed=0 runs=1 converged=True g_ok=True
+n=11 p=0.1 seed=1 runs=2 converged=True g_ok=True
+n=7 p=0.1 seed=2 runs=2 converged=True g_ok=True
+n=13 p=0.3 seed=0 runs=2 converged=True g_ok=True
+n=11 p=0.3 seed=1 runs=3 converged=True g_ok=True
+n=7 p=0.3 seed=2 runs=2 converged=True g_ok=True
+n=44 p=0.1 seed=0 runs=2 converged=True g_ok=True
+n=45 p=0.1 seed=1 runs=3 converged=True g_ok=True
+n=21 p=0.1 seed=2 runs=3 converged=True g_ok=True
+n=44 p=0.3 seed=0 runs=4 converged=True g_ok=False
+n=45 p=0.3 seed=1 runs=4 converged=True g_ok=False
+n=21 p=0.3 seed=2 runs=3 converged=True g_ok=True
+exit=0
+=== e4b timing rep2 (04:14:05)
+exit=0
+=== e4c recovery rep2 (05:16:35)
+n=13 p=0.1 seed=0 runs=1 converged=True g_ok=True
+n=11 p=0.1 seed=1 runs=2 converged=True g_ok=True
+n=7 p=0.1 seed=2 runs=2 converged=True g_ok=True
+n=13 p=0.3 seed=0 runs=3 converged=True g_ok=True
+n=11 p=0.3 seed=1 runs=3 converged=True g_ok=False
+n=7 p=0.3 seed=2 runs=2 converged=True g_ok=True
+n=44 p=0.1 seed=0 runs=2 converged=True g_ok=True
+n=45 p=0.1 seed=1 runs=2 converged=True g_ok=True
+n=21 p=0.1 seed=2 runs=3 converged=True g_ok=True
+n=44 p=0.3 seed=0 runs=4 converged=True g_ok=False
+n=45 p=0.3 seed=1 runs=5 converged=True g_ok=True
+n=21 p=0.3 seed=2 runs=3 converged=True g_ok=True
+exit=0
+=== done (05:17:04)

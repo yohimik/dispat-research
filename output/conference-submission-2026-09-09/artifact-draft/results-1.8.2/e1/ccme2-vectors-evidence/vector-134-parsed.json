@@ -1,0 +1,31 @@
+{
+ "exit": 0,
+ "plan": {
+  "core": {
+   "changed": false,
+   "next": "1.1.0",
+   "bump": "none",
+   "channel": "stable",
+   "reason": "",
+   "dueTo": []
+  },
+  "app": {
+   "changed": true,
+   "next": "1.0.1",
+   "bump": "patch",
+   "channel": "stable",
+   "reason": "catch-up from core",
+   "dueTo": [
+    "core"
+   ]
+  }
+ },
+ "ready": {
+  "level": "info",
+  "packages": 2,
+  "releasing": 1,
+  "held": 0,
+  "time": "2026-09-06T23:19:49Z",
+  "message": "release plan ready"
+ }
+}

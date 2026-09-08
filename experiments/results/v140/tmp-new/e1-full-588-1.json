@@ -1,0 +1,28 @@
+{
+ "summary": {
+  "profile": "full",
+  "instances": 1,
+  "clean": 0,
+  "divergence_classes": {
+   "PG1": 1,
+   "PG2x": 1
+  },
+  "dispat": "dispat 1.4.0 (linux_arm64)"
+ },
+ "rows": [
+  {
+   "seed": 588,
+   "packages": 17,
+   "diffs": [
+    [
+     "p08",
+     "PG1"
+    ],
+    [
+     "p13",
+     "PG2x"
+    ]
+   ]
+  }
+ ]
+}

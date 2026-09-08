@@ -1,0 +1,17 @@
+npm notice
+npm notice package: ui@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 81B package.json
+npm notice Tarball Details
+npm notice name: ui
+npm notice version: 1.0.1
+npm notice filename: ui-1.0.1.tgz
+npm notice package size: 196 B
+npm notice unpacked size: 87 B
+npm notice shasum: 90302132f0a282f7f944928064476f691b2df416
+npm notice integrity: sha512-O6Q0cIPdsXGvs[...]mb8QH5iE1iy0Q==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://127.0.0.1:4873/ with tag latest and default access
++ ui@1.0.1

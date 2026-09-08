@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "assertions": 106,
+  "cases": 10,
+  "recovery_cases": 4,
+  "overlap": [
+    {
+      "case": "mixed-0",
+      "overlap_seconds": 0.219274042
+    },
+    {
+      "case": "mixed-1",
+      "overlap_seconds": 0.211216583
+    }
+  ]
+}

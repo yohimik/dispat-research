@@ -1,0 +1,69 @@
+\section{Introduction}
+\label{sec:intro}
+Consider an npm package, a Docker image that packages its output, and another
+Docker image built from the first. The dependencies cross the boundary
+between building and publishing. The first image can use files already built
+in the workspace. The second image, built in an isolated environment, cannot
+use its new base version until that version is available in a registry.
+Building all packages before publishing any of them is not a valid schedule
+for this release. Serializing every package through both stages is sufficient
+but also forces local-artifact consumers to wait for uploads they do not need.
+
+Interruption makes the problem harder. If the npm package and base image have
+published but the final image fails, a repeated command should finish the
+remaining release. It should neither forget that image because its providers
+have already released nor assign a different version solely because the first
+attempt made progress. A release engine must therefore answer three questions:
+which versions are owed, which stages may run, and which obligations remain
+after a failure. These questions interact, but require different state.
+
+Release engineering spans more than compilation~\cite{adams}. A heterogeneous
+release writes to independently administered package registries, container
+registries, and deployment services. They provide no shared atomic commit.
+The resulting execution resembles a saga~\cite{sagas}: individual steps commit
+separately, and recovery must account for the work that already succeeded.
+For published artifacts, deletion may be unavailable or operationally
+unacceptable. Our protocol therefore uses forward recovery. It completes or
+reconciles outstanding work rather than assuming that every external effect
+has a compensating action.
+
+Workflow engines can express a build/publish DAG. Existing release tools also
+compute versions and coordinate publication~\cite{lerna,nx,changesets,
+releaseplease,semanticrelease}. The question studied here is how to compose
+stage ordering with a release ledger so that successful providers do not
+erase their failed consumers' obligations. The key rule is consumer-based
+admission: a propagated unit of intent remains pending according to the
+consumer's own release window, even when the originating package has already
+recorded its release. A second distinction separates intent accumulated over
+a prerelease train from fresh work not yet delivered.
+
+We present \tool{}, an implementation of this protocol, and \lang{}, its
+release-intent language. These names are pseudonyms for anonymous review;
+reported version numbers identify the evaluated artifacts. The implementation
+uses Git history and tags as its release ledger and ordinary commands for
+build and publish stages. It requires no additional persistent release-state
+database. That claim concerns orchestration state, not the storage used by
+registries, build tools, or deployed applications.
+
+A package is a versioned release unit: software, specifications, and
+documentation use the same intent, dependency, command, and completion
+interfaces. The protocol accommodates different build tools and registries;
+its guarantees require conforming integrations, not a particular language.
+
+The paper makes three contributions:
+\begin{itemize}
+\item An ecosystem-independent, saga-inspired release protocol combining
+local-artifact and published-artifact dependencies with explicit release
+intent and per-package completion records
+(Section~\ref{sec:system}).
+\item A self-contained model with deterministic planning and eight recovery,
+discharge, and scope/channel guarantees under stated assumptions
+(Sections~\ref{sec:model}--\ref{sec:guarantees}). Counterexamples explain why
+consumer windows and stable retry predicates matter.
+\item An evaluation of a released binary using differential planning,
+targeted vectors, injected failures, historical replay, and scale measurements
+(Section~\ref{sec:eval}), with the model-to-implementation gap made explicit.
+\end{itemize}
+
+The mathematical contribution is the admission and discharge discipline,
+not a new topological-sorting or Git-storage primitive.

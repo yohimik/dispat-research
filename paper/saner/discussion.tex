@@ -1,0 +1,125 @@
+\section{Discussion and Threats to Validity}
+\label{sec:threats}
+\paragraph{Meaning of the guarantees.}
+Safety and eventual progress are different obligations~\cite{safety}.
+Our retry theorem fixes corrected intent, source membership, admission
+predicates, and relevant channel inputs. Some stability lemmas are direct
+consequences of that invariant. Their operational value is to expose the
+conditions that a retry must preserve, not to claim that any repository
+mutation is harmless. New commits, edits to release policy, or tag rewrites
+can require a new plan. A process that fails forever need not converge.
+
+The model abstracts external artifact contents and treats successful
+publication followed by a completion record as one transition. Lost responses
+and failed recording remain integration obligations. A Git lock coordinates
+cooperating jobs but is not a transaction manager for arbitrary registries.
+The implementation's own-reason failure exceptions, recording stages, and
+finalization behavior require more detailed refinement than the abstract
+blocked-set rule. We do not claim that testing selected traces closes that gap.
+
+\paragraph{Internal and construct validity.}
+The author developed the system, model, oracle, and tests, so common mistakes
+can survive their agreement. The restricted oracle does not cover all current
+semantics; full-profile categories are heuristic. A passing integrity check
+shows consistency of supplied records, not independent replication. The
+concurrent-push cases cover selected interleavings, not a systematic sweep.
+The measured counts use different units: histories, package rows, episodes,
+and assertions must not be pooled into one success percentage.
+
+\paragraph{External validity.}
+Synthetic repositories and local fault fixtures establish behavior under
+controlled conditions. The historical subjects require reconstructed policies,
+and the comparison uses pinned tool configurations. No user study establishes
+that authors write correct intent or that teams find it easier to review.
+Polyrepo applicability follows from the control-repository construction; its
+operational scale is not measured. Cross-platform scripts, agent gates, and
+multiple ecosystems demonstrate integration scope, not general effectiveness.
+Performance observations from one contended host are not service-level promises.
+
+\section{Related Work}
+\label{sec:related}
+\paragraph{Release and build systems.}
+Adams and McIntosh identify release engineering as a distinct research
+problem~\cite{adams}. Large monorepo practice~\cite{potvin} and build-system
+models~\cite{mokhov} address dependency ordering and reuse. Incremental build
+work also formalizes dynamic dependencies~\cite{pluto}; our model instead
+uses a fixed release graph and records versioned publication obligations.
+We claim neither incremental rebuilding nor a novel topological algorithm.
+Lerna, Nx, Changesets, release-please, and semantic-release provide different
+versioning and publication workflows~\cite{lerna,nx,changesets,releaseplease,
+semanticrelease}. Section~\ref{sec:compare} compares operational traces of
+specified configurations, not formal reductions of those complete tools.
+Spinnaker already supports parallel pipeline stages and execution
+histories~\cite{spinnaker}; expressing a DAG is not unique to this protocol.
+Nix identifies component instances through input-derived store
+paths~\cite{nix}, while TOSCA standardizes service templates and lifecycle
+interfaces~\cite{tosca}. OpenGitOps calls for versioned desired state and
+continuous reconciliation~\cite{gitops}. Our ledger instead tracks completed
+versioned releases across independent publication targets. We neither replace
+these systems' state models nor claim their guarantees for arbitrary scripts.
+
+Version intent is not a proof of API compatibility. Studies of versioning
+and ecosystem change~\cite{raemaekers,bogart,decan} motivate explicit policy
+but do not show that a declared bump is correct. Package-installability work
+such as EDOS~\cite{edos} models a different consistency question: a set of
+installable packages rather than the remaining obligations of an interrupted
+publication. Formal VCS work studies contents, patches, and merges
+~\cite{swierstraloh,hpt,mimram,mrdt}; Git-mining work explains why history and
+reference interpretation need care~\cite{birdgit}. Our ledger uses those
+repository objects while leaving content and merge correctness outside its
+proofs.
+
+\paragraph{Recovery and formal assurance.}
+Platform-independent deployment models already formalize lifecycle and
+version compatibility: Liu and Smith's buildbox includes build, install,
+ship, and update transitions~\cite{liusmith}. Aeolus studies component states,
+dependencies, and configuration reachability~\cite{aeolus}. These are direct
+antecedents to a common lifecycle abstraction. Our question is narrower:
+preserving versioned publication obligations across partial executions.
+The NEPHELE orchestration report also explicitly uses saga patterns for
+distributed lifecycle operations~\cite{nephele}; applying sagas to operations
+is therefore not itself a novelty claim.
+Sagas~\cite{sagas} and the limits of transaction abstractions~\cite{gray}
+provide the recovery setting. Independently committed and idempotently
+processable operations~\cite{helland07,helland12} explain why uncertain
+outcomes need explicit treatment. Our contribution specializes admission and
+discharge to versioned consumers; it is not the invention of forward recovery.
+Anvil~\cite{anvil} verifies reconciliation properties of Kubernetes controller
+implementations, whereas our handwritten proofs establish a release model and
+our tests sample implementation behavior. This is a significant difference
+in assurance. Methodological cautions about fuzz evaluation~\cite{klees}
+likewise motivate separating core agreement from unsupported generalization.
+
+\section{Conclusion}
+\label{sec:conclusion}
+A release graph can cross build and publish boundaries. Local-artifact
+consumers may proceed after a provider builds; registry-artifact consumers
+must wait for publication. Correct ordering alone does not ensure recovery:
+a failed consumer must retain its release obligation after successful
+providers leave the plan. Consumer-based admission and separate train and
+fresh-work windows make that obligation explicit. Under the stated retry
+invariant, the model preserves versions, discharges recorded work, and
+converges when attempts make progress. Released-binary experiments support
+selected behaviors while exposing limits in oracle coverage and historical
+policy replay. Mechanized proofs and a fuller implementation refinement,
+including recording failures and randomized interleavings, remain open
+work~\cite{lamport}.
+
+\section*{Data Availability}
+A curated local review bundle contains harness code, selected raw records,
+per-file checksums, and an offline verifier. It reaggregates reported campaign
+counts but omits binaries, complete Git histories, and some large dossiers;
+it is not a complete executable replication package. The supplemental
+mixed-chain experiment has separate code, event logs, and verdicts. Anonymous
+distribution is being prepared. Identifying source and artifact links are
+withheld in this working review draft; no public artifact availability is
+claimed. An archival replication package is planned for publication.
+
+\section*{AI Assistance Disclosure}
+Most AI-assisted work used Claude Fable 5, with additional assistance from
+Claude Opus 5, Claude Fable 5.1, Gemini, and OpenAI Codex. Across these tools,
+assistance covered exposition, proof arguments, harness code, experiment
+execution, and results summaries; it extended beyond language editing.
+Measurements come from program executions, not language-model predictions.
+The human author is responsible for the claims, proofs, citations, and
+interpretation.

@@ -1,0 +1,11 @@
+# Served at the domain root of dispat.dev, so unlike the GitHub Pages era this
+# file is the one crawlers actually read. The sitemap is generated on every
+# build by @docusaurus/plugin-sitemap; submit it once in Search Console and
+# this line keeps it discoverable ever after.
+User-agent: *
+Allow: /
+
+# Search results are a client-side view of the index, not content.
+Disallow: /search
+
+Sitemap: https://dispat.dev/sitemap.xml

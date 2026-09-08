@@ -1,0 +1,48 @@
+{
+  "base": {
+    "exit": 0,
+    "body": "{\"name\":\"chaina639a4c75f/base\",\"tags\":[\"0.8.3\"]}\n"
+  },
+  "app": {
+    "exit": 0,
+    "body": "{\"name\":\"chaina639a4c75f/app\",\"tags\":[\"2.1.1\"]}\n"
+  },
+  "assets": {
+    "name": "chaina639a4c75f-assets",
+    "versions": {
+      "1.5.0": {
+        "name": "chaina639a4c75f-assets",
+        "version": "1.5.0",
+        "scripts": {
+          "build": "node build.cjs"
+        },
+        "files": [
+          "dist"
+        ],
+        "gitHead": "c2f2745c106561435b3fb2953695c86fac7080ea",
+        "_id": "chaina639a4c75f-assets@1.5.0",
+        "_nodeVersion": "24.18.1",
+        "_npmVersion": "11.12.1",
+        "dist": {
+          "integrity": "sha512-LVAJAdg6yvFrKslEi2TeiYw3y8oksaojik+HdCHes56Zgf90Vk8q3GmWikSYny28186bWuktTF03qhqbFCoMZA==",
+          "shasum": "f6e10cf632acc147a7ffa503a217296836ffed65",
+          "tarball": "http://saner-chain-3174808061:4873/chaina639a4c75f-assets/-/chaina639a4c75f-assets-1.5.0.tgz"
+        },
+        "contributors": []
+      }
+    },
+    "time": {
+      "modified": "2026-09-08T22:51:00.063Z",
+      "created": "2026-09-08T22:51:00.063Z",
+      "1.5.0": "2026-09-08T22:51:00.063Z"
+    },
+    "users": {},
+    "dist-tags": {
+      "latest": "1.5.0"
+    },
+    "_rev": "3-75215b57cd088f3c",
+    "_id": "chaina639a4c75f-assets",
+    "readme": "ERROR: No README data found!",
+    "_attachments": {}
+  }
+}

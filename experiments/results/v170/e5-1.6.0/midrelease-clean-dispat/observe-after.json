@@ -1,0 +1,133 @@
+{
+ "label": "after",
+ "local": {
+  "aheadOfOrigin": "1",
+  "behindOrigin": "1",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "dd90c53f90cb",
+   "subject": "chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "c5a5f5e20cf2"
+  },
+  "release": {
+   "onFirstParentChain": false,
+   "onOriginMain": false,
+   "sha": "dd90c53f90cb"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "c5a5f5e20cf2"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "c5a5f5e20cf2",
+   "subject": "fix(api): concurrent change"
+  },
+  "tags": {
+   "api@1.0.0": "2da553540f08",
+   "cli@1.0.0": "2da553540f08",
+   "core@1.0.0": "2da553540f08",
+   "docs@1.0.0": "2da553540f08",
+   "theme@1.0.0": "2da553540f08",
+   "ui@1.0.0": "2da553540f08"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    },
+    "1.0.1": {
+     "local": "dd90c53f90cb",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    },
+    "1.0.1": {
+     "local": "dd90c53f90cb",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    },
+    "1.1.0": {
+     "local": "dd90c53f90cb",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "2da553540f08",
+     "onMain": true,
+     "origin": "2da553540f08"
+    },
+    "1.0.1": {
+     "local": "dd90c53f90cb",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  }
+ }
+}

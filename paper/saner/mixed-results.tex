@@ -1,0 +1,53 @@
+\subsection{Mixed-Chain Availability and Recovery}
+We also executed the motivating npm $\to$ Docker $\to$ Docker chain
+using the official 1.8.2 macOS ARM64 binary. The npm build produces a file
+copied into the base image; the app image uses \code{FROM} with the new base
+version. Publication uses private Verdaccio and Docker registries. A dedicated
+BuildKit builder resolves that registry over an isolated Docker network;
+images are built to OCI archives~\cite{oci} and published through cached
+BuildKit exports~\cite{buildkit}. No image is published to an external service.
+
+Five configurations ran twice each (Table~\ref{tab:mixed}). Both availability
+requirements enabled serialize the two boundaries. Disabling the base's
+publication requirement makes the app attempt to resolve an unpublished
+image. The other configurations inject either a base-publication refusal
+before its push or an app-build failure. Clearing the injected failure and
+running the same release command tests recovery, without changing release
+intent. Fixed three-second npm and two-second base-publication delays make
+ordering observable; these are experimental controls, not workload latencies.
+
+\begin{table}[t]
+\centering
+\caption{Fresh mixed-chain experiment; two runs per configuration. Failures
+in the final three rows are intentional. The barrier-removed configuration
+is not repaired and is excluded from unchanged-rerun checks.}
+\label{tab:mixed}
+\small
+\begin{tabular}{@{}lll@{}}
+\toprule
+Configuration & First outcome & Retry after repair \\
+\midrule
+Mixed availability & 2 successes & not needed \\
+Both barriers & 2 successes & not needed \\
+Base barrier removed & 2 app failures & not attempted \\
+Base publish fails & 2 blocked apps & 2 successes \\
+App build fails & 2 app failures & 2 successes \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+In the mixed runs, base building overlapped npm publication; in the
+serialized runs it began afterward. App building followed successful base
+publication whenever that barrier was enabled. Removing it produced a
+registry ``not found'' error in both repetitions. All four repaired failures
+retained the planned versions and completed. All eight successfully completed
+configurations then reran without another build or publication. The verifier
+checks 106 assertions over stage events, outcomes, versions, tags, and cleanup;
+these assertions are not independent experimental samples.
+
+Event ordering and elapsed intervals use Python 3.12's shared monotonic clock~\cite{pytime}.
+Earlier setup attempts are excluded: a host-loopback registry was unreachable
+from the Docker daemon, and Python 3.9 on this host supplied process-relative
+clock origins unsuitable for cross-process intervals. The retained experiment
+supports stage ordering and selected recovery paths, not distributed-clock
+accuracy, production registry reliability, or comparative throughput.

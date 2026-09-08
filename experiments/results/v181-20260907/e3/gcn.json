@@ -1,0 +1,71 @@
+[
+ {
+  "sha": "c9314c28e6",
+  "released": 1,
+  "planned": 9,
+  "exact": 1,
+  "missing": [],
+  "extra_n": 8,
+  "verdiff": {}
+ },
+ {
+  "sha": "fc7a7268df",
+  "released": 22,
+  "planned": 27,
+  "exact": 17,
+  "missing": [
+   "mapmanagement"
+  ],
+  "extra_n": 6,
+  "verdiff": {
+   "bigquery-storage-api": [
+    "0.4.0",
+    "1.0.0"
+   ],
+   "bigtable-api": [
+    "0.4.0",
+    "1.0.0"
+   ],
+   "ftp": [
+    "0.1.0",
+    "0.0.1"
+   ],
+   "workloadidentity": [
+    "0.1.0",
+    "0.0.1"
+   ]
+  }
+ },
+ {
+  "sha": "9af22f9491",
+  "released": 11,
+  "planned": 19,
+  "exact": 11,
+  "missing": [],
+  "extra_n": 8,
+  "verdiff": {}
+ },
+ {
+  "sha": "f5ab609214",
+  "released": 7,
+  "planned": 14,
+  "exact": 6,
+  "missing": [],
+  "extra_n": 7,
+  "verdiff": {
+   "firestore-api": [
+    "0.5.0",
+    "1.0.0"
+   ]
+  }
+ },
+ {
+  "sha": "5e35298c65",
+  "released": 1,
+  "planned": 8,
+  "exact": 1,
+  "missing": [],
+  "extra_n": 7,
+  "verdiff": {}
+ }
+]

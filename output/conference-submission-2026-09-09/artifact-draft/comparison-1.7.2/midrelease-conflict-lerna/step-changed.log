@@ -1,0 +1,10 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+lerna info Assuming all packages changed
+api   v1.0.1 packages/api
+cli   v1.0.1 packages/cli
+core  v1.1.0 packages/core
+docs  v1.0.1 packages/docs
+theme v1.0.1 packages/theme
+ui    v1.0.1 packages/ui
+lerna success found 6 packages ready to publish

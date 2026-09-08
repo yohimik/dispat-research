@@ -1,0 +1,9 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+lerna ERR! EUNCOMMIT Working tree has uncommitted changes, please commit or remove the following changes before continuing:
+lerna ERR! EUNCOMMIT  M packages/api/package.json
+lerna ERR! EUNCOMMIT  M packages/cli/package.json
+lerna ERR! EUNCOMMIT  M packages/core/package.json
+lerna ERR! EUNCOMMIT  M packages/docs/package.json
+lerna ERR! EUNCOMMIT  M packages/theme/package.json
+lerna ERR! EUNCOMMIT  M packages/ui/package.json

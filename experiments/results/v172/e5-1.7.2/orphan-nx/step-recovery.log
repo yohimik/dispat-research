@@ -1,0 +1,82 @@
+
+ NX   Running target nx-release-publish for 6 projects:
+
+- theme
+- core
+- docs
+- api
+- cli
+- ui
+
+With additional flags:
+  --registry=http://127.0.0.1:4873
+
+
+
+> nx run core:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/core/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "core" because v1.1.0 already exists in http://127.0.0.1:4873 with tag "latest"
+
+> nx run ui:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/ui/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "ui" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest"
+
+> nx run api:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/api/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "api" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest"
+
+> nx run cli:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/cli/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  cli@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+82B package.json
+[35m=== Tarball Details ===[39m
+name:          cli                                     
+version:       1.0.1                                   
+filename:      cli-1.0.1.tgz                           
+package size:  196 B                                   
+unpacked size: 88 B                                    
+shasum:        8800a3edc99e62f56c7dc86a55a72cc90b5adea4
+integrity:     sha512-gnUnOUASjHtAa[...]IdFx8lryKQKgw==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run theme:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/theme/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "theme" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest"
+
+> nx run docs:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/docs/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+Skipped package "docs" because v1.0.1 already exists in http://127.0.0.1:4873 with tag "latest"
+
+
+
+ NX   Successfully ran target nx-release-publish for 6 projects
+
+
+  Run duration:      2.9s
+  Cache:             0/6 hit (0%)
+  Critical path:     2.8s (3 tasks)
+  Recoverable time:  81ms (3% of the run)

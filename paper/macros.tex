@@ -1,0 +1,84 @@
+% One macro per notion of the specification. Nothing in this document types a
+% symbol directly: if a definition changes, it changes here, and the appendix
+% symbol table is written from this file.
+
+% ---- cross-references into the sources -------------------------------------
+% \textup so that small caps survive the italic body of a theorem environment,
+% where T1/lmr/m/scit does not exist.
+\newcommand{\SPEC}{\textup{\textsc{spec}}}
+\newcommand{\spec}[1]{\SPEC~\S#1}
+\newcommand{\specs}[2]{\SPEC~\S\S#1,~#2}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\diag}[1]{\texttt{#1}}          % a diagnostic code, e.g. \diag{W208}
+
+% ---- history ---------------------------------------------------------------
+\newcommand{\Cmts}{\ensuremath{\mathcal{K}}}            % the set of commits
+\newcommand{\Head}{\ensuremath{h}}                      % HEAD, fixed throughout
+\newcommand{\Rch}[1]{\ensuremath{\mathrm{reach}(#1)}}   % ancestors-or-self
+\newcommand{\anc}{\ensuremath{\preceq}}                 % ancestor-or-self
+
+% ---- workspace -------------------------------------------------------------
+\newcommand{\Pkgs}{\ensuremath{\mathcal{P}}}            % packages at HEAD
+\newcommand{\Edges}{\ensuremath{E}}                     % dependency edges
+\newcommand{\Dep}[1]{\ensuremath{\mathrm{dep}(#1)}}     % direct dependents of a package
+\newcommand{\dist}[2]{\ensuremath{\delta(#1,#2)}}       % shortest edge count, set to package
+\newcommand{\reachset}[2]{\ensuremath{R(#1,#2)}}        % the traversal of §9.2
+
+% ---- bumps and versions ----------------------------------------------------
+\newcommand{\Bumps}{\ensuremath{\mathbb{B}}}
+\newcommand{\bnone}{\ensuremath{\mathsf{none}}}
+\newcommand{\bpatch}{\ensuremath{\mathsf{patch}}}
+\newcommand{\bminor}{\ensuremath{\mathsf{minor}}}
+\newcommand{\bmajor}{\ensuremath{\mathsf{major}}}
+\newcommand{\Vers}{\ensuremath{\mathcal{V}}}
+\newcommand{\applyb}[2]{\ensuremath{\mathrm{apply}(#1,#2)}}
+\newcommand{\coreof}[1]{\ensuremath{\mathrm{core}(#1)}}
+\newcommand{\cntof}[1]{\ensuremath{\mathrm{cnt}(#1)}}
+
+% ---- channels --------------------------------------------------------------
+\newcommand{\Chans}{\ensuremath{\mathcal{C}\!h}}
+\newcommand{\stable}{\ensuremath{\mathsf{stable}}}
+\newcommand{\chanof}[1]{\ensuremath{\mathrm{ch}(#1)}}   % the channel of a version
+\newcommand{\NONE}{\ensuremath{\bot}}                   % "proposes nothing"
+
+% ---- state and its derived quantities --------------------------------------
+\newcommand{\st}{\ensuremath{\sigma}}
+\newcommand{\Win}[2]{\ensuremath{W_{#1}(#2)}}                  % train window
+\newcommand{\Winf}[2]{\ensuremath{W^{\circ}_{#1}(#2)}}         % undelivered admission window
+\newcommand{\base}[2]{\ensuremath{\mathrm{base}_{#1}(#2)}}
+\newcommand{\basec}[2]{\ensuremath{\mathrm{basec}_{#1}(#2)}}   % commit of the baseline tag
+\newcommand{\stbase}[2]{\ensuremath{\mathrm{sbase}_{#1}(#2)}}
+\newcommand{\stcommit}[2]{\ensuremath{\mathrm{scom}_{#1}(#2)}}
+\newcommand{\chanres}[2]{\ensuremath{\mathrm{chan}_{#1}(#2)}}  % channel(P), §13.8
+
+% ---- units and their directives --------------------------------------------
+\newcommand{\Units}{\ensuremath{\mathcal{U}}}
+\newcommand{\cof}[1]{\ensuremath{c_{#1}}}                      % the commit carrying a unit
+\newcommand{\scopef}[1]{\ensuremath{\mathrm{scope}(#1)}}
+\newcommand{\bumpof}[1]{\ensuremath{\mathrm{bump}(#1)}}
+\newcommand{\pbump}[1]{\ensuremath{\mathrm{pb}(#1)}}           % effective propagated bump
+\newcommand{\pdepth}[1]{\ensuremath{\mathrm{pd}(#1)}}
+\newcommand{\pscope}[1]{\ensuremath{\mathrm{ps}(#1)}}
+\newcommand{\pchan}[1]{\ensuremath{\mathrm{pc}(#1)}}
+\newcommand{\pcdepth}[1]{\ensuremath{\mathrm{pcd}(#1)}}
+\newcommand{\pcscope}[1]{\ensuremath{\mathrm{pcs}(#1)}}
+
+% ---- suppression, sources, admission ---------------------------------------
+\newcommand{\disch}[3]{\ensuremath{\mathrm{disch}_{#1}(#2,#3)}}
+\newcommand{\canc}[2]{\ensuremath{\mathrm{canc}(#1,#2)}}
+\newcommand{\held}[1]{\ensuremath{\mathrm{held}(#1)}}
+\newcommand{\srcp}[2]{\ensuremath{\mathrm{src}_{#1}(#2)}}
+\newcommand{\srcch}[2]{\ensuremath{\mathrm{sch}_{#1}(#2)}}     % the source channel set, §9.3a
+\newcommand{\resolv}[3]{\ensuremath{\mathrm{rsv}_{#1}(#2,#3)}}
+\newcommand{\admit}[3]{\ensuremath{\mathrm{adm}_{#1}(#2,#3)}}
+
+% ---- the plan --------------------------------------------------------------
+\newcommand{\dirb}[2]{\ensuremath{\mathrm{dir}_{#1}(#2)}}
+\newcommand{\propb}[2]{\ensuremath{\mathrm{prp}_{#1}(#2)}}
+\newcommand{\effb}[2]{\ensuremath{\mathrm{eff}_{#1}(#2)}}
+\newcommand{\plan}[1]{\ensuremath{\Pi(#1)}}
+\newcommand{\vers}[2]{\ensuremath{\nu_{#1}(#2)}}
+\newcommand{\Run}[2]{\ensuremath{\mathrm{run}(#1,#2)}}
+
+% ---- guarantee labels ------------------------------------------------------
+\newcommand{\G}[1]{\textbf{G#1}}

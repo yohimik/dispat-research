@@ -1,0 +1,451 @@
+# Same configuration as dispat.example.json in YAML. dispat defaults to
+# dispat.json; point at this file with: dispat --config dispat.yaml
+scripts:
+  install: "npm ci"
+  build: "npm run build"
+  publish: "npm publish --access public"
+  # Sync manifests to just-released provider versions; receives them as
+  # per-package DISPAT_UPDATED_* variables. With autoVersion (below) dispat
+  # rewrites package.json/go.mod itself and a script like this is only needed
+  # for what the native rewriting does not cover.
+  sync-deps: "node ./scripts/sync-deps.js"
+  # Regenerate the lock file after autoVersion rewrote the manifests.
+  npm-install: "npm install --package-lock-only"
+  npm-login: "npm whoami || npm login"
+  smoke-test: "npm run smoke"
+  announce: "./scripts/announce.sh"
+  # A name may bind several commands, run in order as separate shell
+  # invocations; the first that fails stops the rest.
+  build-go:
+    - "go vet ./..."
+    - "go build ./..."
+  publish-go: "./scripts/release.sh"
+  notify: "./scripts/notify.sh"
+
+# A space's `flow` object says what runs at which stage, referencing scripts by
+# name. Every entry is optional (a stage without a script still runs, keeping
+# ordering, tags, changelogs and github releases; it just executes no shell
+# command) and accepts one name or an array of names run in order. A name is
+# resolved by the package the stage runs for: its own `scripts`, then its
+# space's, then the ones above.
+spaces:
+  libs:
+    # One folder, or a list of folders whose sub-folders all belong to this
+    # space: `path: [packages/libs, plugins/libs]`. The first folder is the
+    # primary one; the login script runs there.
+    path: packages/libs
+    # Consumers may only build after a provider from this space is published.
+    isBuildWaitingPublish: true
+    # Roll back all local changes inside the package folder when a package
+    # from this space fails during version, build or publish.
+    revertOnFail: true
+    # How versions relate across the space's packages:
+    # How much of the version the space's packages hold in common. Whatever
+    # is shared is always equal across the group; whatever is not is each
+    # package's own, and a release moves the whole group only when it reaches
+    # the shared part. The Sparse variants compute the same shared version but
+    # leave an unchanged member at its previous one until it next releases,
+    # instead of riding it along with a "no changes" entry (W210).
+    #   independent (default)   every package versions from its own history
+    #   fixed                   the whole version: any change releases every
+    #                           member; single prerelease train
+    #   fixedSparse             the same, unchanged members staying behind
+    #   fixedMajorMinor         MAJOR.MINOR: patches stay with their package,
+    #                           minors and majors move the whole group
+    #   fixedMajorMinorSparse   the same, unchanged members staying behind
+    #   fixedMajor              MAJOR: only a breaking change moves the group
+    #   fixedMajorSparse        the same, unchanged members staying behind
+    #   none                    never released at all: no versions, tags or
+    #                           publishes; the packages exist to run scripts
+    versioning: independent
+    # The space's own scripts: the same shape as the top-level `scripts`,
+    # layered over them for this space's packages. `flow` entries name them,
+    # and so does `dispat run <name>` (or just `dispat <name>`), which executes
+    # the name inside each changed package that resolves it, over the
+    # dependency graph, with the full DISPAT_* environment and nothing released
+    # or tagged. A name defined here reaches this space's packages; one defined
+    # at the top level reaches every package. --on-error picks skip/continue
+    # for dependents of a failed package; --concurrency's build value bounds
+    # the parallelism.
+    scripts:
+      lint: "npm run lint"
+    # Fixed environment for every script of this space's packages, its login
+    # script included, merged over the top-level `env` key by key.
+    env:
+      GOFLAGS: -mod=mod
+    # Free-form data dispat never reads, this space's own.
+    custom:
+      owner: libs-team
+    # Native reconciliation at the version stage, before any flow.version
+    # script. Two independent strategies: the parsing one below (declared
+    # workspace ranges reconciled to end-of-run provider versions, own
+    # version field updated), and `replace` for the versions no manifest
+    # holds. All keys optional; the block's presence enables it.
+    autoVersion:
+      match: ["workspace:*"]     # only rewrite ranges matching these globs
+                                 # (hand-pinned versions survive); empty = any
+      range: caret               # what to write: caret ^1.2.3 (default),
+                                 # tilde, exact, a ">={version}" template, or
+                                 # a literal like "workspace:*"
+      kinds: [dependencies, devDependencies, peerDependencies]
+      # only: [core, utils]      # restrict to these providers
+      # nameMatch: substring     # also match a declared name's last segment
+                                 # onto a folder name (@core/app -> app), for
+                                 # packages whose manifests declare no name
+      # manifests: root          # root (default), all, or none to turn the
+                                 # parsing strategy off entirely
+      # writeVersion: true       # also write the package's own version field
+      # Literal find-and-write over the files these globs select, parsing
+      # nothing: the strategy for a Gradle coordinate, a README example or a
+      # CI workflow. {name}/{version}/{previous} stand for this package;
+      # {provider}/{providerVersion}/{providerPrevious} for each of its
+      # configured providers, and a rule naming one is applied once per
+      # provider.
+      replace:
+        - files: ["*.gradle"]
+          find:  "com.acme:{provider}:{providerPrevious}"
+          write: "com.acme:{provider}:{providerVersion}"
+      syncLock: [npm-install]    # scripts run after the rewrite, before build
+                                 # (with neither strategy configured there is
+                                 # no change to key off, so they run always)
+      syncLockConcurrency: 1     # run-wide cap; 1 keeps shared lock files safe
+    flow:
+      build: [install, build]
+      publish: publish
+      version: sync-deps
+      # Runs once per space, before the space's first publish; every other
+      # publish of the space waits for it, and its failure fails them all.
+      login: npm-login
+      # Hooks around the package stages (beforeAll, beforeVersion,
+      # postVersion, beforeBuild, postBuild, beforePublish, postPublish,
+      # beforeAnnounce, postAnnounce). Everything up to beforePublish gates
+      # the release, so a failure fails the package; postPublish and the
+      # announce hooks warn. onFail / onSkip run when a package fails or is
+      # skipped, warn-only.
+      postBuild: smoke-test
+      # A fourth stage after a successful publish: push the release out to
+      # update channels. Receives DISPAT_BREAKING_CHANGES / DISPAT_FEATURES /
+      # DISPAT_FIXES (the changelog's groupings) and only warns on failure.
+      announce: announce
+  apps:
+    path: packages/apps
+    isBuildWaitingPublish: false
+    flow:
+      build: build-go
+      publish: publish-go
+    # Overrides the repository-wide tagFormat for this space only.
+    tagFormat: "packages/apps/{name}@v{version}"
+
+# Per-package configuration. An entry whose key matches a package folder in
+# one of the spaces (case-insensitively; it must match exactly one) overrides
+# that package's space configuration: the space's options minus `path`, plus
+# changelog, github, concurrency and dependencies. Unset fields inherit; flow
+# merges entry by entry (flow.login excluded — login stays once per space),
+# scripts name by name, autoVersion replaces wholesale, changelog/github
+# overlay the top-level objects field by field. A package folder may instead
+# carry its own dispat.json/.yaml/.toml with this same shape — the most local
+# layer. A .dispatexclude file in a space folder (one name or *-glob per line)
+# excludes folders that are not packages at all.
+#
+# An entry with a `path` (root-relative) declares a standalone package
+# outside every space: the entry key is the package name and the entry itself
+# is its whole configuration — same keys, same in-folder file layering.
+packages:
+  core:
+    revertOnFail: false               # tri-state: absent inherits
+    # The most local scripts level: this name wins over the space's and the
+    # file's for this package alone, and a name only defined here makes
+    # `dispat run <name>` reach this package alone.
+    scripts:
+      lint: "npm run lint -- --strict"
+    flow:
+      build: build                    # replaces this entry alone
+    versionGroup: platform            # join the declared group below
+    # The stage-budget slots this package's tasks occupy ([build,
+    # publish] or one value for both; 0/absent = 1). A weight reaching
+    # the stage's budget runs that stage alone — the heavyweight build.
+    concurrency: [2, 1]
+    changelog:
+      file: HISTORY.md                # unset fields keep the global ones
+    github:
+      enabled: false                  # no GitHub releases for this one
+    # The manifest names this package answers to, stated rather than read
+    # from its files. For a package whose manifests declare no name dispat
+    # can learn (a Gradle module, a Makefile project): `dispat compute`
+    # derives the edges pointing at it and auto-versioning reconciles the
+    # declarations naming it. A stated name beats a declared one, and no two
+    # packages may state the same name.
+    manifestNames: ["com.acme:core"]
+    # Which of the package's own files count as changes to it. `src` picks
+    # one folder; `ignore` excludes from whatever is left. Both are also
+    # settable on a space and at the top level, where they become the
+    # default; `ignore` levels add up rather than replace, and a "!" pattern
+    # re-includes. A .dispatignore file in the folder says the same thing,
+    # one pattern per line. Neither hides the package: a commit naming it by
+    # scope still releases it, and the release commit still stages all of it.
+    src: lib
+    ignore:
+      - "docs/"
+      - "*.snap"
+      - "!docs/api.md"
+  cli:
+    path: tools/cli                   # standalone: lives outside the spaces
+    flow:
+      build: build-go
+      publish: publish-go
+    # The providers this package depends on: one name, or an array of names
+    # and objects, exactly as a consumer lists them in the top-level
+    # `dependencies` below. The consumer is the package itself. Everything
+    # merges into one list, so where an edge is written changes nothing about
+    # how it plans.
+    dependencies:
+      - core
+      - provider: utils
+        keep: true
+    # Extra tags each release is written under, beside the one tagFormat
+    # produces: the refs that follow a line rather than name a release, such
+    # as the "@v1" a GitHub Action is consumed through. `moving` re-points the
+    # alias on every release it applies to; `channels` keeps a moving major
+    # off release candidates. An alias is only ever written, never read back,
+    # and a config where one could be read as a release tag is refused.
+    aliasTags:
+      - format: cli-v{version}
+      - format: cli-v{major}
+        moving: true
+        channels: [stable]
+
+# Shared-versioning groups that cut across spaces, joined by name through a
+# space's or package's versionGroup key. The declaration owns the group's
+# mode (any of the shared modes above; independent would defeat the point),
+# so a member never sets versioning alongside versionGroup. A space with a
+# shared versioning is implicitly a group named after itself, and
+# versionGroup may reference such a space too.
+versionGroups:
+  platform:
+    versioning: fixed
+
+# The top-level `run` object holds the run-level hooks, executed in the
+# monorepo root. beforeAll is the one gating run hook: it runs once before
+# the task graph starts and its failure aborts the run. All the others only
+# warn on failure. postAll runs once after the whole task graph finishes with
+# the run outcome in DISPAT_PUBLISHED/FAILED/SKIPPED/UNPLANNED_PACKAGES and
+# DISPAT_RESULT_* variables. The commit hooks (beforeCommit, afterCommit,
+# postCommit) and push hooks (beforePush, afterPush) bracket the finalize
+# phase when commit/push are enabled.
+#
+# allowBranch is not a hook but a guard: with it set, a release refuses to
+# start unless the checked-out branch matches one of the globs. A detached
+# HEAD matches nothing, and read-only commands are never guarded.
+run:
+  allowBranch: [main, "release/*"]
+  # beforeAll: check-preconditions
+  postAll: notify
+
+# HTTP endpoints notified of release progress: the run brackets
+# (release.started / release.finished), each package's stages (stage.started /
+# stage.succeeded) and each package's outcome (package.published /
+# package.failed / package.skipped / package.cancelled). Deliveries are
+# asynchronous and never gate the run: a dead endpoint costs a W239 warning
+# and nothing else. An unset events list subscribes to every event; "*" and
+# family patterns like "package.*" also work. secretEnv names an environment
+# variable whose value signs every delivery (X-Dispat-Signature, the sha256=
+# HMAC of the body), and header values may reference environment variables so
+# a token never lives in the file.
+webhooks:
+  - url: https://ci.example.com/hooks/dispat
+    events: [release.started, release.finished]
+  - name: deploy-tracker
+    url: https://tracker.internal/dispat
+    events: [package.published, package.failed]
+    headers:
+      - name: X-Api-Key
+        value: $TRACKER_TOKEN
+    secretEnv: DISPAT_WEBHOOK_SECRET
+    timeout: 10
+    # Active only on the runner (the dispat-if condition grammar), and with a
+    # payload of its own shape: {field} tokens render as the event's fields.
+    env: CI=true
+    format: '{"text": "dispat: {package} {version} {event}"}'
+
+# Fixed environment variables added to every script. Spaces and packages
+# declare their own `env` objects and the layers merge key by key, the most
+# local winning. Keys keep their exact case, values may reference other
+# variables ($NAME / ${NAME}, resolved against the computed DISPAT_* set first
+# and the process environment second), and the DISPAT_ prefix is reserved, so
+# a static key can never shadow a computed one.
+env:
+  NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+  CUSTOM_TAG: custom_$DISPAT_VERSION
+
+# Free-form data dispat never reads: somewhere to keep your own tooling's
+# settings without the unknown-key check rejecting them. Spaces and package
+# entries have their own; nothing merges them.
+custom:
+  team: platform
+
+# Consumer -> provider relations, keyed by the consumer. A provider is a bare
+# name, or an object when the edge carries kind or keep. The key an entry sits
+# under is its consumer, so an entry never names one itself.
+#
+# Packages may also declare their own providers in their `packages` entry or
+# in-folder file, and everything merges into one list. `dispat compute`
+# derives the edges from the packages' manifests and suggests
+# additions/removals/kind corrections, editing each declaration in the file
+# that holds it; keep: true marks a deliberate edge no manifest declares (a
+# Docker chain), which compute then never suggests removing.
+dependencies:
+  app:
+    - core
+    - provider: utils
+      keep: true
+
+# Baseline versions used when a package's latest tag is missing or cannot be
+# parsed (e.g. a stray core@0.0.1.0). The next release bumps on top of
+# this value; a parseable latest tag always wins over initials.
+# `dispat compute` proposes these entries from the version the package's
+# manifests declare, and never rewrites one that is already here.
+initials:
+  core: 1.0.0
+
+# Release tag template, overridable per space above. Placeholders are {name},
+# {version}, and optionally {channel} with {counter} to spell prereleases your
+# own way ("{name}@v{version}-{channel}{counter}" tags core@v1.2.3-beta4, and
+# core@v1.2.3 when stable; the prerelease section and its glued literals are
+# dropped). Every other byte is literal, so "v" prefixes and path prefixes
+# both work. A tag that matches the shape but whose version cannot be parsed
+# puts the package on the `initials` fallback, exactly as before.
+tagFormat: "{name}@{version}"
+
+# What an error in a commit message does to the run:
+#   warn  (default) the offending unit contributes nothing and the run
+#                   continues, which is the blast radius the spec assigns to
+#                   unit-scoped errors
+#   error           any commit error stops the run before anything is released
+# Repository-scoped failures (an unreadable tag, a version that would go
+# backwards, a dependency cycle) abort under either setting.
+commitErrors: warn
+
+# Scope names that are deliberately not packages, so naming one is not the
+# typo that an unknown-package error exists to catch. "release" is dispat's
+# own release-commit scope: without the exemption every run would leave an
+# error behind for the next one.
+nonPackageScopes: [release]
+
+# One value for both stages (concurrency: 4) or [build, publish].
+# 0 means "number of CPUs".
+concurrency: [4, 2]
+
+# Minimum log level: trace, debug, info (default), warn or error.
+logLevel: info
+
+# Logger output: pretty (default, human console output) or json (machine-
+# readable lines for CI ingestion).
+logFormat: pretty
+
+# Release without the release lock: the dispat-release-lock tag a release
+# pushes to the remote before it plans, so a second release started while one
+# is running is refused rather than raced. Default false, and named unsafe
+# because turning it off is. It is for a repository with no remote to
+# coordinate through at all; DISPAT_UNSAFE_DISABLE_LOCK=true says the same
+# thing for a single invocation.
+unsafeDisableLock: false
+
+# Per-package changelog file; enabled by default. All fields optional.
+changelog:
+  enabled: true
+  file: CHANGELOG.md
+  fileTitle: "# Changelog"          # heads the file, above every entry
+  dateFormat: "2006-01-02"
+  breakingTitle: "Breaking Changes"
+  featuresTitle: "Features"
+  fixesTitle: "Fixes"
+  dependenciesTitle: "Dependencies"
+  # releaseName names the release: a sub-header under the entry's date line
+  # here, the release's own name on GitHub. $VAR and ${VAR} expand against the
+  # releasing package's DISPAT_* variables, its script outputs, and the
+  # environment.
+  releaseName: ""
+  # header and footer are written inside every entry, above the sections and
+  # after them. An element is a line, an array of lines, or an object whose
+  # package/space/group globs decide which packages get it, and whose channels
+  # decide which releases do: "stable", "*" for any prerelease, or a channel
+  # name such as beta. Unset reaches every package and every release.
+  footer:
+    - line: "Published from the acme monorepo."
+      space: libs
+    - line: "This is a test build. Do not depend on it."
+      channels: ["*"]
+  # channels also restricts the entries themselves. Unset writes one for every
+  # release; ["stable"] keeps the file a history of the stable line, the betas
+  # leaving nothing behind and the graduation writing the entry covering them.
+  # channels: [stable]
+
+# Optional finalize phase (disabled by default): one release commit capturing
+# changelog/manifest changes of all published packages (tags then point at
+# it), optionally pushed together with the tags. Remote access is verified
+# before any release work starts.
+commit:
+  enabled: false
+  messageFormat: "chore(release): {tags}"  # {tags}, {packages}
+  push: false
+  remote: origin
+  verify: true   # ls-remote check before any work when push is enabled
+  # Extra repo-relative paths the release commit stages: the shared artifacts
+  # a syncLock regenerates outside every package folder (paths that do not
+  # exist at commit time are simply not staged).
+  # include: [package-lock.json]
+
+# The command prefix every script is appended to. Default ["/bin/sh", "-c"];
+# ["bash", "-c"] or ["cmd", "/C"] are the other usual ones.
+shell: ["/bin/sh", "-c"]
+
+# Commit-message parser options; everything unset keeps the specification
+# default, so the whole object is optional. `types` REPLACES the standard
+# table wholesale (feat=minor, fix/perf/revert=patch, the rest none), so list
+# every type you keep. propagation.depth is the knob that turns propagation
+# from opt-in (0, the default) to on-by-default (1 reaches direct consumers
+# with no caret written); a directive on the unit always wins.
+parser:
+  propagation:
+    depth: 0
+# The rest of the object, for reference:
+#
+#   separator: "---"
+#   types: { feat: minor, fix: patch, perf: patch, revert: patch, docs: patch }
+#   strictTypes: false
+#   lenient: false
+#   maxDescriptionLength: 100
+#   propagation:
+#     bump: patch
+#     depth: 0            # or a number of edges, or "all"
+#     channelDepth: 0
+#     kinds: [dependencies, peerDependencies, optionalDependencies]
+#     channel: inherit
+#   limits: { unitsPerMessage: 64, scopeTermsPerUnit: 256, messageBytes: 1048576 }
+#   allowedChannels: [beta, rc]
+
+# GitHub release per published package that exported DISPAT_EXPORT_GITHUB;
+# the recorder is enabled by default (needs a repo and token: owner/repo here
+# or $GITHUB_REPOSITORY, token in $GITHUB_TOKEN or the env var named by
+# tokenEnv) but skips packages without the export. Same format fields as
+# changelog. Any script may export values GITHUB_OUTPUT-style through
+# $DISPAT_OUTPUT (they reach later scripts as DISPAT_OUTPUT_*, with
+# DISPAT_OUTPUT_SOURCE_* naming the exporter); the DISPAT_EXPORT_GITHUB
+# export (echo "DISPAT_EXPORT_GITHUB=$PWD/dist/app.tgz" >> "$DISPAT_OUTPUT")
+# opts the package in, its absolute file paths uploaded as release assets
+# (invalid entries skipped with a warning).
+github:
+  enabled: true
+  owner: acme
+  repo: monorepo
+  apiUrl: https://api.github.com
+  tokenEnv: GITHUB_TOKEN
+  featuresTitle: "Features"
+  releaseName: "${DISPAT_PACKAGE} ${DISPAT_VERSION}"   # default: the tag
+  footer:
+    - "Changelog: https://github.com/acme/monorepo/blob/${DISPAT_TAG}/CHANGELOG.md"
+  # Which releases reach the releases page. Unset creates one for every
+  # release; ["stable"] keeps the page a list of stable releases while the
+  # prereleases are still tagged and published. A created release is flagged
+  # as a prerelease whenever the version is one, whatever this says.
+  # channels: [stable]

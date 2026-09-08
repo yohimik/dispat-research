@@ -1,0 +1,1202 @@
+[
+ {
+  "variant": "immediate",
+  "run": 1,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0044748339569196105,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 2,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004354540957137942,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 3,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004144791979342699,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 4,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004415999981574714,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 5,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004275292041711509,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 6,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00410366605501622,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 7,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0045816670171916485,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 8,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004403333994559944,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 9,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0042142500169575214,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 10,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004473999957554042,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 11,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004253583028912544,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 12,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004585165996104479,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 13,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004218750051222742,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 14,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004351500072516501,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 15,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.0034723340068012476,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b"
+ },
+ {
+  "variant": "immediate",
+  "run": 16,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004118334036320448,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 17,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004697415977716446,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 18,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004434417001903057,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 19,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004247582983225584,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 20,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004374500014819205,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 21,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.0025109159760177135,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "variant": "immediate",
+  "run": 22,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004315915983170271,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 23,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.003208666923455894,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nfatal: Failed to traverse parents of commit f119ed7fe73f9da3661939e4afb235a80711ea91"
+ },
+ {
+  "variant": "immediate",
+  "run": 24,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004475999972783029,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 25,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004810082959011197,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 26,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004420832963660359,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 27,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00484833400696516,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 28,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.003381082904525101,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 900364189683733c4b77524cabc6034daa60715b\nfatal: Failed to traverse parents of commit 14d4fb9febc86a708828c0d71e1761307434e644"
+ },
+ {
+  "variant": "immediate",
+  "run": 29,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004477208945900202,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "immediate",
+  "run": 30,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0044191660126671195,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 1,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.005975333042442799,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 2,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006283125025220215,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 3,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006364415981806815,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 4,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0061692079761996865,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 5,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006404332933016121,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 6,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0060840839287266135,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 7,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006304666982032359,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 8,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006543375086039305,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 9,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006288333097472787,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 10,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006705167004838586,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 11,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006233791937120259,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 12,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00636037508957088,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 13,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006031583063304424,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 14,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.005898416042327881,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 15,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006453000009059906,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 16,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006261707982048392,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 17,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006396082928404212,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 18,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00651958305388689,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 19,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006300083943642676,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 20,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006334208999760449,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 21,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006280082976445556,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 22,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006265750038437545,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 23,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006532875006087124,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 24,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006273041013628244,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 25,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.004124333034269512,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 26,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006480582989752293,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 27,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006121875019744039,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 28,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006016541970893741,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 29,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006203833036124706,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sleep_50ms",
+  "run": 30,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.006229374906979501,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 1,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004841624991968274,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 2,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004697500029578805,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 3,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004574374994263053,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 4,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004615250043570995,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 5,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004552499973215163,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 6,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004912166972644627,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 7,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00448979192879051,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 8,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00464583293069154,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 9,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004570957971736789,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 10,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.00474999996367842,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 11,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.00384208292234689,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b"
+ },
+ {
+  "variant": "sync",
+  "run": 12,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.003786040935665369,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 35a04520d97c1bbae56b4e76ebf413e3e9d088c1\nfatal: Failed to traverse parents of commit 028ef49cabd3130eb5712d8349fa3912446a1a6b"
+ },
+ {
+  "variant": "sync",
+  "run": 13,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0047232500510290265,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 14,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0045997920678928494,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 15,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004751582979224622,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 16,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004709249944426119,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 17,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.0031413750257343054,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "variant": "sync",
+  "run": 18,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0045334999449551105,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 19,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004579042084515095,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 20,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004696541000157595,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 21,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004495500004850328,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 22,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004461875068955123,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 23,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004543667077086866,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 24,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004760249983519316,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 25,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004695459036156535,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 26,
+  "preflight": null,
+  "returncode": 1,
+  "elapsed_seconds": 0.003761500003747642,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "variant": "sync",
+  "run": 27,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004917416954413056,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 28,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.0053794580744579434,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 29,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004599499981850386,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "sync",
+  "run": 30,
+  "preflight": null,
+  "returncode": 0,
+  "elapsed_seconds": 0.004856208106502891,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 1,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004238834022544324,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 2,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.0048648330848664045,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 3,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.0046945830108597875,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 4,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004523750045336783,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 5,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004810624988749623,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 6,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004677666001953185,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 7,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004555125022307038,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 8,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004405291983857751,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 9,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004394999938085675,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 10,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004553499980829656,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 11,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.00433091598097235,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 12,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.00471466698218137,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 13,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004443999961949885,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 14,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.0044962079264223576,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 15,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "",
+   "stderr": "error: refs/heads/main: invalid sha1 pointer f119ed7fe73f9da3661939e4afb235a80711ea91\nerror: HEAD: invalid sha1 pointer f119ed7fe73f9da3661939e4afb235a80711ea91\nerror: HEAD: invalid reflog entry f119ed7fe73f9da3661939e4afb235a80711ea91\nerror: refs/heads/main: invalid reflog entry f119ed7fe73f9da3661939e4afb235a80711ea91\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.002631999901495874,
+  "parsed_packages": 0,
+  "error": "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 16,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004842082969844341,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 17,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit f119ed7fe73f9da3661939e4afb235a80711ea91\n              to  commit 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nmissing commit 60b8bbac35a8aeec0d196ca3cd61a547152c251a\n",
+   "stderr": "error: HEAD: invalid reflog entry 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nerror: HEAD: invalid reflog entry 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nerror: refs/heads/main: invalid reflog entry 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nerror: refs/heads/main: invalid reflog entry 60b8bbac35a8aeec0d196ca3cd61a547152c251a\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.003677207976579666,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nfatal: Failed to traverse parents of commit f119ed7fe73f9da3661939e4afb235a80711ea91"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 18,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit 900364189683733c4b77524cabc6034daa60715b\n              to  commit acf23cffb61f36d0813a6c3b3498175e987c672b\nmissing commit acf23cffb61f36d0813a6c3b3498175e987c672b\n",
+   "stderr": "error: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.0037905839271843433,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 19,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit acf23cffb61f36d0813a6c3b3498175e987c672b\n              to  commit 028ef49cabd3130eb5712d8349fa3912446a1a6b\nmissing commit 028ef49cabd3130eb5712d8349fa3912446a1a6b\n",
+   "stderr": "error: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.003894416964612901,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 20,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004465125035494566,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 21,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.0047505839029327035,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 22,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.00443429104052484,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 23,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004731541965156794,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 24,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004358791979029775,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 25,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit 900364189683733c4b77524cabc6034daa60715b\n              to  commit acf23cffb61f36d0813a6c3b3498175e987c672b\nmissing commit acf23cffb61f36d0813a6c3b3498175e987c672b\n",
+   "stderr": "error: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.0037415409460663795,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 26,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit acf23cffb61f36d0813a6c3b3498175e987c672b\n              to  commit 028ef49cabd3130eb5712d8349fa3912446a1a6b\nmissing commit 028ef49cabd3130eb5712d8349fa3912446a1a6b\n",
+   "stderr": "error: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: HEAD: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\nerror: refs/heads/main: invalid reflog entry 028ef49cabd3130eb5712d8349fa3912446a1a6b\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.0035155840450897813,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 27,
+  "preflight": {
+   "returncode": 2,
+   "stdout": "broken link from  commit 900364189683733c4b77524cabc6034daa60715b\n              to  commit acf23cffb61f36d0813a6c3b3498175e987c672b\nmissing commit acf23cffb61f36d0813a6c3b3498175e987c672b\n",
+   "stderr": "error: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: HEAD: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\nerror: refs/heads/main: invalid reflog entry acf23cffb61f36d0813a6c3b3498175e987c672b\n"
+  },
+  "returncode": 1,
+  "elapsed_seconds": 0.0038791249971836805,
+  "parsed_packages": 0,
+  "error": "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+ },
+ {
+  "variant": "git_fsck",
+  "run": 28,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004695417010225356,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 29,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004648749949410558,
+  "parsed_packages": 14,
+  "error": ""
+ },
+ {
+  "variant": "git_fsck",
+  "run": 30,
+  "preflight": {
+   "returncode": 0,
+   "stdout": "",
+   "stderr": ""
+  },
+  "returncode": 0,
+  "elapsed_seconds": 0.004193500033579767,
+  "parsed_packages": 14,
+  "error": ""
+ }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "case": "mixed",
+    "rep": 0,
+    "exit": 1,
+    "retries": [],
+    "final_exit": 1,
+    "first_events": [],
+    "first_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "base@0.8.2"
+    ],
+    "final_tags": [
+      "app@2.1.0",
+      "assets@1.4.2",
+      "base@0.8.2"
+    ],
+    "namespace": "chaind84ea61807"
+  }
+]

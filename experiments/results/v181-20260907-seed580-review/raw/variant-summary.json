@@ -1,0 +1,47 @@
+{
+ "immediate": {
+  "runs": 30,
+  "preflight_failures": 0,
+  "status_failures": 4,
+  "empty_parses": 4,
+  "errors": [
+   "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nfatal: Failed to traverse parents of commit f119ed7fe73f9da3661939e4afb235a80711ea91",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 900364189683733c4b77524cabc6034daa60715b\nfatal: Failed to traverse parents of commit 14d4fb9febc86a708828c0d71e1761307434e644"
+  ]
+ },
+ "sleep_50ms": {
+  "runs": 30,
+  "preflight_failures": 0,
+  "status_failures": 1,
+  "empty_parses": 1,
+  "errors": [
+   "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit"
+  ]
+ },
+ "sync": {
+  "runs": 30,
+  "preflight_failures": 0,
+  "status_failures": 4,
+  "empty_parses": 4,
+  "errors": [
+   "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 35a04520d97c1bbae56b4e76ebf413e3e9d088c1\nfatal: Failed to traverse parents of commit 028ef49cabd3130eb5712d8349fa3912446a1a6b",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+  ]
+ },
+ "git_fsck": {
+  "runs": 30,
+  "preflight_failures": 7,
+  "status_failures": 7,
+  "empty_parses": 7,
+  "errors": [
+   "plan: loading tags: git tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)\t%(objectname)\t%(*objectname): exit status 129: error: option `merged' must point to a commit",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 028ef49cabd3130eb5712d8349fa3912446a1a6b\nfatal: Failed to traverse parents of commit acf23cffb61f36d0813a6c3b3498175e987c672b",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read 60b8bbac35a8aeec0d196ca3cd61a547152c251a\nfatal: Failed to traverse parents of commit f119ed7fe73f9da3661939e4afb235a80711ea91",
+   "plan: p00: git log --format=\u001e%H\u001f%P\u001f%an\u001f%ae\u001f%B\u001f --name-only --diff-merges=first-parent HEAD: exit status 128: error: Could not read acf23cffb61f36d0813a6c3b3498175e987c672b\nfatal: Failed to traverse parents of commit 900364189683733c4b77524cabc6034daa60715b"
+  ]
+ }
+}

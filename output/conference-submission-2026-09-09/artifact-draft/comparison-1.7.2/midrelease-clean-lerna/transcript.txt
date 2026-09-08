@@ -1,0 +1,80 @@
+experiment=midrelease tool=lerna scenario=clean
+dispat 1.7.2 (linux_amd64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/lerna lerna
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core): streaming reader local 0 ahead 0 behind
+
+== version: with_shim lerna version --conventional-commits --yes
+exit=1
+   | lerna ERR! lerna  * [new tag]         cli@1.0.1 -> cli@1.0.1
+   | lerna ERR! lerna  * [new tag]         core@1.1.0 -> core@1.1.0
+   | lerna ERR! lerna  * [new tag]         docs@1.0.1 -> docs@1.0.1
+   | lerna ERR! lerna  * [new tag]         theme@1.0.1 -> theme@1.0.1
+   | lerna ERR! lerna  * [new tag]         ui@1.0.1 -> ui@1.0.1
+   | lerna ERR! lerna  ! [rejected]        main -> main (fetch first)
+   | lerna ERR! lerna error: failed to push some refs to '/work/lerna-origin.git'
+   | lerna ERR! lerna hint: Updates were rejected because the remote contains work that you do
+   | lerna ERR! lerna hint: not have locally. This is usually caused by another repository pushing
+   | lerna ERR! lerna hint: to the same ref. You may want to first integrate the remote changes
+   | lerna ERR! lerna hint: (e.g., 'git pull ...') before pushing again.
+   | lerna ERR! lerna hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+   after-version: api=1.0.0/orphan cli=1.0.0/orphan core=1.0.0/orphan docs=1.0.0/orphan theme=1.0.0/orphan ui=1.0.0/orphan
+   origin/main=fix(api): concurrent change local 1 ahead 1 behind colleague on main release NOT on main
+
+== publish: lerna publish from-git --yes
+exit=0
+   | lerna notice shasum:        bb536dfc9ecfc37a78246b4c40dcd4e7afc29c50
+   | lerna notice integrity:     sha512-4/Z1aMFhIi87M[...]FPepi1Gf5F7FQ==
+   | lerna notice total files:   3                                       
+   | lerna notice 
+   | Successfully published:
+   |  - api@1.0.1
+   |  - cli@1.0.1
+   |  - core@1.1.0
+   |  - docs@1.0.1
+   |  - theme@1.0.1
+   |  - ui@1.0.1
+   | lerna success published 6 packages
+   after-publish: api=1.0.1/dangling cli=1.0.1/dangling core=1.1.0/dangling docs=1.0.1/dangling theme=1.0.1/dangling ui=1.0.1/dangling
+   origin/main=fix(api): concurrent change local 1 ahead 1 behind colleague on main release NOT on main
+
+== rebase: git pull --rebase origin main
+exit=0
+   | From /work/lerna-origin
+   |  * branch            main       -> FETCH_HEAD
+   |    2a480d8..15db887  main       -> origin/main
+   | Rebasing (1/1)
+
+                                                                                
+Successfully rebased and updated refs/heads/main.
+
+== push: git push --follow-tags origin main
+exit=0
+   | To /work/lerna-origin.git
+   |    15db887..b48ae54  main -> main
+   after-recovery: api=1.0.1/dangling cli=1.0.1/dangling core=1.1.0/dangling docs=1.0.1/dangling theme=1.0.1/dangling ui=1.0.1/dangling
+   origin/main=Publish local 0 ahead 0 behind colleague on main release NOT on main
+
+== changed: lerna changed --all --long
+exit=0
+   | lerna notice cli v10.0.1
+   | lerna info versioning independent
+   | lerna info Assuming all packages changed
+   | api   v1.0.1 packages/api
+   | cli   v1.0.1 packages/cli
+   | core  v1.1.0 packages/core
+   | docs  v1.0.1 packages/docs
+   | theme v1.0.1 packages/theme
+   | ui    v1.0.1 packages/ui
+   | lerna success found 6 packages ready to publish
+   next plan: api   v1.0.1 packages/api;cli   v1.0.1 packages/cli;core  v1.1.0 packages/core;docs  v1.0.1 packages/docs;theme v1.0.1 packages/theme;ui    v1.0.1 packages/ui;
+   FAIL  version exited 0
+   ok    registry serves core 1.1.0
+   FAIL  the release commit is on origin/main after recovery
+         | false
+   FAIL  every released package is consistent after recovery
+         | false
+   FAIL  the next plan is the colleague's change and its dependents alone
+VERDICT: version exited 0; the release commit is on origin/main after recovery; every released package is consistent after recovery; the next plan is the colleague's change and its dependents alone

@@ -1,0 +1,4730 @@
+{
+  "sagas": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            8,
+            18
+          ]
+        ],
+        "date-time": "2026-08-18T14:32:59Z",
+        "timestamp": 1787063579865,
+        "version": "build-2736575974"
+      },
+      "reference-count": 17,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "issue": "3",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                1987,
+                12,
+                1
+              ]
+            ],
+            "date-time": "1987-12-01T00:00:00Z",
+            "timestamp": 565315200000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "SIGMOD Rec."
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            1987,
+            12
+          ]
+        ]
+      },
+      "abstract": "<jats:p>Long lived transactions (LLTs) hold on to database resources for relatively long periods of time, significantly delaying the termination of shorter and more common transactions. To alleviate these problems we propose the notion of a saga. A LLT is a saga if it can be written as a sequence of transactions that can be interleaved with other transactions. The database management system guarantees that either all the transactions in a saga are successfully completed or compensating transactions are run to amend a partial execution. Both the concept of saga and its implementation are relatively simple, but they have the potential to improve performance significantly. We analyze the various implementation issues related to sagas, including how they can be run on an existing system that does not directly support them. We also discuss techniques for database and LLT design that make it feasible to break up LLTs into sagas.</jats:p>",
+      "DOI": "10.1145/38714.38742",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2005,
+            11,
+            9
+          ]
+        ],
+        "date-time": "2005-11-09T15:35:31Z",
+        "timestamp": 1131550531000
+      },
+      "page": "249-259",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 254,
+      "title": [
+        "Sagas"
+      ],
+      "prefix": "10.1145",
+      "volume": "16",
+      "author": [
+        {
+          "given": "Hector",
+          "family": "Garcia-Molina",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Princeton Univ., Princeton, NJ"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Kenneth",
+          "family": "Salem",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Princeton Univ., Princeton, NJ"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            1987,
+            12
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_2_1_1_2",
+          "unstructured": "Anderson T and P A Lee Fault Tolerance Pr nctple6 and Pract ce Prentice-Hall International London 1981  Anderson T and P A Lee Fault Tolerance Pr nctple6 and Pract ce Prentice-Hall International London 1981"
+        },
+        {
+          "key": "e_1_2_1_2_2",
+          "unstructured": "Date C J An Introduction to Databas# Systems (3rd Ed tton) Addison-Wesley Reading MA 1981   Date C J An Introduction to Databas# Systems (3rd Ed tton) Addison-Wesley Reading MA 1981"
+        },
+        {
+          "key": "e_1_2_1_3_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/319983.319985"
+        },
+        {
+          "key": "e_1_2_1_4_2",
+          "unstructured": "Glfford David K and James E Donahue \"Coordinating Independent Atomic Actions \" Proceedm#8 of IEEE COMPCON San Francisco CA February 1985  Glfford David K and James E Donahue \"Coordinating Independent Atomic Actions \" Proceedm#8 of IEEE COMPCON San Francisco CA February 1985"
+        },
+        {
+          "key": "e_1_2_1_5_2",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Gray Jim \"Notes on Data Base Operating Systems \" m Operat=ng System8 An Advanced Course ed G Seegmt#ller pp 393-481 Sprmger-Verlag 1978   Gray Jim \"Notes on Data Base Operating Systems \" m Operat=ng System8 An Advanced Course ed G Seegmt#ller pp 393-481 Sprmger-Verlag 1978",
+          "DOI": "10.1007/3-540-08755-9_9"
+        },
+        {
+          "key": "e_1_2_1_6_2",
+          "first-page": "144",
+          "volume-title": "Conference on Very Large Databases",
+          "author": "Gray Jim",
+          "year": "1981"
+        },
+        {
+          "key": "e_1_2_1_7_2",
+          "unstructured": "Gray Jim Pete Homan Ron Obermarek and Hank Korth \"A Straw Man Analysis of Probablhty of Waiting and Deadlock \" IBM Research Report RJ3066 (38112) IBM Research Laboratory San Jose Cahforma Feb 1981  Gray Jim Pete Homan Ron Obermarek and Hank Korth \"A Straw Man Analysis of Probablhty of Waiting and Deadlock \" IBM Research Report RJ3066 (38112) IBM Research Laboratory San Jose Cahforma Feb 1981"
+        },
+        {
+          "key": "e_1_2_1_8_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/588111.588128"
+        },
+        {
+          "key": "e_1_2_1_9_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/320610.320621"
+        },
+        {
+          "key": "e_1_2_1_10_2",
+          "unstructured": "Hormng J J H C Lauer P M Melhar- Smith and B Randell \"A Program Structure for Error Detection and Recovery \" m Lecture Note8 in Computer Sctence 16 ed C Kamer Sprmger-Verlag Berhn 1974  Hormng J J H C Lauer P M Melhar- Smith and B Randell \"A Program Structure for Error Detection and Recovery \" m Lecture Note8 in Computer Sctence 16 ed C Kamer Sprmger-Verlag Berhn 1974"
+        },
+        {
+          "key": "e_1_2_1_12_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/319996.319999"
+        },
+        {
+          "key": "e_1_2_1_13_2",
+          "unstructured": "Lynch Nancy and Michael Merntt \"Introductmn to the Theory of Nested Transactions \" unpubhshed M I T June 1986  Lynch Nancy and Michael Merntt \"Introductmn to the Theory of Nested Transactions \" unpubhshed M I T June 1986"
+        },
+        {
+          "key": "e_1_2_1_14_2",
+          "unstructured": "Moss J Elhot B \"Nested Transactmns An Introductmn \" unpublished U S Army War College  Moss J Elhot B \"Nested Transactmns An Introductmn \" unpublished U S Army War College"
+        },
+        {
+          "key": "e_1_2_1_15_2",
+          "volume-title": "AFIPS Press",
+          "author": "Norman Alan",
+          "year": "1983"
+        },
+        {
+          "key": "e_1_2_1_16_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/356725.356729"
+        },
+        {
+          "key": "e_1_2_1_17_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1041478.1041481"
+        },
+        {
+          "key": "e_1_2_1_18_2",
+          "unstructured": "Ullman Jeffrey D Prmcsple8 of Databa6e Systems (Sad Edltton) Computer Scmnce Press Rockvflle MD 1982  Ullman Jeffrey D Prmcsple8 of Databa6e Systems (Sad Edltton) Computer Scmnce Press Rockvflle MD 1982"
+        }
+      ],
+      "container-title": [
+        "ACM SIGMOD Record"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/38714.38742",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/38714.38742",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T17:37:51Z",
+        "timestamp": 1750268271000
+      },
+      "score": 40.301273,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/38714.38742"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            1987,
+            12
+          ]
+        ]
+      },
+      "references-count": 17,
+      "journal-issue": {
+        "issue": "3",
+        "published-print": {
+          "date-parts": [
+            [
+              1987,
+              12
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "10.1145/38714.38742"
+      ],
+      "URL": "https://doi.org/10.1145/38714.38742",
+      "relation": {
+        "is-identical-to": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/38713.38742",
+            "asserted-by": "subject"
+          }
+        ]
+      },
+      "ISSN": [
+        "0163-5808"
+      ],
+      "issn-type": [
+        {
+          "value": "0163-5808",
+          "type": "print"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1987,
+            12
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "1987-12-01",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            9,
+            5
+          ]
+        ],
+        "date-time": "2026-09-05T01:26:42Z",
+        "timestamp": 1788571602126,
+        "version": "build-2803163510"
+      },
+      "publisher-location": "New York, New York, USA",
+      "reference-count": 0,
+      "publisher": "ACM Press",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                1987,
+                1,
+                1
+              ]
+            ],
+            "date-time": "1987-01-01T00:00:00Z",
+            "timestamp": 536457600000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            1987
+          ]
+        ]
+      },
+      "DOI": "10.1145/38713.38742",
+      "type": "proceedings-article",
+      "created": {
+        "date-parts": [
+          [
+            2003,
+            11,
+            25
+          ]
+        ],
+        "date-time": "2003-11-25T14:25:53Z",
+        "timestamp": 1069770353000
+      },
+      "page": "249-259",
+      "source": "Crossref",
+      "is-referenced-by-count": 394,
+      "title": [
+        "Sagas"
+      ],
+      "prefix": "10.1145",
+      "author": [
+        {
+          "given": "Hector",
+          "family": "Garcia-Molina",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Kenneth",
+          "family": "Salem",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "event": {
+        "name": "the 1987 ACM SIGMOD international conference",
+        "location": "San Francisco, California, United States",
+        "acronym": "SIGMOD '87",
+        "number": "1987",
+        "sponsor": [
+          "SIGMOD, ACM Special Interest Group on Management of Data"
+        ],
+        "start": {
+          "date-parts": [
+            [
+              1987,
+              5,
+              27
+            ]
+          ]
+        },
+        "end": {
+          "date-parts": [
+            [
+              1987,
+              5,
+              29
+            ]
+          ]
+        }
+      },
+      "container-title": [
+        "Proceedings of the 1987 ACM SIGMOD international conference on Management of data  - SIGMOD '87"
+      ],
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/38713.38742",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://dl.acm.org/ft_gateway.cfm?id=38742&amp;ftid=19078&amp;dwn=1",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T17:15:15Z",
+        "timestamp": 1750266915000
+      },
+      "score": 37.68941,
+      "resource": {
+        "primary": {
+          "URL": "http://portal.acm.org/citation.cfm?doid=38713.38742"
+        }
+      },
+      "proceedings-subject": "Management of data",
+      "issued": {
+        "date-parts": [
+          [
+            1987
+          ]
+        ]
+      },
+      "references-count": 0,
+      "URL": "https://doi.org/10.1145/38713.38742",
+      "relation": {
+        "is-identical-to": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/38714.38742",
+            "asserted-by": "object"
+          }
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            1987
+          ]
+        ]
+      }
+    }
+  ],
+  "gray": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "helland07": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "helland12": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            8,
+            18
+          ]
+        ],
+        "date-time": "2026-08-18T01:41:34Z",
+        "timestamp": 1787017294815,
+        "version": "build-2736575974"
+      },
+      "reference-count": 5,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "issue": "5",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2012,
+                5,
+                1
+              ]
+            ],
+            "date-time": "2012-05-01T00:00:00Z",
+            "timestamp": 1335830400000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "Commun. ACM"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2012,
+            5
+          ]
+        ]
+      },
+      "abstract": "<jats:p>Messages may be retried. Idempotence means that's OK.</jats:p>",
+      "DOI": "10.1145/2160718.2160734",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2012,
+            4,
+            24
+          ]
+        ],
+        "date-time": "2012-04-24T14:41:10Z",
+        "timestamp": 1335278470000
+      },
+      "page": "56-65",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 10,
+      "title": [
+        "Idempotence is not a medical condition"
+      ],
+      "prefix": "10.1145",
+      "volume": "55",
+      "author": [
+        {
+          "given": "Pat",
+          "family": "Helland",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2012,
+            5
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_2_1_1_1",
+          "unstructured": "IBM. WebSphere MQ; http://www-01.ibm.com/software/integration/wmq/.  IBM. WebSphere MQ; http://www-01.ibm.com/software/integration/wmq/."
+        },
+        {
+          "key": "e_1_2_1_2_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.5555/572404"
+        },
+        {
+          "key": "e_1_2_1_3_1",
+          "volume-title": "Network Working Group",
+          "author": "World Wide Web Consortium",
+          "year": "1999",
+          "unstructured": "World Wide Web Consortium , Network Working Group . 1999 . Hypertext Transfer Protocol---HTTP 1.1; http://www.w3.org/Protocols/rfc2616/rfc2616.html. World Wide Web Consortium, Network Working Group. 1999. Hypertext Transfer Protocol---HTTP1.1; http://www.w3.org/Protocols/rfc2616/rfc2616.html."
+        },
+        {
+          "key": "e_1_2_1_4_1",
+          "unstructured": "Wolter R. An introduction to SQL Server Service Broker (2005); http://msdn.microsoft.com/en-us/library/ms345108(v=sql.90).aspx.  Wolter R. An introduction to SQL Server Service Broker (2005); http://msdn.microsoft.com/en-us/library/ms345108(v=sql.90).aspx."
+        },
+        {
+          "key": "e_1_2_1_5_1",
+          "unstructured": "Transmission Control Protocol; http://www.ietf.org/rfc/rfc793.txt  Transmission Control Protocol; http://www.ietf.org/rfc/rfc793.txt"
+        }
+      ],
+      "container-title": [
+        "Communications of the ACM"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/2160718.2160734",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/2160718.2160734",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T05:54:51Z",
+        "timestamp": 1750226091000
+      },
+      "score": 28.688974,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/2160718.2160734"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2012,
+            5
+          ]
+        ]
+      },
+      "references-count": 5,
+      "journal-issue": {
+        "issue": "5",
+        "published-print": {
+          "date-parts": [
+            [
+              2012,
+              5
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "10.1145/2160718.2160734"
+      ],
+      "URL": "https://doi.org/10.1145/2160718.2160734",
+      "ISSN": [
+        "0001-0782",
+        "1557-7317"
+      ],
+      "issn-type": [
+        {
+          "value": "0001-0782",
+          "type": "print"
+        },
+        {
+          "value": "1557-7317",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2012,
+            5
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "2012-05-01",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            7,
+            31
+          ]
+        ],
+        "date-time": "2026-07-31T00:01:04Z",
+        "timestamp": 1785456064711,
+        "version": "3.56.0"
+      },
+      "reference-count": 5,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "issue": "4",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2012,
+                4,
+                1
+              ]
+            ],
+            "date-time": "2012-04-01T00:00:00Z",
+            "timestamp": 1333238400000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "Queue"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2012,
+            4
+          ]
+        ]
+      },
+      "abstract": "<jats:p>\n            The definition of\n            <jats:italic>distributed computing</jats:italic>\n            can be confusing. Sometimes, it refers to a tightly coupled cluster of computers working together to look like one larger computer. More often, however, it refers to a bunch of loosely related applications chattering together without a lot of system-level support. This lack of support in distributed computing environments makes it difficult to write applications that work together. Messages sent between systems do not have crisp guarantees for delivery. They can get lost, and so, after a timeout, they are retried. The application on the other side of the communication may see multiple messages arrive where one was intended. These messages may be reordered and interleaved with different messages. Ensuring that the application behaves as intended can be very hard to design and implement. It is even harder to test.\n          </jats:p>",
+      "DOI": "10.1145/2181796.2187821",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2020,
+            9,
+            3
+          ]
+        ],
+        "date-time": "2020-09-03T03:49:23Z",
+        "timestamp": 1599104963000
+      },
+      "page": "30-46",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 17,
+      "title": [
+        "Idempotence Is Not a Medical Condition"
+      ],
+      "prefix": "10.1145",
+      "volume": "10",
+      "author": [
+        {
+          "given": "Pat",
+          "family": "Helland",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2012,
+            4,
+            13
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_2_1_1_1",
+          "unstructured": "IBM. WebSphere MQ; http://www-01.ibm.com/software/integration/wmq/.  IBM. WebSphere MQ; http://www-01.ibm.com/software/integration/wmq/."
+        },
+        {
+          "key": "e_1_2_1_2_1",
+          "unstructured": "Tanenbaum A. S. 2002. Computer Networks 4th edition. Prentice Hall.   Tanenbaum A. S. 2002. Computer Networks 4th edition. Prentice Hall."
+        },
+        {
+          "key": "e_1_2_1_3_1",
+          "unstructured": "World Wide Web Consortium Network Working Group. 1999. Hypertext Transfer Protocol -HTTP1.1; http://www.w3.org/Protocols/rfc2616/rfc2616.html.  World Wide Web Consortium Network Working Group. 1999. Hypertext Transfer Protocol -HTTP1.1; http://www.w3.org/Protocols/rfc2616/rfc2616.html."
+        },
+        {
+          "key": "e_1_2_1_4_1",
+          "unstructured": "Wolter R. 2005. An introduction to SQL Server Service Broker; http://msdn.microsoft.com/en-us/library/ms345108(v=sql.90).aspx.  Wolter R. 2005. An introduction to SQL Server Service Broker; http://msdn.microsoft.com/en-us/library/ms345108(v=sql.90).aspx."
+        },
+        {
+          "key": "e_1_2_1_5_1",
+          "unstructured": "Transmission Control Protocol; http://www.ietf.org/rfc/rfc793.txt  Transmission Control Protocol; http://www.ietf.org/rfc/rfc793.txt"
+        }
+      ],
+      "container-title": [
+        "Queue"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/2181796.2187821",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/2181796.2187821",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T17:24:10Z",
+        "timestamp": 1750267450000
+      },
+      "score": 28.538237,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/2181796.2187821"
+        }
+      },
+      "subtitle": [
+        "An essential property for reliable systems"
+      ],
+      "issued": {
+        "date-parts": [
+          [
+            2012,
+            4
+          ]
+        ]
+      },
+      "references-count": 5,
+      "journal-issue": {
+        "issue": "4",
+        "published-print": {
+          "date-parts": [
+            [
+              2012,
+              4
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "10.1145/2181796.2187821"
+      ],
+      "URL": "https://doi.org/10.1145/2181796.2187821",
+      "ISSN": [
+        "1542-7730",
+        "1542-7749"
+      ],
+      "issn-type": [
+        {
+          "value": "1542-7730",
+          "type": "print"
+        },
+        {
+          "value": "1542-7749",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2012,
+            4
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "2012-04-13",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    }
+  ],
+  "kahn": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "birdgit": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "mrdt": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "swierstraloh": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "hpt": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            5,
+            26
+          ]
+        ],
+        "date-time": "2026-05-26T23:05:51Z",
+        "timestamp": 1779836751113,
+        "version": "3.53.1"
+      },
+      "reference-count": 53,
+      "publisher": "Cambridge University Press (CUP)",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2016,
+                9,
+                13
+              ]
+            ],
+            "date-time": "2016-09-13T00:00:00Z",
+            "timestamp": 1473724800000
+          },
+          "content-version": "unspecified",
+          "delay-in-days": 256,
+          "URL": "https://www.cambridge.org/core/terms"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "short-container-title": [
+        "J. Funct. Prog."
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>Homotopy type theory is an extension of Martin-L\u00f6f type theory, based on a correspondence with homotopy theory and higher category theory. In homotopy type theory, the propositional equality type is proof-relevant, and corresponds to paths in a space. This allows for a new class of datatypes, called higher inductive types, which are specified by constructors not only for points but also for paths. In this paper, we consider a programming application of higher inductive types. Version control systems such as Darcs are based on the notion of patches\u2014syntactic representations of edits to a repository. We show how patch theory can be developed in homotopy type theory. Our formulation separates formal theories of patches from their interpretation as edits to repositories. A patch theory is presented as a higher inductive type. Models of a patch theory are given by maps out of that type, which, being functors, automatically preserve the structure of patches. Several standard tools of homotopy theory come into play, demonstrating the use of these methods in a practical programming context.</jats:p>",
+      "DOI": "10.1017/s0956796816000198",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2016,
+            9,
+            13
+          ]
+        ],
+        "date-time": "2016-09-13T04:09:05Z",
+        "timestamp": 1473739745000
+      },
+      "source": "Crossref",
+      "is-referenced-by-count": 6,
+      "title": [
+        "Homotopical patch theory"
+      ],
+      "prefix": "10.1017",
+      "volume": "26",
+      "author": [
+        {
+          "given": "CARLO",
+          "family": "ANGIULI",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "EDWARD",
+          "family": "MOREHOUSE",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "DANIEL R.",
+          "family": "LICATA",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "ROBERT",
+          "family": "HARPER",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "56",
+      "published-online": {
+        "date-parts": [
+          [
+            2016,
+            9,
+            13
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "S0956796816000198_ref10",
+          "unstructured": "Cavallo E. (2015) Synthetic Cohomology in Homotopy Type Theory. M.Phil. Thesis, Carnegie Mellon University."
+        },
+        {
+          "key": "S0956796816000198_ref8",
+          "unstructured": "Bezem M. , Coquand T. & Huber S. (2014) A model of type theory in cubical sets. In 19th International Conference on Types for Proofs and Programs (TYPES 2013), Matthes R. & Schubert A. (eds), Schloss Dagstuhl\u2013Leibniz-Zentrum fuer Informatik, Dagstuhl, Germany, vol. 26, pp. 107\u2013128."
+        },
+        {
+          "key": "S0956796816000198_ref39",
+          "volume-title": "Programming in Martin-L\u00f6f's Type Theory, an Introduction",
+          "author": "Nordstr\u00f6m",
+          "year": "1990"
+        },
+        {
+          "key": "S0956796816000198_ref38",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.entcs.2013.09.018"
+        },
+        {
+          "key": "S0956796816000198_ref16",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.tcs.2008.08.030"
+        },
+        {
+          "key": "S0956796816000198_ref49",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Swierstra W. & L\u00f6h A. (2014) The semantics of version control. In Proceedings of the 2014 ACM International Symposium on New Ideas, New Paradigms, and Reflections on Programming & Software (Onward! 2014). New York, NY, USA: ACM, pp. 43\u201354.",
+          "DOI": "10.1145/2661136.2661137"
+        },
+        {
+          "key": "S0956796816000198_ref35",
+          "unstructured": "Lumsdaine P. L. & Shulman M. (2013) Higher Inductive Types. In preparation."
+        },
+        {
+          "key": "S0956796816000198_ref26",
+          "first-page": "1",
+          "volume-title": "Proceedings of the Third International Conference on Certified Programs and Proofs",
+          "author": "Licata",
+          "year": "2013"
+        },
+        {
+          "key": "S0956796816000198_ref5",
+          "unstructured": "Altenkirch T. , McBride C. & Swierstra W. (2007) Observational equality, now! In Proceedings of the 2007 Workshop on Programming Languages Meets Program Verification (PLPV '07). New York, NY, USA: ACM, pp. 57\u201368."
+        },
+        {
+          "key": "S0956796816000198_ref23",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.2307/2269016"
+        },
+        {
+          "key": "S0956796816000198_ref14",
+          "unstructured": "Dagit J. (2009) Type-Correct Changes\u2013-A Safe Approach to Version Control Implementation. MS Thesis. Corvallis, Oregon, USA: Oregon State University."
+        },
+        {
+          "key": "S0956796816000198_ref40",
+          "unstructured": "Norell U. (2007) Towards a Practical Programming Language Based on Dependent Type Theory. PhD Thesis, Chalmers University of Technology."
+        },
+        {
+          "key": "S0956796816000198_ref21",
+          "unstructured": "Jacobson J. (2009) A formalization of Darcs patch theory using inverse semigroups. Available at: ftp://ftp.math.ucla.edu/pub/camreport/cam09-83.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref15",
+          "unstructured": "Darcs Project. (2013) Available at: http://darcs.net/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref13",
+          "unstructured": "Coq Development Team. (2015) The Coq proof assistant reference manual, version 8.5. INRIA. Available at: http://coq.inria.fr/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.tcs.2005.06.002"
+        },
+        {
+          "key": "S0956796816000198_ref50",
+          "unstructured": "Univalent Foundations Program. (2013) Homotopy Type Theory: Univalent Foundations of Mathematics. Available at: http://homotopytypetheory.org/book. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref34",
+          "unstructured": "Lumsdaine P. L. (2011 April) Higher Inductive Types: A Tour of the Menagerie. Available at: http://homotopytypetheory.org/2011/04/24/higher-inductive-types-a-tour-of-the-menagerie/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref25",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Lawvere F. W. (1963) Functorial Semantics of Algebraic Theories and Some Algebraic Problems in the Context of Functorial Semantics of Algebraic Theories. PhD Thesis, Columbia University.",
+          "DOI": "10.1073/pnas.50.5.869"
+        },
+        {
+          "key": "S0956796816000198_ref42",
+          "unstructured": "Polonsky A. (2015) Internalization of Extensional Equality. arXiv.1401.1148."
+        },
+        {
+          "key": "S0956796816000198_ref45",
+          "unstructured": "Roundy D. (2009 April) Theory of Patches. Available at: http://www.cs.tufts.edu/comp/150GIT/archive/david-roundy/theory-patches-2009.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref6",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0305004108001783"
+        },
+        {
+          "key": "S0956796816000198_ref28",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Licata D. R. & Finster E. (2014) Eilenberg\u2013MacLane spaces in homotopy type theory. In Proceedings of the Joint Meeting of the Twenty-Third EACSL Annual Conference on Computer Science Logic (CSL) and the Twenty-Ninth Annual ACM/IEEE Symposium on Logic in Computer Science (LICS '14). New York, NY, USA: ACM, pp. 66:1\u201366:9.",
+          "DOI": "10.1145/2603088.2603153"
+        },
+        {
+          "key": "S0956796816000198_ref12",
+          "volume-title": "Implementing Mathematics with the NuPRL Proof Development System",
+          "author": "Constable",
+          "year": "1986"
+        },
+        {
+          "key": "S0956796816000198_ref48",
+          "unstructured": "Sittampalam G. et al. (2005) Some Properties of Darcs Patch Theory. Available at: http://urchin.earth.li/darcs/ganesh/darcs-patch-theory/theory/formal.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref30",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Licata D. R. & Harper R. (2012) Canonicity for 2-dimensional type theory. In Proceedings of the 39th Annual ACM SIGPLAN-SIGACT Symposium on Principles of Programming Languages (POPL '12). New York, NY, USA: ACM, pp. 337\u2013348.",
+          "DOI": "10.1145/2103656.2103697"
+        },
+        {
+          "key": "S0956796816000198_ref9",
+          "unstructured": "Camp Project. (2010) Available at: http://projects.haskell.org/camp/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref11",
+          "unstructured": "Cohen C. , Coquand T. , Huber S. & M\u00f6rtberg A. (2016) Cubical Type Theory: A Constructive Interpretation of the Univalence Axiom. Preprint. Available at: http://www.cse.chalmers.se/~coquand/cubicaltt.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref24",
+          "first-page": "101",
+          "volume-title": "Constructivity in Mathematics",
+          "author": "Kreisel",
+          "year": "1959"
+        },
+        {
+          "key": "S0956796816000198_ref17",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0960129509007646"
+        },
+        {
+          "key": "S0956796816000198_ref44",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Roundy D. (2005) Darcs: Distributed version management in haskell. In Proceedings of the 2005 ACM SIGPLAN Workshop on Haskell (Haskell '05). New York, NY, USA: ACM, pp. 1\u20134.",
+          "DOI": "10.1145/1088348.1088349"
+        },
+        {
+          "key": "S0956796816000198_ref32",
+          "unstructured": "L\u00f6h A. , Swierstra W. & Leijen D. (2007) A Principled Approach to Version Control. Preprint. Available at: http://www.andres-loeh.de/VersionControl.html. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref46",
+          "unstructured": "Shulman M. (2011 April) Homotopy Type Theory VI: Higher Inductive Types. Available at: http://golem.ph.utexas.edu/category/2011/04/homotopy_type_theory_vi.html. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref2",
+          "unstructured": "Aczel P. (1977) The strength of Martin-L\u00f6f's intuitionistic type theory with one universe. In Proceedings of the Symposium on Mathematical Logic, Oulu, 1974. Dept. of Philosophy, University of Helsinki, Helsinki, Finland. Report No. 2, pp. 1\u201332."
+        },
+        {
+          "key": "S0956796816000198_ref43",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Reynolds J. C. (2002) Separation logic: A logic for shared mutable data structures. In Proceedings of the 17th Annual IEEE Symposium on Logic in Computer Science (LICS '02). Washington, DC, USA: IEEE Computer Society, pp. 55\u201374.",
+          "DOI": "10.1109/LICS.2002.1029817"
+        },
+        {
+          "key": "S0956796816000198_ref3",
+          "volume-title": "Containers in Homotopy Type Theory",
+          "author": "Altenkirch",
+          "year": "2014"
+        },
+        {
+          "key": "S0956796816000198_ref27",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Licata D. R. , & Brunerie G. (2015) A Cubical Approach to Synthetic Homotopy Theory. In Proceedings of the 2015 30th Annual ACM/IEEE Symposium on Logic in Computer Science (LICS '15). Washington, DC, USA: IEEE Computer Society, pp. 92\u2013103.",
+          "DOI": "10.1109/LICS.2015.19"
+        },
+        {
+          "key": "S0956796816000198_ref53",
+          "unstructured": "Warren M. A. (2008) Homotopy Theoretic Aspects of Constructive Type Theory. PhD Thesis, Carnegie Mellon University."
+        },
+        {
+          "key": "S0956796816000198_ref33",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Lumsdaine P. L. (2009) Weak \u03c9-categories from intensional type theory. In Typed Lambda Calculi and Applications: 9th International Conference, TLCA 2009, Brasilia, Brazil, July 1\u20133, 2009. Proceedings. Curien P.-L. (ed), Berlin, Heidelberg: Springer Berlin Heidelberg, pp. 172\u2013187.",
+          "DOI": "10.1007/978-3-642-02273-9_14"
+        },
+        {
+          "key": "S0956796816000198_ref18",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Hofmann M. & Streicher T. (1998) The groupoid interpretation of type theory. Twenty-Five Years of Constructive Type Theory. Oxford University Press.",
+          "DOI": "10.1093/oso/9780198501275.003.0008"
+        },
+        {
+          "key": "S0956796816000198_ref47",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0960129514000565"
+        },
+        {
+          "key": "S0956796816000198_ref52",
+          "unstructured": "Voevodsky V. (2006) A very short note on homotopy \u03bb-calculus. Unpublished, September, 1\u20137."
+        },
+        {
+          "key": "S0956796816000198_ref37",
+          "unstructured": "McBride C. (2000) Dependently Typed Functional Programs and Their Proofs. PhD Thesis, University of Edinburgh."
+        },
+        {
+          "key": "S0956796816000198_ref41",
+          "unstructured": "Pijul Project. (2015) Available at: https://pijul.org/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref22",
+          "unstructured": "Kapulkin C. , Lumsdaine P. L. & Voevodsky V. (2012) The Simplicial Model of Univalent Foundations. arXiv:1211.2851."
+        },
+        {
+          "key": "S0956796816000198_ref7",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0960129514000504"
+        },
+        {
+          "key": "S0956796816000198_ref29",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.entcs.2011.09.026"
+        },
+        {
+          "key": "S0956796816000198_ref36",
+          "unstructured": "Lynagh I. (2012 January) Camp Patch Theory. Available at: http://projects.haskell.org/camp/files/theory.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref4",
+          "unstructured": "Altenkirch T. & Kaposi A. (2015) Towards Cubical Type Theory. Preprint. Available at: http://akaposi.bitbucket.org/nominal.pdf. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref51",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1112/plms/pdq026"
+        },
+        {
+          "key": "S0956796816000198_ref31",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Licata D. R. & Shulman M. (2013) Calculating the fundamental group of the circle in homotopy type theory. In Proceedings of the 2013 28th Annual ACM/IEEE Symposium on Logic in Computer Science (LICS '13). Washington, DC, USA: IEEE Computer Society, pp. 223\u2013232.",
+          "DOI": "10.1109/LICS.2013.28"
+        },
+        {
+          "key": "S0956796816000198_ref20",
+          "unstructured": "Houston R. (2012) On editing text. Available at: http://bosker.wordpress.com/2012/05/10/on-editing-text/. (last accessed date 25/08/2016)"
+        },
+        {
+          "key": "S0956796816000198_ref19",
+          "unstructured": "Hou K.-B. (Favonia) (2014) Covering spaces in homotopy type theory. Talk at TYPES 2014."
+        }
+      ],
+      "container-title": [
+        "Journal of Functional Programming"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0956796816000198",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2026,
+            5,
+            26
+          ]
+        ],
+        "date-time": "2026-05-26T22:36:39Z",
+        "timestamp": 1779834999000
+      },
+      "score": 28.089039,
+      "resource": {
+        "primary": {
+          "URL": "https://www.cambridge.org/core/product/identifier/S0956796816000198/type/journal_article"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "references-count": 53,
+      "alternative-id": [
+        "S0956796816000198"
+      ],
+      "URL": "https://doi.org/10.1017/s0956796816000198",
+      "ISSN": [
+        "0956-7968",
+        "1469-7653"
+      ],
+      "issn-type": [
+        {
+          "value": "0956-7968",
+          "type": "print"
+        },
+        {
+          "value": "1469-7653",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "article-number": "e18"
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            2,
+            27
+          ]
+        ],
+        "date-time": "2026-02-27T03:46:40Z",
+        "timestamp": 1772164000705,
+        "version": "3.50.1"
+      },
+      "publisher-location": "New York, NY, USA",
+      "reference-count": 34,
+      "publisher": "ACM",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2014,
+                8,
+                19
+              ]
+            ],
+            "date-time": "2014-08-19T00:00:00Z",
+            "timestamp": 1408406400000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "funder": [
+        {
+          "DOI": "10.13039/100000143",
+          "name": "Division of Computing and Communication Foundations",
+          "doi-asserted-by": "publisher",
+          "award": [
+            "CCF-1116703"
+          ],
+          "award-info": [
+            {
+              "award-number": [
+                "CCF-1116703"
+              ]
+            }
+          ],
+          "id": [
+            {
+              "id": "10.13039/100000143",
+              "id-type": "DOI",
+              "asserted-by": "publisher"
+            }
+          ]
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            8,
+            19
+          ]
+        ]
+      },
+      "DOI": "10.1145/2628136.2628158",
+      "type": "proceedings-article",
+      "created": {
+        "date-parts": [
+          [
+            2014,
+            8,
+            21
+          ]
+        ],
+        "date-time": "2014-08-21T08:19:23Z",
+        "timestamp": 1408609163000
+      },
+      "page": "243-256",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 12,
+      "title": [
+        "Homotopical patch theory"
+      ],
+      "prefix": "10.1145",
+      "author": [
+        {
+          "given": "Carlo",
+          "family": "Angiuli",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Carnegie Mellon University, Pittsburgh, PA, USA"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Edward",
+          "family": "Morehouse",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Carnegie Mellon University, Pittsburgh, PA, USA"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Daniel R.",
+          "family": "Licata",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Wesleyan University, Pittsburgh, PA, USA"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Robert",
+          "family": "Harper",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "Carnegie Mellon University, Pittsburgh, PA, USA"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2014,
+            8,
+            19
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_3_2_1_1_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.tcs.2005.06.002"
+        },
+        {
+          "key": "e_1_3_2_1_2_1",
+          "volume-title": "Lyon",
+          "author": "Altenkirch T.",
+          "year": "2014",
+          "unstructured": "T. Altenkirch . Containers in homotopy type theory. Talk at Mathematical Structures of Computation , Lyon , 2014 . T. Altenkirch. Containers in homotopy type theory. Talk at Mathematical Structures of Computation, Lyon, 2014."
+        },
+        {
+          "key": "e_1_3_2_1_3_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1292597.1292608"
+        },
+        {
+          "key": "e_1_3_2_1_4_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0305004108001783"
+        },
+        {
+          "key": "e_1_3_2_1_5_1",
+          "volume-title": "A generalization of Takeuti-Gandy interpretation. To appear in Mathematical Structures in Computer Science",
+          "author": "Barras B.",
+          "year": "2013",
+          "unstructured": "B. Barras , T. Coquand , and S. Huber . A generalization of Takeuti-Gandy interpretation. To appear in Mathematical Structures in Computer Science , 2013 . B. Barras, T. Coquand, and S. Huber. A generalization of Takeuti-Gandy interpretation. To appear in Mathematical Structures in Computer Science, 2013."
+        },
+        {
+          "key": "e_1_3_2_1_6_1",
+          "volume-title": "Preprint",
+          "author": "Bezem M.",
+          "year": "2013",
+          "unstructured": "M. Bezem , T. Coquand , and S. Huber . A model of type theory in cubical sets . Preprint , September 2013 . M. Bezem, T. Coquand, and S. Huber. A model of type theory in cubical sets. Preprint, September 2013."
+        },
+        {
+          "key": "e_1_3_2_1_7_1",
+          "volume-title": "http://projects.haskell.org/camp/",
+          "author": "Project Camp",
+          "year": "2010",
+          "unstructured": "Camp Project . http://projects.haskell.org/camp/ , 2010 . Camp Project. http://projects.haskell.org/camp/, 2010."
+        },
+        {
+          "key": "e_1_3_2_1_8_1",
+          "volume-title": "Implementing Mathematics with the NuPRL Proof Development System",
+          "author": "Constable R. L.",
+          "year": "1986",
+          "unstructured": "R. L. Constable , S. F. Allen , H. M. Bromley , W. R. Cleaveland , J. F. Cremer , R. W. Harper , D. J. Howe , T. B. Knoblock , N. P. Mendler , P. Panangaden , J. T. Sasaki , and S. F. Smith . Implementing Mathematics with the NuPRL Proof Development System . Prentice Hall , 1986 . R. L. Constable, S. F. Allen, H. M. Bromley, W. R. Cleaveland, J. F. Cremer, R. W. Harper, D. J. Howe, T. B. Knoblock, N. P. Mendler, P. Panangaden, J. T. Sasaki, and S. F. Smith. Implementing Mathematics with the NuPRL Proof Development System. Prentice Hall, 1986."
+        },
+        {
+          "key": "e_1_3_2_1_9_1",
+          "volume-title": "INRIA",
+          "author": "Team Coq Development",
+          "year": "2009",
+          "unstructured": "Coq Development Team . The Coq Proof Assistant Reference Manual, version 8.2 . INRIA , 2009 . Available from http://coq.inria.fr/. Coq Development Team. The Coq Proof Assistant Reference Manual, version 8.2. INRIA, 2009. Available from http://coq.inria.fr/."
+        },
+        {
+          "key": "e_1_3_2_1_11_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.tcs.2008.08.030"
+        },
+        {
+          "key": "e_1_3_2_1_12_1",
+          "volume-title": "Some properties of darcs patch theory. Available from http://urchin.earth.li/darcs/ganesh/darcs-patch-theory/theory/formal.pdf",
+          "author": "Ganesh Sittampalam",
+          "year": "2005",
+          "unstructured": "Ganesh Sittampalam et al. Some properties of darcs patch theory. Available from http://urchin.earth.li/darcs/ganesh/darcs-patch-theory/theory/formal.pdf , 2005 . Ganesh Sittampalam et al. Some properties of darcs patch theory. Available from http://urchin.earth.li/darcs/ganesh/darcs-patch-theory/theory/formal.pdf, 2005."
+        },
+        {
+          "key": "e_1_3_2_1_13_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0960129509007646"
+        },
+        {
+          "key": "e_1_3_2_1_14_1",
+          "volume-title": "Twenty-five years of constructive type theory",
+          "author": "Hofmann M.",
+          "year": "1998",
+          "unstructured": "M. Hofmann and T. Streicher . The groupoid interpretation of type theory . In Twenty-five years of constructive type theory . Oxford University Press , 1998 . M. Hofmann and T. Streicher. The groupoid interpretation of type theory. In Twenty-five years of constructive type theory. Oxford University Press, 1998."
+        },
+        {
+          "key": "e_1_3_2_1_15_1",
+          "unstructured": "R. Houston. On editing text. http://bosker.wordpress.com/2012/05/10/on-editing-text/ 2012.  R. Houston. On editing text. http://bosker.wordpress.com/2012/05/10/on-editing-text/ 2012."
+        },
+        {
+          "key": "e_1_3_2_1_16_1",
+          "volume-title": "A formalization of darcs patch theory using inverse semigroups. Available from ftp://ftp.math.ucla.edu/pub/camreport/cam09-83.pdf",
+          "author": "Jacobson J.",
+          "year": "2009",
+          "unstructured": "J. Jacobson . A formalization of darcs patch theory using inverse semigroups. Available from ftp://ftp.math.ucla.edu/pub/camreport/cam09-83.pdf , 2009 . J. Jacobson. A formalization of darcs patch theory using inverse semigroups. Available from ftp://ftp.math.ucla.edu/pub/camreport/cam09-83.pdf, 2009."
+        },
+        {
+          "key": "e_1_3_2_1_17_1",
+          "volume-title": "The simplicial model of univalent foundations. arXiv:1211.2851",
+          "author": "Kapulkin C.",
+          "year": "2012",
+          "unstructured": "C. Kapulkin , P. L. Lumsdaine , and V. Voevodsky . The simplicial model of univalent foundations. arXiv:1211.2851 , 2012 . C. Kapulkin, P. L. Lumsdaine, and V. Voevodsky. The simplicial model of univalent foundations. arXiv:1211.2851, 2012."
+        },
+        {
+          "key": "e_1_3_2_1_19_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/978-3-319-03545-1_1"
+        },
+        {
+          "key": "e_1_3_2_1_20_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2603088.2603153"
+        },
+        {
+          "key": "e_1_3_2_1_21_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.entcs.2011.09.026"
+        },
+        {
+          "key": "e_1_3_2_1_22_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2103656.2103697"
+        },
+        {
+          "key": "e_1_3_2_1_23_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/LICS.2013.28"
+        },
+        {
+          "key": "e_1_3_2_1_24_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/978-3-642-02273-9_14"
+        },
+        {
+          "key": "e_1_3_2_1_25_1",
+          "unstructured": "P. L. Lumsdaine. Higher inductive types: a tour of the menagerie. http://homotopytypetheory.org/2011/04/24/higher-inductive-types-a-tour-of-the-menagerie/ April 2011.  P. L. Lumsdaine. Higher inductive types: a tour of the menagerie. http://homotopytypetheory.org/2011/04/24/higher-inductive-types-a-tour-of-the-menagerie/ April 2011."
+        },
+        {
+          "key": "e_1_3_2_1_26_1",
+          "volume-title": "Higher inductive types. In preparation",
+          "author": "Lumsdaine P. L.",
+          "year": "2013",
+          "unstructured": "P. L. Lumsdaine and M. Shulman . Higher inductive types. In preparation , 2013 . P. L. Lumsdaine and M. Shulman. Higher inductive types. In preparation, 2013."
+        },
+        {
+          "key": "e_1_3_2_1_27_1",
+          "volume-title": "University of Edinburgh",
+          "author": "McBride C.",
+          "year": "2000",
+          "unstructured": "C. McBride . Dependently Typed Functional Programs and Their Proofs. PhD thesis , University of Edinburgh , 2000 . C. McBride. Dependently Typed Functional Programs and Their Proofs. PhD thesis, University of Edinburgh, 2000."
+        },
+        {
+          "key": "e_1_3_2_1_28_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/j.entcs.2013.09.018"
+        },
+        {
+          "key": "e_1_3_2_1_30_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.5555/645683.664578"
+        },
+        {
+          "key": "e_1_3_2_1_31_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1088348.1088349"
+        },
+        {
+          "key": "e_1_3_2_1_32_1",
+          "unstructured": "M. Shulman. Homotopy type theory VI: higher inductive types. http://golem.ph.utexas.edu/category/2011/04/homotopy_type_theory_vi.html April 2011.  M. Shulman. Homotopy type theory VI: higher inductive types. http://golem.ph.utexas.edu/category/2011/04/homotopy_type_theory_vi.html April 2011."
+        },
+        {
+          "key": "e_1_3_2_1_33_1",
+          "volume-title": "Univalence for inverse diagrams, oplax limits, and gluing, and homotopy canonicity. arXiv:1203.3253",
+          "author": "Shulman M.",
+          "year": "2013",
+          "unstructured": "M. Shulman . Univalence for inverse diagrams, oplax limits, and gluing, and homotopy canonicity. arXiv:1203.3253 , 2013 . M. Shulman. Univalence for inverse diagrams, oplax limits, and gluing, and homotopy canonicity. arXiv:1203.3253, 2013."
+        },
+        {
+          "key": "e_1_3_2_1_34_1",
+          "volume-title": "The semantics of version control. Available from http://www.staff.science.uu.nl/~swier004/",
+          "author": "Swierstra W.",
+          "year": "2014",
+          "unstructured": "W. Swierstra and A. L\u00f6h . The semantics of version control. Available from http://www.staff.science.uu.nl/~swier004/ , 2014 . W. Swierstra and A. L\u00f6h. The semantics of version control. Available from http://www.staff.science.uu.nl/~swier004/, 2014."
+        },
+        {
+          "key": "e_1_3_2_1_35_1",
+          "volume-title": "Institute for Advanced Study. Homotopy Type Theory: Univalent Foundations Of Mathematics. Available from homotopytypetheory.org/book",
+          "author": "Foundations Program The Univalent",
+          "year": "2013",
+          "unstructured": "The Univalent Foundations Program , Institute for Advanced Study. Homotopy Type Theory: Univalent Foundations Of Mathematics. Available from homotopytypetheory.org/book , 2013 . The Univalent Foundations Program, Institute for Advanced Study. Homotopy Type Theory: Univalent Foundations Of Mathematics. Available from homotopytypetheory.org/book, 2013."
+        },
+        {
+          "key": "e_1_3_2_1_36_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1112/plms/pdq026"
+        },
+        {
+          "key": "e_1_3_2_1_37_1",
+          "volume-title": "Information and Computation",
+          "author": "Voevodsky V.",
+          "year": "2011",
+          "unstructured": "V. Voevodsky . Univalent foundations of mathematics. Invited talk at WoLLIC 2011 18th Workshop on Logic, Language , Information and Computation , 2011 . V. Voevodsky. Univalent foundations of mathematics. Invited talk at WoLLIC 2011 18th Workshop on Logic, Language, Information and Computation, 2011."
+        }
+      ],
+      "event": {
+        "name": "ICFP'14: ACM SIGPLAN International Conference on Functional Programming",
+        "location": "Gothenburg Sweden",
+        "acronym": "ICFP'14",
+        "sponsor": [
+          "SIGPLAN ACM Special Interest Group on Programming Languages"
+        ]
+      },
+      "container-title": [
+        "Proceedings of the 19th ACM SIGPLAN international conference on Functional programming"
+      ],
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/2628136.2628158",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/2628136.2628158",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T03:19:38Z",
+        "timestamp": 1750216778000
+      },
+      "score": 27.354706,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/2628136.2628158"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2014,
+            8,
+            19
+          ]
+        ]
+      },
+      "references-count": 34,
+      "alternative-id": [
+        "10.1145/2628136.2628158",
+        "10.1145/2628136"
+      ],
+      "URL": "https://doi.org/10.1145/2628136.2628158",
+      "relation": {
+        "is-identical-to": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/2692915.2628158",
+            "asserted-by": "object"
+          }
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            2014,
+            8,
+            19
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "2014-08-19",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    }
+  ],
+  "mimram": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "edos": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "adams": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "potvin": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "raemaekers": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            7,
+            17
+          ]
+        ],
+        "date-time": "2026-07-17T15:01:02Z",
+        "timestamp": 1784300462833,
+        "version": "3.55.0"
+      },
+      "reference-count": 12,
+      "publisher": "IEEE",
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2014,
+            9
+          ]
+        ]
+      },
+      "DOI": "10.1109/scam.2014.30",
+      "type": "proceedings-article",
+      "created": {
+        "date-parts": [
+          [
+            2014,
+            12,
+            10
+          ]
+        ],
+        "date-time": "2014-12-10T16:44:19Z",
+        "timestamp": 1418229859000
+      },
+      "page": "215-224",
+      "source": "Crossref",
+      "is-referenced-by-count": 106,
+      "title": [
+        "Semantic Versioning versus Breaking Changes: A Study of the Maven Repository"
+      ],
+      "prefix": "10.1109",
+      "author": [
+        {
+          "given": "Steven",
+          "family": "Raemaekers",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Arie",
+          "family": "van Deursen",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Joost",
+          "family": "Visser",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "263",
+      "reference": [
+        {
+          "key": "ref4",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1368088.1368154"
+        },
+        {
+          "key": "ref3",
+          "first-page": "175",
+          "article-title": "Refactoring-based support for binary compatibility in evolving frameworks",
+          "volume": "7",
+          "author": "\u00e5\u017eavga",
+          "year": "2007",
+          "journal-title": "Proceedings of the 6th International Conference on Generative Programming and Component Engineering"
+        },
+        {
+          "key": "ref10",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/TSE.2007.70731"
+        },
+        {
+          "key": "ref6",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/s10664-012-9199-7"
+        },
+        {
+          "key": "ref11",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/WCRE.2012.14"
+        },
+        {
+          "key": "ref5",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1985441.1985468"
+        },
+        {
+          "key": "ref12",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/MSR.2013.6624031"
+        },
+        {
+          "key": "ref8",
+          "first-page": "404",
+          "article-title": "Automated detection of refactorings in evolving components",
+          "volume": "6",
+          "author": "dig",
+          "year": "2006",
+          "journal-title": "Proceedings of the European Conference of Object Oriented Programming ECOOP'97"
+        },
+        {
+          "key": "ref7",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/CSMR-WCRE.2014.6747226"
+        },
+        {
+          "key": "ref2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2393596.2393661"
+        },
+        {
+          "key": "ref9",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1002/smr.328"
+        },
+        {
+          "key": "ref1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/SEAA.2009.80"
+        }
+      ],
+      "event": {
+        "name": "2014 IEEE 14th International Working Conference on Source Code Analysis and Manipulation (SCAM)",
+        "location": "Victoria, BC, Canada",
+        "start": {
+          "date-parts": [
+            [
+              2014,
+              9,
+              28
+            ]
+          ]
+        },
+        "end": {
+          "date-parts": [
+            [
+              2014,
+              9,
+              29
+            ]
+          ]
+        }
+      },
+      "container-title": [
+        "2014 IEEE 14th International Working Conference on Source Code Analysis and Manipulation"
+      ],
+      "link": [
+        {
+          "URL": "http://xplorestaging.ieee.org/ielx7/6970367/6975619/06975655.pdf?arnumber=6975655",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2017,
+            3,
+            24
+          ]
+        ],
+        "date-time": "2017-03-24T03:17:26Z",
+        "timestamp": 1490325446000
+      },
+      "score": 61.924503,
+      "resource": {
+        "primary": {
+          "URL": "http://ieeexplore.ieee.org/document/6975655/"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2014,
+            9
+          ]
+        ]
+      },
+      "references-count": 12,
+      "URL": "https://doi.org/10.1109/scam.2014.30",
+      "published": {
+        "date-parts": [
+          [
+            2014,
+            9
+          ]
+        ]
+      }
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            7,
+            31
+          ]
+        ],
+        "date-time": "2026-07-31T22:38:49Z",
+        "timestamp": 1785537529318,
+        "version": "3.56.0"
+      },
+      "reference-count": 28,
+      "publisher": "Elsevier BV",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2017,
+                7,
+                1
+              ]
+            ],
+            "date-time": "2017-07-01T00:00:00Z",
+            "timestamp": 1498867200000
+          },
+          "content-version": "tdm",
+          "delay-in-days": 0,
+          "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "elsevier.com",
+          "sciencedirect.com"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "Journal of Systems and Software"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2017,
+            7
+          ]
+        ]
+      },
+      "DOI": "10.1016/j.jss.2016.04.008",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2016,
+            4,
+            29
+          ]
+        ],
+        "date-time": "2016-04-29T11:29:50Z",
+        "timestamp": 1461929390000
+      },
+      "page": "140-158",
+      "update-policy": "https://doi.org/10.1016/elsevier_cm_policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 76,
+      "special_numbering": "C",
+      "title": [
+        "Semantic versioning and impact of breaking changes in the Maven repository"
+      ],
+      "prefix": "10.1016",
+      "volume": "129",
+      "author": [
+        {
+          "given": "S.",
+          "family": "Raemaekers",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "A.",
+          "family": "van Deursen",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "J.",
+          "family": "Visser",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "78",
+      "reference": [
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0001",
+          "series-title": "Modern Methods for Robust Regression",
+          "author": "Andersen",
+          "year": "2008"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0002",
+          "series-title": "Proceedings of the 12th Asia-Pacific Software Engineering Conference, APSEC\u201905",
+          "article-title": "Supporting predictive change impact analysis: a control call graph based technique",
+          "author": "Badri",
+          "year": "2005"
+        },
+        {
+          "issue": "10",
+          "key": "10.1016/j.jss.2016.04.008_bib0003",
+          "doi-asserted-by": "crossref",
+          "first-page": "265",
+          "DOI": "10.1145/1103845.1094832",
+          "article-title": "Refactoring support for class library migration",
+          "volume": "40",
+          "author": "Balaban",
+          "year": "2005",
+          "journal-title": "SIGPLAN Not."
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0004",
+          "series-title": "Proceedings of the 2009 35th Euromicro Conference on Software Engineering and Advanced Applications",
+          "first-page": "428",
+          "article-title": "Automated versioning in OSGi: a mechanism for component software consistency guarantee",
+          "author": "Bauml",
+          "year": "2009"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0005",
+          "series-title": "Proceedings of the ACM SIGSOFT 20th International Symposium on the Foundations of Software Engineering",
+          "first-page": "55:1",
+          "article-title": "Seeking the ground truth: a retroactive study on the evolution and migration of software libraries",
+          "author": "Cossette",
+          "year": "2012"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0007",
+          "series-title": "Proceedings of the 30th International Conference on Software Engineering",
+          "first-page": "481",
+          "article-title": "Recommending adaptive changes for framework evolution",
+          "author": "Dagenais",
+          "year": "2008"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0008",
+          "series-title": "Proceedings of the 8th Working Conference on Mining Software Repositories",
+          "first-page": "183",
+          "article-title": "Software bertillonage: finding the provenance of an entity",
+          "author": "Davies",
+          "year": "2011"
+        },
+        {
+          "issue": "6",
+          "key": "10.1016/j.jss.2016.04.008_bib0009",
+          "doi-asserted-by": "crossref",
+          "first-page": "1195",
+          "DOI": "10.1007/s10664-012-9199-7",
+          "article-title": "Software bertillonage \u2013 determining the provenance of software development artifacts",
+          "volume": "18",
+          "author": "Davies",
+          "year": "2013",
+          "journal-title": "Empir. Softw. Eng."
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0010",
+          "series-title": "Proceedings of International Conference on Software Maintenance, Reengineering, and Reverse Engineering, CSMR-WCRE",
+          "first-page": "64",
+          "article-title": "Broken promises: an empirical study into evolution problems in Java programs caused by library upgrades",
+          "author": "Dietrich",
+          "year": "2014"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0011",
+          "series-title": "Proceedings of the 20th European Conference on Object-Oriented Programming",
+          "first-page": "404",
+          "article-title": "Automated detection of refactorings in evolving components",
+          "author": "Dig",
+          "year": "2006"
+        },
+        {
+          "issue": "2",
+          "key": "10.1016/j.jss.2016.04.008_bib0012",
+          "doi-asserted-by": "crossref",
+          "first-page": "83",
+          "DOI": "10.1002/smr.328",
+          "article-title": "How do APIs evolve? A story of refactoring: research articles",
+          "volume": "18",
+          "author": "Dig",
+          "year": "2006",
+          "journal-title": "J. Softw. Maint. Evol."
+        },
+        {
+          "issue": "11",
+          "key": "10.1016/j.jss.2016.04.008_bib0013",
+          "doi-asserted-by": "crossref",
+          "first-page": "849",
+          "DOI": "10.1109/TSE.2006.113",
+          "article-title": "Emulation of software faults: a field data study and a practical approach",
+          "volume": "32",
+          "author": "Duraes",
+          "year": "2006",
+          "journal-title": "IEEE Trans. Softw. Eng."
+        },
+        {
+          "issue": "11",
+          "key": "10.1016/j.jss.2016.04.008_bib0014",
+          "doi-asserted-by": "crossref",
+          "first-page": "725",
+          "DOI": "10.1109/TSE.2007.70731",
+          "article-title": "Change distilling: tree differencing for fine-grained source code change extraction",
+          "volume": "33",
+          "author": "Fluri",
+          "year": "2007",
+          "journal-title": "IEEE Trans. Softw. Eng."
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0015",
+          "series-title": "Proceedings of the 27th International Conference on Software Engineering",
+          "first-page": "274",
+          "article-title": "CatchUp!: capturing and replaying refactorings to support API evolution",
+          "author": "Henkel",
+          "year": "2005"
+        },
+        {
+          "issue": "10",
+          "key": "10.1016/j.jss.2016.04.008_bib0016",
+          "doi-asserted-by": "crossref",
+          "first-page": "726",
+          "DOI": "10.1145/1932682.1869518",
+          "article-title": "Refactoring references for library migration",
+          "volume": "45",
+          "author": "Kapur",
+          "year": "2010",
+          "journal-title": "SIGPLAN Not."
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0017",
+          "series-title": "Technical Report",
+          "article-title": "A Review of Software Change Impact Analysis",
+          "author": "Lehnert",
+          "year": "2011"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0018",
+          "series-title": "Proceedings of 2013 IEEE International Conference on Software Maintenance",
+          "first-page": "70",
+          "article-title": "An empirical study of API stability and adoption in the android ecosystem",
+          "author": "McDonnell",
+          "year": "2013"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0019",
+          "series-title": "Proceedings of 2012 19th Working Conference on Reverse Engineering, WCRE",
+          "first-page": "41",
+          "article-title": "Astra: bottom\u2013up construction of structured artifact repositories",
+          "author": "Ossher",
+          "year": "2012"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0020",
+          "series-title": "Proceedings of the 10th Working Conference on Mining Software Repositories",
+          "first-page": "221",
+          "article-title": "The maven repository dataset of metrics, changes, and dependencies",
+          "author": "Raemaekers",
+          "year": "2013"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0021",
+          "series-title": "Proceedings of International Conference on Software Engineering, ICSE",
+          "first-page": "664",
+          "article-title": "Chianti: a change impact analysis tool for java programs",
+          "author": "Ren",
+          "year": "2005"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0022",
+          "series-title": "Proceedings of the ACM SIGSOFT 20th International Symposium on the Foundations of Software Engineering",
+          "first-page": "56:1",
+          "article-title": "How do developers react to API deprecation?: The case of a smalltalk ecosystem",
+          "author": "Robbes",
+          "year": "2012"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0023",
+          "series-title": "Proceedings of International Conference on Web Services, ICWS",
+          "first-page": "392",
+          "article-title": "Analyzing the evolution of web services using fine-grained changes",
+          "author": "Romano",
+          "year": "2012"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0006",
+          "series-title": "Proceedings of the 6th International Conference on Generative Programming and Component Engineering",
+          "first-page": "175",
+          "article-title": "Refactoring-based support for binary compatibility in evolving frameworks",
+          "author": "\u015eavga",
+          "year": "2007"
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0024",
+          "series-title": "Proceedings of the 1st International Workshop on Hot Topics in Software Upgrades",
+          "first-page": "1:1",
+          "article-title": "From Java to UpgradeJ: an empirical study",
+          "author": "Tempero",
+          "year": "2008"
+        },
+        {
+          "issue": "11",
+          "key": "10.1016/j.jss.2016.04.008_bib0025",
+          "first-page": "1030",
+          "volume": "26",
+          "author": "Teyton",
+          "year": "2014",
+          "journal-title": "A Study of Library Migration in Java Software Journal of Software: Evolution and Process"
+        },
+        {
+          "issue": "12",
+          "key": "10.1016/j.jss.2016.04.008_bib0026",
+          "doi-asserted-by": "crossref",
+          "first-page": "818",
+          "DOI": "10.1109/TSE.2007.70747",
+          "article-title": "API-evolution support with Diff-CatchUp",
+          "volume": "33",
+          "author": "Xing",
+          "year": "2007",
+          "journal-title": "IEEE Trans. Softw. Eng."
+        },
+        {
+          "key": "10.1016/j.jss.2016.04.008_bib0027",
+          "series-title": "Proceedings of the 15th Working Conference on Reverse Engineering, WCRE\u201908",
+          "first-page": "27",
+          "article-title": "A bayesian network based approach for change coupling prediction",
+          "author": "Zhou",
+          "year": "2008"
+        },
+        {
+          "issue": "6",
+          "key": "10.1016/j.jss.2016.04.008_bib0028",
+          "doi-asserted-by": "crossref",
+          "first-page": "429",
+          "DOI": "10.1109/TSE.2005.72",
+          "article-title": "Mining version histories to guide software changes",
+          "volume": "31",
+          "author": "Zimmermann",
+          "year": "2005",
+          "journal-title": "IEEE Trans. Softw. Eng."
+        }
+      ],
+      "container-title": [
+        "Journal of Systems and Software"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S0164121216300243?httpAccept=text/xml",
+          "content-type": "text/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:S0164121216300243?httpAccept=text/plain",
+          "content-type": "text/plain",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2018,
+            9,
+            12
+          ]
+        ],
+        "date-time": "2018-09-12T20:21:48Z",
+        "timestamp": 1536783708000
+      },
+      "score": 51.838463,
+      "resource": {
+        "primary": {
+          "URL": "https://linkinghub.elsevier.com/retrieve/pii/S0164121216300243"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2017,
+            7
+          ]
+        ]
+      },
+      "references-count": 28,
+      "alternative-id": [
+        "S0164121216300243"
+      ],
+      "URL": "https://doi.org/10.1016/j.jss.2016.04.008",
+      "ISSN": [
+        "0164-1212"
+      ],
+      "issn-type": [
+        {
+          "value": "0164-1212",
+          "type": "print"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2017,
+            7
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "Elsevier",
+          "name": "publisher",
+          "label": "This article is maintained by"
+        },
+        {
+          "value": "Semantic versioning and impact of breaking changes in the Maven repository",
+          "name": "articletitle",
+          "label": "Article Title"
+        },
+        {
+          "value": "Journal of Systems and Software",
+          "name": "journaltitle",
+          "label": "Journal Title"
+        },
+        {
+          "value": "https://doi.org/10.1016/j.jss.2016.04.008",
+          "name": "articlelink",
+          "label": "CrossRef DOI link to publisher maintained version"
+        },
+        {
+          "value": "article",
+          "name": "content_type",
+          "label": "Content Type"
+        },
+        {
+          "value": "\u00a9 2016 Elsevier Inc. All rights reserved.",
+          "name": "copyright",
+          "label": "Copyright"
+        }
+      ]
+    }
+  ],
+  "bogart": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "decan": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "mokhov": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            2,
+            27
+          ]
+        ],
+        "date-time": "2026-02-27T03:47:20Z",
+        "timestamp": 1772164040249,
+        "version": "3.50.1"
+      },
+      "reference-count": 0,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2018,
+            7,
+            13
+          ]
+        ]
+      },
+      "DOI": "10.1145/3235047",
+      "type": "dataset",
+      "created": {
+        "date-parts": [
+          [
+            2018,
+            8,
+            10
+          ]
+        ],
+        "date-time": "2018-08-10T14:17:22Z",
+        "timestamp": 1533910642000
+      },
+      "source": "Crossref",
+      "is-referenced-by-count": 0,
+      "title": [
+        "Executable models for the paper &amp;quot;Build Systems \u00e0 la Carte&amp;quot;"
+      ],
+      "prefix": "10.1145",
+      "author": [
+        {
+          "given": "Andrey",
+          "family": "Mokhov",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Neil",
+          "family": "Mitchell",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Simon",
+          "family": "Peyton Jones",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "container-title": [
+        "Artifact Digital Object Group"
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2020,
+            11,
+            26
+          ]
+        ],
+        "date-time": "2020-11-26T12:50:20Z",
+        "timestamp": 1606395020000
+      },
+      "score": 28.562376,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/do/10.1145/3235047/abs/"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2018,
+            7,
+            13
+          ]
+        ]
+      },
+      "references-count": 0,
+      "URL": "https://doi.org/10.1145/3235047",
+      "relation": {
+        "is-component-of": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/3236774",
+            "asserted-by": "object"
+          }
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            2018,
+            7,
+            13
+          ]
+        ]
+      }
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            7,
+            29
+          ]
+        ],
+        "date-time": "2026-07-29T12:57:00Z",
+        "timestamp": 1785329820356,
+        "version": "3.55.0"
+      },
+      "reference-count": 45,
+      "publisher": "Cambridge University Press (CUP)",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2020,
+                4,
+                21
+              ]
+            ],
+            "date-time": "2020-04-21T00:00:00Z",
+            "timestamp": 1587427200000
+          },
+          "content-version": "unspecified",
+          "delay-in-days": 111,
+          "URL": "http://creativecommons.org/licenses/by/4.0/"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "short-container-title": [
+        "J. Funct. Prog."
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2020
+          ]
+        ]
+      },
+      "abstract": "<jats:title>Abstract</jats:title>\n                  <jats:p>Build systems are awesome, terrifying \u2013 and unloved. They are used by every developer around the world, but are rarely the object of study. In this paper, we offer a systematic, and executable, framework for developing and comparing build systems, viewing them as related points in a landscape rather than as isolated phenomena. By teasing apart existing build systems, we can recombine their components, allowing us to prototype new build systems with desired properties.</jats:p>",
+      "DOI": "10.1017/s0956796820000088",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2020,
+            4,
+            21
+          ]
+        ],
+        "date-time": "2020-04-21T02:14:00Z",
+        "timestamp": 1587435240000
+      },
+      "source": "Crossref",
+      "is-referenced-by-count": 9,
+      "title": [
+        "Build systems \u00e0 la carte: Theory and practice"
+      ],
+      "prefix": "10.1017",
+      "volume": "30",
+      "author": [
+        {
+          "ORCID": "https://orcid.org/0000-0002-2493-3177",
+          "authenticated-orcid": false,
+          "given": "ANDREY",
+          "family": "MOKHOV",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "NEIL",
+          "family": "MITCHELL",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "SIMON",
+          "family": "PEYTON JONES",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "56",
+      "published-online": {
+        "date-parts": [
+          [
+            2020,
+            4,
+            21
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "S0956796820000088_ref44",
+          "unstructured": "Shal, M. (2009) Build system rules and algorithms. Available at: http://gittup.org/tup/build_system_rules_and_algorithms.pdf/"
+        },
+        {
+          "key": "S0956796820000088_ref43",
+          "unstructured": "Radul, A. (2009) Propagation Networks: A Flexible and Expressive Substrate for Computation . Ph.D. thesis, MIT."
+        },
+        {
+          "key": "S0956796820000088_ref39",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/3341694"
+        },
+        {
+          "key": "S0956796820000088_ref36",
+          "unstructured": "Mitchell, N. (2019) GHC rebuild times \u2013 shake profiling. Available at: https://neilmitchell.blogspot.com/2019/03/ghc-rebuild-times-shake-profiling.html"
+        },
+        {
+          "key": "S0956796820000088_ref34",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2398856.2364538"
+        },
+        {
+          "key": "S0956796820000088_ref28",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/199448.199528"
+        },
+        {
+          "key": "S0956796820000088_ref27",
+          "first-page": "707",
+          "article-title": "Binary codes capable of correcting deletions, insertions, and reversals",
+          "volume": "10",
+          "author": "Levenshtein",
+          "year": "1966",
+          "journal-title": "In Soviet Physics Doklady"
+        },
+        {
+          "key": "S0956796820000088_ref25",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0956796815000088"
+        },
+        {
+          "key": "S0956796820000088_ref24",
+          "unstructured": "Street, Jane . (2018) Dune: A composable build system. Available at: https://github.com/ocaml/dune"
+        },
+        {
+          "key": "S0956796820000088_ref29",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2692915.2628144"
+        },
+        {
+          "key": "S0956796820000088_ref9",
+          "first-page": "79",
+          "article-title": "Nix: A safe and policy-free system for software deployment",
+          "volume": "4",
+          "author": "Dolstra",
+          "year": "2004",
+          "journal-title": "In LISA"
+        },
+        {
+          "key": "S0956796820000088_ref30",
+          "unstructured": "Martin, E. (2017) Ninja build system homepage. Available at: https://ninja-build.org/"
+        },
+        {
+          "key": "S0956796820000088_ref6",
+          "volume-title": "Introduction to Algorithms",
+          "author": "Cormen",
+          "year": "2001"
+        },
+        {
+          "key": "S0956796820000088_ref12",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2889160.2889222"
+        },
+        {
+          "key": "S0956796820000088_ref31",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0956796807006326"
+        },
+        {
+          "key": "S0956796820000088_ref5",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1017/S0956796899003342"
+        },
+        {
+          "key": "S0956796820000088_ref8",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/567532.567544"
+        },
+        {
+          "key": "S0956796820000088_ref2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/978-3-540-71316-6_31"
+        },
+        {
+          "key": "S0956796820000088_ref45",
+          "unstructured": "The, GHC Team . (2019) The Glasgow Haskell Compiler homepage. Available at: https://www.haskell.org/ghc/"
+        },
+        {
+          "key": "S0956796820000088_ref32",
+          "unstructured": "Microsoft. (2011) Excel recalculation (msdn documentation). Available at: https://msdn.microsoft.com/en-us/library/office/bb687891.aspx. Also available in Internet Archive https://web.archive.org/web/20180308150857/https://msdn.microsoft.com/en-us/library/office/bb687891.aspx"
+        },
+        {
+          "key": "S0956796820000088_ref23",
+          "unstructured": "Street, Jane . (2015) Incremental: A library for incremental computations. Available at: https://github.com/janestreet/incremental"
+        },
+        {
+          "key": "S0956796820000088_ref1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/503272.503296"
+        },
+        {
+          "key": "S0956796820000088_ref41",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1160074.1159811"
+        },
+        {
+          "key": "S0956796820000088_ref10",
+          "unstructured": "Eichmann, D. (2019) Exploring cloud builds in Hadrian. Available at: https://web.archive.org/web/20191008171120/https://well-typed.com/blog/2019/08/exploring-cloud-builds-in-hadrian/"
+        },
+        {
+          "key": "S0956796820000088_ref22",
+          "unstructured": "Hykes, S. (2013) Docker container: A standardized unit of software. Available at: https://www.docker.com/what-container"
+        },
+        {
+          "key": "S0956796820000088_ref18",
+          "unstructured": "GRAIL. (2017) Reflow: A system for incremental data processing in the cloud. Available at: https://github.com/grailbio/reflow"
+        },
+        {
+          "key": "S0956796820000088_ref19",
+          "unstructured": "Grosskurth, A. (2007) Purely top-down software rebuilding. M.Phil. thesis, University of Waterloo."
+        },
+        {
+          "key": "S0956796820000088_ref3",
+          "unstructured": "Bernstein, D. J. (2003) Rebuilding target files when source files have changed. Available at: http://cr.yp.to/redo.html"
+        },
+        {
+          "key": "S0956796820000088_ref38",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/3236774"
+        },
+        {
+          "key": "S0956796820000088_ref4",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.4204/EPTCS.153.2"
+        },
+        {
+          "key": "S0956796820000088_ref40",
+          "unstructured": "Pennarun, A. (2012) Redo: A top-down software build system. Available at: https://github.com/apenwarr/redo"
+        },
+        {
+          "key": "S0956796820000088_ref11",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2858965.2814316"
+        },
+        {
+          "key": "S0956796820000088_ref37",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2976002.2976011"
+        },
+        {
+          "key": "S0956796820000088_ref33",
+          "unstructured": "Microsoft. (2017) Git Virtual File System. https://www.gvfs.io/"
+        },
+        {
+          "key": "S0956796820000088_ref13",
+          "unstructured": "Estevez, P. & Shetty, D. (2019) Translation of Build Systems \u00e0 la Carte to Kotlin. Available at: https://web.archive.org/web/20191021224324/https://github.com/arrow-kt/arrow/blob/paco-tsalc/modules/docs/arrow-examples/src/test/kotlin/arrow/BuildSystemsALaCarte.kt."
+        },
+        {
+          "key": "S0956796820000088_ref42",
+          "unstructured": "Pottier, F. (2009) Lazy least fixed points in ML. http://gallium.inria.fr/~fpottier/publis/fpottier-fix.pdf"
+        },
+        {
+          "key": "S0956796820000088_ref35",
+          "unstructured": "Mitchell, N. (2013) How to write fixed point build rules in Shake. Available at: https://stackoverflow.com/questions/14622169/how-to-write-fixed-point-build-rules-in-shake-e-g-latex"
+        },
+        {
+          "key": "S0956796820000088_ref26",
+          "unstructured": "Kosara, R. (2008) Decimal expansion of A(4,2). Available at: https://web.archive.org/web/20080317104411/http://www.kosara.net/thoughts/ackermann42.html"
+        },
+        {
+          "key": "S0956796820000088_ref7",
+          "volume-title": "Advanced Excel for Scientific Data Analysis",
+          "author": "De Levie",
+          "year": "2004"
+        },
+        {
+          "key": "S0956796820000088_ref15",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1002/spe.4380090402"
+        },
+        {
+          "key": "S0956796820000088_ref14",
+          "unstructured": "Facebook. (2013) Buck: A high-performance build tool. Available at: https://buckbuild.com/"
+        },
+        {
+          "key": "S0956796820000088_ref16",
+          "unstructured": "Gandhi, V. (2018) Translation of build systems \u00e0 la Carte to Rust. Available at: https://web.archive.org/web/20191020001014/https://github.com/cutculus/bsalc-alt-code/blob/master/BSalC.rs"
+        },
+        {
+          "key": "S0956796820000088_ref17",
+          "unstructured": "Google. (2016) Bazel. Available at: http://bazel.io/"
+        },
+        {
+          "key": "S0956796820000088_ref20",
+          "unstructured": "Hoyt, B. , Hoyt, B. & Hoyt, B. (2009) Fabricate: The better build tool. Available at: https://github.com/SimonAlfie/fabricate"
+        },
+        {
+          "key": "S0956796820000088_ref21",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1016/S0167-6423(99)00023-4"
+        }
+      ],
+      "container-title": [
+        "Journal of Functional Programming"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/S0956796820000088",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2026,
+            5,
+            26
+          ]
+        ],
+        "date-time": "2026-05-26T22:36:50Z",
+        "timestamp": 1779835010000
+      },
+      "score": 27.459742,
+      "resource": {
+        "primary": {
+          "URL": "https://www.cambridge.org/core/product/identifier/S0956796820000088/type/journal_article"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2020
+          ]
+        ]
+      },
+      "references-count": 45,
+      "alternative-id": [
+        "S0956796820000088"
+      ],
+      "URL": "https://doi.org/10.1017/s0956796820000088",
+      "ISSN": [
+        "0956-7968",
+        "1469-7653"
+      ],
+      "issn-type": [
+        {
+          "value": "0956-7968",
+          "type": "print"
+        },
+        {
+          "value": "1469-7653",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2020
+          ]
+        ]
+      },
+      "article-number": "e11"
+    }
+  ],
+  "klees": {
+    "error": "HTTP Error 429: Too Many Requests"
+  },
+  "pluto": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2025,
+            10,
+            23
+          ]
+        ],
+        "date-time": "2025-10-23T16:50:57Z",
+        "timestamp": 1761238257348,
+        "version": "3.41.0"
+      },
+      "reference-count": 16,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "issue": "10",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2015,
+                10,
+                23
+              ]
+            ],
+            "date-time": "2015-10-23T00:00:00Z",
+            "timestamp": 1445558400000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "SIGPLAN Not."
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            2015,
+            12,
+            18
+          ]
+        ]
+      },
+      "abstract": "<jats:p>Build systems are used in all but the smallest software projects to invoke the right build tools on the right files in the right order. A build system must be sound (after a build, generated files consistently reflect the latest source files) and efficient (recheck and rebuild as few build units as possible). Contemporary build systems provide limited efficiency because they lack support for expressing fine-grained file dependencies. We present a build system called pluto that supports the definition of reusable, parameterized, interconnected builders. When run, a builder notifies the build system about dynamically required and produced files as well as about other builders whose results are needed. To support fine-grained file dependencies, we generalize the traditional notion of time stamps to allow builders to declare their actual requirements on a file's content. pluto collects the requirements and products of a builder with their stamps in a build summary. This enables pluto to provides provably sound and optimal incremental rebuilding. To support dynamic dependencies, our rebuild algorithm interleaves dependency analysis and builder execution and enforces invariants on the dependency graph through a dynamic analysis. We have developed pluto as a Java API and used it to implement more than 25 builders. We describe our experience with migrating a larger Ant build script to pluto and compare the respective build times.</jats:p>",
+      "DOI": "10.1145/2858965.2814316",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2015,
+            12,
+            22
+          ]
+        ],
+        "date-time": "2015-12-22T06:22:54Z",
+        "timestamp": 1450765374000
+      },
+      "page": "89-106",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 13,
+      "title": [
+        "A sound and optimal incremental build system with dynamic dependencies"
+      ],
+      "prefix": "10.1145",
+      "volume": "50",
+      "author": [
+        {
+          "given": "Sebastian",
+          "family": "Erdweg",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Moritz",
+          "family": "Lichter",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        {
+          "given": "Manuel",
+          "family": "Weiel",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_2_2_1_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1040305.1040308"
+        },
+        {
+          "key": "e_1_2_2_2_1",
+          "first-page": "657",
+          "volume-title": "Proceedings of Symposium on Formal Methods",
+          "volume": "8442",
+          "author": "Christakis M.",
+          "unstructured": "M. Christakis , K. R. M. Leino , and W. Schulte . Formalizing and verifying a modern build language . In Proceedings of Symposium on Formal Methods , volume 8442 of LNCS, pages 643\u2013 657 . Springer, 2014. M. Christakis, K. R. M. Leino, and W. Schulte. Formalizing and verifying a modern build language. In Proceedings of Symposium on Formal Methods, volume 8442 of LNCS, pages 643\u2013657. Springer, 2014."
+        },
+        {
+          "key": "e_1_2_2_3_1",
+          "unstructured": "12\n    http://bazel.io/  12 http://bazel.io/"
+        },
+        {
+          "key": "e_1_2_2_5_1",
+          "first-page": "416",
+          "volume-title": "Proceedings of Conference on Software Language Engineering (SLE)",
+          "volume": "6563",
+          "author": "Erdweg S.",
+          "unstructured": "S. Erdweg and K. Ostermann . Featherweight TeX and parser correctness . In Proceedings of Conference on Software Language Engineering (SLE) , volume 6563 of LNCS, pages 397\u2013 416 . Springer, 2010. S. Erdweg and K. Ostermann. Featherweight TeX and parser correctness. In Proceedings of Conference on Software Language Engineering (SLE), volume 6563 of LNCS, pages 397\u2013 416. Springer, 2010."
+        },
+        {
+          "key": "e_1_2_2_6_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2517208.2517210"
+        },
+        {
+          "key": "e_1_2_2_7_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2660193.2660239"
+        },
+        {
+          "key": "e_1_2_2_9_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/349299.349341"
+        },
+        {
+          "key": "e_1_2_2_10_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1869459.1869497"
+        },
+        {
+          "key": "e_1_2_2_11_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/978-3-642-33666-9_23"
+        },
+        {
+          "key": "e_1_2_2_12_1",
+          "volume-title": "Lawrence Livermore National Laboratory",
+          "author": "E. T.",
+          "year": "2002",
+          "unstructured": "E. T. Kumfert G. Software in the DOE: The hidden overhead of \"The Build\". Technical report , Lawrence Livermore National Laboratory , 2002 . E. T. Kumfert G. Software in the DOE: The hidden overhead of \"The Build\". Technical report, Lawrence Livermore National Laboratory, 2002."
+        },
+        {
+          "key": "e_1_2_2_13_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/MSR.2010.5463341"
+        },
+        {
+          "key": "e_1_2_2_14_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2364527.2364538"
+        },
+        {
+          "key": "e_1_2_2_15_1",
+          "volume-title": "What is wrong with Make?",
+          "author": "Neagu A.",
+          "year": "2005",
+          "unstructured": "A. Neagu . What is wrong with Make? Available at http:// freecode.com/articles/what-is-wrong-with-make, 2005 . A. Neagu. What is wrong with Make? Available at http:// freecode.com/articles/what-is-wrong-with-make, 2005."
+        },
+        {
+          "key": "e_1_2_2_16_1",
+          "volume-title": "Build system rules and algorithms.",
+          "author": "Shal M.",
+          "year": "2009",
+          "unstructured": "M. Shal . Build system rules and algorithms. Available at http://gittup.org/tup/build_system_rules_and_ algorithms.pdf, 2009 . M. Shal. Build system rules and algorithms. Available at http://gittup.org/tup/build_system_rules_and_ algorithms.pdf, 2009."
+        },
+        {
+          "key": "e_1_2_2_17_1",
+          "volume-title": "GNU Make Manual",
+          "author": "Stallman R. M.",
+          "year": "2014",
+          "unstructured": "R. M. Stallman , R. McGrath , and P. D. Smith . GNU Make Manual . Free Software Foundation , 2014 . R. M. Stallman, R. McGrath, and P. D. Smith. GNU Make Manual. Free Software Foundation, 2014."
+        },
+        {
+          "key": "e_1_2_2_18_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/289423.289425"
+        }
+      ],
+      "container-title": [
+        "ACM SIGPLAN Notices"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/2858965.2814316",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/2858965.2814316",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T05:48:46Z",
+        "timestamp": 1750225726000
+      },
+      "score": 49.358307,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/2858965.2814316"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "references-count": 16,
+      "journal-issue": {
+        "issue": "10",
+        "published-print": {
+          "date-parts": [
+            [
+              2015,
+              12,
+              18
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "10.1145/2858965.2814316"
+      ],
+      "URL": "https://doi.org/10.1145/2858965.2814316",
+      "relation": {
+        "is-identical-to": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/2814270.2814316",
+            "asserted-by": "subject"
+          }
+        ]
+      },
+      "ISSN": [
+        "0362-1340",
+        "1558-1160"
+      ],
+      "issn-type": [
+        {
+          "type": "print",
+          "value": "0362-1340"
+        },
+        {
+          "type": "electronic",
+          "value": "1558-1160"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "2015-10-23",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            8,
+            23
+          ]
+        ],
+        "date-time": "2026-08-23T16:57:10Z",
+        "timestamp": 1787504230069,
+        "version": "build-2736575974"
+      },
+      "publisher-location": "New York, NY, USA",
+      "reference-count": 16,
+      "publisher": "ACM",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2015,
+                10,
+                23
+              ]
+            ],
+            "date-time": "2015-10-23T00:00:00Z",
+            "timestamp": 1445558400000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "DOI": "10.1145/2814270.2814316",
+      "type": "proceedings-article",
+      "created": {
+        "date-parts": [
+          [
+            2015,
+            11,
+            2
+          ]
+        ],
+        "date-time": "2015-11-02T16:04:33Z",
+        "timestamp": 1446480273000
+      },
+      "page": "89-106",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 21,
+      "title": [
+        "A sound and optimal incremental build system with dynamic dependencies"
+      ],
+      "prefix": "10.1145",
+      "author": [
+        {
+          "given": "Sebastian",
+          "family": "Erdweg",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Moritz",
+          "family": "Lichter",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Manuel",
+          "family": "Weiel",
+          "sequence": "additional",
+          "affiliation": [
+            {
+              "name": "TU Darmstadt, Germany"
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_3_2_2_1_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1040305.1040308"
+        },
+        {
+          "key": "e_1_3_2_2_2_1",
+          "first-page": "657",
+          "volume-title": "Proceedings of Symposium on Formal Methods",
+          "volume": "8442",
+          "author": "Christakis M."
+        },
+        {
+          "key": "e_1_3_2_2_3_1",
+          "unstructured": "12\n    http://bazel.io/  12 http://bazel.io/"
+        },
+        {
+          "key": "e_1_3_2_2_5_1",
+          "first-page": "416",
+          "volume-title": "Proceedings of Conference on Software Language Engineering (SLE)",
+          "volume": "6563",
+          "author": "Erdweg S."
+        },
+        {
+          "key": "e_1_3_2_2_6_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2517208.2517210"
+        },
+        {
+          "key": "e_1_3_2_2_7_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2660193.2660239"
+        },
+        {
+          "key": "e_1_3_2_2_9_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/349299.349341"
+        },
+        {
+          "key": "e_1_3_2_2_10_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/1869459.1869497"
+        },
+        {
+          "key": "e_1_3_2_2_11_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1007/978-3-642-33666-9_23"
+        },
+        {
+          "key": "e_1_3_2_2_12_1",
+          "volume-title": "Lawrence Livermore National Laboratory",
+          "author": "E. T.",
+          "year": "2002"
+        },
+        {
+          "key": "e_1_3_2_2_13_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/MSR.2010.5463341"
+        },
+        {
+          "key": "e_1_3_2_2_14_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/2364527.2364538"
+        },
+        {
+          "key": "e_1_3_2_2_15_1",
+          "volume-title": "What is wrong with Make?",
+          "author": "Neagu A.",
+          "year": "2005"
+        },
+        {
+          "key": "e_1_3_2_2_16_1",
+          "volume-title": "Build system rules and algorithms.",
+          "author": "Shal M.",
+          "year": "2009"
+        },
+        {
+          "key": "e_1_3_2_2_17_1",
+          "volume-title": "GNU Make Manual",
+          "author": "Stallman R. M.",
+          "year": "2014"
+        },
+        {
+          "key": "e_1_3_2_2_18_1",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1145/289423.289425"
+        }
+      ],
+      "event": {
+        "name": "SPLASH '15: Conference on Systems, Programming, Languages, and Applications: Software for Humanity",
+        "location": "Pittsburgh PA USA",
+        "acronym": "SPLASH '15",
+        "sponsor": [
+          "SIGPLAN ACM Special Interest Group on Programming Languages"
+        ]
+      },
+      "container-title": [
+        "Proceedings of the 2015 ACM SIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications"
+      ],
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/2814270.2814316",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/2814270.2814316",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T01:48:41Z",
+        "timestamp": 1750211321000
+      },
+      "score": 46.40524,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/2814270.2814316"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "references-count": 16,
+      "alternative-id": [
+        "10.1145/2814270.2814316",
+        "10.1145/2814270"
+      ],
+      "URL": "https://doi.org/10.1145/2814270.2814316",
+      "relation": {
+        "is-identical-to": [
+          {
+            "id-type": "doi",
+            "id": "10.1145/2858965.2814316",
+            "asserted-by": "object"
+          }
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            2015,
+            10,
+            23
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "2015-10-23",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    }
+  ],
+  "safety": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            8,
+            27
+          ]
+        ],
+        "date-time": "2026-08-27T10:59:08Z",
+        "timestamp": 1787828348449,
+        "version": "build-2784847793"
+      },
+      "reference-count": 11,
+      "publisher": "Elsevier BV",
+      "issue": "4",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                1985,
+                10,
+                1
+              ]
+            ],
+            "date-time": "1985-10-01T00:00:00Z",
+            "timestamp": 496972800000
+          },
+          "content-version": "tdm",
+          "delay-in-days": 0,
+          "URL": "https://www.elsevier.com/tdm/userlicense/1.0/"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "short-container-title": [
+        "Information Processing Letters"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            1985,
+            10
+          ]
+        ]
+      },
+      "DOI": "10.1016/0020-0190(85)90056-0",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2003,
+            3,
+            14
+          ]
+        ],
+        "date-time": "2003-03-14T14:37:33Z",
+        "timestamp": 1047652653000
+      },
+      "page": "181-185",
+      "source": "Crossref",
+      "is-referenced-by-count": 738,
+      "title": [
+        "Defining liveness"
+      ],
+      "prefix": "10.1016",
+      "volume": "21",
+      "author": [
+        {
+          "given": "Bowen",
+          "family": "Alpern",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Fred B.",
+          "family": "Schneider",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "78",
+      "reference": [
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB1",
+          "series-title": "A note on safety without stuttering",
+          "author": "Alpern",
+          "year": "1985"
+        },
+        {
+          "issue": "2",
+          "key": "10.1016/0020-0190(85)90056-0_BIB2",
+          "doi-asserted-by": "crossref",
+          "first-page": "125",
+          "DOI": "10.1109/TSE.1977.229904",
+          "article-title": "Proving the correctness of multiprocess programs",
+          "volume": "SE-3",
+          "author": "Lamport",
+          "year": "1977",
+          "journal-title": "IEEE Trans. Software Engineering"
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB3",
+          "series-title": "Advanced Course on Distributed Systems\u2014Methods and Tools for Specification",
+          "article-title": "Basic concepts",
+          "volume": "190",
+          "author": "Lamport",
+          "year": "1984"
+        },
+        {
+          "issue": "2",
+          "key": "10.1016/0020-0190(85)90056-0_BIB4",
+          "doi-asserted-by": "crossref",
+          "first-page": "281",
+          "DOI": "10.1145/2993.357247",
+          "article-title": "The \u2018Hoare Logic\u2019 of CSP and all that",
+          "volume": "6",
+          "author": "Lamport",
+          "year": "1984",
+          "journal-title": "ACM Trans. Programming Languages and Systems"
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB5",
+          "series-title": "The Correctness Problem in Computer Science",
+          "article-title": "Temporal verification of concurrent programs: The temporal framework for concurrent programs",
+          "author": "Manna",
+          "year": "1981"
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB6",
+          "series-title": "Tech. Rept. STAN-CS-82-915",
+          "article-title": "Verification of concurrent programs: Proving eventualities by well-founded ranking",
+          "author": "Manna",
+          "year": "1982"
+        },
+        {
+          "issue": "3",
+          "key": "10.1016/0020-0190(85)90056-0_BIB7",
+          "doi-asserted-by": "crossref",
+          "first-page": "455",
+          "DOI": "10.1145/357172.357178",
+          "article-title": "Proving liveness properties of concurrent programs",
+          "volume": "4",
+          "author": "Owicki",
+          "year": "1982",
+          "journal-title": "ACM Trans. Programming Languages and Systems"
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB8",
+          "unstructured": "G. Plotkin, Private communication, 1983."
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB9",
+          "unstructured": "G. Plotkin, Private communication, 1984."
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB10",
+          "series-title": "Characterization of safety and liveness properties in temporal logic",
+          "author": "Sistla",
+          "year": "1984"
+        },
+        {
+          "key": "10.1016/0020-0190(85)90056-0_BIB11",
+          "series-title": "Proc. ICALP '83",
+          "first-page": "662",
+          "article-title": "Power domains and predicate transformers: A topological view",
+          "volume": "154",
+          "author": "Smyth",
+          "year": "1983"
+        }
+      ],
+      "container-title": [
+        "Information Processing Letters"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:0020019085900560?httpAccept=text/xml",
+          "content-type": "text/xml",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://api.elsevier.com/content/article/PII:0020019085900560?httpAccept=text/plain",
+          "content-type": "text/plain",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2019,
+            3,
+            26
+          ]
+        ],
+        "date-time": "2019-03-26T05:28:13Z",
+        "timestamp": 1553578093000
+      },
+      "score": 43.999,
+      "resource": {
+        "primary": {
+          "URL": "https://linkinghub.elsevier.com/retrieve/pii/0020019085900560"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            1985,
+            10
+          ]
+        ]
+      },
+      "references-count": 11,
+      "journal-issue": {
+        "issue": "4",
+        "published-print": {
+          "date-parts": [
+            [
+              1985,
+              10
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "0020019085900560"
+      ],
+      "URL": "https://doi.org/10.1016/0020-0190(85)90056-0",
+      "ISSN": [
+        "0020-0190"
+      ],
+      "issn-type": [
+        {
+          "value": "0020-0190",
+          "type": "print"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1985,
+            10
+          ]
+        ]
+      }
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            8,
+            26
+          ]
+        ],
+        "date-time": "2026-08-26T05:47:30Z",
+        "timestamp": 1787723250943,
+        "version": "build-2784847793"
+      },
+      "reference-count": 19,
+      "publisher": "Springer Science and Business Media LLC",
+      "issue": "3",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                1987,
+                9,
+                1
+              ]
+            ],
+            "date-time": "1987-09-01T00:00:00Z",
+            "timestamp": 557452800000
+          },
+          "content-version": "tdm",
+          "delay-in-days": 0,
+          "URL": "http://www.springer.com/tdm"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "short-container-title": [
+        "Distrib Comput"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            1987,
+            9
+          ]
+        ]
+      },
+      "DOI": "10.1007/bf01782772",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2005,
+            6,
+            20
+          ]
+        ],
+        "date-time": "2005-06-20T16:39:32Z",
+        "timestamp": 1119285572000
+      },
+      "page": "117-126",
+      "source": "Crossref",
+      "is-referenced-by-count": 356,
+      "title": [
+        "Recognizing safety and liveness"
+      ],
+      "prefix": "10.1007",
+      "volume": "2",
+      "author": [
+        {
+          "given": "Bowen",
+          "family": "Alpern",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Fred B.",
+          "family": "Schneider",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "297",
+      "reference": [
+        {
+          "key": "BF01782772_CR1",
+          "unstructured": "Alpern B (1986) Proving temporal properties of concurrent programs: a non-temporal approach. PhD Thesis. Department of Computer Science, Cornell University (January 1986)"
+        },
+        {
+          "issue": "4",
+          "key": "BF01782772_CR2",
+          "doi-asserted-by": "crossref",
+          "first-page": "177",
+          "DOI": "10.1016/0020-0190(86)90132-8",
+          "volume": "23",
+          "author": "B Alpern",
+          "year": "1986",
+          "unstructured": "Alpern B, Demers AJ, Schneider FB (1986) Safety without stuttering. Inf Proc Lett 23(4): 177\u2013180",
+          "journal-title": "Inf Proc Lett"
+        },
+        {
+          "key": "BF01782772_CR3",
+          "doi-asserted-by": "crossref",
+          "first-page": "181",
+          "DOI": "10.1016/0020-0190(85)90056-0",
+          "volume": "21",
+          "author": "B Alpern",
+          "year": "1985",
+          "unstructured": "Alpern B, Schneider FB (1985) Defining liveness. Inf Proc Lett 21:181\u2013185",
+          "journal-title": "Inf Proc Lett"
+        },
+        {
+          "key": "BF01782772_CR4",
+          "unstructured": "Alpern B, Schneider FB (1985) Verifying temporal properties without using temporal logic. Tech Rep TR 85-723, Department of Computer Science, Cornell University (December 1985)"
+        },
+        {
+          "key": "BF01782772_CR5",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Alpern B, Schneider FB (1987) Proving boolean combinations of deterministic properties. Proc 2nd Ann Symp Logic Comput Sci; IEEE Comput Soc, Ithaca, NY (June 1987)",
+          "DOI": "10.1007/BF01782772"
+        },
+        {
+          "issue": "2",
+          "key": "BF01782772_CR6",
+          "doi-asserted-by": "crossref",
+          "first-page": "244",
+          "DOI": "10.1145/5397.5399",
+          "volume": "8",
+          "author": "EM Clarke",
+          "year": "1986",
+          "unstructured": "Clarke EM, Emerson, EA, Sistla AP (1986) Automatic verification of finite-state concurrent systems using temporal logic specifications. ACM Trans Programm Languages Syst 8(2):244\u2013263",
+          "journal-title": "ACM Trans Programm Languages Syst"
+        },
+        {
+          "key": "BF01782772_CR7",
+          "volume-title": "Automata Languages and Machines, Vol A",
+          "author": "S Eilenberg",
+          "year": "1974",
+          "unstructured": "Eilenberg S (1974) Automata Languages and Machines, Vol A. Academic Press, NY"
+        },
+        {
+          "key": "BF01782772_CR8",
+          "unstructured": "Hopcroft JE, Ullman JD (1979) Introduction to Automata Theory, Languages and Computation. Addison-Wesley"
+        },
+        {
+          "issue": "2",
+          "key": "BF01782772_CR9",
+          "doi-asserted-by": "crossref",
+          "first-page": "125",
+          "DOI": "10.1109/TSE.1977.229904",
+          "volume": "3",
+          "author": "L Lamport",
+          "year": "1977",
+          "unstructured": "Lamport L (1977) Proving the correctness of multiprocess programs. IEEE Trans Software Eng SE-3, 2:125\u2013143",
+          "journal-title": "IEEE Trans Software Eng SE"
+        },
+        {
+          "key": "BF01782772_CR10",
+          "first-page": "657",
+          "volume-title": "Information Processing '83",
+          "author": "L Lamport",
+          "year": "1983",
+          "unstructured": "Lamport L (1983) What good is temporal logic. In: Magon REA (ed) Information Processing '83. North-Holland, Amsterdam, pp 657\u2013668"
+        },
+        {
+          "key": "BF01782772_CR11",
+          "series-title": "Lect Notes Comput",
+          "volume-title": "Distributed Systems \u2014 Methods and Tools for Specification, vol 190",
+          "author": "L Lamport",
+          "year": "1985",
+          "unstructured": "Lamport L (1985) Logical foundation. In: Paul M, Siegert HJ (eds) Distributed Systems \u2014 Methods and Tools for Specification, vol 190. Lect Notes Comput. Springer-Verlag, Berlin Heidelberg New York"
+        },
+        {
+          "key": "BF01782772_CR12",
+          "doi-asserted-by": "crossref",
+          "unstructured": "Lichtenstein O, Pnueli O, Zuck L (1985) The glory of the past. Proc Workshop on Logics of Programs, vol 193 (June 1985). Brooklyn, NY. Lect. Notes Comput Sci, pp 196\u2013218",
+          "DOI": "10.1007/3-540-15648-8_16"
+        },
+        {
+          "key": "BF01782772_CR13",
+          "first-page": "141",
+          "volume-title": "The Correctness Problem in Computer Science (1981) International lectures in Computer Science",
+          "author": "Z Manna",
+          "year": "1981",
+          "unstructured": "Manna Z, Pnueli A (1981) Verification of concurrent programs: The temporal framework. In: Boyer RS, Moore JS (eds) The Correctness Problem in Computer Science (1981) International lectures in Computer Science. Academic Press, London, pp 141\u2013154"
+        },
+        {
+          "key": "BF01782772_CR14",
+          "series-title": "Proc 14th Symp Principles of Programming Languages",
+          "first-page": "1",
+          "volume-title": "Specification and Verification of Concurrent Programs by \u2200-Automata",
+          "author": "Z Manna",
+          "year": "1987",
+          "unstructured": "Manna Z, Pnueli A (1987) Specification and Verification of Concurrent Programs by \u2200-Automata. Proc 14th Symp Principles of Programming Languages. ACM, Munich, (January 1987), pp 1\u201312."
+        },
+        {
+          "key": "BF01782772_CR15",
+          "series-title": "Proc 4th Symp Principles of Distributed Computing",
+          "first-page": "39",
+          "volume-title": "On characterization of safety and liveness properties in temporal logic",
+          "author": "AP Sistla",
+          "year": "1985",
+          "unstructured": "Sistla AP (1985) On characterization of safety and liveness properties in temporal logic. Proc 4th Symp Principles of Distributed Computing. ACM, Minaki, (August 1985), pp 39\u201348"
+        },
+        {
+          "key": "BF01782772_CR16",
+          "volume-title": "On characterization of safety and liveness properties in temporal logic",
+          "author": "AP Sistla",
+          "year": "1986",
+          "unstructured": "Sistla AP (1986) On characterization of safety and liveness properties in temporal logic. Tech Rep, GTE Lab, Waltham MA, (March 1986, revised July 1986)."
+        },
+        {
+          "key": "BF01782772_CR17",
+          "series-title": "Proc 12th International Colloquium on Automata, Languages and Programming, ICALP'85. Nafplion Greece (July 1985) Lect Notes Comput",
+          "first-page": "465",
+          "volume-title": "The complementation problems for Buchi automata with applications to temporal logic (extended abstract)",
+          "author": "AP Sistla",
+          "year": "1985",
+          "unstructured": "Sistla AP, Yardi MY, Wolper P (1985) The complementation problems for Buchi automata with applications to temporal logic (extended abstract). Proc 12th International Colloquium on Automata, Languages and Programming, ICALP'85. Nafplion Greece (July 1985) Lect Notes Comput Sci Springer Verlag, New York 194:465\u2013474"
+        },
+        {
+          "key": "BF01782772_CR18",
+          "series-title": "Proc 2nd Annual Symposium on Logic in Computer Science",
+          "volume-title": "Verification of concurrent programs: The automata-theoretic framework",
+          "author": "M Vardi",
+          "year": "1987",
+          "unstructured": "Vardi M (1987) Verification of concurrent programs: The automata-theoretic framework. Proc 2nd Annual Symposium on Logic in Computer Science. IEEE Comput Soc, Ithaca, NY (June 1987)"
+        },
+        {
+          "issue": "1\u20132",
+          "key": "BF01782772_CR19",
+          "doi-asserted-by": "crossref",
+          "first-page": "72",
+          "DOI": "10.1016/S0019-9958(83)80051-5",
+          "volume": "56",
+          "author": "P Wolper",
+          "year": "1983",
+          "unstructured": "Wolper P (1983) Temporal logic can be more expressive. Control 56(1\u20132):72\u201399",
+          "journal-title": "Control"
+        }
+      ],
+      "container-title": [
+        "Distributed Computing"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "http://link.springer.com/content/pdf/10.1007/BF01782772.pdf",
+          "content-type": "application/pdf",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://link.springer.com/article/10.1007/BF01782772/fulltext.html",
+          "content-type": "text/html",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://link.springer.com/content/pdf/10.1007/BF01782772",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2023,
+            5,
+            3
+          ]
+        ],
+        "date-time": "2023-05-03T09:05:20Z",
+        "timestamp": 1683104720000
+      },
+      "score": 33.961685,
+      "resource": {
+        "primary": {
+          "URL": "http://link.springer.com/10.1007/BF01782772"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            1987,
+            9
+          ]
+        ]
+      },
+      "references-count": 19,
+      "journal-issue": {
+        "issue": "3",
+        "published-print": {
+          "date-parts": [
+            [
+              1987,
+              9
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "BF01782772"
+      ],
+      "URL": "https://doi.org/10.1007/bf01782772",
+      "ISSN": [
+        "0178-2770",
+        "1432-0452"
+      ],
+      "issn-type": [
+        {
+          "value": "0178-2770",
+          "type": "print"
+        },
+        {
+          "value": "1432-0452",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1987,
+            9
+          ]
+        ]
+      }
+    }
+  ],
+  "lamporttime": [
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            9,
+            5
+          ]
+        ],
+        "date-time": "2026-09-05T21:43:35Z",
+        "timestamp": 1788644615354,
+        "version": "build-2803163510"
+      },
+      "reference-count": 0,
+      "publisher": "Association for Computing Machinery",
+      "isbn-type": [
+        {
+          "value": "9781450372701",
+          "type": "print"
+        }
+      ],
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                2019,
+                10,
+                9
+              ]
+            ],
+            "date-time": "2019-10-09T00:00:00Z",
+            "timestamp": 1570579200000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [],
+        "crossmark-restriction": false
+      },
+      "published-print": {
+        "date-parts": [
+          [
+            2019,
+            10,
+            9
+          ]
+        ]
+      },
+      "DOI": "10.1145/3335772.3335934",
+      "type": "book-chapter",
+      "created": {
+        "date-parts": [
+          [
+            2019,
+            10,
+            9
+          ]
+        ],
+        "date-time": "2019-10-09T16:32:11Z",
+        "timestamp": 1570638731000
+      },
+      "source": "Crossref",
+      "is-referenced-by-count": 119,
+      "title": [
+        "Time, clocks, and the ordering of events in a distributed system"
+      ],
+      "prefix": "10.1145",
+      "author": [
+        {
+          "name": "Massachusetts Computer Associates, Inc.",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        },
+        {
+          "given": "Leslie",
+          "family": "Lamport",
+          "sequence": "first",
+          "affiliation": [],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            2019,
+            10,
+            9
+          ]
+        ]
+      },
+      "container-title": [
+        "Concurrency: the Works of Leslie Lamport"
+      ],
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/3335772.3335934",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "http://dl.acm.org/ft_gateway.cfm?id=3335934&ftid=1895746&dwn=1",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            17
+          ]
+        ],
+        "date-time": "2025-06-17T20:26:09Z",
+        "timestamp": 1750191969000
+      },
+      "score": 42.780617,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/citation.cfm?id=3335934"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            2019,
+            10,
+            9
+          ]
+        ]
+      },
+      "ISBN": [
+        "9781450372701"
+      ],
+      "references-count": 0,
+      "URL": "https://doi.org/10.1145/3335772.3335934",
+      "published": {
+        "date-parts": [
+          [
+            2019,
+            10,
+            9
+          ]
+        ]
+      }
+    },
+    {
+      "indexed": {
+        "date-parts": [
+          [
+            2026,
+            9,
+            8
+          ]
+        ],
+        "date-time": "2026-09-08T15:00:45Z",
+        "timestamp": 1788879645775,
+        "version": "build-2803163510"
+      },
+      "reference-count": 4,
+      "publisher": "Association for Computing Machinery (ACM)",
+      "issue": "7",
+      "license": [
+        {
+          "start": {
+            "date-parts": [
+              [
+                1978,
+                7,
+                1
+              ]
+            ],
+            "date-time": "1978-07-01T00:00:00Z",
+            "timestamp": 268099200000
+          },
+          "content-version": "vor",
+          "delay-in-days": 0,
+          "URL": "https://www.acm.org/publications/policies/copyright_policy#Background"
+        }
+      ],
+      "content-domain": {
+        "domain": [
+          "dl.acm.org"
+        ],
+        "crossmark-restriction": true
+      },
+      "short-container-title": [
+        "Commun. ACM"
+      ],
+      "published-print": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "abstract": "<jats:p>The concept of one event happening before another in a distributed system is examined, and is shown to define a partial ordering of the events. A distributed algorithm is given for synchronizing a system of logical clocks which can be used to totally order the events. The use of the total ordering is illustrated with a method for solving synchronization problems. The algorithm is then specialized for synchronizing physical clocks, and a bound is derived on how far out of synchrony the clocks can become.</jats:p>",
+      "DOI": "10.1145/359545.359563",
+      "type": "journal-article",
+      "created": {
+        "date-parts": [
+          [
+            2002,
+            7,
+            27
+          ]
+        ],
+        "date-time": "2002-07-27T07:34:59Z",
+        "timestamp": 1027755299000
+      },
+      "page": "558-565",
+      "update-policy": "https://doi.org/10.1145/crossmark-policy",
+      "source": "Crossref",
+      "is-referenced-by-count": 6088,
+      "title": [
+        "Time, clocks, and the ordering of events in a distributed system"
+      ],
+      "prefix": "10.1145",
+      "volume": "21",
+      "author": [
+        {
+          "given": "Leslie",
+          "family": "Lamport",
+          "sequence": "first",
+          "affiliation": [
+            {
+              "name": "Massachusetts Computer Associates, Inc."
+            }
+          ],
+          "role": [
+            {
+              "vocabulary": "crossref",
+              "role": "author"
+            }
+          ]
+        }
+      ],
+      "member": "320",
+      "published-online": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "reference": [
+        {
+          "key": "e_1_2_1_1_2",
+          "volume-title": "New York U",
+          "author": "Schwartz J.T.",
+          "year": "1962"
+        },
+        {
+          "key": "e_1_2_1_2_2",
+          "volume-title": "Freeman",
+          "author": "Taylor E.F.",
+          "year": "1966"
+        },
+        {
+          "key": "e_1_2_1_3_2",
+          "unstructured": "Lamport L. The implementation of reliable distributed multiprocess systems. To appear in Computer Networks.  Lamport L. The implementation of reliable distributed multiprocess systems. To appear in Computer Networks."
+        },
+        {
+          "key": "e_1_2_1_4_2",
+          "doi-asserted-by": "publisher",
+          "DOI": "10.1109/TCOM.1973.1091674"
+        }
+      ],
+      "container-title": [
+        "Communications of the ACM"
+      ],
+      "language": "en",
+      "link": [
+        {
+          "URL": "https://dl.acm.org/doi/10.1145/359545.359563",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "text-mining"
+        },
+        {
+          "URL": "https://dl.acm.org/doi/pdf/10.1145/359545.359563",
+          "content-type": "unspecified",
+          "content-version": "vor",
+          "intended-application": "similarity-checking"
+        }
+      ],
+      "deposited": {
+        "date-parts": [
+          [
+            2025,
+            6,
+            18
+          ]
+        ],
+        "date-time": "2025-06-18T18:48:39Z",
+        "timestamp": 1750272519000
+      },
+      "score": 41.214092,
+      "resource": {
+        "primary": {
+          "URL": "https://dl.acm.org/doi/10.1145/359545.359563"
+        }
+      },
+      "issued": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "references-count": 4,
+      "journal-issue": {
+        "issue": "7",
+        "published-print": {
+          "date-parts": [
+            [
+              1978,
+              7
+            ]
+          ]
+        }
+      },
+      "alternative-id": [
+        "10.1145/359545.359563"
+      ],
+      "URL": "https://doi.org/10.1145/359545.359563",
+      "ISSN": [
+        "0001-0782",
+        "1557-7317"
+      ],
+      "issn-type": [
+        {
+          "value": "0001-0782",
+          "type": "print"
+        },
+        {
+          "value": "1557-7317",
+          "type": "electronic"
+        }
+      ],
+      "published": {
+        "date-parts": [
+          [
+            1978,
+            7
+          ]
+        ]
+      },
+      "assertion": [
+        {
+          "value": "1978-07-01",
+          "order": 2,
+          "name": "published",
+          "label": "Published",
+          "group": {
+            "name": "publication_history",
+            "label": "Publication History"
+          }
+        }
+      ]
+    }
+  ]
+}

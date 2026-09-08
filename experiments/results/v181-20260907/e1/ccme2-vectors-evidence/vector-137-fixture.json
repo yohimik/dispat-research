@@ -1,0 +1,97 @@
+{
+ "packages": [
+  "core",
+  "app"
+ ],
+ "edges": [
+  [
+   "app",
+   "core"
+  ]
+ ],
+ "commits": [
+  {
+   "id": "c0",
+   "units": []
+  },
+  {
+   "id": "c1",
+   "units": [
+    {
+     "type": "release",
+     "scope": [
+      "core"
+     ],
+     "pd": 0,
+     "pcd": 0,
+     "breaking": false,
+     "pb": null,
+     "channel": "beta",
+     "pchannel": null,
+     "releaseAs": null
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "units": [
+    {
+     "type": "fix",
+     "scope": [
+      "core"
+     ],
+     "pd": 1,
+     "pcd": 1,
+     "breaking": false,
+     "pb": null,
+     "channel": null,
+     "pchannel": "inherit",
+     "releaseAs": null
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "units": [
+    {
+     "type": "release",
+     "scope": [
+      "core"
+     ],
+     "pd": 0,
+     "pcd": 0,
+     "breaking": false,
+     "pb": null,
+     "channel": "stable",
+     "pchannel": null,
+     "releaseAs": null
+    }
+   ]
+  }
+ ],
+ "tags": [
+  {
+   "pkg": "core",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "core",
+   "version": "1.0.1-beta.0",
+   "commit": "c1"
+  },
+  {
+   "pkg": "app",
+   "version": "1.0.0",
+   "commit": "c0"
+  },
+  {
+   "pkg": "core",
+   "version": "1.0.1",
+   "commit": "c3"
+  }
+ ],
+ "features": {
+  "prerelease": []
+ }
+}
