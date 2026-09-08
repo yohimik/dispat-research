@@ -68,11 +68,6 @@
       "bytes": 26996
     },
     {
-      "path": "paper/icse/build/lastpass.ru.log",
-      "sha256": "be86585187dbb04147fad6b87b973844649016b571350a89f3cce9f1edc67b49",
-      "bytes": 46771
-    },
-    {
       "path": "paper/icse/build/main.aux",
       "sha256": "a5e0a6769fb08182738730de567533241ea6d68e31e430ea11041f744cf469b8",
       "bytes": 11094
@@ -91,296 +86,6 @@
       "path": "paper/icse/build/main.pdf",
       "sha256": "eec26fa61971ad73ee9970b51e1813839df5e36112f4783a81a7364d812533e3",
       "bytes": 181064
-    },
-    {
-      "path": "paper/icse/build/main.ru.driver.log",
-      "sha256": "b569fcb5d3ca151493d00b9602853c68e575e63343d0aa828f2840f4784369a1",
-      "bytes": 146875
-    },
-    {
-      "path": "paper/icse/build/main.ru.lastpass.log",
-      "sha256": "62fdd79d93757de8c92c6eb01d6f14d52c4ac683c5f7b48d80afda2b670c847f",
-      "bytes": 47451
-    },
-    {
-      "path": "paper/icse/build/main.ru.log",
-      "sha256": "cb14b9c1ff26bb71a6340116db1164c55eb98f6c6e4fb9cc841b1da4c0aa8e59",
-      "bytes": 99423
-    },
-    {
-      "path": "paper/icse/build/main.ru.pdf",
-      "sha256": "1064c2602089a7d25e6325236a44d9037edaafa26490872147035894b42cc4cf",
-      "bytes": 198548
-    },
-    {
-      "path": "paper/icse/build-ru/driver.log",
-      "sha256": "9e2b96d3f4709c56e8b41b49088005255b3c1915061ee40e4fa048ad8b71da6f",
-      "bytes": 98729
-    },
-    {
-      "path": "paper/icse/build-ru/lastpass.log",
-      "sha256": "19f6c7409f182e534d7cac8241766e350945fdb1afc87f0bbefcfef8ea4eac94",
-      "bytes": 47148
-    },
-    {
-      "path": "paper/icse/build-ru/main.ru.pdf",
-      "sha256": "dfba225acc231abf944718acf33f9515343f60f481c5e891ffd07aa27d462c4d",
-      "bytes": 197626
-    },
-    {
-      "path": "paper/icse/build-ru-final/main.ru.pdf",
-      "sha256": "43e46ee99507d798b40277149475f7b37ecce2092188b262dde671dc46ed250e",
-      "bytes": 191294
-    },
-    {
-      "path": "paper/icse/build-ru-final/pass1.txt",
-      "sha256": "b4f28ca5cfd219f1712afbc6e3a3f92091de726694b16e26567c38a044d15f46",
-      "bytes": 85219
-    },
-    {
-      "path": "paper/icse/build-ru-final/pass2.txt",
-      "sha256": "80cb9ef25079f5ba7d88c4dfef3b4a29e647f158da8db8944d34647fcee01ac5",
-      "bytes": 85218
-    },
-    {
-      "path": "paper/icse/build-ru-release/final.txt",
-      "sha256": "ebfd59ef1c97b5dbb26386e3af6bd80a8a67810e4e172dea5f9c17023e066c4a",
-      "bytes": 133233
-    },
-    {
-      "path": "paper/icse/build-ru-release/final2.txt",
-      "sha256": "df6b0f76f36f6547ee9238bfacb98cbd5fcabc6c1ab4ee20b00dc9d66627696c",
-      "bytes": 89675
-    },
-    {
-      "path": "paper/icse/build-ru-release/final3.txt",
-      "sha256": "13572a8c0654e9a90d487cbdbef57495c75ebe6f22a0785486987c9ed61bbe08",
-      "bytes": 89625
-    },
-    {
-      "path": "paper/icse/build-ru-release/lastpass.txt",
-      "sha256": "812ecec3e79d73ecdb9da004bbdcb4d5f12b13da2e5668fc575c93ec56c45b0e",
-      "bytes": 43562
-    },
-    {
-      "path": "paper/icse/build-ru-release/lastpass2.txt",
-      "sha256": "1caef33a06215ffe217555001209efba2ed13db1ca11899f536e6dbfc32d5567",
-      "bytes": 42452
-    },
-    {
-      "path": "paper/icse/build-ru-release/lastpass3.txt",
-      "sha256": "2b43c34fc000fc9d3c1a2ca1c7d27b9649b77b17a4ac45743a9885a06d3516d8",
-      "bytes": 42427
-    },
-    {
-      "path": "paper/icse/build-ru-release/main.ru.pdf",
-      "sha256": "a3d24e03c4a7d11d7ad2133c240a6ab331cf949360cb9173e0154c5375b6d8ad",
-      "bytes": 194162
-    },
-    {
-      "path": "paper/icse/build-ru-release/pass1.txt",
-      "sha256": "ce1401a9bde4674e5ac553b2e12d840f8583f78900ddbf8428c88a4ff53eee3c",
-      "bytes": 133058
-    },
-    {
-      "path": "paper/icse/build-ru-release/pass2.txt",
-      "sha256": "c96463e40d36e4165ba9e7149c2c6d154858e7f519efaca821ecd9c8d15c4d6d",
-      "bytes": 133069
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-01.png",
-      "sha256": "2e54f187561b59fcec00b391619a92a838b1ad1a395ab0545ac7ec6e5e3cf93a",
-      "bytes": 338614
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-02.png",
-      "sha256": "0a494d0a2b9656701a0587ee2de9fe103c4099c6c9dfb0d058a7214b659a19ae",
-      "bytes": 395933
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-03.png",
-      "sha256": "1f1806068d131b528584b005f8cd89aa321ffc3b20b19fa1edb940fc272eaf98",
-      "bytes": 414522
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-04.png",
-      "sha256": "2f4415b4acc919055aee5b30973b4babedbc52f6b191a72a4e87dbab522e32d7",
-      "bytes": 389338
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-05.png",
-      "sha256": "ca1b4b4a04cd1f10259f7a4f5190518a073788009131603e7af4e70d6a61ba71",
-      "bytes": 414050
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-06.png",
-      "sha256": "e813a499831ec5148aeff91e16e327035b1024c52e5fa8a12c3a4800cab7cfcc",
-      "bytes": 437931
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-07.png",
-      "sha256": "14fc760d204785db65615deabcc85e4461dfa12b261ca762aa7b1fc0ec42907f",
-      "bytes": 394259
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-08.png",
-      "sha256": "c30380ec953ae2c38f33ff371465ea013250c5173f4f832fe843dc691f588938",
-      "bytes": 413337
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-09.png",
-      "sha256": "7db14724e63b7c5f40d418ed344b5dc9d6ff24f59b3bbe7c41ff2b39e1eb72d3",
-      "bytes": 488502
-    },
-    {
-      "path": "paper/icse/build-ru-release/render/page-10.png",
-      "sha256": "117df36e9fcef16f665a73ac8f969884780e62834dcfc311f8e5d000aeffce1b",
-      "bytes": 16443
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-1.png",
-      "sha256": "0c6857d6a37f518284cadb16df3cdbb9568b8252783f19ea32fe218682ce2327",
-      "bytes": 237446
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-2.png",
-      "sha256": "7c57ba07661479d2dcc5fafffff49c283fe387b70645cd6b92cbe5a55956c547",
-      "bytes": 274347
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-3.png",
-      "sha256": "deb3a5d77625d0e9003e70982bae1091cf0a4e27ae1f51ff733c4e25c1fd0636",
-      "bytes": 284051
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-4.png",
-      "sha256": "438bc8291fc81c2bcaf594c64ac00ac4b74bb316207d9c62d923a91e8a35757b",
-      "bytes": 274038
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-5.png",
-      "sha256": "a194a1b334930523bc7598add840d23aee624ffdb948dc517d01a14c622cf295",
-      "bytes": 283947
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-6.png",
-      "sha256": "ade30897362796c3f206b4d4233797ef1b8c4db579049926aad4aee9e8eb41fd",
-      "bytes": 304441
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-7.png",
-      "sha256": "1f510ae794a73406962ef378f209975dee6db4a54d008a248bb82df399a3a807",
-      "bytes": 268453
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-8.png",
-      "sha256": "8d439e7d56a1c2a8b256ed0b972860add9e06deb6edaa3adec78e2d0add119a9",
-      "bytes": 275934
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-final/page-9.png",
-      "sha256": "d2ffd295cc69264b49ea6e44a5c4b13f896c9e787b2176cd0fd9ec3ca15b49e9",
-      "bytes": 353307
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-01.png",
-      "sha256": "b5c11b9a52d7388cb4bdae6adeb2736a6170f7c144a0c215e6b3de1baae19ca6",
-      "bytes": 310877
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-02.png",
-      "sha256": "bc38864866e922f9ea3b4adbebe26258ed7019ba406c676f94c08f4bd4eae2d0",
-      "bytes": 382406
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-03.png",
-      "sha256": "9672944bf75172bfe319ee29a4a25887a8419ed5ce9eee36e71c6fc185619bc1",
-      "bytes": 388420
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-04.png",
-      "sha256": "c4829a9ebe527e849493848161b8f1cae00a0f490922b2a4fdbdada602cd54c2",
-      "bytes": 383133
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-05.png",
-      "sha256": "6c36d16953a45d2a1046f0a24a472c0fc012eb6bc256f226790f203415bddf09",
-      "bytes": 378008
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-06.png",
-      "sha256": "43a37615aecf45c5c09d5b61dc0217a265b65d49463272fdaf16301ac6e3e2f0",
-      "bytes": 413122
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-07.png",
-      "sha256": "3ed83ba100b0b203240ca7438eaf787d248b3ba1824a91863ddab4373d472ef8",
-      "bytes": 369278
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-08.png",
-      "sha256": "52b2a6382bd474157ec81c791061b926fa524ed33e07bcc1d597d8c9a2796b9c",
-      "bytes": 398529
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-09.png",
-      "sha256": "7b6b60b4cdf9fdcd82a61099db389cc74fa7ad4cd151c716f885118d8d88fd0f",
-      "bytes": 414358
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-layout-final/page-10.png",
-      "sha256": "3302d2a9b022b50cb1a8b133db477cf77b191245f3cdefb37188061fb7a8a143",
-      "bytes": 122801
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-07.png",
-      "sha256": "c8cfe685b9851e847f5f4d4be4aa4a6339ab54ebe6c534f13677e3613b9e2cec",
-      "bytes": 374740
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-08.png",
-      "sha256": "f30e05d200469514f0a8ee5032875832a46a7bc37bdc81dea527864f1dbff17b",
-      "bytes": 383395
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-09.png",
-      "sha256": "73a9c7853a967092f5e46d2cdde68e1b1c083f398fda834d87ae56995f53565e",
-      "bytes": 459901
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-7.png",
-      "sha256": "3547a43992973ed35eae49226ccd4d21a99321f23859ca18a5daa6597e4faa5b",
-      "bytes": 378648
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-8.png",
-      "sha256": "4c7e541999943c6ba4ca34ae210a46775acec62e6518c806cc8bcc499f26a288",
-      "bytes": 395865
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review/page-9.png",
-      "sha256": "90c121f722dbef4b0b2648b4f424fa21de2a56a2dc45568bfdd0f26325a1c73d",
-      "bytes": 451639
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review-final/page-7.png",
-      "sha256": "5d16f326de4d770bdabbfb3d3e543c52e1cff3e8bbccdecf981b5d46ea945f38",
-      "bytes": 396308
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review-final/page-8.png",
-      "sha256": "0576c2d9c00d68ea70e303f59f0454ad04f77b873d91aca9d4e438d9476205de",
-      "bytes": 413288
-    },
-    {
-      "path": "paper/icse/build-ru-release/render-review-final/page-9.png",
-      "sha256": "4f8ed4a62e067ee7ef424972f7186b2b9c1384c3390f5c959ff0e953bedd7e23",
-      "bytes": 498564
-    },
-    {
-      "path": "paper/icse/main.ru.tex",
-      "sha256": "5bc5e78ff43185ab9bab75faa60f8904f17d7f84ec48add54597e5023d62e666",
-      "bytes": 97729
     },
     {
       "path": "paper/icse/main.tex",
@@ -53913,6 +53618,42 @@
       "reason": "regenerable cache/dependency"
     },
     {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build/lastpass.ru.log",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build/main.ru.driver.log",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build/main.ru.lastpass.log",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build/main.ru.log",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build/main.ru.pdf",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build-ru",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build-ru-final",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/build-ru-release",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/paper/icse/main.ru.tex",
+      "reason": "Russian material excluded at user request; original retained"
+    },
+    {
       "source": "/Users/yohimik/Projects/dispat/paper/icse/ru",
       "reason": "Russian material excluded at user request; original retained"
     },
@@ -54851,5 +54592,5 @@
     }
   ],
   "nested_git_archive": "provenance/generated-fixture-git.tar.gz",
-  "nested_git_archive_sha256": "4ce4c276741f6fc676e7a6bf5e40c7ebfee9b5968ccdb0ee9671f3dddd922e19"
+  "nested_git_archive_sha256": "12a707907d89900e6fbb646065e5b88b33af1193286188b683644e534240c9eb"
 }

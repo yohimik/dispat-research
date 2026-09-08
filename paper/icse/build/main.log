@@ -1,0 +1,1790 @@
+note: Running TeX ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (acmart.cls
+Document Class: acmart 2022/02/19 v1.83 Typesetting articles for the Associatio
+n for Computing Machinery
+(xkeyval.sty (xkeyval (xkvutils (keyval)))) (xstring.sty (xstring.tex))
+(iftex.sty) (amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (umsa.fd) (amsfonts.sty))
+ (microtype.sty (etoolbox.sty) (microtype-xetex.def) (microtype.cfg))
+(booktabs.sty) (refcount.sty (ltxcmds.sty) (infwarerr.sty)) (totpages.sty
+(everyshi.sty)) (environ.sty (trimspaces.sty)) (textcase.sty) (natbib.sty)
+(hyperxmp.sty (kvoptions.sty (kvsetkeys.sty)) (pdfescape.sty (pdftexcmds.sty))
+(stringenc.sty) (intcalc.sty) (ifmtarg.sty) (ifthen.sty) (ifdraft.sty)
+(ifluatex.sty)) (hyperref.sty (kvdefinekeys.sty) (hycolor.sty) (letltxmacro.sty
+) (auxhook.sty) (pd1enc.def) (etexcmds.sty) (puenc.def) (url.sty) (bitset.sty
+(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (rerunfilecheck.sty
+(atveryend-ltx.sty) (uniquecounter.sty))) (graphicx.sty (graphics.sty (trig.sty
+) (graphics.cfg) (xetex.def))) (xcolor.sty (color.cfg)) (geometry.sty
+(ifvtex.sty)) (manyfoot.sty (nccfoots.sty)) (fontenc.sty (t1lmr.fd))
+(newtxmath.sty
+`newtxmath' v1.71, 2022/01/16 Math macros based originally on txfonts (msharpe)
+(ifxetex.sty) (centernot.sty) (binhex)
+amsthm NOT loaded
+) (libertine.sty (textcomp.sty) (fontspec.sty (xparse.sty (expl3.sty
+(l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty) (fontspec.cfg)))warning: libertine.sty:308: 
+Requested font "[LinLibertine_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RBI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 8.99997pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 8.99997pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 8.99997pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 8.99997pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 8.99997pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+
+(LinLibertine_R) (LinBiolinum_R) (LinBiolinum_K) (LinLibertine_I) (LKey))
+(inconsolata.fontspec)warning: acmart.cls:815: 
+Requested font "[Inconsolatazi4-Regular.otf]/OT" at 8.99997pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+ (caption.sty (caption3.sty (caption-ams-smf.sto)))
+(float.sty) (comment.sty Excluding comment 'comment')
+Excluding comment 'CCSXML' (fancyhdr.sty) Special comment 'acks') (balance.sty)
+ Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress'
+No file main.aux.
+(omlnxlmi.fd) (ts1cmr.fd) (untxexa.fd) (lmsntxsy.fd) (lmxntxexx.fd)warning: main.tex:17: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+
+(ot1minlibertine.fd)warning: main.tex:17: 
+Requested font "MinLibReg-ot1" at 7.3pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "MinLibReg-ot1" at 5.5pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "nxlmi7" at 7.3pt
+warning: main.tex:17:  -> nxlmi7
+warning: main.tex:17: Requested font "nxlmi5" at 5.5pt
+warning: main.tex:17:  -> nxlmi5
+warning: main.tex:17: Requested font "ntxsy7" at 7.3pt
+warning: main.tex:17:  -> ntxsy7
+warning: main.tex:17: Requested font "ntxsy5" at 5.5pt
+warning: main.tex:17:  -> ntxsy5
+warning: main.tex:17: Requested font "ntxexx" at 7.3pt
+warning: main.tex:17:  -> ntxexx
+warning: main.tex:17: Requested font "ntxexx" at 5.5pt
+warning: main.tex:17:  -> ntxexx
+ (umsa.fd)warning: main.tex:17: 
+Requested font "msam7" at 7.3pt
+warning: main.tex:17:  -> msam7
+warning: main.tex:17: Requested font "msam5" at 5.5pt
+warning: main.tex:17:  -> msam5
+ (umsb.fd)warning: main.tex:17: 
+Requested font "msbm7" at 7.3pt
+warning: main.tex:17:  -> msbm7
+warning: main.tex:17: Requested font "msbm5" at 5.5pt
+warning: main.tex:17:  -> msbm5
+ (untxmia.fd)warning: main.tex:17: 
+Requested font "nxlmia" at 7.3pt
+warning: main.tex:17:  -> nxlmia
+warning: main.tex:17: Requested font "nxlmia" at 5.5pt
+warning: main.tex:17:  -> nxlmia
+ (untxsym.fd)warning: main.tex:17: 
+Requested font "ntxsym" at 7.3pt
+warning: main.tex:17:  -> ntxsym
+warning: main.tex:17: Requested font "ntxsym" at 5.5pt
+warning: main.tex:17:  -> ntxsym
+ (untxsyc.fd)
+warning: main.tex:17: 
+Requested font "ntxsyc" at 7.3pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxsyc" at 5.5pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxexa" at 7.3pt
+warning: main.tex:17:  -> ntxexa
+warning: main.tex:17: Requested font "ntxexa" at 5.5pt
+warning: main.tex:17:  -> ntxexa
+(nameref.sty (gettitlestring.sty))
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+Excluding 'CCSXML' comment.warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 12.0pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.0pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 10.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 10.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 10.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 10.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 10.0pt
+warning: main.tex:76:  -> msam10
+ (mt-msa.cfg)warning: main.tex:76: 
+Requested font "msbm10" at 10.0pt
+warning: main.tex:76:  -> msbm10
+ (mt-msb.cfg)warning: main.tex:76: 
+Requested font "nxlmia" at 10.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 10.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 10.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 10.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.95pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 9.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 9.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 9.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 9.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 9.0pt
+warning: main.tex:76:  -> msam10
+warning: main.tex:76: Requested font "msbm10" at 9.0pt
+warning: main.tex:76:  -> msbm10
+warning: main.tex:76: Requested font "nxlmia" at 9.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 9.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 9.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 9.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 76.
+
+
+Package natbib Warning: Citation `sagas' on page 1 undefined on input line 94.
+
+
+Package natbib Warning: Citation `nx' on page 1 undefined on input line 98.
+
+
+Package natbib Warning: Citation `changesets' on page 1 undefined on input line
+ 98.
+
+
+Package natbib Warning: Citation `semanticrelease' on page 1 undefined on input
+ line 99.
+
+
+LaTeX Warning: Reference `sec:ccme' on page 1 undefined on input line 110.
+
+
+LaTeX Warning: Reference `sec:model' on page 1 undefined on input line 113.
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 1 undefined on input line 113
+.
+
+
+LaTeX Warning: Reference `sec:eval:formal' on page 1 undefined on input line 11
+5.
+
+
+LaTeX Warning: Reference `sec:impl' on page 1 undefined on input line 119.
+
+
+LaTeX Warning: Reference `sec:eval' on page 1 undefined on input line 119.
+
+warning: main.tex:125: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+
+warning: main.tex:144: Underfull \vbox (badness 6608) has occurred while \output is active
+Underfull \vbox (badness 6608) has occurred while \output is active [1.1]
+
+LaTeX Warning: Reference `def:adm' on page 2 undefined on input line 146.
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 2 undefined on input line 149
+.
+
+
+Package natbib Warning: Citation `cc' on page 2 undefined on input line 155.
+
+warning: main.tex:162: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 8.0pt
+warning: main.tex:163: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 8.0pt
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 8.0pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 6.2pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "nxlmi7" at 8.0pt
+warning: main.tex:207:  -> nxlmi7
+warning: main.tex:207: Requested font "nxlmi5" at 6.2pt
+warning: main.tex:207:  -> nxlmi5
+warning: main.tex:207: Requested font "ntxsy7" at 8.0pt
+warning: main.tex:207:  -> ntxsy7
+warning: main.tex:207: Requested font "ntxsy5" at 6.2pt
+warning: main.tex:207:  -> ntxsy5
+warning: main.tex:207: Requested font "ntxexx" at 8.0pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "ntxexx" at 6.2pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "msam10" at 8.0pt
+warning: main.tex:207:  -> msam10
+warning: main.tex:207: Requested font "msam7" at 6.2pt
+warning: main.tex:207:  -> msam7
+warning: main.tex:207: Requested font "msbm10" at 8.0pt
+warning: main.tex:207:  -> msbm10
+warning: main.tex:207: Requested font "msbm7" at 6.2pt
+warning: main.tex:207:  -> msbm7
+warning: main.tex:207: Requested font "nxlmia" at 8.0pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "nxlmia" at 6.2pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "ntxsym" at 8.0pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsym" at 6.2pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsyc" at 8.0pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxsyc" at 6.2pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxexa" at 8.0pt
+warning: main.tex:207:  -> ntxexa
+warning: main.tex:207: Requested font "ntxexa" at 6.2pt
+warning: main.tex:207:  -> ntxexa
+
+warning: main.tex:236: Underfull \hbox (badness 1406) in paragraph at lines 223--236
+Underfull \hbox (badness 1406) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 accumulated unreleased release metadata; a unit is ca
+ncelled
+
+warning: main.tex:236: Underfull \hbox (badness 1107) in paragraph at lines 223--236
+Underfull \hbox (badness 1107) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 for a package when its commit is an ancestor-or-self 
+of the
+
+LaTeX Warning: Reference `sec:guarantees' on page 2 undefined on input line 241
+.
+
+(t1lmss.fd)warning: main.tex:248: 
+Requested font "ec-lmss9" at 9.0pt
+warning: main.tex:248:  -> ec-lmss9
+warning: main.tex:248: Requested font "ec-lmss8" at 7.3pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "ec-lmss8" at 5.5pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 9.0pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 7.3pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 5.5pt
+warning: main.tex:248:  -> MinLibIta-ot1
+
+
+Package natbib Warning: Citation `birdgit' on page 2 undefined on input line 25
+2.
+
+
+Package natbib Warning: Citation `mrdt' on page 2 undefined on input line 254.
+
+
+Package natbib Warning: Citation `swierstraloh' on page 2 undefined on input li
+ne 256.
+
+
+Package natbib Warning: Citation `hpt' on page 2 undefined on input line 256.
+
+
+Package natbib Warning: Citation `mimram' on page 2 undefined on input line 256
+.
+
+
+Package natbib Warning: Citation `semver' on page 2 undefined on input line 275
+.
+
+warning: main.tex:304: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:304: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+[2.2]
+
+LaTeX Warning: Reference `eq:train' on page 3 undefined on input line 318.
+
+warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+
+LaTeX Warning: Reference `eq:admission' on page 3 undefined on input line 434.
+
+
+warning: main.tex:440: Underfull \hbox (badness 1314) in paragraph at lines 433--440
+Underfull \hbox (badness 1314) in paragraph at lines 433--440
+\TU/LinLibertine(0)/m/n/9 answer exactly equal to the downward planner’s obliga
+tions,
+
+LaTeX Warning: Reference `tab:train' on page 3 undefined on input line 482.
+
+
+LaTeX Warning: Reference `eq:train' on page 3 undefined on input line 487.
+
+
+LaTeX Warning: Reference `eq:train' on page 3 undefined on input line 487.
+
+warning: main.tex:490: Requested font "ec-lmss8" at 8.0pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "ec-lmss8" at 6.2pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 8.0pt
+warning: main.tex:490:  -> MinLibIta-ot1
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 6.2pt
+warning: main.tex:490:  -> MinLibIta-ot1
+
+LaTeX Warning: Reference `eq:window' on page 3 undefined on input line 518.
+
+
+LaTeX Warning: Reference `prop:tagall' on page 3 undefined on input line 522.
+
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[3.3]warning: main.tex:556: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;+smcp;mapping=tex-text;" at 9.0pt
+
+
+LaTeX Warning: Reference `sec:guarantees' on page 4 undefined on input line 586
+.
+
+
+LaTeX Warning: Reference `def:plan' on page 4 undefined on input line 588.
+
+
+LaTeX Warning: Reference `def:run' on page 4 undefined on input line 593.
+
+
+LaTeX Warning: Reference `sec:eval:fresh' on page 4 undefined on input line 594
+.
+
+
+LaTeX Warning: Reference `sec:eval:diff' on page 4 undefined on input line 596.
+
+
+
+warning: main.tex:611: Underfull \hbox (badness 1237) in paragraph at lines 601--611
+Underfull \hbox (badness 1237) in paragraph at lines 601--611
+\TU/LinLibertine(0)/m/n/9 Cross-run claims use the \TU/LinLibertine(0)/m/it/9 r
+etry invariant\TU/LinLibertine(0)/m/n/9 : the corrected tuple
+
+warning: main.tex:618: Underfull \hbox (badness 1735) in paragraph at lines 614--618
+Underfull \hbox (badness 1735) in paragraph at lines 614--618
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.1 (window antitonicity). []\TU/LinLibe
+rtine(0)/m/it/9 For $\OML/nxlmi/m/it/9 ^^[[] \U/ntxmia/m/it/9 = []\LMS/ntxsy/m/
+n/9 ¹\OML/nxlmi/m/it/9 ^^[; F\LMS/ntxsy/m/n/9 º$\TU/LinLibertine(0)/m/it/9 ,
+
+LaTeX Warning: Reference `eq:fresh' on page 4 undefined on input line 622.
+
+[4.4]
+warning: main.tex:630: Underfull \hbox (badness 3364) in paragraph at lines 628--630
+Underfull \hbox (badness 3364) in paragraph at lines 628--630
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.2 (source stability). []\TU/LinLiberti
+ne(0)/m/it/9 Under the retry invariant,
+
+LaTeX Warning: Reference `def:chan' on page 5 undefined on input line 647.
+
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 648.
+
+
+
+LaTeX Font Warning: Font shape `TU/inconsolata(0)/m/it' undefined
+(Font)              using `TU/inconsolata(0)/m/n' instead on input line 653.
+
+
+warning: main.tex:663: Underfull \hbox (badness 10000) in paragraph at lines 653--663
+Underfull \hbox (badness 10000) in paragraph at lines 653--663
+\TU/inconsolata(0)/m/it/9 feat(core)^++1: x \TU/LinLibertine(0)/m/it/9 and \TU/
+inconsolata(0)/m/it/9 release(core)%stable: graduate\TU/LinLibertine(0)/m/it/9 
+,
+
+warning: main.tex:663: Underfull \hbox (badness 1303) in paragraph at lines 653--663
+Underfull \hbox (badness 1303) in paragraph at lines 653--663
+\TU/LinLibertine(0)/m/it/9 package, both plans, different versions, every compl
+eted release
+
+warning: main.tex:683: Underfull \hbox (badness 8000) in paragraph at lines 679--683
+Underfull \hbox (badness 8000) in paragraph at lines 679--683
+[]\TU/LinLibertine(0)/m/it/9 once $\OML/nxlmi/m/it/9 D$ \TU/LinLibertine(0)/m/i
+t/9 releases past $\OML/nxlmi/m/it/9 c[]$\TU/LinLibertine(0)/m/it/9 ,
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 693.
+
+
+
+LaTeX Warning: Reference `eq:admission' on page 5 undefined on input line 701.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 704.
+
+
+LaTeX Warning: Reference `lem:c' on page 5 undefined on input line 710.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 713.
+
+
+LaTeX Warning: Reference `eq:admission' on page 5 undefined on input line 719.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 720.
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 730.
+
+
+LaTeX Warning: Reference `eq:resolvable' on page 5 undefined on input line 733.
+
+
+
+LaTeX Warning: Reference `lem:w' on page 5 undefined on input line 740.
+
+
+LaTeX Warning: Reference `def:run' on page 5 undefined on input line 742.
+
+
+LaTeX Warning: Reference `thm:det' on page 5 undefined on input line 752.
+
+
+LaTeX Warning: Reference `sec:motivation' on page 5 undefined on input line 765
+.
+
+warning: main.tex:765: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+
+LaTeX Warning: Reference `sec:motivation' on page 5 undefined on input line 765
+.
+
+
+LaTeX Warning: Reference `def:run' on page 5 undefined on input line 791.
+
+
+LaTeX Warning: Reference `tab:compare' on page 5 undefined on input line 793.
+
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[5.5]warning: main.tex:805: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 6.0pt
+warning: main.tex:817: Requested font "MinLibReg-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibReg-ot1
+warning: main.tex:817: Requested font "nxlmi7" at 6.5pt
+warning: main.tex:817:  -> nxlmi7
+warning: main.tex:817: Requested font "ntxsy7" at 6.5pt
+warning: main.tex:817:  -> ntxsy7
+warning: main.tex:817: Requested font "ntxexx" at 6.5pt
+warning: main.tex:817:  -> ntxexx
+warning: main.tex:817: Requested font "ec-lmss8" at 6.5pt
+warning: main.tex:817:  -> ec-lmss8
+warning: main.tex:817: Requested font "MinLibIta-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibIta-ot1
+warning: main.tex:817: Requested font "msam7" at 6.5pt
+warning: main.tex:817:  -> msam7
+warning: main.tex:817: Requested font "msbm7" at 6.5pt
+warning: main.tex:817:  -> msbm7
+warning: main.tex:817: Requested font "nxlmia" at 6.5pt
+warning: main.tex:817:  -> nxlmia
+warning: main.tex:817: Requested font "ntxsym" at 6.5pt
+warning: main.tex:817:  -> ntxsym
+warning: main.tex:817: Requested font "ntxsyc" at 6.5pt
+warning: main.tex:817:  -> ntxsyc
+warning: main.tex:817: Requested font "ntxexa" at 6.5pt
+warning: main.tex:817:  -> ntxexa
+
+warning: main.tex:852: Underfull \hbox (badness 1102) in paragraph at lines 837--852
+Underfull \hbox (badness 1102) in paragraph at lines 837--852
+\TU/LinLibertine(0)/m/n/9 construction establishes applicability; the evaluatio
+n does not
+
+warning: main.tex:871: Underfull \hbox (badness 10000) in paragraph at lines 854--871
+Underfull \hbox (badness 10000) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 sets \TU/inconsolata(0)/m/it/9 shell: ["/bin/sh", "-c
+"]\TU/LinLibertine(0)/m/n/9 , while \TU/inconsolata(0)/m/it/9 windows.yaml \TU/
+LinLibertine(0)/m/n/9 sets
+
+warning: main.tex:871: Underfull \hbox (badness 3396) in paragraph at lines 854--871
+Underfull \hbox (badness 3396) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 --config windows.yaml status \TU/LinLibertine(0)/m/n/
+9 locally or \TU/inconsolata(0)/m/it/9 dispat --config
+
+warning: main.tex:871: Underfull \hbox (badness 2772) in paragraph at lines 854--871
+Underfull \hbox (badness 2772) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 linux.yaml status \TU/LinLibertine(0)/m/n/9 on the ru
+nner; CI runs the latter con-
+
+warning: main.tex:871: Underfull \hbox (badness 1742) in paragraph at lines 854--871
+Underfull \hbox (badness 1742) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 figuration without \TU/inconsolata(0)/m/it/9 status \
+TU/LinLibertine(0)/m/n/9 after its release gates. \TU/inconsolata(0)/m/it/9 dis
+pat if
+
+warning: main.tex:871: Underfull \hbox (badness 2359) in paragraph at lines 854--871
+Underfull \hbox (badness 2359) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 Named scripts can themselves use \TU/inconsolata(0)/m
+/it/9 $ref\TU/LinLibertine(0)/m/n/9 ; \TU/inconsolata(0)/m/it/9 dispat for Debu
+g
+
+warning: main.tex:871: Underfull \hbox (badness 5036) in paragraph at lines 854--871
+Underfull \hbox (badness 5036) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 Release --do "dispat exec build-one" \TU/LinLibertine
+(0)/m/n/9 passes each value
+
+Package natbib Warning: Citation `guard' on page 6 undefined on input line 878.
+
+
+
+Package natbib Warning: Citation `ccme2' on page 6 undefined on input line 887.
+
+
+
+LaTeX Warning: Reference `sec:model:inst' on page 6 undefined on input line 894
+.
+
+[6.6]
+warning: main.tex:916: Underfull \hbox (badness 3635) in paragraph at lines 913--916
+Underfull \hbox (badness 3635) in paragraph at lines 913--916
+\TU/inconsolata(0)/m/it/9 a7011cbcb9e8\TU/LinLibertine(0)/m/n/9 , image digest 
+\TU/inconsolata(0)/m/it/9 sha256:4c0ad4b8...e7bfd\TU/LinLibertine(0)/m/n/9 , th
+e
+
+warning: main.tex:931: Underfull \hbox (badness 1009) in paragraph at lines 917--931
+Underfull \hbox (badness 1009) in paragraph at lines 917--931
+\TU/LinLibertine(0)/m/n/9 eligibility/order, inherited-channel drift, and sourc
+e exclusion).
+
+warning: main.tex:946: Underfull \hbox (badness 1038) in paragraph at lines 939--946
+Underfull \hbox (badness 1038) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 dians span 0.017s for 100 layered packages to 19.354s
+ for a
+
+warning: main.tex:946: Underfull \hbox (badness 3049) in paragraph at lines 939--946
+Underfull \hbox (badness 3049) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 U1000 took 0.290s/26MiB and 5,000 padding commits too
+k
+
+warning: main.tex:946: Underfull \hbox (badness 1874) in paragraph at lines 939--946
+Underfull \hbox (badness 1874) in paragraph at lines 939--946
+\TU/inconsolata(0)/m/it/9 commit-tree \TU/LinLibertine(0)/m/n/9 generator match
+ed the ordinary small fixture’s
+
+LaTeX Warning: Reference `rem:drift' on page 7 undefined on input line 963.
+
+
+warning: main.tex:968: Underfull \hbox (badness 7133) in paragraph at lines 965--968
+Underfull \hbox (badness 7133) in paragraph at lines 965--968
+[]\TU/LinLibertine(0)/m/it/9 Reverse audits need the full admission predicate. 
+\TU/LinLibertine(0)/m/n/9 A
+
+warning: main.tex:971: Underfull \hbox (badness 1448) in paragraph at lines 968--971
+Underfull \hbox (badness 1448) in paragraph at lines 968--971
+[]\TU/LinLibertine(0)/m/it/9 Axis independence is one-way. \TU/LinLibertine(0)/
+m/n/9 Resolving channels can
+
+LaTeX Warning: Reference `sec:eval:diff' on page 7 undefined on input line 990.
+
+
+
+LaTeX Warning: Reference `sec:eval:formal' on page 7 undefined on input line 10
+01.
+
+
+LaTeX Warning: Reference `sec:compare' on page 7 undefined on input line 1006.
+
+
+warning: main.tex:1013: Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+\TU/LinLibertine(0)/m/n/9 were reverse-engineered from their layouts and may mi
+sread
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[7.7]
+
+Package natbib Warning: Citation `adams' on page 8 undefined on input line 1018
+.
+
+
+Package natbib Warning: Citation `potvin' on page 8 undefined on input line 101
+9.
+
+
+Package natbib Warning: Citation `semanticrelease' on page 8 undefined on input
+ line 1021.
+
+
+Package natbib Warning: Citation `lerna' on page 8 undefined on input line 1022
+.
+
+
+Package natbib Warning: Citation `changesets' on page 8 undefined on input line
+ 1023.
+
+
+Package natbib Warning: Citation `nx' on page 8 undefined on input line 1023.
+
+
+Package natbib Warning: Citation `releaseplease' on page 8 undefined on input l
+ine 1024.
+
+
+LaTeX Warning: Reference `sec:compare' on page 8 undefined on input line 1025.
+
+
+Package natbib Warning: Citation `raemaekers' on page 8 undefined on input line
+ 1029.
+
+
+Package natbib Warning: Citation `bogart' on page 8 undefined on input line 102
+9.
+
+
+Package natbib Warning: Citation `decan' on page 8 undefined on input line 1030
+.
+
+
+Package natbib Warning: Citation `swierstraloh' on page 8 undefined on input li
+ne 1032.
+
+
+Package natbib Warning: Citation `hpt' on page 8 undefined on input line 1033.
+
+
+Package natbib Warning: Citation `mimram' on page 8 undefined on input line 103
+4.
+
+
+Package natbib Warning: Citation `birdgit' on page 8 undefined on input line 10
+36.
+
+
+Package natbib Warning: Citation `mrdt' on page 8 undefined on input line 1037.
+
+
+
+Package natbib Warning: Citation `edos' on page 8 undefined on input line 1039.
+
+
+
+Package natbib Warning: Citation `sagas' on page 8 undefined on input line 1041
+.
+
+
+Package natbib Warning: Citation `gray' on page 8 undefined on input line 1043.
+
+
+
+Package natbib Warning: Citation `helland07' on page 8 undefined on input line 
+1045.
+
+
+Package natbib Warning: Citation `helland12' on page 8 undefined on input line 
+1045.
+
+
+Package natbib Warning: Citation `kahn' on page 8 undefined on input line 1046.
+
+
+
+Package natbib Warning: Citation `mokhov' on page 8 undefined on input line 104
+7.
+
+
+Package natbib Warning: Citation `klees' on page 8 undefined on input line 1051
+.
+
+
+Package natbib Warning: Citation `anvil' on page 8 undefined on input line 1052
+.
+
+
+warning: main.tex:1068: Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+\TU/LinLibertine(0)/m/n/9 Across single-package repositories, monorepos and con
+trol-
+
+Package natbib Warning: Citation `lamport' on page 8 undefined on input line 10
+70.
+
+
+LaTeX Warning: Reference `sec:intro' on page 8 undefined on input line 1075.
+
+
+LaTeX Warning: Reference `sec:conclusion' on page 8 undefined on input line 107
+5.
+
+
+warning: main.tex:1088: Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+\TU/LinLibertine(0)/m/n/9 records; its archival deposit remains a publication-r
+eadiness
+warning: main.tex:1098: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[]\TU/LinLibertine(0)/m/n/7 CCME Specification 2.0.0. []$[][][][][] [] [] [] []
+[][][][][] [] [][][] [] [][][][][][][] [] [][][][][][] [] [][][][] []
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] [] [][][][][] [] [][][][] [][] [][][][] [] [][][][] [] [][]$[]\TU/LinLibertin
+e(0)/m/n/7 ,
+
+warning: main.tex:1203: Underfull \vbox (badness 1270) has occurred while \output is active
+Underfull \vbox (badness 1270) has occurred while \output is active [8.8]warning: main.tex:1251: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:1259: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 7.0pt
+
+
+Package natbib Warning: There were undefined citations.
+
+(se-pdfdoc.def) (se-utf32be.def)
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[9.9] (main.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `main.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)
+Output written on main.xdv (9 pages, 533712 bytes).
+Transcript written on main.log.
+note: Rerunning TeX because "main.out" changed ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (acmart.cls
+Document Class: acmart 2022/02/19 v1.83 Typesetting articles for the Associatio
+n for Computing Machinery
+(xkeyval.sty (xkeyval (xkvutils (keyval)))) (xstring.sty (xstring.tex))
+(iftex.sty) (amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (umsa.fd) (amsfonts.sty))
+ (microtype.sty (etoolbox.sty) (microtype-xetex.def) (microtype.cfg))
+(booktabs.sty) (refcount.sty (ltxcmds.sty) (infwarerr.sty)) (totpages.sty
+(everyshi.sty)) (environ.sty (trimspaces.sty)) (textcase.sty) (natbib.sty)
+(hyperxmp.sty (kvoptions.sty (kvsetkeys.sty)) (pdfescape.sty (pdftexcmds.sty))
+(stringenc.sty) (intcalc.sty) (ifmtarg.sty) (ifthen.sty) (ifdraft.sty)
+(ifluatex.sty)) (hyperref.sty (kvdefinekeys.sty) (hycolor.sty) (letltxmacro.sty
+) (auxhook.sty) (pd1enc.def) (etexcmds.sty) (puenc.def) (url.sty) (bitset.sty
+(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (rerunfilecheck.sty
+(atveryend-ltx.sty) (uniquecounter.sty))) (graphicx.sty (graphics.sty (trig.sty
+) (graphics.cfg) (xetex.def))) (xcolor.sty (color.cfg)) (geometry.sty
+(ifvtex.sty)) (manyfoot.sty (nccfoots.sty)) (fontenc.sty (t1lmr.fd))
+(newtxmath.sty
+`newtxmath' v1.71, 2022/01/16 Math macros based originally on txfonts (msharpe)
+(ifxetex.sty) (centernot.sty) (binhex)
+amsthm NOT loaded
+) (libertine.sty (textcomp.sty) (fontspec.sty (xparse.sty (expl3.sty
+(l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty) (fontspec.cfg)))warning: libertine.sty:308: 
+Requested font "[LinLibertine_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RBI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 8.99997pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 8.99997pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 8.99997pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 8.99997pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 8.99997pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+
+(LinLibertine_R) (LinBiolinum_R) (LinBiolinum_K) (LinLibertine_I) (LKey))
+(inconsolata.fontspec)warning: acmart.cls:815: 
+Requested font "[Inconsolatazi4-Regular.otf]/OT" at 8.99997pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+ (caption.sty (caption3.sty (caption-ams-smf.sto)))
+(float.sty) (comment.sty Excluding comment 'comment')
+Excluding comment 'CCSXML' (fancyhdr.sty) Special comment 'acks') (balance.sty)
+ Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress' (main.aux) (omlnxlmi.fd) (ts1cmr.fd) (untxexa.fd
+) (lmsntxsy.fd) (lmxntxexx.fd)warning: main.tex:17: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+ (ot1minlibertine.fd)warning: main.tex:17: 
+Requested font "MinLibReg-ot1" at 7.3pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "MinLibReg-ot1" at 5.5pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "nxlmi7" at 7.3pt
+warning: main.tex:17:  -> nxlmi7
+warning: main.tex:17: Requested font "nxlmi5" at 5.5pt
+warning: main.tex:17:  -> nxlmi5
+warning: main.tex:17: Requested font "ntxsy7" at 7.3pt
+warning: main.tex:17:  -> ntxsy7
+warning: main.tex:17: Requested font "ntxsy5" at 5.5pt
+warning: main.tex:17:  -> ntxsy5
+warning: main.tex:17: Requested font "ntxexx" at 7.3pt
+warning: main.tex:17:  -> ntxexx
+warning: main.tex:17: Requested font "ntxexx" at 5.5pt
+warning: main.tex:17:  -> ntxexx
+ (umsa.fd)warning: main.tex:17: 
+Requested font "msam7" at 7.3pt
+warning: main.tex:17:  -> msam7
+warning: main.tex:17: Requested font "msam5" at 5.5pt
+warning: main.tex:17:  -> msam5
+ (umsb.fd)warning: main.tex:17: 
+Requested font "msbm7" at 7.3pt
+warning: main.tex:17:  -> msbm7
+warning: main.tex:17: Requested font "msbm5" at 5.5pt
+warning: main.tex:17:  -> msbm5
+
+(untxmia.fd)warning: main.tex:17: 
+Requested font "nxlmia" at 7.3pt
+warning: main.tex:17:  -> nxlmia
+warning: main.tex:17: Requested font "nxlmia" at 5.5pt
+warning: main.tex:17:  -> nxlmia
+ (untxsym.fd)warning: main.tex:17: 
+Requested font "ntxsym" at 7.3pt
+warning: main.tex:17:  -> ntxsym
+warning: main.tex:17: Requested font "ntxsym" at 5.5pt
+warning: main.tex:17:  -> ntxsym
+ (untxsyc.fd)warning: main.tex:17: 
+Requested font "ntxsyc" at 7.3pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxsyc" at 5.5pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxexa" at 7.3pt
+warning: main.tex:17:  -> ntxexa
+warning: main.tex:17: Requested font "ntxexa" at 5.5pt
+warning: main.tex:17:  -> ntxexa
+ (nameref.sty (gettitlestring.sty))
+(main.out) (main.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+Excluding 'CCSXML' comment.warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 12.0pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.0pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 10.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 10.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 10.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 10.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 10.0pt
+warning: main.tex:76:  -> msam10
+ (mt-msa.cfg)warning: main.tex:76: 
+Requested font "msbm10" at 10.0pt
+warning: main.tex:76:  -> msbm10
+ (mt-msb.cfg)warning: main.tex:76: 
+Requested font "nxlmia" at 10.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 10.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 10.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 10.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.95pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 9.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 9.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 9.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 9.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 9.0pt
+warning: main.tex:76:  -> msam10
+warning: main.tex:76: Requested font "msbm10" at 9.0pt
+warning: main.tex:76:  -> msbm10
+warning: main.tex:76: Requested font "nxlmia" at 9.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 9.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 9.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 9.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 76.
+
+
+warning: main.tex:103: Underfull \hbox (badness 3229) in paragraph at lines 97--103
+Underfull \hbox (badness 3229) in paragraph at lines 97--103
+\TU/LinLibertine(0)/m/n/9 leases, while semantic-release [[]] targets one packa
+ge per
+warning: main.tex:125: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+[1.1]warning: main.tex:162: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 8.0pt
+warning: main.tex:163: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 8.0pt
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 8.0pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 6.2pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "nxlmi7" at 8.0pt
+warning: main.tex:207:  -> nxlmi7
+warning: main.tex:207: Requested font "nxlmi5" at 6.2pt
+warning: main.tex:207:  -> nxlmi5
+warning: main.tex:207: Requested font "ntxsy7" at 8.0pt
+warning: main.tex:207:  -> ntxsy7
+warning: main.tex:207: Requested font "ntxsy5" at 6.2pt
+warning: main.tex:207:  -> ntxsy5
+warning: main.tex:207: Requested font "ntxexx" at 8.0pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "ntxexx" at 6.2pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "msam10" at 8.0pt
+warning: main.tex:207:  -> msam10
+warning: main.tex:207: Requested font "msam7" at 6.2pt
+warning: main.tex:207:  -> msam7
+warning: main.tex:207: Requested font "msbm10" at 8.0pt
+warning: main.tex:207:  -> msbm10
+warning: main.tex:207: Requested font "msbm7" at 6.2pt
+warning: main.tex:207:  -> msbm7
+warning: main.tex:207: Requested font "nxlmia" at 8.0pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "nxlmia" at 6.2pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "ntxsym" at 8.0pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsym" at 6.2pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsyc" at 8.0pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxsyc" at 6.2pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxexa" at 8.0pt
+warning: main.tex:207:  -> ntxexa
+warning: main.tex:207: Requested font "ntxexa" at 6.2pt
+warning: main.tex:207:  -> ntxexa
+
+warning: main.tex:236: Underfull \hbox (badness 1406) in paragraph at lines 223--236
+Underfull \hbox (badness 1406) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 accumulated unreleased release metadata; a unit is ca
+ncelled
+
+warning: main.tex:236: Underfull \hbox (badness 1107) in paragraph at lines 223--236
+Underfull \hbox (badness 1107) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 for a package when its commit is an ancestor-or-self 
+of the
+(t1lmss.fd)warning: main.tex:248: 
+Requested font "ec-lmss9" at 9.0pt
+warning: main.tex:248:  -> ec-lmss9
+warning: main.tex:248: Requested font "ec-lmss8" at 7.3pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "ec-lmss8" at 5.5pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 9.0pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 7.3pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 5.5pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:310: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:310: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+ [2.2]warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+
+warning: main.tex:440: Underfull \hbox (badness 1314) in paragraph at lines 433--440
+Underfull \hbox (badness 1314) in paragraph at lines 433--440
+\TU/LinLibertine(0)/m/n/9 answer exactly equal to the downward planner’s obliga
+tions,
+warning: main.tex:490: Requested font "ec-lmss8" at 8.0pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "ec-lmss8" at 6.2pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 8.0pt
+warning: main.tex:490:  -> MinLibIta-ot1
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 6.2pt
+warning: main.tex:490:  -> MinLibIta-ot1
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[3.3]warning: main.tex:556: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;+smcp;mapping=tex-text;" at 9.0pt
+
+warning: main.tex:611: Underfull \hbox (badness 1237) in paragraph at lines 601--611
+Underfull \hbox (badness 1237) in paragraph at lines 601--611
+\TU/LinLibertine(0)/m/n/9 Cross-run claims use the \TU/LinLibertine(0)/m/it/9 r
+etry invariant\TU/LinLibertine(0)/m/n/9 : the corrected tuple
+
+warning: main.tex:618: Underfull \hbox (badness 1735) in paragraph at lines 614--618
+Underfull \hbox (badness 1735) in paragraph at lines 614--618
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.1 (window antitonicity). []\TU/LinLibe
+rtine(0)/m/it/9 For $\OML/nxlmi/m/it/9 ^^[[] \U/ntxmia/m/it/9 = []\LMS/ntxsy/m/
+n/9 ¹\OML/nxlmi/m/it/9 ^^[; F\LMS/ntxsy/m/n/9 º$\TU/LinLibertine(0)/m/it/9 ,
+
+warning: main.tex:630: Underfull \hbox (badness 3364) in paragraph at lines 628--630
+Underfull \hbox (badness 3364) in paragraph at lines 628--630
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.2 (source stability). []\TU/LinLiberti
+ne(0)/m/it/9 Under the retry invariant,
+[4.4]
+
+LaTeX Font Warning: Font shape `TU/inconsolata(0)/m/it' undefined
+(Font)              using `TU/inconsolata(0)/m/n' instead on input line 653.
+
+
+warning: main.tex:663: Underfull \hbox (badness 10000) in paragraph at lines 653--663
+Underfull \hbox (badness 10000) in paragraph at lines 653--663
+\TU/inconsolata(0)/m/it/9 feat(core)^++1: x \TU/LinLibertine(0)/m/it/9 and \TU/
+inconsolata(0)/m/it/9 release(core)%stable: graduate\TU/LinLibertine(0)/m/it/9 
+,
+
+warning: main.tex:663: Underfull \hbox (badness 1303) in paragraph at lines 653--663
+Underfull \hbox (badness 1303) in paragraph at lines 653--663
+\TU/LinLibertine(0)/m/it/9 package, both plans, different versions, every compl
+eted release
+
+warning: main.tex:683: Underfull \hbox (badness 8000) in paragraph at lines 679--683
+Underfull \hbox (badness 8000) in paragraph at lines 679--683
+[]\TU/LinLibertine(0)/m/it/9 once $\OML/nxlmi/m/it/9 D$ \TU/LinLibertine(0)/m/i
+t/9 releases past $\OML/nxlmi/m/it/9 c[]$\TU/LinLibertine(0)/m/it/9 ,
+warning: main.tex:765: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[5.5]warning: main.tex:805: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 6.0pt
+warning: main.tex:817: Requested font "MinLibReg-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibReg-ot1
+warning: main.tex:817: Requested font "nxlmi7" at 6.5pt
+warning: main.tex:817:  -> nxlmi7
+warning: main.tex:817: Requested font "ntxsy7" at 6.5pt
+warning: main.tex:817:  -> ntxsy7
+warning: main.tex:817: Requested font "ntxexx" at 6.5pt
+warning: main.tex:817:  -> ntxexx
+warning: main.tex:817: Requested font "ec-lmss8" at 6.5pt
+warning: main.tex:817:  -> ec-lmss8
+warning: main.tex:817: Requested font "MinLibIta-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibIta-ot1
+warning: main.tex:817: Requested font "msam7" at 6.5pt
+warning: main.tex:817:  -> msam7
+warning: main.tex:817: Requested font "msbm7" at 6.5pt
+warning: main.tex:817:  -> msbm7
+warning: main.tex:817: Requested font "nxlmia" at 6.5pt
+warning: main.tex:817:  -> nxlmia
+warning: main.tex:817: Requested font "ntxsym" at 6.5pt
+warning: main.tex:817:  -> ntxsym
+warning: main.tex:817: Requested font "ntxsyc" at 6.5pt
+warning: main.tex:817:  -> ntxsyc
+warning: main.tex:817: Requested font "ntxexa" at 6.5pt
+warning: main.tex:817:  -> ntxexa
+
+warning: main.tex:852: Underfull \hbox (badness 1102) in paragraph at lines 837--852
+Underfull \hbox (badness 1102) in paragraph at lines 837--852
+\TU/LinLibertine(0)/m/n/9 construction establishes applicability; the evaluatio
+n does not
+
+warning: main.tex:871: Underfull \hbox (badness 10000) in paragraph at lines 854--871
+Underfull \hbox (badness 10000) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 sets \TU/inconsolata(0)/m/it/9 shell: ["/bin/sh", "-c
+"]\TU/LinLibertine(0)/m/n/9 , while \TU/inconsolata(0)/m/it/9 windows.yaml \TU/
+LinLibertine(0)/m/n/9 sets
+
+warning: main.tex:871: Underfull \hbox (badness 3396) in paragraph at lines 854--871
+Underfull \hbox (badness 3396) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 --config windows.yaml status \TU/LinLibertine(0)/m/n/
+9 locally or \TU/inconsolata(0)/m/it/9 dispat --config
+
+warning: main.tex:871: Underfull \hbox (badness 2772) in paragraph at lines 854--871
+Underfull \hbox (badness 2772) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 linux.yaml status \TU/LinLibertine(0)/m/n/9 on the ru
+nner; CI runs the latter con-
+
+warning: main.tex:871: Underfull \hbox (badness 1742) in paragraph at lines 854--871
+Underfull \hbox (badness 1742) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 figuration without \TU/inconsolata(0)/m/it/9 status \
+TU/LinLibertine(0)/m/n/9 after its release gates. \TU/inconsolata(0)/m/it/9 dis
+pat if
+
+warning: main.tex:871: Underfull \hbox (badness 2359) in paragraph at lines 854--871
+Underfull \hbox (badness 2359) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 Named scripts can themselves use \TU/inconsolata(0)/m
+/it/9 $ref\TU/LinLibertine(0)/m/n/9 ; \TU/inconsolata(0)/m/it/9 dispat for Debu
+g
+
+warning: main.tex:871: Underfull \hbox (badness 5036) in paragraph at lines 854--871
+Underfull \hbox (badness 5036) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 Release --do "dispat exec build-one" \TU/LinLibertine
+(0)/m/n/9 passes each value
+[6.6]
+warning: main.tex:916: Underfull \hbox (badness 3635) in paragraph at lines 913--916
+Underfull \hbox (badness 3635) in paragraph at lines 913--916
+\TU/inconsolata(0)/m/it/9 a7011cbcb9e8\TU/LinLibertine(0)/m/n/9 , image digest 
+\TU/inconsolata(0)/m/it/9 sha256:4c0ad4b8...e7bfd\TU/LinLibertine(0)/m/n/9 , th
+e
+
+warning: main.tex:931: Underfull \hbox (badness 1009) in paragraph at lines 917--931
+Underfull \hbox (badness 1009) in paragraph at lines 917--931
+\TU/LinLibertine(0)/m/n/9 eligibility/order, inherited-channel drift, and sourc
+e exclusion).
+
+warning: main.tex:946: Underfull \hbox (badness 1038) in paragraph at lines 939--946
+Underfull \hbox (badness 1038) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 dians span 0.017s for 100 layered packages to 19.354s
+ for a
+
+warning: main.tex:946: Underfull \hbox (badness 3049) in paragraph at lines 939--946
+Underfull \hbox (badness 3049) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 U1000 took 0.290s/26MiB and 5,000 padding commits too
+k
+
+warning: main.tex:946: Underfull \hbox (badness 1874) in paragraph at lines 939--946
+Underfull \hbox (badness 1874) in paragraph at lines 939--946
+\TU/inconsolata(0)/m/it/9 commit-tree \TU/LinLibertine(0)/m/n/9 generator match
+ed the ordinary small fixture’s
+
+warning: main.tex:968: Underfull \hbox (badness 7133) in paragraph at lines 965--968
+Underfull \hbox (badness 7133) in paragraph at lines 965--968
+[]\TU/LinLibertine(0)/m/it/9 Reverse audits need the full admission predicate. 
+\TU/LinLibertine(0)/m/n/9 A
+
+warning: main.tex:971: Underfull \hbox (badness 1448) in paragraph at lines 968--971
+Underfull \hbox (badness 1448) in paragraph at lines 968--971
+[]\TU/LinLibertine(0)/m/it/9 Axis independence is one-way. \TU/LinLibertine(0)/
+m/n/9 Resolving channels can
+
+warning: main.tex:1013: Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+\TU/LinLibertine(0)/m/n/9 were reverse-engineered from their layouts and may mi
+sread
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[7.7]
+warning: main.tex:1055: Underfull \hbox (badness 1546) in paragraph at lines 1017--1055
+Underfull \hbox (badness 1546) in paragraph at lines 1017--1055
+\TU/LinLibertine(0)/m/n/9 extend automation to monorepos within, predominantly,
+ one
+
+warning: main.tex:1068: Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+\TU/LinLibertine(0)/m/n/9 Across single-package repositories, monorepos and con
+trol-
+
+warning: main.tex:1088: Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+\TU/LinLibertine(0)/m/n/9 records; its archival deposit remains a publication-r
+eadiness
+warning: main.tex:1098: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[]\TU/LinLibertine(0)/m/n/7 CCME Specification 2.0.0. []$[][][][][] [] [] [] []
+[][][][][] [] [][][] [] [][][][][][][] [] [][][][][][] [] [][][][] []
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] [] [][][][][] [] [][][][] [][] [][][][] [] [][][][] [] [][]$[]\TU/LinLibertin
+e(0)/m/n/7 ,
+
+warning: main.tex:1203: Underfull \vbox (badness 1270) has occurred while \output is active
+Underfull \vbox (badness 1270) has occurred while \output is active [8.8]warning: main.tex:1251: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:1259: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 7.0pt
+
+(se-pdfdoc.def) (se-utf32be.def)
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[9.9] (main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)
+Output written on main.xdv (9 pages, 546580 bytes).
+Transcript written on main.log.
+note: Rerunning TeX because "main.aux" changed ...
+(main.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-02-24> (acmart.cls
+Document Class: acmart 2022/02/19 v1.83 Typesetting articles for the Associatio
+n for Computing Machinery
+(xkeyval.sty (xkeyval (xkvutils (keyval)))) (xstring.sty (xstring.tex))
+(iftex.sty) (amsart.cls
+Document Class: amsart 2020/05/29 v2.20.6
+(amsmath.sty
+For additional information on amsmath, use the `?' option.
+(amstext.sty (amsgen.sty)) (amsbsy.sty) (amsopn.sty)) (umsa.fd) (amsfonts.sty))
+ (microtype.sty (etoolbox.sty) (microtype-xetex.def) (microtype.cfg))
+(booktabs.sty) (refcount.sty (ltxcmds.sty) (infwarerr.sty)) (totpages.sty
+(everyshi.sty)) (environ.sty (trimspaces.sty)) (textcase.sty) (natbib.sty)
+(hyperxmp.sty (kvoptions.sty (kvsetkeys.sty)) (pdfescape.sty (pdftexcmds.sty))
+(stringenc.sty) (intcalc.sty) (ifmtarg.sty) (ifthen.sty) (ifdraft.sty)
+(ifluatex.sty)) (hyperref.sty (kvdefinekeys.sty) (hycolor.sty) (letltxmacro.sty
+) (auxhook.sty) (pd1enc.def) (etexcmds.sty) (puenc.def) (url.sty) (bitset.sty
+(bigintcalc.sty)) (atbegshi-ltx.sty)) (hxetex.def (rerunfilecheck.sty
+(atveryend-ltx.sty) (uniquecounter.sty))) (graphicx.sty (graphics.sty (trig.sty
+) (graphics.cfg) (xetex.def))) (xcolor.sty (color.cfg)) (geometry.sty
+(ifvtex.sty)) (manyfoot.sty (nccfoots.sty)) (fontenc.sty (t1lmr.fd))
+(newtxmath.sty
+`newtxmath' v1.71, 2022/01/16 Math macros based originally on txfonts (msharpe)
+(ifxetex.sty) (centernot.sty) (binhex)
+amsthm NOT loaded
+) (libertine.sty (textcomp.sty) (fontspec.sty (xparse.sty (expl3.sty
+(l3backend-xetex.def))) (fontspec-xetex.sty (fontenc.sty) (fontspec.cfg)))warning: libertine.sty:308: 
+Requested font "[LinLibertine_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_RBI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:308: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 8.99997pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:319: Requested font "[LinBiolinum_RBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 8.99997pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZ.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:338: Requested font "[LinLibertine_RZI.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 8.99997pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT" at 9.00003pt
+warning: libertine.sty:361: Requested font "[LinLibertine_DR.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 8.99997pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_M.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MB.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:435: Requested font "[LinLibertine_MBO.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 8.99997pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT" at 9.00003pt
+warning: libertine.sty:436: Requested font "[LinBiolinum_K.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 8.99997pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT" at 9.00003pt
+warning: libertine.sty:437: Requested font "[LinLibertine_I.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+
+(LinLibertine_R) (LinBiolinum_R) (LinBiolinum_K) (LinLibertine_I) (LKey))
+(inconsolata.fontspec)warning: acmart.cls:815: 
+Requested font "[Inconsolatazi4-Regular.otf]/OT" at 8.99997pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+warning: acmart.cls:815: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;" at 9.00003pt
+ (caption.sty (caption3.sty (caption-ams-smf.sto)))
+(float.sty) (comment.sty Excluding comment 'comment')
+Excluding comment 'CCSXML' (fancyhdr.sty) Special comment 'acks') (balance.sty)
+ Excluding comment 'screenonly' Include comment 'printonly'
+Include comment 'anonsuppress' (main.aux) (omlnxlmi.fd) (ts1cmr.fd) (untxexa.fd
+) (lmsntxsy.fd) (lmxntxexx.fd)warning: main.tex:17: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+ (ot1minlibertine.fd)warning: main.tex:17: 
+Requested font "MinLibReg-ot1" at 7.3pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "MinLibReg-ot1" at 5.5pt
+warning: main.tex:17:  -> MinLibReg-ot1
+warning: main.tex:17: Requested font "nxlmi7" at 7.3pt
+warning: main.tex:17:  -> nxlmi7
+warning: main.tex:17: Requested font "nxlmi5" at 5.5pt
+warning: main.tex:17:  -> nxlmi5
+warning: main.tex:17: Requested font "ntxsy7" at 7.3pt
+warning: main.tex:17:  -> ntxsy7
+warning: main.tex:17: Requested font "ntxsy5" at 5.5pt
+warning: main.tex:17:  -> ntxsy5
+warning: main.tex:17: Requested font "ntxexx" at 7.3pt
+warning: main.tex:17:  -> ntxexx
+warning: main.tex:17: Requested font "ntxexx" at 5.5pt
+warning: main.tex:17:  -> ntxexx
+ (umsa.fd)warning: main.tex:17: 
+Requested font "msam7" at 7.3pt
+warning: main.tex:17:  -> msam7
+warning: main.tex:17: Requested font "msam5" at 5.5pt
+warning: main.tex:17:  -> msam5
+ (umsb.fd)warning: main.tex:17: 
+Requested font "msbm7" at 7.3pt
+warning: main.tex:17:  -> msbm7
+warning: main.tex:17: Requested font "msbm5" at 5.5pt
+warning: main.tex:17:  -> msbm5
+
+(untxmia.fd)warning: main.tex:17: 
+Requested font "nxlmia" at 7.3pt
+warning: main.tex:17:  -> nxlmia
+warning: main.tex:17: Requested font "nxlmia" at 5.5pt
+warning: main.tex:17:  -> nxlmia
+ (untxsym.fd)warning: main.tex:17: 
+Requested font "ntxsym" at 7.3pt
+warning: main.tex:17:  -> ntxsym
+warning: main.tex:17: Requested font "ntxsym" at 5.5pt
+warning: main.tex:17:  -> ntxsym
+ (untxsyc.fd)warning: main.tex:17: 
+Requested font "ntxsyc" at 7.3pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxsyc" at 5.5pt
+warning: main.tex:17:  -> ntxsyc
+warning: main.tex:17: Requested font "ntxexa" at 7.3pt
+warning: main.tex:17:  -> ntxexa
+warning: main.tex:17: Requested font "ntxexa" at 5.5pt
+warning: main.tex:17:  -> ntxexa
+ (nameref.sty (gettitlestring.sty))
+(main.out) (main.out)
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+Excluding 'CCSXML' comment.warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinBiolinum_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 17.28pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 12.0pt
+warning: main.tex:76: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.0pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 10.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 10.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 10.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 10.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 10.0pt
+warning: main.tex:76:  -> msam10
+ (mt-msa.cfg)warning: main.tex:76: 
+Requested font "msbm10" at 10.0pt
+warning: main.tex:76:  -> msbm10
+ (mt-msb.cfg)warning: main.tex:76: 
+Requested font "nxlmia" at 10.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 10.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 10.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 10.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:76: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 10.95pt
+warning: main.tex:76: Requested font "MinLibReg-ot1" at 9.0pt
+warning: main.tex:76:  -> MinLibReg-ot1
+warning: main.tex:76: Requested font "nxlmi" at 9.0pt
+warning: main.tex:76:  -> nxlmi
+warning: main.tex:76: Requested font "ntxsy" at 9.0pt
+warning: main.tex:76:  -> ntxsy
+warning: main.tex:76: Requested font "ntxexx" at 9.0pt
+warning: main.tex:76:  -> ntxexx
+warning: main.tex:76: Requested font "msam10" at 9.0pt
+warning: main.tex:76:  -> msam10
+warning: main.tex:76: Requested font "msbm10" at 9.0pt
+warning: main.tex:76:  -> msbm10
+warning: main.tex:76: Requested font "nxlmia" at 9.0pt
+warning: main.tex:76:  -> nxlmia
+warning: main.tex:76: Requested font "ntxsym" at 9.0pt
+warning: main.tex:76:  -> ntxsym
+warning: main.tex:76: Requested font "ntxsyc" at 9.0pt
+warning: main.tex:76:  -> ntxsyc
+warning: main.tex:76: Requested font "ntxexa" at 9.0pt
+warning: main.tex:76:  -> ntxexa
+warning: main.tex:76: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\\' on input line 76.
+
+
+warning: main.tex:103: Underfull \hbox (badness 3229) in paragraph at lines 97--103
+Underfull \hbox (badness 3229) in paragraph at lines 97--103
+\TU/LinLibertine(0)/m/n/9 leases, while semantic-release [[]] targets one packa
+ge per
+warning: main.tex:125: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+[1.1]warning: main.tex:162: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 8.0pt
+warning: main.tex:163: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 8.0pt
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 8.0pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "MinLibReg-ot1" at 6.2pt
+warning: main.tex:207:  -> MinLibReg-ot1
+warning: main.tex:207: Requested font "nxlmi7" at 8.0pt
+warning: main.tex:207:  -> nxlmi7
+warning: main.tex:207: Requested font "nxlmi5" at 6.2pt
+warning: main.tex:207:  -> nxlmi5
+warning: main.tex:207: Requested font "ntxsy7" at 8.0pt
+warning: main.tex:207:  -> ntxsy7
+warning: main.tex:207: Requested font "ntxsy5" at 6.2pt
+warning: main.tex:207:  -> ntxsy5
+warning: main.tex:207: Requested font "ntxexx" at 8.0pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "ntxexx" at 6.2pt
+warning: main.tex:207:  -> ntxexx
+warning: main.tex:207: Requested font "msam10" at 8.0pt
+warning: main.tex:207:  -> msam10
+warning: main.tex:207: Requested font "msam7" at 6.2pt
+warning: main.tex:207:  -> msam7
+warning: main.tex:207: Requested font "msbm10" at 8.0pt
+warning: main.tex:207:  -> msbm10
+warning: main.tex:207: Requested font "msbm7" at 6.2pt
+warning: main.tex:207:  -> msbm7
+warning: main.tex:207: Requested font "nxlmia" at 8.0pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "nxlmia" at 6.2pt
+warning: main.tex:207:  -> nxlmia
+warning: main.tex:207: Requested font "ntxsym" at 8.0pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsym" at 6.2pt
+warning: main.tex:207:  -> ntxsym
+warning: main.tex:207: Requested font "ntxsyc" at 8.0pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxsyc" at 6.2pt
+warning: main.tex:207:  -> ntxsyc
+warning: main.tex:207: Requested font "ntxexa" at 8.0pt
+warning: main.tex:207:  -> ntxexa
+warning: main.tex:207: Requested font "ntxexa" at 6.2pt
+warning: main.tex:207:  -> ntxexa
+
+warning: main.tex:236: Underfull \hbox (badness 1406) in paragraph at lines 223--236
+Underfull \hbox (badness 1406) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 accumulated unreleased release metadata; a unit is ca
+ncelled
+
+warning: main.tex:236: Underfull \hbox (badness 1107) in paragraph at lines 223--236
+Underfull \hbox (badness 1107) in paragraph at lines 223--236
+\TU/LinLibertine(0)/m/n/9 for a package when its commit is an ancestor-or-self 
+of the
+(t1lmss.fd)warning: main.tex:248: 
+Requested font "ec-lmss9" at 9.0pt
+warning: main.tex:248:  -> ec-lmss9
+warning: main.tex:248: Requested font "ec-lmss8" at 7.3pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "ec-lmss8" at 5.5pt
+warning: main.tex:248:  -> ec-lmss8
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 9.0pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 7.3pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:248: Requested font "MinLibIta-ot1" at 5.5pt
+warning: main.tex:248:  -> MinLibIta-ot1
+warning: main.tex:310: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 9.0pt
+warning: main.tex:310: Requested font "[LinBiolinum_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+ [2.2]warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:408: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.3pt
+warning: main.tex:412: Requested font "[LinLibertine_RB.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+
+warning: main.tex:440: Underfull \hbox (badness 1314) in paragraph at lines 433--440
+Underfull \hbox (badness 1314) in paragraph at lines 433--440
+\TU/LinLibertine(0)/m/n/9 answer exactly equal to the downward planner’s obliga
+tions,
+warning: main.tex:490: Requested font "ec-lmss8" at 8.0pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "ec-lmss8" at 6.2pt
+warning: main.tex:490:  -> ec-lmss8
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 8.0pt
+warning: main.tex:490:  -> MinLibIta-ot1
+warning: main.tex:490: Requested font "MinLibIta-ot1" at 6.2pt
+warning: main.tex:490:  -> MinLibIta-ot1
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[3.3]warning: main.tex:556: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;+smcp;mapping=tex-text;" at 9.0pt
+
+warning: main.tex:611: Underfull \hbox (badness 1237) in paragraph at lines 601--611
+Underfull \hbox (badness 1237) in paragraph at lines 601--611
+\TU/LinLibertine(0)/m/n/9 Cross-run claims use the \TU/LinLibertine(0)/m/it/9 r
+etry invariant\TU/LinLibertine(0)/m/n/9 : the corrected tuple
+
+warning: main.tex:618: Underfull \hbox (badness 1735) in paragraph at lines 614--618
+Underfull \hbox (badness 1735) in paragraph at lines 614--618
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.1 (window antitonicity). []\TU/LinLibe
+rtine(0)/m/it/9 For $\OML/nxlmi/m/it/9 ^^[[] \U/ntxmia/m/it/9 = []\LMS/ntxsy/m/
+n/9 ¹\OML/nxlmi/m/it/9 ^^[; F\LMS/ntxsy/m/n/9 º$\TU/LinLibertine(0)/m/it/9 ,
+
+warning: main.tex:630: Underfull \hbox (badness 3364) in paragraph at lines 628--630
+Underfull \hbox (badness 3364) in paragraph at lines 628--630
+[][][]\TU/LinLibertine(0)/m/sc/9 Lemma 5.2 (source stability). []\TU/LinLiberti
+ne(0)/m/it/9 Under the retry invariant,
+[4.4]
+
+LaTeX Font Warning: Font shape `TU/inconsolata(0)/m/it' undefined
+(Font)              using `TU/inconsolata(0)/m/n' instead on input line 653.
+
+
+warning: main.tex:663: Underfull \hbox (badness 10000) in paragraph at lines 653--663
+Underfull \hbox (badness 10000) in paragraph at lines 653--663
+\TU/inconsolata(0)/m/it/9 feat(core)^++1: x \TU/LinLibertine(0)/m/it/9 and \TU/
+inconsolata(0)/m/it/9 release(core)%stable: graduate\TU/LinLibertine(0)/m/it/9 
+,
+
+warning: main.tex:663: Underfull \hbox (badness 1303) in paragraph at lines 653--663
+Underfull \hbox (badness 1303) in paragraph at lines 653--663
+\TU/LinLibertine(0)/m/it/9 package, both plans, different versions, every compl
+eted release
+
+warning: main.tex:683: Underfull \hbox (badness 8000) in paragraph at lines 679--683
+Underfull \hbox (badness 8000) in paragraph at lines 679--683
+[]\TU/LinLibertine(0)/m/it/9 once $\OML/nxlmi/m/it/9 D$ \TU/LinLibertine(0)/m/i
+t/9 releases past $\OML/nxlmi/m/it/9 c[]$\TU/LinLibertine(0)/m/it/9 ,
+warning: main.tex:765: Requested font "[Inconsolatazi4-Bold.otf]/OT:script=latn;language=dflt;+ss03;" at 9.0pt
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[5.5]warning: main.tex:805: Requested font "[LinLibertine_R.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 6.0pt
+warning: main.tex:817: Requested font "MinLibReg-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibReg-ot1
+warning: main.tex:817: Requested font "nxlmi7" at 6.5pt
+warning: main.tex:817:  -> nxlmi7
+warning: main.tex:817: Requested font "ntxsy7" at 6.5pt
+warning: main.tex:817:  -> ntxsy7
+warning: main.tex:817: Requested font "ntxexx" at 6.5pt
+warning: main.tex:817:  -> ntxexx
+warning: main.tex:817: Requested font "ec-lmss8" at 6.5pt
+warning: main.tex:817:  -> ec-lmss8
+warning: main.tex:817: Requested font "MinLibIta-ot1" at 6.5pt
+warning: main.tex:817:  -> MinLibIta-ot1
+warning: main.tex:817: Requested font "msam7" at 6.5pt
+warning: main.tex:817:  -> msam7
+warning: main.tex:817: Requested font "msbm7" at 6.5pt
+warning: main.tex:817:  -> msbm7
+warning: main.tex:817: Requested font "nxlmia" at 6.5pt
+warning: main.tex:817:  -> nxlmia
+warning: main.tex:817: Requested font "ntxsym" at 6.5pt
+warning: main.tex:817:  -> ntxsym
+warning: main.tex:817: Requested font "ntxsyc" at 6.5pt
+warning: main.tex:817:  -> ntxsyc
+warning: main.tex:817: Requested font "ntxexa" at 6.5pt
+warning: main.tex:817:  -> ntxexa
+
+warning: main.tex:852: Underfull \hbox (badness 1102) in paragraph at lines 837--852
+Underfull \hbox (badness 1102) in paragraph at lines 837--852
+\TU/LinLibertine(0)/m/n/9 construction establishes applicability; the evaluatio
+n does not
+
+warning: main.tex:871: Underfull \hbox (badness 10000) in paragraph at lines 854--871
+Underfull \hbox (badness 10000) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 sets \TU/inconsolata(0)/m/it/9 shell: ["/bin/sh", "-c
+"]\TU/LinLibertine(0)/m/n/9 , while \TU/inconsolata(0)/m/it/9 windows.yaml \TU/
+LinLibertine(0)/m/n/9 sets
+
+warning: main.tex:871: Underfull \hbox (badness 3396) in paragraph at lines 854--871
+Underfull \hbox (badness 3396) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 --config windows.yaml status \TU/LinLibertine(0)/m/n/
+9 locally or \TU/inconsolata(0)/m/it/9 dispat --config
+
+warning: main.tex:871: Underfull \hbox (badness 2772) in paragraph at lines 854--871
+Underfull \hbox (badness 2772) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 linux.yaml status \TU/LinLibertine(0)/m/n/9 on the ru
+nner; CI runs the latter con-
+
+warning: main.tex:871: Underfull \hbox (badness 1742) in paragraph at lines 854--871
+Underfull \hbox (badness 1742) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 figuration without \TU/inconsolata(0)/m/it/9 status \
+TU/LinLibertine(0)/m/n/9 after its release gates. \TU/inconsolata(0)/m/it/9 dis
+pat if
+
+warning: main.tex:871: Underfull \hbox (badness 2359) in paragraph at lines 854--871
+Underfull \hbox (badness 2359) in paragraph at lines 854--871
+\TU/LinLibertine(0)/m/n/9 Named scripts can themselves use \TU/inconsolata(0)/m
+/it/9 $ref\TU/LinLibertine(0)/m/n/9 ; \TU/inconsolata(0)/m/it/9 dispat for Debu
+g
+
+warning: main.tex:871: Underfull \hbox (badness 5036) in paragraph at lines 854--871
+Underfull \hbox (badness 5036) in paragraph at lines 854--871
+\TU/inconsolata(0)/m/it/9 Release --do "dispat exec build-one" \TU/LinLibertine
+(0)/m/n/9 passes each value
+[6.6]
+warning: main.tex:916: Underfull \hbox (badness 3635) in paragraph at lines 913--916
+Underfull \hbox (badness 3635) in paragraph at lines 913--916
+\TU/inconsolata(0)/m/it/9 a7011cbcb9e8\TU/LinLibertine(0)/m/n/9 , image digest 
+\TU/inconsolata(0)/m/it/9 sha256:4c0ad4b8...e7bfd\TU/LinLibertine(0)/m/n/9 , th
+e
+
+warning: main.tex:931: Underfull \hbox (badness 1009) in paragraph at lines 917--931
+Underfull \hbox (badness 1009) in paragraph at lines 917--931
+\TU/LinLibertine(0)/m/n/9 eligibility/order, inherited-channel drift, and sourc
+e exclusion).
+
+warning: main.tex:946: Underfull \hbox (badness 1038) in paragraph at lines 939--946
+Underfull \hbox (badness 1038) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 dians span 0.017s for 100 layered packages to 19.354s
+ for a
+
+warning: main.tex:946: Underfull \hbox (badness 3049) in paragraph at lines 939--946
+Underfull \hbox (badness 3049) in paragraph at lines 939--946
+\TU/LinLibertine(0)/m/n/9 U1000 took 0.290s/26MiB and 5,000 padding commits too
+k
+
+warning: main.tex:946: Underfull \hbox (badness 1874) in paragraph at lines 939--946
+Underfull \hbox (badness 1874) in paragraph at lines 939--946
+\TU/inconsolata(0)/m/it/9 commit-tree \TU/LinLibertine(0)/m/n/9 generator match
+ed the ordinary small fixture’s
+
+warning: main.tex:968: Underfull \hbox (badness 7133) in paragraph at lines 965--968
+Underfull \hbox (badness 7133) in paragraph at lines 965--968
+[]\TU/LinLibertine(0)/m/it/9 Reverse audits need the full admission predicate. 
+\TU/LinLibertine(0)/m/n/9 A
+
+warning: main.tex:971: Underfull \hbox (badness 1448) in paragraph at lines 968--971
+Underfull \hbox (badness 1448) in paragraph at lines 968--971
+[]\TU/LinLibertine(0)/m/it/9 Axis independence is one-way. \TU/LinLibertine(0)/
+m/n/9 Resolving channels can
+
+warning: main.tex:1013: Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+Underfull \hbox (badness 1014) in paragraph at lines 985--1013
+\TU/LinLibertine(0)/m/n/9 were reverse-engineered from their layouts and may mi
+sread
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[7.7]
+warning: main.tex:1055: Underfull \hbox (badness 1546) in paragraph at lines 1017--1055
+Underfull \hbox (badness 1546) in paragraph at lines 1017--1055
+\TU/LinLibertine(0)/m/n/9 extend automation to monorepos within, predominantly,
+ one
+
+warning: main.tex:1068: Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+Underfull \hbox (badness 6842) in paragraph at lines 1059--1068
+\TU/LinLibertine(0)/m/n/9 Across single-package repositories, monorepos and con
+trol-
+
+warning: main.tex:1088: Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+Underfull \hbox (badness 3138) in paragraph at lines 1084--1088
+\TU/LinLibertine(0)/m/n/9 records; its archival deposit remains a publication-r
+eadiness
+warning: main.tex:1098: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 7.0pt
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[]\TU/LinLibertine(0)/m/n/7 CCME Specification 2.0.0. []$[][][][][] [] [] [] []
+[][][][][] [] [][][] [] [][][][][][][] [] [][][][][][] [] [][][][] []
+
+warning: main.tex:1135: Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+Underfull \hbox (badness 10000) in paragraph at lines 1132--1135
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
+] [] [][][][][] [] [][][][] [][] [][][][] [] [][][][] [] [][]$[]\TU/LinLibertin
+e(0)/m/n/7 ,
+
+warning: main.tex:1203: Underfull \vbox (badness 1270) has occurred while \output is active
+Underfull \vbox (badness 1270) has occurred while \output is active [8.8]warning: main.tex:1251: Requested font "[LinLibertine_RI.otf]/OT:script=latn;language=dflt;+tnum;+lnum;mapping=tex-text;" at 5.5pt
+warning: main.tex:1259: Requested font "[Inconsolatazi4-Regular.otf]/OT:script=latn;language=dflt;+ss03;" at 7.0pt
+
+(se-pdfdoc.def) (se-utf32be.def)
+
+Package fancyhdr Warning: \headheight is too small (13.0pt): 
+(fancyhdr)                Make it at least 16.44499pt, for example:
+(fancyhdr)                \setlength{\headheight}{16.44499pt}.
+(fancyhdr)                You might also make \topmargin smaller to compensate:
+
+(fancyhdr)                \addtolength{\topmargin}{-3.44499pt}.
+
+[9.9] (main.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ )
+(see the transcript file for additional information)
+Output written on main.xdv (9 pages, 546580 bytes).
+Transcript written on main.log.
+warning: warnings were issued by the TeX engine; use --print and/or --keep-logs for details.
+note: Running xdvipdfmx ...
+[1][2][3][4][5][6][7][8][9]181064 bytes written
+note: Writing `build/main.pdf` (176.8203125 KiB)
+note: Skipped writing 3 intermediate files (use --keep-intermediates to keep them)

@@ -1,0 +1,6 @@
+{"step":"version","exit":0}
+{"step":"commit","exit":0}
+{"step":"publish","exit":1}
+{"step":"recovery","exit":0}
+{"step":"push","exit":0}
+{"step":"status","exit":0}

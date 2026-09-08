@@ -1,0 +1,6 @@
+{"step":"release","exit":1}
+{"step":"recover","exit":0}
+{"step":"release2","exit":0}
+{"step":"publish","exit":0}
+{"step":"push","exit":0}
+{"step":"next","exit":0}

@@ -1,0 +1,22 @@
+0 verbose cli /Users/yohimik/.nvm/versions/node/v24.18.0/bin/node /Users/yohimik/.nvm/versions/node/v24.18.0/bin/npm
+1 info using npm@12.0.1
+2 info using node@v24.18.0
+3 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/app-failure-0/assets/.npmrc
+5 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/app-failure-0/test.npmrc
+6 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/etc/npmrc
+7 verbose title npm run build
+8 verbose argv "run" "build"
+9 verbose logfile logs-max:10 dir:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/app-failure-0/.npm-cache/_logs/2026-09-08T22_40_26_830Z-
+10 verbose logfile /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/app-failure-0/.npm-cache/_logs/2026-09-08T22_40_26_830Z-debug-0.log
+11 silly logfile done cleaning log files
+12 notice run chaindf8f3c7b54-assets@1.5.0 build
+13 notice run node build.cjs
+14 http fetch GET 404 http://127.0.0.1:50558/npm 9ms
+15 http fetch GET 404 http://127.0.0.1:50558/npm 2ms
+16 verbose cwd /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/app-failure-0/assets
+17 verbose os Darwin 25.6.0
+18 verbose node v24.18.0
+19 verbose npm  v12.0.1
+20 verbose exit 0
+21 info ok

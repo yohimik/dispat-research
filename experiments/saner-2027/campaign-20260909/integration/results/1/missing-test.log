@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/integration/results/1/validate-gates.py", line 3, in <module>
+    assert p and all(v.get('scripts',{}).get('tests') for v in p.values()), 'required package test missing'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: required package test missing

@@ -1,0 +1,91 @@
+experiment=midrelease tool=changesets scenario=conflict
+dispat 1.7.0 (linux_arm64)  lerna 10.0.1  nx v23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+fixture ready: /work/changesets changesets
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core): streaming reader local 0 ahead 0 behind
+
+== version: changeset version
+exit=0
+   | 🦋 changeset v3.0.1
+   | 
+   | All files have been updated. Review them and commit at your leisure
+
+== commit: git commit -qam chore: version packages
+exit=0
+
+== publish: changeset publish
+exit=0
+   | api@1.0.1
+   | cli@1.0.1
+   | core@1.1.0
+   | ui@1.0.1
+   | 2 packages are already published.
+   | [?25l◒  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages[1G[J◐  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages[1G[J◓  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages (1/4)[1G[J◑  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages (1/4)[1G[J◒  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages (1/4)[1G[J◐  ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ Publishing packages (1/4)[1G[J◇  Successfully published:
+   | api@1.0.1
+   | cli@1.0.1
+   | core@1.1.0
+   | ui@1.0.1
+   | [?25h[?25l◇  Created git tags.
+   | [?25h   after-publish: api=1.0.1/unpushed cli=1.0.1/unpushed core=1.1.0/unpushed docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/unpushed
+   origin/main=feat(core): streaming reader local 1 ahead 0 behind release NOT on main
+
+== push: with_shim git push --follow-tags origin main
+exit=1
+   | To /work/changesets-origin.git
+   |  * [new tag]         api@1.0.1 -> api@1.0.1
+   |  * [new tag]         cli@1.0.1 -> cli@1.0.1
+   |  * [new tag]         core@1.1.0 -> core@1.1.0
+   |  * [new tag]         ui@1.0.1 -> ui@1.0.1
+   |  ! [rejected]        main -> main (fetch first)
+   | error: failed to push some refs to '/work/changesets-origin.git'
+   | hint: Updates were rejected because the remote contains work that you do
+   | hint: not have locally. This is usually caused by another repository pushing
+   | hint: to the same ref. You may want to first integrate the remote changes
+   | hint: (e.g., 'git pull ...') before pushing again.
+   | hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+   after-push: api=1.0.1/dangling cli=1.0.1/dangling core=1.1.0/dangling docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/dangling
+   origin/main=fix(core): describe the package local 1 ahead 1 behind colleague on main release NOT on main
+
+== rebase: git pull --rebase origin main
+exit=1
+   | From /work/changesets-origin
+   |  * branch            main       -> FETCH_HEAD
+   | Rebasing (1/1)Auto-merging packages/core/package.json
+   | CONFLICT (content): Merge conflict in packages/core/package.json
+   | error: could not apply a7e39f3... chore: version packages
+   | hint: Resolve all conflicts manually, mark them as resolved with
+   | hint: "git add/rm <conflicted_files>", then run "git rebase --continue".
+   | hint: You can instead skip this commit: run "git rebase --skip".
+   | hint: To abort and get back to the state before "git rebase", run "git rebase --abort".
+   | Could not apply a7e39f3... chore: version packages
+
+== resolve: bash -c git checkout --theirs -- packages/core/package.json && git add -A && GIT_EDITOR=true git rebase --continue
+exit=0
+   | [detached HEAD 9de689d] chore: version packages
+   |  5 files changed, 7 insertions(+), 13 deletions(-)
+   |  delete mode 100644 .changeset/streaming-reader.md
+   |                                                                                 Successfully rebased and updated refs/heads/main.
+
+== push2: git push --follow-tags origin main
+exit=0
+   | To /work/changesets-origin.git
+   |    71975d1..9de689d  main -> main
+   after-recovery: api=1.0.1/dangling cli=1.0.1/dangling core=1.1.0/dangling docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/dangling
+   origin/main=chore: version packages local 0 ahead 0 behind colleague on main release NOT on main
+
+== status: changeset status --verbose
+exit=0
+   | 🦋 changeset v3.0.1
+   | 
+   | Packages to be bumped:
+   | - patch
+   |   - core -> 1.1.1
+   |     - .changeset/describe-the-package.md
+   next plan: core -> 1.1.1;
+   ok    publish exited 0
+   ok    registry serves core 1.1.0
+   FAIL  the release commit is on origin/main after recovery
+   FAIL  every released package is consistent after recovery
+   ok    the next plan is the colleague's change and its dependents alone
+VERDICT: the release commit is on origin/main after recovery; every released package is consistent after recovery

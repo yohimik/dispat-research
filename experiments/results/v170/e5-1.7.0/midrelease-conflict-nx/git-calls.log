@@ -1,0 +1,24 @@
+1788330997.642424467	/work/nx	-c versionsort.suffix=- tag --sort -v:refname --merged
+1788330997.649240592	/work/nx	rev-parse --show-toplevel
+1788330997.653512676	/work/nx	--no-pager log theme@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.660502551	/work/nx	rev-parse --show-toplevel
+1788330997.663025217	/work/nx	--no-pager log core@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.666531509	/work/nx	rev-parse --show-toplevel
+1788330997.669213426	/work/nx	--no-pager log docs@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.672654759	/work/nx	rev-parse --show-toplevel
+1788330997.675374759	/work/nx	--no-pager log api@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.678354926	/work/nx	rev-parse --show-toplevel
+1788330997.681254259	/work/nx	--no-pager log cli@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.684298801	/work/nx	rev-parse --show-toplevel
+1788330997.686862301	/work/nx	--no-pager log ui@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330998.087199551	/work/nx	check-ignore packages/core/package.json
+1788330998.090971051	/work/nx	check-ignore packages/api/package.json
+1788330998.094137884	/work/nx	check-ignore packages/cli/package.json
+1788330998.097372509	/work/nx	check-ignore packages/ui/package.json
+1788330998.100489551	/work/nx	check-ignore packages/theme/package.json
+1788330998.103216176	/work/nx	check-ignore packages/docs/package.json
+1788330998.106166967	/work/nx	check-ignore package-lock.json
+1788330998.109239676	/work/nx	add packages/core/package.json packages/api/package.json packages/cli/package.json packages/ui/package.json packages/theme/package.json packages/docs/package.json package-lock.json
+1788330998.113307801	/work/nx	push --follow-tags --no-verify --atomic
+1788330998.114336134	/work/nx	INJECT before: push --follow-tags --no-verify --atomic
+colleague pushed 30f770b: fix(core): describe the package

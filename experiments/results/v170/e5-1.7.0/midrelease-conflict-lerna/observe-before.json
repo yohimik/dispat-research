@@ -1,0 +1,102 @@
+{
+ "label": "before",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "77dd38317c3d",
+   "subject": "feat(core): streaming reader"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "77dd38317c3d"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "77dd38317c3d",
+   "subject": "feat(core): streaming reader"
+  },
+  "tags": {
+   "api@1.0.0": "6b7197c398d1",
+   "cli@1.0.0": "6b7197c398d1",
+   "core@1.0.0": "6b7197c398d1",
+   "docs@1.0.0": "6b7197c398d1",
+   "theme@1.0.0": "6b7197c398d1",
+   "ui@1.0.0": "6b7197c398d1"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "6b7197c398d1",
+     "onMain": true,
+     "origin": "6b7197c398d1"
+    }
+   }
+  }
+ }
+}

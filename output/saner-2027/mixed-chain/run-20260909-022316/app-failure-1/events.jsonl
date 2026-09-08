@@ -1,0 +1,14 @@
+{"package": "assets", "stage": "build", "event": "start", "monotonic_ns": 1415890330617666, "wall_ns": 1788906265880089000, "version": "1.5.0", "code": 0}
+{"package": "assets", "stage": "build", "event": "end", "monotonic_ns": 1415890476601666, "wall_ns": 1788906266026076000, "version": "1.5.0", "code": 0}
+{"package": "base", "stage": "build", "event": "start", "monotonic_ns": 1415890498574041, "wall_ns": 1788906266048048000, "version": "0.8.3", "code": 0}
+{"package": "assets", "stage": "publish", "event": "start", "monotonic_ns": 1415890498780125, "wall_ns": 1788906266048254000, "version": "1.5.0", "code": 0}
+{"package": "base", "stage": "build", "event": "end", "monotonic_ns": 1415890706878166, "wall_ns": 1788906266256357000, "version": "0.8.3", "code": 0}
+{"package": "assets", "stage": "publish", "event": "end", "monotonic_ns": 1415893700645250, "wall_ns": 1788906269250173000, "version": "1.5.0", "code": 0}
+{"package": "base", "stage": "publish", "event": "start", "monotonic_ns": 1415893722638541, "wall_ns": 1788906269272167000, "version": "0.8.3", "code": 0}
+{"package": "base", "stage": "publish", "event": "end", "monotonic_ns": 1415895973077791, "wall_ns": 1788906271522644000, "version": "0.8.3", "code": 0}
+{"package": "app", "stage": "build", "event": "start", "monotonic_ns": 1415895994192541, "wall_ns": 1788906271543758000, "version": "2.1.1", "code": 0}
+{"package": "app", "stage": "build", "event": "end", "monotonic_ns": 1415895994303083, "wall_ns": 1788906271543869000, "version": "2.1.1", "code": 37}
+{"package": "app", "stage": "build", "event": "start", "monotonic_ns": 1415896272020583, "wall_ns": 1788906271821591000, "version": "2.1.1", "code": 0}
+{"package": "app", "stage": "build", "event": "end", "monotonic_ns": 1415896473997291, "wall_ns": 1788906272023572000, "version": "2.1.1", "code": 0}
+{"package": "app", "stage": "publish", "event": "start", "monotonic_ns": 1415896495860750, "wall_ns": 1788906272045435000, "version": "2.1.1", "code": 0}
+{"package": "app", "stage": "publish", "event": "end", "monotonic_ns": 1415896721521250, "wall_ns": 1788906272271099000, "version": "2.1.1", "code": 0}

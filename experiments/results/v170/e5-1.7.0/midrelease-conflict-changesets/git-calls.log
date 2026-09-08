@@ -1,0 +1,3 @@
+1788330897.759697046	/work/changesets	push --follow-tags origin main
+1788330897.762960088	/work/changesets	INJECT before: push --follow-tags origin main
+colleague pushed 71975d1: fix(core): describe the package

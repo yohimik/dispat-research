@@ -1,0 +1,162 @@
+
+ NX   Running target nx-release-publish for 6 projects:
+
+- theme
+- core
+- docs
+- api
+- cli
+- ui
+
+With additional flags:
+  --registry=http://127.0.0.1:4873
+
+
+
+> nx run core:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/core/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  core@1.1.0
+[35m=== Tarball Contents ===[39m
+
+19B index.js    
+98B package.json
+[35m=== Tarball Details ===[39m
+name:          core                                    
+version:       1.1.0                                   
+filename:      core-1.1.0.tgz                          
+package size:  214 B                                   
+unpacked size: 117 B                                   
+shasum:        50f53ac6fbb2d802c697ae49dc1a28bec27ad84c
+integrity:     sha512-gmT96Oy8CdZuk[...]1XhVfoPiKSzkw==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run ui:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/ui/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  ui@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+81B package.json
+[35m=== Tarball Details ===[39m
+name:          ui                                      
+version:       1.0.1                                   
+filename:      ui-1.0.1.tgz                            
+package size:  196 B                                   
+unpacked size: 87 B                                    
+shasum:        d6f4fa699f229985269a69f0664c2c3b06898e8e
+integrity:     sha512-iwIJ74T8nr0wN[...]vI2M1xsEmdD/g==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run cli:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/cli/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  cli@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+82B package.json
+[35m=== Tarball Details ===[39m
+name:          cli                                     
+version:       1.0.1                                   
+filename:      cli-1.0.1.tgz                           
+package size:  196 B                                   
+unpacked size: 88 B                                    
+shasum:        8800a3edc99e62f56c7dc86a55a72cc90b5adea4
+integrity:     sha512-gnUnOUASjHtAa[...]IdFx8lryKQKgw==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run api:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/api/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  api@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+82B package.json
+[35m=== Tarball Details ===[39m
+name:          api                                     
+version:       1.0.1                                   
+filename:      api-1.0.1.tgz                           
+package size:  195 B                                   
+unpacked size: 88 B                                    
+shasum:        5731b9a276738ae374384fe16a9a0f695a2144bb
+integrity:     sha512-LojnCZQM4qNRw[...]ZL0jAhdiJikMg==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run theme:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/theme/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  theme@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+82B package.json
+[35m=== Tarball Details ===[39m
+name:          theme                                   
+version:       1.0.1                                   
+filename:      theme-1.0.1.tgz                         
+package size:  194 B                                   
+unpacked size: 88 B                                    
+shasum:        dfbc7acb6b8179bdefab651ee3628e2b68f77ef5
+integrity:     sha512-LPqwMtc5lfE5Z[...]p0GJ7eylu+zZQ==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+> nx run docs:nx-release-publish
+
+[93m[39m
+[93mIgnoring .npmrc file detected in the package root: packages/docs/.npmrc. Nested .npmrc files are not supported by npm. Only the .npmrc file at the root of the workspace will be used. To customize the registry or tag for specific packages, see https://nx.dev/recipes/nx-release/configure-custom-registries[39m
+[93m[39m
+
+📦  docs@1.0.1
+[35m=== Tarball Contents ===[39m
+
+6B  index.js    
+81B package.json
+[35m=== Tarball Details ===[39m
+name:          docs                                    
+version:       1.0.1                                   
+filename:      docs-1.0.1.tgz                          
+package size:  195 B                                   
+unpacked size: 87 B                                    
+shasum:        1fcf13531c262b0b968af82682ac6d5bfde8dea1
+integrity:     sha512-YInmCygPqbhGe[...]apa6KLmOpB1wA==
+total files:   2                                       
+ 
+Published to http://127.0.0.1:4873 with tag "latest"
+
+
+
+ NX   Successfully ran target nx-release-publish for 6 projects
+
+
+  Run duration:      1.7s
+  Cache:             0/6 hit (0%)
+  Critical path:     1.5s (3 tasks)
+  Recoverable time:  164ms (10% of the run)

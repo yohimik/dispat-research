@@ -1,0 +1,39 @@
+0 verbose cli /Users/yohimik/.nvm/versions/node/v24.18.0/bin/node /Users/yohimik/.nvm/versions/node/v24.18.0/bin/npm
+1 info using npm@12.0.1
+2 info using node@v24.18.0
+3 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yohimik/Projects/dispat/output/saner-2027/mixed-chain/run-20260909-022316/missing-barrier-1/assets/.npmrc
+5 silly config load:file:/Users/yohimik/Projects/dispat/output/saner-2027/mixed-chain/run-20260909-022316/missing-barrier-1/test.npmrc
+6 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/etc/npmrc
+7 verbose title npm publish
+8 verbose argv "publish" "--ignore-scripts" "--registry" "http://127.0.0.1:50343"
+9 verbose logfile logs-max:10 dir:/Users/yohimik/Projects/dispat/output/saner-2027/mixed-chain/run-20260909-022316/missing-barrier-1/.npm-cache/_logs/2026-09-08T22_24_13_790Z-
+10 verbose logfile /Users/yohimik/Projects/dispat/output/saner-2027/mixed-chain/run-20260909-022316/missing-barrier-1/.npm-cache/_logs/2026-09-08T22_24_13_790Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose publish [ '.' ]
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 notice
+15 notice 📦  chainb70fb44fd0-assets@1.5.0
+16 notice Tarball Contents
+17 notice 14B dist/theme.txt
+17 notice 113B package.json
+18 notice Tarball Details
+19 notice name: chainb70fb44fd0-assets
+20 notice version: 1.5.0
+21 notice filename: chainb70fb44fd0-assets-1.5.0.tgz
+22 notice package size: 229 B
+23 notice unpacked size: 127 B
+24 notice shasum: 8582073ba13ffaf5838f98bd454642b4af83ce0b
+25 notice integrity: sha512-bMv7Y6KTmAGwt[...]DVZWIN0LsfEmA==
+26 notice total files: 2
+27 notice
+28 http fetch GET 404 http://127.0.0.1:50343/chainb70fb44fd0-assets 6ms (cache skip)
+29 http fetch GET 404 http://127.0.0.1:50343/chainb70fb44fd0-assets 2ms (cache skip)
+30 notice Publishing to http://127.0.0.1:50343/ with tag latest and default access
+31 http fetch PUT 201 http://127.0.0.1:50343/chainb70fb44fd0-assets 9ms
+32 verbose cwd /Users/yohimik/Projects/dispat/output/saner-2027/mixed-chain/run-20260909-022316/missing-barrier-1/assets
+33 verbose os Darwin 25.6.0
+34 verbose node v24.18.0
+35 verbose npm  v12.0.1
+36 verbose exit 0
+37 info ok

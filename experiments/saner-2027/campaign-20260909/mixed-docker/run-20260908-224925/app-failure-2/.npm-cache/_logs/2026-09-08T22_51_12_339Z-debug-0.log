@@ -1,0 +1,39 @@
+0 verbose cli /usr/bin/node /usr/bin/npm
+1 info using npm@11.12.1
+2 info using node@v24.18.1
+3 silly config load:file:/usr/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed-docker/run-20260908-224925/app-failure-2/assets/.npmrc
+5 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed-docker/run-20260908-224925/app-failure-2/test.npmrc
+6 silly config load:file:/etc/npmrc
+7 verbose title npm publish
+8 verbose argv "publish" "--ignore-scripts" "--registry" "http://saner-chain-3174808061:4873"
+9 verbose logfile logs-max:10 dir:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed-docker/run-20260908-224925/app-failure-2/.npm-cache/_logs/2026-09-08T22_51_12_339Z-
+10 verbose logfile /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed-docker/run-20260908-224925/app-failure-2/.npm-cache/_logs/2026-09-08T22_51_12_339Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose publish [ '.' ]
+13 silly packumentCache heap:2348810240 maxSize:587202560 maxEntrySize:293601280
+14 notice
+15 notice package: chain3d9882783d-assets@1.5.0
+16 notice Tarball Contents
+17 notice 14B dist/theme.txt
+17 notice 113B package.json
+18 notice Tarball Details
+19 notice name: chain3d9882783d-assets
+20 notice version: 1.5.0
+21 notice filename: chain3d9882783d-assets-1.5.0.tgz
+22 notice package size: 231 B
+23 notice unpacked size: 127 B
+24 notice shasum: 312d78dd202ec7d78fef3691411c27fc7df8b530
+25 notice integrity: sha512-ePM1tP6zvwjt+[...]S78GIr8cYkTXQ==
+26 notice total files: 2
+27 notice
+28 http fetch GET 404 http://saner-chain-3174808061:4873/chain3d9882783d-assets 11ms (cache skip)
+29 http fetch GET 404 http://saner-chain-3174808061:4873/chain3d9882783d-assets 1ms (cache skip)
+30 notice Publishing to http://saner-chain-3174808061:4873/ with tag latest and default access
+31 http fetch PUT 201 http://saner-chain-3174808061:4873/chain3d9882783d-assets 5ms
+32 verbose cwd /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed-docker/run-20260908-224925/app-failure-2/assets
+33 verbose os Linux 6.12.76-linuxkit
+34 verbose node v24.18.1
+35 verbose npm  v11.12.1
+36 verbose exit 0
+37 info ok

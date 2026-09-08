@@ -1,0 +1,24 @@
+1788330997.624503801	/work/nx	-c versionsort.suffix=- tag --sort -v:refname --merged
+1788330997.629920176	/work/nx	rev-parse --show-toplevel
+1788330997.632571426	/work/nx	--no-pager log theme@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.638925384	/work/nx	rev-parse --show-toplevel
+1788330997.642307842	/work/nx	--no-pager log core@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.646283467	/work/nx	rev-parse --show-toplevel
+1788330997.649360926	/work/nx	--no-pager log docs@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.653202967	/work/nx	rev-parse --show-toplevel
+1788330997.659260717	/work/nx	--no-pager log api@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.662300467	/work/nx	rev-parse --show-toplevel
+1788330997.664777551	/work/nx	--no-pager log cli@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330997.668917842	/work/nx	rev-parse --show-toplevel
+1788330997.672600717	/work/nx	--no-pager log ui@1.0.0..HEAD --pretty="|@-------@|%n%s§§§%h§§§%an§§§%ae%n%b" --name-status
+1788330998.073851676	/work/nx	check-ignore packages/core/package.json
+1788330998.077236842	/work/nx	check-ignore packages/api/package.json
+1788330998.080430426	/work/nx	check-ignore packages/cli/package.json
+1788330998.083687301	/work/nx	check-ignore packages/ui/package.json
+1788330998.087270676	/work/nx	check-ignore packages/theme/package.json
+1788330998.090952092	/work/nx	check-ignore packages/docs/package.json
+1788330998.094188426	/work/nx	check-ignore package-lock.json
+1788330998.097413134	/work/nx	add packages/core/package.json packages/api/package.json packages/cli/package.json packages/ui/package.json packages/theme/package.json packages/docs/package.json package-lock.json
+1788330998.103119551	/work/nx	push --follow-tags --no-verify --atomic
+1788330998.104347009	/work/nx	INJECT before: push --follow-tags --no-verify --atomic
+colleague pushed 590cec3: fix(api): concurrent change

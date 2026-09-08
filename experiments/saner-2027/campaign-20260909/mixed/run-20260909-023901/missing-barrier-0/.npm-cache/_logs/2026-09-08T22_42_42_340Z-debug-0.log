@@ -1,0 +1,39 @@
+0 verbose cli /Users/yohimik/.nvm/versions/node/v24.18.0/bin/node /Users/yohimik/.nvm/versions/node/v24.18.0/bin/npm
+1 info using npm@12.0.1
+2 info using node@v24.18.0
+3 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/lib/node_modules/npm/npmrc
+4 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/missing-barrier-0/assets/.npmrc
+5 silly config load:file:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/missing-barrier-0/test.npmrc
+6 silly config load:file:/Users/yohimik/.nvm/versions/node/v24.18.0/etc/npmrc
+7 verbose title npm publish
+8 verbose argv "publish" "--ignore-scripts" "--registry" "http://127.0.0.1:50558"
+9 verbose logfile logs-max:10 dir:/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/missing-barrier-0/.npm-cache/_logs/2026-09-08T22_42_42_340Z-
+10 verbose logfile /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/missing-barrier-0/.npm-cache/_logs/2026-09-08T22_42_42_340Z-debug-0.log
+11 silly logfile done cleaning log files
+12 verbose publish [ '.' ]
+13 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+14 notice
+15 notice 📦  chain413ae6feb5-assets@1.5.0
+16 notice Tarball Contents
+17 notice 14B dist/theme.txt
+17 notice 113B package.json
+18 notice Tarball Details
+19 notice name: chain413ae6feb5-assets
+20 notice version: 1.5.0
+21 notice filename: chain413ae6feb5-assets-1.5.0.tgz
+22 notice package size: 229 B
+23 notice unpacked size: 127 B
+24 notice shasum: 5fbbbd845a91d4e0a5bcd6cb88a2697de9717475
+25 notice integrity: sha512-/KYe/3k9HnKmi[...]CP/m/wrVTK+ZQ==
+26 notice total files: 2
+27 notice
+28 http fetch GET 404 http://127.0.0.1:50558/chain413ae6feb5-assets 9ms (cache skip)
+29 http fetch GET 404 http://127.0.0.1:50558/chain413ae6feb5-assets 2ms (cache skip)
+30 notice Publishing to http://127.0.0.1:50558/ with tag latest and default access
+31 http fetch PUT 201 http://127.0.0.1:50558/chain413ae6feb5-assets 9ms
+32 verbose cwd /Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/mixed/run-20260909-023901/missing-barrier-0/assets
+33 verbose os Darwin 25.6.0
+34 verbose node v24.18.0
+35 verbose npm  v12.0.1
+36 verbose exit 0
+37 info ok

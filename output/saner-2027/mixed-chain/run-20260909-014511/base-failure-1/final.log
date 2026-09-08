@@ -1,0 +1,44 @@
+{"level":"info","root":".","time":"2026-09-09T01:46:30+04:00","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-09T01:46:30+04:00","message":"release lock acquired"}
+{"level":"warn","code":"W193","package":"base","time":"2026-09-09T01:46:30+04:00","message":"catch-up release at 0.8.3: discharging work already published by assets@1.5.0"}
+{"level":"warn","code":"W193","package":"app","time":"2026-09-09T01:46:30+04:00","message":"catch-up release at 2.1.1: discharging work already published by assets@1.5.0"}
+{"level":"info","warnings":2,"errors":0,"time":"2026-09-09T01:46:30+04:00","message":"plan diagnostics"}
+{"level":"info","package":"assets","space":"assets","version":"1.5.0","channel":"stable","time":"2026-09-09T01:46:30+04:00","message":"unchanged"}
+{"level":"info","package":"base","space":"base","dependsOn":["assets"],"bump":"patch","version":"0.8.2 -> 0.8.3","channel":"stable","reason":"catch-up from assets","ownCommits":0,"dueToProviders":["assets"],"time":"2026-09-09T01:46:30+04:00","message":"↻ catch-up"}
+{"level":"info","package":"app","space":"app","dependsOn":["base"],"bump":"patch","version":"2.1.0 -> 2.1.1","channel":"stable","reason":"catch-up from assets","ownCommits":0,"dueToProviders":["assets"],"time":"2026-09-09T01:46:30+04:00","message":"↻ catch-up"}
+{"level":"info","packages":3,"releasing":2,"held":0,"time":"2026-09-09T01:46:30+04:00","message":"release plan ready"}
+{"level":"info","package":"base","stage":"version","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"version succeeded"}
+{"level":"info","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"build started"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#0 building with \"desktop-linux\" instance using docker driver"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#1 [internal] load build definition from Dockerfile"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#1 transferring dockerfile: 88B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#1 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#2 [internal] load .dockerignore"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#2 transferring context: 62B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#2 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#3 [internal] load build context"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#3 transferring context: 99B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#3 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#4 [1/1] COPY assets/dist/theme.txt /theme.txt"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#4 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting to image"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting layers 0.0s done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting manifest sha256:8ac8a5bd84e222045e6937a1b1b1b94870edcee3bc6e752424489693717ebf3c done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting config sha256:1dd4b6be714964e574ff6a1f74eb23f343fa09f428b2ec04e7e18302149229c6 done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting attestation manifest sha256:13e21f4ab668fe52b506a5aeed950ef1f0a5b571dddce35ec6fb74c7743faf9d done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 exporting manifest list sha256:08be02ca01fb96cc0b4e71e7937ede682e7ca87d75aa110b5284249074039a8d done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 naming to 127.0.0.1:49885/chain7791fdac63/base:0.8.3 done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 unpacking to 127.0.0.1:49885/chain7791fdac63/base:0.8.3 done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"#5 DONE 0.0s"}
+{"level":"info","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"build succeeded"}
+{"level":"info","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:30+04:00","message":"publish started"}
+{"level":"info","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:32+04:00","message":"The push refers to repository [127.0.0.1:49885/chain7791fdac63/base]"}
+{"level":"info","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:32+04:00","message":"f51035d6d130: Waiting"}
+{"level":"info","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:32+04:00","message":"b12985076700: Waiting"}
+{"level":"warn","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:32+04:00","message":"failed to do request: Head \"https://127.0.0.1:49885/v2/chain7791fdac63/base/blobs/sha256:f51035d6d130fe89167c7f38bf2c09c64a2e7557fe37ce4469617c6d8aa2df06\": dial tcp 127.0.0.1:49885: connect: connection refused"}
+{"level":"warn","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T01:46:32+04:00","message":"Command '['docker', 'push', '127.0.0.1:49885/chain7791fdac63/base:0.8.3']' returned non-zero exit status 1."}
+{"level":"error","package":"base","stage":"publish","version":"0.8.3","error":"exit status 37","time":"2026-09-09T01:46:32+04:00","message":"publish script failed"}
+{"level":"warn","package":"app","stage":"version","version":"2.1.1","code":"W194","reason":"provider base failed or was skipped, and this package's build takes its publish as input","time":"2026-09-09T01:46:32+04:00","message":"skipped"}
+{"level":"error","error":"publish: exit status 37","failedStage":"publish","package":"base","status":"failed","version":"0.8.2 -> 0.8.3","channel":"stable","took":2429.753625,"time":"2026-09-09T01:46:32+04:00","message":"summary"}
+{"level":"warn","code":"W194","blockedBy":"base","package":"app","status":"skipped","version":"2.1.0 -> 2.1.1","channel":"stable","took":0,"time":"2026-09-09T01:46:32+04:00","message":"summary"}
+{"level":"info","published":0,"failed":1,"skipped":1,"cancelled":0,"held":0,"unchanged":1,"took":2429.84975,"time":"2026-09-09T01:46:32+04:00","message":"done"}

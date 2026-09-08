@@ -1,0 +1,17 @@
+{"level":"info","package":"schema","space":"schema","bump":"minor","version":"1.0.0 -> 1.1.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-08T22:44:08Z","message":"● changed"}
+{"level":"info","package":"tools","space":"tools","version":"1.1.0","channel":"stable","time":"2026-09-08T22:44:08Z","message":"unchanged"}
+{"level":"info","packages":2,"releasing":1,"held":0,"time":"2026-09-08T22:44:08Z","message":"release plan ready"}
+{"level":"info","package":"tools","stage":"run:tests","time":"2026-09-08T22:44:08Z","message":"run script started"}
+{"level":"info","package":"schema","stage":"run:tests","time":"2026-09-08T22:44:08Z","message":"run script started"}
+{"level":"info","script":"tests","ran":2,"failed":0,"skipped":0,"time":"2026-09-08T22:44:08Z","message":"run finished"}
+{"level":"info","root":".","time":"2026-09-08T22:44:08Z","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-08T22:44:08Z","message":"release lock acquired"}
+{"level":"info","package":"schema","space":"schema","bump":"minor","version":"1.0.0 -> 1.1.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-08T22:44:08Z","message":"● changed"}
+{"level":"info","package":"tools","space":"tools","version":"1.1.0","channel":"stable","time":"2026-09-08T22:44:08Z","message":"unchanged"}
+{"level":"info","packages":2,"releasing":1,"held":0,"time":"2026-09-08T22:44:08Z","message":"release plan ready"}
+{"level":"info","package":"schema","stage":"build","version":"1.1.0","time":"2026-09-08T22:44:08Z","message":"build started"}
+{"level":"info","package":"schema","stage":"build","version":"1.1.0","time":"2026-09-08T22:44:08Z","message":"build succeeded"}
+{"level":"info","package":"schema","stage":"publish","version":"1.1.0","time":"2026-09-08T22:44:08Z","message":"publish started"}
+{"level":"info","package":"schema","stage":"publish","version":"1.1.0","plannedTag":"schema@1.1.0","time":"2026-09-08T22:44:08Z","message":"published, tag deferred to the release commit"}
+{"level":"info","tag":"schema@1.1.0","package":"schema","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":34.411916,"time":"2026-09-08T22:44:08Z","message":"summary"}
+{"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":1,"took":47.0565,"time":"2026-09-08T22:44:08Z","message":"done"}

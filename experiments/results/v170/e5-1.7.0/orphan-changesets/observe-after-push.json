@@ -1,0 +1,126 @@
+{
+ "label": "after-push",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "defbcea9baa1",
+   "subject": "chore: version packages"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "defbcea9baa1"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "defbcea9baa1",
+   "subject": "chore: version packages"
+  },
+  "tags": {
+   "api@1.0.0": "8b9964dc24de",
+   "api@1.0.1": "defbcea9baa1",
+   "cli@1.0.0": "8b9964dc24de",
+   "cli@1.0.1": "defbcea9baa1",
+   "core@1.0.0": "8b9964dc24de",
+   "core@1.1.0": "defbcea9baa1",
+   "docs@1.0.0": "8b9964dc24de",
+   "theme@1.0.0": "8b9964dc24de",
+   "ui@1.0.0": "8b9964dc24de",
+   "ui@1.0.1": "defbcea9baa1"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    },
+    "1.0.1": {
+     "local": "defbcea9baa1",
+     "onMain": true,
+     "origin": "defbcea9baa1"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    },
+    "1.0.1": {
+     "local": "defbcea9baa1",
+     "onMain": true,
+     "origin": "defbcea9baa1"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    },
+    "1.1.0": {
+     "local": "defbcea9baa1",
+     "onMain": true,
+     "origin": "defbcea9baa1"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "8b9964dc24de",
+     "onMain": true,
+     "origin": "8b9964dc24de"
+    },
+    "1.0.1": {
+     "local": "defbcea9baa1",
+     "onMain": true,
+     "origin": "defbcea9baa1"
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,59 @@
+{"level":"info","root":".","time":"2026-09-09T02:23:40+04:00","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-09T02:23:40+04:00","message":"release lock acquired"}
+{"level":"info","package":"assets","space":"assets","bump":"minor","version":"1.4.2 -> 1.5.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-09T02:23:40+04:00","message":"● changed"}
+{"level":"info","package":"base","space":"base","dependsOn":["assets"],"bump":"patch","version":"0.8.2 -> 0.8.3","channel":"stable","reason":"propagated from assets","ownCommits":0,"dueToProviders":["assets"],"time":"2026-09-09T02:23:40+04:00","message":"● changed"}
+{"level":"info","package":"app","space":"app","dependsOn":["base"],"bump":"patch","version":"2.1.0 -> 2.1.1","channel":"stable","reason":"propagated from assets","ownCommits":0,"dueToProviders":["assets"],"time":"2026-09-09T02:23:40+04:00","message":"● changed"}
+{"level":"info","packages":3,"releasing":3,"held":0,"time":"2026-09-09T02:23:40+04:00","message":"release plan ready"}
+{"level":"info","package":"assets","stage":"build","version":"1.5.0","time":"2026-09-09T02:23:40+04:00","message":"build started"}
+{"level":"warn","package":"assets","stage":"build","version":"1.5.0","time":"2026-09-09T02:23:40+04:00","message":"npm notice run chain1085d9a8f1-assets@1.5.0 build"}
+{"level":"warn","package":"assets","stage":"build","version":"1.5.0","time":"2026-09-09T02:23:40+04:00","message":"npm notice run node build.cjs"}
+{"level":"info","package":"assets","stage":"build","version":"1.5.0","time":"2026-09-09T02:23:40+04:00","message":"build succeeded"}
+{"level":"info","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:40+04:00","message":"publish started"}
+{"level":"info","package":"base","stage":"version","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"version succeeded"}
+{"level":"info","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"build started"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#0 building with \"saner-builder-683a21fe\" instance using docker-container driver"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#1 [internal] load build definition from Dockerfile"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#1 transferring dockerfile: 88B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#1 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#2 [internal] load .dockerignore"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#2 transferring context: 85B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#2 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#3 [internal] load build context"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#3 transferring context: 123B done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#3 DONE 0.0s"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#4 [1/1] COPY assets/dist/theme.txt /theme.txt"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#4 CACHED"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 exporting to oci image format"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 exporting layers done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 exporting manifest sha256:c7f9c902af54a0ce6f0679ff27ecd58cfe56c64576a2976de50d46de56ca7b6f done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 exporting config sha256:01d1b51ebf28d3275663d0a84bf9abec826b9d6a731aa08da6529be77ed7b551 done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 sending tarball done"}
+{"level":"warn","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"#5 DONE 0.0s"}
+{"level":"info","package":"base","stage":"build","version":"0.8.3","time":"2026-09-09T02:23:40+04:00","message":"build succeeded"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice 📦  chain1085d9a8f1-assets@1.5.0"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice Tarball Contents"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice 14B dist/theme.txt"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice 113B package.json"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice Tarball Details"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice name: chain1085d9a8f1-assets"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice version: 1.5.0"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice filename: chain1085d9a8f1-assets-1.5.0.tgz"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice package size: 230 B"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice unpacked size: 127 B"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice shasum: 9b5e9b2ede5b226427dd1c5dccc8a6442d19bc0e"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice integrity: sha512-IP/ELw7n+FSo+[...]gvs3c1lkheuzQ=="}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice total files: 2"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice"}
+{"level":"warn","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"npm notice Publishing to http://127.0.0.1:50343/ with tag latest and default access"}
+{"level":"info","package":"assets","stage":"publish","version":"1.5.0","time":"2026-09-09T02:23:43+04:00","message":"+ chain1085d9a8f1-assets@1.5.0"}
+{"level":"info","package":"assets","stage":"publish","version":"1.5.0","plannedTag":"assets@1.5.0","time":"2026-09-09T02:23:43+04:00","message":"published, tag deferred to the release commit"}
+{"level":"info","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T02:23:43+04:00","message":"publish started"}
+{"level":"warn","package":"base","stage":"publish","version":"0.8.3","time":"2026-09-09T02:23:45+04:00","message":"injected base publish refusal before registry push"}
+{"level":"error","package":"base","stage":"publish","version":"0.8.3","error":"exit status 37","time":"2026-09-09T02:23:45+04:00","message":"publish script failed"}
+{"level":"warn","package":"app","stage":"version","version":"2.1.1","code":"W194","reason":"provider base failed or was skipped, and this package's build takes its publish as input","time":"2026-09-09T02:23:45+04:00","message":"skipped"}
+{"level":"info","message":"chore(release): assets@1.5.0","time":"2026-09-09T02:23:46+04:00","message":"created release commit"}
+{"level":"info","tag":"assets@1.5.0","package":"assets","status":"published","version":"1.4.2 -> 1.5.0","channel":"stable","took":3395.228125,"time":"2026-09-09T02:23:46+04:00","message":"summary"}
+{"level":"error","error":"publish: exit status 37","failedStage":"publish","package":"base","status":"failed","version":"0.8.2 -> 0.8.3","channel":"stable","took":5258.956625,"time":"2026-09-09T02:23:46+04:00","message":"summary"}
+{"level":"warn","code":"W194","blockedBy":"base","package":"app","status":"skipped","version":"2.1.0 -> 2.1.1","channel":"stable","took":0,"time":"2026-09-09T02:23:46+04:00","message":"summary"}
+{"level":"info","published":1,"failed":1,"skipped":1,"cancelled":0,"held":0,"unchanged":0,"took":5515.310583,"time":"2026-09-09T02:23:46+04:00","message":"done"}

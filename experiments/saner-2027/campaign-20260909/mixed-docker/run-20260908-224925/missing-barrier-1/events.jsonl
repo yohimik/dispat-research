@@ -1,0 +1,10 @@
+{"package": "assets", "stage": "build", "event": "start", "monotonic_ns": 787668914872714, "wall_ns": 1788907897890538628, "version": "1.5.0", "code": 0}
+{"package": "assets", "stage": "build", "event": "end", "monotonic_ns": 787668980453756, "wall_ns": 1788907897956119920, "version": "1.5.0", "code": 0}
+{"package": "assets", "stage": "publish", "event": "start", "monotonic_ns": 787668996348798, "wall_ns": 1788907897972014878, "version": "1.5.0", "code": 0}
+{"package": "base", "stage": "build", "event": "start", "monotonic_ns": 787668998210964, "wall_ns": 1788907897973876920, "version": "0.8.3", "code": 0}
+{"package": "base", "stage": "build", "event": "end", "monotonic_ns": 787669113778756, "wall_ns": 1788907898089445295, "version": "0.8.3", "code": 0}
+{"package": "app", "stage": "build", "event": "start", "monotonic_ns": 787669130692839, "wall_ns": 1788907898106358878, "version": "2.1.1", "code": 0}
+{"package": "app", "stage": "build", "event": "end", "monotonic_ns": 787669222935798, "wall_ns": 1788907898198601878, "version": "2.1.1", "code": 37}
+{"package": "assets", "stage": "publish", "event": "end", "monotonic_ns": 787672182547174, "wall_ns": 1788907901158213796, "version": "1.5.0", "code": 0}
+{"package": "base", "stage": "publish", "event": "start", "monotonic_ns": 787672198488924, "wall_ns": 1788907901174154921, "version": "0.8.3", "code": 0}
+{"package": "base", "stage": "publish", "event": "end", "monotonic_ns": 787674349394592, "wall_ns": 1788907903325061422, "version": "0.8.3", "code": 0}

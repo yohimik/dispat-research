@@ -1,0 +1,106 @@
+lerna notice cli v10.0.1
+lerna info versioning independent
+
+Found 6 packages to publish:
+ - api => 1.0.1
+ - cli => 1.0.1
+ - core => 1.1.0
+ - docs => 1.0.1
+ - theme => 1.0.1
+ - ui => 1.0.1
+
+lerna info auto-confirmed 
+lerna info publish Publishing packages to npm...
+lerna notice Skipping all user and access validation due to third-party registry
+lerna notice Make sure you're authenticated properly ¯\_(ツ)_/¯
+lerna WARN ENOLICENSE Packages api, cli, core, docs, theme, and ui are missing a license.
+lerna WARN ENOLICENSE One way to fix this is to add a LICENSE.md file to the root of this repository.
+lerna WARN ENOLICENSE See https://choosealicense.com for additional guidance.
+lerna success published core 1.1.0
+lerna notice 
+lerna notice package: core@1.1.0
+lerna notice === Tarball Contents === 
+lerna notice 19B  index.js    
+lerna notice 118B package.json
+lerna notice 369B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          core                                    
+lerna notice version:       1.1.0                                   
+lerna notice filename:      core-1.1.0.tgz                          
+lerna notice package size:  512 B                                   
+lerna notice unpacked size: 506 B                                   
+lerna notice shasum:        1db3b7ff4caa51b3d354e8b498530c082694dcdb
+lerna notice integrity:     sha512-BQCqUt75r0HT/[...]tX4iVn4MFjIoA==
+lerna notice total files:   3                                       
+lerna notice 
+lerna WARN notice Package failed to publish: cli
+lerna ERR! E502 injected fault
+lerna ERR! errno "undefined" is not a valid exit code - exiting with code 1
+lerna success published api 1.0.1
+lerna notice 
+lerna notice package: api@1.0.1
+lerna notice === Tarball Contents === 
+lerna notice 6B   index.js    
+lerna notice 138B package.json
+lerna notice 289B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          api                                     
+lerna notice version:       1.0.1                                   
+lerna notice filename:      api-1.0.1.tgz                           
+lerna notice package size:  474 B                                   
+lerna notice unpacked size: 433 B                                   
+lerna notice shasum:        d092329935b246f5194d04e681de934264e1c0e8
+lerna notice integrity:     sha512-LWPebavzNtp6S[...]sjrLej/7fL+Ng==
+lerna notice total files:   3                                       
+lerna notice 
+lerna success published ui 1.0.1
+lerna notice 
+lerna notice package: ui@1.0.1
+lerna notice === Tarball Contents === 
+lerna notice 6B   index.js    
+lerna notice 137B package.json
+lerna notice 286B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          ui                                      
+lerna notice version:       1.0.1                                   
+lerna notice filename:      ui-1.0.1.tgz                            
+lerna notice package size:  473 B                                   
+lerna notice unpacked size: 429 B                                   
+lerna notice shasum:        54df1f17fe888f235fa53b53754afeba615b935a
+lerna notice integrity:     sha512-WYPP1xFEZ1OWW[...]TmO5VHK3lmezw==
+lerna notice total files:   3                                       
+lerna notice 
+lerna success published theme 1.0.1
+lerna notice 
+lerna notice package: theme@1.0.1
+lerna notice === Tarball Contents === 
+lerna notice 6B   index.js    
+lerna notice 138B package.json
+lerna notice 295B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          theme                                   
+lerna notice version:       1.0.1                                   
+lerna notice filename:      theme-1.0.1.tgz                         
+lerna notice package size:  473 B                                   
+lerna notice unpacked size: 439 B                                   
+lerna notice shasum:        9d635de5c1ccf375345bf160ba9f2077a4e3cec0
+lerna notice integrity:     sha512-kDeS3+Hdz+9oI[...]SGJJxPgMBsiYg==
+lerna notice total files:   3                                       
+lerna notice 
+lerna success published docs 1.0.1
+lerna notice 
+lerna notice package: docs@1.0.1
+lerna notice === Tarball Contents === 
+lerna notice 6B   index.js    
+lerna notice 137B package.json
+lerna notice 292B CHANGELOG.md
+lerna notice === Tarball Details === 
+lerna notice name:          docs                                    
+lerna notice version:       1.0.1                                   
+lerna notice filename:      docs-1.0.1.tgz                          
+lerna notice package size:  472 B                                   
+lerna notice unpacked size: 435 B                                   
+lerna notice shasum:        472ae6baffcf2e397a986c6d1e34d63ebd28e079
+lerna notice integrity:     sha512-Ygrg3RmAtWdga[...]exELmSKWhrgKA==
+lerna notice total files:   3                                       
+lerna notice 

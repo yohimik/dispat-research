@@ -1,0 +1,66 @@
+1788330896.737709837	/work/lerna	rev-parse
+1788330896.775621045	/work/lerna	rev-list --count --all --max-count=1
+1788330896.781735962	/work/lerna	rev-parse --abbrev-ref HEAD
+1788330896.788009962	/work/lerna	show-ref --verify refs/remotes/origin/main
+1788330896.794966837	/work/lerna	remote update
+1788330896.804759254	/work/lerna	rev-list --left-right --count origin/main...main
+1788330896.811539379	/work/lerna	tag
+1788330896.817250795	/work/lerna	describe --always --long --dirty --first-parent
+1788330896.822676462	/work/lerna	rev-list --count 77dd383
+1788330896.829324545	/work/lerna	describe --always --long --dirty --first-parent
+1788330896.836264337	/work/lerna	rev-list --count 77dd383
+1788330896.846658504	/work/lerna/packages/api	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.852962712	/work/lerna/packages/api	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options api@1.0.0..HEAD -- /work/lerna/packages/api
+1788330896.857839795	/work/lerna/packages/cli	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.862019170	/work/lerna/packages/cli	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options cli@1.0.0..HEAD -- /work/lerna/packages/cli
+1788330896.867976545	/work/lerna/packages/core	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.873703837	/work/lerna/packages/core	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options core@1.0.0..HEAD -- /work/lerna/packages/core
+1788330896.879646587	/work/lerna/packages/docs	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.884570545	/work/lerna/packages/docs	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options docs@1.0.0..HEAD -- /work/lerna/packages/docs
+1788330896.891637379	/work/lerna/packages/theme	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.899385379	/work/lerna/packages/theme	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options theme@1.0.0..HEAD -- /work/lerna/packages/theme
+1788330896.905925754	/work/lerna/packages/ui	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.914115587	/work/lerna/packages/ui	log --format=%B%n-hash-%n%H%n------------------------ >8 ------------------------ --no-merges --end-of-options ui@1.0.0..HEAD -- /work/lerna/packages/ui
+1788330896.929771462	/work/lerna/packages/core	config --get remote.origin.url
+1788330896.937472962	/work/lerna/packages/core	config --get -- remote.origin.url
+1788330896.943590587	/work/lerna/packages/core	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.952339921	/work/lerna/packages/core	rev-parse --verify --end-of-options HEAD
+1788330896.958885004	/work/lerna/packages/core	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options core@1.0.0..HEAD -- /work/lerna/packages/core
+1788330896.967899879	/work/lerna/packages/api	config --get remote.origin.url
+1788330896.973602504	/work/lerna/packages/cli	config --get remote.origin.url
+1788330896.979951796	/work/lerna/packages/ui	config --get remote.origin.url
+1788330896.986925712	/work/lerna/packages/api	config --get -- remote.origin.url
+1788330896.990191671	/work/lerna/packages/cli	config --get -- remote.origin.url
+1788330896.992392546	/work/lerna/packages/ui	config --get -- remote.origin.url
+1788330896.996039921	/work/lerna/packages/cli	log --decorate --no-color --date-order --end-of-options HEAD
+1788330896.997653212	/work/lerna/packages/api	log --decorate --no-color --date-order --end-of-options HEAD
+1788330897.000229962	/work/lerna/packages/ui	log --decorate --no-color --date-order --end-of-options HEAD
+1788330897.002452921	/work/lerna/packages/cli	rev-parse --verify --end-of-options HEAD
+1788330897.004972712	/work/lerna/packages/api	rev-parse --verify --end-of-options HEAD
+1788330897.007865921	/work/lerna/packages/cli	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options cli@1.0.0..HEAD -- /work/lerna/packages/cli
+1788330897.010394629	/work/lerna/packages/ui	rev-parse --verify --end-of-options HEAD
+1788330897.013441296	/work/lerna/packages/api	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options api@1.0.0..HEAD -- /work/lerna/packages/api
+1788330897.016180379	/work/lerna/packages/ui	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options ui@1.0.0..HEAD -- /work/lerna/packages/ui
+1788330897.023738004	/work/lerna/packages/docs	config --get remote.origin.url
+1788330897.030492046	/work/lerna/packages/theme	config --get remote.origin.url
+1788330897.038313587	/work/lerna/packages/docs	config --get -- remote.origin.url
+1788330897.038722212	/work/lerna/packages/theme	config --get -- remote.origin.url
+1788330897.043519921	/work/lerna/packages/theme	log --decorate --no-color --date-order --end-of-options HEAD
+1788330897.045463254	/work/lerna/packages/docs	log --decorate --no-color --date-order --end-of-options HEAD
+1788330897.050924796	/work/lerna/packages/theme	rev-parse --verify --end-of-options HEAD
+1788330897.053412796	/work/lerna/packages/docs	rev-parse --verify --end-of-options HEAD
+1788330897.057864962	/work/lerna/packages/theme	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options theme@1.0.0..HEAD -- /work/lerna/packages/theme
+1788330897.062425504	/work/lerna/packages/docs	log --format=%B%n-hash-%n%H%n-gitTags-%n%d%n-committerDate-%n%ci%n------------------------ >8 ------------------------ --no-merges --end-of-options docs@1.0.0..HEAD -- /work/lerna/packages/docs
+1788330897.070517212	/work/lerna	add -- packages/core/package.json packages/core/CHANGELOG.md packages/api/package.json packages/cli/package.json packages/ui/package.json packages/cli/CHANGELOG.md packages/api/CHANGELOG.md packages/ui/CHANGELOG.md packages/docs/package.json packages/theme/package.json packages/theme/CHANGELOG.md packages/docs/CHANGELOG.md
+1788330897.078432546	/work/lerna	diff --staged --quiet
+1788330897.084602921	/work/lerna	commit -F /tmp/9b4bdce6-7460-47cf-b45d-56084aad8547/lerna-commit.txt
+1788330897.093100921	/work/lerna	tag api@1.0.1 -m api@1.0.1
+1788330897.095503087	/work/lerna	tag cli@1.0.1 -m cli@1.0.1
+1788330897.097991671	/work/lerna	tag core@1.1.0 -m core@1.1.0
+1788330897.100387587	/work/lerna	tag docs@1.0.1 -m docs@1.0.1
+1788330897.102952504	/work/lerna	tag theme@1.0.1 -m theme@1.0.1
+1788330897.105263212	/work/lerna	tag ui@1.0.1 -m ui@1.0.1
+1788330897.112159421	/work/lerna	push --follow-tags --no-verify --atomic origin main
+1788330897.113612379	/work/lerna	INJECT before: push --follow-tags --no-verify --atomic origin main
+colleague pushed 3604c02: fix(core): describe the package
+1788330897.154050504	/work/lerna	push --follow-tags --no-verify origin main

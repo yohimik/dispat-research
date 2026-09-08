@@ -1,0 +1,67 @@
+{"level":"info","root":".","time":"2026-09-09T02:41:02+04:00","message":"release started"}
+{"level":"info","tag":"dispat-release-lock","remote":"origin","time":"2026-09-09T02:41:03+04:00","message":"release lock acquired"}
+{"level":"warn","code":"W193","package":"app","time":"2026-09-09T02:41:03+04:00","message":"catch-up release at 2.1.1: discharging work already published by assets@1.5.0"}
+{"level":"info","warnings":1,"errors":0,"time":"2026-09-09T02:41:03+04:00","message":"plan diagnostics"}
+{"level":"info","package":"assets","space":"assets","version":"1.5.0","channel":"stable","time":"2026-09-09T02:41:03+04:00","message":"unchanged"}
+{"level":"info","package":"base","space":"base","dependsOn":["assets"],"version":"0.8.3","channel":"stable","time":"2026-09-09T02:41:03+04:00","message":"unchanged"}
+{"level":"info","package":"app","space":"app","dependsOn":["base"],"bump":"patch","version":"2.1.0 -> 2.1.1","channel":"stable","reason":"catch-up from assets","ownCommits":0,"dueToProviders":["assets"],"time":"2026-09-09T02:41:03+04:00","message":"↻ catch-up"}
+{"level":"info","packages":3,"releasing":1,"held":0,"time":"2026-09-09T02:41:03+04:00","message":"release plan ready"}
+{"level":"info","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"build started"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#0 building with \"saner-builder-03f51785\" instance using docker-container driver"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 [internal] load build definition from Dockerfile"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 transferring dockerfile: 81B done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 WARN: InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#2 [internal] load metadata for saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#2 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 [internal] load .dockerignore"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 transferring context: 2B done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 [1/2] FROM saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3@sha256:d260799c9a516407417d220cd9edc2706a10dbb6a5704ce3b6fb410c3f29d8e1"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 resolve saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3@sha256:d260799c9a516407417d220cd9edc2706a10dbb6a5704ce3b6fb410c3f29d8e1 done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 [internal] load build context"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 transferring context: 52B done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#6 [2/2] COPY app.txt /app.txt"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#6 CACHED"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting to oci image format"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting layers done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting manifest sha256:1f3772bc34aa747fb13880d2fd2c30b94798236b2fe9217f38ba0ad911b4a806 done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting config sha256:e0e71d009f3559e90bf4ab3cb20bdaf2e5b2982056a784c64ea1f62fc75361fd done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 sending tarball done"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":" \u001b[33m1 warning found (use docker --debug to expand):"}
+{"level":"warn","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"\u001b[0m - InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)"}
+{"level":"info","package":"app","stage":"build","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"build succeeded"}
+{"level":"info","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"publish started"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#0 building with \"saner-builder-03f51785\" instance using docker-container driver"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 [internal] load build definition from Dockerfile"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 transferring dockerfile: 81B done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 WARN: InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#1 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#2 [internal] load metadata for saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#2 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 [internal] load .dockerignore"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 transferring context: 2B done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#3 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 [1/2] FROM saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3@sha256:d260799c9a516407417d220cd9edc2706a10dbb6a5704ce3b6fb410c3f29d8e1"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 resolve saner-reg-f9e53b78:5000/chaind2d2b77f70/base:0.8.3@sha256:d260799c9a516407417d220cd9edc2706a10dbb6a5704ce3b6fb410c3f29d8e1 done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#4 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 [internal] load build context"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 transferring context: 28B done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#5 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#6 [2/2] COPY app.txt /app.txt"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#6 CACHED"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting to image"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting layers done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting manifest sha256:1f3772bc34aa747fb13880d2fd2c30b94798236b2fe9217f38ba0ad911b4a806 done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 exporting config sha256:e0e71d009f3559e90bf4ab3cb20bdaf2e5b2982056a784c64ea1f62fc75361fd done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 pushing layers done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 pushing manifest for saner-reg-f9e53b78:5000/chaind2d2b77f70/app:2.1.1@sha256:1f3772bc34aa747fb13880d2fd2c30b94798236b2fe9217f38ba0ad911b4a806 done"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"#7 DONE 0.0s"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":" \u001b[33m1 warning found (use docker --debug to expand):"}
+{"level":"warn","package":"app","stage":"publish","version":"2.1.1","time":"2026-09-09T02:41:03+04:00","message":"\u001b[0m - InvalidDefaultArgInFrom: Default value for ARG ${BASE} results in empty or invalid base image name (line 2)"}
+{"level":"info","package":"app","stage":"publish","version":"2.1.1","plannedTag":"app@2.1.1","time":"2026-09-09T02:41:03+04:00","message":"published, tag deferred to the release commit"}
+{"level":"info","tag":"app@2.1.1","package":"app","status":"published","version":"2.1.0 -> 2.1.1","channel":"stable","took":467.610458,"time":"2026-09-09T02:41:03+04:00","message":"summary"}
+{"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":512.137333,"time":"2026-09-09T02:41:03+04:00","message":"done"}

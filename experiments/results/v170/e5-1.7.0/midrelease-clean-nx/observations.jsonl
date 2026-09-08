@@ -1,0 +1,645 @@
+{
+ "label": "before",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": false,
+  "head": {
+   "parents": 1,
+   "sha": "3c4e06ea7af6",
+   "subject": "feat(core): streaming reader"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "3c4e06ea7af6"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "3c4e06ea7af6",
+   "subject": "feat(core): streaming reader"
+  },
+  "tags": {
+   "api@1.0.0": "78426f45d196",
+   "cli@1.0.0": "78426f45d196",
+   "core@1.0.0": "78426f45d196",
+   "docs@1.0.0": "78426f45d196",
+   "theme@1.0.0": "78426f45d196",
+   "ui@1.0.0": "78426f45d196"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  }
+ }
+}
+{
+ "label": "after-release",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "1",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "3c4e06ea7af6",
+   "subject": "feat(core): streaming reader"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "590cec31b25c"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "590cec31b25c"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "590cec31b25c",
+   "subject": "fix(api): concurrent change"
+  },
+  "tags": {
+   "api@1.0.0": "78426f45d196",
+   "cli@1.0.0": "78426f45d196",
+   "core@1.0.0": "78426f45d196",
+   "docs@1.0.0": "78426f45d196",
+   "theme@1.0.0": "78426f45d196",
+   "ui@1.0.0": "78426f45d196"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.0",
+   "state": "baseline",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    }
+   }
+  }
+ }
+}
+{
+ "label": "after-release2",
+ "local": {
+  "aheadOfOrigin": "1",
+  "behindOrigin": "0",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "6f07792bb57d",
+   "subject": "chore(release): publish"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "590cec31b25c"
+  },
+  "release": {
+   "onFirstParentChain": false,
+   "onOriginMain": false,
+   "sha": "6f07792bb57d"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "590cec31b25c"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "590cec31b25c",
+   "subject": "fix(api): concurrent change"
+  },
+  "tags": {
+   "api@1.0.0": "78426f45d196",
+   "cli@1.0.0": "78426f45d196",
+   "core@1.0.0": "78426f45d196",
+   "docs@1.0.0": "78426f45d196",
+   "theme@1.0.0": "78426f45d196",
+   "ui@1.0.0": "78426f45d196"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "core": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.1.0": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  }
+ }
+}
+{
+ "label": "after-publish",
+ "local": {
+  "aheadOfOrigin": "1",
+  "behindOrigin": "0",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "6f07792bb57d",
+   "subject": "chore(release): publish"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "590cec31b25c"
+  },
+  "release": {
+   "onFirstParentChain": false,
+   "onOriginMain": false,
+   "sha": "6f07792bb57d"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "590cec31b25c"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "590cec31b25c",
+   "subject": "fix(api): concurrent change"
+  },
+  "tags": {
+   "api@1.0.0": "78426f45d196",
+   "cli@1.0.0": "78426f45d196",
+   "core@1.0.0": "78426f45d196",
+   "docs@1.0.0": "78426f45d196",
+   "theme@1.0.0": "78426f45d196",
+   "ui@1.0.0": "78426f45d196"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.1.0": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  }
+ }
+}
+{
+ "label": "after-push",
+ "local": {
+  "aheadOfOrigin": "0",
+  "behindOrigin": "0",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "6f07792bb57d",
+   "subject": "chore(release): publish"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {
+  "colleague": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "590cec31b25c"
+  },
+  "release": {
+   "onFirstParentChain": true,
+   "onOriginMain": true,
+   "sha": "6f07792bb57d"
+  }
+ },
+ "origin": {
+  "heads": {
+   "main": "6f07792bb57d"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "6f07792bb57d",
+   "subject": "chore(release): publish"
+  },
+  "tags": {
+   "api@1.0.0": "78426f45d196",
+   "api@1.0.1": "6f07792bb57d",
+   "cli@1.0.0": "78426f45d196",
+   "cli@1.0.1": "6f07792bb57d",
+   "core@1.0.0": "78426f45d196",
+   "core@1.1.0": "6f07792bb57d",
+   "docs@1.0.0": "78426f45d196",
+   "docs@1.0.1": "6f07792bb57d",
+   "theme@1.0.0": "78426f45d196",
+   "theme@1.0.1": "6f07792bb57d",
+   "ui@1.0.0": "78426f45d196",
+   "ui@1.0.1": "6f07792bb57d"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.1.0": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "consistent",
+   "tags": {
+    "1.0.0": {
+     "local": "78426f45d196",
+     "onMain": true,
+     "origin": "78426f45d196"
+    },
+    "1.0.1": {
+     "local": "6f07792bb57d",
+     "onMain": true,
+     "origin": "6f07792bb57d"
+    }
+   }
+  }
+ }
+}

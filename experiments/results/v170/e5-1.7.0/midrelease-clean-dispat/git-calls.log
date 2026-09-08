@@ -1,0 +1,55 @@
+1788331232.967063132	/work/dispat	-C . tag -f -a dispat-release-lock -m dispat release lock
+
+host 00061ddbd250
+pid 286
+at 2026-09-02T06:40:32.965795798Z
+ HEAD
+1788331232.969821382	/work/dispat	-C . push origin refs/tags/dispat-release-lock
+1788331232.976338632	/work/dispat	-C . ls-remote --heads origin
+1788331232.979135965	/work/dispat	-C . rev-parse --abbrev-ref HEAD
+1788331232.981005132	/work/dispat	-C . ls-remote origin refs/heads/main
+1788331232.983565048	/work/dispat	-C . rev-parse e0aa4935c5c539fe67ca6461d3088fe19d7a8e1f^{commit}
+1788331232.985598173	/work/dispat	-C . rev-parse HEAD^{commit}
+1788331232.987248798	/work/dispat	-C . rev-parse --is-shallow-repository
+1788331232.989426048	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) docs@*
+1788331232.989756465	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) core@*
+1788331232.989865715	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) ui@*
+1788331232.990349632	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) theme@*
+1788331232.990734798	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) cli@*
+1788331232.990783923	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) api@*
+1788331232.994507173	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent api@1.0.0..HEAD
+1788331232.996495632	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent cli@1.0.0..HEAD
+1788331232.998839340	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent core@1.0.0..HEAD
+1788331233.001398548	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent docs@1.0.0..HEAD
+1788331233.003495132	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent theme@1.0.0..HEAD
+1788331233.005627382	/work/dispat	-C . log --format=%H%P%an%ae%B --name-only --diff-merges=first-parent ui@1.0.0..HEAD
+1788331233.467335840	/work/dispat	-C . add -- packages/core packages/api packages/cli packages/ui
+1788331233.470255965	/work/dispat	-C . diff --cached --quiet
+1788331233.472187590	/work/dispat	-C . commit -m chore(release): core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1
+1788331233.476026257	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) core@*
+1788331233.478140215	/work/dispat	-C . tag -f -a core@1.1.0 -m release core@1.1.0
+1788331233.480390799	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) api@*
+1788331233.482346965	/work/dispat	-C . tag -f -a api@1.0.1 -m release api@1.0.1
+1788331233.484218382	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) cli@*
+1788331233.486279674	/work/dispat	-C . tag -f -a cli@1.0.1 -m release cli@1.0.1
+1788331233.488209424	/work/dispat	-C . tag --list --merged HEAD --sort=-v:refname --sort=-creatordate --format=%(refname:short)	%(objectname)	%(*objectname) ui@*
+1788331233.490014465	/work/dispat	-C . tag -f -a ui@1.0.1 -m release ui@1.0.1
+1788331233.491775507	/work/dispat	-C . push origin HEAD
+1788331233.492912299	/work/dispat	INJECT before: -C . push origin HEAD
+colleague pushed 5499052: fix(api): concurrent change
+1788331233.506804049	/work/dispat	-C . rev-parse --abbrev-ref HEAD
+1788331233.508397507	/work/dispat	-C . rev-parse HEAD^{commit}
+1788331233.510376590	/work/dispat	-C . ls-remote --tags origin
+1788331233.512894007	/work/dispat	-C . fetch --no-tags origin main
+1788331233.519139049	/work/dispat	-C . merge --no-ff --no-edit -m chore(release): merge origin/main into the release commit
+
+Commits landed on origin/main while the release ran, so the release
+commit 8f7b79bd77f9 was merged with them rather than replaced. The tags this
+release wrote (core@1.1.0, api@1.0.1, cli@1.0.1, ui@1.0.1) still name that commit, so the commits
+that arrived are outside the release and belong to the next run.
+ FETCH_HEAD
+1788331233.523004757	/work/dispat	-C . push origin HEAD
+1788331233.531531507	/work/dispat	-C . ls-remote --tags origin
+1788331233.534189049	/work/dispat	-C . push --force origin refs/tags/core@1.1.0 refs/tags/api@1.0.1 refs/tags/cli@1.0.1 refs/tags/ui@1.0.1
+1788331233.540817674	/work/dispat	-C . push origin --delete refs/tags/dispat-release-lock
+1788331233.544237215	/work/dispat	-C . tag -d dispat-release-lock

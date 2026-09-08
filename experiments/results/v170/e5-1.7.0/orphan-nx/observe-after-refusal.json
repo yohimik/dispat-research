@@ -1,0 +1,132 @@
+{
+ "label": "after-refusal",
+ "local": {
+  "aheadOfOrigin": "1",
+  "behindOrigin": "0",
+  "dirty": true,
+  "head": {
+   "parents": 1,
+   "sha": "8af2cce07e79",
+   "subject": "chore(release): publish"
+  },
+  "mergeInProgress": false,
+  "rebaseInProgress": false
+ },
+ "marks": {},
+ "origin": {
+  "heads": {
+   "main": "4dc13bbf6359"
+  },
+  "main": {
+   "parents": 1,
+   "sha": "4dc13bbf6359",
+   "subject": "feat(core): streaming reader"
+  },
+  "tags": {
+   "api@1.0.0": "46a6d9cbd305",
+   "cli@1.0.0": "46a6d9cbd305",
+   "core@1.0.0": "46a6d9cbd305",
+   "docs@1.0.0": "46a6d9cbd305",
+   "theme@1.0.0": "46a6d9cbd305",
+   "ui@1.0.0": "46a6d9cbd305"
+  }
+ },
+ "packages": {
+  "api": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.0.1": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "cli": {
+   "registry": "1.0.0",
+   "state": "orphan",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.0.1": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "core": {
+   "registry": "1.1.0",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.1.0": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "docs": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.0.1": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "theme": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.0.1": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  },
+  "ui": {
+   "registry": "1.0.1",
+   "state": "unpushed",
+   "tags": {
+    "1.0.0": {
+     "local": "46a6d9cbd305",
+     "onMain": true,
+     "origin": "46a6d9cbd305"
+    },
+    "1.0.1": {
+     "local": "8af2cce07e79",
+     "onMain": null,
+     "origin": null
+    }
+   }
+  }
+ }
+}

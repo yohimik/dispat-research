@@ -1,0 +1,7 @@
+{"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-02T06:40:33Z","message":"unchanged"}
+{"level":"info","package":"api","space":"packages","dependsOn":["core"],"bump":"patch","version":"1.0.1 -> 1.0.2","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-02T06:40:33Z","message":"● changed"}
+{"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:40:33Z","message":"unchanged"}
+{"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:40:33Z","message":"unchanged"}
+{"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:40:33Z","message":"unchanged"}
+{"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:40:33Z","message":"unchanged"}
+{"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-02T06:40:33Z","message":"release plan ready"}

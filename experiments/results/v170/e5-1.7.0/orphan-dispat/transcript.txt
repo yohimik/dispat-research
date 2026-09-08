@@ -1,0 +1,61 @@
+experiment=orphan tool=dispat scenario=clean
+dispat 1.7.0 (linux_arm64)  lerna 10.0.1  nx v23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+fixture ready: /work/dispat dispat
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core)^: streaming reader local 0 ahead 0 behind
+
+== release1: dispat release --log-format json
+exit=1
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","time":"2026-09-02T06:29:07Z","message":"publish started"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-02T06:29:07Z","message":"publish started"}
+   | {"level":"info","package":"ui","stage":"publish","version":"1.0.1","plannedTag":"ui@1.0.1","time":"2026-09-02T06:29:07Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","package":"api","stage":"publish","version":"1.0.1","plannedTag":"api@1.0.1","time":"2026-09-02T06:29:07Z","message":"published, tag deferred to the release commit"}
+   | {"level":"error","package":"cli","stage":"publish","version":"1.0.1","error":"exit status 1","time":"2026-09-02T06:29:17Z","message":"publish script failed"}
+   | {"level":"info","message":"chore(release): core@1.1.0, api@1.0.1, ui@1.0.1","time":"2026-09-02T06:29:17Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["core@1.1.0","api@1.0.1","ui@1.0.1"],"time":"2026-09-02T06:29:17Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"core@1.1.0","package":"core","status":"published","version":"1.0.0 -> 1.1.0","channel":"stable","took":189.686291,"time":"2026-09-02T06:29:17Z","message":"summary"}
+   | {"level":"info","tag":"api@1.0.1","package":"api","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":454.886208,"time":"2026-09-02T06:29:17Z","message":"summary"}
+   | {"level":"error","error":"publish: exit status 1","failedStage":"publish","package":"cli","status":"failed","version":"1.0.0 -> 1.0.1","channel":"stable","took":10350.777838,"time":"2026-09-02T06:29:17Z","message":"summary"}
+   | {"level":"info","tag":"ui@1.0.1","package":"ui","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":454.578792,"time":"2026-09-02T06:29:17Z","message":"summary"}
+   | {"level":"info","published":3,"failed":1,"skipped":0,"cancelled":0,"held":0,"unchanged":2,"took":10384.011213,"time":"2026-09-02T06:29:17Z","message":"done"}
+   codes reported: 
+   after-refusal: api=1.0.1/consistent cli=1.0.0/baseline core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): core@1.1.0, api@1.0.1, ui@1.0.1 local 0 ahead 0 behind
+   cli publish log: npm error 400 Bad request syntax ('{"_id":"cli","name":"cli","dist-tags":{"latest":"1.0.1"},"versions":{"1.0.1":{"name":"cli","version":"1.0.1","dependencies":{"core":"^1.1.0"},"_id":"cli@1.0.1","readme":"ERROR: No README data found!","gitHead":"1412a0e8b0525a83416c91d8ea565cb404f47521","_nodeVersion":"22.23.2","_npmVersion":"10.9.8","dist":{"integrity":"sha512-SnDPKD5PHf3+NtLGPcTvNWiVp6SkGKFgS5BRh5zE58YBs4Ad2EQLGv3S2VnQhJxpICS8At4Xe8PVtayK0+/hhA==","shasum":"9620194170db45c5e990922e439402b10da17a39","tarball":"http://127.0.0.1:4873/cli/-/cli-1.0.1.tgz"}}},"access":null,"_attachments":{"cli-1.0.1.tgz":{"content_type":"application/octet-stream","data":"H4sIAAAAAAAC/+3UwQrCMAwG4J77FKFn6ZLZVdjDCKUr0qndWHUIY+8uzuFBPOpg2O8S+CGHHP60xh7NwWU+VO4m68h+ABG1UvApf9LAtoVGIq1RAUPCXU7AkC3gGi+mY4hfOBIR4TVXIsugJ86SP9XO/Z+nrGMTFu4/5fl7/6lQqf+LGDiIYM5OlCDsyYsNB9G7LvomPCKSKGkKK9e6ULlgvYuihIEDCNt00+KeJEkUHEY+pl+SJEmyCncbEPE9AAwAAA==","length":196}}}PUT /cli HTTP/1.1') - PUT http://127.0.0.1:4873/cli npm error A complete log of this run can be found in: /root/.npm/_logs/2026-09-02T06_29_07_673Z-debug-0.log 
+
+== release2: dispat release --log-format json
+exit=0
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:29:17Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:29:17Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:29:17Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":1,"held":0,"time":"2026-09-02T06:29:17Z","message":"release plan ready"}
+   | {"level":"info","package":"cli","stage":"version","version":"1.0.1","time":"2026-09-02T06:29:17Z","message":"version succeeded"}
+   | {"level":"info","package":"cli","stage":"build","version":"1.0.1","time":"2026-09-02T06:29:17Z","message":"build succeeded"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","time":"2026-09-02T06:29:17Z","message":"publish started"}
+   | {"level":"info","package":"cli","stage":"publish","version":"1.0.1","plannedTag":"cli@1.0.1","time":"2026-09-02T06:29:18Z","message":"published, tag deferred to the release commit"}
+   | {"level":"info","message":"chore(release): cli@1.0.1","time":"2026-09-02T06:29:18Z","message":"created release commit"}
+   | {"level":"info","remote":"origin","tags":["cli@1.0.1"],"time":"2026-09-02T06:29:18Z","message":"pushed release commit and tags"}
+   | {"level":"info","tag":"cli@1.0.1","package":"cli","status":"published","version":"1.0.0 -> 1.0.1","channel":"stable","took":167.697125,"time":"2026-09-02T06:29:18Z","message":"summary"}
+   | {"level":"info","published":1,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":5,"took":183.467792,"time":"2026-09-02T06:29:18Z","message":"done"}
+   after-recovery: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.1/consistent
+   origin/main=chore(release): cli@1.0.1 local 0 ahead 0 behind
+
+== status: dispat status --log-format json
+exit=0
+   | {"level":"info","package":"core","space":"packages","version":"1.1.0","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","package":"api","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","package":"cli","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","package":"ui","space":"packages","dependsOn":["core"],"version":"1.0.1","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","package":"docs","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","package":"theme","space":"packages","dependsOn":["ui"],"version":"1.0.0","channel":"stable","time":"2026-09-02T06:29:18Z","message":"unchanged"}
+   | {"level":"info","packages":6,"releasing":0,"held":0,"time":"2026-09-02T06:29:18Z","message":"release plan ready"}
+   next plan: 
+   ok    the refused run exited non-zero
+   ok    the refused package is neither tagged nor on the registry after the refusal
+   ok    the packages that published are consistent after the refusal
+   ok    the recovery run exited 0
+   ok    the recovery published the refused package and tagged it
+   ok    the recovery republished nothing
+   ok    the next plan is empty
+VERDICT: all expectations hold

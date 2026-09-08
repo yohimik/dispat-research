@@ -1,0 +1,14 @@
+{"level":"info","package":"schema","space":"schema","bump":"minor","version":"1.1.0 -> 1.2.0","channel":"stable","reason":"direct","ownCommits":1,"dueToProviders":[],"time":"2026-09-08T22:44:09Z","message":"● changed"}
+{"level":"info","package":"client","space":"client","dependsOn":["schema"],"bump":"patch","version":"1.1.0 -> 1.1.1","channel":"stable","reason":"propagated from schema","ownCommits":0,"dueToProviders":["schema"],"time":"2026-09-08T22:44:09Z","message":"● changed"}
+{"level":"info","package":"tools","space":"tools","version":"1.1.0","channel":"stable","time":"2026-09-08T22:44:09Z","message":"unchanged"}
+{"level":"info","packages":3,"releasing":2,"held":0,"time":"2026-09-08T22:44:09Z","message":"release plan ready"}
+{"level":"info","package":"tools","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"run script started"}
+{"level":"info","package":"schema","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"run script started"}
+{"level":"info","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"run script started"}
+{"level":"warn","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"Traceback (most recent call last):"}
+{"level":"warn","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"  File \"/Users/yohimik/Projects/dispat-experiments/saner-2027/campaign-20260909/integration/results/1/tasks.py\", line 7, in <module>"}
+{"level":"warn","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"    if (r/('fail-'+name)).exists():raise RuntimeError('injected required test failure')"}
+{"level":"warn","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^"}
+{"level":"warn","package":"client","stage":"run:tests","time":"2026-09-08T22:44:09Z","message":"RuntimeError: injected required test failure"}
+{"level":"error","package":"client","stage":"run:tests","error":"exit status 1","time":"2026-09-08T22:44:09Z","message":"package failed"}
+{"level":"info","script":"tests","ran":2,"failed":1,"skipped":0,"time":"2026-09-08T22:44:09Z","message":"run finished"}
