@@ -9,7 +9,8 @@ Private working repository for the papers, reproducible experiments, and review 
 - [Editing requirements](paper/saner/EDITING-REQUIREMENTS.md).
 - [Research and venue report](output/saner-2027/research-report.md).
 - [Experiment archive](experiments/README.md), containing historical campaigns with their original versions and limitations.
-- [September 9 experiment extension](experiments/saner-2027/PLAN.md). Results from this extension are separate from the measurements already reported in the PDF; consult its campaign status before citing them.
+- [Released 1.9.0 experiment evidence](paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md), with the completed Docker campaign, retained failed attempt, and separate sample counts.
+- [Campaign protocol and reproduction](experiments/saner-2027/campaign-next-release-prepared/CAMPAIGN-PLAN.md) and [complete evidence archives](experiments/saner-2027/campaign-next-release-prepared/ARCHIVES.md).
 - [Full English technical report](paper/main.tex), separate from the active conference revision.
 
 Read the source notes before editing older conference drafts under `paper/icse/` or `output/conference-submission-2026-09-09/`. Submission and withdrawal receipts there are historical evidence, not a current submission.

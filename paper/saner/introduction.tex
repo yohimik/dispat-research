@@ -1,15 +1,15 @@
 \section{Introduction}
 \label{sec:intro}
-Consider an npm package, a Docker image that packages its output, and another
-Docker image built from the first. The dependencies cross the boundary
-between building and publishing. The first image can use files already built
-in the workspace. The second image, built in an isolated environment, cannot
-use its new base version until that version is available in a registry.
+Consider two npm workspace packages: a shared asset library and a UI package
+that imports it, followed by two Docker images. The first image packages the
+built UI; the second uses that image as its base. The UI package and first
+image consume local build output. The second image, built in an isolated
+environment, must pull its new base version from a registry.
 Building all packages before publishing any of them is not a valid schedule
 for this release. Serializing every package through both stages is sufficient
 but also forces local-artifact consumers to wait for uploads they do not need.
 
-Interruption makes the problem harder. If the npm package and base image have
+Interruption makes the problem harder. If both npm packages and the base image have
 published but the final image fails, a repeated command should finish the
 remaining release. It should neither forget that image because its providers
 have already released nor assign a different version solely because the first

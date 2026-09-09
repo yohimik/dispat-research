@@ -1,0 +1,13 @@
+{
+  "dispat_version": "1.9.0",
+  "dispat_version_output": "dispat 1.9.0 (linux_arm64)",
+  "runner_os": "linux",
+  "runner_architecture": "arm64",
+  "dispat_image": "yohimik/dispat-alpine@sha256:bf89800987e88a14683fb86b7dede7e9de1fedef82a454b8669655db98096d35",
+  "dispat_image_index": "yohimik/dispat-alpine@sha256:68b86c1a2508771420d6ac63503b71967228227efe3303f6f9a3f8aa90ea1520",
+  "dispat_binary_sha256": "be3370c472cdbfe66fe4256d3fc1ff78ff19bdd5f041ef222187a52767fa4f35",
+  "runner_image": "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+  "release_run": "https://github.com/yohimik/dispat/actions/runs/34302770429",
+  "gated_source_commit": "8402051e",
+  "release_commit": "37610088"
+}

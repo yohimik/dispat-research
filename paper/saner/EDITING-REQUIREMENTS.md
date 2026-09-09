@@ -4,14 +4,16 @@ Prepared 9 September 2026. The English working draft is ready for your edit, not
 
 ## Keep the scientific story clear
 
-1. Keep the order **system and benefits → formal model and guarantees → experiments**. Introduce the original npm → Docker → Docker failure before notation. Explain the distinction between local build output and an artifact that must already be published.
+1. Keep the order **system and benefits → formal model and guarantees → experiments**. Introduce the npm assets → npm UI → Docker base → Docker app running example before notation, explaining how it extends the original npm → Docker → Docker failure. Explain the distinction between local build output and an artifact that must already be published.
 2. Make consumer-based admission and discharge the central result: a consumer retains its release obligation after its provider succeeds. Explain why a valid build DAG alone does not give this recovery property.
 3. Describe a **common release protocol for conforming integrations**. Single-package repositories, monorepos, control-repository polyrepos, and specifications fit the abstraction. Do not claim demonstrated compatibility with every language, version scheme, registry, or workflow.
 4. Keep saga-inspired recovery as an important foundation, while crediting Sagas, deployment models, and prior lifecycle orchestration. Do not claim invention of sagas, Git storage, topological ordering, or the first use of sagas in operations. State precisely what this protocol adds.
 5. Explain generic CI as a practical benefit: within an already provisioned environment, adding a package need not change the workflow. Package configuration still changes; new tools, permissions, credentials, or runners may require CI changes. The present paper does not measure onboarding effort.
 
 6. Treat **shared Windows/Linux release logic** as a practical contribution. Use game development as a concrete example: Windows editing with Linux dedicated-server CI, or Linux development with Windows packaging CI. Shared configuration owns the graph, lifecycle, and portable commands; referenced platform files choose the shell and override platform-specific steps. This supports reuse of configuration and commands, not automatic translation of Bash to PowerShell, cross-compilation, or identical artifacts.
-7. Preserve platform evidence boundaries. In the evaluated 1.8.2 release, the conditional wrapper still requires `/bin/sh`; selecting PowerShell in a child configuration does not remove that requirement. Do not equate setting `OS=Windows_NT` on Linux with a Windows execution. Before claiming validated cross-platform equivalence, run the same fixture on real Windows and Linux, record native toolchains and outputs, and compare planned versions, selected stages, recovery, and test gates. This validation has not been added to the current campaign.
+7. Preserve platform evidence boundaries. In the evaluated 1.9.0 release, the conditional wrapper still requires `/bin/sh`; selecting PowerShell in a child configuration does not remove that requirement. Do not equate setting `OS=Windows_NT` on Linux with a Windows execution. Before claiming validated cross-platform equivalence, run the same fixture on real Windows and Linux, record native toolchains and outputs, and compare planned versions, selected stages, recovery, and test gates. This validation has not been added to the current campaign.
+
+Treat self-hosting as a practical case study, not causal evidence that AI improved productivity. Keep the first stable release milestone separate from the later source-size snapshot, and label AI assistance and reuse as the author’s account unless independently verified.
 
 ## Preserve the mathematics and its boundaries
 
@@ -27,20 +29,25 @@ Prepared 9 September 2026. The English working draft is ready for your edit, not
 
 ## Keep evidence tied to what was actually measured
 
-- Core differential profile: 1,500 matching, accepted instances in the shared reference-model domain.
-- Broader profile: 997 accepted plans; 503 E195 refusals; 550 matching comparisons comprise 546 accepted matches and four matching diagnostic dossiers. Preserve the 1,914 differing package rows and the explanation of oracle limits.
-- Saved campaign: 24 recovery episodes, at most four runs; six targeted vectors; eight planning-scale cells. These records were reaggregated and hash-checked for this revision, not rerun in full today.
-- Fresh mixed-chain campaign: five configurations × two repetitions, 106 verifier assertions, four repaired failures, eight unchanged reruns without repeated build or publication. Assertions are not independent experimental samples.
-- Keep the injected three-second and two-second delays identified as controls. Two repetitions establish observed ordering, not a statistical performance advantage. Missing-barrier failures are deliberate; setup failures and invalid Python 3.9 cross-process timing are excluded.
-- Do not pool histories, package rows, vectors, runs, and assertions into a single success percentage. Preserve host/tool versions, binary hashes, raw outcomes, and limitations.
-- Historical competitor configurations were not all rerun with this revision. Never generalize their observed behavior to every configuration or claim competitors cannot encode the correct graph.
-- If you want to promote specification portability or unchanged-CI onboarding into empirical contributions, first add controlled executable fixtures. Measure the unchanged workflow, changed package configuration, required test selection, failed-test publication gate, and resulting release. Otherwise retain the present bounded architectural claims.
+The completed primary campaign is `run-v1.9.0-linux-arm64-20260909-corrected`, pinned to the official 1.9.0 Linux ARM64 image and binary hash. See `evidence/EXPERIMENTS-1.9.0-20260909.md` for exact files and counts.
+
+- Core differential holdout: 300 accepted, matching histories (seeds 90001–90300), no refusals, invalid executions, or differences.
+- Recovery: 20 episodes, all converged, maximum four runs, 248 raw command records. The observed maximum is not a universal liveness bound.
+- Three-node topology: five configurations × six repetitions, 30 initial executions. Twelve initial successes, eighteen deliberate failures, twelve successful repairs, and twenty-four unchanged no-op releases. The verifier applies 522 repeated predicates.
+- Four-node topology: separately, the same 30/12/18/12/24 counts, with 798 repeated predicates. Both npm packages and both Docker artifacts were inspected. Base builds completed before UI publication began in all six mixed fixtures; do not describe this as required overlap.
+- CI integration: three repetitions and 81 repeated predicates. Failed tests and missing required tests block release. These are controlled fixture observations, not measured industrial onboarding effort.
+- Do not pool those units, the two topologies, or prior attempts into one success percentage. Predicate counts are not independent experimental samples.
+- Preserve the initial failed attempt. Its four-node verifier incorrectly demanded strict interval overlap. The corrected predicate was frozen before a complete new execution with the same cases and seeds. Retain both attempts, report the correction, and count only the identified completed campaign as current confirmatory evidence.
+- Saved 1.8.2 evidence remains separate: 1,500 core matches; full profile 997 accepted, 503 E195 refusals, 550 matching comparisons (546 accepted and four diagnostic dossiers), 1,914 differing package rows; 24 recovery episodes; six vectors; eight scale cells. These figures were not freshly executed on 1.9.0 and must never be relabeled as such.
+- Historical competitor/replay observations remain pinned and separate. Do not generalize them to every tool configuration or claim competing tools cannot express a correct dependency graph.
+- Artificial delays expose stage availability. They are not production throughput measurements; Docker Desktop results on Linux ARM64 are not native Windows evidence.
+- Raw work trees, including nested Git metadata, are preserved in hash-verified archives. Never discard failed observations or alter raw outcomes to fit a claim.
 
 ## References and presentation
 
 Use primary sources for technical claims. The current bibliography has 40 distinct, cited entries in first-citation order; 19 DOI metadata records were checked. Retain relevant antecedents rather than padding references with famous but unrelated papers. When changing a citation, verify authors, title, year, venue, DOI or official URL, and that the source actually supports the sentence.
 
-Prefer concrete explanations over product promotion. Keep one running example through the system, model trace, and experiment. Retain useful limitations in one clear place rather than deleting them or repeating a disclaimer after every sentence. Do not add CCME version-history material unless needed to identify evaluated semantics: this campaign uses Dispat 1.8.2 and the implemented CCME 2.0 fragment, not unimplemented 3.x features.
+Prefer concrete explanations over product promotion. Keep one running example through the system, model trace, and experiment. Retain useful limitations in one clear place rather than deleting them or repeating a disclaimer after every sentence. Do not add CCME version-history material unless needed to identify evaluated semantics: the fresh campaign uses Dispat 1.9.0 and the implemented CCME 2.0 fragment, not unimplemented 3.x features.
 
 ## Format and submission checks
 
@@ -60,4 +67,4 @@ The author reports that most AI assistance came from Claude Fable 5, with additi
 2. Compile and run `python3 check.py`. Render and inspect every page again: changed text can move tables, references, or equations.
 3. Recheck numerical claims against retained evidence; rerun affected experiments if semantics or the tested binary changes.
 4. Have a human reviewer challenge the proofs, novelty boundary, and interpretation. Automated checks are not independent scientific replication.
-5. Finish the English revision before translating it. Synchronize the Russian paper from English, then synchronize the patent with the Russian paper separately. Those later updates are outside this handoff.
+5. Keep this research repository focused on the canonical English conference paper. Russian translation and patent synchronization are outside the current scope.

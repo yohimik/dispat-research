@@ -3,9 +3,9 @@
 \label{sec:impl}
 \subsection{A Release Crossing Two Availability Boundaries}
 \label{sec:motivation}
-Our running example has three packages: \code{assets} produces an npm build,
-\code{base} packages that output into a Docker image, and \code{app} builds
-from the versioned \code{base} image. Arrows in Fig.~\ref{fig:stages} run from
+Our running example has four packages: \code{assets} is a shared npm library,
+\code{ui} is an npm package built from that library, \code{base} packages the
+UI output into a Docker image, and \code{app} builds from that image. Arrows in Fig.~\ref{fig:stages} run from
 provider to consumer. The second builder obtains its base through a registry;
 we do not assume that it shares the first builder's local image store.
 
@@ -15,43 +15,47 @@ we do not assume that it shares the first builder's local image store.
  every node/.style={font=\small},
  stage/.style={draw,rounded corners=2pt,minimum width=28mm,minimum height=9mm,align=center}]
 \node[stage] (ab) at (0,0) {Build assets\\npm output};
-\node[stage] (bb) at (6,0) {Build base\\Docker image};
-\node[stage] (cb) at (12,0) {Build app\\\texttt{FROM base:v}};
+\node[stage] (ub) at (4.3,0) {Build ui\\npm output};
+\node[stage] (up) at (4.3,-1.65) {Publish ui};
+\node[stage] (bb) at (8.6,0) {Build base\\Docker image};
+\node[stage] (cb) at (12.9,0) {Build app\\\texttt{FROM base:v}};
 \node[stage] (ap) at (0,-1.65) {Publish assets};
-\node[stage] (bp) at (6,-1.65) {Publish base};
-\node[stage] (cp) at (12,-1.65) {Publish app};
-\draw[->] (ab) -- node[above,font=\scriptsize]{local output} (bb);
+\node[stage] (bp) at (8.6,-1.65) {Publish base};
+\node[stage] (cp) at (12.9,-1.65) {Publish app};
+\draw[->] (ab) -- node[above,font=\scriptsize]{local output} (ub);
+\draw[->] (ub) -- node[above,font=\scriptsize]{local output} (bb);
+\draw[->] (ub) -- (up);
 \draw[->] (ab) -- (ap);
 \draw[->] (bb) -- (bp);
 \draw[->,thick] (bp) -- node[above,sloped,font=\scriptsize]{registry required} (cb);
 \draw[->] (cb) -- (cp);
-\draw[->] (ap) -- node[below,font=\scriptsize]{publish order} (bp);
+\draw[->] (ap) -- node[below,font=\scriptsize]{publish order} (up);
+\draw[->] (up) -- node[below,font=\scriptsize]{publish order} (bp);
 \draw[->] (bp) -- node[below,font=\scriptsize]{publish order} (cp);
 \end{tikzpicture}
 \caption{Stage dependencies, not a measured timeline. Publishing \code{assets}
-may overlap building \code{base}. Building \code{app} must wait for
+may overlap building \code{ui}, whose publication may overlap building
+\code{base}. Building \code{app} must wait for
 \code{base}'s publication. Availability modes are configured requirements:
 an npm dependency fetched from a registry would also require publication.}
 \label{fig:stages}
 \end{figure*}
 
-An npm label alone does not justify overlap: \code{base} must actually consume
-local output. Similarly, Docker does not universally require a push between
-builds; the registry barrier is needed for the isolated-builder consumption
-mode in this example. The provider setting
-\code{isBuildWaitingPublish: true} declares that its consumers require its
-published artifact. Here it is set on \code{base}, while \code{assets} uses
-the default local-build mode. Consumer publication is ordered after provider
-publication in both modes. A missing stage script is a no-op stage, not a
-reason to omit dependencies or completion records.
+Availability modes describe integration choices, not ecosystems. Here,
+\code{ui} and \code{base} use workspace output; \code{app} pulls its base
+from a registry. The provider setting \code{isBuildWaitingPublish: true}
+therefore belongs on \code{base}. Both npm providers keep the default
+local-build mode. Other integrations may require npm publication or share
+local Docker images. Consumer publication follows provider publication in
+both modes. A missing script is a no-op stage; dependencies and completion
+records still apply.
 
-Suppose \code{assets} is at version 1.4.2, \code{base} at 0.8.2, and
-\code{app} at 2.1.0. An intent to release an assets feature and patch all
-transitive consumers plans versions 1.5.0, 0.8.3, and 2.1.1. After the first
-two packages publish and are recorded, \code{app} fails. A planner that only
+Suppose \code{assets} is at 1.4.2, \code{ui} at 3.2.0, \code{base} at
+0.8.2, and \code{app} at 2.1.0. An intent to release an assets feature and patch all
+transitive consumers plans versions 1.5.0, 3.2.1, 0.8.3, and 2.1.1. After the first
+three packages publish and are recorded, \code{app} fails. A planner that only
 propagates from \emph{currently unreleased providers} can now lose
-\code{app}: the original provider is no longer pending, so its intent reaches
-nobody. The package is an orphan in the release ledger. Our planner instead
+\code{app}, leaving an orphan in the release ledger. Our planner instead
 asks whether \code{app} has received that intent. Its own pending window is
 unchanged, so a retry still owes version 2.1.1.
 
@@ -142,23 +146,30 @@ platform configures its own build directory. This reuses orchestration logic;
 it does not translate shell syntax or make build outputs portable.
 
 Conditional and iteration commands can compose shared tasks and gates.
-However, in 1.8.2 the conditional wrapper itself requires a POSIX shell;
+However, in evaluated 1.9.0 the conditional wrapper itself requires a POSIX shell;
 a native Windows caller without it must select the platform configuration
 directly. Toolchains and SDKs must exist on each execution host. These are
 integration capabilities, not measured Windows/Linux equivalence or evidence
 of game-development adoption. The experiments evaluate narrower properties.
 
 \subsection{A Stable CI Entry Point}
-The same package graph can drive named test tasks and the release protocol.
-A generic CI job invokes those operations rather than enumerating packages
-and duplicating their dependencies in the workflow. Adding a package within
-an already provisioned environment changes package configuration and scripts;
-it need not change the CI workflow. A new runner, credential, permission, or
-system dependency may still require provisioning changes. Likewise, a
-configured test gate must explicitly reject missing required tests and block
-publication on failure: a shared graph alone is not a testing guarantee.
+The same package graph can drive named tests and releases. A generic CI job
+invokes these operations rather than enumerating packages and dependencies.
+Within a provisioned environment, adding a package changes configuration and
+scripts but may leave the workflow unchanged. New runners, credentials,
+permissions, or system dependencies can still require provisioning. A configured
+test gate must reject missing required tests and block publication on failure;
+the shared graph alone is not a testing guarantee.
 
-Affected-task execution already appears in systems such as Nx~\cite{nx}.
-Here the practical benefit is using one package model for testing and
-recoverable release execution across artifact kinds. Test and release selection may use different windows and policies;
-sharing the graph avoids duplicated package lists without replacing CI policy.
+Affected-task execution already appears in systems such as Nx~\cite{nx}. Here,
+one package model supports testing and recoverable release execution across
+artifact kinds. The two may use different windows and policies; the shared
+graph avoids duplicate package lists without replacing CI policy.
+
+\paragraph{Observed self-hosting case}
+CI uses its checkout-built CLI for transitive test and build selection and
+self-release. The author reports most project-specific modules were built from
+scratch with AI while reusing libraries. Release-candidate and stable milestones
+appeared about 13 and 20 days after the first commit. Later, a day-43 committed
+snapshot contained 61,478 non-test and 87,814 test physical first-party Go lines,
+excluding dependencies and generated files in this single project.

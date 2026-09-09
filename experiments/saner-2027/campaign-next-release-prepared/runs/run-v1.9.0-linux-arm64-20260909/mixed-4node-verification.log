@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/results/mixed-4node/verify.py", line 63, in <module>
+    check(overlap_ui>0,name+': base local build overlaps ui publication')
+    ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/results/mixed-4node/verify.py", line 5, in check
+    if not ok:raise AssertionError(msg)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: mixed-2: base local build overlaps ui publication

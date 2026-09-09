@@ -1,11 +1,11 @@
 \section{Evaluation}
 \label{sec:eval}
-The primary campaign uses the official 1.8.2 ARM64 image and the implemented
-2.0 release-intent semantics. Historical competitor measurements remain
-separate. Our evaluation asks whether planning matches a reference domain,
+The fresh campaign uses the official 1.9.0 Linux ARM64 image and implemented
+2.0 release-intent semantics. Saved 1.8.2 diagnostics, comparisons, and scale
+measurements remain separate. Our evaluation asks whether planning matches a reference domain,
 whether recorded progress survives injected failures, and what planning costs
 on larger graphs. A supplemental stage-order experiment addresses the running
-example directly; its setup and results are reported below.
+example's availability boundaries; its setup and results are reported below.
 
 \subsection{Study Design and Evidence Boundaries}
 \label{sec:eval:diff}
@@ -31,32 +31,35 @@ competing Git push. These observations test selected implementation traces,
 not every interleaving of external writes. The timing campaign varies graph
 size, shape, intent-unit count, and unrelated history. It uses a contended
 host capped at two CPUs and 4 GiB; it is not a controlled cross-tool benchmark.
-All reported primary counts were reaggregated from saved records for this
-revision. That integrity check is not a new execution of the original campaign.
+Fresh records count generated histories, recovery episodes, fixture executions,
+and CI repetitions. Saved 1.8.2 records were reaggregated and hash-checked, not
+rerun. Assertions and command records inspect those units; neither they nor the
+different experimental units are pooled as independent samples.
 
 \subsection{Planner Agreement and Specification Regressions}
 \label{sec:eval:fresh}
 \begin{table}[t]
 \centering
-\caption{Two differential profiles. Diagnostic equality is not executable
-conformance: four matching full-profile cases were refused.}
+\caption{Fresh 1.9.0 core and saved 1.8.2 full profiles. Four matching
+full-profile cases were refused, so diagnostic equality is not conformance.}
 \label{tab:oracle}
 \small
 \begin{tabular}{@{}lrr@{}}
 \toprule
-Observation & Core & Full \\
+Observation & Fresh core & Saved full \\
 \midrule
-Generated histories & 1,500 & 1,500 \\
-Accepted plans & 1,500 & 997 \\
+Generated histories & 300 & 1,500 \\
+Accepted plans & 300 & 997 \\
 E195 diagnostic refusals & 0 & 503 \\
-Matching comparisons & 1,500 & 550 \\
+Matching comparisons & 300 & 550 \\
 Differing package rows & 0 & 1,914 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-All 1,500 core instances agreed, with no invalid sample. Of 1,500 full-profile
-histories, 997 produced accepted plans and 503 produced complete E195
+All 300 fresh core instances produced accepted matching plans, with no
+differences, refusals, or invalid execution. Of 1,500 saved full-profile
+histories from 1.8.2, 997 produced accepted plans and 503 produced complete E195
 refusals for proposed regressive versions (Table~\ref{tab:oracle}). Among
 accepted plans, 546 comparisons were clean. Four refused dossiers also had no
 row difference, giving 550 matching diagnostic comparisons overall. Each
@@ -68,24 +71,25 @@ The 1,914 differing rows retain the campaign's heuristic classes: PG1 862,
 PG2 375, PG2x 14, and PG3? 663, with UNKNOWN 0. These labels partition
 observations for inspection; UNKNOWN 0 does not show that the oracle explains
 every current semantic rule correctly. The full-profile results therefore
-limit the refinement claim rather than extend the 1,500 core agreements to
+limit the refinement claim rather than extend core agreement to
 all prerelease behavior.
 
-The binary passed six selected specification vectors, 133--138. They exercise
+The saved 1.8.2 binary passed six selected specification vectors, 133--138. They exercise
 fresh discharge, suppression, channel eligibility and ordering, inherited
 channel drift, and source exclusion. Vector 135 observes a downward W208
 diagnostic, not the upward audit API. These targeted cases complement random
 core instances but are not complete specification conformance coverage.
 
 \subsection{Recovery and Historical Replay}
-Two isolated orphan repetitions retained the failed consumer's version and
-reached an empty third plan. Across two broader recovery campaigns, all
-24 episodes converged within four runs, with zero structural G3/G5 check
-failures. These checks concern the tested schedules and predicates. They do
+All 20 fresh 1.9.0 episodes made progress on every run and converged within
+four runs; the verifier inspected 248 command records. Saved 1.8.2 evidence
+contains two isolated orphan repetitions and 24 broader episodes, which also
+converged within four runs with zero structural G3/G5 check failures. These
+checks concern tested schedules and predicates. They do
 not establish the liveness premise under permanent registry failure, nor do
 they make an unrecorded external write unambiguous.
 
-Three fresh 1.8.2 fault cells passed 8 orphan checks, 12 clean competing-push
+Three saved 1.8.2 fault cells passed 8 orphan checks, 12 clean competing-push
 checks, and 14 conflicting-push checks. The latter distinguish preservation
 of completed release tags from incorporation of a concurrent source change.
 Different scenarios have different assertions; their counts are not a common
@@ -112,7 +116,7 @@ properties of every mode those tools expose.
 
 In the competing-push fixture, compared runs left tags outside branch
 ancestry; our historical run merged before its final push and planned the
-colleague's commit next. The new 1.8.2 fault cells above repeated our side,
+colleague's commit next. The saved 1.8.2 fault cells above repeated our side,
 not the competitors. Release-please's tag timing is characterized from its
 documented workflow, not an executed comparison~\cite{releaseplease}.
 No cross-tool speed or aggregate superiority claim follows from these tests.

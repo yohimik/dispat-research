@@ -6,3 +6,6 @@ node_modules/
 .npm/
 .cache/
 /experiments/e3a/repos/
+
+# Raw fixture trees are preserved in verified work.tar.gz archives, including .git.
+/experiments/saner-2027/campaign-next-release-prepared/runs/*/work/

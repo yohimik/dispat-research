@@ -663,6 +663,10 @@ Underfull \vbox (badness 1968) has occurred while \output is active []
 
 
 ]
+Underfull \hbox (badness 5359) in paragraph at lines 44--52
+\T1/ptm/m/n/10 pulls its base from a reg-istry. The provider set-ting
+ []
+
 [2]) (model [3]
 Underfull \hbox (badness 2418) in paragraph at lines 178--196
 [][]\T1/ptm/b/n/10 Definition 9 \T1/ptm/m/n/10 (chan-nels)\T1/ptm/b/n/10 . []$[
@@ -692,28 +696,28 @@ L/cmm/m/it/10 D \OT1/cmr/m/n/10 :
  []
 
 [6]) (evaluation [7]
-Underfull \hbox (badness 10000) in paragraph at lines 95--102
+Underfull \hbox (badness 10000) in paragraph at lines 99--106
 []\T1/ptm/m/n/10 Five-release his-tor-i-cal re-play matched 36 of 42
  []
 
 
-Underfull \hbox (badness 5105) in paragraph at lines 95--102
+Underfull \hbox (badness 5105) in paragraph at lines 99--106
 \T1/ptm/m/n/10 ver-sions in \T1/pcr/m/n/10 google-cloud-node \T1/ptm/m/n/10 and
  7 of 64 in
  []
 
 
-Underfull \hbox (badness 4819) in paragraph at lines 95--102
+Underfull \hbox (badness 4819) in paragraph at lines 99--106
 \T1/pcr/m/n/10 conventional-changelog\T1/ptm/m/n/10 . Those projects did not
  []
 
 
-Underfull \hbox (badness 5548) in paragraph at lines 95--102
+Underfull \hbox (badness 5548) in paragraph at lines 99--106
 \T1/ptm/m/n/10 con-ven-tions. Con-se-quently the ex-per-i-ment demon-strates
  []
 
 [8]
-Underfull \hbox (badness 10000) in paragraph at lines 158--163
+Underfull \hbox (badness 10000) in paragraph at lines 162--167
 []\T1/ptm/m/n/10 The fix-tures passed \T1/pcr/m/n/10 git fsck\T1/ptm/m/n/10 . T
 he op-ti-mized
  []
@@ -786,6 +790,6 @@ Before submitting the final camera ready copy, remember to:
 
 ] (main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 549F3EED24100A781E5AAF8D2A90B0BD;5163.
+(rerunfilecheck)             Checksum: 975D161AF8CF36BFE9CCEC00AA9C498A;5191.
  )
-Output written on main.xdv (12 pages, 137472 bytes).
+Output written on main.xdv (12 pages, 141124 bytes).

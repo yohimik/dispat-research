@@ -19,8 +19,8 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-An npm package can supply local output to a Docker build, while another image
-must await registry publication. After partial failure, a consumer can also
+Two npm workspace packages can share local build output, while a downstream
+Docker image must await base-image publication. After partial failure, a consumer can also
 lose its pending release when its provider's success removes the original
 propagation reason. We present a protocol combining stage-aware scheduling
 with consumer-based admission of release intent. Git history determines the
@@ -28,11 +28,11 @@ plan; tags record completed obligations. The protocol covers single-package
 repositories, monorepos, and control-repository polyrepos through a common
 integration contract. We formalize deterministic planning and eight
 conditional recovery guarantees, with counterexamples to simpler rules.
-Evaluation of implementation 1.8.2 reports 1,500 agreements in a restricted
-reference-model domain, 24 recovery episodes, six specification vectors,
-and eight planning-scale cells. A fresh npm/Docker/Docker experiment checks
-publication barriers and recovery. Broader-profile disagreements expose
-oracle limits. The guarantees concern the model; implementation refinement
+Evaluation of implementation 1.9.0 reports 300 agreements in a restricted
+reference-model domain, 20 recovery episodes, 60 mixed-chain executions, and
+three CI repetitions. Saved 1.8.2 evidence supplies broader-profile diagnostics,
+historical comparisons, and scale measurements. The guarantees concern the
+model; implementation refinement
 and exactly-once effects at arbitrary external registries remain outside
 the claims.
 \end{abstract}

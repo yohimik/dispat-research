@@ -170,17 +170,16 @@ are not made exactly-once by a tag ledger.
 
 \begin{table}[t]
 \centering
-\caption{Running example after one downstream failure. Planned versions are
-assets 1.5.0, base 0.8.3, and app 2.1.1. This is a model trace, not a timing
-measurement. A no-progress attempt may be inserted without violating safety;
-it is excluded from the progress premise of the convergence bound.}
+\caption{Running example: planned versions assets 1.5.0, ui 3.2.1, base
+0.8.3, app 2.1.1. This model trace is not a timing measurement. No-progress
+attempts preserve safety but do not count toward the convergence bound.}
 \label{tab:runs}
 \small
 \begin{tabular}{@{}llll@{}}
 \toprule
 Run & Plan & Recorded success & Failure \\
 \midrule
-1 & assets, base, app & assets, base & app \\
+1 & all four & assets, ui, base & app \\
 2 & app 2.1.1 & app & none \\
 3 & empty & none & none \\
 \bottomrule

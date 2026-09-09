@@ -1,0 +1,34 @@
+{
+  "status": "PASS",
+  "checks_executed": 522,
+  "configurations": 5,
+  "repetitions_per_configuration": 6,
+  "executions": 30,
+  "repair_executions": 12,
+  "overlap": [
+    {
+      "case": "mixed-2",
+      "overlap_seconds": 0.120636959
+    },
+    {
+      "case": "mixed-4",
+      "overlap_seconds": 0.124892459
+    },
+    {
+      "case": "mixed-5",
+      "overlap_seconds": 0.151600334
+    },
+    {
+      "case": "mixed-0",
+      "overlap_seconds": 0.109189125
+    },
+    {
+      "case": "mixed-3",
+      "overlap_seconds": 0.119977084
+    },
+    {
+      "case": "mixed-1",
+      "overlap_seconds": 0.110992125
+    }
+  ]
+}

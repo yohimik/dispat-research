@@ -23,8 +23,8 @@ can survive their agreement. The restricted oracle does not cover all current
 semantics; full-profile categories are heuristic. A passing integrity check
 shows consistency of supplied records, not independent replication. The
 concurrent-push cases cover selected interleavings, not a systematic sweep.
-The measured counts use different units: histories, package rows, episodes,
-and assertions must not be pooled into one success percentage.
+The measured units include histories, package rows, recovery episodes, fixture
+and CI repetitions, commands, and assertions; they are not pooled.
 
 \paragraph{External validity.}
 Synthetic repositories and local fault fixtures establish behavior under
@@ -109,17 +109,14 @@ work~\cite{lamport}.
 A curated local review bundle contains harness code, selected raw records,
 per-file checksums, and an offline verifier. It reaggregates reported campaign
 counts but omits binaries, complete Git histories, and some large dossiers;
-it is not a complete executable replication package. The supplemental
-mixed-chain experiment has separate code, event logs, and verdicts. Anonymous
+it is not a complete executable replication package. The fresh 1.9.0 campaign
+has separate provenance, code, event logs, and verdicts. Anonymous
 distribution is being prepared. Identifying source and artifact links are
 withheld in this working review draft; no public artifact availability is
 claimed. An archival replication package is planned for publication.
 
 \section*{AI Assistance Disclosure}
-Most AI-assisted work used Claude Fable 5, with additional assistance from
-Claude Opus 5, Claude Fable 5.1, Gemini, and OpenAI Codex. Across these tools,
-assistance covered exposition, proof arguments, harness code, experiment
-execution, and results summaries; it extended beyond language editing.
-Measurements come from program executions, not language-model predictions.
-The human author is responsible for the claims, proofs, citations, and
-interpretation.
+Most AI assistance used Claude Fable 5; Claude Opus 5, Claude Fable 5.1,
+Gemini, and OpenAI Codex also aided implementation, writing, and experiments
+beyond editing. Executions produced the measurements; the human author remains
+responsible.

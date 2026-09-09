@@ -1,53 +1,49 @@
-\subsection{Mixed-Chain Availability and Recovery}
-We also executed the motivating npm $\to$ Docker $\to$ Docker chain
-using the official 1.8.2 macOS ARM64 binary. The npm build produces a file
-copied into the base image; the app image uses \code{FROM} with the new base
-version. Publication uses private Verdaccio and Docker registries. A dedicated
-BuildKit builder resolves that registry over an isolated Docker network;
-images are built to OCI archives~\cite{oci} and published through cached
-BuildKit exports~\cite{buildkit}. No image is published to an external service.
-
-Five configurations ran twice each (Table~\ref{tab:mixed}). Both availability
-requirements enabled serialize the two boundaries. Disabling the base's
-publication requirement makes the app attempt to resolve an unpublished
-image. The other configurations inject either a base-publication refusal
-before its push or an app-build failure. Clearing the injected failure and
-running the same release command tests recovery, without changing release
-intent. Fixed three-second npm and two-second base-publication delays make
-ordering observable; these are experimental controls, not workload latencies.
+\subsection{Mixed-Chain Availability, Recovery, and CI}
+The fresh 1.9.0 Linux ARM64 campaign executes both the three-package
+npm $\to$ Docker $\to$ Docker chain and the four-package running example.
+Build outputs carry fixture content through OCI archives; private Verdaccio
+and Docker registries distinguish local output from publication~\cite{oci,buildkit}.
+Each topology repeats five configurations six times in seeded order: mixed and
+serialized availability, a missing barrier, refused publication, and failed building.
 
 \begin{table}[t]
 \centering
-\caption{Fresh mixed-chain experiment; two runs per configuration. Failures
-in the final three rows are intentional. The barrier-removed configuration
-is not repaired and is excluded from unchanged-rerun checks.}
+\caption{Fresh 1.9.0 executions. Designed failures are retained controls;
+checks are verifier predicates, not independent samples.}
 \label{tab:mixed}
 \small
-\begin{tabular}{@{}lll@{}}
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lrrl@{}}
 \toprule
-Configuration & First outcome & Retry after repair \\
+Scope & Runs & Checks & Initial outcomes \\
 \midrule
-Mixed availability & 2 successes & not needed \\
-Both barriers & 2 successes & not needed \\
-Base barrier removed & 2 app failures & not attempted \\
-Base publish fails & 2 blocked apps & 2 successes \\
-App build fails & 2 app failures & 2 successes \\
+Three-package chain & 30 & 522 & 12 pass; 18 fail \\
+Four-package chain & 30 & 798 & 12 pass; 18 fail \\
+CI entry point & 3 & 81 & 3 pass \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-In the mixed runs, base building overlapped npm publication; in the
-serialized runs it began afterward. App building followed successful base
-publication whenever that barrier was enabled. Removing it produced a
-registry ``not found'' error in both repetitions. All four repaired failures
-retained the planned versions and completed. All eight successfully completed
-configurations then reran without another build or publication. The verifier
-checks 106 assertions over stage events, outcomes, versions, tags, and cleanup;
-these assertions are not independent experimental samples.
+Per topology, 12 repairable failures completed with unchanged versions; 24
+completed cases then reran without build or publication. Six missing-barrier
+controls were not repaired. Enabled barriers placed app building after base
+publication; without one, the app failed against the unavailable image. In all
+six mixed three-package runs, base building overlapped npm publication.
 
-Event ordering and elapsed intervals use Python 3.12's shared monotonic clock~\cite{pytime}.
-Earlier setup attempts are excluded: a host-loopback registry was unreachable
-from the Docker daemon, and Python 3.9 on this host supplied process-relative
-clock origins unsuitable for cross-process intervals. The retained experiment
-supports stage ordering and selected recovery paths, not distributed-clock
-accuracy, production registry reliability, or comparative throughput.
+In the four-package mixed runs, UI building overlapped delayed assets
+publication. All six base builds finished before UI publication started. This
+is a valid local-output schedule: base building need not await UI publication,
+but overlap is not required. Intervals use a shared monotonic clock~\cite{pytime}.
+An initial campaign attempt incorrectly required
+strict overlap and failed its oracle. We corrected that predicate before a
+full rerun from fresh state; a focused oracle test accepts completion before publication
+starts and rejects a build starting after publication ends. The correction and
+earlier failure are retained, not counted as implementation evidence.
+
+The three CI repetitions kept the workflow entry point and shared configuration
+unchanged while adding packages. They selected required tests through the graph,
+blocked release stages for an injected or missing test, propagated a specification
+change to its consumer, and observed a final no-op release rerun. These fixtures
+support selected ordering, recovery, and CI-integration paths on one Linux ARM64
+environment, not a universal schedule, reliability rate, throughput result, or
+independent adoption study.

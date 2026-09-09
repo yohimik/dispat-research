@@ -1,5 +1,12 @@
 # Contribution assessment for SANER 2027
 
+## Current evidence update, 9 September 2026
+
+The active manuscript now incorporates the completed Dispat 1.9.0 Linux ARM64 campaign: 300 matching core histories, 20 converged recovery episodes, separate 30-execution three- and four-node topologies, and three CI-fixture repetitions. The four-node case uses two npm packages followed by two Docker images. A retained first attempt failed an overly strict overlap oracle; the correction was frozen before the new full execution. Do not pool attempts or relabel the saved 1.8.2 full-profile, scaling, and competitor records as current measurements.
+
+See [the experiment evidence](../../paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md) and [editing requirements](../../paper/saner/EDITING-REQUIREMENTS.md) for exact identities, counts, limitations, and reproduction. Self-hosting and dated implementation milestones strengthen the practical case study; they are not a controlled estimate of AI productivity. The research positioning below remains relevant, but earlier campaign descriptions are historical where they differ from this update.
+
+
 Research date: 9 September 2026. This is a targeted literature and tool-documentation review, not a systematic review or a proof that no earlier equivalent exists. It updates the narrower search recorded in `paper/icse/RELATED-MODELS.md` on 30 August. Sources are primary papers, author copies, project reports, and official tool documentation. Search-engine dates were not treated as publication dates.
 
 ## Recommended central claim
