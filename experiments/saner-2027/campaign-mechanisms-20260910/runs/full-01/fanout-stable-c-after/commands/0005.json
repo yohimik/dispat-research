@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-stable-c-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

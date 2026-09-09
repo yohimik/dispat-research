@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "-q",
+    "-b",
+    "main"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-stable-d-foreign/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

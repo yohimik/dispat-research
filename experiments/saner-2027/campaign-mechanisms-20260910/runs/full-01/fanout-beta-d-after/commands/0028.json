@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "status",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-beta-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"version\":\"1.1.0-beta.0\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:06Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:06Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:06Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:06Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":0,\"held\":0,\"time\":\"2026-09-09T20:40:06Z\",\"message\":\"release plan ready\"}\n"
+}

@@ -16,6 +16,10 @@ The active manuscript is `paper/saner/`. See `paper/archives/README.md` to resto
 
 `provenance/migration.json` and `tools/verify-migration.py` describe the original imported snapshot. The snapshot verifier is intended for that revision, not for validating later manuscript edits or cleanup.
 
+## September 10 mechanism campaign
+
+The separate [mechanism campaign](experiments/saner-2027/campaign-mechanisms-20260910/README.md) records the Docker runner, append-only execution commands, 140-case protocol, offline verifier, and archive restoration procedure. Its pilot and full run remain separate. Each run retains raw command records and a verified archive containing fixture working trees and Git metadata. Use a fresh run name or a disposable archive extraction; never overwrite completed evidence.
+
 ## Replay repositories
 
 `python3 tools/restore-replay-fixtures.py` restores the external repositories under `experiments/e3a/repos/`, using the exact heads and tag object IDs in `experiments/fixture-locks/`. It refuses to overwrite existing checkouts. Network access and upstream availability are required; missing objects are errors, never replaced with newer revisions. The lock records the original sparse-checkout setting; the restoration uses a full checkout with the same content and revisions.

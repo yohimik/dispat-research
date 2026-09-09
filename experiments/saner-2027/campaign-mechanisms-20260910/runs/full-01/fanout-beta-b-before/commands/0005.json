@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-beta-b-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

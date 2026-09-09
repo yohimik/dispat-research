@@ -30,7 +30,6 @@ if not pages[-1].strip():
 require(len(pages) == 12, 'exactly 12 pages')
 require(re.search(r'^\s*R\s*EFERENCES\b', pages[10], re.M), 'references start on page 11')
 require(not any(re.search(r'^\s*R\s*EFERENCES\b', p, re.M) for p in pages[:10]), 'ten content pages')
-require('[31]' in pages[11] and '[40]' in pages[11], 'second reference page contains references 31–40')
 require(not re.search(r'\b(?:TODO|FIXME|TBD|yohimik|dispat|CCME|Fediukovich)\b|\?\?', text, re.I), 'no placeholders or known identifying names')
 require('\\documentclass[10pt,conference]{IEEEtran}' in source, 'IEEE 10pt conference format')
 require('compsoc' not in source, 'no compsoc format')
@@ -39,6 +38,15 @@ cites = [k.strip() for group in re.findall(r'\\cite\{([^}]+)\}', source) for k i
 require(len(keys) == len(set(keys)), 'unique bibliography keys')
 require(set(keys) == set(cites), 'all citations resolve and every reference is used')
 require(list(dict.fromkeys(cites)) == keys, 'references ordered by first citation')
+reference_text = '\n'.join(pages[10:])
+missing_reference_numbers = [
+    number for number in range(1, len(keys) + 1)
+    if not re.search(rf'(?:^|\s)\[{number}\]\s', reference_text, re.M)
+]
+require(not missing_reference_numbers,
+        'all numbered references appear on the two references-only pages')
+require(re.search(rf'(?:^|\s)\[{len(keys)}\]\s', pages[11], re.M),
+        'the final reference appears on page 12')
 labels = re.findall(r'\\label\{([^}]+)\}', source)
 refs = re.findall(r'\\(?:eqref|ref)\{([^}]+)\}', source)
 require(len(labels) == len(set(labels)) and set(refs) <= set(labels), 'unique and resolved cross-references')

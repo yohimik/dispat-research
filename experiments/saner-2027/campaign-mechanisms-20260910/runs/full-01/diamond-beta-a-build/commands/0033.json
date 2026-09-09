@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "fsck",
+    "--no-dangling"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-a-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

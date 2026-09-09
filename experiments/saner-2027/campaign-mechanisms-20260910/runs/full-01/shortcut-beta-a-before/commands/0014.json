@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "--bare",
+    "-q",
+    "/campaign/runs/full-01/shortcut-beta-a-before/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-beta-a-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

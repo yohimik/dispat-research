@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "c@1.0.0"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-c-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

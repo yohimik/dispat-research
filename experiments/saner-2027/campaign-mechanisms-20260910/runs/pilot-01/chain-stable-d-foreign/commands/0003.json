@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "config",
+    "user.email",
+    "experiment@example.invalid"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-stable-d-foreign/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

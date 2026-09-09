@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-beta-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

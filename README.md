@@ -8,6 +8,8 @@ Private working repository for the papers, reproducible experiments, and review 
 - [Current conference PDF](output/pdf/saner-2027-paper.pdf).
 - [Editing requirements](paper/saner/EDITING-REQUIREMENTS.md).
 - [Research and venue report](output/saner-2027/research-report.md).
+- [SANER literature and paper review](output/saner-2027/conference-review-20260910/REVIEW.md), emphasizing recent CI/release-related papers and verified award examples.
+- [Supplementary recovery-mechanism results](experiments/saner-2027/campaign-mechanisms-20260910/RESULTS.md): 140 Docker cases, a finite model projection, and an explicit source-window counterfactual; [protocol](experiments/saner-2027/campaign-mechanisms-20260910/PROTOCOL.md) and [reproduction](experiments/saner-2027/campaign-mechanisms-20260910/README.md).
 - [Experiment archive](experiments/README.md), containing historical campaigns with their original versions and limitations.
 - [Released 1.10.0 experiment evidence](paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md), with the completed 14-stage Docker campaign, separate diagnostics checks, and verified archives.
 - [Historical 1.9.0 evidence](paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md), including the preserved failed oracle attempt and corrected campaign.
@@ -32,7 +34,7 @@ Inspect all rendered pages after edits. The target is exactly ten content pages 
 
 ## Reproducibility
 
-Experiment scripts, inputs, raw observations, failed setup attempts, image/package pins, and verification scripts are retained. Docker is the preferred environment for new experiments; historical macOS measurements remain explicitly historical. Docker on a Linux VM does not validate native Windows execution.
+Experiment scripts, inputs, raw observations, failed setup attempts, image/package pins, and verification scripts are retained. Docker is required for new experiments; historical macOS measurements remain explicitly historical. Docker on a Linux VM does not validate native Windows execution.
 
 [Restoration instructions](RESTORATION.md) explain replay fixtures, nested Git metadata, and the Docker runner. Some older scripts and records contain their original absolute paths. Preserve those records; adapt paths only in a new runner or run directory.
 

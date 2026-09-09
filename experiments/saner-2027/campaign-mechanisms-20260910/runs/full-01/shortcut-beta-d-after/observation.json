@@ -1,0 +1,67 @@
+{
+  "after_failure": {
+    "d": "1.0.1-beta.1"
+  },
+  "artifact_writes": 4,
+  "case": [
+    "shortcut",
+    "beta",
+    "d",
+    "after"
+  ],
+  "completed_before_retry": [
+    "a",
+    "b",
+    "c"
+  ],
+  "final_tags": [
+    "a@1.0.0",
+    "a@1.0.1-beta.0",
+    "a@1.1.0-beta.0",
+    "b@1.0.0",
+    "b@1.0.1-beta.0",
+    "b@1.0.1-beta.1",
+    "c@1.0.0",
+    "c@1.0.1-beta.0",
+    "c@1.0.1-beta.1",
+    "d@1.0.0",
+    "d@1.0.1-beta.0",
+    "d@1.0.1-beta.1"
+  ],
+  "first_exit": 1,
+  "first_tags": [
+    "a@1.0.0",
+    "a@1.0.1-beta.0",
+    "a@1.1.0-beta.0",
+    "b@1.0.0",
+    "b@1.0.1-beta.0",
+    "b@1.0.1-beta.1",
+    "c@1.0.0",
+    "c@1.0.1-beta.0",
+    "c@1.0.1-beta.1",
+    "d@1.0.0",
+    "d@1.0.1-beta.0"
+  ],
+  "foreign_refused": null,
+  "initial": {
+    "a": "1.1.0-beta.0",
+    "b": "1.0.1-beta.1",
+    "c": "1.0.1-beta.1",
+    "d": "1.0.1-beta.1"
+  },
+  "initial_tags": [
+    "a@1.0.0",
+    "a@1.0.1-beta.0",
+    "b@1.0.0",
+    "b@1.0.1-beta.0",
+    "c@1.0.0",
+    "c@1.0.1-beta.0",
+    "d@1.0.0",
+    "d@1.0.1-beta.0"
+  ],
+  "source_mutant_lost": [
+    "d"
+  ],
+  "stage_events": 20,
+  "status": "PASS"
+}

@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "--list"
+  ],
+  "cwd": "/campaign/runs/full-01/disconnected-beta-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "a@1.0.0\na@1.0.1-beta.0\na@1.1.0-beta.0\nb@1.0.0\nb@1.0.1-beta.0\nb@1.0.1-beta.1\nc@1.0.0\nc@1.0.1-beta.0\nc@1.1.0-beta.0\nd@1.0.0\nd@1.0.1-beta.0\nd@1.0.1-beta.1\n"
+}

@@ -171,8 +171,5 @@ graph avoids duplicate package lists without replacing CI policy.
 
 \paragraph{Observed self-hosting case}
 CI uses its checkout-built CLI for transitive test and build selection and
-self-release. The author reports most project-specific modules were built from
-scratch with AI while reusing libraries. Release-candidate and stable milestones
-appeared about 13 and 20 days after the first commit. Later, a day-43 committed
-snapshot contained 61,478 non-test and 87,814 test physical first-party Go lines,
-excluding dependencies and generated files in this single project.
+self-release. This single-project observation shows that the protocol can drive
+its own repository; it is not adoption or causal productivity evidence.

@@ -1,4 +1,4 @@
-\subsection{Mixed-Chain Availability, Recovery, and CI}
+\subsection{RQ3: Availability Boundaries and CI}
 The fresh 1.10.0 Linux ARM64 campaign executes both the three-package
 npm $\to$ Docker $\to$ Docker chain and the four-package running example.
 Build outputs carry fixture content through OCI archives; private Verdaccio
@@ -6,25 +6,8 @@ and Docker registries distinguish local output from publication~\cite{oci,buildk
 Each topology repeats five configurations six times in seeded order: mixed and
 serialized availability, a missing barrier, refused publication, and failed building.
 
-\begin{table}[t]
-\centering
-\caption{Fresh 1.10.0 executions. Designed failures are retained controls;
-checks are verifier predicates, not independent samples.}
-\label{tab:mixed}
-\small
-\setlength{\tabcolsep}{2pt}
-\begin{tabular}{@{}lrrl@{}}
-\toprule
-Scope & Runs & Checks & Initial outcomes \\
-\midrule
-Three-package chain & 30 & 522 & 12 pass; 18 fail \\
-Four-package chain & 30 & 798 & 12 pass; 18 fail \\
-CI entry point & 3 & 81 & 3 pass \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-Per topology, 12 repairable failures completed with unchanged versions; 24
+Each topology has 30 initial executions: 12 intended successes and 18 designed
+failures. Per topology, 12 repairable failures completed with unchanged versions; 24
 completed cases then reran without build or publication. Six missing-barrier
 controls were not repaired. Enabled barriers placed app building after base
 publication; without one, the app failed against the unavailable image. In all
@@ -40,10 +23,12 @@ frozen protocol. A focused oracle test accepts completion before publication
 starts and rejects starting after publication ends. The original failure is
 retained separately and is not counted as passing implementation evidence.
 
-The three CI repetitions kept the workflow entry point and shared configuration
-unchanged while adding packages. They selected required tests through the graph,
+The three CI repetitions kept the workflow entry point unchanged while adding
+packages to shared configuration. They selected required tests through the graph,
 blocked release stages for an injected or missing test, propagated a specification
 change to its consumer, and observed a final no-op release rerun. These fixtures
-support selected ordering, recovery, and CI-integration paths on one Linux ARM64
-environment, not a universal schedule, reliability rate, throughput result, or
-independent adoption study.
+support selected ordering, recovery, and CI paths on one Linux ARM64 environment.
+\emph{Answer to RQ3.} In these fixtures, configured barriers distinguish local
+build availability from required publication, and both failed and absent
+required tests prevent release; concurrency and onboarding effort are not
+measured outcomes.

@@ -1,0 +1,11 @@
+chain-stable-d-none PASS 
+chain-beta-d-build PASS 
+chain-stable-d-after PASS 
+chain-beta-d-after PASS 
+chain-stable-d-before PASS 
+chain-beta-d-none PASS 
+chain-beta-d-before PASS 
+chain-beta-d-foreign PASS 
+chain-stable-d-foreign PASS 
+chain-stable-d-build PASS 
+{"status": "PASS", "episodes": 10, "passed": 10, "fault_episodes": 6, "controls": 2, "foreign_cases": 2, "source_mutant_losing_episodes": 8, "source_mutant_lost_obligations": 8, "model": {"graphs": 64, "source_instances": 256, "states": 772, "transitions": 2270, "progress_transitions": 1054, "source_mutant_losing_states": 260, "projection_violations": 0}}

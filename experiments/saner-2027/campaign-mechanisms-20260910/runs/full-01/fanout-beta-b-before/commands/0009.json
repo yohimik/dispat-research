@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "b@1.0.1-beta.0"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-beta-b-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

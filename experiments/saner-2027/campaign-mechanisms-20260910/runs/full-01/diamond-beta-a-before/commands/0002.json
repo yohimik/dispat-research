@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "config",
+    "user.name",
+    "Experiment"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-a-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

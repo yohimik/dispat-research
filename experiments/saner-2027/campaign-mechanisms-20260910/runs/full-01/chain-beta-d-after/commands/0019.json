@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "status",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-beta-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"bump\":\"minor\",\"version\":\"1.0.1-beta.0 -> 1.1.0-beta.0\",\"channel\":\"beta\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-09T20:40:52Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"bump\":\"patch\",\"version\":\"1.0.1-beta.0 -> 1.0.1-beta.1\",\"channel\":\"beta\",\"reason\":\"propagated from a\",\"ownCommits\":0,\"dueToProviders\":[\"a\"],\"time\":\"2026-09-09T20:40:52Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"dependsOn\":[\"b\"],\"bump\":\"patch\",\"version\":\"1.0.1-beta.0 -> 1.0.1-beta.1\",\"channel\":\"beta\",\"reason\":\"propagated from a\",\"ownCommits\":0,\"dueToProviders\":[\"a\"],\"time\":\"2026-09-09T20:40:52Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"c\"],\"bump\":\"patch\",\"version\":\"1.0.1-beta.0 -> 1.0.1-beta.1\",\"channel\":\"beta\",\"reason\":\"propagated from a\",\"ownCommits\":0,\"dueToProviders\":[\"a\"],\"time\":\"2026-09-09T20:40:52Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":4,\"held\":0,\"time\":\"2026-09-09T20:40:52Z\",\"message\":\"release plan ready\"}\n"
+}

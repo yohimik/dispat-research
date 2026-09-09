@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "feat(a)^^: evolve fixture"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-stable-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

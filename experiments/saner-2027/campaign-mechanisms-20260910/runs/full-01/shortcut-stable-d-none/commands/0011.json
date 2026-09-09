@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "remote",
+    "add",
+    "origin",
+    "/campaign/runs/full-01/shortcut-stable-d-none/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-stable-d-none/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

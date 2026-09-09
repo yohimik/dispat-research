@@ -1,6 +1,8 @@
 # Contribution assessment for SANER 2027
 
-## Current evidence update, 9 September 2026
+The [10 September conference review](conference-review-20260910/REVIEW.md) is the current assessment. It incorporates the separate 1.10.0 baseline, the completed 140-case Docker mechanism study, recent SANER 2026 CI/release literature, and the remaining external-validity and implementation-refinement limits. The dated analysis below is preserved as historical rationale.
+
+## Historical evidence update, 9 September 2026
 
 The active manuscript now incorporates the completed Dispat 1.9.0 Linux ARM64 campaign: 300 matching core histories, 20 converged recovery episodes, separate 30-execution three- and four-node topologies, and three CI-fixture repetitions. The four-node case uses two npm packages followed by two Docker images. A retained first attempt failed an overly strict overlap oracle; the correction was frozen before the new full execution. Do not pool attempts or relabel the saved 1.8.2 full-profile, scaling, and competitor records as current measurements.
 

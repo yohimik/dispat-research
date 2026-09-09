@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "fsck",
+    "--no-dangling"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-beta-d-none/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

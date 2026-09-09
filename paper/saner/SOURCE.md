@@ -2,7 +2,7 @@
 
 This directory is the active English conference revision. The withdrawn ICSA submission and earlier ACM-format source remain archival; the full technical report is `../main.tex`. Edit this directory for SANER, not those older versions.
 
-The verified 9 September 2026 build has exactly **10 content pages + 2 references-only pages**, in IEEE conference format. English is canonical. Nothing has been submitted; translations and patent documents have not been synchronized to this venue revision.
+The verified 10 September 2026 build has exactly **10 content pages + 2 references-only pages**, in IEEE conference format. English is canonical. Nothing has been submitted; translations and patent documents have not been synchronized to this venue revision.
 
 ## Files in reading order
 
@@ -30,8 +30,14 @@ pdftoppm -scale-to 1600 -png build/main.pdf build/page
 
 Inspect every rendered page. `check.py` checks pagination, citations, known identifying strings, font embedding, and build warnings; it does not prove claims or certify submission eligibility. It writes `build/verification.json` with source/PDF hashes. Ordinary underfull typesetting warnings may remain; the final rendered pages have been visually reviewed.
 
-The 24-point title and 10-point body are TeX points (approximately 23.91 and 9.96 PDF points). Font encoding is selected before IEEEtran initialization to avoid XeTeX font substitution. The IEEE bibliography break keeps references 31–40 together on the second reference page; revisit it if references change.
+The 24-point title and 10-point body are TeX points (approximately 23.91 and 9.96 PDF points). Font encoding is selected before IEEEtran initialization to avoid XeTeX font substitution. The IEEE bibliography break balances the two references-only pages. The checker derives the expected final number from the bibliography and verifies that every numbered entry appears on those pages.
 
-Read **EDITING-REQUIREMENTS.md** before revising the claims. The primary campaign is the completed 1.10.0 Linux ARM64 run identified in `evidence/EXPERIMENTS-1.10.0-20260909.md`; saved 1.8.2 results remain separate. Both use implemented CCME 2.0 semantics. Future specification features are not evaluated implementation results.
+Read **EDITING-REQUIREMENTS.md** before revising the claims. The prospective
+mechanism campaign is documented in
+`../../experiments/saner-2027/campaign-mechanisms-20260910/RESULTS.md`; the
+earlier 1.10.0 real-registry and broad campaign remains identified in
+`evidence/EXPERIMENTS-1.10.0-20260909.md`. Saved 1.8.2 results remain separate.
+All implementation campaigns use the implemented 2.0 semantics; future
+specification features are not evaluated results.
 
 Local evidence and review reports are in `../../output/saner-2027/`. The delivered PDF is `../../output/pdf/saner-2027-paper.pdf`; rebuild it after edits before distributing a newer copy.

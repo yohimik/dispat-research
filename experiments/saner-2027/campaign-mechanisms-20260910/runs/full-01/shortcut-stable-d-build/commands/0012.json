@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "git",
+    "push",
+    "-q",
+    "origin",
+    "main",
+    "--tags"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-stable-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

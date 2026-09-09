@@ -1,6 +1,6 @@
 \RequirePackage[T1]{fontenc}
 \documentclass[10pt,conference]{IEEEtran}
-\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url,flushend}
 \usepackage[hidelinks]{hyperref}
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta,positioning}
@@ -28,16 +28,18 @@ plan; tags record completed obligations. The protocol covers single-package
 repositories, monorepos, and control-repository polyrepos through a common
 integration contract. We formalize deterministic planning and eight
 conditional recovery guarantees, with counterexamples to simpler rules.
-Evaluation of implementation 1.10.0 reports 300 agreements in a restricted
-reference-model domain, 20 recovery episodes, 60 mixed-chain executions, and
-three CI repetitions. Saved 1.8.2 evidence supplies broader-profile diagnostics,
-historical comparisons, and scale measurements. The guarantees concern the
-model; implementation refinement
-and exactly-once effects at arbitrary external registries remain outside
-the claims.
+All planned outcomes hold in a prospective 140-episode Docker matrix; a
+source-window counterfactual loses 111 obligations in 84/120 fault episodes.
+A 772-state finite projection finds no model violations and 260 losing states.
+Separate 1.10.0 evidence adds 300 reference-model agreements, 20 recovery
+episodes, 60 mixed-chain executions, and three CI repetitions; saved 1.8.2
+observations add broader diagnostics, comparisons, and scale. The guarantees
+concern the model; implementation refinement and external exactly-once effects
+remain outside the claims.
 \end{abstract}
 \begin{IEEEkeywords}
-release engineering, dependency scheduling, sagas, recovery, idempotence
+software release engineering, continuous integration and delivery,
+dependency scheduling, recovery, idempotence
 \end{IEEEkeywords}
 \input{introduction}
 \input{system}
@@ -46,7 +48,6 @@ release engineering, dependency scheduling, sagas, recovery, idempotence
 \input{evaluation}
 \input{discussion}
 \clearpage
-% Keep the final group of references together on the second reference page.
-\IEEEtriggeratref{31}
+\IEEEtriggeratref{34}
 \input{references}
 \end{document}

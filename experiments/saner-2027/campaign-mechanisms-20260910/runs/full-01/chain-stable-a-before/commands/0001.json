@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "-q",
+    "-b",
+    "main"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-stable-a-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

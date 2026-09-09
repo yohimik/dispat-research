@@ -20,9 +20,12 @@ blocked-set rule. We do not claim that testing selected traces closes that gap.
 \paragraph{Internal and construct validity.}
 The author developed the system, model, oracle, and tests, so common mistakes
 can survive their agreement. The restricted oracle does not cover all current
-semantics; full-profile categories are heuristic. A passing integrity check
-shows consistency of supplied records, not independent replication. The
-concurrent-push cases cover selected interleavings, not a systematic sweep.
+semantics; full-profile categories are heuristic. The prospective mechanism
+matrix was frozen before its full run but designed after the earlier campaign;
+it is not independent replication. The finite projection covers stable-channel,
+one-intent states, and the post-write fault is a publisher's nonzero response,
+not a process crash. A passing integrity check shows consistency of supplied
+records. The concurrent-push cases cover selected interleavings.
 The measured units include histories, package rows, recovery episodes, fixture
 and CI repetitions, commands, and assertions; they are not pooled.
 
@@ -63,7 +66,12 @@ and ecosystem change~\cite{raemaekers,bogart,decan} motivate explicit policy
 but do not show that a declared bump is correct. Package-installability work
 such as EDOS~\cite{edos} models a different consistency question: a set of
 installable packages rather than the remaining obligations of an interrupted
-publication. Formal VCS work studies contents, patches, and merges
+publication. Huang et al. show that measured CI effects vary with project
+composition~\cite{huangci}; this constrains generalization from our controlled
+fixtures rather than validating a target population. Cardoen et al. document
+workflow duplication despite GitHub Actions reuse mechanisms~\cite{cardoen};
+that evidence motivates shared configuration, but we do not measure a
+maintenance improvement. Formal VCS work studies contents, patches, and merges
 ~\cite{swierstraloh,hpt,mimram,mrdt}; Git-mining work explains why history and
 reference interpretation need care~\cite{birdgit}. Our ledger uses those
 repository objects while leaving content and merge correctness outside its
@@ -79,6 +87,10 @@ preserving versioned publication obligations across partial executions.
 The NEPHELE orchestration report also explicitly uses saga patterns for
 distributed lifecycle operations~\cite{nephele}; applying sagas to operations
 is therefore not itself a novelty claim.
+Bui et al. evaluate LLM-assisted failure diagnosis and repair in one industrial
+CI/CD pipeline using a knowledge ablation~\cite{bui}. Our mechanism instead
+retains remaining versioned obligations; the tasks and outcome measures are
+not comparable.
 Sagas~\cite{sagas} and the limits of transaction abstractions~\cite{gray}
 provide the recovery setting. Independently committed and idempotently
 processable operations~\cite{helland07,helland12} explain why uncertain
@@ -97,17 +109,18 @@ consumers must wait for publication. Recovery additionally requires a failed
 consumer to retain its release obligation after successful providers leave
 the plan. Under the retry invariant, consumer-based admission with separate
 train and fresh-work windows preserves versions and permits convergence as
-recorded work progresses. Experiments support selected behaviors, with limited oracle coverage
-and historical-policy agreement. Mechanized proofs and implementation refinement,
+recorded work progresses. The mechanism matrix retained residual plans and
+versions in all 140 designed episodes, while the source-window counterfactual
+lost work in 84 of 120 fault episodes. Real-registry fixtures support the
+availability distinction; restricted-oracle and historical-policy mismatches
+bound broader claims. Mechanized proofs and implementation refinement,
 including recording failures and randomized interleavings, remain open~\cite{lamport}.
 
 \section*{Data Availability}
 Campaign records are retained locally with pinned runtime identities, harness
-code, raw observations, and offline verifiers. Complete work archives preserve
-fixture Git metadata; the older curated review bundle contains only selected
-records. Neither is a public anonymous replication package. Identifying links
-are withheld in this working review draft; anonymous distribution is being
-prepared, and no public artifact availability is claimed.
+code, raw observations, hash-verified archives, and offline verifiers, including
+fixture Git metadata. No public anonymous replication package, external upload,
+or public artifact availability is claimed.
 
 \section*{AI Assistance Disclosure}
 Most AI assistance used Claude Fable 5; Claude Opus 5, Claude Fable 5.1,

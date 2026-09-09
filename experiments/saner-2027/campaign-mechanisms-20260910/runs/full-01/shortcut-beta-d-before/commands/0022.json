@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "status",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-beta-d-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"warn\",\"code\":\"W193\",\"package\":\"d\",\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"catch-up release at 1.0.1-beta.1: discharging work already published by a@1.1.0-beta.0\"}\n{\"level\":\"info\",\"warnings\":1,\"errors\":0,\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"plan diagnostics\"}\n{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"version\":\"1.1.0-beta.0\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"dependsOn\":[\"a\",\"b\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"a\",\"c\"],\"bump\":\"patch\",\"version\":\"1.0.1-beta.0 -> 1.0.1-beta.1\",\"channel\":\"beta\",\"reason\":\"catch-up from a\",\"ownCommits\":0,\"dueToProviders\":[\"a\"],\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"\u21bb catch-up\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":1,\"held\":0,\"time\":\"2026-09-09T20:40:05Z\",\"message\":\"release plan ready\"}\n"
+}

@@ -1,0 +1,82 @@
+{
+  "review_started_utc": "2026-09-09T20:37:44.200043+00:00",
+  "research_base_commit": "03e2ee54221eaa790c963bd27afd0087c47b7812",
+  "scope": "Targeted primary-source review, not systematic review or award prediction",
+  "latest_completed_saner_edition": 2026,
+  "pdf_sources": {
+    "stellar": {
+      "url": "https://tsigalko18.github.io/assets/pdf/2026-Sorokin-SANER.pdf",
+      "sha256": "74233e32998691a4cefd54aed1542fb353472ffc5daa61c938faa10ee5c476f1",
+      "bytes": 583715
+    },
+    "tee": {
+      "url": "https://arxiv.org/pdf/2512.17363",
+      "sha256": "fd76ab65994db5a00642437e422bf4e7d56bc0cbf01b297affeae21d59dd722f",
+      "bytes": 337157
+    },
+    "issues": {
+      "url": "https://joykrishan.github.io/assets/pdf/Why_Do_Developers_Engage_with_ChatGPT_in_Issue-Tracker_Investigating_Usage_and_Reliance_on_ChatGPT-Generated_Code.pdf",
+      "sha256": "6525446193b4456f5089069a01510c0600b7ae198bb71061ef2e8ea983ee0ab0",
+      "bytes": 2831067
+    },
+    "ci-context": {
+      "url": "https://azaidman.github.io/publications/huangSANER2026.pdf",
+      "sha256": "9ae1b551fd5bca4ec08e575fb64356c14b5a98c32323168eac2a6a2d16ae34f6",
+      "bytes": 515316
+    },
+    "ci-failure": {
+      "url": "https://arxiv.org/pdf/2602.06709",
+      "sha256": "9139208880b7778aa9c1b609aace8e0aa85606fededd4c9522d26016a2bf4be5",
+      "bytes": 332578
+    },
+    "build-repair": {
+      "url": "https://pinzger.github.io/papers/Macho2026-repair.pdf",
+      "sha256": "62c2d03e1521235d7c67014c1a914b4abeafdd57a08acc6b1ce858341b7a7dff",
+      "bytes": 179121
+    }
+  },
+  "preserved_science_sha256": {
+    "model.tex": "8640b5af0efa504332a6be6a6b6f71db9c2e04c9b3ab9a3d024c9b1a6d742698",
+    "guarantees.tex": "a9e3dd0184a3735d3c56c8e6df724ad5ac3a6148e167565ab8617ed42f97bb3d"
+  },
+  "access_limits": [
+    "Cardoen et al. 2026: abstract and institutional metadata only; published full text embargoed",
+    "GHAminer 2025: official abstract and institutional metadata only",
+    "SANER 2027 standalone AI guidance link returned 404; Research Track policy available"
+  ],
+  "redistribution": "Downloaded third-party PDFs are temporary reading copies outside this repository; only citations and source hashes retained.",
+  "crossref_checks": [
+    {
+      "doi": "10.1109/SANER67736.2026.00060",
+      "authors": [
+        "Shujun Huang",
+        "Andy Zaidman",
+        "Sebastian Proksch"
+      ],
+      "pages": "491-502",
+      "published": "2026-03-17"
+    },
+    {
+      "doi": "10.1109/SANER67736.2026.00028",
+      "authors": [
+        "Guillaume Cardoen",
+        "Tom Mens",
+        "Alexandre Decan"
+      ],
+      "pages": "170-180",
+      "published": "2026-03-17"
+    },
+    {
+      "doi": "10.1109/SANER67736.2026.00063",
+      "authors": [
+        "Duong Bui",
+        "Stefan Grintz",
+        "Alexander Berndt",
+        "Thomas Bach"
+      ],
+      "pages": "524-535",
+      "published": "2026-03-17"
+    }
+  ],
+  "crossref_method": "Read https://api.crossref.org/works/{doi}; checked author order, title, SANER proceedings, pages and date against primary conference/author sources."
+}

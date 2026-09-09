@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-d-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

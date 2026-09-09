@@ -1,6 +1,12 @@
 # Preparing the release-protocol paper for SANER 2027
 
-## Current 1.10.0 evidence update, 9 September 2026
+## Current conference adaptation, 10 September 2026
+
+The [new conference review](conference-review-20260910/REVIEW.md) supersedes the recommendations below where they differ. It prioritizes SANER 2026 CI/release studies, distinguishes verified award examples from technical neighbors, and maps the revised experiments to reviewer concerns. The separate Docker mechanism campaign passed all 140 designed cases. Across its 120 primary fault cases, the source-window counterfactual loses 111 obligations in 84 cases; ten no-fault and ten foreign-content controls are reported separately. A finite projection explored 772 states and 2,270 transitions without a projection violation. These are controlled observations and finite enumeration, not independent production samples or a full implementation-refinement proof.
+
+See the [completed results](../../experiments/saner-2027/campaign-mechanisms-20260910/RESULTS.md) and [Docker reproduction instructions](../../experiments/saner-2027/campaign-mechanisms-20260910/README.md). The original 1.10.0 baseline remains frozen and separate. Native Windows equivalence and real-team effectiveness remain unmeasured.
+
+## Baseline 1.10.0 evidence update, 9 September 2026
 
 The canonical English manuscript now uses a completed, separate dispat 1.10.0 Linux ARM64 campaign. All 14 stages passed: 300 accepted matching core histories; 20 converged recovery episodes (at most four runs, 251 command records); 30 initial executions per three- and four-node topology; and three CI repetitions. Each topology retained 18 intended negative outcomes, 12 successful repairs and 24 unchanged no-op runs. Checks remain separate from sample counts. A separate 16-case diagnostics engineering addendum passed.
 

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "config",
+    "user.email",
+    "experiment@example.invalid"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-beta-a-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

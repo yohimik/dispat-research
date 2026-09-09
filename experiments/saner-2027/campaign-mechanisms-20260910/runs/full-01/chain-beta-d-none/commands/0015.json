@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "remote",
+    "add",
+    "origin",
+    "/campaign/runs/full-01/chain-beta-d-none/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-beta-d-none/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

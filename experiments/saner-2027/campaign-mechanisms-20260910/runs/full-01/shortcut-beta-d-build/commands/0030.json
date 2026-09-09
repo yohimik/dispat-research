@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "release",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-beta-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"info\",\"root\":\".\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"release started\"}\n{\"level\":\"info\",\"tag\":\"dispat-release-lock\",\"remote\":\"origin\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"release lock acquired\"}\n{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"version\":\"1.1.0-beta.0\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"dependsOn\":[\"a\",\"b\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"a\",\"c\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":0,\"held\":0,\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"release plan ready\"}\n{\"level\":\"info\",\"published\":0,\"failed\":0,\"skipped\":0,\"cancelled\":0,\"held\":0,\"unchanged\":4,\"took\":0.003167,\"time\":\"2026-09-09T20:39:55Z\",\"message\":\"done\"}\n"
+}

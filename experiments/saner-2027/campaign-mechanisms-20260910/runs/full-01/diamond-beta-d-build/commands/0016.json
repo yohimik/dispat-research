@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "git",
+    "push",
+    "-q",
+    "origin",
+    "main",
+    "--tags"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

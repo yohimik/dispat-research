@@ -1,0 +1,10 @@
+{
+  "frozen_utc": "2026-09-09T20:34:00.793561+00:00",
+  "phase": "pilot",
+  "files": {
+    "release-lock.json": "b01914fc4f72919dff59e20d85a76139ed0e008b00fae628ab0116f10875b02b",
+    "execute.py": "253ea14a0ff7048fddecda4f67b94f7b7b9d2e06eecce60b32c30ba57dbb80fc",
+    "publisher.py": "01fe9bfdda1d5adfd28dc7f1aa07193e6999661c39137aafaf59ed7d8f0424f5",
+    "PROTOCOL.md": "b22c03f28103a7a2c19315fe85497fee092513bc4e90252297e515167aead0b3"
+  }
+}

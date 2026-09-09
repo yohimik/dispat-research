@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "add",
+    "."
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-stable-d-none/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

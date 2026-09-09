@@ -1,0 +1,178 @@
+{
+  "execution": {
+    "elapsed_seconds": 113.653827,
+    "end_utc": "2026-09-09T20:40:59.642604+00:00",
+    "exit": 0,
+    "start_utc": "2026-09-09T20:39:05.988761+00:00"
+  },
+  "executor": {
+    "controls": 10,
+    "episodes": 140,
+    "fault_episodes": 120,
+    "foreign_cases": 10,
+    "model": {
+      "graphs": 64,
+      "progress_transitions": 1054,
+      "projection_violations": 0,
+      "source_instances": 256,
+      "source_mutant_losing_states": 260,
+      "states": 772,
+      "transitions": 2270
+    },
+    "passed": 140,
+    "source_mutant_losing_episodes": 94,
+    "source_mutant_lost_obligations": 121,
+    "status": "PASS"
+  },
+  "failed_or_invalid_cases": [],
+  "generated_utc": "2026-09-09T20:42:43.737913+00:00",
+  "interpretation": {
+    "after_write_fault": "Publisher durably writes a local artifact and returns nonzero; this does not simulate SIGKILL, a network partition, or power loss.",
+    "model": "Executable stable-channel, one-intent projection over ordered four-node DAGs; not a mechanized proof of the full language or implementation refinement.",
+    "source_mutant": "Sensitivity of a deficient source-window analytical rule under deterministic designed cases; not a competing-product win rate."
+  },
+  "mechanism_checks": {
+    "final_noop_plan_empty_and_tags_stable": {
+      "denominator": 140,
+      "passed": 140
+    },
+    "foreign_identity_conflict_refused": {
+      "denominator": 10,
+      "passed": 10
+    },
+    "one_artifact_write_per_obligation": {
+      "denominator": 140,
+      "passed": 140
+    },
+    "repeated_fault_plan_and_tags_stable": {
+      "denominator": 130,
+      "passed": 130
+    },
+    "successful_repair_empty_plan": {
+      "denominator": 130,
+      "passed": 130
+    }
+  },
+  "offline_consistency_check": {
+    "episodes_checked": 140,
+    "errors": [],
+    "status": "PASS"
+  },
+  "run": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-mechanisms-20260910/runs/full-01",
+  "status": "PASS",
+  "strata": {
+    "boundary": {
+      "after": {
+        "episodes": 40,
+        "failed": 0,
+        "passed": 40,
+        "source_mutant_losing_episodes": 28,
+        "source_mutant_lost_obligations": 35
+      },
+      "before": {
+        "episodes": 40,
+        "failed": 0,
+        "passed": 40,
+        "source_mutant_losing_episodes": 28,
+        "source_mutant_lost_obligations": 35
+      },
+      "build": {
+        "episodes": 40,
+        "failed": 0,
+        "passed": 40,
+        "source_mutant_losing_episodes": 28,
+        "source_mutant_lost_obligations": 41
+      },
+      "foreign": {
+        "episodes": 10,
+        "failed": 0,
+        "passed": 10,
+        "source_mutant_losing_episodes": 10,
+        "source_mutant_lost_obligations": 10
+      },
+      "none": {
+        "episodes": 10,
+        "failed": 0,
+        "passed": 10,
+        "source_mutant_losing_episodes": 0,
+        "source_mutant_lost_obligations": 0
+      }
+    },
+    "channel": {
+      "beta": {
+        "episodes": 70,
+        "failed": 0,
+        "passed": 70,
+        "source_mutant_losing_episodes": 47,
+        "source_mutant_lost_obligations": 60
+      },
+      "stable": {
+        "episodes": 70,
+        "failed": 0,
+        "passed": 70,
+        "source_mutant_losing_episodes": 47,
+        "source_mutant_lost_obligations": 61
+      }
+    },
+    "class": {
+      "fault_matrix": {
+        "episodes": 120,
+        "failed": 0,
+        "passed": 120,
+        "source_mutant_losing_episodes": 84,
+        "source_mutant_lost_obligations": 111
+      },
+      "foreign_identity": {
+        "episodes": 10,
+        "failed": 0,
+        "passed": 10,
+        "source_mutant_losing_episodes": 10,
+        "source_mutant_lost_obligations": 10
+      },
+      "no_fault_control": {
+        "episodes": 10,
+        "failed": 0,
+        "passed": 10,
+        "source_mutant_losing_episodes": 0,
+        "source_mutant_lost_obligations": 0
+      }
+    },
+    "graph": {
+      "chain": {
+        "episodes": 28,
+        "failed": 0,
+        "passed": 28,
+        "source_mutant_losing_episodes": 20,
+        "source_mutant_lost_obligations": 38
+      },
+      "diamond": {
+        "episodes": 28,
+        "failed": 0,
+        "passed": 28,
+        "source_mutant_losing_episodes": 20,
+        "source_mutant_lost_obligations": 25
+      },
+      "disconnected": {
+        "episodes": 28,
+        "failed": 0,
+        "passed": 28,
+        "source_mutant_losing_episodes": 14,
+        "source_mutant_lost_obligations": 14
+      },
+      "fanout": {
+        "episodes": 28,
+        "failed": 0,
+        "passed": 28,
+        "source_mutant_losing_episodes": 20,
+        "source_mutant_lost_obligations": 20
+      },
+      "shortcut": {
+        "episodes": 28,
+        "failed": 0,
+        "passed": 28,
+        "source_mutant_losing_episodes": 20,
+        "source_mutant_lost_obligations": 24
+      }
+    }
+  }
+}

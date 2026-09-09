@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "-q",
+    "-b",
+    "main"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-stable-a-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

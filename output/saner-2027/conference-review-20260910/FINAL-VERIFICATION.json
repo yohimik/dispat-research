@@ -1,0 +1,21 @@
+{
+  "verified_utc": "2026-09-09T20:52:29.496989+00:00",
+  "status": "PASS",
+  "pdf_sha256": "2c3e8ecb868e785400a9c8f22972bc49e30b05e60238dde8ed511dd7f64dd978",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 43,
+  "source_preservation": {
+    "model.tex": "8640b5af0efa504332a6be6a6b6f71db9c2e04c9b3ab9a3d024c9b1a6d742698",
+    "guarantees.tex": "a9e3dd0184a3735d3c56c8e6df724ad5ac3a6148e167565ab8617ed42f97bb3d"
+  },
+  "campaign_files_hash_checked": {
+    "campaign-1.10.0-20260909": 103,
+    "campaign-mechanisms-20260910": 4896
+  },
+  "paper_build_evidence": "paper/saner/evidence/BUILD-20260910.json",
+  "paper_visual_evidence": "paper/saner/evidence/PDF-20260910.json",
+  "root_visual_check": "Final delivered pages 11 and 12 re-rendered and inspected; references readable, no clipping, final-page columns balanced. All 12 pages inspected by paper execution agent.",
+  "limits": "Integrity and layout checks are not independent scientific replication or proof/refinement validation."
+}

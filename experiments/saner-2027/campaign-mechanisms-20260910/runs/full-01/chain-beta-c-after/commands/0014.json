@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "--bare",
+    "-q",
+    "/campaign/runs/full-01/chain-beta-c-after/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-beta-c-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

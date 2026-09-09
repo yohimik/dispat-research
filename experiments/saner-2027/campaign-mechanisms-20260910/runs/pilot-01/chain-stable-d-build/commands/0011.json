@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "remote",
+    "add",
+    "origin",
+    "/campaign/runs/pilot-01/chain-stable-d-build/origin.git"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-stable-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

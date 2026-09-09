@@ -1,0 +1,2 @@
+{"command": ["docker", "run", "--rm", "--network", "none", "--cpus", "2", "--memory", "4g", "--platform", "linux/arm64", "-v", "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-mechanisms-20260910:/campaign", "-w", "/campaign", "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e", "python3", "execute.py", "runs/full-01"], "event": "start", "utc": "2026-09-09T20:39:05.988761+00:00"}
+{"elapsed_seconds": 113.653827, "event": "end", "exit": 0, "utc": "2026-09-09T20:40:59.642604+00:00"}

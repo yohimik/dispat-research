@@ -49,6 +49,9 @@ A package is a versioned release unit: software, specifications, and
 documentation use the same intent, dependency, command, and completion
 interfaces. The protocol accommodates different build tools and registries;
 its guarantees require conforming integrations, not a particular language.
+The same graph also gives provisioned CI a stable entry point for affected
+tests and releases as packages evolve; configuration still records each new
+package, and new credentials or runners can require workflow changes.
 
 The paper makes three contributions:
 \begin{itemize}

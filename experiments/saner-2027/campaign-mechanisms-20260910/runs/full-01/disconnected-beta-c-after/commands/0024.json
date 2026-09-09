@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "status",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/disconnected-beta-c-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"version\":\"1.1.0-beta.0\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:10Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1-beta.1\",\"channel\":\"beta\",\"time\":\"2026-09-09T20:39:10Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"bump\":\"minor\",\"version\":\"1.0.1-beta.0 -> 1.1.0-beta.0\",\"channel\":\"beta\",\"reason\":\"direct\",\"ownCommits\":1,\"dueToProviders\":[],\"time\":\"2026-09-09T20:39:10Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"c\"],\"bump\":\"patch\",\"version\":\"1.0.1-beta.0 -> 1.0.1-beta.1\",\"channel\":\"beta\",\"reason\":\"propagated from c\",\"ownCommits\":0,\"dueToProviders\":[\"c\"],\"time\":\"2026-09-09T20:39:10Z\",\"message\":\"\u25cf changed\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":2,\"held\":0,\"time\":\"2026-09-09T20:39:10Z\",\"message\":\"release plan ready\"}\n"
+}

@@ -1,0 +1,35 @@
+{
+  "status": "PASS",
+  "built_local": "2026-09-10T00:50:34+04:00",
+  "compiler": "Tectonic 0.17.0",
+  "command": "tectonic -X compile main.tex --outdir build --keep-logs",
+  "verification_command": "python3 check.py",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 43,
+  "paper_format": "IEEE conference, 10pt body, 24pt title, US Letter",
+  "pdf_sha256": "2c3e8ecb868e785400a9c8f22972bc49e30b05e60238dde8ed511dd7f64dd978",
+  "pdf_bytes": 143763,
+  "build_log_sha256": "e52a360817ff487ceb6016673e056462c804778a6e07b0bb641f7191448f3f29",
+  "check_sha256": "c9e4ef5df5e4b473a5a7e6342b2271d8784bfeee1bc1bc66750cdc5f20e29e7b",
+  "source_guide_sha256": "f42e714d7e15a640f36b9fddd39219ff0c3d14ac6ade3a3e8c2ddfbe19370589",
+  "source_sha256": {
+    "main.tex": "39865993f67cec14cbebd087af2c81dd180d47ea7324d962f919eb2373ffa80f",
+    "introduction.tex": "baaa6052c6204b04891b46aa73d7682e8ecb9b7fbb55740c3a3b5c56d756fbfe",
+    "system.tex": "1e91eea81f0d812d0fc625c4127f674ee79334d3fc4fe806f93895470724c02c",
+    "model.tex": "8640b5af0efa504332a6be6a6b6f71db9c2e04c9b3ab9a3d024c9b1a6d742698",
+    "guarantees.tex": "a9e3dd0184a3735d3c56c8e6df724ad5ac3a6148e167565ab8617ed42f97bb3d",
+    "evaluation.tex": "98cbfd2ab1e3ca4d90e3be5a4989743ea6e71187a29b9e3eae0f1b070ef31a3e",
+    "mixed-results.tex": "ff67c89cebc3269167cb16a38d66fbe3b798bc9f7ac6d25d63ad080920ce6c8f",
+    "discussion.tex": "f3dc772babb3022dfc3d6fdce3ba6eafd9e370fe55ffb7e92e89105628033ded",
+    "references.tex": "da5decb43159e0d624657b13c625f271b53eb1a68affeed29f8dec054c585e56"
+  },
+  "mechanism_evidence": {
+    "results_sha256": "c34034f048e1dc013d7aa57ddb26a022de47bd14e3ce1cd251b98f7b23e53e51",
+    "summary_sha256": "9776c3d30ccf54b0ef38952e037217c9f4bbff3394df0af892a188466474b2e9",
+    "archive_sha256": "0c94a5490f2e22eba90407c37588dd9860b6191f43b132ede6e7807fe3585fda"
+  },
+  "checks": "Exact 10+2 pagination; references-only pages; 43 unique cited entries in first-citation order; no known identifiers or placeholders; resolved labels and citations; no overfull boxes, missing glyphs, font substitutions, or unresolved references; US Letter; no author metadata; all 18 fonts embedded with Unicode mappings.",
+  "limits": "Structural and evidence-link checks do not prove the mathematics, anonymous eligibility, or empirical validity."
+}

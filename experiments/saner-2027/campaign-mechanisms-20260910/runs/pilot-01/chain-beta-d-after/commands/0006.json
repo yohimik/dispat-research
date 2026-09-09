@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "a@1.0.0"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-beta-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

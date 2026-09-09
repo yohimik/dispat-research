@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "config",
+    "user.name",
+    "Experiment"
+  ],
+  "cwd": "/campaign/runs/pilot-01/chain-beta-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

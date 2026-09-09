@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "remote",
+    "add",
+    "origin",
+    "/campaign/runs/full-01/diamond-beta-a-after/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/diamond-beta-a-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

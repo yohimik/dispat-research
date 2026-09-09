@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "remote",
+    "add",
+    "origin",
+    "/campaign/runs/full-01/fanout-beta-a-build/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/fanout-beta-a-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

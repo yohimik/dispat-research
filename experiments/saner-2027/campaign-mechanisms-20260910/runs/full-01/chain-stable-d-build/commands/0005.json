@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-stable-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

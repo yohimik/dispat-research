@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "feat(c)^^: evolve fixture"
+  ],
+  "cwd": "/campaign/runs/full-01/disconnected-beta-a-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

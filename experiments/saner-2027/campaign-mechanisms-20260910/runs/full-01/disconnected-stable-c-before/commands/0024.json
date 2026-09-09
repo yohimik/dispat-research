@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "--list"
+  ],
+  "cwd": "/campaign/runs/full-01/disconnected-stable-c-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "a@1.0.0\na@1.1.0\nb@1.0.0\nb@1.0.1\nc@1.0.0\nd@1.0.0\n"
+}

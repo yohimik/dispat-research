@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "--bare",
+    "-q",
+    "/campaign/runs/full-01/disconnected-stable-d-foreign/origin.git"
+  ],
+  "cwd": "/campaign/runs/full-01/disconnected-stable-d-foreign/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

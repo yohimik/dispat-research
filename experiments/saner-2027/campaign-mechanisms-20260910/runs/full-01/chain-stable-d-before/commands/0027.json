@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "dispat",
+    "status",
+    "--log-format",
+    "json"
+  ],
+  "cwd": "/campaign/runs/full-01/chain-stable-d-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": "{\"level\":\"info\",\"package\":\"a\",\"space\":\"a\",\"version\":\"1.1.0\",\"channel\":\"stable\",\"time\":\"2026-09-09T20:39:34Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"b\",\"space\":\"b\",\"dependsOn\":[\"a\"],\"version\":\"1.0.1\",\"channel\":\"stable\",\"time\":\"2026-09-09T20:39:34Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"c\",\"space\":\"c\",\"dependsOn\":[\"b\"],\"version\":\"1.0.1\",\"channel\":\"stable\",\"time\":\"2026-09-09T20:39:34Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"package\":\"d\",\"space\":\"d\",\"dependsOn\":[\"c\"],\"version\":\"1.0.1\",\"channel\":\"stable\",\"time\":\"2026-09-09T20:39:34Z\",\"message\":\"unchanged\"}\n{\"level\":\"info\",\"packages\":4,\"releasing\":0,\"held\":0,\"time\":\"2026-09-09T20:39:34Z\",\"message\":\"release plan ready\"}\n"
+}

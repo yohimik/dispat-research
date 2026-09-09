@@ -1,0 +1,11 @@
+{
+  "argv": [
+    "git",
+    "tag",
+    "a@1.0.0"
+  ],
+  "cwd": "/campaign/runs/full-01/shortcut-stable-b-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

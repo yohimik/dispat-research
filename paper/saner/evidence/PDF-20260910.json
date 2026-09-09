@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "reviewed_local": "2026-09-10T00:50:34+04:00",
+  "pdf": "output/pdf/saner-2027-paper.pdf",
+  "pdf_sha256": "2c3e8ecb868e785400a9c8f22972bc49e30b05e60238dde8ed511dd7f64dd978",
+  "pdf_bytes": 143763,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 43,
+  "render_command": "pdftoppm -scale-to 1600 -png output/pdf/saner-2027-paper.pdf tmp/pdfs/saner-20260910-delivered/page",
+  "pages_visually_inspected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "findings": "All twelve delivered pages were inspected at 1600-pixel scale. Text, equations, the stage graph, and all tables are readable; there is no clipping, collision, broken glyph, or unintended content spill. Page 10 ends with Conclusion, Data Availability, and AI Assistance Disclosure. Pages 11-12 contain references only; page 12 balances references 34-43 across both columns.",
+  "render_sha256": {
+    "page-01.png": "ddf855716b748f96cf198f775fb4af8fe5482f50405fb879ecb8db69527795d7",
+    "page-02.png": "25371acb53e81c0291c48eada7d14df56f3d1a0b459635c8505bda1dcc9c2c8b",
+    "page-03.png": "9ee606211b090eeb1231c3bbb510d060385852703859f45d22ed2a5510f2433f",
+    "page-04.png": "f0c1f122c865e4d8c7a1fcc9b520f60a3934deec0b33c23347f180bd33be8d73",
+    "page-05.png": "91e743cc1814be3421ca7739fc7dff848dfbd3f065e41e57b35f56ccc1ae8d0b",
+    "page-06.png": "ff7f98fe56f31759b95f50ac247eb4b056c5da664716eb460e31d8a061c1118a",
+    "page-07.png": "3cceb9a21199b77f6a7c3e0206cb23538f3bb7fec742d4d406f758c6576dca33",
+    "page-08.png": "d45bee6c4ccf6d332537c1aa5395ea4f4b7d4f28f07c335cd11f3528429df027",
+    "page-09.png": "77faf619b53a7828f7e83c0771fd39588a951ba72e9c8ce6d48950830ba06cc9",
+    "page-10.png": "e005e35ff5a65e0108aa8bd500169de73c29877947f1af4eaf9b5e4b810f9db1",
+    "page-11.png": "97ec72e25c5bea07439e0c60fe356e06116fd6de46aaed43e4f04de5a5ee41c9",
+    "page-12.png": "cf236f48ac4e1d0ac2490907a000189e4fa726ea59372b00e8ec724ed9a88e3e"
+  },
+  "scope": "Visual and structural review of the delivered PDF; not proof validation, independent replication, or submission-eligibility certification."
+}

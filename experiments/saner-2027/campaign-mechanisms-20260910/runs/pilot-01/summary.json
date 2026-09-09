@@ -1,0 +1,19 @@
+{
+  "controls": 2,
+  "episodes": 10,
+  "fault_episodes": 6,
+  "foreign_cases": 2,
+  "model": {
+    "graphs": 64,
+    "progress_transitions": 1054,
+    "projection_violations": 0,
+    "source_instances": 256,
+    "source_mutant_losing_states": 260,
+    "states": 772,
+    "transitions": 2270
+  },
+  "passed": 10,
+  "source_mutant_losing_episodes": 8,
+  "source_mutant_lost_obligations": 8,
+  "status": "PASS"
+}
