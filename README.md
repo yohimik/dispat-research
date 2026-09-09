@@ -9,11 +9,12 @@ Private working repository for the papers, reproducible experiments, and review 
 - [Editing requirements](paper/saner/EDITING-REQUIREMENTS.md).
 - [Research and venue report](output/saner-2027/research-report.md).
 - [Experiment archive](experiments/README.md), containing historical campaigns with their original versions and limitations.
-- [Released 1.9.0 experiment evidence](paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md), with the completed Docker campaign, retained failed attempt, and separate sample counts.
-- [Campaign protocol and reproduction](experiments/saner-2027/campaign-next-release-prepared/CAMPAIGN-PLAN.md) and [complete evidence archives](experiments/saner-2027/campaign-next-release-prepared/ARCHIVES.md).
-- [Full English technical report](paper/main.tex), separate from the active conference revision.
+- [Released 1.10.0 experiment evidence](paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md), with the completed 14-stage Docker campaign, separate diagnostics checks, and verified archives.
+- [Historical 1.9.0 evidence](paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md), including the preserved failed oracle attempt and corrected campaign.
+- [Campaign protocol and reproduction](experiments/saner-2027/campaign-1.10.0-20260909/CAMPAIGN-PLAN.md) and [complete evidence archives](experiments/saner-2027/campaign-1.10.0-20260909/ARCHIVES.md).
+- [Full English technical report source](paper/main.tex) and [saved PDF](output/pdf/technical-report.pdf), separate from the active conference revision.
 
-Read the source notes before editing older conference drafts under `paper/icse/` or `output/conference-submission-2026-09-09/`. Submission and withdrawal receipts there are historical evidence, not a current submission.
+The obsolete `paper/icse/` working tree is preserved in a [verified archive](paper/archives/README.md). Historical submission and withdrawal receipts remain under `output/conference-submission-2026-09-09/`. These are historical evidence, not a current submission.
 
 ## Build the English conference PDF
 
@@ -34,6 +35,8 @@ Inspect all rendered pages after edits. The target is exactly ten content pages 
 Experiment scripts, inputs, raw observations, failed setup attempts, image/package pins, and verification scripts are retained. Docker is the preferred environment for new experiments; historical macOS measurements remain explicitly historical. Docker on a Linux VM does not validate native Windows execution.
 
 [Restoration instructions](RESTORATION.md) explain replay fixtures, nested Git metadata, and the Docker runner. Some older scripts and records contain their original absolute paths. Preserve those records; adapt paths only in a new runner or run directory.
+
+Generated build files, page previews and verified extracted copies of campaign archives were removed during the [10 September cleanup](provenance/cleanup-2026-09-10.json). Final PDFs, verification records, raw observations and failed attempts remain. IDE settings are local and ignored.
 
 ## Scope and privacy
 

@@ -92,28 +92,22 @@ likewise motivate separating core agreement from unsupported generalization.
 
 \section{Conclusion}
 \label{sec:conclusion}
-A release graph can cross build and publish boundaries. Local-artifact
-consumers may proceed after a provider builds; registry-artifact consumers
-must wait for publication. Correct ordering alone does not ensure recovery:
-a failed consumer must retain its release obligation after successful
-providers leave the plan. Consumer-based admission and separate train and
-fresh-work windows make that obligation explicit. Under the stated retry
-invariant, the model preserves versions, discharges recorded work, and
-converges when attempts make progress. Released-binary experiments support
-selected behaviors while exposing limits in oracle coverage and historical
-policy replay. Mechanized proofs and a fuller implementation refinement,
-including recording failures and randomized interleavings, remain open
-work~\cite{lamport}.
+Local-artifact consumers may proceed after a provider builds; registry-artifact
+consumers must wait for publication. Recovery additionally requires a failed
+consumer to retain its release obligation after successful providers leave
+the plan. Under the retry invariant, consumer-based admission with separate
+train and fresh-work windows preserves versions and permits convergence as
+recorded work progresses. Experiments support selected behaviors, with limited oracle coverage
+and historical-policy agreement. Mechanized proofs and implementation refinement,
+including recording failures and randomized interleavings, remain open~\cite{lamport}.
 
 \section*{Data Availability}
-A curated local review bundle contains harness code, selected raw records,
-per-file checksums, and an offline verifier. It reaggregates reported campaign
-counts but omits binaries, complete Git histories, and some large dossiers;
-it is not a complete executable replication package. The fresh 1.9.0 campaign
-has separate provenance, code, event logs, and verdicts. Anonymous
-distribution is being prepared. Identifying source and artifact links are
-withheld in this working review draft; no public artifact availability is
-claimed. An archival replication package is planned for publication.
+Campaign records are retained locally with pinned runtime identities, harness
+code, raw observations, and offline verifiers. Complete work archives preserve
+fixture Git metadata; the older curated review bundle contains only selected
+records. Neither is a public anonymous replication package. Identifying links
+are withheld in this working review draft; anonymous distribution is being
+prepared, and no public artifact availability is claimed.
 
 \section*{AI Assistance Disclosure}
 Most AI assistance used Claude Fable 5; Claude Opus 5, Claude Fable 5.1,

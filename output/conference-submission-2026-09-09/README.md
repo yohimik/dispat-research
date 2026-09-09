@@ -2,6 +2,8 @@
 
 ICSA paper 33 was withdrawn at the author's request on 9 September 2026. EasyChair confirmed withdrawal. The preparation and original submission record below is historical. SANER is the new target; no SANER submission has been made.
 
+Cleanup note, 10 September: the former `paper/icse/` working tree is in the verified archive described in `../../paper/archives/README.md`. Restore it in a disposable checkout before replaying this directory's historical preparation scripts. The paths and claims below describe the original submission state; the active paper is now `paper/saner/`. Regenerable page previews were removed; submission files, receipts and verification records remain.
+
 # Conference submission preparation, 9 September 2026
 
 Status: SUBMITTED to ICSA 2027 Research Track, paper **33**. EasyChair confirmed "The submission has been saved!" and lists `ICSA2027_paper_33.pdf`. Portal timestamp: Sep 08, 20:29; local date: 9 September 2026 (UAE). See `submission-receipt.json` for the exact uploaded PDF hash and submission URL. Do not submit this paper elsewhere while it is under consideration. No registration payment or publishing agreement was completed.

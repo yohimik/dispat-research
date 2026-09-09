@@ -1,0 +1,51 @@
+{
+  "status": "PASS",
+  "reviewed_utc": "2026-09-09T17:15:16.608070+00:00",
+  "pdf_sha256": "b695e2d5b28adc1c65e4ac6d404226fae67cad1e00dfbdd956bae12105ebbf60",
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 40,
+  "render_command": "pdftoppm -scale-to 1600 -png build/main.pdf build/page",
+  "pages_visually_inspected": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12
+  ],
+  "findings": "All twelve pages inspected: readable text, equations, diagram, tables and citations; no clipping, overlap or reference spill into content. Page 10 retains Conclusion, Data Availability and AI Assistance Disclosure. Pages 11\u201312 contain references only.",
+  "scope": "Layout review and structural verification; not proof validation or submission-eligibility certification.",
+  "source_sha256": {
+    "main.tex": "aac71daf3b1b3f61e25b3d3289dd6249fec5bf5e03a03b40f5cd7a7ac8f0940c",
+    "introduction.tex": "f14982cb4865d484264f41de2eb7e682ff307f1833f59caac446765427476c8b",
+    "system.tex": "0255261e8cfe1a14038b5e9603426ce0bf5ead823fc589917cb7c2e98d462baf",
+    "model.tex": "8640b5af0efa504332a6be6a6b6f71db9c2e04c9b3ab9a3d024c9b1a6d742698",
+    "guarantees.tex": "a9e3dd0184a3735d3c56c8e6df724ad5ac3a6148e167565ab8617ed42f97bb3d",
+    "evaluation.tex": "c058ff642cbcda58b8ef272881f62c5ecaa3719d9e9940ac2143110b42919f65",
+    "mixed-results.tex": "edea3691f8042993453d38ff309236e07a30c600f2c32033ec59c59f4da32d1f",
+    "discussion.tex": "01293c2ff27cf6b435df1389f6e0f629de7a0c29d07b604b50601c587f8e9131",
+    "references.tex": "bfa8705b1f9eaf4bbfc1563cf7e49abc0b199fb705bab5fce78d2665de0a7e92"
+  },
+  "final_revision_review": "After final conclusion wording, all pages were re-rendered; pages 1\u20139 and 11\u201312 were byte-identical to the inspected renders, and page 10 was visually inspected again.",
+  "render_sha256": {
+    "page-01.png": "46178186729915ad4d0a3054dfe5607b1a365624358ed48f7a44c30271930dba",
+    "page-02.png": "ee5382fc83e93d65e90629f69c617022d4fb9b5b6bf66835c87b762104c8555d",
+    "page-03.png": "467bb9deefbfd3a78abd30e1e68a6590bd6d8499b509a8392eaef6b8a7e69a40",
+    "page-04.png": "e68f3e0048c50ecd3c66753961b1dc08dc91e48a43808c3f7b60234dac53fe57",
+    "page-05.png": "6ea12706271569d5b1c83ae524776544aac4cb5e43fafb308993c3d1435b6652",
+    "page-06.png": "59b854f5b172c3628692eb01c9de5f709b812cf7f441cfea4e1bd6cf7ea2447a",
+    "page-07.png": "c6c49a2ae6553b6d149a7007bf2df9ce38e6556c6b69a4ce19e467ac46936a57",
+    "page-08.png": "3f42635925e527c771d65e7195367823fa04173321028db387c86b243e94b3e5",
+    "page-09.png": "c7cf3c336e0d776c889d160a71d695e1e208e915610d1cd5867aa4d4029bb352",
+    "page-10.png": "8a5d4cc4df1ebd26b82a833251298ed946f9e7a5c8e23226db1ad0d888c7ae1e",
+    "page-11.png": "36e177106d0698c2de3f5f4f4cfbea4baba2eeba44cb099075f6d904348e24b9",
+    "page-12.png": "fa763f34495ecf1859c4270a3435359dc8f66d7c5a671313fb3736d62ddc043c"
+  }
+}

@@ -11,11 +11,11 @@ The verified 9 September 2026 build has exactly **10 content pages + 2 reference
 - `system.tex`: workflow, integration contract, stage graph, and CI benefit.
 - `model.tex`: normalized inputs, admission, versions, and run transition.
 - `guarantees.tex`: conditional guarantees, proofs, and recorded-state idempotence.
-- `evaluation.tex`, `mixed-results.tex`: fresh 1.9.0 campaign and separately identified saved evidence.
+- `evaluation.tex`, `mixed-results.tex`: fresh 1.10.0 campaign and separately identified saved evidence.
 - `discussion.tex`: limitations, related work, conclusion, data availability, AI disclosure.
 - `references.tex`: bibliography in citation order.
 
-`comparison.tex` is an unused historical working fragment and is not included in the build. Do not treat its claims as part of the active paper.
+The unused historical comparison fragment is archived at `../archives/saner-comparison-2026-09-10.tex` and is not included in the build. Do not treat its claims as part of the active paper. The obsolete `paper/icse/` tree is preserved in the verified archive described in `../archives/README.md`.
 
 ## Build and inspect
 
@@ -32,6 +32,6 @@ Inspect every rendered page. `check.py` checks pagination, citations, known iden
 
 The 24-point title and 10-point body are TeX points (approximately 23.91 and 9.96 PDF points). Font encoding is selected before IEEEtran initialization to avoid XeTeX font substitution. The IEEE bibliography break keeps references 31–40 together on the second reference page; revisit it if references change.
 
-Read **EDITING-REQUIREMENTS.md** before revising the claims. The primary campaign is the completed 1.9.0 Linux ARM64 run identified in `evidence/EXPERIMENTS-1.9.0-20260909.md`; saved 1.8.2 results remain separate. Both use implemented CCME 2.0 semantics. Future specification features are not evaluated implementation results.
+Read **EDITING-REQUIREMENTS.md** before revising the claims. The primary campaign is the completed 1.10.0 Linux ARM64 run identified in `evidence/EXPERIMENTS-1.10.0-20260909.md`; saved 1.8.2 results remain separate. Both use implemented CCME 2.0 semantics. Future specification features are not evaluated implementation results.
 
 Local evidence and review reports are in `../../output/saner-2027/`. The delivered PDF is `../../output/pdf/saner-2027-paper.pdf`; rebuild it after edits before distributing a newer copy.

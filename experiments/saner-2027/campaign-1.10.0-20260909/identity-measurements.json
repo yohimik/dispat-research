@@ -1,0 +1,44 @@
+{
+  "measured_utc": "2026-09-09T17:02:05.724504+00:00",
+  "commands": [
+    {
+      "argv": [
+        "docker",
+        "buildx",
+        "imagetools",
+        "inspect",
+        "yohimik/dispat-alpine@sha256:c7c03077f20d5763316d75ed22ba9ece0ec2908167a69747e56c35e5855e1af8"
+      ],
+      "exit": 0,
+      "stdout": "Name:      docker.io/yohimik/dispat-alpine@sha256:c7c03077f20d5763316d75ed22ba9ece0ec2908167a69747e56c35e5855e1af8\nMediaType: application/vnd.oci.image.index.v1+json\nDigest:    sha256:c7c03077f20d5763316d75ed22ba9ece0ec2908167a69747e56c35e5855e1af8\n           \nManifests: \n  Name:        docker.io/yohimik/dispat-alpine@sha256:d7e4fa84ed8b95838943d14c0e9e8bbe904d8ebca755984650647e379f8dffc0\n  MediaType:   application/vnd.oci.image.manifest.v1+json\n  Platform:    linux/amd64\n               \n  Name:        docker.io/yohimik/dispat-alpine@sha256:f2a49c21eca0a3e30af1396eca538920b2faa475b50f12d4aae99236e2fe2955\n  MediaType:   application/vnd.oci.image.manifest.v1+json\n  Platform:    linux/arm64\n               \n  Name:        docker.io/yohimik/dispat-alpine@sha256:598a21a3c0b0cc968bb52a6942f940d3f781bc6a7f2507f6e94240428c0be878\n  MediaType:   application/vnd.oci.image.manifest.v1+json\n  Platform:    unknown/unknown\n  Annotations: \n    vnd.docker.reference.digest: sha256:d7e4fa84ed8b95838943d14c0e9e8bbe904d8ebca755984650647e379f8dffc0\n    vnd.docker.reference.type:   attestation-manifest\n               \n  Name:        docker.io/yohimik/dispat-alpine@sha256:dc31c9834aba8f0c55a431882aa59a430dc28d1783cc40e135c609a5703ad753\n  MediaType:   application/vnd.oci.image.manifest.v1+json\n  Platform:    unknown/unknown\n  Annotations: \n    vnd.docker.reference.digest: sha256:f2a49c21eca0a3e30af1396eca538920b2faa475b50f12d4aae99236e2fe2955\n    vnd.docker.reference.type:   attestation-manifest\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "image",
+        "inspect",
+        "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e"
+      ],
+      "exit": 0,
+      "stdout": "[\n    {\n        \"Id\": \"sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e\",\n        \"RepoTags\": [\n            \"dispat-saner:1.10.0-20260909\"\n        ],\n        \"RepoDigests\": [\n            \"dispat-saner@sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e\"\n        ],\n        \"Comment\": \"buildkit.dockerfile.v0\",\n        \"Created\": \"2026-09-09T16:58:26.358272796Z\",\n        \"Config\": {\n            \"Env\": [\n                \"PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin\",\n                \"DOCKER_VERSION=29.8.0\",\n                \"DOCKER_BUILDX_VERSION=0.37.0\",\n                \"DOCKER_COMPOSE_VERSION=5.5.1\",\n                \"DOCKER_TLS_CERTDIR=/certs\",\n                \"DISPAT_UPDATE_CHECK=0\",\n                \"NPM_CONFIG_UPDATE_NOTIFIER=false\"\n            ],\n            \"WorkingDir\": \"/\",\n            \"Labels\": {\n                \"org.dispat.research.source-image\": \"yohimik/dispat-alpine@sha256:f2a49c21eca0a3e30af1396eca538920b2faa475b50f12d4aae99236e2fe2955\"\n            }\n        },\n        \"Architecture\": \"arm64\",\n        \"Os\": \"linux\",\n        \"Size\": 195279288,\n        \"RootFS\": {\n            \"Type\": \"layers\",\n            \"Layers\": [\n                \"sha256:b2848c02ac6ff53d265469b5b30f649f335e546a83330cd8916d54e65e640409\",\n                \"sha256:f099292e5fd434a3f20c5037e523bb3b57f29f41c962dd5cba15d88fced661f0\",\n                \"sha256:5f70bf18a086007016e948b04aed3b82103a36bea41755b6cddfaf10ace3c6ef\",\n                \"sha256:1fca4e66716bf7a2f536945570d973359bcf30621841d9026f5b41ff80159cb0\",\n                \"sha256:4d092003a5e230a9cc7a3c61f9286b74e746c186826b2c47fc2f2ceb61c66f16\",\n                \"sha256:2597524c560d03c88b0b3100b6025b1b851483cfba6f17d021df43004b450da4\",\n                \"sha256:ceaae0d91d403c76abaae4a4aabbf99c98cd3a783b2032addef5198827ce741a\",\n                \"sha256:461bcc2328ad1c6a19e83ecbd710b1c5221c70f490fc75a3dfc39bcd7f2d9b2e\",\n                \"sha256:cef780b46af58e374a1ea57b9acc9154133aaa4100a05d1f2617e7548043485e\",\n                \"sha256:efd5629f065c0c3dd3ff0b5f31d407794f1a5d9f4ccba1c9776838cc8547eff6\",\n                \"sha256:dd188394929b5116805da817ba014a1b5f370add4dfa3d47aa93f3b5414b6dfe\",\n                \"sha256:5d35b193b0df53dad3f896dcf9e871e7b238535fb49ca429bb69576d3d57b99a\",\n                \"sha256:cfb005d451f33e1c818097276a4a8c2ddc43747862842d87be9ae6ff9575227b\",\n                \"sha256:5d850d8e01a51c384b5e2fc77d1b9cda53a21bc2a37ee1decc4c7078939271f9\"\n            ]\n        },\n        \"Metadata\": {\n            \"LastTagTime\": \"2026-09-09T16:58:31.972944007Z\"\n        },\n        \"Descriptor\": {\n            \"mediaType\": \"application/vnd.oci.image.index.v1+json\",\n            \"digest\": \"sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e\",\n            \"size\": 856\n        },\n        \"Identity\": {\n            \"Build\": [\n                {\n                    \"Ref\": \"l2dtsyf43labgo4oqv4xnp1jl\",\n                    \"CreatedAt\": \"2026-09-09T16:58:33.069928632Z\"\n                }\n            ]\n        }\n    }\n]\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e",
+        "sh",
+        "-c",
+        "dispat --version; sha256sum /usr/local/bin/dispat; cat /toolchain-apk.txt"
+      ],
+      "exit": 0,
+      "stdout": "\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\ndispat 1.10.0 (linux_arm64)\n03d1ba5fbaef35b69582e9489f40b5438f81ae6926e02ea6d02716b5b73d92fd  /usr/local/bin/dispat\nada-libs-3.3.0-r0\nalpine-baselayout-3.7.2-r1\nalpine-baselayout-data-3.7.2-r1\nalpine-keys-2.6-r0\nalpine-release-3.24.1-r0\napk-tools-3.0.6-r0\nbinutils-2.45.1-r1\nbrotli-libs-1.2.0-r1\nbuild-base-0.5-r4\nbusybox-1.37.0-r31\nbusybox-binsh-1.37.0-r31\nc-ares-1.34.8-r0\nca-certificates-20260611-r0\nca-certificates-bundle-20260611-r0\nfile-5.47-r2\nfortify-headers-3.0.1-r2\ng++-15.2.0-r5\ngcc-15.2.0-r5\ngdbm-1.26-r0\ngit-2.54.0-r0\ngit-init-template-2.54.0-r0\ngmp-6.3.0-r4\nicu-data-en-78.1-r0\nicu-libs-78.1-r0\nisl26-0.26-r2\njansson-2.15.0-r0\nlibapk-3.0.6-r0\nlibatomic-15.2.0-r5\nlibbz2-1.0.8-r6\nlibcrypto3-3.5.7-r0\nlibcurl-8.22.0-r0\nlibedit-20260508.3.1-r1\nlibexpat-2.8.4-r0\nlibffi-3.5.2-r1\nlibgcc-15.2.0-r5\nlibgcc-static-15.2.0-r5\nlibgomp-15.2.0-r5\nlibidn2-2.3.8-r0\nlibmagic-5.47-r2\nlibncursesw-6.6_p20260516-r0\nlibpanelw-6.6_p20260516-r0\nlibpsl-0.21.5-r3\nlibssl3-3.5.7-r0\nlibstdc++-15.2.0-r5\nlibstdc++-dev-15.2.0-r5\nlibunistring-1.4.2-r0\nmake-4.4.1-r4\nmpc1-1.3.1-r1\nmpdecimal-4.0.1-r0\nmpfr4-4.2.2-r0\nmusl-1.2.6-r2\nmusl-dev-1.2.6-r2\nmusl-utils-1.2.6-r2\nncurses-terminfo-base-6.6_p20260516-r0\nnghttp2-libs-1.69.0-r0\nnodejs-24.18.1-r0\nnpm-11.12.1-r0\nopenssh-client-common-10.3_p1-r1\nopenssh-client-default-10.3_p1-r1\nopenssh-keygen-10.3_p1-r1\npatch-2.8-r0\npcre2-10.48-r0\npyc-3.14.7-r1\npython3-3.14.7-r1\npython3-pyc-3.14.7-r1\npython3-pycache-pyc0-3.14.7-r1\nreadline-8.3.3-r1\nscanelf-1.3.9-r1\nsimdjson-4.2.4-r0\nsimdutf-9.0.0-r0\nsqlite-libs-3.53.4-r0\nssl_client-1.37.0-r31\nxz-libs-5.8.3-r0\nzlib-1.3.2-r0\nzstd-libs-1.5.7-r2\n",
+      "stderr": ""
+    }
+  ]
+}

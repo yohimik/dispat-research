@@ -1,0 +1,36 @@
+{
+  "checked_utc": "2026-09-09T17:10:16.227745+00:00",
+  "scope": "Pinned release-tag source inspection: no changes to inspected release/parser/ifelse files between releases; POSIX-shell default retained. This is not native Windows execution.",
+  "commands": [
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/yohimik/Projects/dispat",
+        "diff",
+        "--stat",
+        "services/dispat/v1.9.0",
+        "services/dispat/v1.10.0",
+        "--",
+        "services/dispat/internal/release",
+        "pkg/ccme",
+        "services/dispat/internal/app/ifelse.go"
+      ],
+      "exit": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "git",
+        "-C",
+        "/Users/yohimik/Projects/dispat",
+        "show",
+        "services/dispat/v1.10.0:services/dispat/internal/app/ifelse.go"
+      ],
+      "exit": 0,
+      "stdout": "package app\n\nimport (\n\t\"context\"\n\t\"fmt\"\n\t\"io\"\n\n\t\"github.com/rs/zerolog\"\n\n\t\"github.com/yohimik/dispat/services/dispat/internal/script\"\n)\n\n// `dispat if`: the shell's own if/elif/else, spelled so it fits on one line\n// inside a configured script. It is a package-level function rather than a\n// method because it reads no configuration and needs no repository, like\n// InitConfig and the manifest commands: a condition is about the environment,\n// not about the monorepo it happens to be standing in.\n\n// Branch is one condition and the script it guards.\ntype Branch struct {\n\tCond   Condition\n\tScript string\n}\n\n// IfOptions is one whole if/elif/else chain.\ntype IfOptions struct {\n\t// Branches are tried in order and the first match wins.\n\tBranches []Branch\n\t// Else runs when no branch matched. Empty means there is no else, which\n\t// makes \"nothing matched\" a silent success.\n\tElse string\n\t// Lookup reads a variable. Nil means the process environment, which is\n\t// what the command uses; tests pass their own.\n\tLookup func(string) string\n\t// OnFailure runs when the chosen script fails and decides the exit code.\n\tOnFailure string\n\t// Dir is the working directory: --root, as the user spelled it.\n\tDir string\n\t// Runner executes the chosen script. Nil means a plain ShellRunner, which\n\t// is /bin/sh -c: there is no configuration here to take a shell from.\n\tRunner script.Runner\n\tStdout io.Writer\n\tStderr io.Writer\n\tLog    zerolog.Logger\n}\n\n// RunIf evaluates the chain and runs the one script it selects, returning the\n// process exit code.\n//\n// Nothing matching with no else is a success that runs nothing: a chain whose\n// conditions are all false has answered the question it was asked, and a\n// command that failed there could not be used as a guard.\nfunc RunIf(ctx context.Context, opts IfOptions) (int, error) {\n\tlookup := opts.Lookup\n\tif lookup == nil {\n\t\treturn 0, fmt.Errorf(\"no environment lookup\")\n\t}\n\t// matched is tracked apart from the script text because a branch may\n\t// legitimately guard an empty script (\"--then ''\", a deliberate no-op), and\n\t// that must still count as the chain's answer rather than falling through\n\t// to the else.\n\tchosen, matched := \"\", false\n\tfor _, b := range opts.Branches {\n\t\tif b.Cond.Match(lookup) {\n\t\t\tchosen, matched = b.Script, true\n\t\t\topts.Log.Debug().Str(\"condition\", b.Cond.Spec).Msg(\"condition matched\")\n\t\t\tbreak\n\t\t}\n\t}\n\tif !matched {\n\t\tif opts.Else == \"\" {\n\t\t\topts.Log.Debug().Msg(\"no condition matched and there is no else, nothing to run\")\n\t\t\treturn 0, nil\n\t\t}\n\t\tchosen = opts.Else\n\t\topts.Log.Debug().Msg(\"no condition matched, running the else script\")\n\t}\n\tif chosen == \"\" {\n\t\topts.Log.Debug().Msg(\"the selected branch is empty, nothing to run\")\n\t\treturn 0, nil\n\t}\n\n\trunner := opts.Runner\n\tif runner == nil {\n\t\trunner = &script.ShellRunner{Log: opts.Log}\n\t}\n\treturn shellCall{\n\t\tRunner: runner, Dir: opts.Dir, Scripts: []string{chosen}, OnFailure: opts.OnFailure,\n\t\tStdout: opts.Stdout, Stderr: opts.Stderr, Log: opts.Log,\n\t}.run(ctx)\n}\n",
+      "stderr": ""
+    }
+  ]
+}

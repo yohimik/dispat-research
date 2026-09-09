@@ -1,0 +1,6 @@
+{
+  "frozen_utc": "2026-09-09T17:03:00.364761+00:00",
+  "sha256": "2a589909e84f771f8f879ca738cfe6671ccd5e526ae735a89f188c70996cfa73",
+  "cases": 16,
+  "purpose": "Separate feature checks, outside primary campaign counts"
+}

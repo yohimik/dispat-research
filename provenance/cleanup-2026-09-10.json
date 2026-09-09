@@ -1,0 +1,482 @@
+{
+  "recorded_utc": "2026-09-09T20:15:01.127987+00:00",
+  "source_git_head": "82cc7e5f8c2f274f957b06e9a7b1eaec2d659a12",
+  "scope": "User-authorized research repository cleanup; no raw experimental outcome deleted without a verified complete archive",
+  "actions": [
+    {
+      "action": "move",
+      "from": "paper/build/main.pdf",
+      "to": "output/pdf/technical-report.pdf",
+      "sha256": "32e7b0de518756eaa4f2985f8f5a164475662355afe30f32b320bf0be69cef99",
+      "reason": "Preserve the separate full technical report as a deliverable, outside generated build directories"
+    },
+    {
+      "action": "move",
+      "from": "paper/saner/build/verification.json",
+      "to": "paper/saner/evidence/BUILD-1.10.0-20260909.json",
+      "sha256": "c03cbac965e6900885d491d230bd3005dd1e51a6948d5fecd4fc0c03e27354e5",
+      "reason": "Preserve final structural verification outside disposable build output"
+    },
+    {
+      "action": "move",
+      "from": "paper/saner/comparison.tex",
+      "to": "paper/archives/saner-comparison-2026-09-10.tex",
+      "sha256": "f8010880aa0fd2ebe38fe1dae0cc3f3c05b679fb36eee2eaa3990b548dc4d1c3",
+      "reason": "Unused historical fragment; not an input to the active manuscript"
+    },
+    {
+      "action": "move",
+      "from": "HANDOFF-2026-09-09.md",
+      "to": "provenance/handoffs/2026-09-09/HANDOFF-2026-09-09.md",
+      "sha256": "9248b9c497b6d8993355e330c655fc9ba3211bc5748384a35609e5d6a1d02793",
+      "reason": "Completed handoff history; CONTINUATION.md remains the active entry point"
+    },
+    {
+      "action": "move",
+      "from": "RESTART-HANDOFF-2026-09-09.md",
+      "to": "provenance/handoffs/2026-09-09/RESTART-HANDOFF-2026-09-09.md",
+      "sha256": "49bfa1e38b46e6ef796fcb520d16fe9f096763c7228f2e4c3f15b83b88b65dd1",
+      "reason": "Completed handoff history; CONTINUATION.md remains the active entry point"
+    },
+    {
+      "action": "move",
+      "from": "RESTART-STATE-2026-09-09.json",
+      "to": "provenance/handoffs/2026-09-09/RESTART-STATE-2026-09-09.json",
+      "sha256": "ac1678f0e98acbf4e1f6c18fdafd9e93104d69795d13422c63c878c4f66b10fe",
+      "reason": "Completed handoff history; CONTINUATION.md remains the active entry point"
+    },
+    {
+      "action": "remove-generated",
+      "path": "paper/build",
+      "reason": "Generated LaTeX output or page-preview scratch files; final PDFs and verification records retained",
+      "bytes": 35542,
+      "files": {
+        "paper/build/main.log": "6aaaa235c96cdfbdbd5469ea227a7cab40f939b8ae8a5b1565f70895562cae81"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "paper/saner/build",
+      "reason": "Generated LaTeX output or page-preview scratch files; final PDFs and verification records retained",
+      "bytes": 7021657,
+      "files": {
+        "paper/saner/build/page-01.png": "46178186729915ad4d0a3054dfe5607b1a365624358ed48f7a44c30271930dba",
+        "paper/saner/build/page-02.png": "ee5382fc83e93d65e90629f69c617022d4fb9b5b6bf66835c87b762104c8555d",
+        "paper/saner/build/page-03.png": "467bb9deefbfd3a78abd30e1e68a6590bd6d8499b509a8392eaef6b8a7e69a40",
+        "paper/saner/build/page-07.png": "c6c49a2ae6553b6d149a7007bf2df9ce38e6556c6b69a4ce19e467ac46936a57",
+        "paper/saner/build/main.pdf": "b695e2d5b28adc1c65e4ac6d404226fae67cad1e00dfbdd956bae12105ebbf60",
+        "paper/saner/build/page-12.png": "fa763f34495ecf1859c4270a3435359dc8f66d7c5a671313fb3736d62ddc043c",
+        "paper/saner/build/page-06.png": "59b854f5b172c3628692eb01c9de5f709b812cf7f441cfea4e1bd6cf7ea2447a",
+        "paper/saner/build/page-10.png": "8a5d4cc4df1ebd26b82a833251298ed946f9e7a5c8e23226db1ad0d888c7ae1e",
+        "paper/saner/build/page-04.png": "e68f3e0048c50ecd3c66753961b1dc08dc91e48a43808c3f7b60234dac53fe57",
+        "paper/saner/build/page-05.png": "6ea12706271569d5b1c83ae524776544aac4cb5e43fafb308993c3d1435b6652",
+        "paper/saner/build/page-11.png": "36e177106d0698c2de3f5f4f4cfbea4baba2eeba44cb099075f6d904348e24b9",
+        "paper/saner/build/before-trim.json": "1f1d1b7a7ad20aa3c3814fe408c1229b87eb2cb080fa5f25a57722230a65dea1",
+        "paper/saner/build/main.txt": "f25b49febfe674d54c00291b1fc7afdb9b316a9f6e73b7c193390edc74e9c998",
+        "paper/saner/build/compile.log": "557db2bee33e3eff16d19255a64d7d0743714d9b592b16f97a29fd35d6941a88",
+        "paper/saner/build/pre-final-render-hashes.json": "3645d85638fc3afce4a5dfb4a2cce8d195346e670195605283155050d40b6514",
+        "paper/saner/build/page-08.png": "3f42635925e527c771d65e7195367823fa04173321028db387c86b243e94b3e5",
+        "paper/saner/build/page-09.png": "c7cf3c336e0d776c889d160a71d695e1e208e915610d1cd5867aa4d4029bb352",
+        "paper/saner/build/visual-review-1.10.0.json": "272912e9437342633fb8efaed4c35628ef95ceb9c54371def3592072a04117a5",
+        "paper/saner/build/build-1.10.0.log": "dd87ace6dd415189fbfd9a95a6134e446a7bba9f43d5aa912a072b8d0dc45045",
+        "paper/saner/build/main.log": "2c25f5135653f787fdfce72ca93beba0364914a3d045bd551c2957f614d65675",
+        "paper/saner/build/before-platform-edit.json": "e92decefaa5388a100cda82e6bee52b715c53e38d2d7c1b3b63df1316e9eea6b"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "paper/saner/tmp",
+      "reason": "Generated LaTeX output or page-preview scratch files; final PDFs and verification records retained",
+      "bytes": 7679426,
+      "files": {
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-01.png": "d7043b738950a64f2d1c88b57498dd140ef7b532185067b54eb2c8d635bdf021",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-02.png": "2e0f0d29f0b8d4dca57e8d8ad4d99a8cba2f0e2a2d93016e57269c24812738a7",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-03.png": "2601edd3021303834e4aec89bc8cfc91da9f8414a63cfaf27ebed08a34c605a1",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-07.png": "10865fbe6b877a0067413088184b4218b7ea1f236f2120b632085006df4cc806",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-12.png": "fc4c8201266f8c449c4599cd3697703a8da1448e1bfbcac6addcc28bc5535b83",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-06.png": "2ae953fa394095d7954875a4009cbfab57ca0d7c7f33d1e0b6d50076599609f6",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-10.png": "2ad8e8e2d974f71aec70e97cd3660656b3603bad8d99b3b5100f36033a7cf736",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-04.png": "d1b87b7d7a6f56047a12ec8c6c946ab4de94a0ba3d18c97448095a44e861c0b1",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-05.png": "9a6ed6f6ebb5d3200ea60db075461f906da9cfec0e983d7efa17a5b834050119",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-11.png": "4bd3d03ea9bd22b9510d67275c056d5eede4742f71670397a5efba8e2820aab0",
+        "paper/saner/tmp/pdfs/saner-self-hosting/final-p3-03.png": "e4910ad8a13c65412b7e03bddee26a3d6307244173470965e2e079662acf6d32",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-08.png": "f04f52b0767f70ffaa3b3023d3102335ee2ab4c50ef984da07fa7a99482c7323",
+        "paper/saner/tmp/pdfs/saner-self-hosting/page-09.png": "b34e1c14a807493151d5a776ab2d37a022672aaee823c7c18d690a4ee9517149",
+        "paper/saner/tmp/pdfs/saner-self-hosting/final-10.png": "ff4098aa9b780022a7888c648de986e59c6a0a63e1817199638d19e15f43e268",
+        "paper/saner/tmp/pdfs/saner-self-hosting/final-11.png": "36e177106d0698c2de3f5f4f4cfbea4baba2eeba44cb099075f6d904348e24b9",
+        "paper/saner/tmp/pdfs/saner-self-hosting/final-12.png": "fa763f34495ecf1859c4270a3435359dc8f66d7c5a671313fb3736d62ddc043c"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-1.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 359385,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-1.png": "c32a9645cbdeffa7c5d8b94fec947539c4e50ec7d66b28e8b7d86a38a26d3005"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-3.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 390208,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-3.png": "04f6aecb3521194ee095f96d93903f14c12c55baa2ebca44d381e4cae427ab59"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-2.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 405217,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-2.png": "41fb1bf521d9578d71b2ffdd178e7c38b29cf6841dec20b4803f8f8edbe626e1"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-6.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 393294,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-6.png": "1c76f315624ecf54847baa59f24c5dd684514d921457d4016cfbc7650f7a0364"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-7.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 397006,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-7.png": "369849d03308e307abfaa45d06032e7cd37c04c9041d77bdb23450a8c2e78e67"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-5.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 433426,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-5.png": "3d8376f6724fe4230db343d246ad9151f865282b7b10118d97c72b153ae09880"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-4.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 388799,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-4.png": "58e5de443dda9437de1c929fa576252f8d873b376f37bb2fc51121e446df3fa3"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-9.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 116758,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-9.png": "3348681d37e1639f780f82c4e94d34fb8b163de84cee2780c08a607c6fbeb358"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-canonical/page-8.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 457558,
+      "files": {
+        "output/conference-submission-2026-09-09/render-canonical/page-8.png": "5bab61506488929c0136aafae2183f142180cd8338baa226677ddab8d83db22c"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-1.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 394756,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-1.png": "10d5fd147f91a0870bce8afc7f83ff03e7c88871c47bb25792904b144ea4570d"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-3.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 337167,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-3.png": "a4cbfb35add69979a8f0a4414d00edc545346509fd4e4d47dc18cc9f07eb91c1"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-2.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 405888,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-2.png": "4a5591822a7c843a815ac0be7f616571b1947a2c9c098c95a2f4bed3cf78c159"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-6.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 441584,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-6.png": "ec532c53c073fe0edb3a14a3c7566a454eedc136e970e16c54918e546e7e5ebf"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-7.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 347683,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-7.png": "131751c443fb5c85fec23cb85879aa28de6efda55e140ab4784f24082a58f942"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-5.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 433670,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-5.png": "8be44b9ad44b3251667b5dfa05145fa227a0402c528281c850c8d8b5fb345478"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-4.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 396781,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-4.png": "5ef96486377cfc7e268d4bef75b8afa9983be629c9b4301192d5e1184a220d40"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-9.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 467209,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-9.png": "7584aea1f4c3108d6ebc36f6fbdffab8d51fbe0a34c9c27ca1e3818069786991"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/conference-submission-2026-09-09/render-ieee/page-8.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 398809,
+      "files": {
+        "output/conference-submission-2026-09-09/render-ieee/page-8.png": "59c418f3f742802057cb4daef55faa5b2db7081dbcc9d48d9c2ccc472e636fe3"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-en-04.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 251432,
+      "files": {
+        "output/paper-platform-config/render/report-en-04.png": "2b02c8019085ca332a7e20b864c79a6eda362281a4a011a3feeab2f3e52754fc"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-en-05.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 281766,
+      "files": {
+        "output/paper-platform-config/render/report-en-05.png": "44f0d82f939e6e0989622efd698563a65bd0118f3cc19ff51db47b5076f051ab"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-en-06.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 293919,
+      "files": {
+        "output/paper-platform-config/render/report-en-06.png": "a3c8ef21764db11dd3bdfa996637511ffb0a72596fca695041f4d7471d2b934b"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/conference-ru-08.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 519572,
+      "files": {
+        "output/paper-platform-config/render/conference-ru-08.png": "f6c9bf28abb26f9349ddb05eb60f8de2ad2fcf34188c1aa88bd7d2acaed0bcbe"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-en-03.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 47972,
+      "files": {
+        "output/paper-platform-config/render/report-en-03.png": "09b492fbc57d68391ba717c62efc08544e6cb22797a851695b83319bce282101"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/conference-en-6.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 471974,
+      "files": {
+        "output/paper-platform-config/render/conference-en-6.png": "e414125927fc73a6fc17de0956a566a3fefbaf2c1942111f1524c9275add8434"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/conference-en-7.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 515256,
+      "files": {
+        "output/paper-platform-config/render/conference-en-7.png": "7ec51b203f9c28aa20adfa3584e004eefd15a6daea365101f3e9c3e9fc9d8fdc"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-ru-07.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 291199,
+      "files": {
+        "output/paper-platform-config/render/report-ru-07.png": "b14900618c2eb771fa5111f7dc56ff43265a18e6560dcfe2d19cd17d8d060ed4"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/paper-platform-config/render/report-ru-06.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 296651,
+      "files": {
+        "output/paper-platform-config/render/report-ru-06.png": "3467d6b73babfc441e436e95a13ecffb9b7e605e1296fa2ef0173cc938000d6b"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/experiments-v182-paper-review/en-report-38.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 341235,
+      "files": {
+        "output/experiments-v182-paper-review/en-report-38.png": "e4c61d6033e375568ffc3f9cf31bb00a49153c06923e6ade85632adbce5a9210"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/experiments-v182-paper-review/en-report-39.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 222097,
+      "files": {
+        "output/experiments-v182-paper-review/en-report-39.png": "539f2494ad0bb0e04f6e1aa1bf99f4b9d2c5ac69e3410e3b1b2ee2179cf4397a"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/experiments-v182-paper-review/en-conf-1.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 485699,
+      "files": {
+        "output/experiments-v182-paper-review/en-conf-1.png": "6129971e045999143af4aec6dff6063fc6e20b055f4958334f16c08977365547"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/experiments-v182-paper-review/en-report-37.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 408360,
+      "files": {
+        "output/experiments-v182-paper-review/en-report-37.png": "21092e38e68f3874c62a39b7334bce68bd463c9e53343559033d017c91439e1b"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/experiments-v182-paper-review/en-conf-7.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 573734,
+      "files": {
+        "output/experiments-v182-paper-review/en-conf-7.png": "bce65e9be281724573b6e4a98f35e34a71b3e8198a6398d996c480baf8737767"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/help-patch-paper-review/en-conf-9.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 429976,
+      "files": {
+        "output/help-patch-paper-review/en-conf-9.png": "08ab83333fb30fd69cc88b8d27a1c6d46d224210c729a9544490ec6155b8789b"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/help-patch-paper-review/en-report-25.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 343599,
+      "files": {
+        "output/help-patch-paper-review/en-report-25.png": "733ce7ae818966ff4bbb9796834d3e26fe1e0d3a0615d1c5712b34936e7141b3"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/help-patch-paper-review/en-report-26.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 357156,
+      "files": {
+        "output/help-patch-paper-review/en-report-26.png": "f4062e8bc19280a9f94b98630f70ee22e05f373b97a68f872206ea4c327ae670"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/help-patch-paper-review/en-report-26-final.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 341918,
+      "files": {
+        "output/help-patch-paper-review/en-report-26-final.png": "90cf80ca2d0f3e33733bac5c04dbddd947d8d96cdc8fa18669ca03b091aee794"
+      }
+    },
+    {
+      "action": "remove-generated",
+      "path": "output/help-patch-paper-review/en-conf-4.png",
+      "reason": "Superseded derived page preview; tracked historical bytes remain in prior Git revisions",
+      "bytes": 548476,
+      "files": {
+        "output/help-patch-paper-review/en-conf-4.png": "f49fabcb78d0868d479516aae177bd5a4beb52982b1b0e289725f11f98ea4f9c"
+      }
+    },
+    {
+      "action": "remove-verified-extraction",
+      "path": "experiments/saner-2027/campaign-1.10.0-20260909/runs/run-v1.10.0-linux-arm64-20260909/work",
+      "archive": "experiments/saner-2027/campaign-1.10.0-20260909/runs/run-v1.10.0-linux-arm64-20260909/work.tar.gz",
+      "archive_sha256": "835208a0cd9066ec6bf7ec424a4d9cdee06ca4482a061f7a7d7cc02738611793",
+      "files_verified": 9157,
+      "bytes": 11557302,
+      "status_preserved": "COMPLETE"
+    },
+    {
+      "action": "remove-verified-extraction",
+      "path": "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909/work",
+      "archive": "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909/work.tar.gz",
+      "archive_sha256": "8405e6698907f700299225d8d1fa8ecdf93ef10e11660b65f95c2b6913a7b9a1",
+      "files_verified": 9189,
+      "bytes": 11510784,
+      "status_preserved": "FAILED"
+    },
+    {
+      "action": "remove-verified-extraction",
+      "path": "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected/work",
+      "archive": "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected/work.tar.gz",
+      "archive_sha256": "664b0b118412660fd6c643859e80a61deb60c94a14d9c3e723e2df18eaf6df41",
+      "files_verified": 9190,
+      "bytes": 11517303,
+      "status_preserved": "COMPLETE"
+    }
+  ],
+  "post_cleanup_verification": {
+    "status": "PASS",
+    "campaign_manifest_files": 103,
+    "archive_summary_matches_saved_summary": true,
+    "summary_tool_sha256": "cb930c33dbfd30f549ecf46bca703f033fef295bef0e509eb7dae92974358c63",
+    "conference_pdf_and_reviewed_sources_unchanged": true,
+    "icse_archive_files_verified": 11,
+    "icse_archive_record": "paper/archives/icse-2026-09-10.json",
+    "moved_files_hashes_verified": true,
+    "ide_settings": "Seven experiments/.idea files untracked; local IDE settings preserved and ignored"
+  }
+}

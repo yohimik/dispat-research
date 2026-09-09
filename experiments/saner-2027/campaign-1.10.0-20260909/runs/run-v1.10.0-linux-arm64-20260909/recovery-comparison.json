@@ -1,0 +1,175 @@
+{
+  "prior_run": "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected",
+  "current_run": "experiments/saner-2027/campaign-1.10.0-20260909/runs/run-v1.10.0-linux-arm64-20260909",
+  "different_run_counts": [
+    {
+      "episode": [
+        100,
+        0.3,
+        100
+      ],
+      "prior": [
+        {
+          "run": 1,
+          "planned": 50,
+          "remaining": 18,
+          "deny": [
+            "p00008",
+            "p00023",
+            "p00025",
+            "p00034",
+            "p00036",
+            "p00037",
+            "p00043",
+            "p00056",
+            "p00064",
+            "p00066",
+            "p00072",
+            "p00078",
+            "p00085",
+            "p00095"
+          ],
+          "pending": [
+            "p00008",
+            "p00012",
+            "p00023",
+            "p00025",
+            "p00034",
+            "p00036",
+            "p00037",
+            "p00040",
+            "p00043",
+            "p00056",
+            "p00064",
+            "p00066",
+            "p00072",
+            "p00074",
+            "p00078",
+            "p00079",
+            "p00085",
+            "p00095"
+          ],
+          "published_log_events": 32,
+          "failed_log_events": 14,
+          "blocked_log_events": 4
+        },
+        {
+          "run": 2,
+          "planned": 18,
+          "remaining": 2,
+          "deny": [
+            "p00056",
+            "p00095"
+          ],
+          "pending": [
+            "p00056",
+            "p00095"
+          ],
+          "published_log_events": 16,
+          "failed_log_events": 2,
+          "blocked_log_events": 0
+        },
+        {
+          "run": 3,
+          "planned": 2,
+          "remaining": 0,
+          "deny": [],
+          "pending": [],
+          "published_log_events": 2,
+          "failed_log_events": 0,
+          "blocked_log_events": 0
+        }
+      ],
+      "current": [
+        {
+          "run": 1,
+          "planned": 50,
+          "remaining": 20,
+          "deny": [
+            "p00008",
+            "p00023",
+            "p00025",
+            "p00034",
+            "p00036",
+            "p00037",
+            "p00043",
+            "p00056",
+            "p00064",
+            "p00066",
+            "p00072",
+            "p00078",
+            "p00085",
+            "p00095"
+          ],
+          "pending": [
+            "p00008",
+            "p00012",
+            "p00023",
+            "p00025",
+            "p00034",
+            "p00036",
+            "p00037",
+            "p00040",
+            "p00043",
+            "p00056",
+            "p00063",
+            "p00064",
+            "p00066",
+            "p00072",
+            "p00074",
+            "p00078",
+            "p00079",
+            "p00085",
+            "p00095",
+            "p00099"
+          ],
+          "published_log_events": 30,
+          "failed_log_events": 13,
+          "blocked_log_events": 7
+        },
+        {
+          "run": 2,
+          "planned": 20,
+          "remaining": 2,
+          "deny": [
+            "p00056",
+            "p00085"
+          ],
+          "pending": [
+            "p00056",
+            "p00085"
+          ],
+          "published_log_events": 18,
+          "failed_log_events": 2,
+          "blocked_log_events": 0
+        },
+        {
+          "run": 3,
+          "planned": 2,
+          "remaining": 1,
+          "deny": [
+            "p00056"
+          ],
+          "pending": [
+            "p00056"
+          ],
+          "published_log_events": 1,
+          "failed_log_events": 1,
+          "blocked_log_events": 0
+        },
+        {
+          "run": 4,
+          "planned": 1,
+          "remaining": 0,
+          "deny": [],
+          "pending": [],
+          "published_log_events": 1,
+          "failed_log_events": 0,
+          "blocked_log_events": 0
+        }
+      ],
+      "initial_versions_equal": true
+    }
+  ],
+  "explanation": "One extra release attempt adds release, git tag and status command records. Later deny sets are drawn from the changing pending set; a fixed seed alone does not fix execution interleavings. No causal attribution to the diagnostics feature is established."
+}

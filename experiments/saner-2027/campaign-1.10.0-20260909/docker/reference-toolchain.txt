@@ -1,0 +1,26 @@
+
+████████████
+██        ██
+██        ██
+██    ████████████
+██    ████████████
+██████████████████
+      ████████████
+      ████████████
+      ████████████
+
+dispat 1.8.2 (linux_arm64)
+78b0b37b4b74ed393f366ff4d36a98aa69a48fa781cc6a704ad17a0160107a68  /usr/local/bin/dispat
+Python 3.14.7
+v24.18.1
+11.12.1
+cc (Alpine 15.2.0) 15.2.0
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+unknown flag: --client
+
+Usage:  docker version [OPTIONS]
+
+Run 'docker version --help' for more information

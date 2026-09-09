@@ -11,7 +11,7 @@ Prepared 9 September 2026. The English working draft is ready for your edit, not
 5. Explain generic CI as a practical benefit: within an already provisioned environment, adding a package need not change the workflow. Package configuration still changes; new tools, permissions, credentials, or runners may require CI changes. The present paper does not measure onboarding effort.
 
 6. Treat **shared Windows/Linux release logic** as a practical contribution. Use game development as a concrete example: Windows editing with Linux dedicated-server CI, or Linux development with Windows packaging CI. Shared configuration owns the graph, lifecycle, and portable commands; referenced platform files choose the shell and override platform-specific steps. This supports reuse of configuration and commands, not automatic translation of Bash to PowerShell, cross-compilation, or identical artifacts.
-7. Preserve platform evidence boundaries. In the evaluated 1.9.0 release, the conditional wrapper still requires `/bin/sh`; selecting PowerShell in a child configuration does not remove that requirement. Do not equate setting `OS=Windows_NT` on Linux with a Windows execution. Before claiming validated cross-platform equivalence, run the same fixture on real Windows and Linux, record native toolchains and outputs, and compare planned versions, selected stages, recovery, and test gates. This validation has not been added to the current campaign.
+7. Preserve platform evidence boundaries. In the evaluated 1.10.0 release, the conditional wrapper still requires `/bin/sh`; selecting PowerShell in a child configuration does not remove that requirement. Do not equate setting `OS=Windows_NT` on Linux with a Windows execution. Before claiming validated cross-platform equivalence, run the same fixture on real Windows and Linux, record native toolchains and outputs, and compare planned versions, selected stages, recovery, and test gates. This validation has not been added to the current campaign.
 
 Treat self-hosting as a practical case study, not causal evidence that AI improved productivity. Keep the first stable release milestone separate from the later source-size snapshot, and label AI assistance and reuse as the author’s account unless independently verified.
 
@@ -29,16 +29,18 @@ Treat self-hosting as a practical case study, not causal evidence that AI improv
 
 ## Keep evidence tied to what was actually measured
 
-The completed primary campaign is `run-v1.9.0-linux-arm64-20260909-corrected`, pinned to the official 1.9.0 Linux ARM64 image and binary hash. See `evidence/EXPERIMENTS-1.9.0-20260909.md` for exact files and counts.
+The completed primary campaign is `run-v1.10.0-linux-arm64-20260909`, pinned to the official 1.10.0 Linux ARM64 image and binary hash. See `evidence/EXPERIMENTS-1.10.0-20260909.md` for exact files and counts.
 
 - Core differential holdout: 300 accepted, matching histories (seeds 90001–90300), no refusals, invalid executions, or differences.
-- Recovery: 20 episodes, all converged, maximum four runs, 248 raw command records. The observed maximum is not a universal liveness bound.
+- Recovery: 20 episodes, all converged, maximum four runs, 251 raw command records. The observed maximum is not a universal liveness bound.
 - Three-node topology: five configurations × six repetitions, 30 initial executions. Twelve initial successes, eighteen deliberate failures, twelve successful repairs, and twenty-four unchanged no-op releases. The verifier applies 522 repeated predicates.
 - Four-node topology: separately, the same 30/12/18/12/24 counts, with 798 repeated predicates. Both npm packages and both Docker artifacts were inspected. Base builds completed before UI publication began in all six mixed fixtures; do not describe this as required overlap.
 - CI integration: three repetitions and 81 repeated predicates. Failed tests and missing required tests block release. These are controlled fixture observations, not measured industrial onboarding effort.
 - Do not pool those units, the two topologies, or prior attempts into one success percentage. Predicate counts are not independent experimental samples.
-- Preserve the initial failed attempt. Its four-node verifier incorrectly demanded strict interval overlap. The corrected predicate was frozen before a complete new execution with the same cases and seeds. Retain both attempts, report the correction, and count only the identified completed campaign as current confirmatory evidence.
-- Saved 1.8.2 evidence remains separate: 1,500 core matches; full profile 997 accepted, 503 E195 refusals, 550 matching comparisons (546 accepted and four diagnostic dossiers), 1,914 differing package rows; 24 recovery episodes; six vectors; eight scale cells. These figures were not freshly executed on 1.9.0 and must never be relabeled as such.
+- Preserve the initial 1.9.0 failed attempt and its corrected complete rerun. Its four-node verifier incorrectly demanded strict interval overlap. The corrected protocol was frozen before the new execution and reused unchanged for 1.10.0. Do not pool attempts or versions.
+- The 1.10.0 recovery distribution is nine episodes in two runs, five in three, six in four. Its extra release/tag/status triplet explains 251 records versus 248 in 1.9.0; traces do not establish a cause attributable to diagnostics.
+- Sixteen separately frozen diagnostics engineering cases passed; these are outside the 14-stage campaign and scientific sample counts. Diagnostics checks literal syntax and parser policy, not scope existence, authorization, or plan correctness.
+- Saved 1.8.2 evidence remains separate: 1,500 core matches; full profile 997 accepted, 503 E195 refusals, 550 matching comparisons (546 accepted and four diagnostic dossiers), 1,914 differing package rows; 24 recovery episodes; six vectors; eight scale cells. These figures were not freshly executed on 1.10.0 and must never be relabeled as such.
 - Historical competitor/replay observations remain pinned and separate. Do not generalize them to every tool configuration or claim competing tools cannot express a correct dependency graph.
 - Artificial delays expose stage availability. They are not production throughput measurements; Docker Desktop results on Linux ARM64 are not native Windows evidence.
 - Raw work trees, including nested Git metadata, are preserved in hash-verified archives. Never discard failed observations or alter raw outcomes to fit a claim.
@@ -47,7 +49,7 @@ The completed primary campaign is `run-v1.9.0-linux-arm64-20260909-corrected`, p
 
 Use primary sources for technical claims. The current bibliography has 40 distinct, cited entries in first-citation order; 19 DOI metadata records were checked. Retain relevant antecedents rather than padding references with famous but unrelated papers. When changing a citation, verify authors, title, year, venue, DOI or official URL, and that the source actually supports the sentence.
 
-Prefer concrete explanations over product promotion. Keep one running example through the system, model trace, and experiment. Retain useful limitations in one clear place rather than deleting them or repeating a disclaimer after every sentence. Do not add CCME version-history material unless needed to identify evaluated semantics: the fresh campaign uses Dispat 1.9.0 and the implemented CCME 2.0 fragment, not unimplemented 3.x features.
+Prefer concrete explanations over product promotion. Keep one running example through the system, model trace, and experiment. Retain useful limitations in one clear place rather than deleting them or repeating a disclaimer after every sentence. Do not add CCME version-history material unless needed to identify evaluated semantics: the fresh campaign uses dispat 1.10.0 and the implemented CCME 2.0 fragment, not unimplemented 3.x features.
 
 ## Format and submission checks
 

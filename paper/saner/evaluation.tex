@@ -1,7 +1,7 @@
 \section{Evaluation}
 \label{sec:eval}
-The fresh campaign uses the official 1.9.0 Linux ARM64 image and implemented
-2.0 release-intent semantics. Saved 1.8.2 diagnostics, comparisons, and scale
+The fresh campaign reruns the frozen cases on the official 1.10.0 Linux ARM64
+image with implemented 2.0 release-intent semantics. Saved 1.8.2 diagnostics, comparisons, and scale
 measurements remain separate. Our evaluation asks whether planning matches a reference domain,
 whether recorded progress survives injected failures, and what planning costs
 on larger graphs. A supplemental stage-order experiment addresses the running
@@ -40,7 +40,7 @@ different experimental units are pooled as independent samples.
 \label{sec:eval:fresh}
 \begin{table}[t]
 \centering
-\caption{Fresh 1.9.0 core and saved 1.8.2 full profiles. Four matching
+\caption{Fresh 1.10.0 core and saved 1.8.2 full profiles. Four matching
 full-profile cases were refused, so diagnostic equality is not conformance.}
 \label{tab:oracle}
 \small
@@ -81,8 +81,8 @@ diagnostic, not the upward audit API. These targeted cases complement random
 core instances but are not complete specification conformance coverage.
 
 \subsection{Recovery and Historical Replay}
-All 20 fresh 1.9.0 episodes made progress on every run and converged within
-four runs; the verifier inspected 248 command records. Saved 1.8.2 evidence
+All 20 fresh 1.10.0 episodes made progress on every run and converged within
+four runs; the verifier inspected 251 command records. Saved 1.8.2 evidence
 contains two isolated orphan repetitions and 24 broader episodes, which also
 converged within four runs with zero structural G3/G5 check failures. These
 checks concern tested schedules and predicates. They do

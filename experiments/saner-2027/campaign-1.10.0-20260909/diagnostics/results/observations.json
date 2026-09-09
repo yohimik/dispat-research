@@ -1,0 +1,243 @@
+[
+  {
+    "name": "valid-no-git-ignores-nearby-config",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "feat(core): accepted"
+    ],
+    "expected_exit": 0,
+    "expected_code": null,
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "warning-visible-under-quiet-json",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--quiet-parser",
+      "--log-level",
+      "error",
+      "--log-format",
+      "json",
+      "unlisted(core): warning"
+    ],
+    "expected_exit": 0,
+    "expected_code": "W140",
+    "exit": 0,
+    "stdout": "{\"level\":\"warn\",\"code\":\"W140\",\"line\":1,\"column\":1,\"unit\":1,\"time\":\"2026-09-09T17:03:00Z\",\"message\":\"unknown type \\\"unlisted\\\" mapped to bump none\"}\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "empty-literal",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      ""
+    ],
+    "expected_exit": 1,
+    "expected_code": "E002",
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mmessage is empty\u001b[0m \u001b[36mcode=\u001b[0mE002 \u001b[36mcolumn=\u001b[0m1 \u001b[36mline=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m0\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "invalid-literal",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "hello world"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1millegal character \" \" in type\u001b[0m \u001b[36mcode=\u001b[0mE101 \u001b[36mcolumn=\u001b[0m6 \u001b[36mline=\u001b[0m1 \u001b[36munit=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m0\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "multiline-valid",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "feat(core): accepted\n\n---\nfix(api): another unit"
+    ],
+    "expected_exit": 0,
+    "expected_code": null,
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "multiline-invalid",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "feat(core): accepted\n\n---\nnot conventional"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1millegal character \" \" in type\u001b[0m \u001b[36mcode=\u001b[0mE101 \u001b[36mcolumn=\u001b[0m4 \u001b[36mline=\u001b[0m4 \u001b[36munit=\u001b[0m2\n\u001b[90m17:03:00\u001b[0m \u001b[33mWRN\u001b[0m \u001b[1m1 of 2 units carry no scope-set and therefore all resolve to the same derived set\u001b[0m \u001b[36mcode=\u001b[0mW132 \u001b[36mcolumn=\u001b[0m1 \u001b[36mline=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m1\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "no-git-comment-cleanup",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "# comment\nfeat(core): literal"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mheader must begin with a type\u001b[0m \u001b[36mcode=\u001b[0mE100 \u001b[36mcolumn=\u001b[0m1 \u001b[36mline=\u001b[0m1 \u001b[36munit=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m0\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "leading-dash-literal",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--",
+      "--not-a-flag"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mheader must begin with a type\u001b[0m \u001b[36mcode=\u001b[0mE100 \u001b[36mcolumn=\u001b[0m1 \u001b[36mline=\u001b[0m1 \u001b[36munit=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m0\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "explicit-reference-valid",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--config",
+      "settings/dispat.yaml",
+      "add(core): accepted"
+    ],
+    "expected_exit": 0,
+    "expected_code": null,
+    "exit": 0,
+    "stdout": "",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "explicit-reference-strict-refusal",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--config",
+      "settings/dispat.yaml",
+      "unlisted(core): refused"
+    ],
+    "expected_exit": 1,
+    "expected_code": "E140",
+    "exit": 1,
+    "stdout": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1munknown type \"unlisted\"\u001b[0m \u001b[36mcode=\u001b[0mE140 \u001b[36mcolumn=\u001b[0m1 \u001b[36mline=\u001b[0m1 \u001b[36munit=\u001b[0m1\n\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mcommit message refused\u001b[0m \u001b[36merrors=\u001b[0m1 \u001b[36mwarnings=\u001b[0m0\n",
+    "stderr": "",
+    "passed": true
+  },
+  {
+    "name": "missing-config",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--config",
+      "missing.json",
+      "feat: accepted"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1minvalid configuration\u001b[0m \u001b[36merror=\u001b[0m\u001b[31m\u001b[1m\"config: cannot read missing.json: open missing.json: no such file or directory\"\u001b[0m\u001b[0m\n",
+    "passed": true
+  },
+  {
+    "name": "malformed-config",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--config",
+      "dispat.json",
+      "feat: accepted"
+    ],
+    "expected_exit": 1,
+    "expected_code": null,
+    "exit": 1,
+    "stdout": "",
+    "stderr": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1minvalid configuration\u001b[0m \u001b[36merror=\u001b[0m\u001b[31m\u001b[1m\"config: cannot read dispat.json: unexpected end of JSON input\"\u001b[0m\u001b[0m\n",
+    "passed": true
+  },
+  {
+    "name": "missing-argument",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics"
+    ],
+    "expected_exit": 2,
+    "expected_code": null,
+    "exit": 2,
+    "stdout": "",
+    "stderr": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mdiagnostics requires exactly one commit-message argument\u001b[0m\n\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\nusage: dispat diagnostics <message> [flags]\n\nParse exactly one commit message and report every warning and error.\nThe message is used exactly as supplied, including an empty string or embedded\nnewlines. Warnings exit 0; parser errors exit 1.\n\nWithout --config, the CCME parser defaults are used and no repository is\nsearched. An explicit --config loads that file and its references, relative to\n--root, but does not require Git or scan manifests. --log-format json emits one\nJSON event per diagnostic.\n\nglobal flags:\n      --concurrency ints       override the configured concurrency: one value for both stages, or build,publish (e.g. 4,2); dispat run uses the build value\n      --config string          config file name, relative to --root; when not set, the first of dispat.json, dispat.yaml, dispat.yml, dispat.toml that exists (default \"dispat.json\")\n      --env-file stringArray   read environment variables from this file instead of ./.env (repeatable, later files win); variables the environment already sets are kept\n  -h, --help                   print help for the command and exit\n      --log-format string      override the configured logFormat (pretty, json)\n      --log-level string       override the configured logLevel (trace, debug, info, warn, error)\n      --quiet-parser           hide the commit-message parser's diagnostics; --quiet-parser=false shows them again when parser.quiet is set\n      --root string            monorepo root folder (default \".\")\n      --version                print the dispat version and exit\n",
+    "passed": true
+  },
+  {
+    "name": "extra-argument",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "feat: one",
+      "fix: two"
+    ],
+    "expected_exit": 2,
+    "expected_code": null,
+    "exit": 2,
+    "stdout": "",
+    "stderr": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1mdiagnostics requires exactly one commit-message argument\u001b[0m\n\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\nusage: dispat diagnostics <message> [flags]\n\nParse exactly one commit message and report every warning and error.\nThe message is used exactly as supplied, including an empty string or embedded\nnewlines. Warnings exit 0; parser errors exit 1.\n\nWithout --config, the CCME parser defaults are used and no repository is\nsearched. An explicit --config loads that file and its references, relative to\n--root, but does not require Git or scan manifests. --log-format json emits one\nJSON event per diagnostic.\n\nglobal flags:\n      --concurrency ints       override the configured concurrency: one value for both stages, or build,publish (e.g. 4,2); dispat run uses the build value\n      --config string          config file name, relative to --root; when not set, the first of dispat.json, dispat.yaml, dispat.yml, dispat.toml that exists (default \"dispat.json\")\n      --env-file stringArray   read environment variables from this file instead of ./.env (repeatable, later files win); variables the environment already sets are kept\n  -h, --help                   print help for the command and exit\n      --log-format string      override the configured logFormat (pretty, json)\n      --log-level string       override the configured logLevel (trace, debug, info, warn, error)\n      --quiet-parser           hide the commit-message parser's diagnostics; --quiet-parser=false shows them again when parser.quiet is set\n      --root string            monorepo root folder (default \".\")\n      --version                print the dispat version and exit\n",
+    "passed": true
+  },
+  {
+    "name": "invalid-command-flag",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--tag",
+      "feat: one"
+    ],
+    "expected_exit": 2,
+    "expected_code": null,
+    "exit": 2,
+    "stdout": "",
+    "stderr": "\u001b[90m17:03:00\u001b[0m \u001b[31mERR\u001b[0m \u001b[1m--tag is not a diagnostics flag; it belongs to dispat commit\u001b[0m \u001b[36mcommand=\u001b[0mdiagnostics \u001b[36mflag=\u001b[0m--tag\n\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588        \u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n      \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\n\nusage: dispat diagnostics <message> [flags]\n\nParse exactly one commit message and report every warning and error.\nThe message is used exactly as supplied, including an empty string or embedded\nnewlines. Warnings exit 0; parser errors exit 1.\n\nWithout --config, the CCME parser defaults are used and no repository is\nsearched. An explicit --config loads that file and its references, relative to\n--root, but does not require Git or scan manifests. --log-format json emits one\nJSON event per diagnostic.\n\nglobal flags:\n      --concurrency ints       override the configured concurrency: one value for both stages, or build,publish (e.g. 4,2); dispat run uses the build value\n      --config string          config file name, relative to --root; when not set, the first of dispat.json, dispat.yaml, dispat.yml, dispat.toml that exists (default \"dispat.json\")\n      --env-file stringArray   read environment variables from this file instead of ./.env (repeatable, later files win); variables the environment already sets are kept\n  -h, --help                   print help for the command and exit\n      --log-format string      override the configured logFormat (pretty, json)\n      --log-level string       override the configured logLevel (trace, debug, info, warn, error)\n      --quiet-parser           hide the commit-message parser's diagnostics; --quiet-parser=false shows them again when parser.quiet is set\n      --root string            monorepo root folder (default \".\")\n      --version                print the dispat version and exit\n",
+    "passed": true
+  },
+  {
+    "name": "invalid-log-format",
+    "argv": [
+      "/usr/local/bin/dispat",
+      "diagnostics",
+      "--log-format",
+      "xml",
+      "feat: one"
+    ],
+    "expected_exit": 2,
+    "expected_code": null,
+    "exit": 2,
+    "stdout": "",
+    "stderr": "{\"level\":\"error\",\"log-format\":\"xml\",\"time\":\"2026-09-09T17:03:00Z\",\"message\":\"unknown --log-format value (want pretty or json)\"}\n",
+    "passed": true
+  }
+]

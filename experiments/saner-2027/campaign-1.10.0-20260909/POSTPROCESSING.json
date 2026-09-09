@@ -1,0 +1,15 @@
+{
+  "recorded_utc": "2026-09-09T17:14:01.382234+00:00",
+  "tools": {
+    "tools/archive-campaign.py": "7049655b5451e7f77def548a38afde0e7d5d61ac3276ec3cf278e62a08d739cf",
+    "tools/summarize-saner-campaign.py": "0f8565fcdcc554e519d636ed97facaa89d95ab8fc244e4839bdac4bd6d0660c2",
+    "tools/verify-saner-archive.py": "aad94e7f8a371e24b3d3780d2bf983541900ed38f447d4917457cd3034c2be0e"
+  },
+  "steps": [
+    "Reaggregate the completed run with summarize-saner-campaign.py",
+    "Archive complete retained work and byte-check all regular files with archive-campaign.py",
+    "Extract archive afresh and run four retained-data verifiers offline in locked runner with verify-saner-archive.py"
+  ],
+  "archive_verification": "runs/run-v1.10.0-linux-arm64-20260909/archive-verification/verification.json",
+  "scope": "Postprocessing tools do not change the frozen experiment protocol or raw work."
+}

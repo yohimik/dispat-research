@@ -1,6 +1,16 @@
 # Preparing the release-protocol paper for SANER 2027
 
-## Current evidence update, 9 September 2026
+## Current 1.10.0 evidence update, 9 September 2026
+
+The canonical English manuscript now uses a completed, separate dispat 1.10.0 Linux ARM64 campaign. All 14 stages passed: 300 accepted matching core histories; 20 converged recovery episodes (at most four runs, 251 command records); 30 initial executions per three- and four-node topology; and three CI repetitions. Each topology retained 18 intended negative outcomes, 12 successful repairs and 24 unchanged no-op runs. Checks remain separate from sample counts. A separate 16-case diagnostics engineering addendum passed.
+
+The campaign survived the app restart without a replacement run. The complete retained work archive contains 9,157 byte-verified regular files; its SHA-256 is `835208a0cd9066ec6bf7ec424a4d9cdee06ca4482a061f7a7d7cc02738611793`. All four retained-data verifiers passed offline from a fresh extraction. This is an integrity/reproduction check, not independent scientific replication.
+
+The recovery difference from 1.9.0 comes from one extra release attempt in the n=100, p=.3, seed=100 trace, adding release/tag/status records. Initial versions and the first failure set match, but pending sets and subsequent failure draws differ. No causal effect of diagnostics is established. Both topologies again showed the intended local-output scheduling; the four-node base builds completed before UI publication began, an admissible schedule rather than a requirement for strict overlap.
+
+See [1.10.0 evidence](../../paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md) and [editing requirements](../../paper/saner/EDITING-REQUIREMENTS.md). The paper retains ten content pages plus two reference pages and keeps the model/implementation gap explicit. Old 1.8.2 full-profile diagnostics, scale cells and comparisons remain historical. Prior 1.9.0 evidence and its failed oracle attempt are preserved. Native Windows equivalence and production throughput were not measured. Author review, public/preprint-history assessment and exact AI-model-name confirmation remain required before any submission.
+
+## Historical 1.9.0 evidence update, 9 September 2026
 
 The active manuscript now incorporates the completed Dispat 1.9.0 Linux ARM64 campaign: 300 matching core histories, 20 converged recovery episodes, separate 30-execution three- and four-node topologies, and three CI-fixture repetitions. The four-node case uses two npm packages followed by two Docker images. A retained first attempt failed an overly strict overlap oracle; the correction was frozen before the new full execution. Do not pool attempts or relabel the saved 1.8.2 full-profile, scaling, and competitor records as current measurements.
 

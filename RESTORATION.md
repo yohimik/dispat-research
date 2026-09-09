@@ -1,5 +1,21 @@
 # Restoring the research environment
 
+## Current campaign archives and paper drafts
+
+Completed and failed release-campaign `work/` trees are preserved in their adjacent `work.tar.gz` archives, including fixture Git metadata. On 10 September the three extracted copies were removed only after archive checksums and every file's content matched. `provenance/cleanup-2026-09-10.json` records this verification; campaign manifests and observations were not changed.
+
+To recompute the current campaign summary directly from its archive, run from the repository root:
+
+```sh
+python3 tools/summarize-saner-campaign.py experiments/saner-2027/campaign-1.10.0-20260909/runs/run-v1.10.0-linux-arm64-20260909
+```
+
+The tool checks the archive checksum, extracts into a temporary directory, and removes that temporary copy on completion. For manual inspection, check `ARCHIVE.json` and extract the archive into an empty disposable directory. Historical campaign documentation describes the state when evidence was collected; mentions of retained local `work/` trees predate cleanup.
+
+The active manuscript is `paper/saner/`. See `paper/archives/README.md` to restore the obsolete ICSE draft for historical script replay. The separate technical report remains in `paper/main.tex`, with its saved PDF at `output/pdf/technical-report.pdf`. Build products and page previews can be regenerated; the current conference build and visual-review records are retained under `paper/saner/evidence/`.
+
+`provenance/migration.json` and `tools/verify-migration.py` describe the original imported snapshot. The snapshot verifier is intended for that revision, not for validating later manuscript edits or cleanup.
+
 ## Replay repositories
 
 `python3 tools/restore-replay-fixtures.py` restores the external repositories under `experiments/e3a/repos/`, using the exact heads and tag object IDs in `experiments/fixture-locks/`. It refuses to overwrite existing checkouts. Network access and upstream availability are required; missing objects are errors, never replaced with newer revisions. The lock records the original sparse-checkout setting; the restoration uses a full checkout with the same content and revisions.

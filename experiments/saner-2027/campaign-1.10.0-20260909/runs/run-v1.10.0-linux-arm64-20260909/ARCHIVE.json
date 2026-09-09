@@ -1,0 +1,8 @@
+{
+  "archive": "work.tar.gz",
+  "sha256": "835208a0cd9066ec6bf7ec424a4d9cdee06ca4482a061f7a7d7cc02738611793",
+  "bytes": 3380083,
+  "files_verified": 9157,
+  "status": "COMPLETE",
+  "contents": "Complete work directory, including nested Git metadata and raw outcomes. Local work retained unchanged."
+}

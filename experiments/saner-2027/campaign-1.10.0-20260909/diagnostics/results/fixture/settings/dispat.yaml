@@ -1,0 +1,5 @@
+packages:
+  core:
+    path: packages/core
+parser:
+  $ref: ./parser.yaml

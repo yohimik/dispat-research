@@ -77,6 +77,9 @@ packages or be derived from changed paths. A commit can contain multiple
 independent units, each retaining its own source set and propagation depth.
 The formal model consumes normalized units, not a particular parser syntax.
 The complete language grammar is outside this paper~\cite{ccme2}.
+Editors and commit generators can validate literal intent text through a
+standalone diagnostics command without creating a Git commit. This checks
+syntax and configured parser policy, not scope existence or release-plan correctness.
 
 Version bumps and prerelease channels are separate axes. A unit can request a
 channel transition without requesting a bump, and channel resolution can
@@ -146,7 +149,7 @@ platform configures its own build directory. This reuses orchestration logic;
 it does not translate shell syntax or make build outputs portable.
 
 Conditional and iteration commands can compose shared tasks and gates.
-However, in evaluated 1.9.0 the conditional wrapper itself requires a POSIX shell;
+However, in evaluated 1.10.0 the conditional wrapper itself requires a POSIX shell;
 a native Windows caller without it must select the platform configuration
 directly. Toolchains and SDKs must exist on each execution host. These are
 integration capabilities, not measured Windows/Linux equivalence or evidence

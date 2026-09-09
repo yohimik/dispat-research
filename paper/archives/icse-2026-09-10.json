@@ -1,0 +1,24 @@
+{
+  "archived_utc": "2026-09-09T20:12:41.739714+00:00",
+  "original_path": "paper/icse",
+  "archive": "icse-2026-09-10.tar.gz",
+  "archive_sha256": "0dfea625dc7d79d776c19872b030095bfe9291c8421f82479a2c408ea0dd0fd1",
+  "bytes": 218056,
+  "files_verified": 11,
+  "source_git_head": "82cc7e5f8c2f274f957b06e9a7b1eaec2d659a12",
+  "restoration_verified": true,
+  "reason": "User requested removing the superseded conference draft from the working tree; SANER is the sole active conference manuscript. Historical source and build outputs preserved byte-for-byte.",
+  "files": {
+    "paper/icse/.gitignore": "181314065df2f2fdaf920b1a8b5311daa216a2d6489a06ada5b49cc514d89417",
+    "paper/icse/EXPERIMENTS.md": "c0d1120a10e1b9a3089f1b3349cc00be008d61f9a92e8e5df6f2773477572389",
+    "paper/icse/Makefile": "59cdf9379ce8b5014d8aa3b1120028918b37a06a149da1bf9949ff3eeb52475a",
+    "paper/icse/RELATED-MODELS.md": "671087e2ce56459c17cfc7c0d26ece5d00ab9d611cb6bba14b6e7ddf3e99234d",
+    "paper/icse/RUNBOOK.md": "7b137db92466870fa610a63d8bfe915b95378406deb2524fc822b6a31d48ee6a",
+    "paper/icse/build/lastpass.log": "3423b96cfce4c8d7ad271133809b85df4b876a9812d883fc6c50c017ae1e93f7",
+    "paper/icse/build/main.aux": "a5e0a6769fb08182738730de567533241ea6d68e31e430ea11041f744cf469b8",
+    "paper/icse/build/main.log": "fb991e7b044ff90fd490e43ee2f78a44d071d9570cde0bd36fbcf3856991d746",
+    "paper/icse/build/main.out": "2ae1f4001302c93170bcac2ddb10c30db9b2707dd09b26066928914dce1d5988",
+    "paper/icse/build/main.pdf": "eec26fa61971ad73ee9970b51e1813839df5e36112f4783a81a7364d812533e3",
+    "paper/icse/main.tex": "e392af3bd519d11d7ccf499c905e6be2b60dcd87fc17e0045faca7fcf41348f4"
+  }
+}

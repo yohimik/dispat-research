@@ -1,0 +1,52 @@
+{
+  "status": "PASS",
+  "checks_executed": 798,
+  "configurations": 5,
+  "repetitions_per_configuration": 6,
+  "executions": 30,
+  "repair_executions": 12,
+  "overlap": [
+    {
+      "case": "mixed-2",
+      "assets_to_ui_overlap_seconds": 0.071234084,
+      "ui_publication_end_after_base_build_start_seconds": 6.30056142,
+      "ui_to_base_interval_intersection_seconds": -2.994726627,
+      "base_build_completed_before_ui_publish_started": true
+    },
+    {
+      "case": "mixed-4",
+      "assets_to_ui_overlap_seconds": 0.070170958,
+      "ui_publication_end_after_base_build_start_seconds": 6.393486711,
+      "ui_to_base_interval_intersection_seconds": -3.072739835,
+      "base_build_completed_before_ui_publish_started": true
+    },
+    {
+      "case": "mixed-5",
+      "assets_to_ui_overlap_seconds": 0.072651791,
+      "ui_publication_end_after_base_build_start_seconds": 6.308362878,
+      "ui_to_base_interval_intersection_seconds": -2.98636746,
+      "base_build_completed_before_ui_publish_started": true
+    },
+    {
+      "case": "mixed-0",
+      "assets_to_ui_overlap_seconds": 0.070127666,
+      "ui_publication_end_after_base_build_start_seconds": 6.30394867,
+      "ui_to_base_interval_intersection_seconds": -3.00816746,
+      "base_build_completed_before_ui_publish_started": true
+    },
+    {
+      "case": "mixed-3",
+      "assets_to_ui_overlap_seconds": 0.071558625,
+      "ui_publication_end_after_base_build_start_seconds": 6.292152295,
+      "ui_to_base_interval_intersection_seconds": -2.97643796,
+      "base_build_completed_before_ui_publish_started": true
+    },
+    {
+      "case": "mixed-1",
+      "assets_to_ui_overlap_seconds": 0.073724875,
+      "ui_publication_end_after_base_build_start_seconds": 6.29697617,
+      "ui_to_base_interval_intersection_seconds": -2.983937835,
+      "base_build_completed_before_ui_publish_started": true
+    }
+  ]
+}

@@ -5,7 +5,15 @@ node_modules/
 .venv/
 .npm/
 .cache/
+.idea/
+/paper/saner/tmp/
+/output/conference-submission-2026-09-09/render-*/
+/output/paper-platform-config/render/
+/output/experiments-v182-paper-review/*.png
+/output/help-patch-paper-review/*.png
 /experiments/e3a/repos/
 
 # Raw fixture trees are preserved in verified work.tar.gz archives, including .git.
 /experiments/saner-2027/campaign-next-release-prepared/runs/*/work/
+
+/experiments/saner-2027/campaign-1.10.0-20260909/runs/*/work/

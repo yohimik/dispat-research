@@ -1,0 +1,26 @@
+{
+  "executed_date": "2026-09-09",
+  "runner_image": "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e",
+  "argv": [
+    "docker",
+    "run",
+    "--rm",
+    "--network",
+    "none",
+    "--cpus",
+    "2",
+    "--memory",
+    "4g",
+    "-v",
+    "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909/diagnostics:/diagnostics",
+    "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e",
+    "python3",
+    "/diagnostics/run.py"
+  ],
+  "script_sha256": "2a589909e84f771f8f879ca738cfe6671ccd5e526ae735a89f188c70996cfa73",
+  "exit_code": 0,
+  "network": "none",
+  "runtime_identity": "../release-lock.json",
+  "raw_observations": "results/observations.json",
+  "scope": "Engineering addendum; separately frozen and counted, not a campaign stage or independent replication"
+}
