@@ -1,5 +1,7 @@
 # SANER paper and experiment review
 
+Follow-up: [author clarifications on release-note reuse and dependent npm/Docker/Go availability](AUTHOR-CLARIFICATIONS.md) update the practical framing after this review. The verification below records the earlier conference revision; the follow-up has separate dated PDF evidence.
+
 The paper's strongest contribution is a precise recovery rule for evolving, heterogeneous releases: successful publication by a provider must not erase an unfinished consumer's versioned obligation. Stage ordering explains when work may execute; consumer-relative admission explains what remains owed. Keeping these two responsibilities distinct gives the paper a coherent software release engineering contribution.
 
 The revision targets **Software Release Engineering, Continuous Integration and Delivery** in the SANER Research Track. The appropriate presentation is an accessible system explanation, followed by the mathematical model and guarantees, followed by experiments organized around questions that challenge those guarantees. Recent SANER work provides useful precedents for experimental design, but neither an award nor a particular section sequence establishes that another paper will be accepted.

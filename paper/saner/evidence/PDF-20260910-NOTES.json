@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "reviewed_local": "2026-09-10T01:10:10+04:00",
+  "pdf": "output/pdf/saner-2027-paper.pdf",
+  "pdf_sha256": "e1101c91a00e732e982639e2f4834244c05c42c8c43188adb577fa6bc74349ff",
+  "pdf_bytes": 144314,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 44,
+  "render_command": "pdftoppm -png -scale-to 1600 output/pdf/saner-2027-paper.pdf paper/saner/tmp/pdfs/saner-20260910-notes-delivered-v2/page",
+  "pages_visually_inspected": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+  "findings": "All twelve delivered pages were inspected at 1600-pixel scale. The revised abstract and introduction are readable; the release-note timeline and Go qualification flow cleanly across pages 2-3. Text, equations, the stage graph, and tables have no clipping, collision, broken glyph, or unintended spill. Page 10 ends with Conclusion, Data Availability, and AI Assistance Disclosure. Pages 11-12 contain references only; page 12 remains balanced across both columns.",
+  "render_sha256": {
+    "page-01.png": "d928941e00dc2b6bafdfbfda437a5135e555ca430bc98cddf66698007db210d4",
+    "page-02.png": "9ca3bd4c33f814bec1073577a19f6bc232b2ee66ed88bfff69f807d7a089303f",
+    "page-03.png": "a33464481fcc626d01fce8016d8140b3b216713b314aa72112be8d0f6940e356",
+    "page-04.png": "4ca28ced6287345a9c6221441085b7817d8f4db269c4442940137d7d842ec2cb",
+    "page-05.png": "00e78884c1b5202100468a269643a1c9677027acbf72a1e795286f59b16e1fd4",
+    "page-06.png": "68925a5e5518cee47604efca43d8b5aa9663fb6007aa232e42140d6e6346aba6",
+    "page-07.png": "e1fc59461779e19475fd8ba1080b36d9d3e65c2ca4096c25e361087ebb93c88b",
+    "page-08.png": "6acc5a50552f5b9b8845c7a314ab2a14ecf1c70f733ce647530aeab0f3053f3c",
+    "page-09.png": "c16598e4ce54b996f08c39d059b217474e19f556a1db5e405ecf73e671bdfce7",
+    "page-10.png": "8874e50a48dfb402a3cf2771eacd4692b83df2bfbb43e3a00e323c70fa358ae8",
+    "page-11.png": "08477c50f2139d5d69af9ea76072f3e1d4682671211c0af588e9fab22b1235c0",
+    "page-12.png": "ee6b8393cf27151e9ae810c46490b452266b0dd494eff415c66ed598d020d5c6"
+  },
+  "scope": "Visual and structural review of the delivered PDF after the release-note and dependency-boundary clarification; not proof validation, independent replication, or submission-eligibility certification."
+}

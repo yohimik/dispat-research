@@ -6,9 +6,13 @@ This task owns only `/Users/yohimik/Projects/dispat-research`. The product task 
 
 The user requested recent SANER literature, award examples, conference-suitable experiments, a whole-paper revision preserving the science, ten content pages plus two reference pages, and a review report. The topic is Software Release Engineering, Continuous Integration and Delivery. The user required Docker and Sol for execution; both Sol execution subtasks have finished. No experiment is pending.
 
-Canonical paper: `paper/saner/`. Delivered PDF: `output/pdf/saner-2027-paper.pdf`, SHA-256 `2c3e8ecb868e785400a9c8f22972bc49e30b05e60238dde8ed511dd7f64dd978`. Exactly 10+2 pages, 43 references, normal IEEE 10pt body and 24pt title. All twelve pages were visually inspected. Evidence: `paper/saner/evidence/BUILD-20260910.json` and `PDF-20260910.json`. The model and guarantee sections remain byte-identical to their pre-revision sources.
+Canonical paper: `paper/saner/`. Delivered PDF: `output/pdf/saner-2027-paper.pdf`, SHA-256 `e1101c91a00e732e982639e2f4834244c05c42c8c43188adb577fa6bc74349ff`. Exactly 10+2 pages, 44 references, normal IEEE 10pt body and 24pt title. All twelve pages were visually inspected. Evidence: `paper/saner/evidence/BUILD-20260910-NOTES.json` and `PDF-20260910-NOTES.json`. The model and guarantee sections remain byte-identical to their pre-revision sources.
 
 Current review: `output/saner-2027/conference-review-20260910/REVIEW.md`. It prioritizes SANER 2026 CI contexts, GitHub Actions workflow clones, and CI/CD failure management; award examples inform exposition rather than substitute for technical related work. Primary-source access limits and source hashes are retained in `RESEARCH-PROVENANCE.json`; final integrity checks are in `FINAL-VERIFICATION.json`.
+
+## Follow-up author clarification
+
+The author added the practical benefit of release-worthy changes captured during development, collected into notes at release, then adapted as social announcement drafts or handed to managers for reports. The paper distinguishes these narratives from recovery completion tags. The npm example now explicitly identifies a provider-consumer dependency. Isolated registry-based Docker builders need the published base image; version-resolved Go modules need published tagged source, while local `go.work`/`replace` configurations remain exceptions. These are presentation/applicability clarifications, not new measured outcomes. See `output/saner-2027/conference-review-20260910/AUTHOR-CLARIFICATIONS.md` and its source-provenance JSON. No experiment rerun was needed; no campaign evidence changed.
 
 ## New Docker mechanism campaign
 

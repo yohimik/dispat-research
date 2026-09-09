@@ -1,0 +1,19 @@
+{
+  "checked_utc": "2026-09-09T21:06:13.737388+00:00",
+  "research_base_commit": "fa30c15ec597d721fe36990fef028eb7b7773297",
+  "method": "Read-only inspection of versioned 1.10 product documentation and official Docker/Go documentation; no product changes and no new execution measurements.",
+  "local_sources": {
+    "/Users/yohimik/Projects/dispat/packages/docs/versioned_docs/version-1.10/configuration/records.md": "d0754c0260b2cb7ff73f7d328f3f4f45060f1359b3ce26d09b9e3970dad5c69b",
+    "/Users/yohimik/Projects/dispat/packages/docs/versioned_docs/version-1.10/reference/commits.md": "a09bed630ea8174f1e73955bb6f5e6cf418660af0b16f4e40825131e75b8c4d9",
+    "/Users/yohimik/Projects/dispat/packages/docs/versioned_docs/version-1.10/reference/releasing/steps.md": "c08e653419243bef308d85b40da0d3f4a94d98f78d1ec241089223e82d26d3be",
+    "/Users/yohimik/Projects/dispat/packages/docs/versioned_docs/version-1.10/examples/go.md": "89139de50b16218c1fc53e6a8f4070118921ba32056f151e885d2760a8aaed27"
+  },
+  "web_sources": [
+    "https://go.dev/doc/modules/publishing",
+    "https://go.dev/ref/mod",
+    "https://go.dev/doc/modules/gomod-ref",
+    "https://docs.docker.com/build/builders/drivers/docker-container/"
+  ],
+  "user_observation": "Changes marked during development can be collected at release and reused in social announcement drafts or managers' reports, even where a private project places little value on a conventional changelog.",
+  "evidence_boundary": "Documented note generation supports the proposed reuse; stakeholder effectiveness and automatic posting were not evaluated."
+}

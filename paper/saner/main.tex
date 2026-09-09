@@ -19,8 +19,9 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-Two npm workspace packages can share local build output, while a downstream
-Docker image must await base-image publication. After partial failure, a consumer can also
+An npm package can build from its dependency's local workspace output, while
+an isolated registry-based Docker builder needs its base image published
+first. After partial failure, a consumer can also
 lose its pending release when its provider's success removes the original
 propagation reason. We present a protocol combining stage-aware scheduling
 with consumer-based admission of release intent. Git history determines the

@@ -47,8 +47,7 @@ from a registry. The provider setting \code{isBuildWaitingPublish: true}
 therefore belongs on \code{base}. Both npm providers keep the default
 local-build mode. Other integrations may require npm publication or share
 local Docker images. Consumer publication follows provider publication in
-both modes. A missing script is a no-op stage; dependencies and completion
-records still apply.
+both modes.
 
 Suppose \code{assets} is at 1.4.2, \code{ui} at 3.2.0, \code{base} at
 0.8.2, and \code{app} at 2.1.0. An intent to release an assets feature and patch all
@@ -77,17 +76,19 @@ packages or be derived from changed paths. A commit can contain multiple
 independent units, each retaining its own source set and propagation depth.
 The formal model consumes normalized units, not a particular parser syntax.
 The complete language grammar is outside this paper~\cite{ccme2}.
-Editors and commit generators can validate literal intent text through a
-standalone diagnostics command without creating a Git commit. This checks
-syntax and configured parser policy, not scope existence or release-plan correctness.
+A diagnostics command validates literal intent syntax and parser policy
+without committing; it does not verify scope or plan correctness.
 
-Version bumps and prerelease channels are separate axes. A unit can request a
-channel transition without requesting a bump, and channel resolution can
-restrict which propagated bumps are meaningful. Cancellation and correction
-operate on pending intent; they do not unpublish existing artifacts. An exact
-version directive pins a release, while a hold retains work without admitting
-the package to the current plan. These controls explain the predicates needed
-by the model; their CLI forms are not additional scientific contributions.
+Release-worthy descriptions marked during development can be collected into
+version-specific notes at release. Even in private projects without
+conventional changelogs, a human can adapt them as social announcement drafts
+or hand them to managers for reports. This unmeasured use does not automate
+posting. Notes are narratives; completion tags only discharge versioned obligations.
+
+Version bumps and prerelease channels are separate axes; a channel transition
+need not request a bump. Cancellation, correction, holds, and exact versions
+govern pending intent without unpublishing artifacts. These controls motivate
+the model predicates; their CLI forms are outside our contribution.
 
 \subsection{Execution, Recording, and Recovery}
 For each selected package, the executor schedules version reconciliation,
@@ -125,6 +126,11 @@ submodule pointers and the release graph; its commits and tags provide the
 single history and ledger used by the model. The linked repositories keep
 their own histories. This is a construction over a control history, not an
 atomic transaction across independent Git repositories.
+
+A Go consumer resolving a new module version needs its tagged source published;
+an upstream compiled output does not provide it. Local \code{go.work} or
+\code{replace} can instead bind a checkout~\cite{gomod}. This boundary is
+configuration-specific and unevaluated here.
 
 The integration contract has four parts: stable package and version
 identities; declared dependencies and availability requirements; commands

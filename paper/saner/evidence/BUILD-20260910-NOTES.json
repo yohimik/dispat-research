@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "built_local": "2026-09-10T01:10:10+04:00",
+  "compiler": "Tectonic 0.17.0",
+  "command": "tectonic -X compile main.tex --outdir build --keep-logs",
+  "verification_command": "python3 check.py",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 44,
+  "paper_format": "IEEE conference, 10pt body, 24pt title, US Letter",
+  "pdf_sha256": "e1101c91a00e732e982639e2f4834244c05c42c8c43188adb577fa6bc74349ff",
+  "pdf_bytes": 144314,
+  "build_log_sha256": "c3557f3b7701ca307c95dc879fce419ad0a8424f2b247f90d22fe625b313381e",
+  "check_sha256": "c9e4ef5df5e4b473a5a7e6342b2271d8784bfeee1bc1bc66750cdc5f20e29e7b",
+  "source_guide_sha256": "f42e714d7e15a640f36b9fddd39219ff0c3d14ac6ade3a3e8c2ddfbe19370589",
+  "editing_requirements_sha256": "a407b1a079a7fa7f02cd6aaf23d727c4b071b1db628da60f1a8a1fe7c17a149b",
+  "source_sha256": {
+    "main.tex": "7d34560a09569cefa0d94939d8c4efe5141ce3e4d8df04f0b0c114f74f9b40ae",
+    "introduction.tex": "607f0433064e836885f1246f8b4c73f41c25e14cb6ea8e36d22ec910eec4c827",
+    "system.tex": "e5dd1dfb28ba5d7fdf373802655f3e0477e1620eb48d5c318c39121e7ef22fbf",
+    "model.tex": "8640b5af0efa504332a6be6a6b6f71db9c2e04c9b3ab9a3d024c9b1a6d742698",
+    "guarantees.tex": "a9e3dd0184a3735d3c56c8e6df724ad5ac3a6148e167565ab8617ed42f97bb3d",
+    "evaluation.tex": "98cbfd2ab1e3ca4d90e3be5a4989743ea6e71187a29b9e3eae0f1b070ef31a3e",
+    "mixed-results.tex": "ff67c89cebc3269167cb16a38d66fbe3b798bc9f7ac6d25d63ad080920ce6c8f",
+    "discussion.tex": "f3dc772babb3022dfc3d6fdce3ba6eafd9e370fe55ffb7e92e89105628033ded",
+    "references.tex": "ac8fabb1d2bfacc7864f358cd6fdb72ca53150e9c8fd0a70b879e34c3e6a1d86"
+  },
+  "official_sources": [
+    "https://go.dev/doc/modules/publishing",
+    "https://go.dev/ref/mod",
+    "https://docs.docker.com/build/builders/drivers/docker-container/"
+  ],
+  "checks": "Exact 10+2 pagination; references-only pages; 44 unique cited entries in first-citation order; resolved labels and citations; no overfull boxes, missing glyphs, font substitutions, or unresolved references; US Letter; all fonts embedded with Unicode mappings.",
+  "scope": "Prose-only clarification of release-note communication and configured dependency boundaries. Experiments, model.tex, and guarantees.tex were unchanged.",
+  "limits": "The release-note use is not a measured productivity result and does not imply automatic social posting. The Go case is an unevaluated applicability illustration. Structural checks do not prove the mathematics or empirical validity."
+}

@@ -1,10 +1,10 @@
 \section{Introduction}
 \label{sec:intro}
 Consider two npm workspace packages: a shared asset library and a UI package
-that imports it, followed by two Docker images. The first image packages the
-built UI; the second uses that image as its base. The UI package and first
-image consume local build output. The second image, built in an isolated
-environment, must pull its new base version from a registry.
+that imports it, followed by two Docker images. The dependent UI package
+consumes its provider's local build output, and the first image packages the
+built UI. The second image uses the first as its base; when built by an isolated
+registry-based builder, it must pull the new base version from a registry.
 Building all packages before publishing any of them is not a valid schedule
 for this release. Serializing every package through both stages is sufficient
 but also forces local-artifact consumers to wait for uploads they do not need.
