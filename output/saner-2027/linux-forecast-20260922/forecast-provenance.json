@@ -1,0 +1,77 @@
+{
+  "provenance": "User-supplied timing and simulation summary in this conversation, received before the 2026-09-22 paper edit. Underlying farm logs and simulation were not supplied or independently verified in this task.",
+  "reported_baseline_minutes": 232,
+  "reported_baseline_machines": 6,
+  "serial_equivalent_machine_minutes": 1379,
+  "rows": [
+    {
+      "scenario": "serial equivalent",
+      "minutes": 1379,
+      "speedup_vs_serial_equivalent": 1.0,
+      "speedup_vs_reported_farm": 0.16823785351704135
+    },
+    {
+      "scenario": "reported six-machine farm",
+      "minutes": 232,
+      "speedup_vs_serial_equivalent": 5.943965517241379,
+      "speedup_vs_reported_farm": 1.0
+    },
+    {
+      "scenario": "12 workers",
+      "minutes": 116,
+      "speedup_vs_serial_equivalent": 11.887931034482758,
+      "speedup_vs_reported_farm": 2.0
+    },
+    {
+      "scenario": "24 architecture-group workers",
+      "minutes": 80,
+      "speedup_vs_serial_equivalent": 17.2375,
+      "speedup_vs_reported_farm": 2.9
+    },
+    {
+      "scenario": "24 configuration workers",
+      "minutes": 61,
+      "speedup_vs_serial_equivalent": 22.60655737704918,
+      "speedup_vs_reported_farm": 3.80327868852459
+    },
+    {
+      "scenario": "supplied pessimistic approximation",
+      "minutes": 95,
+      "speedup_vs_serial_equivalent": 14.51578947368421,
+      "speedup_vs_reported_farm": 2.442105263157895
+    },
+    {
+      "scenario": "15 percent over 80, calculated",
+      "minutes": 92,
+      "speedup_vs_serial_equivalent": 14.98913043478261,
+      "speedup_vs_reported_farm": 2.5217391304347827
+    },
+    {
+      "scenario": "neutral lower time",
+      "minutes": 65,
+      "speedup_vs_serial_equivalent": 21.215384615384615,
+      "speedup_vs_reported_farm": 3.5692307692307694
+    },
+    {
+      "scenario": "neutral upper time",
+      "minutes": 70,
+      "speedup_vs_serial_equivalent": 19.7,
+      "speedup_vs_reported_farm": 3.3142857142857145
+    },
+    {
+      "scenario": "optimistic, changed hardware",
+      "minutes": 35,
+      "speedup_vs_serial_equivalent": 39.4,
+      "speedup_vs_reported_farm": 6.628571428571429
+    }
+  ],
+  "abstract_selection": "Neutral 65-70 minutes on 24 workers; reported six-machine baseline; 3.3-3.6x; 61-minute configuration schedule plus 4-9 minutes overhead. Neither LLVM nor Linux forecast is a measured distributed speedup.",
+  "assumptions_from_user": [
+    "Four architecture groups take approximately 77-80 minutes.",
+    "The longest configuration build is a 61-minute allyesconfig task.",
+    "The supplied simulation reports no gain from 24 to 96 workers with unchanged tasks.",
+    "The optimistic 35-minute scenario places long builds on a 64-core node; a boot-test group becomes the projected floor. This changes worker performance and is not a pure worker-count comparison."
+  ],
+  "arithmetic_note": "The original 95-minute pessimistic row is preserved as supplied. Exactly 15% overhead on 80 minutes is 92 minutes; 95 minutes implies 18.75%. Neither pessimistic value is added to the abstract.",
+  "validation": "Ratios recalculated; no new experimental run or simulation performed; experimental sample counts unchanged."
+}

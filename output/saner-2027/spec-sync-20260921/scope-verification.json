@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "protected_hashes_verified": 15,
+  "abstract_and_introduction_unchanged": true,
+  "spec_hash_unchanged": true,
+  "changed_sources": [
+    "paper/saner/discussion.tex",
+    "paper/saner/guarantees.tex",
+    "paper/saner/model.tex",
+    "paper/saner/references.tex",
+    "paper/saner/system.tex"
+  ],
+  "delivered_pdf_sha256": "a750bf751a8547edd1ae5abfabceb528b9385bc52c846ceee57fb92927af99e6"
+}

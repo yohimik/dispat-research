@@ -1,0 +1,27 @@
+{
+  "agent_guide_source": "/Users/yohimik/Projects/dispat/specs/agent-guide/README.md",
+  "agent_guide_snapshot_sha256": "fe91e4927bddf3f21ade003ceac9c64e4a7a34adb11902c42bd35b4e5c2cf0b0",
+  "abstract_words": 180,
+  "manuscript_files_changed": [
+    "paper/saner/main.tex",
+    "paper/saner/discussion.tex"
+  ],
+  "visual_review_pages": [
+    1,
+    2,
+    3,
+    10
+  ],
+  "pdf_sha256": "944e858c28faf0cc847c49a30e89563028853728e3d81cf8034cdd0cf5a2677d",
+  "research_track_deadlines_verified_on": "2026-09-21",
+  "abstract_deadline_AoE": "2026-09-21",
+  "abstract_end_of_day_Dubai": "2026-09-22 15:59",
+  "paper_deadline_AoE": "2026-09-25",
+  "paper_end_of_day_Dubai": "2026-09-26 15:59",
+  "deadline_sources": [
+    "https://conf.researchr.org/track/saner-2027/saner-2027-papers",
+    "https://conf.researchr.org/dates/saner-2027"
+  ],
+  "dora_source": "https://dora.dev/insights/balancing-ai-tensions/",
+  "scope": "Paper text only. No product/code changes, guide release, conference submission or empirical claims."
+}

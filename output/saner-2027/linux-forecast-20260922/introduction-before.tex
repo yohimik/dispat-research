@@ -1,0 +1,54 @@
+\section{Introduction}
+\label{sec:intro}
+Consider an npm asset library, its dependent UI package, a Docker image
+packaging that UI, and a second image built from the first. The UI consumes
+local output; an isolated registry-based image builder needs its base
+published. A global build-then-publish schedule fails, while serializing
+every package makes local-artifact consumers wait for unnecessary uploads.
+
+If the final image fails after its providers publish, retry should retain its
+release and target version. The engine must distinguish which versions are
+owed, which stages may run, and which obligations survive failure.
+
+Release engineering spans more than compilation~\cite{adams}. Without an atomic
+commit across registries, execution resembles a saga~\cite{sagas}:
+steps commit separately. Our protocol uses forward recovery because published
+artifacts may not be retractable.
+
+Existing tools schedule stages, compute versions, and coordinate
+publication~\cite{lerna,nx,changesets,releaseplease,semanticrelease}.
+We study their composition with a ledger that retains failed consumers'
+obligations after providers succeed. Consumer-based admission keeps propagated
+intent pending according to the consumer's own release window. Separate
+windows distinguish prerelease-train intent from fresh, undelivered work.
+
+We present \tool{} and its release-intent language \lang{}, using pseudonyms
+for anonymous review; campaign records retain exact artifact identities.
+Git history and tags form the ledger; ordinary commands build and publish.
+No additional persistent release-state database is required, apart from
+storage used by registries, build tools, and applications.
+
+A package is a versioned unit of software, specifications, or documentation,
+using common intent, dependency, command, and completion interfaces.
+Guarantees require conforming integrations. The graph gives provisioned CI
+a stable entry point for affected tests and releases; package configuration
+still changes, and new credentials or runners may require workflow changes.
+
+The paper makes three contributions:
+\begin{itemize}
+\item An ecosystem-independent, saga-inspired release protocol combining
+local-artifact and published-artifact dependencies with explicit release
+intent and per-package completion records, including a description of fleet
+composition across repository-owned histories
+(Section~\ref{sec:system}).
+\item A self-contained model with deterministic planning and eight recovery,
+discharge, and scope/channel guarantees under stated assumptions
+(Sections~\ref{sec:model}--\ref{sec:guarantees}). Counterexamples explain why
+consumer windows and stable retry predicates matter.
+\item An evaluation of a released binary using differential planning,
+targeted vectors, injected failures, historical replay, and scale measurements
+(Section~\ref{sec:eval}), with the model-to-implementation gap made explicit.
+\end{itemize}
+
+The mathematical contribution is the admission and discharge discipline,
+not a new topological-sorting or Git-storage primitive.

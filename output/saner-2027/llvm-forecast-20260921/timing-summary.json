@@ -1,0 +1,2279 @@
+{
+  "status": "upstream observations plus illustrative assumptions; no distributed run",
+  "runs": [
+    {
+      "id": 34549173201,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/34549173201",
+      "head_sha": "cc83ac540fbce94689a45dfffaf6e3d4d3ce754b",
+      "run_attempt": 2,
+      "start_to_updated_minutes": 294.9166666666667,
+      "start_to_last_job_minutes": 294.9166666666667,
+      "platform_build_jobs": [
+        {
+          "id": 103430446278,
+          "name": "Build Release Binaries (ubuntu-22.04-arm) / Build Release Package",
+          "minutes": 209.78333333333333,
+          "runner_labels": [
+            "depot-ubuntu-22.04-arm-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 0.2833333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.2
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 133.18333333333334
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "minutes": 0.6166666666666667
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 74.83333333333333
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 103430456585,
+          "name": "Build Release Binaries (ubuntu-22.04) / Build Release Package",
+          "minutes": 154.1,
+          "runner_labels": [
+            "depot-ubuntu-22.04-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 0.6166666666666667
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.15
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 95.51666666666667
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.05
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 56.35
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 103430585027,
+          "name": "Build Release Binaries (macos-14) / Build Release Package",
+          "minutes": 293.25,
+          "runner_labels": [
+            "macos-14"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.15
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.6666666666666666
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 249.85
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.1
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "minutes": 0.5166666666666667
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 40.833333333333336
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.03333333333333333
+            }
+          ]
+        },
+        {
+          "id": 103430614726,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 106.7,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.4
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 103.25
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "minutes": 0.45
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 103433053817,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 211.31666666666666,
+          "runner_labels": [
+            "windows-11-arm-16core"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 1.7833333333333334
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 2.6
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 206.05
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f",
+              "minutes": 0.55
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.1
+            },
+            {
+              "name": "Post Run actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33969392518,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/33969392518",
+      "head_sha": "626a2f58ae4a67d93a4c409c9eb010639a14c776",
+      "run_attempt": 1,
+      "start_to_updated_minutes": 369.1333333333333,
+      "start_to_last_job_minutes": 369.1166666666667,
+      "platform_build_jobs": [
+        {
+          "id": 101315499212,
+          "name": "Build Release Binaries (ubuntu-22.04) / Build Release Package",
+          "minutes": 145.0,
+          "runner_labels": [
+            "depot-ubuntu-22.04-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 0.8333333333333334
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.2
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 95.33333333333333
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 10.15
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.3666666666666667
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 36.5
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 101315513938,
+          "name": "Build Release Binaries (ubuntu-22.04-arm) / Build Release Package",
+          "minutes": 173.46666666666667,
+          "runner_labels": [
+            "depot-ubuntu-22.04-arm-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.15
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 0.85
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.21666666666666667
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 115.31666666666666
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 10.7
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.18333333333333332
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.35
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 44.3
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 101315530917,
+          "name": "Build Release Binaries (macos-14) / Build Release Package",
+          "minutes": 290.6666666666667,
+          "runner_labels": [
+            "macos-14"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.3333333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.1333333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.5833333333333334
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 209.23333333333332
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 39.083333333333336
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.23333333333333334
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.2833333333333334
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 38.666666666666664
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 101315627507,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 69.53333333333333,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.6
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.9333333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 59.28333333333333
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 5.666666666666667
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.05
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.5833333333333334
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 101316509549,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 357.85,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.3833333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 3.8666666666666667
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.7833333333333333
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 338.8333333333333
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 11.883333333333333
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33218698138,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/33218698138",
+      "head_sha": "f44e2d69fbb3d507a90ac17e297f6169eed27afc",
+      "run_attempt": 1,
+      "start_to_updated_minutes": 366.5,
+      "start_to_last_job_minutes": 366.5,
+      "platform_build_jobs": [
+        {
+          "id": 99008533762,
+          "name": "Build Release Binaries (ubuntu-22.04) / Build Release Package",
+          "minutes": 210.16666666666666,
+          "runner_labels": [
+            "depot-ubuntu-22.04-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 0.9166666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.2
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 141.08333333333334
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 14.85
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.21666666666666667
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.9333333333333333
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 50.35
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 99008572370,
+          "name": "Build Release Binaries (ubuntu-22.04-arm) / Build Release Package",
+          "minutes": 169.6,
+          "runner_labels": [
+            "depot-ubuntu-22.04-arm-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.0166666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.2
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 112.76666666666667
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 10.516666666666667
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.18333333333333332
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.35
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 42.95
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 99008617977,
+          "name": "Build Release Binaries (macos-14) / Build Release Package",
+          "minutes": 219.93333333333334,
+          "runner_labels": [
+            "macos-14"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.0
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.2333333333333334
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.5166666666666667
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 151.18333333333334
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 0.0
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 30.616666666666667
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.16666666666666666
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 1.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 35.1
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.016666666666666666
+            }
+          ]
+        },
+        {
+          "id": 99008780115,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 66.65,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.5
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 2.0166666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 53.733333333333334
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 8.25
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.05
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 99010614855,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 351.68333333333334,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.4166666666666667
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 4.816666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 0.8833333333333333
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 333.56666666666666
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 9.783333333333333
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8833333333333333
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 0.0
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33218433726,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/33218433726",
+      "head_sha": "8eecd94ed29ae34956f5ca6b9acad5865e8bf14e",
+      "run_attempt": 1,
+      "start_to_updated_minutes": 341.6166666666667,
+      "start_to_last_job_minutes": 341.6,
+      "platform_build_jobs": [
+        {
+          "id": 99008000886,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 67.75,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.55
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.8333333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.48333333333333334
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1065392579.2666667
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 1.35
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 55.233333333333334
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 8.5
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065392635.85
+            },
+            {
+              "name": "Wait",
+              "minutes": 8.5
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 99009283722,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 329.68333333333334,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.05
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.16666666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.4
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 4.55
+            },
+            {
+              "name": "Wait",
+              "minutes": 1.2333333333333334
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1.25
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 3.316666666666667
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 314.31666666666666
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 9.466666666666667
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065392903.5666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 9.466666666666667
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8666666666666667
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.8666666666666667
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33126884565,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/33126884565",
+      "head_sha": "2ffa4a9ed140f27733bffa2151bb346a64e800f9",
+      "run_attempt": 1,
+      "start_to_updated_minutes": 358.3333333333333,
+      "start_to_last_job_minutes": 358.31666666666666,
+      "platform_build_jobs": [
+        {
+          "id": 98707909107,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 87.83333333333333,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 2.1666666666666665
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.5666666666666667
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1065391183.45
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 1.6
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 71.1
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 12.133333333333333
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065391256.15
+            },
+            {
+              "name": "Wait",
+              "minutes": 12.133333333333333
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.7833333333333333
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.7833333333333333
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 98709129484,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 347.18333333333334,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.2666666666666666
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 4.533333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 1.25
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1.15
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 3.25
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 330.81666666666666
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 10.65
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065391523.2666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 10.65
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.9
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.9
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 33053519831,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/33053519831",
+      "head_sha": "689fbdb8c852ad3042560af8ac266ae7ff40cbdb",
+      "run_attempt": 2,
+      "start_to_updated_minutes": 332.03333333333336,
+      "start_to_last_job_minutes": 332.01666666666665,
+      "platform_build_jobs": [
+        {
+          "id": 98604928492,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 331.9166666666667,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.9
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 6.816666666666666
+            },
+            {
+              "name": "Wait",
+              "minutes": 1.8833333333333333
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 2.9166666666666665
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 4.933333333333334
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 314.15
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 9.783333333333333
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065391112.85
+            },
+            {
+              "name": "Wait",
+              "minutes": 9.8
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.11666666666666667
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8666666666666667
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.8666666666666667
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 98604929942,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 87.25,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.1
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.6
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 2.4166666666666665
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.5166666666666667
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1065390266.4166666
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 1.9
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 70.4
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.0
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 11.966666666666667
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065390338.7166667
+            },
+            {
+              "name": "Wait",
+              "minutes": 11.966666666666667
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.8
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 32910416503,
+      "url": "https://github.com/llvm/llvm-project/actions/runs/32910416503",
+      "head_sha": "d2c3ea341177690165a599dcd1eaad8da1700d2c",
+      "run_attempt": 1,
+      "start_to_updated_minutes": 369.55,
+      "start_to_last_job_minutes": 369.53333333333336,
+      "platform_build_jobs": [
+        {
+          "id": 98004314139,
+          "name": "Build Release Binaries (windows-2022) / Build Release Package",
+          "minutes": 67.86666666666666,
+          "runner_labels": [
+            "depot-windows-2022-16"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.1
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.5666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 1.9166666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.48333333333333334
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 1065388288.3
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.0
+            },
+            {
+              "name": "Install fast clang",
+              "minutes": 1065388288.3
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 1.4333333333333333
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 54.833333333333336
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 8.933333333333334
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065388344.5833334
+            },
+            {
+              "name": "Wait",
+              "minutes": 8.933333333333334
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.6333333333333333
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        },
+        {
+          "id": 98005745057,
+          "name": "Build Release Binaries (windows-11-arm) / Build Release Package",
+          "minutes": 358.35,
+          "runner_labels": [
+            "windows-11-arm"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Setup crlf",
+              "minutes": 0.03333333333333333
+            },
+            {
+              "name": "Set Build Prefix",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 1.5166666666666666
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Checkout LLVM",
+              "minutes": 7.966666666666667
+            },
+            {
+              "name": "Wait",
+              "minutes": 1.5
+            },
+            {
+              "name": "Install Wix (Windows ARM64)",
+              "minutes": 11.266666666666667
+            },
+            {
+              "name": "Setup Python library path",
+              "minutes": 0.016666666666666666
+            },
+            {
+              "name": "Install fast clang",
+              "minutes": 1.45
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 11.266666666666667
+            },
+            {
+              "name": "Debug",
+              "minutes": 0.0
+            },
+            {
+              "name": "Configure Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Linux/MacOS",
+              "minutes": 0.0
+            },
+            {
+              "name": "Build Windows",
+              "minutes": 333.46666666666664
+            },
+            {
+              "name": "Dump Wix logs",
+              "minutes": 0.06666666666666667
+            },
+            {
+              "name": "Create zstd compressed tarball",
+              "minutes": 10.833333333333334
+            },
+            {
+              "name": "Install LLDB test Python dependencies",
+              "minutes": 0.0
+            },
+            {
+              "name": "Run Tests",
+              "minutes": 1065388639.3333334
+            },
+            {
+              "name": "Wait",
+              "minutes": 10.833333333333334
+            },
+            {
+              "name": "Generate sha256 digest for binaries",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Wait",
+              "minutes": 0.13333333333333333
+            },
+            {
+              "name": "Run actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a",
+              "minutes": 0.8833333333333333
+            },
+            {
+              "name": "Wait for all",
+              "minutes": 0.8833333333333333
+            },
+            {
+              "name": "Post Checkout LLVM",
+              "minutes": 0.08333333333333333
+            },
+            {
+              "name": "Post Run actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1",
+              "minutes": 0.0
+            },
+            {
+              "name": "Complete job",
+              "minutes": 0.0
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "timestamp_anomalies": [
+    {
+      "job_id": 103454272641,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 103462624458,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 101334644247,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 101354893658,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 101365219425,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 99019700991,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 99038608461,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 99019203894,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 99052003918,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 98764561630,
+      "minutes": -0.016666666666666666,
+      "note": "Negative API timestamp interval retained, not corrected."
+    },
+    {
+      "job_id": 98604931794,
+      "minutes": -440.1666666666667,
+      "note": "Negative API timestamp interval retained, not corrected."
+    }
+  ],
+  "neutral_model": {
+    "serial_minutes": 25,
+    "compile_minutes": 71,
+    "test_minutes": 56,
+    "other_minutes": 2,
+    "serial_compile_fraction": 0.6,
+    "effective_build_slots": 6,
+    "test_shards": 3,
+    "critical_output_hops": 2,
+    "minutes_per_hop": 5,
+    "rounded_reference_minutes": 154,
+    "forecast_minutes": 103.0,
+    "reduction_percent": 33.11688311688312,
+    "two_shards_minutes": 112.33333333333333,
+    "four_shards_minutes": 98.33333333333333,
+    "no_savings_two_ten_minute_hops": 174
+  }
+}

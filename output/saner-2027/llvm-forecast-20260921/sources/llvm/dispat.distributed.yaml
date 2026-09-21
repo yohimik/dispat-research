@@ -1,0 +1,36 @@
+# DEVELOPMENT PROFILE: not supported by a published dispat binary.
+# CCME 3.1.0-rc.2 §28; engine-specific keys match dispat-worker-nodes dc60b5bf.
+# $ref siblings replace whole objects, so package policy is referenced explicitly.
+$ref: ./dispat.yaml
+execution:
+  role: orchestrator
+  concurrency: 1
+  secretEnv: LLVM_DISPAT_EXECUTION_SECRET
+  timeouts:
+    preflight: 120
+    task: 86400
+    cancel: 300
+  transfer:
+    maxFiles: 250000
+    maxBytes: 68719476736
+    maxManifestBytes: 134217728
+    timeout: 7200
+  workers:
+    - name: llvm-a
+      endpoint: ssh://git@workers.example.invalid/llvm-a.git
+    - name: llvm-b
+      endpoint: ssh://git@workers.example.invalid/llvm-b.git
+buildPlatforms: [linux/amd64]
+packages:
+  llvm:
+    $ref: ./.ci/dispat/packages/llvm.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  clang:
+    $ref: ./.ci/dispat/packages/clang.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  lld:
+    $ref: ./.ci/dispat/packages/lld.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  toolchain:
+    $ref: ./.ci/dispat/packages/toolchain.yaml
+    buildOutputs: [_dispat/dist, _dispat/build-info.json]

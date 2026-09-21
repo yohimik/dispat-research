@@ -1,0 +1,55 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url,flushend}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remarknum}{Remark}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\G}[1]{G#1}
+\newcommand{\tool}{ReleaseWeave}
+\newcommand{\lang}{RIL}
+\begin{document}
+\title{Recovering Versioned Releases Across Build and Publish Boundaries}
+\maketitle
+\begin{abstract}
+An npm package can build from its dependency's local workspace output, while
+an isolated registry-based Docker builder needs its base image published
+first. After partial failure, a consumer can also
+lose its pending release when its provider's success removes the original
+propagation reason. We present a protocol combining stage-aware scheduling
+with consumer-based admission of release intent. Git history determines the
+plan; tags record completed obligations. We formalize the single-history core
+with deterministic planning and eight conditional recovery guarantees, and
+describe its extension to polyrepo fleets with repository-owned records,
+central coordination, or peer choreography. Fleet recovery requires evidence
+of which source revisions each consumer incorporated.
+All planned outcomes hold in a prospective 140-episode Docker matrix; a
+source-window counterfactual loses 111 obligations in 84/120 fault episodes.
+A 772-state finite projection finds no model violations and 260 losing states.
+Companion evidence adds 300 reference-model agreements, 20 recovery
+episodes, 60 mixed-chain executions, and three CI repetitions; historical
+observations add broader diagnostics, comparisons, and scale. The guarantees
+concern the model; implementation refinement and external exactly-once effects
+remain outside the claims.
+\end{abstract}
+\begin{IEEEkeywords}
+software release engineering, continuous integration and delivery,
+dependency scheduling, recovery, idempotence
+\end{IEEEkeywords}
+\input{introduction}
+\input{system}
+\input{model}
+\input{guarantees}
+\input{evaluation}
+\input{discussion}
+\clearpage
+\IEEEtriggeratref{34}
+\input{references}
+\end{document}

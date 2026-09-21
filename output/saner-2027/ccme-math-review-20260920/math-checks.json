@@ -1,0 +1,58 @@
+{
+  "status": "PASS",
+  "kind": "generated finite checks and analytic operation counts",
+  "script_sha256": "f2e91385cc83c5de685ceded6f9eafd77113242015af88e47279bf4fc506429e",
+  "graphs": {
+    "vertices": 5,
+    "ordered_dags": 1024,
+    "marker_configurations": 32768,
+    "source_set_depth_configurations": 158720
+  },
+  "channel_counterexample": {
+    "baseline": "beta",
+    "newest_first": [
+      "beta",
+      "stable"
+    ],
+    "old_literal": "beta",
+    "corrected": "stable"
+  },
+  "chain_counts": [
+    {
+      "size": 64,
+      "depth_one_targets": 63,
+      "unbounded_cache_targets": 2016,
+      "dense_marker_word_ors_64": 63,
+      "set_bits_enumerated_by_scalar_transpose": 2080
+    },
+    {
+      "size": 128,
+      "depth_one_targets": 127,
+      "unbounded_cache_targets": 8128,
+      "dense_marker_word_ors_64": 254,
+      "set_bits_enumerated_by_scalar_transpose": 8256
+    },
+    {
+      "size": 256,
+      "depth_one_targets": 255,
+      "unbounded_cache_targets": 32640,
+      "dense_marker_word_ors_64": 1020,
+      "set_bits_enumerated_by_scalar_transpose": 32896
+    },
+    {
+      "size": 512,
+      "depth_one_targets": 511,
+      "unbounded_cache_targets": 130816,
+      "dense_marker_word_ors_64": 4088,
+      "set_bits_enumerated_by_scalar_transpose": 131328
+    }
+  ],
+  "zero_marker_case": {
+    "commits": 10,
+    "markers": 0,
+    "old_traversal_term": 0,
+    "corrected_traversal_term": 19,
+    "note": "Window output is charged separately; this checks traversal overhead."
+  },
+  "limits": "No released binary executed; no timing or allocation measurement; finite checks are not proofs for arbitrary graphs."
+}

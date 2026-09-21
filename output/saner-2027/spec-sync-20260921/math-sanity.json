@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "purpose": "Editorial finite sanity checks, not an implementation campaign or proof",
+  "four_commit_histories_with_all_commits_reachable": 21,
+  "history_marker_assignments": 336,
+  "stable_fresh_boundary_pairs": 525,
+  "scope": "Marker ancestry index and fresh-window intersection, including incomparable boundaries. Original campaign counts unchanged."
+}

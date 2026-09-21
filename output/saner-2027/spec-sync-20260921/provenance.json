@@ -1,0 +1,22 @@
+{
+  "spec_version": "3.1.0-rc.2",
+  "spec_head": "599448fdc239aef6e5ff5239b5833c8fd0ee0ccd",
+  "spec_sha256": "cb6fdb1652113457e096327922e27c49a47a9d1851e077dd39100cca1ee845cc",
+  "protected": {
+    "paper/sections/07-duality.tex": "66f30aa7e78930693e5b6b4c0e7d7b828219cb12738e2d05286feca849ddb6b2",
+    "paper/sections/01-introduction.tex": "623b3ecced8dde3b64bcaa0f6816c76e8abc9284b06bb8cd443f7490448f6099",
+    "paper/sections/99-references.tex": "e3ca4a8c7cd11709a6ea7c26934e2779a091ea33ce4877f029f9671ec5cc2c2a",
+    "paper/sections/03-propagation.tex": "72d39879e8d563142a9048f0c3a4f08f55e084cdc6fc4695c8c0b8966cbda1e9",
+    "paper/sections/02-model.tex": "42febe24a3f1cfe70110733e29a0368b73b90b584ea6c872ea18002012bb8c90",
+    "paper/sections/05-guarantees.tex": "f4461fdbb4c975d4c56002b9d3ad266f913da55b5ed338001c0d97350b5e89a9",
+    "paper/sections/08-complexity.tex": "e94264622fc81073fd036f1a76a6f1a5dc0d5555fff388dd17e911ec954ee3ce",
+    "paper/sections/04-protocol.tex": "5f531d80ae18d07bc7952cd60068be0531d949a72fefb6db6e3d23b308bd71cc",
+    "paper/sections/06-determinism.tex": "6948a04df2f4870af955eaab371e2db91e1aec3e4e77d401c613c5f1eca44f6b",
+    "paper/sections/09-obligations.tex": "0ecfe2eb955d94f146c2fea53ed8dbcf9694b00e2fd4da00bb0c302586cd4328",
+    "paper/sections/10-conformance.tex": "280741cc67437244e0e923120bfe6da2e7bec2e57a379a2cbad27a9ca2177a25",
+    "paper/main.tex": "8c238e8ef4224742bbe57dcb47787a40a5e7590668c02126b2ae948fe9317995",
+    "output/pdf/technical-report.pdf": "32e7b0de518756eaa4f2985f8f5a164475662355afe30f32b320bf0be69cef99",
+    "paper/saner/evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "paper/saner/mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f"
+  }
+}

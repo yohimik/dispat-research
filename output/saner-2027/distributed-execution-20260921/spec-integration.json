@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "canonical_spec_files_sha256": {
+    "/Users/yohimik/Projects/dispat/specs/ccme-spec/SPEC.md": "63210d4eadaf27c5cb610ae822aeeb13c692b5423a48ff95a914ee6e2c4a0875",
+    "/Users/yohimik/Projects/dispat/specs/ccme-spec/README.md": "1e269ab7ea9814dcb2a7f7857c8f90d14a3fe7aee74f09c61286321b356734cd",
+    "/Users/yohimik/Projects/dispat/specs/ccme-spec/DESIGN-HISTORY.md": "d38d57eed9ba8d391a888ab43bceec439b2c94f754e89ab036daeea6900d7d4b"
+  },
+  "profile_subsections": 9,
+  "unexecuted_conformance_vectors": 26,
+  "research_changes": "abstract only in manuscript; body and technical report unchanged",
+  "product_agent_validation": [
+    "sh specs/ccme-spec/verify.sh passed at 3.1.0-rc.1",
+    "scoped git diff --check passed",
+    "static links, sections, fences and version declarations checked"
+  ],
+  "independent_review": "Read new section and integration points; fixed owner-pronoun ambiguity and duplicate vector numbering through product owner; checked abstract alignment. No implementation validation or distributed benchmark performed."
+}

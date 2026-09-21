@@ -1,0 +1,27 @@
+{
+  "captured_utc": "2026-09-20T14:29:16.912298+00:00",
+  "product_head": "784a4971dfc3936be824469b6a7156383ebb7534",
+  "scope": "Working-tree source review; not a released binary or a benchmark campaign. Snapshot predates this review\u2019s spec edits.",
+  "sources": [
+    {
+      "path": "/Users/yohimik/Projects/dispat/specs/ccme-spec/SPEC.md",
+      "sha256": "3c7ddc826bc8302ca7d69bd0487e7872eefd381694eaaa3574abcbb5ce3cd691"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/services/dispat/internal/plan/propagate.go",
+      "sha256": "ae56b49c02c5d0992e2b81deb4b1331449536f1d47204fc4dc93672f3027f2e3"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/services/dispat/internal/plan/ancestry.go",
+      "sha256": "e69b188df0d5d92258acd4ef7fb2ad64beb2a12fcfbd64a4769eed5944a5280e"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/services/dispat/internal/plan/corrections.go",
+      "sha256": "9f175d5a09049a16ebd991f56428fed3a72958d370a2ce36dd33417a15cdf766"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/services/dispat/internal/plan/plan.go",
+      "sha256": "0b1ffb60d943fa66793264a1cafa315a55d9c0c882c011bde49888d8c77c8e76"
+    }
+  ]
+}

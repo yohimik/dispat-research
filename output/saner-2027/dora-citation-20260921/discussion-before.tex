@@ -1,0 +1,115 @@
+\section{Discussion and Threats to Validity}
+\label{sec:threats}
+\paragraph{Meaning of the guarantees.}
+Safety differs from eventual progress~\cite{safety}. Our retry theorem fixes
+corrected intent, source membership, admission predicates, and channel inputs.
+Some stability lemmas follow directly from this invariant, exposing what retries
+must preserve. New commits, policy edits, or tag rewrites can require replanning;
+permanent failure need not converge.
+
+The current group profile adds member target floors and independent
+counter/channel axes. Fixed shared counters can advance on retry and reselect
+successful members. Its independent-counter guarantees are a specification
+contract; neither group mode is proved by our per-package theorem.
+
+The model abstracts artifact contents and combines publication and recording
+into one transition. Lost responses and failed recording remain integration
+obligations; Git locks do not make registries transactional. Own-reason failure
+exceptions, recording, and finalization require refinement beyond the abstract
+blocked-set rule; selected test traces do not close that gap.
+
+\paragraph{Internal and construct validity.}
+The author developed the system, model, oracle and tests; agreement can retain
+shared errors. The restricted oracle omits semantics; full-profile categories
+are heuristic. The prospective matrix was frozen before execution but was not
+independently replicated. The finite projection covers stable, one-intent states;
+post-write faults are responses, not crashes. Integrity and concurrency checks
+cover selected records and interleavings. Histories, rows, episodes, repetitions,
+commands and assertions remain distinct units.
+
+\paragraph{External validity.}
+Synthetic fixtures establish controlled behavior; historical replay reconstructs
+policies, and comparisons pin configurations. No user study measures intent
+correctness or review effort. The control-history polyrepo fits the model;
+multi-history coordination, worker transport, peer choreography, and their scale remain
+unevaluated. Platform scripts, agent gates, and ecosystems demonstrate
+integration scope, not general effectiveness. One contended host cannot
+establish service-level promises.
+
+\paragraph{Exploratory outreach context.}
+Eight September inventories cover at least 211 deduplicated repositories with
+unequal review depth; one spans 21 ecosystems. A separate search's 6,731 hits
+across 1,512 repositories are discovery coverage, not defect counts.
+RelayCast (9 stars) and Paperclip (80,381) illustrate visibility, not code size.
+A two-clone RelayCast fixture simulates upload followed by rejected push:
+no remote tag appears, yet the script reports success. No production failure
+is claimed. Two observed Astro histories publish npm packages, fail before
+marketplace publication, then finish green on retry while skipping those
+destinations; later manual completion was not assessed. An Apache Arrow
+fixture with a stubbed workflow client selects a stale successful run.
+These cases motivate destination completion and invocation identity.
+Healthy, resolved, and later excluded cases remain recorded. This selected
+review neither estimates defect prevalence nor validates the protocol.
+
+\section{Related Work}
+\label{sec:related}
+\paragraph{Release and build systems.}
+Release engineering~\cite{adams}, monorepo practice~\cite{potvin}, and build-system
+models~\cite{mokhov,pluto} supply the setting; we claim no new topological or
+incremental-build algorithm. Lerna, Nx, Changesets, release-please and
+semantic-release~\cite{lerna,nx,changesets,releaseplease,semanticrelease} offer
+versioning/publication workflows; Section~\ref{sec:compare} compares pinned
+configurations, not complete tools. Spinnaker's execution histories~\cite{spinnaker},
+Nix's input-derived paths~\cite{nix}, TOSCA's lifecycle interfaces~\cite{tosca}
+and OpenGitOps reconciliation~\cite{gitops} retain their own state models.
+Our ledger tracks completed releases across independent publication targets.
+
+Versioning studies motivate explicit policy~\cite{raemaekers,bogart,decan},
+without proving compatibility. EDOS studies installability~\cite{edos};
+CI effects depend on context~\cite{huangci}.
+DORA associates greater AI adoption with higher delivery throughput and
+instability~\cite{dora2025}. Our accompanying agent guide directs agents to
+inspect deterministic plans, retain tests, invoke CI releases, and reconcile
+partial outcomes. The engine implements a model with eight conditional
+mathematical guarantees; agent effectiveness and full implementation refinement
+remain unproven. DORA motivates this design, not its validation.
+Workflow duplication motivates shared configuration~\cite{cardoen};
+maintenance gains remain unmeasured. Formal VCS models~\cite{swierstraloh,hpt,mimram,mrdt}
+and Git-mining cautions~\cite{birdgit} address concerns beyond our release ledger.
+
+\paragraph{Recovery and formal assurance.}
+Buildbox formalizes build, install, ship, and update transitions~\cite{liusmith};
+Aeolus studies component states, dependencies, and reachability~\cite{aeolus}.
+NEPHELE applies sagas to distributed lifecycle operations~\cite{nephele};
+Bui et al. study LLM-assisted CI/CD repair~\cite{bui}.
+Sagas~\cite{sagas}, transaction limits~\cite{gray}, and independently committed,
+idempotently processable operations~\cite{helland07,helland12} motivate recovery
+and explicit treatment of uncertain outcomes. We specialize admission and
+discharge to versioned consumers. Anvil~\cite{anvil} verifies Kubernetes
+controller implementations; our handwritten model proofs and sampled execution
+tests provide weaker assurance. Fuzz-evaluation cautions~\cite{klees} likewise
+limit generalization from core agreement.
+
+\section{Conclusion}
+\label{sec:conclusion}
+Stage prerequisites enforce availability; consumer windows retain obligations
+after provider success. The retry invariant preserves versions and permits
+convergence. All 140 mechanism episodes retained expected plans; the
+source-window counterfactual lost work in 84/120 fault episodes. Repository-qualified
+boundaries and verified worker inputs extend the design; multi-history recovery,
+recording failures and randomized interleavings need evaluation and mechanized
+refinement~\cite{lamport}.
+
+\section*{Data Availability}
+Retained records include runtime pins, harnesses, raw observations, verified
+archives, offline verifiers, fixture Git metadata and outreach provenance.
+They can reveal authorship; no anonymized package is available, and public
+release remains undecided.
+
+\section*{Acknowledgments}
+\noindent\textit{AI assistance.}
+Claude Fable provided most assistance; Claude Opus, Gemini, and OpenAI Codex
+also contributed to implementation, experiment tooling
+(Sections~\ref{sec:system} and~\ref{sec:eval}), and manuscript drafting and
+revision, including the model, evaluation and discussion. Executions produced
+the measurements; the human author remains responsible for claims and results.

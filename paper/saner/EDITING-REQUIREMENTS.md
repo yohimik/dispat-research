@@ -2,6 +2,8 @@
 
 Prepared 9 September 2026. The English working draft is ready for your edit, not submitted. Start with `main.tex` in this directory; `SOURCE.md` explains the files and build. The current PDF has ten content pages and two references-only pages.
 
+20 September steering: focus the adaptation on fleet releases and polyrepos from the current `../dispat/specs/ccme-spec/SPEC.md`. Describe source-owned records, specified/discovered histories, consumer boundaries, settlement, and partial-fleet recovery. Keep the existing single-history proof and measurement boundaries explicit. Use campaign labels in manuscript prose while retaining exact versions in provenance. `ADAPTATION-2026-09-20.md` records the inspected working-tree snapshot and replaces earlier restrictions on discussing newer specification features; it does not authorize new empirical claims.
+
 ## Keep the scientific story clear
 
 1. Keep the order **system and benefits → formal model and guarantees → experiments**. Introduce the npm assets → npm UI → Docker base → Docker app running example before notation, explaining how it extends the original npm → Docker → Docker failure. State the dependency boundary precisely: an npm workspace dependent consumes its provider's local build output, while a Docker dependent built in an isolated registry-based builder requires its provider image to be published. Do not generalize that requirement to Docker builders that share a local image store. A Go consumer resolving a module version obtains published source rather than upstream compiled output; local `go.work` and `replace` configurations are exceptions, and the Go example is not evaluated evidence.
@@ -48,7 +50,7 @@ The completed primary campaign is `run-v1.10.0-linux-arm64-20260909`, pinned to 
 
 ## References and presentation
 
-Use primary sources for technical claims. The current bibliography has 44 distinct, cited entries in first-citation order; 22 DOI metadata records were checked. Retain relevant antecedents rather than padding references with famous but unrelated papers. When changing a citation, verify authors, title, year, venue, DOI or official URL, and that the source actually supports the sentence.
+Use primary sources for technical claims. The current bibliography has 45 distinct, cited entries in first-citation order; 22 DOI metadata records were checked. Retain relevant antecedents rather than padding references with famous but unrelated papers. When changing a citation, verify authors, title, year, venue, DOI or official URL, and that the source actually supports the sentence.
 
 Prefer concrete explanations over product promotion. Keep one running example through the system, model trace, and experiment. Retain useful limitations in one clear place rather than deleting them or repeating a disclaimer after every sentence. Do not add CCME version-history material unless needed to identify evaluated semantics: the fresh campaign uses dispat 1.10.0 and the implemented CCME 2.0 fragment, not unimplemented 3.x features.
 
@@ -71,3 +73,7 @@ The author reports that most AI assistance came from Claude Fable 5, with additi
 3. Recheck numerical claims against retained evidence; rerun affected experiments if semantics or the tested binary changes.
 4. Have a human reviewer challenge the proofs, novelty boundary, and interpretation. Automated checks are not independent scientific replication.
 5. Keep this research repository focused on the canonical English conference paper. Russian translation and patent synchronization are outside the current scope.
+
+## Outreach evidence added 20 September 2026
+
+Retain the 211-repository lower bound as a deduplicated coverage count across eight selected inventories, with unequal depth. Keep 1,512 discovery repositories separate. Preserve the distinction between observed Astro histories and simulated RelayCast/Arrow fixtures, the later quality-review exclusions, and stars as a visibility measure rather than code size. Exact provenance lives in `evidence/OUTREACH-20260920.json`; do not turn this selected review into a defect rate or field validation of the protocol.

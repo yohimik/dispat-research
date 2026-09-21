@@ -1,0 +1,1745 @@
+{
+  "derived_at": "2026-09-20",
+  "scope": "Paper-only retrospective synthesis of saved outreach evidence; no new experiment or public action. Not an exhaustive total of outreach.",
+  "method": "Case-insensitive owner/repository slug union of eight explicit inventories; no sum of overlapping counts, no URL scraping or discovery-only rows. Review depth varies, and review includes negative/rejected subjects.",
+  "unique_repository_lower_bound": 211,
+  "inventory_memberships": 240,
+  "inventories": [
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+      "sha256": "9e40da7c799cf64d95ec1d6687d688a05acf3e63a3977bd116068f2cdbbf0d49",
+      "selection": "all repository fields in 53 completed followup rows",
+      "distinct_repositories": 53,
+      "repositories": [
+        "2shady4u/godot-sqlite",
+        "AgentWorkforce/relaycast",
+        "airbnb/lottie-ios",
+        "Alamofire/Alamofire",
+        "anthropics/skills",
+        "apache/arrow",
+        "apache/dubbo",
+        "apache/pulsar",
+        "aquaproj/aqua-installer",
+        "cakephp/cakephp",
+        "changesets/changesets",
+        "Cysharp/UniTask",
+        "dartway/dartway",
+        "defold/extension-firebase",
+        "defold/extension-webview",
+        "firebase/firebase-ios-sdk",
+        "flame-engine/flame",
+        "flutter/packages",
+        "getnamo/SocketIOClient-Unreal",
+        "github/spec-kit",
+        "GlitchEnzo/NuGetForUnity",
+        "godot-gdunit-labs/gdUnit4",
+        "googlemaps/android-maps-utils",
+        "grpc/grpc-go",
+        "jupyterlab/jupyterlab",
+        "Kotlin/kotlinx.coroutines",
+        "Kotlin/kotlinx.serialization",
+        "latex3/l3build",
+        "livekit/rust-sdks",
+        "maplibre/maplibre-native",
+        "microsoft/playwright-cli",
+        "modelcontextprotocol/modelcontextprotocol",
+        "MonoGame/MonoGame",
+        "netty/netty",
+        "o3de/o3de-extras",
+        "o3de/o3de-multiplayersample",
+        "paperclipai/paperclip",
+        "ProjectBorealis/UEGitPlugin",
+        "prometheus/client_golang",
+        "ray-project/ray",
+        "release-it/release-it",
+        "RevenueCat/purchases-ios",
+        "rxhanson/Rectangle",
+        "shakacode/react_on_rails",
+        "shakacode/shakapacker",
+        "sparkle-project/Sparkle",
+        "spring-projects/spring-boot",
+        "stride3d/stride",
+        "suzuki-shunsuke/tfcmt",
+        "symfony/symfony",
+        "tauri-apps/tauri",
+        "Telegram-Mini-Apps/tma.js",
+        "ublue-os/bazzite"
+      ],
+      "new_repositories_in_listed_order": 53
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv",
+      "sha256": "f7fc80ccbee3f57ae3d9e9dfe70b04580269d12c2a004aa3190c25977b168c21",
+      "selection": "repository column of reviewed-project inventory",
+      "distinct_repositories": 69,
+      "repositories": [
+        "amazonlinux/amazon-ec2-net-utils",
+        "angular/angular",
+        "apple/pkl-readers",
+        "apple/swift-algorithms",
+        "apple/swift-async-algorithms",
+        "aws-actions/aws-lambda-deploy",
+        "aws-amplify/maplibre-gl-js-amplify",
+        "aws/amazon-q-developer-cli",
+        "aws/aws-lambda-ruby-runtime-interface-client",
+        "awslabs/mcp",
+        "awslabs/sbt-aws",
+        "corretto/corretto-25",
+        "facebook/facebook-nodejs-business-sdk",
+        "facebook/infer",
+        "facebook/openzl",
+        "facebook/watchman",
+        "facebookresearch/pytorch3d",
+        "firebase/firebase-tools",
+        "google-deepmind/dialog",
+        "google/Accessibility-Test-Framework-for-Android",
+        "googleapis/google-cloud-node-core",
+        "googleapis/google-cloud-python",
+        "GoogleCloudPlatform/cloud-sql-proxy",
+        "GoogleCloudPlatform/container-definitions",
+        "GoogleContainerTools/jib",
+        "GoogleContainerTools/skaffold",
+        "grpc/grpc",
+        "grpc/grpc-kotlin",
+        "meta-pytorch/tlparse",
+        "ml-explore/mlx-swift",
+        "ml-explore/mlx-swift-lm",
+        "nebula-plugins/nebula-release-plugin",
+        "Netflix/archaius",
+        "Netflix/astyanax",
+        "Netflix/atlas",
+        "Netflix/consoleme",
+        "Netflix/denominator",
+        "Netflix/dgs-codegen",
+        "Netflix/dgs-framework",
+        "Netflix/dispatch",
+        "Netflix/dyno",
+        "Netflix/dynomite",
+        "Netflix/eslint-config-netflix",
+        "Netflix/eureka",
+        "Netflix/fast_jsonapi",
+        "Netflix/Fenzo",
+        "Netflix/governator",
+        "Netflix/hollow",
+        "Netflix/Hystrix",
+        "Netflix/karyon",
+        "Netflix/lemur",
+        "Netflix/mantis",
+        "Netflix/matchcut",
+        "Netflix/metaflow",
+        "Netflix/metaflow-service",
+        "Netflix/metaflow-tools",
+        "Netflix/ndbench",
+        "Netflix/netflix-commons",
+        "Netflix/nf-data-explorer",
+        "Netflix/ribbon",
+        "Netflix/servo",
+        "Netflix/SimianArmy",
+        "Netflix/spectator",
+        "Netflix/Turbine",
+        "Netflix/unleash",
+        "Netflix/vmaf",
+        "Netflix/x-element",
+        "Netflix/x-test",
+        "tensorflow/tfjs"
+      ],
+      "new_repositories_in_listed_order": 69
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json",
+      "sha256": "e06d8cc214faf21bcada626664b40361865ac3fffb3f52043ff44d01edf287f2",
+      "selection": "scope.selected_repositories",
+      "distinct_repositories": 27,
+      "repositories": [
+        "spotify/android-sdk",
+        "spotify/annoy",
+        "spotify/basic-pitch",
+        "spotify/chartify",
+        "spotify/confidence-ai-plugins",
+        "spotify/confidence-cli",
+        "spotify/confidence-resolver",
+        "spotify/confidence-sdk-go",
+        "spotify/confidence-sdk-js",
+        "spotify/featran",
+        "spotify/flink-on-k8s-operator",
+        "spotify/ios-sdk",
+        "spotify/luigi",
+        "spotify/mobius",
+        "spotify/Mobius.swift",
+        "spotify/pedalboard",
+        "spotify/portal-ai-plugins",
+        "spotify/ratatool",
+        "spotify/ruler",
+        "spotify/save-to-spotify",
+        "spotify/scio",
+        "spotify/sourcekit-bazel-bsp",
+        "spotify/spotify-web-api-ts-sdk",
+        "spotify/SPTPersistentCache",
+        "spotify/voyager",
+        "spotify/XCMetrics",
+        "spotify/XCRemoteCache"
+      ],
+      "new_repositories_in_listed_order": 27
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json",
+      "sha256": "2493a79e0c64282fa8e4c50d99d2acc140d42e321c58c03f6a7c0f7b0ac411f5",
+      "selection": "scope.selected_repositories",
+      "distinct_repositories": 11,
+      "repositories": [
+        "anthropics/anthropic-sdk-csharp",
+        "anthropics/anthropic-sdk-go",
+        "anthropics/anthropic-sdk-java",
+        "anthropics/anthropic-sdk-php",
+        "anthropics/anthropic-sdk-python",
+        "anthropics/anthropic-sdk-ruby",
+        "anthropics/anthropic-sdk-typescript",
+        "anthropics/claude-agent-sdk-python",
+        "anthropics/claude-agent-sdk-typescript",
+        "anthropics/claude-code-action",
+        "anthropics/skills"
+      ],
+      "new_repositories_in_listed_order": 10
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json",
+      "sha256": "420077a352ced72b6825e9beb6e6fc0a379ab8c9dd8ecb0de2f62ac47bbdf691",
+      "selection": "scope.selected_repositories",
+      "distinct_repositories": 8,
+      "repositories": [
+        "slackapi/bolt-js",
+        "slackapi/bolt-python",
+        "slackapi/deno-slack-sdk",
+        "slackapi/java-slack-sdk",
+        "slackapi/node-slack-sdk",
+        "slackapi/python-slack-sdk",
+        "slackapi/slack-cli",
+        "slackapi/slack-github-action"
+      ],
+      "new_repositories_in_listed_order": 8
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json",
+      "sha256": "90d5b20c58a4ce8d970deca4feb60b0a69c91f2051b0b40db095c29714d34d6a",
+      "selection": "screened_repositories, qualified with openai/",
+      "distinct_repositories": 6,
+      "repositories": [
+        "openai/chatkit-js",
+        "openai/codex",
+        "openai/openai-agents-python",
+        "openai/openai-java",
+        "openai/openai-node",
+        "openai/tiktoken"
+      ],
+      "new_repositories_in_listed_order": 6
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json",
+      "sha256": "3c503584e464c87c76f30a508aa1ae197a82fbb9a5d9a049e9ccbc7487782611",
+      "selection": "coverage.active_repositories (deepened); excludes inventory-only repositories",
+      "distinct_repositories": 15,
+      "repositories": [
+        "discord/airhornbot",
+        "discord/discord-api-docs",
+        "discord/discord-interactions-js",
+        "discord/erlpack",
+        "discord/eslint-traverse",
+        "discord/ex_hash_ring",
+        "discord/focus-rings",
+        "discord/instruments",
+        "discord/jemalloc_info",
+        "discord/libnice",
+        "discord/lilliput",
+        "discord/lilliput-dep-source",
+        "discord/manifold",
+        "discord/SimpleAST",
+        "discord/sorted_set_nif"
+      ],
+      "new_repositories_in_listed_order": 15
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json",
+      "sha256": "d21a9895d02be3f3c06a5426aa5c5e591c9acdd808d83f0a1447b120cb54f061",
+      "selection": "items[].repository, including rejected and healthy subjects as reviewed, never as defects",
+      "distinct_repositories": 51,
+      "repositories": [
+        "AgentWorkforce/relaycast",
+        "Alamofire/Alamofire",
+        "anthropics/claude-agent-sdk-python",
+        "apache/arrow",
+        "apache/pulsar",
+        "aws/jsii-compiler",
+        "biomejs/biome",
+        "cakephp/cakephp",
+        "CesiumGS/cesium-unreal",
+        "chakra-ui/chakra-ui",
+        "changesets/action",
+        "changesets/changesets",
+        "cloudflare/workers-sdk",
+        "dartway/dartway",
+        "defold/defold",
+        "event-catalog/eventcatalog",
+        "facebook/watchman",
+        "firebase/firebase-android-sdk",
+        "git/git-scm.com",
+        "github/spec-kit",
+        "godotengine/godot-builds",
+        "googleapis/release-please",
+        "hypothesi/mcp-server-tauri",
+        "JetBrains/JetBrainsRuntime",
+        "jupyterlab/jupyterlab",
+        "livekit/rust-sdks",
+        "maplibre/maplibre-native",
+        "microsoft/playwright-cli",
+        "ml-explore/mlx-swift",
+        "MonoGame/MonoGame",
+        "Netflix/vmaf",
+        "netty/netty",
+        "NVIDIA/NemoClaw",
+        "o3de/o3de",
+        "open-telemetry/opentelemetry-go",
+        "paperclipai/paperclip",
+        "ray-project/ray",
+        "ReactiveX/RxSwift",
+        "shakacode/shakapacker",
+        "spotify/pedalboard",
+        "spotify/scio",
+        "spotify/voyager",
+        "spring-projects/spring-boot",
+        "stride3d/stride",
+        "sveltejs/kit",
+        "swc-project/swc",
+        "Telegram-Mini-Apps/tma.js",
+        "ublue-os/bazzite",
+        "ValveSoftware/steam-audio",
+        "ValveSoftware/steam-runtime",
+        "withastro/astro"
+      ],
+      "new_repositories_in_listed_order": 23
+    }
+  ],
+  "union": [
+    {
+      "repository": "2shady4u/godot-sqlite",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "AgentWorkforce/relaycast",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "airbnb/lottie-ios",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "Alamofire/Alamofire",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "amazonlinux/amazon-ec2-net-utils",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "angular/angular",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-csharp",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-go",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-java",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-php",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-python",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-ruby",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/anthropic-sdk-typescript",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/claude-agent-sdk-python",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "anthropics/claude-agent-sdk-typescript",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/claude-code-action",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "anthropics/skills",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "apache/arrow",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "apache/dubbo",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "apache/pulsar",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "apple/pkl-readers",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "apple/swift-algorithms",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "apple/swift-async-algorithms",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "aquaproj/aqua-installer",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "aws-actions/aws-lambda-deploy",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "aws-amplify/maplibre-gl-js-amplify",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "aws/amazon-q-developer-cli",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "aws/aws-lambda-ruby-runtime-interface-client",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "aws/jsii-compiler",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "awslabs/mcp",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "awslabs/sbt-aws",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "biomejs/biome",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "cakephp/cakephp",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "CesiumGS/cesium-unreal",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "chakra-ui/chakra-ui",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "changesets/action",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "changesets/changesets",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "cloudflare/workers-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "corretto/corretto-25",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Cysharp/UniTask",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "dartway/dartway",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "defold/defold",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "defold/extension-firebase",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "defold/extension-webview",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/airhornbot",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/discord-api-docs",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/discord-interactions-js",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/erlpack",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/eslint-traverse",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/ex_hash_ring",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/focus-rings",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/instruments",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/jemalloc_info",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/libnice",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/lilliput",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/lilliput-dep-source",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/manifold",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/SimpleAST",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "discord/sorted_set_nif",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "event-catalog/eventcatalog",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "facebook/facebook-nodejs-business-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "facebook/infer",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "facebook/openzl",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "facebook/watchman",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "facebookresearch/pytorch3d",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "firebase/firebase-android-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "firebase/firebase-ios-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "firebase/firebase-tools",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "flame-engine/flame",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "flutter/packages",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "getnamo/SocketIOClient-Unreal",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "git/git-scm.com",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "github/spec-kit",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "GlitchEnzo/NuGetForUnity",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "godot-gdunit-labs/gdUnit4",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "godotengine/godot-builds",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "google-deepmind/dialog",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "google/Accessibility-Test-Framework-for-Android",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "googleapis/google-cloud-node-core",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "googleapis/google-cloud-python",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "googleapis/release-please",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "GoogleCloudPlatform/cloud-sql-proxy",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "GoogleCloudPlatform/container-definitions",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "GoogleContainerTools/jib",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "GoogleContainerTools/skaffold",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "googlemaps/android-maps-utils",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "grpc/grpc",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "grpc/grpc-go",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "grpc/grpc-kotlin",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "hypothesi/mcp-server-tauri",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "JetBrains/JetBrainsRuntime",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "jupyterlab/jupyterlab",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "Kotlin/kotlinx.coroutines",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "Kotlin/kotlinx.serialization",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "latex3/l3build",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "livekit/rust-sdks",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "maplibre/maplibre-native",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "meta-pytorch/tlparse",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "microsoft/playwright-cli",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ml-explore/mlx-swift",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ml-explore/mlx-swift-lm",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "modelcontextprotocol/modelcontextprotocol",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "MonoGame/MonoGame",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "nebula-plugins/nebula-release-plugin",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/archaius",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/astyanax",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/atlas",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/consoleme",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/denominator",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/dgs-codegen",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/dgs-framework",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/dispatch",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/dyno",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/dynomite",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/eslint-config-netflix",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/eureka",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/fast_jsonapi",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/Fenzo",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/governator",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/hollow",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/Hystrix",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/karyon",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/lemur",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/mantis",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/matchcut",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/metaflow",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/metaflow-service",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/metaflow-tools",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/ndbench",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/netflix-commons",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/nf-data-explorer",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/ribbon",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/servo",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/SimianArmy",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/spectator",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/Turbine",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/unleash",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/vmaf",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "Netflix/x-element",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "Netflix/x-test",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "netty/netty",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "NVIDIA/NemoClaw",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "o3de/o3de",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "o3de/o3de-extras",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "o3de/o3de-multiplayersample",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "open-telemetry/opentelemetry-go",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "openai/chatkit-js",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "openai/codex",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "openai/openai-agents-python",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "openai/openai-java",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "openai/openai-node",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "openai/tiktoken",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "paperclipai/paperclip",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ProjectBorealis/UEGitPlugin",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "prometheus/client_golang",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "ray-project/ray",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ReactiveX/RxSwift",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "release-it/release-it",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "RevenueCat/purchases-ios",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "rxhanson/Rectangle",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "shakacode/react_on_rails",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "shakacode/shakapacker",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "slackapi/bolt-js",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/bolt-python",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/deno-slack-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/java-slack-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/node-slack-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/python-slack-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/slack-cli",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "slackapi/slack-github-action",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "sparkle-project/Sparkle",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/android-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/annoy",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/basic-pitch",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/chartify",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/confidence-ai-plugins",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/confidence-cli",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/confidence-resolver",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/confidence-sdk-go",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/confidence-sdk-js",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/featran",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/flink-on-k8s-operator",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/ios-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/luigi",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/mobius",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/Mobius.swift",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/pedalboard",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "spotify/portal-ai-plugins",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/ratatool",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/ruler",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/save-to-spotify",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/scio",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "spotify/sourcekit-bazel-bsp",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/spotify-web-api-ts-sdk",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/SPTPersistentCache",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/voyager",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "spotify/XCMetrics",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spotify/XCRemoteCache",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "spring-projects/spring-boot",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "stride3d/stride",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "suzuki-shunsuke/tfcmt",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "sveltejs/kit",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "swc-project/swc",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "symfony/symfony",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "tauri-apps/tauri",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json"
+      ]
+    },
+    {
+      "repository": "Telegram-Mini-Apps/tma.js",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "tensorflow/tfjs",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv"
+      ]
+    },
+    {
+      "repository": "ublue-os/bazzite",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ValveSoftware/steam-audio",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "ValveSoftware/steam-runtime",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    },
+    {
+      "repository": "withastro/astro",
+      "inventories": [
+        "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json"
+      ]
+    }
+  ],
+  "visibility_examples": [
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/evidence-owned-issue-audit-2026-09-10/AgentWorkforce-relaycast-repo.json",
+      "sha256": "29ce4c67eda5effe1a92b2a562ead5ac02c03c40a4fb686a4d814ea434798c53",
+      "repository": "AgentWorkforce/relaycast",
+      "stars": 9,
+      "meaning": "September 10 retained GitHub snapshot; visibility, not code or organization size"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/root-evidence/paperclipai--paperclip--repo.json",
+      "sha256": "0e068542d7ec4b26240356aaf9256f95756fb72a6f59e2433673e929ccbcad30",
+      "repository": "paperclipai/paperclip",
+      "stars": 80381,
+      "meaning": "September 10 retained GitHub snapshot; visibility, not code or organization size"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/packages-raw/withastro--astro/repo.json",
+      "sha256": "7a58071e9b1a0a972918b9ea727ac94d62b565c8641e0450bb2bebc0dd09be90",
+      "repository": "withastro/astro",
+      "stars": 62450,
+      "meaning": "September 10 retained GitHub snapshot; visibility, not code or organization size"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/evidence-followup-2026-09-10/apache--arrow--meta.json",
+      "sha256": "19fca49ead466b5aab6c7ac97e5f6bc8fdfc7ce9a096a065586009d1c6719dbb",
+      "repository": "apache/arrow",
+      "stars": 17095,
+      "meaning": "September 10 retained GitHub snapshot; visibility, not code or organization size"
+    }
+  ],
+  "case_dispositions": [
+    {
+      "repository": "apache/arrow",
+      "thread": 50363,
+      "kind": "comment",
+      "id": 5610501841,
+      "url": "https://github.com/apache/arrow/issues/50363#issuecomment-5610501841",
+      "before_sha256": "95c2744a6bc7e219ac6329018e53992b99bc3c6c3692844d0831d18dd11b59e6",
+      "action": "edit",
+      "after_body_file": "output/outreach/policy-review-2026-09-10/drafts/apache--arrow--comment-5610501841-body.md",
+      "reason": "Retain the direct reproduction and precise release boundary, remove the broad test matrix and dispat promotion, and add the ASF-required public AI label.",
+      "public_mutation_verified": true,
+      "completed_at": "2026-09-10T11:42:05.425598+00:00"
+    },
+    {
+      "repository": "AgentWorkforce/relaycast",
+      "thread": 406,
+      "kind": "issue",
+      "id": 5406072620,
+      "url": "https://github.com/AgentWorkforce/relaycast/issues/406",
+      "before_sha256": "7884bef83bb9ba93bacd46cbdfd0757e4c362b17f00aaa1bae06d76fd673f3ee",
+      "action": "keep",
+      "reason": "The body reproduces the checked-in post-upload commit/tag shell block in two clones: an ordinary branch advance makes push exit 1, leaves no remote tag, yet the unconditional summary claims publication/tag success. It explicitly says no PyPI/production failure was observed and supplies current successful-run controls. The prior maintainer context identified this Python path as residual work after #181.",
+      "public_mutation_verified": false
+    },
+    {
+      "repository": "withastro/astro",
+      "thread": 17956,
+      "kind": "comment",
+      "id": 5613154156,
+      "url": "https://github.com/withastro/astro/issues/17956#issuecomment-5613154156",
+      "before_sha256": "0a48f49dfb2cb522006711c82df7c81ddc68df4acdf6e00470f28c16bf9093bc",
+      "action": "keep",
+      "reason": "The comment concisely adds two run sequences. In the verified August case npm packages/tags completed, preparation failed before either marketplace, then a maintainer-triggered retry found nothing unpublished, skipped both marketplaces, and went green. It scopes out later manual completion.",
+      "public_mutation_verified": false
+    },
+    {
+      "repository": "withastro/astro",
+      "thread": 17956,
+      "kind": "issue",
+      "id": 5405555213,
+      "url": "https://github.com/withastro/astro/issues/17956",
+      "before_sha256": "bc85b21afdfc6dbcbc18a6b551d94f97ee8e75c1a7d82ec3aa89ede88b355b58",
+      "action": "keep",
+      "reason": "The full body links pinned workflow conditions and retained attempts, covering 2,238 workflow runs and identifying the two matching sequences. It proves a per-destination recovery gap after npm succeeds, while avoiding claims about later marketplace state or Changesets fault.",
+      "public_mutation_verified": false
+    }
+  ],
+  "discovery_only": {
+    "unique_issue_hits": 6731,
+    "repository_count": 1512,
+    "source": {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/faang-summary-counts-2026-09-10.json",
+      "sha256": "876da39f8fe4138396bf45f5ff45d74c72be8e6f0d5168e44b325459289a44a5"
+    },
+    "qualification": "Not a reviewed-project or defect count. Search scope differs from eight-inventory union."
+  },
+  "supporting_sources": [
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/all-21-progress.md",
+      "sha256": "cc2c4d486bb24589776e139bbdae2c54eb70c26c76e7a52a346b4ffaf737b5f6"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/sol-packages-2026-09-10.md",
+      "sha256": "ec6737717cf1346469963b3fbce456b553d92d10b5b4ce6bacaf8a0d4735cce6"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/changesets-history-astro-cloudflare-2026-09-10.md",
+      "sha256": "8e547466407d48e897052d0fe7691b26a19c72823c124e99f85b31950304f302"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/changesets-history-astro-cloudflare-2026-09-10.json",
+      "sha256": "67a98e208da20fec83e0481c5c9f77436e76348f7c3b530d9a09d219a96d5e47"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/README.md",
+      "sha256": "cc33f7502b59f07d66d04ec44082889d32239ecd93e650f2cf3e074edc62faf1"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/replies-review-2026-09-11/README.md",
+      "sha256": "88718428623b3f3ef1e3cdf981732c972b54d5302922b53c4a571b7e2b90e8e0"
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/latest-reply-recheck/README.md",
+      "sha256": "913612b7abe0ece01fbfe3357cd56acdbb495e73df9e41a3c463897a21dd3968"
+    }
+  ],
+  "limits": [
+    "No uniform defect coding or rate is derived. No claim of 211 defective projects.",
+    "At least 211 is a conservative auditable bound; other audits are not comprehensively merged.",
+    "Inventories include selected screening, source/registry review, issue-history review and narrower reproductions; not 211 equivalent deep audits.",
+    "Stars measure repository visibility, not code size, team size, adoption or reliability.",
+    "Astro histories establish skipped steps on particular retries, not present marketplace state or universal Changesets behavior.",
+    "RelayCast simulates publication; Arrow uses a stubbed workflow client. Neither fixture establishes a production incident.",
+    "Later rejected Netty, Dartway, Svelte, SWC, Spec Kit, TMA and Playwright claims are not selected as supporting cases. Reviewed subjects remain in coverage totals.",
+    "Identifying original paths and authorship-bearing public issue URLs are local provenance, not an anonymous upload package."
+  ]
+}

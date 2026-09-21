@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 45,
+  "pdf_sha256": "944e858c28faf0cc847c49a30e89563028853728e3d81cf8034cdd0cf5a2677d",
+  "source_sha256": {
+    "main.tex": "9ef1830fd2616559410a9cbdfb9a37ba3c4459054d50470e9d5508c0c561a98f",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "6aa0357042da4178eef8c42869eb6dfdd1d37bca42c0d39b9357fa2274377d8d",
+    "model.tex": "b1197f232251c3b182b8e95056b9d210070f0e907658554454f63f12d885f055",
+    "guarantees.tex": "65b422770ec02b238e1a10de8848967f92504ab450c43840c704bb8748a02ee3",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "be926d156aa1bbf9d01f67e0144859c3b8fdf4eb9b3017ad841b7d168581c791",
+    "references.tex": "155b2d38f5c8ce0e8d34eb91cb4fbcad6dff3ce5b352325d75b11ee1cc0c12e2"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits."
+}

@@ -2,7 +2,7 @@
 \label{sec:guarantees}
 
 Cross-run claims use the \emph{retry invariant}: the corrected tuple
-stream, source sets, graph, scope/depth predicates, target baselines, and
+stream, source sets, propagation/order/blocking graphs, scope/depth predicates, target baselines, and
 resolved source/target channel admission of every outstanding unit remain
 unchanged, except for baseline tags written for successful packages.
 Two recurring components deserve names. \textbf{(H1)} says every baseline
@@ -15,13 +15,13 @@ retry invariant. Neither is needed for one invocation's determinism.
 \begin{lemma}[window antitonicity]
 \label{lem:w}
 For $\sigma' = \mathit{run}(\sigma,F)$, $W^\circ_{\sigma'}(p)=\emptyset$
-if $p$ published and $W^\circ_{\sigma'}(p)=W^\circ_\sigma(p)$ otherwise.
+if $p$ gained its completion tag and $W^\circ_{\sigma'}(p)=W^\circ_\sigma(p)$ otherwise.
 The train window $W$ also empties after a stable release, but may remain
 unchanged after a prerelease release.
 \end{lemma}
 \begin{proof}
 The run adds only tags at $h$. If $p$ gained none, both baseline commits
-are unchanged. If it published, $\mathit{basec}_{\sigma'}(p)=h$, so
+are unchanged. If it gained a tag, $\mathit{basec}_{\sigma'}(p)=h$, so
 Eq.~\ref{eq:fresh} subtracts $\mathit{reach}(h)$ and is empty. Only a
 stable release also makes $\mathit{scom}_{\sigma'}(p)=h$.
 \end{proof}
@@ -72,7 +72,7 @@ Write $\mathit{adm}_j$ for $\mathit{adm}_{\sigma_j}$ and $n =
 $D$ and run $j \geq 1$:
 \begin{description}
   \item[\G{1}] \textbf{termination.} propagation halts after $O(|\mathcal{U}|
-    \cdot (|\mathcal{P}|{+}|E|))$ work, whatever the declared depths.
+    \cdot (|\mathcal{P}|{+}|E|))$ graph-traversal work, whatever the declared depths.
   \item[\G{2}] \textbf{no orphans.} $\mathit{adm}_1(u,D) \Rightarrow
     \mathit{adm}_j(u,D)$ until $D$ releases at a commit containing
     $c_u$.
@@ -86,7 +86,7 @@ $D$ and run $j \geq 1$:
   \item[\G{5}] \textbf{no widening.} $\{D : \mathit{adm}_j(u,D)\} \subseteq
     \{D : \mathit{adm}_1(u,D)\}$.
   \item[\G{6}] \textbf{convergence.} $\Pi(\sigma_{n+1}) = \emptyset$, provided
-    each nonempty retry admits and publishes at least one initially
+    each nonempty retry completes and records at least one initially
     publishable, non-held package.
   \item[\G{7}] \textbf{channel discharge.} a propagated channel contribution is
     admitted only while its commit remains in $W^\circ(D)$; baseline
@@ -111,8 +111,9 @@ $\mathit{dir}$ are unchanged; the propagated join is unchanged by \G{2}
 ($\geq$) and \G{5} ($\leq$), whose proofs below use only the lemmas; so
 $\mathit{eff}$ is unchanged and the channel is unchanged
 (Lemma~\ref{lem:c}). Thus bump-only and channel-only membership remain;
-an exact \code{Release-As} remains the same because its unit is fixed by the
-invariant. In every case $\nu$ is the same function of unchanged inputs.
+an exact \code{Release-As} and its guard outcome remain the same because the
+directive, automatic candidate and guard configuration are fixed. In every
+case $\nu$ is the same function of unchanged inputs.
 \G{4}: by Lemma~\ref{lem:w}, $W^\circ(D)$ empties after either a stable
 or prerelease tag, killing fresh direct and propagated admission. This
 also makes $\mathit{pin}_\sigma(D)$ undefined. This is discharge in the tag

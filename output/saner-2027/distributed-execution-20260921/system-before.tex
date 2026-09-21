@@ -1,0 +1,194 @@
+\section{System and Release Protocol}
+\label{sec:system}
+\label{sec:impl}
+\subsection{A Release Crossing Two Availability Boundaries}
+\label{sec:motivation}
+Our running example has four packages: \code{assets} is a shared npm library,
+\code{ui} is an npm package built from that library, \code{base} packages the
+UI output into a Docker image, and \code{app} builds from that image. Arrows in Fig.~\ref{fig:stages} run from
+provider to consumer. The second builder obtains its base through a registry;
+we do not assume that it shares the first builder's local image store.
+
+\begin{figure*}[t]
+\centering
+\begin{tikzpicture}[>=Latex,node distance=16mm,
+ every node/.style={font=\small},
+ stage/.style={draw,rounded corners=2pt,minimum width=28mm,minimum height=9mm,align=center}]
+\node[stage] (ab) at (0,0) {Build assets\\npm output};
+\node[stage] (ub) at (4.3,0) {Build ui\\npm output};
+\node[stage] (up) at (4.3,-1.65) {Publish ui};
+\node[stage] (bb) at (8.6,0) {Build base\\Docker image};
+\node[stage] (cb) at (12.9,0) {Build app\\\texttt{FROM base:v}};
+\node[stage] (ap) at (0,-1.65) {Publish assets};
+\node[stage] (bp) at (8.6,-1.65) {Publish base};
+\node[stage] (cp) at (12.9,-1.65) {Publish app};
+\draw[->] (ab) -- node[above,font=\scriptsize]{local output} (ub);
+\draw[->] (ub) -- node[above,font=\scriptsize]{local output} (bb);
+\draw[->] (ub) -- (up);
+\draw[->] (ab) -- (ap);
+\draw[->] (bb) -- (bp);
+\draw[->,thick] (bp) -- node[above,sloped,font=\scriptsize]{registry required} (cb);
+\draw[->] (cb) -- (cp);
+\draw[->] (ap) -- node[below,font=\scriptsize]{publish order} (up);
+\draw[->] (up) -- node[below,font=\scriptsize]{publish order} (bp);
+\draw[->] (bp) -- node[below,font=\scriptsize]{publish order} (cp);
+\end{tikzpicture}
+\caption{Stage dependencies, not a measured timeline. Publishing \code{assets}
+may overlap building \code{ui}, whose publication may overlap building
+\code{base}. Building \code{app} must wait for
+\code{base}'s publication. Availability modes are configured requirements:
+an npm dependency fetched from a registry would also require publication.}
+\label{fig:stages}
+\end{figure*}
+
+Availability modes describe integration choices, not ecosystems. Here,
+\code{ui} and \code{base} use workspace output; \code{app} pulls its base
+from a registry. The provider setting \code{isBuildWaitingPublish: true}
+therefore belongs on \code{base}. Both npm providers keep the default
+local-build mode. Other integrations may require npm publication or share
+local Docker images. Consumer publication follows provider publication in
+both modes.
+
+Suppose \code{assets} is at 1.4.2, \code{ui} at 3.2.0, \code{base} at
+0.8.2, and \code{app} at 2.1.0. An intent to release an assets feature and patch all
+transitive consumers plans versions 1.5.0, 3.2.1, 0.8.3, and 2.1.1. After the first
+three packages publish and are recorded, \code{app} fails. A planner that only
+propagates from \emph{currently unreleased providers} can now lose
+\code{app}, leaving an orphan in the release ledger. Our planner instead
+asks whether \code{app} has received that intent. Its own pending window is
+unchanged, so a retry still owes version 2.1.1.
+
+\subsection{From Repository Inputs to a Plan}
+\label{sec:ccme}
+The planner reads a fixed repository revision, package definitions, dependency
+edges, commit messages, and release tags. Configuration supplies build and
+publish commands and availability requirements; manifests can supply package
+and dependency identities. The plan specifies selected packages, next
+versions, and reasons before any external publication occurs. Changed
+inputs require a new plan; a preview is not an authorization for arbitrary
+later repository states.
+
+Release intent extends Conventional Commits~\cite{cc}. For example,
+\code{feat(assets)\^{}\^{}: add theme assets} directly requests a minor
+release of \code{assets} and propagates patch intent to transitive consumers.
+An unmarked unit affects its own scope only. A scope can explicitly name
+packages or be derived from changed paths. A commit can contain multiple
+independent units, each retaining its own source set and propagation depth.
+The formal model consumes normalized units, not a particular parser syntax.
+The complete language grammar is outside this paper~\cite{ccme2}.
+A diagnostics command validates literal intent syntax and parser policy
+without committing; it does not verify scope or plan correctness.
+
+Release-worthy descriptions can form version-specific notes, including for
+private projects without changelogs. Humans can adapt them for social drafts
+or management reports; this unmeasured use does not automate posting.
+Notes are narratives; tags discharge release obligations.
+
+Version bumps and prerelease channels are separate axes; a channel transition
+need not request a bump. Cancellation, correction, holds, and exact versions
+govern pending intent without unpublishing artifacts. These controls motivate
+the model predicates; their CLI forms are outside our contribution.
+
+\subsection{Execution, Recording, and Recovery}
+For each selected package, the executor schedules version reconciliation,
+build, and publish work. A consumer's version/build work waits for provider
+builds, or for provider publications when their availability mode requires it.
+Build and publish tasks have separate concurrency limits. Independent ready
+tasks may proceed concurrently; deterministic planning does not require a
+fixed temporal order for independent completion events.
+
+Successful publication creates a per-package completion obligation. The model
+records it immediately as a tag. The implementation also has configured
+recording and finalization steps, whose failures must be reported; their
+crash boundaries are not assumed atomic with an arbitrary publish command.
+The next invocation reconstructs outstanding work from the resulting records.
+This avoids a separate persistent recovery database, but depends on preserving
+and making the release tags available. A lock prevents cooperating release
+jobs from writing the same remote release concurrently. It does not make
+registry operations transactional or prevent an administrator from rewriting
+history outside the protocol.
+
+Two failure cases must remain distinct. If a publish is known to have failed,
+its obligation stays pending. If the external operation succeeds but its
+response or completion record is lost, an absent tag cannot distinguish that
+success from failure. The integration must reconcile the artifact's identity
+or use a publisher that safely accepts repetition before recording completion.
+Forward recovery does not by itself solve this uncertainty~\cite{helland12}.
+The mathematical claims below refer to the recorded state and make their
+retry assumptions explicit.
+
+\subsection{Fleet Releases Across Repository Histories}
+\label{sec:fleet}
+The running chain can span repositories: one owns the npm packages, another
+the images. The package graph still orders stages, but a consumer's tag must
+also establish which source revisions its release incorporated. The current
+language distinguishes three history modes~\cite{ccme2}. Single-history mode
+covers one package, a monorepo, or a control-history wrapper. Specified-history
+mode takes participating repositories from entry configuration. Discovered-history
+mode walks links among peers that own their configurations; a star-shaped
+link topology does not make its centre a policy owner.
+
+\paragraph{Ownership and admission.}
+Packages build, publish, and record tags in their owning repositories;
+central configuration does not relocate publication. Commits are identified by
+repository and full object ID, with ancestry confined to that repository.
+Cross-repository admission asks whether the consumer has incorporated that
+source revision. A control checkpoint associating the exact consumer tag with
+source pointers, or a chain of links in the consumer's release record, proves
+the boundary. Missing evidence requires an explicit consumer-tag/source-revision
+association. Incomparable directives needing one winner are refused, not
+ordered by timestamps. There is no synthetic global commit DAG.
+
+\paragraph{Partial fleet release.}
+The protocol captures repository heads and tag refs, rechecks relevant inputs
+before publication, and acquires fleet locks in a stable order. Native release
+records and peer-link settlement admit their exact new heads; unrelated changes
+require replanning. Peer links are settled before consumer publication so its
+record carries the boundary evidence. Source tags remain authoritative after
+failure: a failed control checkpoint requires explicit repair, not republishing
+the successful source. Recording failures block dependent work while preserving
+prior successes. This is forward recovery across separate ledgers, not an
+atomic fleet transaction. These source-reviewed fleet mechanisms extend the
+single-history model; the campaigns below do not evaluate them.
+
+\subsection{Integration Limits}
+
+A Go consumer resolving a new module version needs its tagged source published;
+an upstream compiled output does not provide it. Local \code{go.work} or
+\code{replace} can instead bind a checkout~\cite{gomod}. This boundary is
+configuration-specific and unevaluated here.
+
+Conforming integrations supply stable identities, declared dependencies and
+availability, commands whose success means stage completion, and trustworthy
+durable records. Uncertain publication requires safe repetition or
+reconciliation. A specification can use validation/rendering as its build
+and bundle publication as its publish stage. The model assumes an acyclic
+graph and SemVer-compatible versions; arbitrary workflows need not conform.
+
+\paragraph{Shared release logic across operating systems}
+A game developer can use Windows with Linux dedicated-server CI, or Linux
+with Windows packaging CI. Shared configuration holds the graph, lifecycle,
+and portable commands; referenced platform files choose \code{sh} or PowerShell
+and override platform-specific scripts. This reuses orchestration logic,
+without translating shells or making outputs portable. Toolchains must exist
+on each host. The evaluated conditional wrapper requires POSIX even when a
+child selects PowerShell; a Windows caller without POSIX must select its
+configuration directly. Native Windows equivalence and game-development
+adoption are not measured.
+
+\subsection{A Stable CI Entry Point}
+The package graph drives named tests and releases through a generic CI job.
+Adding a package changes configuration and scripts but may leave a provisioned
+workflow unchanged. New runners, credentials, or system dependencies still
+require provisioning. A configured gate must reject missing required tests
+and block publication on failure.
+
+Affected-task execution already appears in systems such as Nx~\cite{nx}. Here,
+one package model supports testing and recoverable release execution across
+artifact kinds. The two may use different windows and policies; the shared
+graph avoids duplicate package lists without replacing CI policy.
+
+\paragraph{Observed self-hosting case}
+CI uses its checkout-built CLI for transitive test and build selection and
+self-release. This single-project observation shows that the protocol can drive
+its own repository; it is not adoption or causal productivity evidence.

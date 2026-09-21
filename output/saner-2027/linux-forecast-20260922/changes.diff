@@ -1,0 +1,45 @@
+--- main-before.tex
++++ paper/saner/main.tex
+@@ -19,26 +19,26 @@
+ \title{Recovering Versioned Releases Across Build and Publish Boundaries}
+ \maketitle
+ \begin{abstract}
+-Releasing interdependent packages across build systems and registries can
+-leave consumers unfinished after their providers succeed. We present a
+-saga-inspired release protocol combining deterministic planning, stage-aware
+-scheduling, and consumer-owned release obligations. Git history and release
+-records form the ledger without an additional persistent release-state store.
+-Planning is a pure function of fixed history, records, graph, and configuration.
+-Consumer windows retain undelivered intent after provider success, while
+-separate train and fresh-work windows distinguish prerelease targets from
+-completed work. Under an explicit retry invariant, the single-history model
+-establishes eight conditional guarantees covering recovery, version stability,
+-ledger discharge, convergence, and scope/channel behavior. All 120 controlled
++Interdependent releases can leave consumers unfinished after providers succeed.
++We present a saga-inspired protocol combining deterministic planning,
++stage-aware scheduling, and consumer-owned release obligations. Git history and
++records form the ledger without another persistent release-state store.
++Consumer windows retain undelivered intent; train and fresh-work windows
++distinguish prerelease targets from completed work. Under an explicit retry
++invariant, the single-history model establishes eight conditional guarantees.
++All 120 controlled
+ fault episodes recover after repair; an analytical source-discharge alternative
+-loses unfinished work in 84 (70\%). This compares admission rules, not competing
+-tools or production failure rates. An accompanying agent guide supports plan
+-inspection and CI release invocation. Proposed fleet and worker extensions
++loses work in 84 (70\%). This compares admission rules, not competing
++tools or production failure rates. An agent guide supports plan
++inspection and CI releases. Proposed fleet and worker extensions
+ preserve source-owned records and reuse verified provider outputs. A prospective
+ LLVM scenario projects a Linux release-time reduction from an upstream
+ 154-minute baseline to about 103 minutes (33\%) on 6--10 compatible 16-core
+-machines, assuming a wider graph, sharded tests, and five-minute output transfers;
+-no distributed speedup has been measured. Full implementation refinement and
++machines, assuming a wider graph, sharded tests, and five-minute output transfers.
++A Linux kernel build-farm forecast reduces a reported six-machine, 232-minute
++baseline to 65--70 minutes on 24 workers (3.3--3.6$\times$), assuming
++configuration-level tasks and 4--9 minutes overhead on a 61-minute schedule.
++Neither distributed speedup has been measured. Full implementation refinement and
+ external exactly-once effects remain outside the claims.
+ \end{abstract}
+ \begin{IEEEkeywords}

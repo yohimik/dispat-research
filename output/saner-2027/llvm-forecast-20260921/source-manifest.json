@@ -1,0 +1,24 @@
+{
+  "spec": {
+    "root": "/Users/yohimik/Projects/dispat",
+    "head": "599448fdc239aef6e5ff5239b5833c8fd0ee0ccd",
+    "files": {
+      "specs/ccme-spec/SPEC.md": "cb6fdb1652113457e096327922e27c49a47a9d1851e077dd39100cca1ee845cc",
+      "specs/ccme-spec/VERSION": "1a992ade4db1f05d3acbaa426aa74c819fdef970e913728e1e5cc8fa125ec378"
+    }
+  },
+  "llvm": {
+    "root": "/Users/yohimik/Projects/llvm-project",
+    "head": "a9f4d3ff18c554d29bbabc546f9a9df0376701e0",
+    "files": {
+      "dispat.yaml": "349d5b1b131793417ad88caf33bb17bf775c7bf520ec8222dfbcdc7609a51c07",
+      "dispat.distributed.yaml": "617282f8b0cc8114c73975a93d747e15565a19a0301521f673702c5f45c77da0",
+      ".ci/dispat/readiness.json": "215fc20f85ea55db8749c86dc3f909acfb77bf1d10e4672741d5d69589f6245f",
+      ".ci/dispat/VALIDATION.md": "2b271ca8567f677cae48822af364833bd5af6acdf123d6a94a204acc17f7ae73",
+      ".ci/dispat/build.py": "fe1fb9088ada8fdd0ecb3a00a6f6924f367dc9a5885491948d2194248daeadf0",
+      ".ci/compute_projects.py": "713fb5560e8e34708ae24d3af8d971fb28c8ee428ae71c35f0c87b8e4d20c57e",
+      "flang/CMakeLists.txt": "cbbe9164e7afc4891a697adcbfc0f8e2cd851ca83179c354ac72bd4b8f0b4f88",
+      ".github/workflows/release-binaries.yml": "f4fa254d2618cfead9bb99245844afbfcaf0d86a50d9816fea13012bbe809552"
+    }
+  }
+}

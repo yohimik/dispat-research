@@ -1,0 +1,107 @@
+experiment=midrelease tool=nx scenario=conflict
+dispat 1.7.1 (linux_arm64)  lerna 10.0.1  nx 23.1.2  changesets 3.0.1  node v22.23.2  git 2.39.5
+registry ready: verdaccio on 4874, the fault proxy on 4873
+fixture ready: /work/nx nx
+   baseline: core=1.0.0 cli=1.0.0 ui=1.0.0 api=1.0.0 theme=1.0.0 docs=1.0.0 
+   before: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=feat(core): streaming reader local 0 ahead 0 behind
+
+== release: with_shim nx release --skip-publish
+exit=1
+   | fatal: the remote end hung up unexpectedly
+   | To /work/nx-origin.git
+   |  ! [rejected]        main -> main (fetch first)
+   | error: failed to push some refs to '/work/nx-origin.git'
+   | hint: Updates were rejected because the remote contains work that you do
+   | hint: not have locally. This is usually caused by another repository pushing
+   | hint: to the same ref. You may want to first integrate the remote changes
+   | hint: (e.g., 'git pull ...') before pushing again.
+   | hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+   | 
+   | Pass --verbose to see the stacktrace.
+   | 
+   after-release: api=1.0.0/baseline cli=1.0.0/baseline core=1.0.0/baseline docs=1.0.0/baseline theme=1.0.0/baseline ui=1.0.0/baseline
+   origin/main=fix(core): describe the package local 0 ahead 1 behind colleague on main
+   staged, uncommitted: package-lock.json packages/api/package.json packages/cli/package.json packages/core/package.json packages/docs/package.json packages/theme/package.json packages/ui/package.json 
+
+== recover: bash -c git reset -q --hard && git pull --rebase origin main
+exit=0
+   | From /work/nx-origin
+   |  * branch            main       -> FETCH_HEAD
+   |    b6e9376..2d174fa  main       -> origin/main
+   | Updating b6e9376..2d174fa
+   | Fast-forward
+   |  packages/core/package.json | 1 +
+   |  1 file changed, 1 insertion(+)
+
+== release2: nx release --skip-publish
+exit=0
+   | 
+   |  NX   Pushing to git remote "origin"
+   | 
+   | 
+   |  NX   Committing changes with git
+   | 
+   | 
+   |  NX   Tagging commit with git
+   | 
+   | 
+   |  NX   Skipped publishing packages.
+   | 
+   after-release2: api=1.0.0/orphan cli=1.0.0/orphan core=1.0.0/orphan docs=1.0.0/orphan theme=1.0.0/orphan ui=1.0.0/orphan
+   origin/main=fix(core): describe the package local 1 ahead 0 behind colleague on main release NOT on main
+
+== publish: nx release publish --registry http://127.0.0.1:4873
+exit=0
+   |  
+   | Published to http://127.0.0.1:4873 with tag "latest"
+   | 
+   | 
+   | 
+   |  NX   Successfully ran target nx-release-publish for 6 projects
+   | 
+   | 
+   |   Run duration:      1.6s
+   |   Cache:             0/6 hit (0%)
+   |   Critical path:     1.6s (3 tasks)
+   |   Recoverable time:  <1ms
+   after-publish: api=1.0.1/unpushed cli=1.0.1/unpushed core=1.1.0/unpushed docs=1.0.1/unpushed theme=1.0.1/unpushed ui=1.0.1/unpushed
+   origin/main=fix(core): describe the package local 1 ahead 0 behind colleague on main release NOT on main
+
+== push: git push --follow-tags origin main
+exit=0
+   | To /work/nx-origin.git
+   |    2d174fa..f9cea54  main -> main
+   |  * [new tag]         api@1.0.1 -> api@1.0.1
+   |  * [new tag]         cli@1.0.1 -> cli@1.0.1
+   |  * [new tag]         core@1.1.0 -> core@1.1.0
+   |  * [new tag]         docs@1.0.1 -> docs@1.0.1
+   |  * [new tag]         theme@1.0.1 -> theme@1.0.1
+   |  * [new tag]         ui@1.0.1 -> ui@1.0.1
+   after-push: api=1.0.1/consistent cli=1.0.1/consistent core=1.1.0/consistent docs=1.0.1/consistent theme=1.0.1/consistent ui=1.0.1/consistent
+   origin/main=chore(release): publish local 0 ahead 0 behind colleague on main release on main
+
+== next: nx release --dry-run --skip-publish
+exit=0
+   | 
+   | 
+   |  NX   Committing changes with git
+   | 
+   | 
+   |  NX   Tagging commit with git
+   | 
+   | 
+   |  NX   Skipped publishing packages.
+   | 
+   | 
+   | NOTE: The "dryRun" flag means no changes were made.
+   next plan: 
+   FAIL  release exited 0
+   FAIL  the release run left a commit and tags behind
+         | false
+   ok    registry serves core 1.1.0
+   FAIL  the release commit was pushed by the tool
+         | false
+   ok    every released package is consistent once pushed by hand
+   FAIL  the next plan is the colleague's change and its dependents alone
+VERDICT: release exited 0; the release run left a commit and tags behind; the release commit was pushed by the tool; the next plan is the colleague's change and its dependents alone

@@ -1,0 +1,59 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url,flushend}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remarknum}{Remark}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\G}[1]{G#1}
+\newcommand{\tool}{ReleaseWeave}
+\newcommand{\lang}{RIL}
+\begin{document}
+\title{Recovering Versioned Releases Across Build and Publish Boundaries}
+\maketitle
+\begin{abstract}
+Distributed releases must transfer dependency outputs and preserve unfinished
+work after provider success. Our protocol combines deterministic planning,
+stage-aware scheduling, and consumer-owned release obligations.
+Release planning is a pure function of fixed history, records, graph, and
+configuration. An accompanying agent guide lets coding agents inspect plans
+and invoke CI releases through this deterministic engine.
+A proposed execution profile adds workers to repositories and polyrepos.
+Nodes share a schema and default to orchestrator capability; explicit workers
+cannot initiate releases. The CI-entry node locks participating repositories
+and schedules tasks within concurrency limits. Temporary Git branches and
+verified outputs enable remote reuse without rebuilding providers; publication retains dependency gates
+and source-owned records.
+The single-history model gives eight conditional mathematical recovery guarantees.
+All 120 controlled fault episodes recover after repair; an analytical
+source-discharge alternative loses unfinished work in 84 (70\%). This compares
+admission rules, not competing tools or production failure rates.
+For LLVM on 6--10 compatible 16-core machines, an illustrative neutral
+scenario projects about 103 minutes against a 154-minute upstream Linux
+release baseline (33\% less),
+conditional on a wider task graph, sharded tests, and five-minute output hops.
+These are forecasts, not measured distributed results; the existing
+four-package graph offers little parallelism. Full implementation refinement
+and external exactly-once effects remain outside the claims.
+\end{abstract}
+\begin{IEEEkeywords}
+software release engineering, continuous integration and delivery,
+dependency scheduling, recovery, idempotence
+\end{IEEEkeywords}
+\input{introduction}
+\input{system}
+\input{model}
+\input{guarantees}
+\input{evaluation}
+\input{discussion}
+\clearpage
+\IEEEtriggeratref{34}
+\input{references}
+\end{document}

@@ -1,0 +1,685 @@
+--- output/saner-2027/spec-sync-20260921/discussion-before.tex
++++ paper/saner/discussion.tex
+@@ -7,9 +7,10 @@
+ must preserve. New commits, policy edits, or tag rewrites can require replanning;
+ permanent failure need not converge.
+ 
+-Shared-counter groups can advance prerelease counters on retry and reselect
+-successful members. They are outside our per-package version-stability and
+-decreasing-plan convergence proofs.
++The current group profile adds member target floors and independent
++counter/channel axes. Fixed shared counters can advance on retry and reselect
++successful members. Its independent-counter guarantees are a specification
++contract; neither group mode is proved by our per-package theorem.
+ 
+ The model abstracts artifact contents and combines publication and recording
+ into one transition. Lost responses and failed recording remain integration
+@@ -18,61 +19,50 @@
+ blocked-set rule; selected test traces do not close that gap.
+ 
+ \paragraph{Internal and construct validity.}
+-The author developed the system, model, oracle, and tests; agreement can preserve
+-shared mistakes. The restricted oracle omits semantics, and full-profile
+-categories are heuristic. The prospective matrix was frozen before execution
+-but designed after the earlier campaign, not independently replicated.
+-The finite projection covers stable-channel, one-intent states; post-write
+-faults are responses, not process crashes. Integrity checks establish record
+-consistency; concurrency tests cover selected interleavings. Histories, package
+-rows, episodes, fixture/CI repetitions, commands, and assertions remain
+-separate units.
++The author developed the system, model, oracle and tests; agreement can retain
++shared errors. The restricted oracle omits semantics; full-profile categories
++are heuristic. The prospective matrix was frozen before execution but was not
++independently replicated. The finite projection covers stable, one-intent states;
++post-write faults are responses, not crashes. Integrity and concurrency checks
++cover selected records and interleavings. Histories, rows, episodes, repetitions,
++commands and assertions remain distinct units.
+ 
+ \paragraph{External validity.}
+ Synthetic fixtures establish controlled behavior; historical replay reconstructs
+ policies, and comparisons pin configurations. No user study measures intent
+ correctness or review effort. The control-history polyrepo fits the model;
+-multi-history coordination, peer choreography, and their scale remain
++multi-history coordination, worker transport, peer choreography, and their scale remain
+ unevaluated. Platform scripts, agent gates, and ecosystems demonstrate
+ integration scope, not general effectiveness. One contended host cannot
+ establish service-level promises.
+ 
+ \paragraph{Exploratory outreach context.}
+-Eight retained September review inventories cover at least 211 distinct
+-repositories after deduplication, with unequal review depth. One pass spans
+-21 native ecosystems; a separate search's 6,731 hits across 1,512 repositories
+-are discovery coverage, not reviewed-project or defect counts.
+-Subjects include RelayCast (9 GitHub stars) and Paperclip (80,381) at the
+-recorded snapshot; stars describe visibility, not code size.
+-Three projects illustrate different boundaries. In RelayCast, a two-clone
+-fixture simulates successful upload followed by a rejected push: no remote tag
+-is created, yet the script reports success; no production failure is claimed.
+-Two historical Astro sequences publish npm packages, fail before marketplace
+-publication, then finish green on retry while skipping those destinations;
+-later manual completion was not assessed. An Apache Arrow fixture with a
+-stubbed workflow client reproduces selection of a stale successful run for a
+-new invocation. These observations motivate destination-specific completion
+-and invocation identity in fleet recovery. Healthy checks, resolved incidents,
+-and later rejected claims remain in the records. This selected review neither
+-estimates defect prevalence nor validates our protocol on these projects.
++Eight September inventories cover at least 211 deduplicated repositories with
++unequal review depth; one spans 21 ecosystems. A separate search's 6,731 hits
++across 1,512 repositories are discovery coverage, not defect counts.
++RelayCast (9 stars) and Paperclip (80,381) illustrate visibility, not code size.
++A two-clone RelayCast fixture simulates upload followed by rejected push:
++no remote tag appears, yet the script reports success. No production failure
++is claimed. Two observed Astro histories publish npm packages, fail before
++marketplace publication, then finish green on retry while skipping those
++destinations; later manual completion was not assessed. An Apache Arrow
++fixture with a stubbed workflow client selects a stale successful run.
++These cases motivate destination completion and invocation identity.
++Healthy, resolved, and later excluded cases remain recorded. This selected
++review neither estimates defect prevalence nor validates the protocol.
+ 
+ \section{Related Work}
+ \label{sec:related}
+ \paragraph{Release and build systems.}
+-Release engineering is a distinct research problem~\cite{adams}.
+-Monorepo practice~\cite{potvin} and build-system models~\cite{mokhov} address
+-ordering and reuse; incremental builds admit dynamic dependencies~\cite{pluto}.
+-Our fixed graph records publication obligations without claiming a new
+-topological algorithm or incremental rebuilding.
+-Lerna, Nx, Changesets, release-please, and semantic-release provide different
+-versioning and publication workflows~\cite{lerna,nx,changesets,releaseplease,
+-semanticrelease}. Section~\ref{sec:compare} compares operational traces of
+-specified configurations, not formal reductions of those complete tools.
+-Spinnaker supports parallel stages and execution histories~\cite{spinnaker};
+-Nix uses input-derived store paths~\cite{nix}; TOSCA standardizes lifecycle
+-interfaces~\cite{tosca}; OpenGitOps calls for versioned desired state and
+-reconciliation~\cite{gitops}. Our ledger tracks completed releases across
+-independent publication targets without replacing these systems' state models.
++Release engineering~\cite{adams}, monorepo practice~\cite{potvin}, and build-system
++models~\cite{mokhov,pluto} supply the setting; we claim no new topological or
++incremental-build algorithm. Lerna, Nx, Changesets, release-please and
++semantic-release~\cite{lerna,nx,changesets,releaseplease,semanticrelease} offer
++versioning/publication workflows; Section~\ref{sec:compare} compares pinned
++configurations, not complete tools. Spinnaker's execution histories~\cite{spinnaker},
++Nix's input-derived paths~\cite{nix}, TOSCA's lifecycle interfaces~\cite{tosca}
++and OpenGitOps reconciliation~\cite{gitops} retain their own state models.
++Our ledger tracks completed releases across independent publication targets.
+ 
+ Versioning studies motivate explicit policy~\cite{raemaekers,bogart,decan},
+ without proving compatibility. EDOS studies installability~\cite{edos};
+@@ -90,43 +80,36 @@
+ \paragraph{Recovery and formal assurance.}
+ Buildbox formalizes build, install, ship, and update transitions~\cite{liusmith};
+ Aeolus studies component states, dependencies, and reachability~\cite{aeolus}.
+-These precede our narrower publication-recovery question. NEPHELE applies
+-sagas to distributed lifecycle operations~\cite{nephele}; Bui et al.'s
+-LLM-assisted CI/CD diagnosis and repair~\cite{bui} measures different outcomes.
+-Sagas~\cite{sagas} and the limits of transaction abstractions~\cite{gray}
+-provide the recovery setting. Independently committed and idempotently
+-processable operations~\cite{helland07,helland12} explain why uncertain
+-outcomes need explicit treatment. Our contribution specializes admission and
+-discharge to versioned consumers; it is not the invention of forward recovery.
+-Anvil~\cite{anvil} verifies reconciliation properties of Kubernetes controller
+-implementations, whereas our handwritten proofs establish a release model and
+-our tests sample implementation behavior. This is a significant difference
+-in assurance. Methodological cautions about fuzz evaluation~\cite{klees}
+-likewise motivate separating core agreement from unsupported generalization.
++NEPHELE applies sagas to distributed lifecycle operations~\cite{nephele};
++Bui et al. study LLM-assisted CI/CD repair~\cite{bui}.
++Sagas~\cite{sagas}, transaction limits~\cite{gray}, and independently committed,
++idempotently processable operations~\cite{helland07,helland12} motivate recovery
++and explicit treatment of uncertain outcomes. We specialize admission and
++discharge to versioned consumers. Anvil~\cite{anvil} verifies Kubernetes
++controller implementations; our handwritten model proofs and sampled execution
++tests provide weaker assurance. Fuzz-evaluation cautions~\cite{klees} likewise
++limit generalization from core agreement.
+ 
+ \section{Conclusion}
+ \label{sec:conclusion}
+-Stage prerequisites enforce artifact availability; consumer-based admission
+-retains obligations after providers succeed. Under the retry invariant,
+-separate train and fresh-work windows preserve versions and permit convergence.
+-All 140 mechanism episodes retained expected plans; the source-window
+-counterfactual lost work in 84/120 fault episodes. Fleet extensions require
+-repository-qualified histories and evidence of consumer boundaries.
+-Multi-history recovery, recording failures, and randomized interleavings
+-remain targets for evaluation and mechanized refinement~\cite{lamport}.
++Stage prerequisites enforce availability; consumer windows retain obligations
++after provider success. The retry invariant preserves versions and permits
++convergence. All 140 mechanism episodes retained expected plans; the
++source-window counterfactual lost work in 84/120 fault episodes. Repository-qualified
++boundaries and verified worker inputs extend the design; multi-history recovery,
++recording failures and randomized interleavings need evaluation and mechanized
++refinement~\cite{lamport}.
+ 
+ \section*{Data Availability}
+-Campaign records retain runtime pins, harnesses, raw observations, verified
+-archives, offline verifiers, and fixture Git metadata. Outreach inventories,
+-deduplication, and case provenance are retained locally. These records can
+-reveal authorship; no anonymized package is available, and public release
+-remains undecided.
++Retained records include runtime pins, harnesses, raw observations, verified
++archives, offline verifiers, fixture Git metadata and outreach provenance.
++They can reveal authorship; no anonymized package is available, and public
++release remains undecided.
+ 
+ \section*{Acknowledgments}
+ \noindent\textit{AI assistance.}
+ Claude Fable provided most assistance; Claude Opus, Gemini, and OpenAI Codex
+-also contributed. Assistance went beyond editing: implementation and experiment
+-tooling (Sections~\ref{sec:system} and~\ref{sec:eval}), and manuscript drafting
+-and revision, including the system description, model exposition, evaluation,
+-and discussion. Executions produced the measurements; the human author
+-remains responsible for all claims and results.
++also contributed to implementation, experiment tooling
++(Sections~\ref{sec:system} and~\ref{sec:eval}), and manuscript drafting and
++revision, including the model, evaluation and discussion. Executions produced
++the measurements; the human author remains responsible for claims and results.
+--- output/saner-2027/spec-sync-20260921/guarantees-before.tex
++++ paper/saner/guarantees.tex
+@@ -2,7 +2,7 @@
+ \label{sec:guarantees}
+ 
+ Cross-run claims use the \emph{retry invariant}: the corrected tuple
+-stream, source sets, graph, scope/depth predicates, target baselines, and
++stream, source sets, propagation/order/blocking graphs, scope/depth predicates, target baselines, and
+ resolved source/target channel admission of every outstanding unit remain
+ unchanged, except for baseline tags written for successful packages.
+ Two recurring components deserve names. \textbf{(H1)} says every baseline
+@@ -15,13 +15,13 @@
+ \begin{lemma}[window antitonicity]
+ \label{lem:w}
+ For $\sigma' = \mathit{run}(\sigma,F)$, $W^\circ_{\sigma'}(p)=\emptyset$
+-if $p$ published and $W^\circ_{\sigma'}(p)=W^\circ_\sigma(p)$ otherwise.
++if $p$ gained its completion tag and $W^\circ_{\sigma'}(p)=W^\circ_\sigma(p)$ otherwise.
+ The train window $W$ also empties after a stable release, but may remain
+ unchanged after a prerelease release.
+ \end{lemma}
+ \begin{proof}
+ The run adds only tags at $h$. If $p$ gained none, both baseline commits
+-are unchanged. If it published, $\mathit{basec}_{\sigma'}(p)=h$, so
++are unchanged. If it gained a tag, $\mathit{basec}_{\sigma'}(p)=h$, so
+ Eq.~\ref{eq:fresh} subtracts $\mathit{reach}(h)$ and is empty. Only a
+ stable release also makes $\mathit{scom}_{\sigma'}(p)=h$.
+ \end{proof}
+@@ -86,7 +86,7 @@
+   \item[\G{5}] \textbf{no widening.} $\{D : \mathit{adm}_j(u,D)\} \subseteq
+     \{D : \mathit{adm}_1(u,D)\}$.
+   \item[\G{6}] \textbf{convergence.} $\Pi(\sigma_{n+1}) = \emptyset$, provided
+-    each nonempty retry admits and publishes at least one initially
++    each nonempty retry completes and records at least one initially
+     publishable, non-held package.
+   \item[\G{7}] \textbf{channel discharge.} a propagated channel contribution is
+     admitted only while its commit remains in $W^\circ(D)$; baseline
+@@ -111,8 +111,9 @@
+ ($\geq$) and \G{5} ($\leq$), whose proofs below use only the lemmas; so
+ $\mathit{eff}$ is unchanged and the channel is unchanged
+ (Lemma~\ref{lem:c}). Thus bump-only and channel-only membership remain;
+-an exact \code{Release-As} remains the same because its unit is fixed by the
+-invariant. In every case $\nu$ is the same function of unchanged inputs.
++an exact \code{Release-As} and its guard outcome remain the same because the
++directive, automatic candidate and guard configuration are fixed. In every
++case $\nu$ is the same function of unchanged inputs.
+ \G{4}: by Lemma~\ref{lem:w}, $W^\circ(D)$ empties after either a stable
+ or prerelease tag, killing fresh direct and propagated admission. This
+ also makes $\mathit{pin}_\sigma(D)$ undefined. This is discharge in the tag
+--- output/saner-2027/spec-sync-20260921/model-before.tex
++++ paper/saner/model.tex
+@@ -6,12 +6,14 @@
+ The model separates stage availability from cross-run admission and discharge.
+ It uses one history and per-package versioning; shared-version groups,
+ multi-history composition, VCS adapters, and explicit rollback are outside it.
++These are forward-release claims; withdrawal activation, inventories and receipts
++must remain fixed when relating them to the current extended protocol.
+ 
+ 
+ \subsection{Stage Availability}
+ For a selected package $p$, let $B_p$ and $P_p$ denote successful completion
+ of its build and publish stage, respectively. A version task, when present,
+-is a prefix of $B_p$. For a provider $q$ and consumer $p$, the normal
++is a prefix of $B_p$. For a required provider $q$ and consumer $p$, the normal
+ successful-stage dependencies include $B_q\to B_p$, $B_p\to P_p$, and
+ $P_q\to P_p$. If $q$ requires published-artifact availability, add
+ $P_q\to B_p$. Here stage arrows mean prerequisite-to-successor; the package
+@@ -42,6 +44,12 @@
+ uses standard topological scheduling~\cite{kahn,mokhov}; the recovery results
+ below address the separate problem of retaining the correct selected work.
+ 
++For remote local-output consumption, refine $B_q\to B_p$ to
++$B_q\to X_{q,p}\to B_p$, where $X_{q,p}$ exports, verifies and materializes
++the exact required outputs. Edge subdivision preserves acyclicity; extra
++preparation, test and build-only edges require a separate task-DAG check.
++Local bytes do not replace required publication or durable-recording gates.
++
+ \subsection{Workspace, State, Windows}
+ 
+ \begin{definition}[history]
+@@ -51,22 +59,20 @@
+ $c' \in \mathit{reach}(c)$. $h$ is fixed throughout. Normalization supplies a deterministic total order
+ of the commits consistent with ancestry; ``newest'' refers to this order,
+ with unit position breaking ties within a commit. Ancestry alone is only a
+-partial order, so this ordering policy is a fixed planning input. This reading of a
+-repository is the standard one: the commit DAG with reachability is the
+-working model of git history in repository mining~\cite{birdgit}, and
+-the same structure underlies formal derivations of git's three-way
+-merge from least common ancestors~\cite{mrdt}. Unlike the
+-patch-theoretic accounts of version
+-control~\cite{swierstraloh,hpt,mimram}, this model tracks no file
+-contents, only history, tags and normalized intent. Manifests and path-derived
+-scopes are supplied through the normalized instance rather than modeled as files.
++partial order, so the ordering policy is fixed input and cannot use dates.
++This commit-DAG view underlies Git mining~\cite{birdgit} and merge
++models~\cite{mrdt}. Unlike patch-theoretic accounts~\cite{swierstraloh,hpt,mimram},
++we model tags and normalized intent, with files and path scopes supplied by
++normalization.
+ \end{definition}
+ 
+ \begin{definition}[workspace]
+ $\mathcal{P}$ is the finite set of packages at $h$; $E \subseteq
+ \mathcal{P} \times \mathcal{P}$ contains $(a,b)$ when $a$ declares a
+-dependency on $b$ of a configured kind; $\mathit{dep}(p) = \{d : (d,p)
+-\in E\}$. The graph is acyclic; cyclic workspaces are outside this protocol
++dependency on $b$ of a propagation kind; $\mathit{dep}(p) = \{d : (d,p)
++\in E\}$. Let $E_o$ and $E_b\subseteq E_o$ be the publication-order and
++failure-blocking edges in this model. Optional dependencies may order publication without
++blocking on failure. The union $E\cup E_o$ is acyclic; cycles are outside this protocol
+ and are rejected before scheduling. For $S \subseteq
+ \mathcal{P}$, $\delta(S,d)$ is the least number of edges on a chain from
+ a member of $S$ to $d$ against the arrows, $\infty$ if none.
+@@ -93,8 +99,9 @@
+ convention when $p$ has no tag. Equal-precedence tags with conflicting release identities are rejected.
+ When no stable tag exists, $\mathit{sbase}$ is the virtual 0.0.0 and
+ $\mathit{reach}(\mathit{scom})=\emptyset$. An untagged package additionally
+-has $\mathit{base}=0.0.0$, $\mathit{reach}(\mathit{basec})=\emptyset$, and a configured
+-initial version; applying its first nonzero bump returns that initial version.
++has $\mathit{base}=0.0.0$ and $\mathit{reach}(\mathit{basec})=\emptyset$.
++Automatic target computation from a virtual stable baseline returns the
++configured initial version.
+ Within a valid run sequence, tags are never moved or deleted, so states only
+ grow. Rewriting a completion record is outside the guarantees.
+ Tag write access is therefore release authority; a manifest's version field
+@@ -115,16 +122,12 @@
+                        \mathit{reach}(\mathit{basec}_\sigma(P)),
+   \label{eq:fresh}
+ \end{equation}
+-with an empty subtracted reach when $P$ has no tag.  $W_\sigma$ is the
+-\emph{train window}; $W^\circ_\sigma$ is the \emph{fresh-work window}.
+-When $P$ has no stable baseline, $W_\sigma(P) = \mathit{reach}(h)$:
+-an unreleased package's first release accounts for its whole
+-history. An existing project must therefore configure its initial baseline
+-and scope mapping deliberately. The window is measured from the last \emph{stable} tag
+-so that a prerelease train can recompute its target over the whole train
+-(Eq.~\ref{eq:train}). Direct admission, propagation admission and ledger
+-discharge use $W^\circ$ instead. Thus a prerelease tag discharges delivered
+-work without erasing the earlier records needed to recompute the train target.
++An absent baseline contributes empty subtracted reach. The \emph{train window}
++$W_\sigma$ retains history since the stable baseline for target computation
++(Eq.~\ref{eq:train}); the \emph{fresh-work window} $W^\circ_\sigma$ governs
++direct/propagated admission and discharge. Prerelease tags discharge delivered
++work while retaining train history. A first release covers the whole history,
++so initial baselines and scope mappings require deliberate configuration.
+ \end{definition}
+ 
+ \subsection{Units, Suppression, Admission}
+@@ -148,8 +151,9 @@
+ \label{def:src}
+ $\mathit{canc}(c,p)$ holds when $c$ is an ancestor-or-self of a
+ \code{cancel} commit whose scope contains $p$; $\mathit{held}(p)$ when
+-$p$'s effective \code{Release-As} is \code{none}. Both are functions of
+-$h$ and the configuration alone. With $\mathit{disch}_\sigma(p,c)
++$p$'s effective \code{Release-As} at $\sigma$ is \code{none}.
++Cancellation uses fixed ancestry and scopes; retry claims also fix suppression
++of outstanding work. With $\mathit{disch}_\sigma(p,c)
+ \equiv c \notin W^\circ_\sigma(p)$,
+ \begin{equation}
+ \begin{aligned}
+@@ -159,20 +163,15 @@
+ \end{aligned}
+   \label{eq:src}
+ \end{equation}
+-Suppression applies only to \emph{undischarged} work: once $p$ has
+-published the version carrying $u$, the artefact its consumers are owed
+-is public, and neither a later cancel nor a later hold may retroactively
+-strand them.
++Suppression affects only \emph{undischarged} work: a later source cancel or
++hold cannot retract its already-published artifact or strand consumers.
+ \end{definition}
+ 
+ \begin{definition}[reach]
+ \label{def:reach}
+ $R(S,\ell) = \{ d \in \mathcal{P} \setminus S : \delta(S,d) \leq \ell
+-\}$. Excluding all of $S$ means a unit never propagates to a package it
+-bumps directly; depth is shortest-path and always measured from the
+-originating source set, and a propagated effect never cascades its own
+-propagation, so the depth written in the message is the whole blast
+-radius in every run.
++\}$. A unit excludes its own sources. Depth is shortest-path distance from
++that source set; propagated effects never restart propagation.
+ \end{definition}
+ 
+ \begin{definition}[channels]
+@@ -237,8 +236,7 @@
+ \end{equation}
+ where $\mathit{dir}_\sigma(P) = \bigsqcup\{\mathit{bump}(u) : P \in
+ \mathit{src}_\sigma(u) \cap \mathit{scope}(u),\ c_u \in W^\circ_\sigma(P)\}$.
+-Because $\sqcup$ is a join, a package with its own \code{feat} pending
+-is unaffected by an incoming propagated \code{patch}, joining an admitted bump cannot lower the effective bump, and gathering order cannot matter.
++The join cannot lower an existing bump and is independent of gathering order.
+ \end{definition}
+ 
+ The consumer-side staleness audit is the upward dual of
+@@ -276,7 +274,11 @@
+ resolved-channel predicates stay the same. It computes the target bump over
+ the train, while $\mathit{eff}$ determines fresh admission. Write
+ $e=\mathit{train}_\sigma(P)$.
+-If $\mathit{pin}_\sigma(P)\downarrow$, it supplies that exact version. A stable package that
++First compute the automatic candidate without the pin. An exact pin must exceed
++$B$, must not undercut that candidate unless configured leniency explicitly
++allows it, and must satisfy the configured major-jump limit (default one major
++above the computed version). An accepted pin supplies the exact version.
++For automatic versioning, a stable package that
+ remains stable uses $\mathit{apply}(S,\mathit{eff}_\sigma(P))$; a prerelease
+ package graduating to stable uses $\mathit{apply}(S,e)$, preserving the
+ train target. Otherwise, with $\mathit{ch}$ the target channel,
+@@ -331,17 +333,12 @@
+ $F \subseteq \Pi(\sigma)$ of packages failing before recorded completion, which induces the
+ blocked set
+ $B = \{p \in \Pi(\sigma) \setminus F : p$ transitively depends on some
+-$q \in F\}$, computed over the \emph{full} workspace graph (a package
+-with no bump this run is still a path from a dependent to a failed
+-dependency). Publication proceeds in a topological order of the full
+-graph, ties broken bytewise by name, filtered to the plan \emph{last}:
+-inducing the graph on the plan first deletes ordering paths that run
+-through unplanned packages. In the abstract transition, each package is tagged after its
+-own publish succeeds, never before (a tag for an unpublished version
+-makes it unrecoverable, since Eq.~\ref{eq:window} treats it as
+-released), and \emph{whatever its publish target},
+-including targets that upload nothing
+-(Proposition~\ref{prop:tagall}). The run yields
++$q \in F$ via $E_b\}$. Both blocking and publication order traverse all
++packages, preserving paths through unplanned intermediates. Publication uses
++$(\mathcal P,E_o)$, with bytewise name ties, filtering to the plan \emph{last}.
++Each package is tagged only after successful publication, including targets
++that upload nothing (Proposition~\ref{prop:tagall}); premature tagging would
++discharge unpublished work. The abstract transition yields
+ $\mathit{run}(\sigma,F) = \sigma \cup \{(p, \nu_\sigma(p), h) : p \in
+ \Pi(\sigma) \setminus (F \cup B)\}$. The transition abstracts the publish-to-record interval; it does not
+ prove that interval atomic in the implementation. A \emph{run sequence} is
+@@ -349,16 +346,24 @@
+ \mathit{run}(\sigma_k, F_k)$.
+ \end{definition}
+ 
+-The propagation bound covers graph walks, excluding parsing, history, scope
+-resolution, cancellation queries, and provenance. Message scanning is linear
+-in input bytes. One breadth-first walk needs $O(|\mathcal{P}|)$ auxiliary
+-space; retaining all single-source walks can take $O(|\mathcal{P}|^2)$.
+-History-marker bitsets likewise trade memory for repeated ancestry queries.
+-Caches must preserve each unit's source set, depth, admission predicates, and
+-identity; merging by directive spelling can change admission. Bytewise
+-topological ties cost $O(|E|+|\mathcal{P}|\log|\mathcal{P}|)$ with a comparison
+-heap and $O(|\mathcal{P}|)$ auxiliary space. Explicit output costs at least
+-its size. These phase-specific bounds establish no global time or space optimality.
++The propagation bound covers graph walks, not total planning. Let $H$ and $A$
++count reachable commits and parent edges, $m$ the distinct boundary, cancellation
++and correction/revert markers, and $w$ the machine word width. A child-before-parent
++pass propagating marker bits costs $O((H+A)\max(1,\lceil m/w\rceil))$ word
++operations; dense masks use $O(H\lceil m/w\rceil)$ words plus indexes.
++A commit's bit for marker $x$ is set exactly when it is in $\mathit{reach}(x)$:
++the marker sets its own bit and each child passes its bits to its parents.
++Fresh membership needs two boundary lookups from Eq.~\ref{eq:fresh}, not one
++reachability traversal for every stable/fresh pair. Materializing memberships,
++correction probes, cancellation queries, scope resolution and provenance add
++work even when their final output is empty. Message scanning is linear in bytes;
++channel incidence inversion preserves proposal order and complete diagnostics.
++Walk reuse requires equal source sets, depth and edge kinds; admission and
++provenance remain per unit. Caches need bounds across all tiers; eviction preserves semantics but
++can lose the time benefit. Bytewise publication ties cost
++$O(|E_o|+|\mathcal P|\log|\mathcal P|)$ with a heap; blocking closure costs
++$O(|\mathcal P|+|E_b|)$ by one multi-source traversal. These indexed phase bounds
++are informative, not global optimality or distributed speedup guarantees.
+ 
+ Order matters for a reason tags cannot express: a dependent can be published
+ while its promised provider version is unavailable. If both completion tags
+@@ -389,13 +394,10 @@
+ 
+ A normalized instance is
+ \[
+- I=(\text{history},h,\mathcal P,E,\mathcal U,\sigma,\mathit{config}),
++ I=(\text{history},h,\mathcal P,E,E_o,E_b,\mathcal U,\sigma,\mathit{config}),
+ \]
+-where configuration includes the fixed history-ordering policy. Repository
+-files and messages supply these objects through normalization. The model
+-abstracts artifact contents, arbitrary hook effects, and other configuration
+-features. Its guarantees quantify over this fragment under acyclicity,
+-version validation, and the run-sequence retry invariant. The implementation
+-is not assumed to check every component of that invariant. Proving that a
+-binary refines the model remains separate work; Section~\ref{sec:eval}
+-provides tests of selected behavior, not a refinement proof.
++Configuration includes history ordering; normalization supplies the inputs.
++Artifact contents and arbitrary hook effects are abstracted. Guarantees require
++acyclicity, valid versions and the retry invariant, whose full implementation
++enforcement is unproved. Section~\ref{sec:eval} tests selected behavior;
++binary refinement remains unproved.
+--- output/saner-2027/spec-sync-20260921/references-before.tex
++++ paper/saner/references.tex
+@@ -45,7 +45,7 @@
+ \lang{} release-intent specification, evaluated and development snapshots
+ (review pseudonym).
+ Public source URL omitted for anonymous review,
+-accessed September 9 and 20, 2026.
++accessed September 9, 20, and 21, 2026.
+ 
+ \bibitem{helland12}
+ P.~Helland.
+--- output/saner-2027/spec-sync-20260921/system-before.tex
++++ paper/saner/system.tex
+@@ -3,11 +3,10 @@
+ \label{sec:impl}
+ \subsection{A Release Crossing Two Availability Boundaries}
+ \label{sec:motivation}
+-Our running example has four packages: \code{assets} is a shared npm library,
+-\code{ui} is an npm package built from that library, \code{base} packages the
+-UI output into a Docker image, and \code{app} builds from that image. Arrows in Fig.~\ref{fig:stages} run from
+-provider to consumer. The second builder obtains its base through a registry;
+-we do not assume that it shares the first builder's local image store.
++The running example is npm \code{assets} $\to$ npm \code{ui} $\to$ Docker
++\code{base} $\to$ Docker \code{app}. Figure~\ref{fig:stages} uses
++provider-to-consumer arrows. The app builder obtains its base through a
++registry, without a shared local image store.
+ 
+ \begin{figure*}[t]
+ \centering
+@@ -60,13 +59,12 @@
+ 
+ \subsection{From Repository Inputs to a Plan}
+ \label{sec:ccme}
+-The planner reads a fixed repository revision, package definitions, dependency
+-edges, commit messages, and release tags. Configuration supplies build and
+-publish commands and availability requirements; manifests can supply package
+-and dependency identities. The plan specifies selected packages, next
+-versions, and reasons before any external publication occurs. Changed
+-inputs require a new plan; a preview is not an authorization for arbitrary
+-later repository states.
++The planner reads a fixed revision, package and dependency definitions, messages,
++records, commands and availability requirements. It selects packages, versions
++and reasons before publication; changed semantic inputs require replanning.
++The extended protocol additionally fixes repository-qualified histories,
++consumer boundaries and verified withdrawal inventory/receipts. Execution
++placement is separate from this semantic input.
+ 
+ Release intent extends Conventional Commits~\cite{cc}. For example,
+ \code{feat(assets)\^{}\^{}: add theme assets} directly requests a minor
+@@ -90,80 +88,91 @@
+ the model predicates; their CLI forms are outside our contribution.
+ 
+ \subsection{Execution, Recording, and Recovery}
+-For each selected package, the executor schedules version reconciliation,
+-build, and publish work. A consumer's version/build work waits for provider
+-builds, or for provider publications when their availability mode requires it.
+-Build and publish tasks have separate concurrency limits. Independent ready
+-tasks may proceed concurrently; deterministic planning does not require a
+-fixed temporal order for independent completion events.
++The executor schedules version reconciliation, build and publish tasks behind
++provider availability gates, with separate build/publish limits. Independent
++ready tasks may overlap; deterministic planning does not fix completion order.
++Publication creates a recording obligation: only the durable release record
++discharges work. The model combines those steps; implementations must report
++recording and finalization failures separately. A retry reconstructs pending
++work from records, without an additional persistent recovery database.
+ 
+-Successful publication creates a per-package completion obligation. The model
+-records it immediately as a tag. The implementation also has configured
+-recording and finalization steps, whose failures must be reported; their
+-crash boundaries are not assumed atomic with an arbitrary publish command.
+-The next invocation reconstructs outstanding work from the resulting records.
+-This avoids a separate persistent recovery database, but depends on preserving
+-and making the release tags available. A lock prevents cooperating release
+-jobs from writing the same remote release concurrently. It does not make
+-registry operations transactional or prevent an administrator from rewriting
+-history outside the protocol.
++A known publication failure leaves its obligation pending. An absent tag,
++however, cannot distinguish failure from successful-but-unrecorded publication.
++Before recording, reconcile artifact identity or safely repeat the publisher;
++forward recovery alone does not resolve uncertainty~\cite{helland12}.
++Locks coordinate participating writers, not arbitrary registry transactions.
+ 
+-Two failure cases must remain distinct. If a publish is known to have failed,
+-its obligation stays pending. If the external operation succeeds but its
+-response or completion record is lost, an absent tag cannot distinguish that
+-success from failure. The integration must reconcile the artifact's identity
+-or use a publisher that safely accepts repetition before recording completion.
+-Forward recovery does not by itself solve this uncertainty~\cite{helland12}.
+-The mathematical claims below refer to the recorded state and make their
+-retry assumptions explicit.
++\paragraph{Optional worker execution.}
++Execution nodes are distinct from repository peers and apply in every history
++mode. The CI-entry orchestrator acquires all participant locks in stable order,
++revalidates membership, and fixes the plan before dispatch. Explicit workers
++cannot initiate releases. Placement and completion order do not change semantic
++inputs or selected versions; node capacity intersects run-wide stage budgets.
++Shared preparation precedes isolated task worktrees. Temporary Git branches
++carry output bytes or retrievable immutable bundles, never release intent or
++completion records. Consumers verify exact input/output identities and required
++bytes without rebuilding provider closures. Tests and recording gates remain.
++The orchestrator alone admits results and records releases; publication and
++recording serialize per owner even when builds overlap. A timed-out publisher
++requires acknowledged cancellation, effective fencing or reconciliation before
++safe reassignment; an ownership-generation field alone does not fence effects.
++Transport loss cannot erase release obligations. This profile is specified,
++not evaluated by the campaigns below.
+ 
+ \subsection{Fleet Releases Across Repository Histories}
+ \label{sec:fleet}
+-The running chain can span repositories: one owns the npm packages, another
+-the images. The package graph still orders stages, but a consumer's tag must
+-also establish which source revisions its release incorporated. The current
+-language distinguishes three history modes~\cite{ccme2}. Single-history mode
+-covers one package, a monorepo, or a control-history wrapper. Specified-history
+-mode takes participating repositories from entry configuration. Discovered-history
+-mode walks links among peers that own their configurations; a star-shaped
+-link topology does not make its centre a policy owner.
++The running chain can span repositories while retaining source-owned publication
++and records. Three history modes~\cite{ccme2} select inputs: single history
++(one package, monorepo or control-history wrapper), specified source histories,
++and discovered peers owning their configurations. Discovered fleet links form
++a tree; a star gives its centre no policy authority. Specified sources must
++match control pins; discovered peers use observed heads, with link pins advisory.
+ 
+ \paragraph{Ownership and admission.}
+-Packages build, publish, and record tags in their owning repositories;
+-central configuration does not relocate publication. Commits are identified by
+-repository and full object ID, with ancestry confined to that repository.
+-Cross-repository admission asks whether the consumer has incorporated that
+-source revision. A control checkpoint associating the exact consumer tag with
+-source pointers, or a chain of links in the consumer's release record, proves
+-the boundary. Missing evidence requires an explicit consumer-tag/source-revision
+-association. Incomparable directives needing one winner are refused, not
+-ordered by timestamps. There is no synthetic global commit DAG.
++Commit identities are repository-qualified full object IDs; ancestry remains
++local. For source repository $r$ with fixed head $h_r$, let
++$A_r(x)=\mathit{reach}_r(h_r)\setminus\mathit{reach}_r(x)$.
++If consumer $D$'s stable and newest releases prove boundaries $s_{D,r}$ and
++$b_{D,r}$ in $r$, its train and fresh windows are
++\[
++ W(D;r)=A_r(s_{D,r}),\qquad
++ W^\circ(D;r)=A_r(s_{D,r})\cap A_r(b_{D,r}).
++\]
++Source units use the consumer's window in that source history. For an absent
++baseline, its subtracted reach is empty; missing evidence for an existing tag requires
++an explicit association, not an invented boundary. Automatic evidence ties the
++exact consumer tag to a control checkpoint or to its release commit's recorded
++link route. Tag-only releases remain valid but may need explicit baseline tuples.
++Incomparable directives requiring one winner are refused; timestamps and output
++sorting cannot create semantic precedence. These window definitions describe
++the extension, not a multi-history proof of Section~\ref{sec:guarantees}.
+ 
+ \paragraph{Partial fleet release.}
+-The protocol captures repository heads and tag refs, rechecks relevant inputs
+-before publication, and acquires fleet locks in a stable order. Native release
+-records and peer-link settlement admit their exact new heads; unrelated changes
+-require replanning. Peer links are settled before consumer publication so its
+-record carries the boundary evidence. Source tags remain authoritative after
+-failure: a failed control checkpoint requires explicit repair, not republishing
+-the successful source. Recording failures block dependent work while preserving
+-prior successes. This is forward recovery across separate ledgers, not an
+-atomic fleet transaction. These source-reviewed fleet mechanisms extend the
+-single-history model; the campaigns below do not evaluate them.
++Before publication, revalidate the package's provider and shared-group input
++closure. Group membership can introduce cycles into that closure computation;
++this does not permit cycles in the publication DAG. Only exact native record
++and settlement heads advance the expected snapshot. Completed worker output
++also needs unchanged effective inputs; an admitted head alone is insufficient.
++Peer-link settlement precedes publication when release commits provide boundary
++evidence; tag-only operation must not force a settlement commit. Recording
++routes take owner lanes in stable order. Source records become durable before
++pushed pointers or control checkpoints refer to them. A failed checkpoint
++preserves source success and requires explicit repair, not republication.
++Recording failures block dependent work; cleanup cannot rewrite successes or
++release exclusion while unfenced effects remain active. These mechanisms are
++forward recovery across separate ledgers, not an atomic fleet transaction.
+ 
+ \subsection{Integration Limits}
+ 
+-A Go consumer resolving a new module version needs its tagged source published;
+-an upstream compiled output does not provide it. Local \code{go.work} or
+-\code{replace} can instead bind a checkout~\cite{gomod}. This boundary is
+-configuration-specific and unevaluated here.
++A Go module consumer needs published tagged source, not upstream compiled
++output; local \code{go.work} or \code{replace} can bind a checkout~\cite{gomod}.
++This configuration-specific example is unevaluated.
+ 
+-Conforming integrations supply stable identities, declared dependencies and
+-availability, commands whose success means stage completion, and trustworthy
+-durable records. Uncertain publication requires safe repetition or
+-reconciliation. A specification can use validation/rendering as its build
+-and bundle publication as its publish stage. The model assumes an acyclic
+-graph and SemVer-compatible versions; arbitrary workflows need not conform.
++Conforming integrations supply stable identities, dependencies, availability,
++trustworthy stage completion and durable records. Uncertain publication requires
++reconciliation or safe repetition. Specifications can use validation/rendering
++and bundle publication. The model requires acyclic graphs and SemVer-compatible
++versions.
+ 
+ \paragraph{Shared release logic across operating systems}
+ A game developer can use Windows with Linux dedicated-server CI, or Linux
+@@ -177,16 +186,11 @@
+ adoption are not measured.
+ 
+ \subsection{A Stable CI Entry Point}
+-The package graph drives named tests and releases through a generic CI job.
+-Adding a package changes configuration and scripts but may leave a provisioned
+-workflow unchanged. New runners, credentials, or system dependencies still
+-require provisioning. A configured gate must reject missing required tests
+-and block publication on failure.
+-
+-Affected-task execution already appears in systems such as Nx~\cite{nx}. Here,
+-one package model supports testing and recoverable release execution across
+-artifact kinds. The two may use different windows and policies; the shared
+-graph avoids duplicate package lists without replacing CI policy.
++The graph drives tests and releases through generic CI. Adding a package changes
++configuration and scripts; new runners, credentials or tools still require
++provisioning. Gates reject missing required tests and block failed releases.
++Affected tasks already appear in Nx~\cite{nx}; here one package model supports
++tests and recoverable releases with distinct windows and policies.
+ 
+ \paragraph{Observed self-hosting case}
+ CI uses its checkout-built CLI for transitive test and build selection and

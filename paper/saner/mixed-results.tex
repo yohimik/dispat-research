@@ -1,5 +1,5 @@
 \subsection{RQ3: Availability Boundaries and CI}
-The fresh 1.10.0 Linux ARM64 campaign executes both the three-package
+The companion Linux ARM64 campaign executes both the three-package
 npm $\to$ Docker $\to$ Docker chain and the four-package running example.
 Build outputs carry fixture content through OCI archives; private Verdaccio
 and Docker registries distinguish local output from publication~\cite{oci,buildkit}.
@@ -17,9 +17,10 @@ In the four-package mixed runs, UI building overlapped delayed assets
 publication. All six base builds finished before UI publication started. This
 is a valid local-output schedule: base building need not await UI publication,
 but overlap is not required. Intervals use a shared monotonic clock~\cite{pytime}.
-An earlier 1.9.0 attempt incorrectly required strict overlap and failed its
-oracle. We corrected the predicate before a full 1.9.0 rerun; 1.10.0 uses that
-frozen protocol. A focused oracle test accepts completion before publication
+An earlier protocol-validation attempt incorrectly required strict overlap
+and failed its oracle. We corrected the predicate before a full rerun on that
+earlier binary; the companion campaign reuses the frozen protocol with its
+own binary pin. A focused oracle test accepts completion before publication
 starts and rejects starting after publication ends. The original failure is
 retained separately and is not counted as passing implementation evidence.
 

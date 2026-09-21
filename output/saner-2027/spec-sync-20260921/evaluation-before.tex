@@ -1,0 +1,166 @@
+\section{Evaluation}
+\label{sec:eval}
+We ask whether consumer windows retain residual obligations where a source
+window loses them (RQ1); whether versions and records remain stable through
+failure, retry, repair, and uncertain responses (RQ2); whether execution
+respects artifact boundaries and CI gates (RQ3); and what planning costs appear
+as graph, intent, and history inputs vary (RQ4).
+The mechanism and companion campaigns use a pinned released Linux ARM64
+binary; the historical campaign uses an earlier binary. Exact versions,
+hashes, environments, and protocols remain in their separate campaign records.
+None measures the later release-candidate extensions.
+
+\subsection{Study Design and Evidence Boundaries}
+\label{sec:eval:diff}
+The prospective mechanism campaign crosses five four-package DAGs (chain,
+diamond, fan-out, disconnected pairs, and a chain with shortcuts), stable and
+beta baselines, four fault targets, and three injection boundaries: before
+build completion, before publication, and after an artifact is written but the
+test publisher returns failure. The resulting 120 fault episodes each repeat
+the fault, repair it, and run once more to test discharge; ten no-fault and ten
+foreign-identity controls bring the matrix to 140 episodes. The last boundary
+is an explicit adapter response, not a process crash. Build and publish
+concurrency are one; seed 20260910 fixes the order.
+
+For RQ1, a finite model projection enumerates ordered four-node DAGs, each
+single origin, reachable completion sets, and failure subsets. Against the same
+states and observed episode completions, a computed counterfactual removes a
+unit when its source completes. This is a mechanism ablation, not a modified
+binary or competitor. For RQ2, every episode checks the residual plan against
+the original obligations minus completion tags, preserves target versions,
+and inspects immutable version/content identity. The local publisher may accept
+identical content after an uncertain response and must reject foreign content.
+
+Complementary evidence uses a restricted reference model on 300 real Git
+histories with 5--20 packages, layered DAGs, 4--12 intent units, and mixed tag
+states; recovery graphs contain 20 or 100 packages. Verdaccio and Docker
+registries exercise the mixed chains; CI injects failing and missing tests.
+Historical data cover a broader but imperfect oracle profile,
+reconstructed policy replay, pinned tool configurations, and eight scale
+cells. Every campaign retains its own binary, environment, and unit: model
+states, episodes, histories, fixture executions, and verifier predicates are
+reported separately. The deterministic matrices do not warrant $p$-values or
+a pooled quality score.
+
+\begin{table}[t]
+\centering
+\caption{Questions, interventions, counting units, and principal outcomes.}
+\label{tab:rqs}
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{@{}lp{1.65cm}p{1.45cm}p{3.65cm}@{}}
+\toprule
+RQ & Intervention & Unit & Outcome \\
+\midrule
+1 & finite projection; source-window counterfactual & state, transition,
+episode & 0 projection violations; counterfactual loses 260 states and
+111 obligations in 84/120 fault episodes \\
+2 & faults, repair, identity conflict & 140 episodes & 140 pass; 10/10
+foreign artifacts refused \\
+3 & real registries; CI gates & 60 executions; 3 CI repetitions & configured
+barriers and test gates distinguish intended pass/fail paths \\
+4 & graph/history factors & 8 process cells & .017~s at 100 layered packages;
+19.272~s at 10,000 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{RQ1: Consumer-Window Mechanism}
+The finite projection covers 64 ordered four-node DAGs and four single origins:
+256 source instances yield 772 reachable completion states, 2,270
+failure-subset transitions, and 1,054 progress transitions. It finds no
+violation of exact residual obligations, no widening, no double ledger
+delivery, or strict decrease when progress occurs. The source-window mutant
+loses obligations in 260 of those states. This is an executable stable-channel,
+one-intent projection, not a proof of the full model.
+
+On binary-derived completion states, the same counterfactual loses 111
+obligations in 84 of the 120 fault episodes: 28/40 episodes at each of the
+build, prepublication, and post-write boundaries, balanced equally between
+stable and beta. The ten no-fault controls lose none. All ten foreign-identity
+controls also expose one loss each, reported separately because they test a
+different intervention. \emph{Answer to RQ1.} Consumer-relative windows retain
+the expected residual set in the explored states; source completion is
+insufficient evidence that every consumer has discharged the intent.
+
+\subsection{RQ2: Retry and Identity Stability}
+All 140 mechanism episodes passed their predeclared outcomes. In the 130 fault
+or foreign-identity episodes, repeating the adverse condition preserved the
+plan, target versions, and completed tags; repair produced an empty plan. All
+140 final invocations were no-ops with stable tags, and the adapter recorded
+one artifact write per obligation. Each of the 40 cases at each fault boundary
+passed, as did all 70 stable and 70 beta cases. The ten foreign artifacts were
+refused without a new completion tag, after which restoring the intended
+content allowed recovery. This supports the supplied immutable local adapter,
+not arbitrary registry publishers or exactly-once shell effects.
+
+\emph{Answer to RQ2.} Across the designed graph, channel, target, and fault
+factors, recorded progress survived repeated failure without version drift;
+identity reconciliation distinguished prior intended writes from conflicting
+content.
+
+\paragraph{Reference agreement and specification regressions.}
+\label{sec:eval:fresh}
+All 300 fresh core instances produced accepted matching plans, with no
+differences, refusals, or invalid execution. Of 1,500 historical full-profile
+histories, 997 produced accepted plans and 503 produced complete E195
+refusals for proposed regressive versions. Among accepted plans, 546
+comparisons were clean; four refused dossiers also had no row difference,
+giving 550 matching diagnostic comparisons. Across the profile, 1,914 package
+rows differed. Rejected diagnostic output is not an executable release plan.
+
+The 1,914 differing rows are retained for diagnosis. They show that the
+restricted oracle cannot support a full refinement claim, especially for
+prerelease and channel behavior. Six historical specification vectors add
+selected discharge, suppression, channel, and source-exclusion cases without
+covering the complete language.
+
+\paragraph{Earlier recovery and historical replay.}
+All 20 companion episodes made progress on every run and converged within
+four runs; the verifier inspected 251 command records. Historical evidence
+contains two isolated orphan repetitions and 24 broader episodes, which also
+converged within four runs with zero structural G3/G5 check failures. These
+checks concern tested schedules and predicates. They do
+not establish the liveness premise under permanent registry failure, nor do
+they make an unrecorded external write unambiguous.
+
+Historical fault cells retain orphan and competing-push cases. The latter
+distinguish completed release tags from a concurrent source change; they test
+selected interleavings rather than a systematic concurrency sweep.
+
+Five-release historical replay matched 36 of 42 versions in
+\code{google-cloud-node} and 7 of 64 in \code{conventional-changelog}. Those
+projects did not use the modeled intent language. Their layouts and release
+policies were reconstructed for the replay, and mismatches may reflect that
+reconstruction as well as different release conventions. Consequently the
+experiment demonstrates limits of policy transfer; it is not evidence that
+our protocol reproduces arbitrary tools' historical version decisions.
+
+\subsection{Historical Comparisons and Negative Evidence}
+\label{sec:compare}
+The historical refusal and competing-push fixtures pin Lerna, Nx, and
+Changesets releases and configurations in their provenance. Lerna and Nx tagged the
+denied version before its failed upload, while Changesets left it untagged
+and recovered by querying npm. The observed propagation policies were
+unconditional for Lerna/Nx, range-gated for Changesets, and per-commit for our
+protocol. These are observations of the pinned configurations, not universal
+properties of every mode those tools expose.
+In competing-push fixtures, compared runs left tags outside branch ancestry;
+our historical run merged before its final push and planned the new commit.
+Release-please's tag timing comes from documentation, not an executed
+comparison~\cite{releaseplease}. No cross-tool speed or aggregate superiority
+claim follows.
+
+\input{mixed-results}
+
+\subsection{RQ4: Planning Cost}
+Eight historical cells report seconds and peak MiB. For layered graphs with
+200 units, medians rise from .017/15 at 100 packages (185 edges), through
+.250/21 at 1,000 (2,002 edges), to 19.272/92 at 10,000 (19,919 edges). A
+10,000-package chain records 19.354/118; 1,000-package chain and star cells
+record .254/26 and .244/19. At 1,000 layered packages, 1,000 units give
+.290/26 and 5,000 padding commits give .664/30. These are contended-host
+observations, not confidence intervals or a cross-tool benchmark.
+\emph{Answer to RQ4.} Observed costs increase sharply between the 1,000- and
+10,000-package cells; the design does not isolate a general asymptotic or
+end-to-end bound from history and output costs.

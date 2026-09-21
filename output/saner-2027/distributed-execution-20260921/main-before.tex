@@ -1,0 +1,60 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url,flushend}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remarknum}{Remark}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\G}[1]{G#1}
+\newcommand{\tool}{ReleaseWeave}
+\newcommand{\lang}{RIL}
+\begin{document}
+\title{Recovering Versioned Releases Across Build and Publish Boundaries}
+\maketitle
+\begin{abstract}
+An npm package can build from local dependency output, while an isolated
+registry-based Docker builder needs its base image published first. After
+partial failure, a provider's success can also remove the reason for its
+consumer's unfinished release. Our protocol combines stage-aware scheduling
+with consumer-based admission: Git history determines plans, and each
+consumer's completion record discharges its own obligation. The single-history
+model gives deterministic planning and eight conditional recovery guarantees.
+A polyrepo extension retains repository-owned records and source-revision
+evidence. Any peer can start CI in either topology; deployments may centralize
+workflow entry in one repository or distribute entry points across initiating
+repositories. For $q$ repositories, both star and minimal-tree topologies use
+$q-1$ links; a star bounds evidence routes at two hops, versus $q-1$ in the
+worst-case tree. These are structural bounds, not measured fleet speedups.
+In 120 controlled fault episodes spanning five dependency graphs, two release
+channels, and three failure boundaries, every episode recovers after repair
+without losing pending obligations. An analytical alternative that discharges
+intent when its source completes loses unfinished work in 84 of the same 120
+episodes (70\%). This compares admission rules, not competing tools or
+production failure rates. Separate measurements on
+an earlier binary, with 200 intent units, show median planning time and peak
+memory rising from 0.25\,s and 21\,MiB at 1,000 packages to 19.27\,s and
+92\,MiB at 10,000 packages. These controlled results support the recovery
+mechanism; full implementation refinement, fleet validation, and external
+exactly-once effects remain outside the claims.
+\end{abstract}
+\begin{IEEEkeywords}
+software release engineering, continuous integration and delivery,
+dependency scheduling, recovery, idempotence
+\end{IEEEkeywords}
+\input{introduction}
+\input{system}
+\input{model}
+\input{guarantees}
+\input{evaluation}
+\input{discussion}
+\clearpage
+\IEEEtriggeratref{34}
+\input{references}
+\end{document}

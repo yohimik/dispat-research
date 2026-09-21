@@ -1,63 +1,45 @@
 \section{Introduction}
 \label{sec:intro}
-Consider two npm workspace packages: a shared asset library and a UI package
-that imports it, followed by two Docker images. The dependent UI package
-consumes its provider's local build output, and the first image packages the
-built UI. The second image uses the first as its base; when built by an isolated
-registry-based builder, it must pull the new base version from a registry.
-Building all packages before publishing any of them is not a valid schedule
-for this release. Serializing every package through both stages is sufficient
-but also forces local-artifact consumers to wait for uploads they do not need.
+Consider an npm asset library, its dependent UI package, a Docker image
+packaging that UI, and a second image built from the first. The UI consumes
+local output; an isolated registry-based image builder needs its base
+published. A global build-then-publish schedule fails, while serializing
+every package makes local-artifact consumers wait for unnecessary uploads.
 
-Interruption makes the problem harder. If both npm packages and the base image have
-published but the final image fails, a repeated command should finish the
-remaining release. It should neither forget that image because its providers
-have already released nor assign a different version solely because the first
-attempt made progress. A release engine must therefore answer three questions:
-which versions are owed, which stages may run, and which obligations remain
-after a failure. These questions interact, but require different state.
+If the final image fails after its providers publish, retry should retain its
+release and target version. The engine must distinguish which versions are
+owed, which stages may run, and which obligations survive failure.
 
-Release engineering spans more than compilation~\cite{adams}. A heterogeneous
-release writes to independently administered package registries, container
-registries, and deployment services. They provide no shared atomic commit.
-The resulting execution resembles a saga~\cite{sagas}: individual steps commit
-separately, and recovery must account for the work that already succeeded.
-For published artifacts, deletion may be unavailable or operationally
-unacceptable. Our protocol therefore uses forward recovery. It completes or
-reconciles outstanding work rather than assuming that every external effect
-has a compensating action.
+Release engineering spans more than compilation~\cite{adams}. Without an atomic
+commit across registries, execution resembles a saga~\cite{sagas}:
+steps commit separately. Our protocol uses forward recovery because published
+artifacts may not be retractable.
 
-Workflow engines can express a build/publish DAG. Existing release tools also
-compute versions and coordinate publication~\cite{lerna,nx,changesets,
-releaseplease,semanticrelease}. The question studied here is how to compose
-stage ordering with a release ledger so that successful providers do not
-erase their failed consumers' obligations. The key rule is consumer-based
-admission: a propagated unit of intent remains pending according to the
-consumer's own release window, even when the originating package has already
-recorded its release. A second distinction separates intent accumulated over
-a prerelease train from fresh work not yet delivered.
+Existing tools schedule stages, compute versions, and coordinate
+publication~\cite{lerna,nx,changesets,releaseplease,semanticrelease}.
+We study their composition with a ledger that retains failed consumers'
+obligations after providers succeed. Consumer-based admission keeps propagated
+intent pending according to the consumer's own release window. Separate
+windows distinguish prerelease-train intent from fresh, undelivered work.
 
-We present \tool{}, an implementation of this protocol, and \lang{}, its
-release-intent language. These names are pseudonyms for anonymous review;
-reported version numbers identify the evaluated artifacts. The implementation
-uses Git history and tags as its release ledger and ordinary commands for
-build and publish stages. It requires no additional persistent release-state
-database. That claim concerns orchestration state, not the storage used by
-registries, build tools, or deployed applications.
+We present \tool{} and its release-intent language \lang{}, using pseudonyms
+for anonymous review; campaign records retain exact artifact identities.
+Git history and tags form the ledger; ordinary commands build and publish.
+No additional persistent release-state database is required, apart from
+storage used by registries, build tools, and applications.
 
-A package is a versioned release unit: software, specifications, and
-documentation use the same intent, dependency, command, and completion
-interfaces. The protocol accommodates different build tools and registries;
-its guarantees require conforming integrations, not a particular language.
-The same graph also gives provisioned CI a stable entry point for affected
-tests and releases as packages evolve; configuration still records each new
-package, and new credentials or runners can require workflow changes.
+A package is a versioned unit of software, specifications, or documentation,
+using common intent, dependency, command, and completion interfaces.
+Guarantees require conforming integrations. The graph gives provisioned CI
+a stable entry point for affected tests and releases; package configuration
+still changes, and new credentials or runners may require workflow changes.
 
 The paper makes three contributions:
 \begin{itemize}
 \item An ecosystem-independent, saga-inspired release protocol combining
 local-artifact and published-artifact dependencies with explicit release
-intent and per-package completion records
+intent and per-package completion records, including a description of fleet
+composition across repository-owned histories
 (Section~\ref{sec:system}).
 \item A self-contained model with deterministic planning and eight recovery,
 discharge, and scope/channel guarantees under stated assumptions

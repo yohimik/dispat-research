@@ -5,8 +5,10 @@ window loses them (RQ1); whether versions and records remain stable through
 failure, retry, repair, and uncertain responses (RQ2); whether execution
 respects artifact boundaries and CI gates (RQ3); and what planning costs appear
 as graph, intent, and history inputs vary (RQ4).
-The main evidence uses the official 1.10.0 Linux ARM64 image and implemented
-2.0 release-intent semantics. Saved 1.8.2 observations remain historical.
+The mechanism and companion campaigns use a pinned released Linux ARM64
+binary; the historical campaign uses an earlier binary. Exact versions,
+hashes, environments, and protocols remain in their separate campaign records.
+None measures the later release-candidate extensions.
 
 \subsection{Study Design and Evidence Boundaries}
 \label{sec:eval:diff}
@@ -33,7 +35,7 @@ Complementary evidence uses a restricted reference model on 300 real Git
 histories with 5--20 packages, layered DAGs, 4--12 intent units, and mixed tag
 states; recovery graphs contain 20 or 100 packages. Verdaccio and Docker
 registries exercise the mixed chains; CI injects failing and missing tests.
-Historical 1.8.2 data cover a broader but imperfect oracle profile,
+Historical data cover a broader but imperfect oracle profile,
 reconstructed policy replay, pinned tool configurations, and eight scale
 cells. Every campaign retains its own binary, environment, and unit: model
 states, episodes, histories, fixture executions, and verifier predicates are
@@ -100,8 +102,8 @@ content.
 \paragraph{Reference agreement and specification regressions.}
 \label{sec:eval:fresh}
 All 300 fresh core instances produced accepted matching plans, with no
-differences, refusals, or invalid execution. Of 1,500 saved full-profile
-histories from 1.8.2, 997 produced accepted plans and 503 produced complete E195
+differences, refusals, or invalid execution. Of 1,500 historical full-profile
+histories, 997 produced accepted plans and 503 produced complete E195
 refusals for proposed regressive versions. Among accepted plans, 546
 comparisons were clean; four refused dossiers also had no row difference,
 giving 550 matching diagnostic comparisons. Across the profile, 1,914 package
@@ -109,20 +111,20 @@ rows differed. Rejected diagnostic output is not an executable release plan.
 
 The 1,914 differing rows are retained for diagnosis. They show that the
 restricted oracle cannot support a full refinement claim, especially for
-prerelease and channel behavior. Six saved 1.8.2 specification vectors add
+prerelease and channel behavior. Six historical specification vectors add
 selected discharge, suppression, channel, and source-exclusion cases without
 covering the complete language.
 
 \paragraph{Earlier recovery and historical replay.}
-All 20 fresh 1.10.0 episodes made progress on every run and converged within
-four runs; the verifier inspected 251 command records. Saved 1.8.2 evidence
+All 20 companion episodes made progress on every run and converged within
+four runs; the verifier inspected 251 command records. Historical evidence
 contains two isolated orphan repetitions and 24 broader episodes, which also
 converged within four runs with zero structural G3/G5 check failures. These
 checks concern tested schedules and predicates. They do
 not establish the liveness premise under permanent registry failure, nor do
 they make an unrecorded external write unambiguous.
 
-Saved 1.8.2 fault cells retain orphan and competing-push cases. The latter
+Historical fault cells retain orphan and competing-push cases. The latter
 distinguish completed release tags from a concurrent source change; they test
 selected interleavings rather than a systematic concurrency sweep.
 
@@ -136,8 +138,8 @@ our protocol reproduces arbitrary tools' historical version decisions.
 
 \subsection{Historical Comparisons and Negative Evidence}
 \label{sec:compare}
-The historical refusal and competing-push fixtures pin Lerna 10.0.1, Nx
-23.1.2, and Changesets 3.0.1. In those configurations, Lerna and Nx tagged the
+The historical refusal and competing-push fixtures pin Lerna, Nx, and
+Changesets releases and configurations in their provenance. Lerna and Nx tagged the
 denied version before its failed upload, while Changesets left it untagged
 and recovered by querying npm. The observed propagation policies were
 unconditional for Lerna/Nx, range-gated for Changesets, and per-commit for our
@@ -152,7 +154,7 @@ claim follows.
 \input{mixed-results}
 
 \subsection{RQ4: Planning Cost}
-Eight saved 1.8.2 cells report seconds and peak MiB. For layered graphs with
+Eight historical cells report seconds and peak MiB. For layered graphs with
 200 units, medians rise from .017/15 at 100 packages (185 edges), through
 .250/21 at 1,000 (2,002 edges), to 19.272/92 at 10,000 (19,919 edges). A
 10,000-package chain records 19.354/118; 1,000-package chain and star cells

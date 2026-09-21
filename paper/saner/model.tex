@@ -4,12 +4,16 @@
 This section defines the release computation and the publish protocol;
 Section~\ref{sec:guarantees} proves guarantees over these definitions.
 The model separates stage availability from cross-run admission and discharge.
+It uses one history and per-package versioning; shared-version groups,
+multi-history composition, VCS adapters, and explicit rollback are outside it.
+These are forward-release claims; withdrawal activation, inventories and receipts
+must remain fixed when relating them to the current extended protocol.
 
 
 \subsection{Stage Availability}
 For a selected package $p$, let $B_p$ and $P_p$ denote successful completion
 of its build and publish stage, respectively. A version task, when present,
-is a prefix of $B_p$. For a provider $q$ and consumer $p$, the normal
+is a prefix of $B_p$. For a required provider $q$ and consumer $p$, the normal
 successful-stage dependencies include $B_q\to B_p$, $B_p\to P_p$, and
 $P_q\to P_p$. If $q$ requires published-artifact availability, add
 $P_q\to B_p$. Here stage arrows mean prerequisite-to-successor; the package
@@ -40,6 +44,12 @@ $B_{\mathrm{base}}$, so those stages may overlap. This elementary construction
 uses standard topological scheduling~\cite{kahn,mokhov}; the recovery results
 below address the separate problem of retaining the correct selected work.
 
+For remote local-output consumption, refine $B_q\to B_p$ to
+$B_q\to X_{q,p}\to B_p$, where $X_{q,p}$ exports, verifies and materializes
+the exact required outputs. Edge subdivision preserves acyclicity; extra
+preparation, test and build-only edges require a separate task-DAG check.
+Local bytes do not replace required publication or durable-recording gates.
+
 \subsection{Workspace, State, Windows}
 
 \begin{definition}[history]
@@ -49,22 +59,20 @@ from $c$ by parent edges, including $c$; write $c' \preceq c$ for
 $c' \in \mathit{reach}(c)$. $h$ is fixed throughout. Normalization supplies a deterministic total order
 of the commits consistent with ancestry; ``newest'' refers to this order,
 with unit position breaking ties within a commit. Ancestry alone is only a
-partial order, so this ordering policy is a fixed planning input. This reading of a
-repository is the standard one: the commit DAG with reachability is the
-working model of git history in repository mining~\cite{birdgit}, and
-the same structure underlies formal derivations of git's three-way
-merge from least common ancestors~\cite{mrdt}. Unlike the
-patch-theoretic accounts of version
-control~\cite{swierstraloh,hpt,mimram}, this model tracks no file
-contents, only history, tags and normalized intent. Manifests and path-derived
-scopes are supplied through the normalized instance rather than modeled as files.
+partial order, so the ordering policy is fixed input and cannot use dates.
+This commit-DAG view underlies Git mining~\cite{birdgit} and merge
+models~\cite{mrdt}. Unlike patch-theoretic accounts~\cite{swierstraloh,hpt,mimram},
+we model tags and normalized intent, with files and path scopes supplied by
+normalization.
 \end{definition}
 
 \begin{definition}[workspace]
 $\mathcal{P}$ is the finite set of packages at $h$; $E \subseteq
 \mathcal{P} \times \mathcal{P}$ contains $(a,b)$ when $a$ declares a
-dependency on $b$ of a configured kind; $\mathit{dep}(p) = \{d : (d,p)
-\in E\}$. The graph is acyclic; cyclic workspaces are outside this protocol
+dependency on $b$ of a propagation kind; $\mathit{dep}(p) = \{d : (d,p)
+\in E\}$. Let $E_o$ and $E_b\subseteq E_o$ be the publication-order and
+failure-blocking edges in this model. Optional dependencies may order publication without
+blocking on failure. The union $E\cup E_o$ is acyclic; cycles are outside this protocol
 and are rejected before scheduling. For $S \subseteq
 \mathcal{P}$, $\delta(S,d)$ is the least number of edges on a chain from
 a member of $S$ to $d$ against the arrows, $\infty$ if none.
@@ -91,8 +99,9 @@ commits; $\mathit{ch}(\mathit{base}_\sigma(p)) = \mathsf{stable}$ by
 convention when $p$ has no tag. Equal-precedence tags with conflicting release identities are rejected.
 When no stable tag exists, $\mathit{sbase}$ is the virtual 0.0.0 and
 $\mathit{reach}(\mathit{scom})=\emptyset$. An untagged package additionally
-has $\mathit{base}=0.0.0$, $\mathit{reach}(\mathit{basec})=\emptyset$, and a configured
-initial version; applying its first nonzero bump returns that initial version.
+has $\mathit{base}=0.0.0$ and $\mathit{reach}(\mathit{basec})=\emptyset$.
+Automatic target computation from a virtual stable baseline returns the
+configured initial version.
 Within a valid run sequence, tags are never moved or deleted, so states only
 grow. Rewriting a completion record is outside the guarantees.
 Tag write access is therefore release authority; a manifest's version field
@@ -113,16 +122,12 @@ and
                        \mathit{reach}(\mathit{basec}_\sigma(P)),
   \label{eq:fresh}
 \end{equation}
-with an empty subtracted reach when $P$ has no tag.  $W_\sigma$ is the
-\emph{train window}; $W^\circ_\sigma$ is the \emph{fresh-work window}.
-When $P$ has no stable baseline, $W_\sigma(P) = \mathit{reach}(h)$:
-an unreleased package's first release accounts for its whole
-history. An existing project must therefore configure its initial baseline
-and scope mapping deliberately. The window is measured from the last \emph{stable} tag
-so that a prerelease train can recompute its target over the whole train
-(Eq.~\ref{eq:train}). Direct admission, propagation admission and ledger
-discharge use $W^\circ$ instead. Thus a prerelease tag discharges delivered
-work without erasing the earlier records needed to recompute the train target.
+An absent baseline contributes empty subtracted reach. The \emph{train window}
+$W_\sigma$ retains history since the stable baseline for target computation
+(Eq.~\ref{eq:train}); the \emph{fresh-work window} $W^\circ_\sigma$ governs
+direct/propagated admission and discharge. Prerelease tags discharge delivered
+work while retaining train history. A first release covers the whole history,
+so initial baselines and scope mappings require deliberate configuration.
 \end{definition}
 
 \subsection{Units, Suppression, Admission}
@@ -146,8 +151,9 @@ axis is a channel value $\mathit{pc}(u)$, a depth $\mathit{pcd}(u)$
 \label{def:src}
 $\mathit{canc}(c,p)$ holds when $c$ is an ancestor-or-self of a
 \code{cancel} commit whose scope contains $p$; $\mathit{held}(p)$ when
-$p$'s effective \code{Release-As} is \code{none}. Both are functions of
-$h$ and the configuration alone. With $\mathit{disch}_\sigma(p,c)
+$p$'s effective \code{Release-As} at $\sigma$ is \code{none}.
+Cancellation uses fixed ancestry and scopes; retry claims also fix suppression
+of outstanding work. With $\mathit{disch}_\sigma(p,c)
 \equiv c \notin W^\circ_\sigma(p)$,
 \begin{equation}
 \begin{aligned}
@@ -157,20 +163,15 @@ $h$ and the configuration alone. With $\mathit{disch}_\sigma(p,c)
 \end{aligned}
   \label{eq:src}
 \end{equation}
-Suppression applies only to \emph{undischarged} work: once $p$ has
-published the version carrying $u$, the artefact its consumers are owed
-is public, and neither a later cancel nor a later hold may retroactively
-strand them.
+Suppression affects only \emph{undischarged} work: a later source cancel or
+hold cannot retract its already-published artifact or strand consumers.
 \end{definition}
 
 \begin{definition}[reach]
 \label{def:reach}
 $R(S,\ell) = \{ d \in \mathcal{P} \setminus S : \delta(S,d) \leq \ell
-\}$. Excluding all of $S$ means a unit never propagates to a package it
-bumps directly; depth is shortest-path and always measured from the
-originating source set, and a propagated effect never cascades its own
-propagation, so the depth written in the message is the whole blast
-radius in every run.
+\}$. A unit excludes its own sources. Depth is shortest-path distance from
+that source set; propagated effects never restart propagation.
 \end{definition}
 
 \begin{definition}[channels]
@@ -235,8 +236,7 @@ claim about package installers),
 \end{equation}
 where $\mathit{dir}_\sigma(P) = \bigsqcup\{\mathit{bump}(u) : P \in
 \mathit{src}_\sigma(u) \cap \mathit{scope}(u),\ c_u \in W^\circ_\sigma(P)\}$.
-Because $\sqcup$ is a join, a package with its own \code{feat} pending
-is unaffected by an incoming propagated \code{patch}, joining an admitted bump cannot lower the effective bump, and gathering order cannot matter.
+The join cannot lower an existing bump and is independent of gathering order.
 \end{definition}
 
 The consumer-side staleness audit is the upward dual of
@@ -274,10 +274,14 @@ $c_u\in W_\sigma(P)$. All other source, scope, suppression, depth, and
 resolved-channel predicates stay the same. It computes the target bump over
 the train, while $\mathit{eff}$ determines fresh admission. Write
 $e=\mathit{train}_\sigma(P)$.
-If $\mathit{pin}_\sigma(P)\downarrow$, it supplies that exact version. A stable package that
+First compute the automatic candidate without the pin. An exact pin must exceed
+$B$, must not undercut that candidate unless configured leniency explicitly
+allows it, and must satisfy the configured major-jump limit (default one major
+above the computed version). An accepted pin supplies the exact version.
+For automatic versioning, a stable package that
 remains stable uses $\mathit{apply}(S,\mathit{eff}_\sigma(P))$; a prerelease
-package graduating to stable uses $\mathit{apply}(S,e)$ as required by
-\lang{}~2.0 \S11.5. Otherwise, with $\mathit{ch}$ the target channel,
+package graduating to stable uses $\mathit{apply}(S,e)$, preserving the
+train target. Otherwise, with $\mathit{ch}$ the target channel,
 \begin{equation}
 \label{eq:train}
 \begin{aligned}
@@ -295,7 +299,8 @@ For a channel-only release whose candidate does not exceed $B$, recompute
 once with $e=\mathsf{patch}$ (the channel-entry patch); an exact pin is
 never adjusted this way. This permits entry from a clean stable baseline,
 for example 1.2.0 to 1.2.1-beta.0, without treating an actual bump regression
-as a channel switch. Every computed or pinned version must exceed
+as a channel switch. The same fallback permits graduation of a train entered
+only by a channel change. Every computed or pinned version must exceed
 $\mathit{base}_\sigma(P)$ in precedence, or the run refuses. Recomputing
 $t$ from the \emph{stable} baseline every run is what moves a whole
 train to \code{2.0.0-beta.0} when a breaking change lands mid-train
@@ -316,8 +321,8 @@ Baseline & Pending bump, channel & Next \\
 \code{1.3.0-beta.0} & a fresh minor commit        & \code{1.3.0-beta.1} \\
 \code{1.3.0-beta.1} & minor $+$ a new fix         & \code{1.3.0-beta.2} \\
 \code{1.3.0-beta.2} & a breaking change lands     & \code{2.0.0-beta.0} \\
-\code{1.3.0-beta.2} & none, switch to \code{rc}   & \code{1.3.0-rc.0} \\
-\code{1.3.0-rc.1}   & none, \code{stable}         & \code{1.3.0} \\
+\code{1.3.0-beta.2} & channel-only, \code{rc}     & \code{1.3.0-rc.0} \\
+\code{1.3.0-rc.1}   & channel-only, \code{stable} & \code{1.3.0} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -328,17 +333,12 @@ A run from $\sigma$ is parameterised by an adversarially chosen set
 $F \subseteq \Pi(\sigma)$ of packages failing before recorded completion, which induces the
 blocked set
 $B = \{p \in \Pi(\sigma) \setminus F : p$ transitively depends on some
-$q \in F\}$, computed over the \emph{full} workspace graph (a package
-with no bump this run is still a path from a dependent to a failed
-dependency). Publication proceeds in a topological order of the full
-graph, ties broken bytewise by name, filtered to the plan \emph{last}:
-inducing the graph on the plan first deletes ordering paths that run
-through unplanned packages. In the abstract transition, each package is tagged after its
-own publish succeeds, never before (a tag for an unpublished version
-makes it unrecoverable, since Eq.~\ref{eq:window} treats it as
-released), and \emph{whatever its publish target},
-including targets that upload nothing
-(Proposition~\ref{prop:tagall}). The run yields
+$q \in F$ via $E_b\}$. Both blocking and publication order traverse all
+packages, preserving paths through unplanned intermediates. Publication uses
+$(\mathcal P,E_o)$, with bytewise name ties, filtering to the plan \emph{last}.
+Each package is tagged only after successful publication, including targets
+that upload nothing (Proposition~\ref{prop:tagall}); premature tagging would
+discharge unpublished work. The abstract transition yields
 $\mathit{run}(\sigma,F) = \sigma \cup \{(p, \nu_\sigma(p), h) : p \in
 \Pi(\sigma) \setminus (F \cup B)\}$. The transition abstracts the publish-to-record interval; it does not
 prove that interval atomic in the implementation. A \emph{run sequence} is
@@ -346,18 +346,31 @@ $\sigma_1 \leq \sigma_2 \leq \cdots$ with $\sigma_{k+1} =
 \mathit{run}(\sigma_k, F_k)$.
 \end{definition}
 
-The propagation bound excludes parsing, history traversal, scope resolution,
-and output. Those costs depend additionally on reachable commits, parent
-edges, and retained provenance. Cached traversal may share reachability, but
-must preserve each unit's source set, depth, filters, channel predicates, and
-identity. Merging units by directive spelling alone can change admission.
+The propagation bound covers graph walks, not total planning. Let $H$ and $A$
+count reachable commits and parent edges, $m$ the distinct boundary, cancellation
+and correction/revert markers, and $w$ the machine word width. A child-before-parent
+pass propagating marker bits costs $O((H+A)\max(1,\lceil m/w\rceil))$ word
+operations; dense masks use $O(H\lceil m/w\rceil)$ words plus indexes.
+A commit's bit for marker $x$ is set exactly when it is in $\mathit{reach}(x)$:
+the marker sets its own bit and each child passes its bits to its parents.
+Fresh membership needs two boundary lookups from Eq.~\ref{eq:fresh}, not one
+reachability traversal for every stable/fresh pair. Materializing memberships,
+correction probes, cancellation queries, scope resolution and provenance add
+work even when their final output is empty. Message scanning is linear in bytes;
+channel incidence inversion preserves proposal order and complete diagnostics.
+Walk reuse requires equal source sets, depth and edge kinds; admission and
+provenance remain per unit. Caches need bounds across all tiers; eviction preserves semantics but
+can lose the time benefit. Bytewise publication ties cost
+$O(|E_o|+|\mathcal P|\log|\mathcal P|)$ with a heap; blocking closure costs
+$O(|\mathcal P|+|E_b|)$ by one multi-source traversal. These indexed phase bounds
+are informative, not global optimality or distributed speedup guarantees.
 
 Order matters for a reason tags cannot express: a dependent can be published
 while its promised provider version is unavailable. If both completion tags
 later point at the same commit, ancestry alone does not reveal that temporal
 inversion. The protocol therefore prevents it through stage prerequisites. When a
 publish is rejected because the version already exists (a run died
-between publish and tag), \lang{}~2.0 requires content-identity verification
+between publish and tag), the protocol requires content-identity verification
 before adoption and otherwise aborts: tagging a foreign artefact would enrol
 it into the release lineage. This is a protocol obligation, not a claim that
 \tool{} can inspect arbitrary user-defined publish scripts; such integrations
@@ -381,13 +394,10 @@ commit then last unit within it, and bytewise least name.
 
 A normalized instance is
 \[
- I=(\text{history},h,\mathcal P,E,\mathcal U,\sigma,\mathit{config}),
+ I=(\text{history},h,\mathcal P,E,E_o,E_b,\mathcal U,\sigma,\mathit{config}),
 \]
-where configuration includes the fixed history-ordering policy. Repository
-files and messages supply these objects through normalization. The model
-abstracts artifact contents, arbitrary hook effects, and other configuration
-features. Its guarantees quantify over this fragment under acyclicity,
-version validation, and the run-sequence retry invariant. The implementation
-is not assumed to check every component of that invariant. Proving that a
-binary refines the model remains separate work; Section~\ref{sec:eval}
-provides tests of selected behavior, not a refinement proof.
+Configuration includes history ordering; normalization supplies the inputs.
+Artifact contents and arbitrary hook effects are abstracted. Guarantees require
+acyclicity, valid versions and the retry invariant, whose full implementation
+enforcement is unproved. Section~\ref{sec:eval} tests selected behavior;
+binary refinement remains unproved.

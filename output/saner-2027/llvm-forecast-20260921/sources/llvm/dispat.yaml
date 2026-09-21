@@ -1,0 +1,53 @@
+# Local build policy. Native distributed execution is deliberately release-gated.
+# See .ci/dispat/README.md before enabling a release.
+concurrency: [2, 1]
+tagFormat: 'dispat/{name}/v{version}'
+# Numeric seed only, not a release record or history boundary. Allows an explicit
+# first 24.0.0-rc.0 request within CCME's one-major Release-As advance limit.
+initials:
+  llvm: 23.0.0
+  clang: 23.0.0
+  lld: 23.0.0
+  toolchain: 23.0.0
+commitErrors: warn
+autoVersion:
+  enabled: false
+changelog:
+  enabled: false
+github:
+  enabled: false
+commit:
+  enabled: true
+  push: true
+  force: false
+  remote: origin
+  name: github-actions[bot]
+  email: 41898282+github-actions[bot]@users.noreply.github.com
+versionGroups:
+  llvm-release:
+    versioning: fixed
+isBuildWaitingPublish: false
+scripts:
+  validate: python3 .ci/dispat/check.py
+  release-ready: python3 .ci/dispat/build.py release-ready
+run:
+  allowBranch: [main, 'release/*']
+  beforeAll: [release-ready]
+packages:
+  llvm:
+    $ref: ./.ci/dispat/packages/llvm.yaml
+  clang:
+    $ref: ./.ci/dispat/packages/clang.yaml
+  lld:
+    $ref: ./.ci/dispat/packages/lld.yaml
+  toolchain:
+    $ref: ./.ci/dispat/packages/toolchain.yaml
+dependencies:
+  clang:
+    - {provider: llvm, keep: true}
+  lld:
+    - {provider: llvm, keep: true}
+  toolchain:
+    - {provider: llvm, keep: true}
+    - {provider: clang, keep: true}
+    - {provider: lld, keep: true}

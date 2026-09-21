@@ -1,0 +1,326 @@
+{
+  "captured_utc": "2026-09-20T14:35:46.520646+00:00",
+  "product_cells": [
+    {
+      "cell": "midrelease-clean-changesets",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 3,
+      "passed": false
+    },
+    {
+      "cell": "midrelease-clean-dispat",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 12,
+      "checks_met": 12,
+      "passed": true
+    },
+    {
+      "cell": "midrelease-clean-lerna",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 1,
+      "passed": false
+    },
+    {
+      "cell": "midrelease-clean-nx",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 6,
+      "checks_met": 2,
+      "passed": false
+    },
+    {
+      "cell": "midrelease-conflict-changesets",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 3,
+      "passed": false
+    },
+    {
+      "cell": "midrelease-conflict-dispat",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 14,
+      "checks_met": 14,
+      "passed": true
+    },
+    {
+      "cell": "midrelease-conflict-lerna",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 2,
+      "passed": false
+    },
+    {
+      "cell": "midrelease-conflict-nx",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 6,
+      "checks_met": 2,
+      "passed": false
+    },
+    {
+      "cell": "orphan-changesets",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 5,
+      "passed": true
+    },
+    {
+      "cell": "orphan-dispat",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 7,
+      "checks_met": 7,
+      "passed": true
+    },
+    {
+      "cell": "orphan-lerna",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 3,
+      "passed": false
+    },
+    {
+      "cell": "orphan-nx",
+      "binary_label": "dispat 1.7.1 (linux_arm64)",
+      "binary_sha256": null,
+      "checks": 5,
+      "checks_met": 4,
+      "passed": false
+    }
+  ],
+  "current_harness_cells": 16,
+  "missing_retained_cells": [
+    "propagation-build-dispat",
+    "propagation-build-lerna",
+    "propagation-publish-dispat",
+    "propagation-publish-lerna"
+  ],
+  "abstract_comparison": {
+    "fault_episodes": 120,
+    "counterfactual_losing_episodes": 84,
+    "percent": 70.0,
+    "type": "analytical admission-rule alternative on designed cases, not executed mutant binary"
+  },
+  "files": [
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-changesets/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-changesets/verdict.json",
+      "sha256": "f5a75168af8b91fd2dd08a9820b1538a61eb893bd1367bcaea60a8a2101374bb"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-nx/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-nx/verdict.json",
+      "sha256": "df726ae4d64185e7df3e2203baf46a5f8dd9d4ad4efdddc32c0bf300d68710ef"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-lerna/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-lerna/verdict.json",
+      "sha256": "539e41f10aaff30d1e072473fa55d6b5821fc6001d6669a2c0e38669882ef78c"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-dispat/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-dispat/verdict.json",
+      "sha256": "b9a4c6f40181bb14603f8c266df83b02b112109f63b735db79db8d1e20587515"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-lerna/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-lerna/verdict.json",
+      "sha256": "da9655e81e997f29921e3922f8d4bbfdbd453889707973123d6260dbcf5f0112"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-nx/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-nx/verdict.json",
+      "sha256": "3f34502cf8e045b32289ba331b57346222164991419ed93ae4be36fbc4e46e9f"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-changesets/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-changesets/verdict.json",
+      "sha256": "382652a5e8e42c8bfaee0d20b8b9f7ac10b3e60c3ba89f3007411479a83045db"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-dispat/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-dispat/verdict.json",
+      "sha256": "7206575b5ac14186b04a7d60248c9b6d199db9e3cd0aaa1a8082e19ac8d6f202"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-lerna/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-lerna/verdict.json",
+      "sha256": "78f0033544512378f7c1302df9f641e3ee15e5f3fe2ecacbf04a009db58b940d"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-nx/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-nx/verdict.json",
+      "sha256": "ba3981160e2b56aaa71d2578bcac2e045a322db4eb0373a0c27c44e09420a7bc"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-dispat/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-dispat/verdict.json",
+      "sha256": "76deddbee07b707f7a9df1664d6a87998c821e88d4ecc7408f0b1f6d0f681d32"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-changesets/verdict.json",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-changesets/verdict.json",
+      "sha256": "f5e58b59da96aeee8e7aac603000da351e274a76546e27618c7d877da26744c3"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-changesets/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-changesets/observations.jsonl",
+      "sha256": "798d40a13792b8e141690ccd111dbc04c2ed5be129c597528dc94cb9b0570ce0"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-nx/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-nx/observations.jsonl",
+      "sha256": "eb392fef33bc858c9476467dc0ca22cae7e49700a1fa3ae5f9b3793d00a77ab0"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-lerna/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-lerna/observations.jsonl",
+      "sha256": "e49b968b660bad622bb50574adae158aba53d5caeb16aefc5ad76cd7debf8fb6"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-dispat/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-dispat/observations.jsonl",
+      "sha256": "19776679ed8c45485ed3b6516c55b65a7c06a18584c1f9c86776e15dc1543591"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-lerna/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-lerna/observations.jsonl",
+      "sha256": "305e817ca5354bc8165f5c5754bc53a2e345c333632bf518b7f6765ba4a10440"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-nx/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-nx/observations.jsonl",
+      "sha256": "607b3eb57c0ce1f2ecbc050dacca450159fe8ac26bd777e82dd7654c2a831714"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-changesets/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-changesets/observations.jsonl",
+      "sha256": "c6168719f3336f7e5b95c1412f50fce758c663d4237b5a053bfae479891e31f5"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-dispat/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-dispat/observations.jsonl",
+      "sha256": "23a6165fa6ae2de19f1841f634c357e61c50197ddf6a865e363ee8db332c13eb"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-lerna/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-lerna/observations.jsonl",
+      "sha256": "b2cec31f8963ada2c2ab79625e4291cd4cfb1ca7981eae50c0f1d1e7696c2452"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-nx/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-nx/observations.jsonl",
+      "sha256": "e664033befd204eb61885f744ae75c84dc8ca0feeaa0309d816110b20ee6d0f1"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-dispat/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-dispat/observations.jsonl",
+      "sha256": "59c2db29ea8659778d4bbd97f5d2156bc7a60710197ccd095cdf5f9c1c445ee9"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-changesets/observations.jsonl",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-changesets/observations.jsonl",
+      "sha256": "2d6baa62004c46a91737a91fadfe625123aa12eaf4e5fe6f560b30130fa478fd"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-changesets/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-changesets/transcript.txt",
+      "sha256": "818e48645d23f2c60dc1aff6d84a168c44d4bffbd521b5bd49da9050b4b1b0f1"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-nx/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-nx/transcript.txt",
+      "sha256": "442448329496d218fcbdf727df5a56384dac198110b07dda79f7cc62c72a2740"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-lerna/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-lerna/transcript.txt",
+      "sha256": "05397f6839a133350887e81d994f37dde916758ceb0ff35bb4a6598a74846255"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-dispat/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-dispat/transcript.txt",
+      "sha256": "4f50e28ee35515e8f9188899f087a11037a47b1f375f252e773de58fcb1aa887"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-lerna/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-lerna/transcript.txt",
+      "sha256": "84883cc1a11ca08614172206736461d3a1ae6643a068eca4e2bf653037819e12"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-nx/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-nx/transcript.txt",
+      "sha256": "9c22e6f4a75cf09e9d2f4a6c1b66e7de76ccda35613bfd1c9e8053be7a166bb8"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-changesets/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-changesets/transcript.txt",
+      "sha256": "a015d150becff087e4163eef0a160f471e5b619401c70b3a68f094890bc07543"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-conflict-dispat/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-conflict-dispat/transcript.txt",
+      "sha256": "f546f2ff82198fc3e1386f1cff7d1ab827017229465137eb75df357fca4004b5"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-lerna/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-lerna/transcript.txt",
+      "sha256": "9bd97193505db3280ffe9c6ae4a719f15a0f68f0db47d1cdacaea7497b21f21f"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-nx/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-nx/transcript.txt",
+      "sha256": "43972ca10eb16e3cee92a2d64effff7f7aebd0f4d4640dd8780fa604bf71efda"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/orphan-dispat/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/orphan-dispat/transcript.txt",
+      "sha256": "b6f707f7c6978ece1f64e68d0eb941707c7b784515e450b9fa223cb549b7b3f8"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/coverage/experiments/midrelease-clean-changesets/transcript.txt",
+      "snapshot": "experiment-snapshot/coverage/experiments/midrelease-clean-changesets/transcript.txt",
+      "sha256": "55cff2f57e332ca336db50a7f1a2b1c9cc95b175f3d6d7e8c9ec25100fcb2386"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/README.md",
+      "snapshot": "experiment-snapshot/tests/experiments/README.md",
+      "sha256": "27a959cb005a4b14fb8bbbb666131028cd1816ac63bba06681608a80c972739a"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/dispat.yaml",
+      "snapshot": "experiment-snapshot/tests/experiments/dispat.yaml",
+      "sha256": "d740e1ee1a52a64e03d22d486e2557354531490a13475905ddd2abbcdf4b8485"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/run.sh",
+      "snapshot": "experiment-snapshot/tests/experiments/run.sh",
+      "sha256": "ad2251f960ed877df8450a4a952f9348dfc723be78d9ece28268c9aa6580e49e"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/propagation/dispat.sh",
+      "snapshot": "experiment-snapshot/tests/experiments/propagation/dispat.sh",
+      "sha256": "80ffee70e6ce359f137f32abe913e7fbc9917b45b6d6f530e3fd39b8ad0724a0"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/propagation/lerna.sh",
+      "snapshot": "experiment-snapshot/tests/experiments/propagation/lerna.sh",
+      "sha256": "e7cec9d6d999a917b566de32b345bd843e12fcabc28da3d4161901177c7b7a8e"
+    },
+    {
+      "source": "/Users/yohimik/Projects/dispat/tests/experiments/tools/package.json",
+      "snapshot": "experiment-snapshot/tests/experiments/tools/package.json",
+      "sha256": "dc48928e6d03f634cd2f16b2f89f168da6317b5f3f09340d97eb101909edc01b"
+    }
+  ]
+}

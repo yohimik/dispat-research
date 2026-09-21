@@ -1,0 +1,12 @@
+{
+  "specVersion": "3.1.0-rc.2",
+  "specRevision": "fb555ecf723f4a64598680d477ed4cc81e919bdf",
+  "developmentSchemaRevision": "dc60b5bf54de6fc90e5f4e2f71a673f86c03c92f",
+  "ready": false,
+  "blockers": [
+    "Published dispat does not implement CCME section 28 distributed execution.",
+    "The inspected development worker answers probes but does not execute build tasks.",
+    "Verified output transport, consumer restoration, scheduling and release recovery must pass conformance tests before activation.",
+    "Replace example.invalid mailboxes, provision compatible Linux amd64 workers and validate a real LLVM build before activation."
+  ]
+}

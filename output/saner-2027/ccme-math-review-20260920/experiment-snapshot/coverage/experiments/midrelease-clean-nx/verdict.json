@@ -1,0 +1,59 @@
+{
+  "experiment": "midrelease",
+  "tool": "nx",
+  "scenario": "clean",
+  "dispat": "dispat 1.7.1 (linux_arm64)",
+  "steps": [
+    {
+      "step": "release",
+      "exit": 1
+    },
+    {
+      "step": "recover",
+      "exit": 0
+    },
+    {
+      "step": "release2",
+      "exit": 0
+    },
+    {
+      "step": "publish",
+      "exit": 0
+    },
+    {
+      "step": "push",
+      "exit": 0
+    },
+    {
+      "step": "next",
+      "exit": 0
+    }
+  ],
+  "checks": [
+    {
+      "check": "release exited 0",
+      "ok": false
+    },
+    {
+      "check": "the release run left a commit and tags behind",
+      "ok": false
+    },
+    {
+      "check": "registry serves core 1.1.0",
+      "ok": true
+    },
+    {
+      "check": "the release commit was pushed by the tool",
+      "ok": false
+    },
+    {
+      "check": "every released package is consistent once pushed by hand",
+      "ok": true
+    },
+    {
+      "check": "the next plan is the colleague's change and its dependents alone",
+      "ok": false
+    }
+  ],
+  "passed": false
+}

@@ -1,0 +1,134 @@
+\section{Discussion and Threats to Validity}
+\label{sec:threats}
+\paragraph{Meaning of the guarantees.}
+Safety differs from eventual progress~\cite{safety}. Our retry theorem fixes
+corrected intent, source membership, admission predicates, and channel inputs.
+Some stability lemmas follow directly from this invariant, exposing what retries
+must preserve. New commits, policy edits, or tag rewrites can require replanning;
+permanent failure need not converge.
+
+Shared-counter groups can advance prerelease counters on retry and reselect
+successful members. They are outside our per-package version-stability and
+decreasing-plan convergence proofs.
+
+The model abstracts artifact contents and combines publication and recording
+into one transition. Lost responses and failed recording remain integration
+obligations; Git locks do not make registries transactional. Own-reason failure
+exceptions, recording, and finalization require refinement beyond the abstract
+blocked-set rule; selected test traces do not close that gap.
+
+\paragraph{Internal and construct validity.}
+The author developed the system, model, oracle, and tests; agreement can preserve
+shared mistakes. The restricted oracle omits semantics, and full-profile
+categories are heuristic. The prospective matrix was frozen before execution
+but designed after the earlier campaign, not independently replicated.
+The finite projection covers stable-channel, one-intent states; post-write
+faults are responses, not process crashes. Integrity checks establish record
+consistency; concurrency tests cover selected interleavings. Histories, package
+rows, episodes, fixture/CI repetitions, commands, and assertions remain
+separate units.
+
+\paragraph{External validity.}
+Synthetic fixtures establish controlled behavior; historical replay reconstructs
+policies, and comparisons pin configurations. No user study measures intent
+correctness or review effort. The control-history polyrepo fits the model;
+multi-history coordination, peer choreography, and their scale remain
+unevaluated. Platform scripts, agent gates, and ecosystems demonstrate
+integration scope, not general effectiveness. One contended host cannot
+establish service-level promises.
+
+\paragraph{Exploratory outreach context.}
+Eight retained September review inventories cover at least 211 distinct
+repositories after deduplication, with unequal review depth. One pass spans
+21 native ecosystems; a separate search's 6,731 hits across 1,512 repositories
+are discovery coverage, not reviewed-project or defect counts.
+Subjects include RelayCast (9 GitHub stars) and Paperclip (80,381) at the
+recorded snapshot; stars describe visibility, not code size.
+Three projects illustrate different boundaries. In RelayCast, a two-clone
+fixture simulates successful upload followed by a rejected push: no remote tag
+is created, yet the script reports success; no production failure is claimed.
+Two historical Astro sequences publish npm packages, fail before marketplace
+publication, then finish green on retry while skipping those destinations;
+later manual completion was not assessed. An Apache Arrow fixture with a
+stubbed workflow client reproduces selection of a stale successful run for a
+new invocation. These observations motivate destination-specific completion
+and invocation identity in fleet recovery. Healthy checks, resolved incidents,
+and later rejected claims remain in the records. This selected review neither
+estimates defect prevalence nor validates our protocol on these projects.
+
+\section{Related Work}
+\label{sec:related}
+\paragraph{Release and build systems.}
+Release engineering is a distinct research problem~\cite{adams}.
+Monorepo practice~\cite{potvin} and build-system models~\cite{mokhov} address
+ordering and reuse; incremental builds admit dynamic dependencies~\cite{pluto}.
+Our fixed graph records publication obligations without claiming a new
+topological algorithm or incremental rebuilding.
+Lerna, Nx, Changesets, release-please, and semantic-release provide different
+versioning and publication workflows~\cite{lerna,nx,changesets,releaseplease,
+semanticrelease}. Section~\ref{sec:compare} compares operational traces of
+specified configurations, not formal reductions of those complete tools.
+Spinnaker supports parallel stages and execution histories~\cite{spinnaker};
+Nix uses input-derived store paths~\cite{nix}; TOSCA standardizes lifecycle
+interfaces~\cite{tosca}; OpenGitOps calls for versioned desired state and
+reconciliation~\cite{gitops}. Our ledger tracks completed releases across
+independent publication targets without replacing these systems' state models.
+
+Versioning and ecosystem studies~\cite{raemaekers,bogart,decan} motivate explicit
+policy, not proof that a declared bump preserves compatibility.
+EDOS~\cite{edos} studies package installability rather than interrupted
+publication. CI effects depend on project composition~\cite{huangci}.
+DORA's survey-based research associates
+greater AI adoption with higher delivery throughput and higher delivery
+instability~\cite{dora2025}. This motivates attention to recovery as delivery
+accelerates; it neither attributes instability to interrupted fleet releases
+nor evaluates our protocol. Workflow duplication despite GitHub
+Actions reuse~\cite{cardoen} motivates shared configuration; maintenance
+improvement remains unmeasured. Formal VCS work studies contents, patches, and
+merges~\cite{swierstraloh,hpt,mimram,mrdt}; Git-mining cautions apply to history
+and references~\cite{birdgit}. Content and merge correctness remain outside our
+ledger proofs.
+
+\paragraph{Recovery and formal assurance.}
+Buildbox formalizes build, install, ship, and update transitions~\cite{liusmith};
+Aeolus studies component states, dependencies, and reachability~\cite{aeolus}.
+These precede our narrower publication-recovery question. NEPHELE applies
+sagas to distributed lifecycle operations~\cite{nephele}; Bui et al.'s
+LLM-assisted CI/CD diagnosis and repair~\cite{bui} measures different outcomes.
+Sagas~\cite{sagas} and the limits of transaction abstractions~\cite{gray}
+provide the recovery setting. Independently committed and idempotently
+processable operations~\cite{helland07,helland12} explain why uncertain
+outcomes need explicit treatment. Our contribution specializes admission and
+discharge to versioned consumers; it is not the invention of forward recovery.
+Anvil~\cite{anvil} verifies reconciliation properties of Kubernetes controller
+implementations, whereas our handwritten proofs establish a release model and
+our tests sample implementation behavior. This is a significant difference
+in assurance. Methodological cautions about fuzz evaluation~\cite{klees}
+likewise motivate separating core agreement from unsupported generalization.
+
+\section{Conclusion}
+\label{sec:conclusion}
+Stage prerequisites enforce artifact availability; consumer-based admission
+retains obligations after providers succeed. Under the retry invariant,
+separate train and fresh-work windows preserve versions and permit convergence.
+All 140 mechanism episodes retained expected plans; the source-window
+counterfactual lost work in 84/120 fault episodes. Fleet extensions require
+repository-qualified histories and evidence of consumer boundaries.
+Multi-history recovery, recording failures, and randomized interleavings
+remain targets for evaluation and mechanized refinement~\cite{lamport}.
+
+\section*{Data Availability}
+Campaign records retain runtime pins, harnesses, raw observations, verified
+archives, offline verifiers, and fixture Git metadata. Outreach inventories,
+deduplication, and case provenance are retained locally. These records can
+reveal authorship; no anonymized package is available, and public release
+remains undecided.
+
+\section*{Acknowledgments}
+\noindent\textit{AI assistance.}
+Claude Fable provided most assistance; Claude Opus, Gemini, and OpenAI Codex
+also contributed. Assistance went beyond editing: implementation and experiment
+tooling (Sections~\ref{sec:system} and~\ref{sec:eval}), and manuscript drafting
+and revision, including the system description, model exposition, evaluation,
+and discussion. Executions produced the measurements; the human author
+remains responsible for all claims and results.

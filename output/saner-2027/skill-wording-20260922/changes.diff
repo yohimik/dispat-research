@@ -1,0 +1,30 @@
+--- discussion-before.tex
++++ paper/saner/discussion.tex
+@@ -71,7 +71,7 @@
+ instability~\cite{dora2025}. A 2026 qualitative analysis of 1,110 Google
+ engineers' responses collected in 2025 describes verification and production
+ integration costs that can offset AI generation gains~\cite{dora2026tensions}.
+-Our accompanying agent guide directs agents to
++Our accompanying skill directs agents to check commit release-intent diagnostics,
+ inspect deterministic plans, retain tests, invoke CI releases, and reconcile
+ partial outcomes. The engine implements a model with eight conditional
+ mathematical guarantees; agent effectiveness and full implementation refinement
+--- main-before.tex
++++ paper/saner/main.tex
+@@ -29,11 +29,11 @@
+ All 120 controlled
+ fault episodes recover after repair; an analytical source-discharge alternative
+ loses work in 84 (70\%). This compares admission rules, not competing
+-tools or production failure rates. An agent guide supports plan
+-inspection and CI releases. Proposed fleet and worker extensions
+-preserve source-owned records and reuse verified provider outputs. A prospective
+-LLVM scenario projects a Linux release-time reduction from an upstream
+-154-minute baseline to about 103 minutes (33\%) on 6--10 compatible 16-core
++tools or production failure rates. A skill supports commit release-intent
++diagnostics, plan inspection, and CI releases. Proposed fleet and worker extensions
++preserve source-owned records and reuse verified provider outputs. An
++LLVM-on-Linux release forecast reduces an upstream 154-minute baseline to
++103 minutes (33\%) on 6--10 compatible 16-core
+ machines, assuming a wider graph, sharded tests, and five-minute output transfers.
+ A Linux kernel build-farm forecast reduces a reported six-machine, 232-minute
+ baseline to 65--70 minutes on 24 workers (3.3--3.6$\times$), assuming

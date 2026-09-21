@@ -1,0 +1,57 @@
+\RequirePackage[T1]{fontenc}
+\documentclass[10pt,conference]{IEEEtran}
+\usepackage{amsmath,amssymb,amsthm,graphicx,booktabs,array,url,flushend}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\emergencystretch=2em
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}
+\newtheorem{remarknum}{Remark}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\G}[1]{G#1}
+\newcommand{\tool}{ReleaseWeave}
+\newcommand{\lang}{RIL}
+\begin{document}
+\title{Recovering Versioned Releases Across Build and Publish Boundaries}
+\maketitle
+\begin{abstract}
+Distributed release execution must carry dependency outputs as well as source
+code. An npm consumer needs its provider's build outputs; an isolated
+registry-based Docker builder needs its base image published first. Our
+protocol combines stage-aware scheduling with consumer-owned release
+obligations, preserving unfinished work after a provider succeeds.
+Release planning is a pure function of fixed history, records, graph, and
+configuration. A proposed execution profile adds workers to single
+repositories, monorepos, and polyrepos. Nodes share one configuration schema
+and default to orchestrator capability; explicit workers cannot initiate
+releases. The CI-entry node locks all participating repositories and assigns
+planned tasks to linked workers within concurrency limits. Temporary Git
+branches synchronize changes; verified output transfer lets remote JavaScript
+consumers reuse provider builds without rebuilding their prerequisite
+closures. Publication retains dependency gates and source-owned records.
+The single-history model gives eight conditional recovery guarantees.
+All 120 controlled fault episodes recover after repair; an analytical
+source-discharge alternative loses unfinished work in 84 (70\%). This compares
+admission rules, not competing tools or production failure rates. These results
+support the evaluated recovery mechanism; distributed execution requires
+implementation and separate performance validation. Full implementation
+refinement and external exactly-once effects remain outside the claims.
+\end{abstract}
+\begin{IEEEkeywords}
+software release engineering, continuous integration and delivery,
+dependency scheduling, recovery, idempotence
+\end{IEEEkeywords}
+\input{introduction}
+\input{system}
+\input{model}
+\input{guarantees}
+\input{evaluation}
+\input{discussion}
+\clearpage
+\IEEEtriggeratref{34}
+\input{references}
+\end{document}

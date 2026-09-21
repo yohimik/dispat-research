@@ -1,0 +1,51 @@
+{
+  "experiment": "midrelease",
+  "tool": "lerna",
+  "scenario": "clean",
+  "dispat": "dispat 1.7.1 (linux_arm64)",
+  "steps": [
+    {
+      "step": "version",
+      "exit": 1
+    },
+    {
+      "step": "publish",
+      "exit": 0
+    },
+    {
+      "step": "rebase",
+      "exit": 0
+    },
+    {
+      "step": "push",
+      "exit": 0
+    },
+    {
+      "step": "changed",
+      "exit": 0
+    }
+  ],
+  "checks": [
+    {
+      "check": "version exited 0",
+      "ok": false
+    },
+    {
+      "check": "registry serves core 1.1.0",
+      "ok": true
+    },
+    {
+      "check": "the release commit is on origin/main after recovery",
+      "ok": false
+    },
+    {
+      "check": "every released package is consistent after recovery",
+      "ok": false
+    },
+    {
+      "check": "the next plan is the colleague's change and its dependents alone",
+      "ok": false
+    }
+  ],
+  "passed": false
+}

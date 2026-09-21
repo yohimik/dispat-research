@@ -19,24 +19,27 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-An npm package can build from its dependency's local workspace output, while
-an isolated registry-based Docker builder needs its base image published
-first. After partial failure, a consumer can also
-lose its pending release when its provider's success removes the original
-propagation reason. We present a protocol combining stage-aware scheduling
-with consumer-based admission of release intent. Git history determines the
-plan; tags record completed obligations. The protocol covers single-package
-repositories, monorepos, and control-repository polyrepos through a common
-integration contract. We formalize deterministic planning and eight
-conditional recovery guarantees, with counterexamples to simpler rules.
-All planned outcomes hold in a prospective 140-episode Docker matrix; a
-source-window counterfactual loses 111 obligations in 84/120 fault episodes.
-A 772-state finite projection finds no model violations and 260 losing states.
-Separate 1.10.0 evidence adds 300 reference-model agreements, 20 recovery
-episodes, 60 mixed-chain executions, and three CI repetitions; saved 1.8.2
-observations add broader diagnostics, comparisons, and scale. The guarantees
-concern the model; implementation refinement and external exactly-once effects
-remain outside the claims.
+Interdependent releases can leave consumers unfinished after providers succeed.
+We present a saga-inspired protocol combining deterministic planning,
+stage-aware scheduling, and consumer-owned release obligations. Git history and
+records form the ledger without another persistent release-state store.
+Consumer windows retain undelivered intent; train and fresh-work windows
+distinguish prerelease targets from completed work. Under an explicit retry
+invariant, the single-history model establishes eight conditional guarantees.
+All 120 controlled
+fault episodes recover after repair; an analytical source-discharge alternative
+loses work in 84 (70\%). This compares admission rules, not competing
+tools or production failure rates. A skill supports commit release-intent
+diagnostics, plan inspection, and CI releases. Proposed fleet and worker extensions
+preserve source-owned records and reuse verified provider outputs. An
+LLVM-on-Linux release forecast reduces an upstream 154-minute baseline to
+103 minutes (33\%) on 6--10 compatible 16-core
+machines, assuming a wider graph, sharded tests, and five-minute output transfers.
+A Linux kernel build-farm forecast reduces a reported six-machine, 232-minute
+baseline to 65--70 minutes on 24 workers (3.3--3.6$\times$), assuming
+configuration-level tasks and 4--9 minutes overhead on a 61-minute schedule.
+Neither distributed speedup has been measured. Full implementation refinement and
+external exactly-once effects remain outside the claims.
 \end{abstract}
 \begin{IEEEkeywords}
 software release engineering, continuous integration and delivery,
