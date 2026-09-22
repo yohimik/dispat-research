@@ -121,12 +121,16 @@ not evaluated by the campaigns below.
 
 \subsection{Fleet Releases Across Repository Histories}
 \label{sec:fleet}
-The running chain can span repositories while retaining source-owned publication
-and records. Three history modes~\cite{ccme2} select inputs: single history
-(one package, monorepo or control-history wrapper), specified source histories,
-and discovered peers owning their configurations. Discovered fleet links form
-a tree; a star gives its centre no policy authority. Specified sources must
-match control pins; discovered peers use observed heads, with link pins advisory.
+A \emph{control repository} holds deployment configuration---manifests,
+environment settings and artifact selections---separately from application
+source, following Puppet and GitOps practice~\cite{puppetcontrol,gitopsenv}.
+Here it composes releases; source repositories retain completion records.
+Configuration commits do not prove completion.
+
+History modes~\cite{ccme2} are single history (one package, monorepo or
+control-history wrapper), specified sources matching control pins, and
+discovered peers with their own configurations, observed heads and advisory
+link pins. Peer links form a tree; a star grants its centre no policy authority.
 
 \paragraph{Ownership and admission.}
 Commit identities are repository-qualified full object IDs; ancestry remains
@@ -193,6 +197,6 @@ Affected tasks already appear in Nx~\cite{nx}; here one package model supports
 tests and recoverable releases with distinct windows and policies.
 
 \paragraph{Observed self-hosting case}
-CI uses its checkout-built CLI for transitive test and build selection and
-self-release. This single-project observation shows that the protocol can drive
-its own repository; it is not adoption or causal productivity evidence.
+CI uses its checkout-built CLI for transitive tests, builds and self-release.
+This single-project case demonstrates self-hosting, not adoption or causal
+productivity effects.
