@@ -1,0 +1,327 @@
+{
+  "created_utc": "2026-09-22T18:44:59+00:00",
+  "purpose": "Trace the headline numbers of the 22 September reports to raw files in this directory. Agreement is an integrity check on the copies and the reports, not independent replication.",
+  "summary": {
+    "checks": 39,
+    "agree": 37,
+    "disagree": 0
+  },
+  "checks": [
+    {
+      "claim": "LLVM matrix baseline on w2 alone (attempt 8): wall time",
+      "claimed": "41:12.02",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local3.time",
+      "observed": "41:12.02",
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM matrix baseline on w2 alone (attempt 8): exit status",
+      "claimed": 0,
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local3.time",
+      "observed": 0,
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM matrix distributed (attempt 9): wall time",
+      "claimed": "27:48.94",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist6.time",
+      "observed": "27:48.94",
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM matrix distributed (attempt 9): exit status",
+      "claimed": 0,
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist6.time",
+      "observed": 0,
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM matrix distributed, bundle failed on the CRLF defect (attempt 7): wall time",
+      "claimed": "28:45.63",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist5.time",
+      "observed": "28:45.63",
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM matrix distributed, bundle failed on the CRLF defect (attempt 7): exit status",
+      "claimed": 1,
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist5.time",
+      "observed": 1,
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM single-heavy baseline on w2 alone (attempt 5): wall time",
+      "claimed": "36:09.09",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local.time",
+      "observed": "36:09.09",
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM single-heavy baseline on w2 alone (attempt 5): exit status",
+      "claimed": 0,
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local.time",
+      "observed": 0,
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM single-heavy distributed, bundle refused polly (attempt 4): wall time",
+      "claimed": "26:47.69",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist3.time",
+      "observed": "26:47.69",
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM single-heavy distributed, bundle refused polly (attempt 4): exit status",
+      "claimed": 1,
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist3.time",
+      "observed": 1,
+      "agrees": true,
+      "claimed_in": "llvm-project .ci/dispat/gce/REPORT.md at 952c2de4; DESIGN-HISTORY.md entry 2026-09-22 at e383de0e"
+    },
+    {
+      "claim": "LLVM release-dist2 start (UTC)",
+      "claimed": "2026-09-22T04:40:18Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist2.start",
+      "observed": "2026-09-22T04:40:18Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "LLVM release-dist3 start (UTC)",
+      "claimed": "2026-09-22T05:45:31Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist3.start",
+      "observed": "2026-09-22T05:45:31Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "LLVM release-local start (UTC)",
+      "claimed": "2026-09-22T06:13:08Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local.start",
+      "observed": "2026-09-22T06:13:08Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "LLVM release-dist5 start (UTC)",
+      "claimed": "2026-09-22T07:16:53Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist5.start",
+      "observed": "2026-09-22T07:16:53Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "LLVM release-local3 start (UTC)",
+      "claimed": "2026-09-22T07:46:34Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-local3.start",
+      "observed": "2026-09-22T07:46:34Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "LLVM release-dist6 start (UTC)",
+      "claimed": "2026-09-22T08:30:49Z",
+      "file": "experiments/distributed-20260922/evidence/llvm-gce/logs/release-dist6.start",
+      "observed": "2026-09-22T08:30:49Z",
+      "agrees": true,
+      "claimed_in": "REPORT.md attempt table gives the minute; the .start file gives the second"
+    },
+    {
+      "claim": "kernel round 2 par-c3/hexagon-t1: elapsed s",
+      "claimed": "95.89",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/hexagon-t1.elapsed",
+      "observed": "95.89",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 par-c3/hexagon-t2: elapsed s",
+      "claimed": "92.22",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/hexagon-t2.elapsed",
+      "observed": "92.22",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 par-c3/m68k_nommu-t1: elapsed s",
+      "claimed": "115.61",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/m68k_nommu-t1.elapsed",
+      "observed": "115.61",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 par-c3/m68k_nommu-t2: elapsed s",
+      "claimed": "115.48",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/m68k_nommu-t2.elapsed",
+      "observed": "115.48",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 solo-c3/hexagon-solo: elapsed s",
+      "claimed": "122.62",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/solo-c3/hexagon-solo.elapsed",
+      "observed": "122.62",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 solo-c3/m68k_nommu-solo: elapsed s",
+      "claimed": "138.01",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/solo-c3/m68k_nommu-solo.elapsed",
+      "observed": "138.01",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 2 additional trial par-c3/hexagon-1: elapsed s (not a headline number)",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/hexagon-1.elapsed",
+      "observed": "111.47",
+      "disclosed_in_round2_report": true,
+      "disclosed_in_spec_entry": false,
+      "verdict_line": "## hexagon-1  (hexagon, elapsed 111.47 s)"
+    },
+    {
+      "claim": "kernel round 2 additional trial par-c3/hexagon-2: elapsed s (not a headline number)",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/par-c3/hexagon-2.elapsed",
+      "observed": "3.83",
+      "disclosed_in_round2_report": true,
+      "disclosed_in_spec_entry": false,
+      "verdict_line": null
+    },
+    {
+      "claim": "kernel m68k_nommu solo: source-lease contention on two cells (58 to 66 s)",
+      "claimed": "58.0,66.0",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/verdicts.txt",
+      "observed": "58.0,66.0",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel m68k_nommu five cells measured outside the engine",
+      "claimed": "128.17",
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/calibration/cal-c3.txt",
+      "observed": "128.17",
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922-round2.md at c699bf3d; DESIGN-HISTORY.md entry 2026-09-22"
+    },
+    {
+      "claim": "kernel round 1 split-hexagon: release elapsed s",
+      "claimed": 170.07,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!split-hexagon/phase-timing.json",
+      "observed": 170.07,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d",
+      "accepted": false
+    },
+    {
+      "claim": "kernel round 1 split-m68k_nommu: release elapsed s",
+      "claimed": 159.03,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!split-m68k_nommu/phase-timing.json",
+      "observed": 159.03,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d",
+      "accepted": false
+    },
+    {
+      "claim": "kernel round 1 batched-hexagon: release elapsed s",
+      "claimed": 165.3,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!batched-hexagon/phase-timing.json",
+      "observed": 165.3,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d",
+      "accepted": false
+    },
+    {
+      "claim": "kernel round 1 batched-m68k_nommu: release elapsed s",
+      "claimed": 196.23,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!batched-m68k_nommu/phase-timing.json",
+      "observed": 196.23,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d",
+      "accepted": false
+    },
+    {
+      "claim": "kernel round 1 phase-control: release elapsed s",
+      "claimed": 1797.75,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 1797.75,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel round 1 control: alpha build-script seconds",
+      "claimed": 1324.0,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 1324.0,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel round 1 control: hexagon assignment-to-receipt lower bound s",
+      "claimed": 229.0,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 229.0,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel round 1 control: m68k_nommu assignment-to-receipt lower bound s",
+      "claimed": 173.0,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 173.0,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel round 1 control: alpha assignment-to-receipt lower bound s",
+      "claimed": 1340.0,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 1340.0,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel round 1 control: initial source push git seconds",
+      "claimed": 44.392,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz!phase-control/phase-timing.json",
+      "observed": 44.392,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "public farm reference alpha: seconds",
+      "claimed": 623,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/baseline.json",
+      "observed": 623,
+      "agrees": true,
+      "claimed_in": "PARITY-20260922.md reference table; kerneltests.org builds 332/330/331"
+    },
+    {
+      "claim": "public farm reference hexagon: seconds",
+      "claimed": 111,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/baseline.json",
+      "observed": 111,
+      "agrees": true,
+      "claimed_in": "PARITY-20260922.md reference table; kerneltests.org builds 332/330/331"
+    },
+    {
+      "claim": "public farm reference m68k_nommu: seconds",
+      "claimed": 128,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/round1-codex/baseline.json",
+      "observed": 128,
+      "agrees": true,
+      "claimed_in": "PARITY-20260922.md reference table; kerneltests.org builds 332/330/331"
+    }
+  ]
+}

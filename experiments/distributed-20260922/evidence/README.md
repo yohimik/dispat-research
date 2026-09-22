@@ -170,6 +170,17 @@ print('mismatches:', bad)
 EOF
 ```
 
+`CROSS-CHECK.json` traces every headline number of the two fork reports and the
+specification entry to a raw file here: the five LLVM GNU `time` wall clocks and
+exit statuses, the six kernel round-2 elapsed values, the source-lease and
+calibration figures, the four round-1 candidates, the control and the public
+references; all 37 comparable values agree. It also records two round-2 trials
+that are not headline numbers: a first hexagon candidate rejected at 111.47 s
+(against 111 s, with a 12 s lease wait) and a 3.83 s run that planned nothing.
+Both are disclosed in the fork's `PARITY-20260922-round2.md`; the specification
+entry reports only the accepted pairs and the solo runs. A report built on this
+directory should keep the rejected first candidate beside the two accepted ones.
+
 These are integrity checks on the copies. They do not replicate the
 experiments, and structural agreement with the reports is not independent
 scientific validation. The reproduction kit in the parent directory is the
