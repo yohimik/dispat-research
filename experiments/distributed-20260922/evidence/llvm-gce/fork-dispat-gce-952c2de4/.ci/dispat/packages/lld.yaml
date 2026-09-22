@@ -1,0 +1,7 @@
+path: lld
+versionGroup: llvm-release
+scripts:
+  build: python3 ../.ci/dispat/build.py build lld
+  configure: python3 ../.ci/dispat/build.py configure lld
+flow:
+  build: [build]

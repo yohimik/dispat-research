@@ -1,0 +1,17 @@
+--- FAIL: TestExecutionCraftedPublicationAuthorizations (15.87s)
+    --- FAIL: TestExecutionCraftedPublicationAuthorizations/an_authorization_bound_to_another_branch (0.05s)
+        execution_authorization_test.go:314: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-coverage/tests/integration/execution_authorization_test.go:314
+            	Error:      	[]string{"unreadable", "issued-at", "protocol", "unreadable", "signature", "signature", "replay", "issued-at", "replay", "replay"} does not contain "branch"
+            	Test:       	TestExecutionCraftedPublicationAuthorizations/an_authorization_bound_to_another_branch
+            	Messages:   	the node named the rule the message broke
+    --- FAIL: TestExecutionCraftedPublicationAuthorizations/an_authorization_addressed_to_another_node (0.05s)
+        execution_authorization_test.go:314: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-coverage/tests/integration/execution_authorization_test.go:314
+            	Error:      	[]string{"unreadable", "issued-at", "protocol", "unreadable", "signature", "signature", "replay", "issued-at", "replay", "replay"} does not contain "node"
+            	Test:       	TestExecutionCraftedPublicationAuthorizations/an_authorization_addressed_to_another_node
+            	Messages:   	the node named the rule the message broke
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	465.875s
+FAIL
+shard 2 exit=1

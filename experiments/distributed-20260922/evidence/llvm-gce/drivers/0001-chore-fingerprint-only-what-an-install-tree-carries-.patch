@@ -1,0 +1,87 @@
+From 022f7284457f9148c844bb7eb6781cd4a710b78c Mon Sep 17 00:00:00 2001
+From: yohimik <yohimik@gmail.com>
+Date: Tue, 22 Sep 2026 08:39:05 +0400
+Subject: [PATCH] chore: fingerprint only what an install tree carries across
+ machines
+
+The integrity fingerprint recorded full modes of files and directories, and
+a tree that travelled through dispat (files as 0644 or 0755, directories
+recreated under the receiving umask) failed the check although every byte
+was the same. Only the executable bit is part of the artifact.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ .ci/dispat/build.py       | 16 +++++++++++-----
+ .ci/dispat/gce/compare.py |  9 ++++++---
+ 2 files changed, 17 insertions(+), 8 deletions(-)
+
+diff --git a/.ci/dispat/build.py b/.ci/dispat/build.py
+index 72dc4ba81ae3..d4fba73ead08 100644
+--- a/.ci/dispat/build.py
++++ b/.ci/dispat/build.py
+@@ -42,23 +42,29 @@ def output(package):
+ 
+ 
+ def fingerprint(tree):
+-    """Include executable modes and symlink targets; refuse escaping links/devices."""
++    """Include the executable bit and symlink targets; refuse escaping links/devices.
++
++    Only the executable bit of a file is part of the artifact: the rest of a
++    mode is the umask of whatever process created the entry, and a tree that
++    travelled between machines (dispat carries files as 0644 or 0755 and
++    recreates directories) must fingerprint the same as the one that was built.
++    """
+     if not tree.is_dir() or tree.is_symlink():
+         raise ValueError(f"missing install tree: {tree}")
+     records = []
+     for path in sorted(tree.rglob("*")):
+         info = path.lstat()
+         name = path.relative_to(tree).as_posix()
+-        mode = stat.S_IMODE(info.st_mode)
++        is_executable = bool(stat.S_IMODE(info.st_mode) & 0o111)
+         if path.is_symlink():
+             target = os.readlink(path)
+             if Path(target).is_absolute() or not path.resolve().is_relative_to(tree.resolve()):
+                 raise ValueError(f"nonrelocatable symlink: {path}")
+-            records.append((name, mode, "link", target))
++            records.append((name, "link", target))
+         elif path.is_file():
+-            records.append((name, mode, "file", digest(path)))
++            records.append((name, is_executable, "file", digest(path)))
+         elif path.is_dir():
+-            records.append((name, mode, "directory"))
++            records.append((name, "directory"))
+         else:
+             raise ValueError(f"unsupported installed file type: {path}")
+     if not records:
+diff --git a/.ci/dispat/gce/compare.py b/.ci/dispat/gce/compare.py
+index d54bef625cb7..b038a0db0487 100755
+--- a/.ci/dispat/gce/compare.py
++++ b/.ci/dispat/gce/compare.py
+@@ -34,17 +34,20 @@ def masked_digest(path, prefix):
+ 
+ 
+ def describe(tree, prefix):
++    # Only the executable bit of a file is part of the artifact, as in
++    # build.py's fingerprint: the rest of a mode is the creating process's
++    # umask, and directories carry no mode at all.
+     records = {}
+     for path in sorted(tree.rglob("*")):
+         name = path.relative_to(tree).as_posix()
+         info = path.lstat()
+-        mode = stat.S_IMODE(info.st_mode)
++        mode = 0o755 if stat.S_IMODE(info.st_mode) & 0o111 else 0o644
+         if path.is_symlink():
+-            records[name] = ("link", mode, os.readlink(path), 0)
++            records[name] = ("link", 0, os.readlink(path), 0)
+         elif path.is_file():
+             records[name] = ("file", mode, masked_digest(path, prefix), info.st_size)
+         elif path.is_dir():
+-            records[name] = ("dir", mode, "", 0)
++            records[name] = ("dir", 0, "", 0)
+     return records
+ 
+ 
+-- 
+2.54.0 (Apple Git-157)
+

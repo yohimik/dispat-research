@@ -1,0 +1,10 @@
+{
+  "execution": {
+    "role": "worker",
+    "name": "w1",
+    "endpoint": "ssh://yohimik@10.128.0.8/home/yohimik/mailbox.git",
+    "secretEnv": "DISPAT_EXECUTION_SECRET",
+    "concurrency": 1
+  },
+  "logFormat": "json"
+}

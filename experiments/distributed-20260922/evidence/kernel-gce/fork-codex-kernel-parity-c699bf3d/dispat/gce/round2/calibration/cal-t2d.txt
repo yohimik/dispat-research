@@ -1,0 +1,10 @@
+hex-allno-solo arch=hexagon configs=allnoconfig jobs=12 slot=0 status=0 seconds=87.51 cases=1
+# group 0 finished after 87.52 s
+hex-tiny-pair arch=hexagon configs=tinyconfig jobs=6 slot=1 status=0 seconds=92.29 cases=1
+hex-allno-pair arch=hexagon configs=allnoconfig jobs=6 slot=0 status=0 seconds=119.14 cases=1
+# group 1 finished after 119.15 s
+m68k-a2 arch=m68k_nommu configs=m5272c3_defconfig,m5307c3_defconfig jobs=6 slot=0 status=0 seconds=236.18 cases=2
+m68k-b2 arch=m68k_nommu configs=m5249evb_defconfig,m5407c3_defconfig,m5475evb_defconfig jobs=6 slot=1 status=0 seconds=295.49 cases=3
+# group 2 finished after 295.51 s
+m68k-b3 arch=m68k_nommu configs=m5307c3_defconfig jobs=4 slot=1 status=0 seconds=170.88 cases=1
+m68k-a3 arch=m68k_nommu configs=m5272c3_defconfig jobs=4 slot=0 status=0 seconds=173.08 cases=1

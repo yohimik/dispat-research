@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "command_status": 0,
+  "counts": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "kunit_passed": 0,
+    "kunit_failed": 0,
+    "kunit_skipped": 0,
+    "unrecognized": 0,
+    "tracebacks": false
+  },
+  "cases": [
+    {
+      "line": "Building m68k_nommu:m5407c3_defconfig ... passed",
+      "outcome": "passed"
+    }
+  ],
+  "ref": "v7.3-rc4",
+  "revision": "93f51579e7df248780214094418f205253383cc5",
+  "cell": "build-m68k_nommu-m5407c3_defconfig",
+  "seconds": 105,
+  "script_seconds": 105,
+  "timings": {
+    "source_lease_seconds": 0,
+    "source": "/srv/farm/src/slot0"
+  }
+}

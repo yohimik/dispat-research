@@ -1,0 +1,176 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 20.70kB done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 1.5s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32
+#3 resolve docker.io/docker/dockerfile:1@sha256:ecfaec9ed6d810b56388c508f4121597bfbba70d41a6dfeee4d8cad5f295fc32 done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/golang:1.26-alpine
+#4 ...
+
+#5 [internal] load metadata for docker.io/library/golang:1.26
+#5 DONE 1.4s
+
+#4 [internal] load metadata for docker.io/library/golang:1.26-alpine
+#4 DONE 1.4s
+
+#6 [internal] setting cache mount permissions
+#6 CACHED
+
+#7 [build 1/6] FROM docker.io/library/golang:1.26-alpine@sha256:8ac98ca534ac3f51e1f420a1dd2c15e74c75cfa0f23f3ad27eb5d7236c349a0c
+#7 resolve docker.io/library/golang:1.26-alpine@sha256:8ac98ca534ac3f51e1f420a1dd2c15e74c75cfa0f23f3ad27eb5d7236c349a0c 0.0s done
+#7 DONE 0.0s
+
+#8 [tiny-toolchain 1/6] FROM docker.io/library/golang:1.26@sha256:6c2a5538f964f1c82f97ad14988bf05de100d922d159d0e398b54c7b0ca0c6c9
+#8 resolve docker.io/library/golang:1.26@sha256:6c2a5538f964f1c82f97ad14988bf05de100d922d159d0e398b54c7b0ca0c6c9 0.0s done
+#8 DONE 0.0s
+
+#9 [internal] load build context
+#9 transferring context: 2.14MB 0.1s done
+#9 DONE 0.1s
+
+#10 [build 2/6] WORKDIR /src
+#10 CACHED
+
+#11 [build 3/6] COPY pkg ./pkg
+#11 DONE 0.1s
+
+#12 [build 4/6] COPY services/dispat ./services/dispat
+#12 DONE 0.1s
+
+#13 [build 5/6] WORKDIR /src/services/dispat
+#13 DONE 0.0s
+
+#14 [build 6/6] RUN --mount=type=cache,target=/root/.cache/go-build     --mount=type=cache,target=/go/pkg/mod     set -eu;     mkdir -p /out;     assets="";     for target in linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64 windows/arm64; do       GOOS="${target%/*}";       GOARCH="${target#*/}";       case "$GOOS" in windows) ext=".exe" ;; *) ext="" ;; esac;       name="dispat-${GOOS}-${GOARCH}${ext}";       GOOS="$GOOS" GOARCH="$GOARCH" CGO_ENABLED=0 go build -trimpath         -ldflags "-s -w -X github.com/yohimik/dispat/services/dispat/internal/cli.Version=dev"         -o "/out/$name" .;       echo "built $name (version dev)";       assets="${assets}${assets:+ }$name";     done;     echo "DISPAT_EXPORT_GITHUB=$assets" > /out/dispat-output
+#14 1.335 built dispat-linux-amd64 (version dev)
+#14 2.486 built dispat-linux-arm64 (version dev)
+#14 3.724 built dispat-darwin-amd64 (version dev)
+#14 5.016 built dispat-darwin-arm64 (version dev)
+#14 6.228 built dispat-windows-amd64.exe (version dev)
+#14 7.417 built dispat-windows-arm64.exe (version dev)
+#14 DONE 7.5s
+
+#8 [tiny-toolchain 1/6] FROM docker.io/library/golang:1.26@sha256:6c2a5538f964f1c82f97ad14988bf05de100d922d159d0e398b54c7b0ca0c6c9
+#8 CACHED
+
+#15 [tiny-toolchain 2/6] COPY --from=build /out/dispat-linux-arm64 /usr/local/bin/dispat
+#15 DONE 0.1s
+
+#16 [tiny-toolchain 3/6] COPY .aqua /opt/dispat-tools/.aqua
+#16 DONE 0.0s
+
+#17 [tiny-toolchain 4/6] COPY scripts/install-tools.sh /opt/dispat-tools/scripts/install-tools.sh
+#17 DONE 0.0s
+
+#18 [tiny-toolchain 5/6] COPY tools/bootstrap.yaml /opt/dispat-tools/tools/bootstrap.yaml
+#18 DONE 0.0s
+
+#19 [tiny-toolchain 6/6] RUN --mount=type=secret,id=GITHUB_TOKEN     set -eu;     if [ -f /run/secrets/GITHUB_TOKEN ]; then       GITHUB_TOKEN="$(cat /run/secrets/GITHUB_TOKEN)";       export GITHUB_TOKEN;       echo "installing the toolchain with a GitHub token";     else       echo "installing the toolchain unauthenticated (no GITHUB_TOKEN secret)";     fi;     sh /opt/dispat-tools/scripts/install-tools.sh tinygo /usr/local;     /usr/local/tinygo/bin/tinygo version
+#19 0.078 installing the toolchain unauthenticated (no GITHUB_TOKEN secret)
+#19 0.429 downloading aqua_linux_arm64.tar.gz (8.3 MiB) from aquaproj/aqua
+#19 1.413 piped aqua_linux_arm64.tar.gz (v2.63.0) through: tar -xz aqua
+#19 1.413 note: /usr/local is not on PATH, so the shell will not find aqua until it is
+#19 1.427 [2mSep 22 06:19:13.581[0m [92mINF[0m download and unarchive the package [2mprogram=[0maqua [2mversion=[0m2.63.0 [2menv=[0mlinux/arm64 [2mpackage_name=[0maqua-proxy [2mpackage_version=[0mv1.2.13 [2mregistry=[0m""
+#19 2.053 [2mSep 22 06:19:14.208[0m [92mINF[0m create a symbolic link [2mprogram=[0maqua [2mversion=[0m2.63.0 [2menv=[0mlinux/arm64 [2mpackage_name=[0maqua-proxy [2mpackage_version=[0mv1.2.13 [2mregistry=[0m""
+#19 2.054 [2mSep 22 06:19:14.209[0m [92mINF[0m create a symbolic link [2mprogram=[0maqua [2mversion=[0m2.63.0 [2menv=[0mlinux/arm64 [2mpackage_name=[0myohimik/crier [2mpackage_version=[0mv1.1.0 [2mcommand=[0mcrier
+#19 2.054 [2mSep 22 06:19:14.209[0m [92mINF[0m create a symbolic link [2mprogram=[0maqua [2mversion=[0m2.63.0 [2menv=[0mlinux/arm64 [2mpackage_name=[0myohimik/tinygo [2mpackage_version=[0mv0.43.0-net.2 [2mcommand=[0mtinygo
+#19 2.054 [2mSep 22 06:19:14.209[0m [92mINF[0m download and unarchive the package [2mprogram=[0maqua [2mversion=[0m2.63.0 [2menv=[0mlinux/arm64 [2mpackage_name=[0myohimik/tinygo [2mpackage_version=[0mv0.43.0-net.2 [2mregistry=[0mlocal
+#19 12.38 tinygo version 0.43.0-net.2 linux/arm64 (using go version go1.26.8 and LLVM version 22.1.4)
+#19 DONE 12.9s
+
+#20 [tiny-build 1/5] WORKDIR /src
+#20 DONE 0.0s
+
+#21 [tiny-build 2/5] COPY pkg ./pkg
+#21 DONE 0.0s
+
+#22 [tiny-build 3/5] COPY services/dispat ./services/dispat
+#22 DONE 0.0s
+
+#23 [tiny-build 4/5] WORKDIR /src/services/dispat
+#23 DONE 0.0s
+
+#24 [tiny-build 5/5] RUN --mount=type=cache,target=/root/.cache/go-build     --mount=type=cache,target=/root/.cache/tinygo     --mount=type=cache,target=/go/pkg/mod     set -eu;     mkdir -p /out;     tinygo version;     for arch in amd64 arm64; do       name="dispat-tiny-linux-${arch}";       if GOOS=linux GOARCH="$arch" tinygo build -opt=z -no-debug         -ldflags "-X github.com/yohimik/dispat/services/dispat/internal/cli.Version=dev"         -o "/out/$name" . > /tmp/tinygo.raw 2>&1; then :; else         cat /tmp/tinygo.raw >&2; exit 1; fi;       noise="Reserved registers on the clobber list";       n="$(grep -c "$noise" /tmp/tinygo.raw || true)";       grep -v "$noise" /tmp/tinygo.raw || true;       [ "$n" -eq 0 ] || echo "($n identical "$noise" warnings elided)";       echo "built $name (version dev)";     done
+#24 0.083 tinygo version 0.43.0-net.2 linux/arm64 (using go version go1.26.8 and LLVM version 22.1.4)
+#24 56.49 built dispat-tiny-linux-amd64 (version dev)
+#24 139.9 (296 identical "Reserved registers on the clobber list" warnings elided)
+#24 139.9 built dispat-tiny-linux-arm64 (version dev)
+#24 DONE 139.9s
+
+#25 [tiny-test 1/8] RUN apt-get update && apt-get install -y --no-install-recommends git jq  && rm -rf /var/lib/apt/lists/*  && useradd --create-home --uid 1001 gopher
+#25 0.220 Get:1 http://deb.debian.org/debian trixie InRelease [140 kB]
+#25 0.278 Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+#25 0.297 Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+#25 0.310 Get:4 http://deb.debian.org/debian trixie/main arm64 Packages [9614 kB]
+#25 0.508 Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages [4424 B]
+#25 0.537 Get:6 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [263 kB]
+#25 1.118 Fetched 10.1 MB in 1s (10.6 MB/s)
+#25 1.118 Reading package lists...
+#25 1.531 Reading package lists...
+#25 1.914 Building dependency tree...
+#25 2.058 Reading state information...
+#25 2.308 git is already the newest version (1:2.47.3-0+deb13u1).
+#25 2.308 The following additional packages will be installed:
+#25 2.308   libjq1 libonig5
+#25 2.344 The following NEW packages will be installed:
+#25 2.345   jq libjq1 libonig5
+#25 2.395 0 upgraded, 3 newly installed, 0 to remove and 0 not upgraded.
+#25 2.395 Need to get 410 kB of archives.
+#25 2.395 After this operation, 1299 kB of additional disk space will be used.
+#25 2.395 Get:1 http://deb.debian.org/debian trixie/main arm64 libonig5 arm64 6.9.9-1+b1 [181 kB]
+#25 2.436 Get:2 http://deb.debian.org/debian trixie/main arm64 libjq1 arm64 1.7.1-6+deb13u3 [152 kB]
+#25 2.440 Get:3 http://deb.debian.org/debian trixie/main arm64 jq arm64 1.7.1-6+deb13u3 [78.3 kB]
+#25 2.589 debconf: unable to initialize frontend: Dialog
+#25 2.589 debconf: (TERM is not set, so the dialog frontend is not usable.)
+#25 2.589 debconf: falling back to frontend: Readline
+#25 2.593 debconf: unable to initialize frontend: Readline
+#25 2.593 debconf: (This frontend requires a controlling tty.)
+#25 2.593 debconf: falling back to frontend: Teletype
+#25 2.596 debconf: unable to initialize frontend: Teletype
+#25 2.596 debconf: (This frontend requires a controlling tty.)
+#25 2.596 debconf: falling back to frontend: Noninteractive
+#25 2.976 Fetched 410 kB in 0s (4475 kB/s)
+#25 2.990 Selecting previously unselected package libonig5:arm64.
+#25 2.990 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 16886 files and directories currently installed.)
+#25 3.023 Preparing to unpack .../libonig5_6.9.9-1+b1_arm64.deb ...
+#25 3.025 Unpacking libonig5:arm64 (6.9.9-1+b1) ...
+#25 3.044 Selecting previously unselected package libjq1:arm64.
+#25 3.045 Preparing to unpack .../libjq1_1.7.1-6+deb13u3_arm64.deb ...
+#25 3.046 Unpacking libjq1:arm64 (1.7.1-6+deb13u3) ...
+#25 3.060 Selecting previously unselected package jq.
+#25 3.061 Preparing to unpack .../jq_1.7.1-6+deb13u3_arm64.deb ...
+#25 3.062 Unpacking jq (1.7.1-6+deb13u3) ...
+#25 3.080 Setting up libonig5:arm64 (6.9.9-1+b1) ...
+#25 3.082 Setting up libjq1:arm64 (1.7.1-6+deb13u3) ...
+#25 3.085 Setting up jq (1.7.1-6+deb13u3) ...
+#25 3.089 Processing triggers for libc-bin (2.41-12+deb13u4) ...
+#25 DONE 3.2s
+
+#26 [tiny-test 2/8] COPY tests/integration /src/tests/integration
+#26 DONE 0.0s
+
+#27 [tiny-test 3/8] COPY packages/cli/dispat.yaml /src/packages/cli/dispat.yaml
+#27 DONE 0.0s
+
+#28 [tiny-test 4/8] COPY packages/docs/dispat.yaml /src/packages/docs/dispat.yaml
+#28 DONE 0.0s
+
+#29 [tiny-test 5/8] COPY packages/docs/demo/fixtures /src/packages/docs/demo/fixtures
+#29 DONE 0.0s
+
+#30 [tiny-test 6/8] COPY go.work /src/go.work
+#30 DONE 0.0s
+
+#31 [tiny-test 7/8] RUN cd /src && go work edit -dropuse=./tools go.work  && mkdir -p /gate && chown -R gopher:gopher /src /gate
+#31 DONE 0.8s
+
+#32 [tiny-test 8/8] RUN --mount=type=cache,target=/home/gopher/.cache,uid=1001,gid=1001     --mount=type=cache,target=/home/gopher/go/pkg/mod,uid=1001,gid=1001     set -eu;     git --version;     DISPAT_TEST_BINARY="/out/dispat-tiny-linux-arm64"       go test -C /src/tests/integration -json -count=1 -timeout 120m         -skip '^TestGoInstallBuildUsesTheGoToolchainForUpdates$' ./... > /gate/integration.json       || { cat /gate/integration.json; exit 1; };     jq -s -e 'any(.[]; .Action == "pass" and .Package == "github.com/yohimik/dispat/tests/integration" and (has("Test") | not)) and all(.[]; .Action != "fail" and (.Action != "skip" or (has("Test") | not)))' /gate/integration.json > /dev/null       || { jq -r 'select(has("Test") and (.Action == "skip" or .Action == "fail")) | "\(.Action): \(.Test)"' /gate/integration.json;            echo "the TinyGo acceptance gate refuses failed and skipped tests" >&2; exit 1; };     jq -s '{passed:([.[] | select(.Action == "pass" and has("Test"))] | length),failed:([.[] | select(.Action == "fail")] | length),skipped:([.[] | select(.Action == "skip" and has("Test"))] | length)}' /gate/integration.json;     touch /gate/passed
+#32 0.135 git version 2.47.3
+#32 CANCELED
+ERROR: failed to build: failed to solve: Canceled: context canceled

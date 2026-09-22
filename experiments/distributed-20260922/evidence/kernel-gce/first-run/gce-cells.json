@@ -1,0 +1,3 @@
+{"build-alpha": {"seconds": 2180, "node": "w2", "overhead": 70},
+ "build-hexagon": {"seconds": 253, "node": "w1", "overhead": 71},
+ "build-m68k_nommu": {"seconds": 236, "node": "w2", "overhead": 10}}

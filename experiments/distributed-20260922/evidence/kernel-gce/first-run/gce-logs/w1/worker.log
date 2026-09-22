@@ -1,0 +1,10 @@
+[90m00:29:01[0m DBG config.tree.loaded [36mduration=[0m"99.152µs" [36mfiles=[0m1 [36mpath=[0m/home/yohimik/node/dispat.json
+[90m00:29:01[0m DBG config.resolve.done [36mpath=[0m/home/yohimik/node/dispat.json [36mroot=[0m/home/yohimik/node
+[90m00:29:01[0m DBG config.tree.loaded [36mduration=[0m"21.11µs" [36mfiles=[0m1 [36mpath=[0m/home/yohimik/node/dispat.json
+[90m00:29:01[0m DBG config.overrides.applied [36mcount=[0m1
+{"level":"debug","role":"worker","node":"w1","time":"2026-09-22T00:29:01Z","message":"task folder removed"}
+{"level":"info","role":"worker","node":"w1","endpoint":"ssh://REDACTED@10.128.0.2/home/yohimik/mailbox.git","concurrency":1,"stateDir":"/home/yohimik/state/w1","time":"2026-09-22T00:29:01Z","message":"worker started"}
+{"level":"debug","role":"worker","node":"w1","branch":"dispat-worker-w1-20260922-build-d9c56669f009fc072605490e3c15b28e","commit":"255b55dfaa96925fc1b0a4d244728b0b354595bb","message":"claim","time":"2026-09-22T00:29:29Z","message":"assignment inspected"}
+{"level":"debug","role":"worker","node":"w1","branch":"dispat-worker-w1-20260922-probe-b20d07901c4149d8ada5e89c8b2d4568","commit":"fce2a86756a0dabb6a1ba225f735515657b48eeb","message":"result","time":"2026-09-22T00:29:29Z","message":"assignment inspected"}
+{"level":"warn","role":"worker","node":"w1","branch":"dispat-worker-w1-20260922-snapshot-be1b8c6bbec0df2e122771e2f3930581","commit":"03a48f0277e8eb8743348f66d6c17f3b94e7e29f","reason":"unreadable","code":"E226","category":"execution-authority","time":"2026-09-22T00:29:29Z","message":"assignment rejected"}
+{"level":"info","role":"worker","node":"w1","reason":"idle","time":"2026-09-22T00:44:01Z","message":"worker stopped"}

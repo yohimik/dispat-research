@@ -1,0 +1,29 @@
+hex-def-solo arch=hexagon configs=defconfig jobs=33 slot=0 status=0 seconds=73.92 cases=1
+# group 0 finished after 73.93 s
+hex-tiny-pair arch=hexagon configs=tinyconfig jobs=17 slot=1 status=0 seconds=48.02 cases=1
+hex-def-pair arch=hexagon configs=defconfig jobs=17 slot=0 status=0 seconds=90.88 cases=1
+# group 1 finished after 90.89 s
+hex-tiny-trio arch=hexagon configs=tinyconfig jobs=11 slot=2 status=0 seconds=63.67 cases=1
+hex-allno-trio arch=hexagon configs=allnoconfig jobs=11 slot=1 status=0 seconds=81.04 cases=1
+hex-def-trio arch=hexagon configs=defconfig jobs=11 slot=0 status=0 seconds=120.11 cases=1
+# group 2 finished after 120.12 s
+m68k-b3 arch=m68k_nommu configs=m5307c3_defconfig jobs=11 slot=1 status=0 seconds=86.04 cases=1
+m68k-a3 arch=m68k_nommu configs=m5272c3_defconfig jobs=11 slot=0 status=0 seconds=86.64 cases=1
+m68k-c3 arch=m68k_nommu configs=m5249evb_defconfig,m5407c3_defconfig,m5475evb_defconfig jobs=11 slot=2 status=0 seconds=158.17 cases=3
+# group 3 finished after 158.18 s
+m68k-a2 arch=m68k_nommu configs=m5272c3_defconfig,m5307c3_defconfig jobs=17 slot=0 status=0 seconds=121.66 cases=2
+m68k-b2 arch=m68k_nommu configs=m5249evb_defconfig,m5407c3_defconfig,m5475evb_defconfig jobs=17 slot=1 status=0 seconds=150.82 cases=3
+# group 4 finished after 150.83 s
+m68k-e5 arch=m68k_nommu configs=m5475evb_defconfig jobs=7 slot=4 status=0 seconds=103.16 cases=1
+m68k-c5 arch=m68k_nommu configs=m5249evb_defconfig jobs=7 slot=2 status=0 seconds=126.65 cases=1
+m68k-d5 arch=m68k_nommu configs=m5407c3_defconfig jobs=7 slot=3 status=0 seconds=127.04 cases=1
+m68k-b5 arch=m68k_nommu configs=m5307c3_defconfig jobs=7 slot=1 status=0 seconds=127.41 cases=1
+m68k-a5 arch=m68k_nommu configs=m5272c3_defconfig jobs=7 slot=0 status=0 seconds=128.16 cases=1
+# group 5 finished after 128.17 s
+alpha-def arch=alpha configs=defconfig jobs=33 slot=0 status=0 seconds=68.48 cases=1
+# group 6 finished after 68.49 s
+alpha-allno arch=alpha configs=allnoconfig jobs=33 slot=0 status=0 seconds=33.16 cases=1
+# group 7 finished after 33.17 s
+alpha-tiny arch=alpha configs=tinyconfig jobs=33 slot=0 status=0 seconds=24.04 cases=1
+# group 8 finished after 24.05 s
+calibration complete

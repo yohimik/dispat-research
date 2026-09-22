@@ -1,0 +1,24 @@
+?   	github.com/yohimik/dispat/services/dispat	[no test files]
+ok  	github.com/yohimik/dispat/services/dispat/internal/app	40.616s
+ok  	github.com/yohimik/dispat/services/dispat/internal/changelog	0.760s
+ok  	github.com/yohimik/dispat/services/dispat/internal/cli	3.416s
+ok  	github.com/yohimik/dispat/services/dispat/internal/cond	0.780s
+ok  	github.com/yohimik/dispat/services/dispat/internal/config	27.188s
+ok  	github.com/yohimik/dispat/services/dispat/internal/execution	27.653s
+ok  	github.com/yohimik/dispat/services/dispat/internal/filter	1.036s
+ok  	github.com/yohimik/dispat/services/dispat/internal/fsx	0.594s
+ok  	github.com/yohimik/dispat/services/dispat/internal/github	1.835s
+ok  	github.com/yohimik/dispat/services/dispat/internal/gitx	22.106s
+ok  	github.com/yohimik/dispat/services/dispat/internal/globx	0.333s
+ok  	github.com/yohimik/dispat/services/dispat/internal/graph	0.895s
+ok  	github.com/yohimik/dispat/services/dispat/internal/httpx	1.179s
+ok  	github.com/yohimik/dispat/services/dispat/internal/ignore	0.780s
+ok  	github.com/yohimik/dispat/services/dispat/internal/install	0.961s
+ok  	github.com/yohimik/dispat/services/dispat/internal/model	0.697s
+ok  	github.com/yohimik/dispat/services/dispat/internal/plan	24.273s
+ok  	github.com/yohimik/dispat/services/dispat/internal/release	1.464s
+ok  	github.com/yohimik/dispat/services/dispat/internal/script	1.199s
+ok  	github.com/yohimik/dispat/services/dispat/internal/selfupdate	5.279s
+ok  	github.com/yohimik/dispat/services/dispat/internal/webhook	4.095s
+ok  	github.com/yohimik/dispat/services/dispat/internal/workspaceenv	0.365s
+unit exit=0

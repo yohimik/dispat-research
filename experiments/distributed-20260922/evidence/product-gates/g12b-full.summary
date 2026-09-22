@@ -1,0 +1,13 @@
+ok  	github.com/yohimik/dispat/tests/integration	345.134s
+shard 0 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	325.096s
+shard 1 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	459.459s
+shard 2 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	336.318s
+shard 3 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	273.544s
+shard 4 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	347.508s
+shard 5 exit=0
+SUITEDONE

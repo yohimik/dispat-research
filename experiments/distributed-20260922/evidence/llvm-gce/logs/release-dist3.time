@@ -1,0 +1,24 @@
+Command exited with non-zero status 1
+	Command being timed: "dispat release --config dispat.gce.yaml --log-format json --log-level debug"
+	User time (seconds): 106.57
+	System time (seconds): 42.46
+	Percent of CPU this job got: 9%
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 26:47.69
+	Average shared text size (kbytes): 0
+	Average unshared data size (kbytes): 0
+	Average stack size (kbytes): 0
+	Average total size (kbytes): 0
+	Maximum resident set size (kbytes): 629000
+	Average resident set size (kbytes): 0
+	Major (requiring I/O) page faults: 291
+	Minor (reclaiming a frame) page faults: 1717363
+	Voluntary context switches: 264117
+	Involuntary context switches: 9416
+	Swaps: 0
+	File system inputs: 511024
+	File system outputs: 5225928
+	Socket messages sent: 0
+	Socket messages received: 0
+	Signals delivered: 0
+	Page size (bytes): 4096
+	Exit status: 1

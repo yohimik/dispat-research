@@ -1,0 +1,10 @@
+== gofmt
+== vet services
+== vet integration
+== unit
+unit exit=1
+== namingcheck
+namingcheck: 0 exported declarations break a naming rule, 28 excused by naming-exceptions.txt (0 of them pending a rename)
+== test plan
+test plan: 1403 referenced tests, 1379 integration goal assignments
+requirements: 101/101 mapped (100.0%), critical 39/39 mapped (100.0%)

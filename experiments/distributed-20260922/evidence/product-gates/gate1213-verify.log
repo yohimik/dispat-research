@@ -1,0 +1,13 @@
+gofmt: 
+vet-ok
+namingcheck: 0 exported declarations break a naming rule, 28 excused by naming-exceptions.txt (0 of them pending a rename)
+ok  	github.com/yohimik/dispat/services/dispat/internal/execution	38.533s
+ok  	github.com/yohimik/dispat/services/dispat/internal/app	54.841s
+ok  	github.com/yohimik/dispat/services/dispat/internal/release	3.703s
+ok  	github.com/yohimik/dispat/services/dispat/internal/gitx	29.418s
+--- integration subset 04:16:35
+ok  	github.com/yohimik/dispat/tests/integration	267.482s
+?   	github.com/yohimik/dispat/tests/integration/cmd/tsmark	[no test files]
+ok  	github.com/yohimik/dispat/tests/integration/internal/harness	0.435s [no tests to run]
+ok  	github.com/yohimik/dispat/tests/integration/publicapi	1.007s [no tests to run]
+--- end 04:21:04

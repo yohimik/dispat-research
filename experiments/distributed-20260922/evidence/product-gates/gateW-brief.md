@@ -1,0 +1,62 @@
+You are executing "gate W" in the dispat repository: THE PROVIDER-TO-CONSUMER STAGE RELATION BECOMES THREE-VALUED. The key `isBuildWaitingPublish` keeps its name and its two boolean values and additionally accepts an object. Independent of the worker-nodes feature the branch otherwise carries, but it must work with it. FIRST read /private/tmp/claude-501/-Users-yohimik-Projects-dispat/aba20193-908a-4dbf-a0ef-363528c9fa79/scratchpad/common-rules.md and obey it completely (where it says "the feature" read "this change"; tests of this gate are named `TestStageRelation…`, not `TestExecution…`; they get their own goal in tests/integration/docs/test-plan.md: the next free goal number with the prose goal, the architecture tree line and the coverage-matrix table). Work ONLY in the git worktree named in the launch message. NEVER edit anything under specs/ccme-spec/: another session owns the specification and is writing the normative text for this change in parallel; facts that contradict it go in your report.
+
+## The owner's request (verbatim)
+"we need to extend isBuildWaitingPublish, some builds can be build without waiting but publishied only after provider published, like terraform package and front, we can build parralel, but publish one after another. so isBuildWaitingPublish can be boolean or object, describing this relation"
+
+## What exists (read it before anything else)
+- `pkg/models/models.go`: `IsBuildWaitingPublish *bool` on `File` (~:169), `SpaceConfig` (~:889), `SpaceFile` (~:1003), `PackageConfig` (~:1112). Ladder key, read on the PROVIDER's space, nearest statement wins, default false.
+- `services/dispat/internal/config/fields.go` (:72, :91, :119, :157 `flagPtr(&dst.IsBuildWaitingPublish)`), `config/packages.go` (:443, :535, :558, :603 ladder resolution), `config/config.go` (:2210 `BuildWaitsPublish: boolValue(sc.IsBuildWaitingPublish)`), `model/model.go` (:225 `Space.BuildWaitsPublish bool`).
+- `services/dispat/internal/release/executor.go`: the scheduling model comment (:127-145); the edges (:385-396): for each CHANGED direct provider `prov` of `name`: `build(prov) -> first(name)` always (`first` is the version task when the package has one, else build), `publish(prov) -> first(name)` only under the flag, `publish(prov) -> publish(name)` always; the skip reason (:667); `shouldSkip` (:1286-1330): a provider that failed or was skipped skips its consumer unless the consumer has a fresh own bump, a channel change or another provider that published, and UNCONDITIONALLY when the provider's flag is true.
+- `release/env.go` `liveProviderUpdates` (:102-112) already includes providers whose publish is still pending.
+- The plan digest (`plan/digest_package.go`, comment on `canonicalPackage`) deliberately leaves scheduling policy out. Keep it out: the relation never changes the plan.
+- Docs: packages/docs/docs/configuration/README.md (options table :110, where-a-setting-lives matrix :156), configuration/spaces.md (:21), configuration/packages.md, concepts.md, internals/architecture.md, examples/{terraform,mixed,android,helm,login}.md. Example configs services/dispat/dispat.example.yaml (:48, :151), .json (:18, :69), dispat.example.control.yaml (:31).
+
+## The change
+The precondition of a consumer's first task is a three-step chain, because `publish(p) -> first(c)` implies `build(p) -> first(c)` through `build(p) -> publish(p)`: nothing < provider built < provider published. `publish(p) -> publish(c)` stays unconditional in all three.
+
+Configuration (same key, same ladder, replaced whole like any single value):
+```yaml
+isBuildWaitingPublish: false        # = {build: build,   isBlocking: false}   the default, today's false
+isBuildWaitingPublish: true         # = {build: publish, isBlocking: true}    today's true
+isBuildWaitingPublish:              # the object form
+  build: none                       # none | build | publish: what a consumer's version/build stage waits for
+  isBlocking: true                  # a provider that failed or was skipped skips its consumers unconditionally
+```
+- `build` is required in the object form (an object without it is refused at load, naming the key and the three values). Exact-case match like `logLevel`/`role`.
+- `isBlocking` defaults to false for `none` and `build`, and is true for `publish`; `{build: publish, isBlocking: false}` is refused at load (the consumer's build input never existed, nothing of its own can substitute for it: reuse the wording of the `shouldSkip` doc comment).
+- Unknown object keys are refused the way every object's unknown keys are (find how `fields.go` tables do it for nested objects such as `commit` or `execution`).
+- If the specification owner's reply (relayed in the launch message, if any) names the values differently, follow the launch message.
+
+Models (`pkg/models`, stdlib-only tests): a new exported noun type for the union (suggestion: `StageRelation{Build StageWait; IsBlocking *bool}` with `type StageWait string` and constants `StageWaitNone|StageWaitBuild|StageWaitPublish`), with `UnmarshalJSON`/`MarshalJSON`/`MarshalYAML` following the `Script`/`PathList`/`ProviderList` precedents in the same package: a bare boolean decodes to the equivalent relation, and a relation that equals one of the two boolean meanings marshals back as that boolean, so a config dispat rewrites does not grow objects. The four fields change type from `*bool` to a pointer to the new type. This is a source-incompatible change of an exported field in `pkg/models`: keep source compatibility where it is cheap (nil-safe accessor methods `IsBuildWaitingPublish()`-style are NOT possible because the field has that name; instead add `pkg/models/compatibility.go`-style helpers only if an existing exported helper read the bool) and say exactly what breaks in your report. Check `pkg/models/fields_test.go` and any generated schema/table that lists field types.
+
+Resolution: `model.Space` gets the resolved relation (suggestion: replace `BuildWaitsPublish bool` with `ProviderRelation model.StageRelation`-like value type holding `Build` enum and `IsBlocking bool`, plus small question-named methods `IsBuildWaitingBuild()`, `IsBuildWaitingPublish()`), so every reader asks a question instead of comparing strings. Update every reader (`grep -rn BuildWaitsPublish`).
+
+Executor (`release/executor.go`), keep the diff minimal and the graph construction readable:
+- `build(prov) -> first` is added unless the provider's relation is `none`; `publish(prov) -> first` is added when it is `publish`; `publish(prov) -> pub` always. Extract the three-way decision into one focused function that returns from each branch.
+- `shouldSkip`: the unconditional arm follows `IsBlocking`, not the build wait. The skip reason at :667 must stay true for each case: under `publish` keep today's sentence; under a blocking `none`/`build` relation say that the provider's space declares its consumers publish only after it published.
+- Removing an edge cannot create a cycle; do not add cycle checks.
+- Distributed execution (`Executor.Remote != nil`, §28): a consumer whose provider relation is `none` does NOT receive that provider's build outputs as inputs of its BUILD task and does not wait for them. Find where the coordinator computes a build's input closure (gate 9 code: `Coordinator.Build` inputs over `p.Providers`; if that code is not on your branch yet, say so in the report and leave a precise note of the one condition to add, do not invent the closure). The per-repository publication chain (`PublishGroup`) is untouched.
+- Logging: the debug line that reports a package's resolved policy (`package resolved`, where `buildOutputs` was added) names the relation only when stated; the scheduler's existing trace/debug lines about edges keep working.
+
+## Tests
+Unit: models decode/encode table (false, true, each object form, object without `build`, unknown value, unknown key, `{publish,false}` refused, round trip keeps booleans as booleans, YAML and JSON); config ladder (root → space → space file → package; nearest wins; replaced whole); executor launch-order tests next to the existing ones in `release/` for a chain and a diamond under each relation (assert happens-before through the fake runner's recorded order, as the existing launch-order tests do), and `shouldSkip` table rows for `IsBlocking` under `none` and `build` with and without an own reason.
+Integration (new file tests/integration/stage_relation_test.go; typed `pkg/models` configs; event/timestamp based, never sleep-ordered: use the fixture's gate-file technique or the tsmark helper under tests/integration/cmd/tsmark that existing overlap tests use):
+ - `TestStageRelationBuildsOverlapWhilePublishesFollowTheProvider`: infra → {backend, frontend} under `{build: none}`: the three BUILD stages overlap (frontend's build starts before infra's build ends: prove it with a gate file the infra build waits on until the frontend build has started), and each consumer's publish starts after infra's publish ended.
+ - `TestStageRelationBooleansKeepTheirMeaning`: the same fixture under `false` (consumer build starts after infra build ended, may overlap infra publish) and `true` (after infra publish ended); plus the object spellings of both behave identically.
+ - `TestStageRelationBlockingSkipsAConsumerWithItsOwnChanges`: infra publish fails; under `{build: none, isBlocking: true}` the frontend, which has a fresh own bump and already BUILT, is skipped with W194 naming infra, publishes nothing, `onSkip` ran, `revertOnFail` restores its folder when set; under `{build: none}` (not blocking) the same frontend publishes, exactly as under `false` today.
+ - `TestStageRelationConfigRefusals`: load-time refusals listed above, on every ladder level that carries the key, asserting the diagnostic names the key.
+ - `TestStageRelationLadder`: package-level statement beats space beats root.
+ - If gate 9's output transfer is on your branch: `TestStageRelationNoneCarriesNoBuildOutputs` with two workers (a `none` consumer builds while the provider is still building and receives no `dist/`).
+qa rows (`CFG-..` for the key's shapes, `EXE-..`/`PUB-..` for ordering and blocking; mark the blocking one critical).
+
+## Docs (current tree only; docs style from the common rules: formal prose, no em dashes, lowercase `dispat`, per-file wrap width measured first, do not rename headings)
+configuration/spaces.md option row (type `bool or object`) plus a short subsection with the three relations as a table (what the consumer's build waits for, what its publish waits for, what a failed provider does), configuration/README.md table type, configuration/packages.md, concepts.md and internals/architecture.md where the scheduling model is described, examples/terraform.md: the adapted infrastructure/backend/frontend example gains the `none` variant with the sentence that it fits deploy-order relations only (a consumer whose lockfile or build resolves the provider from a registry needs `publish`; one that reads the provider's local build needs `build`). The launch message may carry the specification owner's worked numbers: if present, use them in examples/terraform.md, otherwise write no performance claim at all. services/dispat/dispat.example.yaml/.json: show the object form once (the pair must keep loading equal; `TestExampleConfigsAreValid`). The frozen `versioned_docs/version-1.10/` is NOT touched.
+
+## Verify (report each)
+`gofmt -l pkg services tests`; `go vet` for pkg/models, services/dispat, tests/integration; `go test -C pkg/models ./... -count=1`; `go test -C services/dispat ./... -count=1 -timeout 20m`; `go test -C tests/integration ./... -run 'TestStageRelation' -count=3 -timeout 40m`; then the FULL integration suite once (every release passes through the changed graph construction; every existing expectation must hold unmodified); `go run ./tools/namingcheck .`; `sh scripts/check-test-plan.sh`; integration coverage of the statements you added (recipe in the common rules; grep the files you touched).
+
+## Commits (validate each message with `dispat diagnostics`; no `^^`, no `%rc`)
+1. `feat(models): let isBuildWaitingPublish describe the relation as an object`
+2. `feat(dispat): let consumers build beside a provider and publish after it`
+3. `test(integration): overlap builds under a none relation and hold publishes behind the provider`
+4. `feat(docs): document the three provider relations`

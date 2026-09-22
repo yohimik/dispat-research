@@ -1,0 +1,82 @@
+--- FAIL: TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHad (0.49s)
+    --- FAIL: TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHad/without_force_the_remote_keeps_what_it_had (0.24s)
+        cov_gitx_test.go:113: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:328
+            	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:323
+            	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/cov_gitx_test.go:113
+            	Error:      	Not equal: 
+            	            	expected: 0
+            	            	actual  : 1
+            	Test:       	TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHad/without_force_the_remote_keeps_what_it_had
+            	Messages:   	stdout:
+            	            	{"level":"info","root":"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHadwithout_for1115763686/001","time":"2026-09-21T22:19:06+04:00","message":"release started"}
+            	            	{"level":"warn","code":"W331","repositories":["/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHadwithout_for1115763686/001"],"setting":["DISPAT_UNSAFE_DISABLE_LOCK"],"time":"2026-09-21T22:19:06+04:00","message":"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented"}
+            	            	{"level":"error","error":"E196: origin records the release core@0.1.0 at a092c195bcf32f6aa6fce7720a75bc5e546b084d, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again","code":"E196","time":"2026-09-21T22:19:06+04:00","message":"refusing to release"}
+            	            	
+            	            	stderr:
+    --- FAIL: TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHad/with_force_it_is_overwritten_and_said_so (0.24s)
+        cov_gitx_test.go:123: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:328
+            	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:323
+            	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/cov_gitx_test.go:123
+            	Error:      	Not equal: 
+            	            	expected: 0
+            	            	actual  : 1
+            	Test:       	TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHad/with_force_it_is_overwritten_and_said_so
+            	Messages:   	stdout:
+            	            	{"level":"info","root":"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHadwith_force_1108366485/001","time":"2026-09-21T22:19:06+04:00","message":"release started"}
+            	            	{"level":"warn","code":"W331","repositories":["/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestGitPushSaysWhatItDidAboutATagTheRemoteAlreadyHadwith_force_1108366485/001"],"setting":["DISPAT_UNSAFE_DISABLE_LOCK"],"time":"2026-09-21T22:19:06+04:00","message":"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented"}
+            	            	{"level":"error","error":"E196: origin records the release core@0.1.0 at f848d25bafad5875948edc12e9be73acc6df2533, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again","code":"E196","time":"2026-09-21T22:19:06+04:00","message":"refusing to release"}
+            	            	
+            	            	stderr:
+--- FAIL: TestReleaseRefusesToRepublishAnExistingTag (0.23s)
+    guard_test.go:474: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/guard_test.go:474
+        	Error:      	"{\"level\":\"info\",\"root\":\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestReleaseRefusesToRepublishAnExistingTag1460692289/001\",\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"release started\"}\n{\"level\":\"warn\",\"code\":\"W331\",\"repositories\":[\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestReleaseRefusesToRepublishAnExistingTag1460692289/001\"],\"setting\":[\"DISPAT_UNSAFE_DISABLE_LOCK\"],\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented\"}\n{\"level\":\"error\",\"error\":\"E196: origin records the release core@0.1.0 at 532075b5ffc661f150a269a63e33f34f56571738, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again\",\"code\":\"E196\",\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"refusing to release\"}\n" does not contain "already carries core@0.1.0"
+        	Test:       	TestReleaseRefusesToRepublishAnExistingTag
+    guard_test.go:475: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/guard_test.go:475
+        	Error:      	"{\"level\":\"info\",\"root\":\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestReleaseRefusesToRepublishAnExistingTag1460692289/001\",\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"release started\"}\n{\"level\":\"warn\",\"code\":\"W331\",\"repositories\":[\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestReleaseRefusesToRepublishAnExistingTag1460692289/001\"],\"setting\":[\"DISPAT_UNSAFE_DISABLE_LOCK\"],\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented\"}\n{\"level\":\"error\",\"error\":\"E196: origin records the release core@0.1.0 at 532075b5ffc661f150a269a63e33f34f56571738, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again\",\"code\":\"E196\",\"time\":\"2026-09-21T22:28:54+04:00\",\"message\":\"refusing to release\"}\n" does not contain "Pull and run again"
+        	Test:       	TestReleaseRefusesToRepublishAnExistingTag
+--- FAIL: TestRecordsSectionBumpIsRefusedInAFolderConfig (0.07s)
+    recordformat_test.go:428: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/recordformat_test.go:428
+        	Error:      	"{\"level\":\"info\",\"root\":\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsSectionBumpIsRefusedInAFolderConfig702992316/001\",\"time\":\"2026-09-21T22:31:11+04:00\",\"message\":\"release started\"}\n{\"level\":\"warn\",\"code\":\"W331\",\"repositories\":[\"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsSectionBumpIsRefusedInAFolderConfig702992316/001\"],\"setting\":[\"DISPAT_UNSAFE_DISABLE_LOCK\"],\"time\":\"2026-09-21T22:31:11+04:00\",\"message\":\"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented\"}\n{\"level\":\"error\",\"error\":\"config: space \\\"libs\\\": package \\\"core\\\": /var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsSectionBumpIsRefusedInAFolderConfig702992316/001/packages/core/dispat.json: sections[0]: bump cannot be set in a folder's own config file: the commit parser is built once for the whole repository, so declare the bump under `parser.types` or in the root config's sections\",\"time\":\"2026-09-21T22:31:11+04:00\",\"message\":\"refusing to release\"}\n" does not contain "package discovery failed"
+        	Test:       	TestRecordsSectionBumpIsRefusedInAFolderConfig
+--- FAIL: TestRecordsPushSkipsExistingRemoteTags (0.22s)
+    records_test.go:331: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:328
+        	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:323
+        	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/records_test.go:331
+        	Error:      	Not equal: 
+        	            	expected: 0
+        	            	actual  : 1
+        	Test:       	TestRecordsPushSkipsExistingRemoteTags
+        	Messages:   	stdout:
+        	            	{"level":"info","root":"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsPushSkipsExistingRemoteTags3410491063/001","time":"2026-09-21T22:31:14+04:00","message":"release started"}
+        	            	{"level":"warn","code":"W331","repositories":["/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsPushSkipsExistingRemoteTags3410491063/001"],"setting":["DISPAT_UNSAFE_DISABLE_LOCK"],"time":"2026-09-21T22:31:14+04:00","message":"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented"}
+        	            	{"level":"error","error":"E196: origin records the release a@0.1.0 at 9144a235f4fc0bc5aac6e175e10dc980c80331af, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again","code":"E196","time":"2026-09-21T22:31:14+04:00","message":"refusing to release"}
+        	            	
+        	            	stderr:
+--- FAIL: TestRecordsPushForceReplacesExistingRemoteTags (0.21s)
+    records_test.go:359: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:328
+        	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/internal/harness/repo.go:323
+        	            				/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/records_test.go:359
+        	Error:      	Not equal: 
+        	            	expected: 0
+        	            	actual  : 1
+        	Test:       	TestRecordsPushForceReplacesExistingRemoteTags
+        	Messages:   	stdout:
+        	            	{"level":"info","root":"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsPushForceReplacesExistingRemoteTags3936945208/001","time":"2026-09-21T22:31:14+04:00","message":"release started"}
+        	            	{"level":"warn","code":"W331","repositories":["/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestRecordsPushForceReplacesExistingRemoteTags3936945208/001"],"setting":["DISPAT_UNSAFE_DISABLE_LOCK"],"time":"2026-09-21T22:31:14+04:00","message":"UNSAFE: releasing without the release lock; a concurrent release of these repositories cannot be prevented"}
+        	            	{"level":"error","error":"E196: origin records the release a@0.1.0 at 173f443d911b95471e25889a9d7711be45de8624, which this checkout does not hold although that commit is in its history; fetch the remote's tags (git fetch --tags) and run again","code":"E196","time":"2026-09-21T22:31:14+04:00","message":"refusing to release"}
+        	            	
+        	            	stderr:
+2026/09/21 22:31:50 http: TLS handshake error from 127.0.0.1:64357: remote error: tls: bad certificate
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	1089.047s
+?   	github.com/yohimik/dispat/tests/integration/cmd/tsmark	[no test files]
+ok  	github.com/yohimik/dispat/tests/integration/internal/harness	1.628s
+ok  	github.com/yohimik/dispat/tests/integration/publicapi	4.341s
+FAIL

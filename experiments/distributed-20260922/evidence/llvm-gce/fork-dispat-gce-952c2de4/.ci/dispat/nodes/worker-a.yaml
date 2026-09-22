@@ -1,0 +1,15 @@
+# Node-startup configuration only. No copy of package/release policy belongs here.
+# Development schema; current worker implementation answers probes only.
+execution:
+  role: worker
+  name: llvm-a
+  endpoint: ssh://git@workers.example.invalid/llvm-a.git
+  secretEnv: LLVM_DISPAT_EXECUTION_SECRET
+  concurrency: 1
+  workers: []
+  timeouts: {preflight: 120, task: 86400, cancel: 300}
+  transfer:
+    maxFiles: 250000
+    maxBytes: 68719476736
+    maxManifestBytes: 134217728
+    timeout: 7200

@@ -1,0 +1,13 @@
+execution:
+  role: worker
+  name: llvm-b
+  endpoint: ssh://git@workers.example.invalid/llvm-b.git
+  secretEnv: LLVM_DISPAT_EXECUTION_SECRET
+  concurrency: 1
+  workers: []
+  timeouts: {preflight: 120, task: 86400, cancel: 300}
+  transfer:
+    maxFiles: 250000
+    maxBytes: 68719476736
+    maxManifestBytes: 134217728
+    timeout: 7200

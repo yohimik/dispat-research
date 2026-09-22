@@ -1,0 +1,93 @@
+07:16:06 applying the recipe patch on lb-orch
+dispat.local.yaml True True True
+tip: 6c1a5fcd1c66 origin-tip: 6c1a5fcd1c66 origin-tags: dispat/lld/v24.0.0 dispat/llvm-aarch64/v24.0.0 dispat/llvm/v24.0.0 dispat/polly/v24.0.0 dispat/toolchain/v24.0.0
+5
+commit under test: 6c1a5fcd1c66cc0209be04b5c35b06983560895f
+07:16:30 making sure both workers serve
+1
+1
+07:16:48 starting the distributed release on lb-orch
+2026-09-22T07:16:53Z release plan ready
+2026-09-22T07:17:01Z worker ready
+2026-09-22T07:17:01Z worker ready
+2026-09-22T07:17:03Z task assigned
+2026-09-22T07:17:03Z task assigned
+07:45:40 distributed release exited
+2026-09-22T07:16:53Z
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 28:45.63
+	Exit status: 1
+2026-09-22T07:17:03Z task assigned
+2026-09-22T07:39:26Z outputs admitted
+2026-09-22T07:39:26Z task finished
+2026-09-22T07:39:26Z build succeeded
+2026-09-22T07:40:09Z outputs admitted
+2026-09-22T07:40:09Z task finished
+2026-09-22T07:40:09Z build succeeded
+2026-09-22T07:40:11Z task assigned
+2026-09-22T07:40:12Z task assigned
+2026-09-22T07:40:40Z publication authorized
+2026-09-22T07:40:48Z task finished
+2026-09-22T07:40:49Z task assigned
+2026-09-22T07:42:02Z outputs admitted
+2026-09-22T07:42:02Z task finished
+2026-09-22T07:42:02Z build succeeded
+2026-09-22T07:43:28Z outputs admitted
+2026-09-22T07:43:28Z task finished
+2026-09-22T07:43:28Z build succeeded
+2026-09-22T07:43:28Z build started
+2026-09-22T07:43:30Z task assigned
+2026-09-22T07:43:36Z build script failed
+2026-09-22T07:44:01Z publication authorized
+2026-09-22T07:44:09Z task finished
+2026-09-22T07:44:10Z task assigned
+2026-09-22T07:44:39Z publication authorized
+2026-09-22T07:44:47Z task finished
+2026-09-22T07:44:49Z task assigned
+2026-09-22T07:45:25Z publication authorized
+2026-09-22T07:45:38Z task finished
+2026-09-22T07:45:38Z done
+"published":4,"failed":1,"skipped":0,"cancelled":0,"held":0,"unchanged":0,"took":1717570.818475
+07:46:20 refreshing the baseline clone on lb-w2 to 6c1a5fcd1c66cc0209be04b5c35b06983560895f
+6c1a5fcd1c66 feat(llvm-aarch64): build the AArch64 target as a package of the matrix
+5
+07:46:29 starting the baseline on lb-w2
+1
+08:28:09 baseline exited
+2026-09-22T07:46:34Z
+	Elapsed (wall clock) time (h:mm:ss or m:ss): 41:12.02
+	Exit status: 0
+2026-09-22T07:46:34Z release plan ready
+2026-09-22T07:46:34Z build started
+2026-09-22T07:46:34Z build started
+2026-09-22T08:25:12Z build succeeded
+2026-09-22T08:25:12Z build started
+2026-09-22T08:25:25Z build succeeded
+2026-09-22T08:25:25Z build started
+2026-09-22T08:27:14Z build succeeded
+2026-09-22T08:27:28Z build succeeded
+2026-09-22T08:27:28Z build started
+2026-09-22T08:27:46Z build succeeded
+2026-09-22T08:27:46Z done
+"published":5,"failed":0,"skipped":0,"cancelled":0,"held":0,"unchanged":0,"took":2471996.277675
+08:28:33 bringing the distributed products to lb-w2 and comparing
+   only baseline:     bin/clang-offload-packager
+   only baseline:     bin/count
+   only baseline:     bin/dsymutil
+   only baseline:     bin/ld.lld
+   only baseline:     bin/ld64.lld
+   only baseline:     bin/llc
+   only baseline:     bin/lld
+   only baseline:     bin/lld-link
+toolchain archive: llvm-toolchain-24.1.0-linux-amd64.tar vs None, 2964 members, DIFFERENT
+   only one side: bin
+   only one side: bin/FileCheck
+   only one side: bin/UnicodeNameMappingGenerator
+   only one side: bin/clang-offload-packager
+   only one side: bin/count
+   only one side: bin/dsymutil
+   only one side: bin/ld.lld
+   only one side: bin/ld64.lld
+   only one side: bin/llc
+   only one side: bin/lld
+NO PARITY
+08:29:27 PAIR 3 DONE

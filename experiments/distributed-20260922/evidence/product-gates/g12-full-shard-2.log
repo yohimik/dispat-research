@@ -1,0 +1,20 @@
+--- FAIL: TestExecutionCraftedOutputSetsNeverReachAConsumer (72.79s)
+    --- FAIL: TestExecutionCraftedOutputSetsNeverReachAConsumer/a_set_built_for_another_platform (3.67s)
+        testing.go:1464: TempDir RemoveAll cleanup: unlinkat /var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestExecutionCraftedOutputSetsNeverReachAConsumera_set_built_fo477215510/002/objects: directory not empty
+--- FAIL: TestExecutionPublishHandshakeGitFaults (123.37s)
+    --- FAIL: TestExecutionPublishHandshakeGitFaults/the_run_cannot_write_the_authorization (4.95s)
+        execution_publish_test.go:723: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-worker-outputs/tests/integration/execution_publish_test.go:723
+            	Error:      	Should be empty, but was [dispat-release-lock-attempt-41cfccfed11e245834be9f4396949b93]
+            	Test:       	TestExecutionPublishHandshakeGitFaults/the_run_cannot_write_the_authorization
+            	Messages:   	nothing was recorded
+    --- FAIL: TestExecutionPublishHandshakeGitFaults/the_node_cannot_re-read_its_own_branch (88.65s)
+        execution_publish_test.go:723: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-worker-outputs/tests/integration/execution_publish_test.go:723
+            	Error:      	Should be empty, but was [dispat-release-lock-attempt-2c5b4800f7a89f67faa54edd8c1adbd6]
+            	Test:       	TestExecutionPublishHandshakeGitFaults/the_node_cannot_re-read_its_own_branch
+            	Messages:   	nothing was recorded
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	514.536s
+FAIL
+shard 2 exit=1

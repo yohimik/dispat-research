@@ -1,0 +1,12 @@
+
+Build reference: v7.3-rc4
+Compiler version: m68k-linux-gcc (GCC) 16.2.0
+Assembler version: GNU assembler (GNU Binutils) 2.47.20260726
+
+Configuration file workarounds:
+    "s/CONFIG_FRAME_WARN=.*/CONFIG_FRAME_WARN=0/"
+
+Building m68k_nommu:m5407c3_defconfig ... passed
+
+-----------------------
+Total builds: 1 Total build errors: 0

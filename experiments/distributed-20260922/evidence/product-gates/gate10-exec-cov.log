@@ -1,0 +1,13 @@
+--- FAIL: TestStageRelationNoneCarriesNoBuildOutputs (3.46s)
+    execution_prepare_test.go:632: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-worker-outputs/tests/integration/internal/harness/timeline.go:208
+        	            				/Users/yohimik/Projects/dispat-worker-outputs/tests/integration/execution_prepare_test.go:632
+        	Error:      	Should be true
+        	Test:       	TestStageRelationNoneCarriesNoBuildOutputs
+        	Messages:   	"infra-build" [2026-09-22T02:39:39.48409+04:00 .. 2026-09-22T02:39:39.484112+04:00] and "front-build" [2026-09-22T02:39:39.427726+04:00 .. 2026-09-22T02:39:39.427743+04:00] were expected to overlap but did not
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	796.026s
+?   	github.com/yohimik/dispat/tests/integration/cmd/tsmark	[no test files]
+ok  	github.com/yohimik/dispat/tests/integration/internal/harness	1.283s [no tests to run]
+ok  	github.com/yohimik/dispat/tests/integration/publicapi	1.813s [no tests to run]
+FAIL

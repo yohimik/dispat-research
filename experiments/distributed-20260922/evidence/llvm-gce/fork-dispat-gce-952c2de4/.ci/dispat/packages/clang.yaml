@@ -1,0 +1,7 @@
+path: clang
+versionGroup: llvm-release
+scripts:
+  build: python3 ../.ci/dispat/build.py build clang
+  configure: python3 ../.ci/dispat/build.py configure clang
+flow:
+  build: [build]

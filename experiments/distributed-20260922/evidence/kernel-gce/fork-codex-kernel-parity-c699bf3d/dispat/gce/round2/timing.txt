@@ -1,0 +1,41 @@
+## hexagon-1
+initial source push: 0.000 s
+initial source push git: 0.014 s
+task	assign->claim	farm checkout	wrapper other	build script	finish->result	queue gap
+build-hexagon-allnoconfig:build	2.000	1.000	-	-	3.000	-
+build-hexagon-allnoconfig:publish	1.000	0.000	-	-	0.000	0.000
+full run wall: 111.000 s
+observed git subprocess time: 7.231 s
+
+## hexagon-t1
+initial source push: 0.000 s
+initial source push git: 0.013 s
+task	assign->claim	farm checkout	wrapper other	build script	finish->result	queue gap
+build-hexagon-allnoconfig:build	3.000	0.000	-	-	3.000	-
+full run wall: 96.000 s
+observed git subprocess time: 7.205 s
+
+## hexagon-t2
+initial source push: 0.000 s
+initial source push git: 0.013 s
+task	assign->claim	farm checkout	wrapper other	build script	finish->result	queue gap
+build-hexagon-allnoconfig:build	1.000	0.000	-	-	1.000	-
+full run wall: 92.000 s
+observed git subprocess time: 7.207 s
+
+## m68k_nommu-t1
+initial source push: 0.000 s
+initial source push git: 0.009 s
+task	assign->claim	farm checkout	wrapper other	build script	finish->result	queue gap
+build-m68k_nommu-m5475evb_defconfig:build	0.000	1.000	-	-	0.000	-
+full run wall: 115.000 s
+observed git subprocess time: 7.219 s
+
+## m68k_nommu-t2
+initial source push: 0.000 s
+initial source push git: 0.024 s
+task	assign->claim	farm checkout	wrapper other	build script	finish->result	queue gap
+build-m68k_nommu-m5475evb_defconfig:build	0.000	1.000	-	-	5.000	-
+full run wall: 115.000 s
+observed git subprocess time: 7.220 s
+

@@ -1,0 +1,71 @@
+# The parity run on Compute Engine workers: the four-package graph of
+# dispat.yaml, exactly the recipe of build.py (check targets included), built on
+# two worker VMs with the SDK install trees carried between them as verified
+# build outputs, and the toolchain assembled on the orchestrator. No release
+# records pushed, no publication. Its twin, dispat.local.yaml, runs the same
+# recipe on one machine; the two are compared by compare.py.
+#
+# The placeholders are filled by .ci/dispat/gce/orchestrator.sh. The mailbox is
+# the local bare copy of the repository the run also pushes its lock to, so a
+# snapshot push carries the working tree's changes and never the history.
+$ref: ./dispat.yaml
+commit:
+  enabled: false
+run:
+  allowBranch: [main, 'release/*', dispat-gce]
+env:
+  LLVM_BUILD_JOBS: "14"
+  LLVM_LINK_JOBS: "2"
+  LLVM_BUILD_SOURCE: "@SOURCE@"
+  LLVM_FAST: "1"
+  LLVM_SKIP_CHECKS: "1"
+  LLVM_TOOLCHAIN_PROVIDERS: "llvm,lld,polly"
+  LLVM_BUNDLE_COMPRESSION: none
+dependencies:
+  lld:
+    - {provider: llvm, keep: true}
+  polly:
+    - {provider: llvm, keep: true}
+  toolchain:
+    - {provider: llvm, keep: true}
+    - {provider: lld, keep: true}
+    - {provider: polly, keep: true}
+runOnly: worker
+buildPlatforms: [linux/amd64]
+execution:
+  role: orchestrator
+  concurrency: 1
+  secretEnv: DISPAT_EXECUTION_SECRET
+  timeouts:
+    preflight: 300
+    task: 10800
+    cancel: 300
+  transfer:
+    maxFiles: 250000
+    maxBytes: 68719476736
+    maxManifestBytes: 134217728
+    timeout: 3600
+  workers:
+    - {name: w1, endpoint: "@MAILBOX@"}
+    - {name: w2, endpoint: "@MAILBOX@"}
+packages:
+  llvm:
+    $ref: ./.ci/dispat/packages/llvm.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  llvm-aarch64:
+    $ref: ./.ci/dispat/packages/llvm-aarch64.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  lld:
+    $ref: ./.ci/dispat/packages/lld.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  polly:
+    $ref: ./.ci/dispat/packages/polly.yaml
+    buildOutputs: [_dispat/install, _dispat/build-info.json]
+  toolchain:
+    path: .ci/dispat/bundle
+    versionGroup: llvm-release
+    runOnly: orchestrator
+    scripts:
+      build: python3 ../build.py build toolchain
+    flow:
+      build: [build]

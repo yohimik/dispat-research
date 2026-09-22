@@ -1,0 +1,12 @@
+# LLVM built for the AArch64 target as a package of its own: the same source
+# folder and the same recipe as `llvm`, a second heavy build that depends on
+# nothing, which is what a single node has to serialize and a pool does not.
+path: .ci/dispat/llvm-aarch64
+versionGroup: llvm-release
+env:
+  LLVM_TARGETS_TO_BUILD: AArch64
+scripts:
+  build: python3 ../build.py build llvm-aarch64
+  configure: python3 ../build.py configure llvm-aarch64
+flow:
+  build: [build]

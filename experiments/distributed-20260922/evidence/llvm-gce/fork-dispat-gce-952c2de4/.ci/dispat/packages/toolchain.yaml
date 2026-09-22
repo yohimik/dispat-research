@@ -1,0 +1,13 @@
+path: .ci/dispat/bundle
+versionGroup: llvm-release
+github:
+  enabled: true
+  owner: yohimik
+  repo: llvm-project
+  tokenEnv: GITHUB_TOKEN
+scripts:
+  build: python3 ../build.py build toolchain
+  publish: python3 ../build.py export toolchain
+flow:
+  build: [build]
+  publish: [publish]

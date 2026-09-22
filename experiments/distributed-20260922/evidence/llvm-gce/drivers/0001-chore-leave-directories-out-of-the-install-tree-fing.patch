@@ -1,0 +1,115 @@
+From 16363ab0eb404d12c5ebf31436810c65720fe4cc Mon Sep 17 00:00:00 2001
+From: yohimik <yohimik@gmail.com>
+Date: Tue, 22 Sep 2026 10:30:35 +0400
+Subject: [PATCH] chore: leave directories out of the install tree fingerprint
+ and keep its records
+
+A transport that carries files carries every directory a file needs and no
+empty one, so a directory record can only differ between a tree that was
+built and the same tree after it travelled; nothing a consumer reads is in
+an empty directory. The receipt now keeps the records the digest was taken
+over, so an integrity failure names the records that differ instead of
+reporting two digests.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ .ci/dispat/build.py       | 35 +++++++++++++++++++++++++++++++----
+ .ci/dispat/gce/compare.py |  4 ++--
+ 2 files changed, 33 insertions(+), 6 deletions(-)
+
+diff --git a/.ci/dispat/build.py b/.ci/dispat/build.py
+index d4fba73ead08..f01539d478df 100644
+--- a/.ci/dispat/build.py
++++ b/.ci/dispat/build.py
+@@ -42,12 +42,25 @@ def output(package):
+ 
+ 
+ def fingerprint(tree):
++    """The digest of an install tree's fingerprint records."""
++    return digest_records(fingerprint_records(tree))
++
++
++def digest_records(records):
++    data = json.dumps(records, separators=(",", ":")).encode()
++    return hashlib.sha256(data).hexdigest()
++
++
++def fingerprint_records(tree):
+     """Include the executable bit and symlink targets; refuse escaping links/devices.
+ 
+     Only the executable bit of a file is part of the artifact: the rest of a
+     mode is the umask of whatever process created the entry, and a tree that
+     travelled between machines (dispat carries files as 0644 or 0755 and
+     recreates directories) must fingerprint the same as the one that was built.
++    Directories are not recorded at all for the same reason: a transport that
++    carries files carries every directory a file needs and no empty one, and an
++    empty directory is not something a consumer can read.
+     """
+     if not tree.is_dir() or tree.is_symlink():
+         raise ValueError(f"missing install tree: {tree}")
+@@ -64,13 +77,25 @@ def fingerprint(tree):
+         elif path.is_file():
+             records.append((name, is_executable, "file", digest(path)))
+         elif path.is_dir():
+-            records.append((name, "directory"))
++            continue
+         else:
+             raise ValueError(f"unsupported installed file type: {path}")
+     if not records:
+         raise ValueError(f"empty install tree: {tree}")
+-    data = json.dumps(records, separators=(",", ":")).encode()
+-    return hashlib.sha256(data).hexdigest()
++    return records
++
++
++def report_fingerprint_difference(package, tree, recorded):
++    """Name the records that differ between a receipt and the tree it describes,
++    so an integrity failure says what changed rather than that something did."""
++    if not recorded:
++        return
++    then = {json.dumps(record, separators=(",", ":")) for record in recorded}
++    now = {json.dumps(list(record), separators=(",", ":")) for record in fingerprint_records(tree)}
++    for record in sorted(then - now):
++        print(f"dispat LLVM: {package}: recorded but not present: {record}", file=sys.stderr)
++    for record in sorted(now - then):
++        print(f"dispat LLVM: {package}: present but not recorded: {record}", file=sys.stderr)
+ 
+ 
+ def identity(require_clean=True):
+@@ -109,6 +134,7 @@ def verify_provider(package, expected):
+     if receipt["identity"] != expected or receipt["package"] != package:
+         raise ValueError(f"{package}: stale or incompatible provider output")
+     if fingerprint(folder / "install") != receipt["installSha256"]:
++        report_fingerprint_difference(package, folder / "install", receipt.get("installRecords"))
+         raise ValueError(f"{package}: provider output integrity check failed")
+     return receipt
+ 
+@@ -207,8 +233,9 @@ def build(package, current):
+         if not skip_checks():
+             run("cmake", "--build", folder / "build", "--target", f"check-{package}", "--parallel", jobs)
+         run("cmake", "--install", folder / "build")
++    records = fingerprint_records(folder / "install")
+     receipt = {"schema": 1, "package": package, "identity": current, "providers": providers,
+-               "installSha256": fingerprint(folder / "install")}
++               "installSha256": digest_records(records), "installRecords": records}
+     if package == "toolchain":
+         checks = {"llvm": "llvm-config", "clang": "clang", "lld": "ld.lld"}
+         for provider, command in checks.items():
+diff --git a/.ci/dispat/gce/compare.py b/.ci/dispat/gce/compare.py
+index b038a0db0487..ac92d20eff38 100755
+--- a/.ci/dispat/gce/compare.py
++++ b/.ci/dispat/gce/compare.py
+@@ -46,8 +46,8 @@ def describe(tree, prefix):
+             records[name] = ("link", 0, os.readlink(path), 0)
+         elif path.is_file():
+             records[name] = ("file", mode, masked_digest(path, prefix), info.st_size)
+-        elif path.is_dir():
+-            records[name] = ("dir", 0, "", 0)
++        # Directories are not recorded: a file implies its parents, and an
++        # empty directory is not part of what a consumer can read.
+     return records
+ 
+ 
+-- 
+2.54.0 (Apple Git-157)
+

@@ -1,0 +1,7 @@
+path: polly
+versionGroup: llvm-release
+scripts:
+  build: python3 ../.ci/dispat/build.py build polly
+  configure: python3 ../.ci/dispat/build.py configure polly
+flow:
+  build: [build]

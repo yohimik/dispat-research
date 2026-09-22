@@ -1,0 +1,16 @@
+ok  	github.com/yohimik/dispat/tests/integration	353.795s
+shard 0 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	328.959s
+shard 1 exit=0
+--- FAIL: TestExecutionCraftedOutputSetsNeverReachAConsumer (72.79s)
+--- FAIL: TestExecutionPublishHandshakeGitFaults (123.37s)
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	514.536s
+FAIL
+shard 2 exit=1
+ok  	github.com/yohimik/dispat/tests/integration	349.255s
+shard 3 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	296.485s
+shard 4 exit=0
+ok  	github.com/yohimik/dispat/tests/integration	302.905s
+shard 5 exit=0

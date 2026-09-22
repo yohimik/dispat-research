@@ -1,0 +1,200 @@
+From d8fb8408663e6d422ec615886a93c9885090fce9 Mon Sep 17 00:00:00 2001
+From: yohimik <yohimik@gmail.com>
+Date: Tue, 22 Sep 2026 11:14:56 +0400
+Subject: [PATCH] feat(llvm-aarch64): build the AArch64 target as a package of
+ the matrix
+
+A second heavy build that depends on nothing, from the llvm sources with
+LLVM_TARGETS_TO_BUILD=AArch64 and products of its own under
+.ci/dispat/llvm-aarch64/_dispat: what a single node has to serialize and a
+pool does not. The recipe maps a package to the sources it builds, and the
+toolchain archive compression becomes LLVM_BUNDLE_COMPRESSION (xz, gz or
+none), so a timing fixture is not dominated by a single-threaded xz on either
+side.
+
+Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>
+---
+ .ci/dispat/build.py                   | 30 ++++++++++++++++++++-------
+ .ci/dispat/gce/compare.py             |  5 +++--
+ .ci/dispat/gce/dispat.gce.yaml        |  5 ++++-
+ .ci/dispat/gce/dispat.local.yaml      |  4 ++++
+ .ci/dispat/llvm-aarch64/README.md     |  5 +++++
+ .ci/dispat/packages/llvm-aarch64.yaml | 12 +++++++++++
+ 6 files changed, 51 insertions(+), 10 deletions(-)
+ create mode 100644 .ci/dispat/llvm-aarch64/README.md
+ create mode 100644 .ci/dispat/packages/llvm-aarch64.yaml
+
+diff --git a/.ci/dispat/build.py b/.ci/dispat/build.py
+index f01539d478df..76163302c52a 100644
+--- a/.ci/dispat/build.py
++++ b/.ci/dispat/build.py
+@@ -15,11 +15,15 @@ import sys
+ import tarfile
+ 
+ ROOT = Path(__file__).resolve().parents[2]
+-PACKAGES = {"llvm": "llvm", "clang": "clang", "lld": "lld", "polly": "polly",
+-            "toolchain": ".ci/dispat/bundle"}
++PACKAGES = {"llvm": "llvm", "llvm-aarch64": ".ci/dispat/llvm-aarch64", "clang": "clang", "lld": "lld",
++            "polly": "polly", "toolchain": ".ci/dispat/bundle"}
++# A package built from another package's sources: the matrix fixture builds the
++# llvm sources once per target, each as a package of its own with its own
++# products folder.
++SOURCES = {"llvm-aarch64": "llvm"}
+ # The toolchain bundles whatever LLVM_TOOLCHAIN_PROVIDERS names, so a fixture
+ # that leaves clang out still assembles a bundle from what it built.
+-PROVIDERS = {"llvm": (), "clang": ("llvm",), "lld": ("llvm",), "polly": ("llvm",),
++PROVIDERS = {"llvm": (), "llvm-aarch64": (), "clang": ("llvm",), "lld": ("llvm",), "polly": ("llvm",),
+              "toolchain": tuple(os.environ.get("LLVM_TOOLCHAIN_PROVIDERS", "llvm,clang,lld").split(","))}
+ SEMVER = re.compile(r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?")
+ 
+@@ -152,6 +156,16 @@ def fast_fixture():
+     return os.environ.get("LLVM_FAST", "") == "1"
+ 
+ 
++def bundle_compression():
++    """How the toolchain archive is compressed: xz for a release, gz or none for
++    a timing fixture, where a single-threaded xz of the whole install tree
++    would be the longest step on either side and say nothing about placement."""
++    choice = os.environ.get("LLVM_BUNDLE_COMPRESSION", "xz")
++    if choice not in ("xz", "gz", "none"):
++        raise ValueError(f"LLVM_BUNDLE_COMPRESSION must be xz, gz or none, not {choice!r}")
++    return "" if choice == "none" else choice
++
++
+ def positive_env(name, default):
+     value = int(os.environ.get(name, default))
+     if value < 1:
+@@ -166,14 +180,15 @@ def configure(package, current):
+     if previous.exists() and json.loads(previous.read_text()) != current:
+         raise ValueError(f"{folder}: inputs changed; remove this package's _dispat directory first")
+     major, minor, patch, suffix = SEMVER.fullmatch(current["version"]).groups()
+-    args = ["cmake", "-G", "Ninja", "-S", ROOT / package, "-B", folder / "build",
++    source = SOURCES.get(package, package)
++    args = ["cmake", "-G", "Ninja", "-S", ROOT / source, "-B", folder / "build",
+             "-DCMAKE_BUILD_TYPE=Release", f"-DCMAKE_INSTALL_PREFIX={folder / 'install'}",
+             "-DCMAKE_INSTALL_LIBDIR=lib", "-DBUILD_SHARED_LIBS=OFF", "-DLLVM_ENABLE_LTO=OFF",
+             f"-DLLVM_ENABLE_ASSERTIONS={'OFF' if fast_fixture() else 'ON'}",
+             f"-DLLVM_INCLUDE_TESTS={'OFF' if skip_checks() else 'ON'}",
+             "-DLLVM_INCLUDE_EXAMPLES=OFF", "-DLLVM_INCLUDE_DOCS=OFF", "-DLLVM_INCLUDE_BENCHMARKS=OFF",
+             f"-DLLVM_PARALLEL_LINK_JOBS={positive_env('LLVM_LINK_JOBS', '1')}"]
+-    if package == "llvm":
++    if source == "llvm":
+         args += ["-DLLVM_ENABLE_PROJECTS=", "-DLLVM_ENABLE_RUNTIMES=",
+                  f"-DLLVM_TARGETS_TO_BUILD={current['targets']}", "-DLLVM_INSTALL_UTILS=ON",
+                  f"-DLLVM_INSTALL_GTEST={'OFF' if skip_checks() else 'ON'}",
+@@ -244,8 +259,9 @@ def build(package, current):
+         dist = folder / "dist"
+         dist.mkdir(exist_ok=False)
+         stem = f"llvm-toolchain-{current['version']}-{current['platform'].replace('/', '-')}"
+-        archive = dist / f"{stem}.tar.xz"
+-        with tarfile.open(archive, "w:xz") as stream:
++        compression = bundle_compression()
++        archive = dist / f"{stem}.tar{'.' + compression if compression else ''}"
++        with tarfile.open(archive, "w:" + compression) as stream:
+             stream.add(folder / "install", arcname=stem)
+         if archive.stat().st_size >= 2 * 1024**3:
+             raise ValueError("archive exceeds GitHub's 2 GiB per-asset limit; add reviewed splitting before release")
+diff --git a/.ci/dispat/gce/compare.py b/.ci/dispat/gce/compare.py
+index ac92d20eff38..0fafd3c7a2e8 100755
+--- a/.ci/dispat/gce/compare.py
++++ b/.ci/dispat/gce/compare.py
+@@ -22,7 +22,8 @@ import sys
+ import tarfile
+ from pathlib import Path
+ 
+-PACKAGES = {"llvm": "llvm", "lld": "lld", "polly": "polly", "toolchain": ".ci/dispat/bundle"}
++PACKAGES = {"llvm": "llvm", "llvm-aarch64": ".ci/dispat/llvm-aarch64", "lld": "lld", "polly": "polly",
++            "toolchain": ".ci/dispat/bundle"}
+ 
+ 
+ def masked_digest(path, prefix):
+@@ -71,7 +72,7 @@ def compare_trees(package, left, right):
+ 
+ def compare_archives(left, right):
+     def members(folder):
+-        archives = list((folder / "dist").glob("*.tar.xz"))
++        archives = list((folder / "dist").glob("*.tar*"))
+         if len(archives) != 1:
+             return None, {}
+         with tarfile.open(archives[0]) as stream:
+diff --git a/.ci/dispat/gce/dispat.gce.yaml b/.ci/dispat/gce/dispat.gce.yaml
+index 18d326a5a916..c92075192de9 100644
+--- a/.ci/dispat/gce/dispat.gce.yaml
++++ b/.ci/dispat/gce/dispat.gce.yaml
+@@ -20,6 +20,7 @@ env:
+   LLVM_FAST: "1"
+   LLVM_SKIP_CHECKS: "1"
+   LLVM_TOOLCHAIN_PROVIDERS: "llvm,lld,polly"
++  LLVM_BUNDLE_COMPRESSION: none
+ dependencies:
+   lld:
+     - {provider: llvm, keep: true}
+@@ -51,6 +52,9 @@ packages:
+   llvm:
+     $ref: ./.ci/dispat/packages/llvm.yaml
+     buildOutputs: [_dispat/install, _dispat/build-info.json]
++  llvm-aarch64:
++    $ref: ./.ci/dispat/packages/llvm-aarch64.yaml
++    buildOutputs: [_dispat/install, _dispat/build-info.json]
+   lld:
+     $ref: ./.ci/dispat/packages/lld.yaml
+     buildOutputs: [_dispat/install, _dispat/build-info.json]
+@@ -65,4 +69,3 @@ packages:
+       build: python3 ../build.py build toolchain
+     flow:
+       build: [build]
+-    buildOutputs: [_dispat/dist, _dispat/build-info.json]
+diff --git a/.ci/dispat/gce/dispat.local.yaml b/.ci/dispat/gce/dispat.local.yaml
+index c37b5f73578d..3cfdcb602234 100644
+--- a/.ci/dispat/gce/dispat.local.yaml
++++ b/.ci/dispat/gce/dispat.local.yaml
+@@ -14,6 +14,7 @@ env:
+   LLVM_FAST: "1"
+   LLVM_SKIP_CHECKS: "1"
+   LLVM_TOOLCHAIN_PROVIDERS: "llvm,lld,polly"
++  LLVM_BUNDLE_COMPRESSION: none
+ dependencies:
+   lld:
+     - {provider: llvm, keep: true}
+@@ -26,6 +27,9 @@ dependencies:
+ packages:
+   llvm:
+     $ref: ./.ci/dispat/packages/llvm.yaml
++  llvm-aarch64:
++    $ref: ./.ci/dispat/packages/llvm-aarch64.yaml
++    buildOutputs: [_dispat/install, _dispat/build-info.json]
+   lld:
+     $ref: ./.ci/dispat/packages/lld.yaml
+   polly:
+diff --git a/.ci/dispat/llvm-aarch64/README.md b/.ci/dispat/llvm-aarch64/README.md
+new file mode 100644
+index 000000000000..dc97ac91bad4
+--- /dev/null
++++ b/.ci/dispat/llvm-aarch64/README.md
+@@ -0,0 +1,5 @@
++# llvm-aarch64
++
++The `llvm` sources built for the AArch64 target, as a package of the
++matrix fixture. Its products are written to `_dispat/` here; the recipe is
++`.ci/dispat/build.py`.
+diff --git a/.ci/dispat/packages/llvm-aarch64.yaml b/.ci/dispat/packages/llvm-aarch64.yaml
+new file mode 100644
+index 000000000000..cfb8568ea930
+--- /dev/null
++++ b/.ci/dispat/packages/llvm-aarch64.yaml
+@@ -0,0 +1,12 @@
++# LLVM built for the AArch64 target as a package of its own: the same source
++# folder and the same recipe as `llvm`, a second heavy build that depends on
++# nothing, which is what a single node has to serialize and a pool does not.
++path: .ci/dispat/llvm-aarch64
++versionGroup: llvm-release
++env:
++  LLVM_TARGETS_TO_BUILD: AArch64
++scripts:
++  build: python3 ../build.py build llvm-aarch64
++  configure: python3 ../build.py configure llvm-aarch64
++flow:
++  build: [build]
+-- 
+2.54.0 (Apple Git-157)
+

@@ -1,0 +1,41 @@
+{
+  "alpha": {
+    "seconds": 623,
+    "kernel_revision": "93f51579e7df248780214094418f205253383cc5",
+    "compiler": "alpha-linux-gcc (GCC) 16.2.0",
+    "assembler": "GNU assembler (GNU Binutils) 2.47.20260726",
+    "cases": [
+      "Building alpha:defconfig ... passed",
+      "Building alpha:allmodconfig ... passed",
+      "Building alpha:allnoconfig ... passed",
+      "Building alpha:tinyconfig ... passed"
+    ],
+    "url": "https://kerneltests.org/builders/upstream-alpha-master/builds/332"
+  },
+  "hexagon": {
+    "seconds": 111,
+    "kernel_revision": "93f51579e7df248780214094418f205253383cc5",
+    "compiler": "Ubuntu clang version 18.1.3 (1ubuntu1)",
+    "assembler": null,
+    "cases": [
+      "Building hexagon:defconfig ... passed",
+      "Building hexagon:allnoconfig ... passed",
+      "Building hexagon:tinyconfig ... passed"
+    ],
+    "url": "https://kerneltests.org/builders/upstream-hexagon-master/builds/330"
+  },
+  "m68k_nommu": {
+    "seconds": 128,
+    "kernel_revision": "93f51579e7df248780214094418f205253383cc5",
+    "compiler": "m68k-linux-gcc (GCC) 16.2.0",
+    "assembler": "GNU assembler (GNU Binutils) 2.47.20260726",
+    "cases": [
+      "Building m68k_nommu:m5272c3_defconfig ... passed",
+      "Building m68k_nommu:m5307c3_defconfig ... passed",
+      "Building m68k_nommu:m5249evb_defconfig ... passed",
+      "Building m68k_nommu:m5407c3_defconfig ... passed",
+      "Building m68k_nommu:m5475evb_defconfig ... passed"
+    ],
+    "url": "https://kerneltests.org/builders/upstream-m68k_nommu-master/builds/331"
+  }
+}

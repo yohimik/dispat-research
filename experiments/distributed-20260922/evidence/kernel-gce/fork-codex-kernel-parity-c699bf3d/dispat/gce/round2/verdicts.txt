@@ -1,0 +1,103 @@
+## hexagon-1  (hexagon, elapsed 111.47 s)
+   par-c3/results/build-hexagon-tinyconfig.4iOicI                 script  60 s  lease 12.0 s  passed
+   par-t2d/results/build-hexagon-allnoconfig.puqTCx               script  80 s  lease 12.0 s  passed
+   par-c3/results/build-hexagon-defconfig.jdu8jf                  script  84 s  lease 12.0 s  passed
+{
+  "accepted": false,
+  "problems": [
+    "elapsed time exceeds reference or is invalid"
+  ],
+  "reference_seconds": 111,
+  "elapsed_seconds": 111.47,
+  "speedup": 0.9957836189109177,
+  "cases": 3
+}
+
+## hexagon-t1  (hexagon, elapsed 95.89 s)
+   par-c3/results/build-hexagon-tinyconfig.c3kCeS                 script  70 s  lease  0.0 s  passed
+   par-c3/results/build-hexagon-defconfig.TjKkzv                  script  85 s  lease  0.0 s  passed
+   par-t2d/results/build-hexagon-allnoconfig.9ung9o               script  82 s  lease  0.0 s  passed
+{
+  "accepted": true,
+  "problems": [],
+  "reference_seconds": 111,
+  "elapsed_seconds": 95.89,
+  "speedup": 1.1575763896130984,
+  "cases": 3
+}
+
+## hexagon-t2  (hexagon, elapsed 92.22 s)
+   par-c3/results/build-hexagon-tinyconfig.dzlple                 script  71 s  lease  0.0 s  passed
+   par-t2d/results/build-hexagon-allnoconfig.2QnrSl               script  81 s  lease  0.0 s  passed
+   par-c3/results/build-hexagon-defconfig.BufIMl                  script  84 s  lease  0.0 s  passed
+{
+  "accepted": true,
+  "problems": [],
+  "reference_seconds": 111,
+  "elapsed_seconds": 92.22,
+  "speedup": 1.2036434612882239,
+  "cases": 3
+}
+
+## m68k_nommu-t1  (m68k_nommu, elapsed 115.61 s)
+   par-t2d/results/build-m68k_nommu-m5475evb_defconfig.LA7Wvd     script  50 s  lease  0.0 s  passed
+   par-c3/results/build-m68k_nommu-m5249evb_defconfig.t58Jif      script  95 s  lease  1.0 s  passed
+   par-c3/results/build-m68k_nommu-m5272c3_defconfig.v0U353       script  96 s  lease  1.0 s  passed
+   par-c3/results/build-m68k_nommu-m5407c3_defconfig.3tN3xZ       script  96 s  lease 14.0 s  passed
+   par-c3/results/build-m68k_nommu-m5307c3_defconfig.2CCh2z       script  97 s  lease 15.0 s  passed
+{
+  "accepted": true,
+  "problems": [],
+  "reference_seconds": 128,
+  "elapsed_seconds": 115.61,
+  "speedup": 1.1071706599775106,
+  "cases": 5
+}
+
+## m68k_nommu-t2  (m68k_nommu, elapsed 115.48 s)
+   par-t2d/results/build-m68k_nommu-m5475evb_defconfig.eVPvfz     script  51 s  lease  0.0 s  passed
+   par-c3/results/build-m68k_nommu-m5249evb_defconfig.gAJjEl      script 105 s  lease  0.0 s  passed
+   par-c3/results/build-m68k_nommu-m5407c3_defconfig.0XtOe2       script 105 s  lease  0.0 s  passed
+   par-c3/results/build-m68k_nommu-m5307c3_defconfig.SRpyoD       script 106 s  lease  0.0 s  passed
+   par-c3/results/build-m68k_nommu-m5272c3_defconfig.tkYQDP       script 107 s  lease  0.0 s  passed
+{
+  "accepted": true,
+  "problems": [],
+  "reference_seconds": 128,
+  "elapsed_seconds": 115.48,
+  "speedup": 1.1084170419120194,
+  "cases": 5
+}
+
+## hexagon-solo  (hexagon, one node alone, elapsed 122.62 s)
+   solo-c3/results/build-hexagon-tinyconfig.Es2HLq                script  91 s  lease 13.0 s  passed
+   solo-c3/results/build-hexagon-allnoconfig.tlrOtH               script 105 s  lease 13.0 s  passed
+   solo-c3/results/build-hexagon-defconfig.PwQXvY                 script 110 s  lease 12.0 s  passed
+{
+  "accepted": false,
+  "problems": [
+    "elapsed time exceeds reference or is invalid"
+  ],
+  "reference_seconds": 111,
+  "elapsed_seconds": 122.62,
+  "speedup": 0.9052356874898059,
+  "cases": 3
+}
+
+## m68k_nommu-solo  (m68k_nommu, one node alone, elapsed 138.01 s)
+   solo-c3/results/build-m68k_nommu-m5475evb_defconfig.JmzST7     script  56 s  lease  0.0 s  passed
+   solo-c3/results/build-m68k_nommu-m5407c3_defconfig.4VqGo7      script  91 s  lease  0.0 s  passed
+   solo-c3/results/build-m68k_nommu-m5307c3_defconfig.0NoBWM      script  92 s  lease  0.0 s  passed
+   solo-c3/results/build-m68k_nommu-m5272c3_defconfig.g5NdBk      script  73 s  lease 58.0 s  passed
+   solo-c3/results/build-m68k_nommu-m5249evb_defconfig.LEf7Hy     script  72 s  lease 66.0 s  passed
+{
+  "accepted": false,
+  "problems": [
+    "elapsed time exceeds reference or is invalid"
+  ],
+  "reference_seconds": 128,
+  "elapsed_seconds": 138.01,
+  "speedup": 0.9274690239837694,
+  "cases": 5
+}
+

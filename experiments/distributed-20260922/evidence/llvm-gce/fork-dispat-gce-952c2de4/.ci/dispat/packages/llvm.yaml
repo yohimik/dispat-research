@@ -1,0 +1,7 @@
+path: llvm
+versionGroup: llvm-release
+scripts:
+  build: python3 ../.ci/dispat/build.py build llvm
+  configure: python3 ../.ci/dispat/build.py configure llvm
+flow:
+  build: [build]

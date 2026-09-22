@@ -1,0 +1,20 @@
+--- FAIL: TestExecutionWorkerStartRefusals (5.60s)
+    --- FAIL: TestExecutionWorkerStartRefusals/two_nodes_may_not_share_one_state_folder (1.02s)
+        execution_worker_test.go:291: 
+            	Error Trace:	/Users/yohimik/Projects/dispat-worker-nodes/tests/integration/execution_worker_test.go:291
+            	Error:      	Not equal: 
+            	            	expected: 1
+            	            	actual  : 0
+            	Test:       	TestExecutionWorkerStartRefusals/two_nodes_may_not_share_one_state_folder
+            	Messages:   	stdout:
+            	            	{"level":"info","role":"worker","node":"build-a","endpoint":"file:///var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestExecutionWorkerStartRefusals3239714540/002","concurrency":1,"stateDir":"/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/TestExecutionWorkerStartRefusalstwo_nodes_may_not_share_one_sta1162267011/002/build-a","time":"2026-09-21T23:19:37+04:00","message":"worker started"}
+            	            	{"level":"info","role":"worker","node":"build-a","reason":"idle","time":"2026-09-21T23:19:38+04:00","message":"worker stopped"}
+            	            	
+            	            	stderr:
+2026/09/21 23:24:51 http: TLS handshake error from 127.0.0.1:51104: remote error: tls: bad certificate
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	1081.865s
+?   	github.com/yohimik/dispat/tests/integration/cmd/tsmark	[no test files]
+ok  	github.com/yohimik/dispat/tests/integration/internal/harness	1.173s
+ok  	github.com/yohimik/dispat/tests/integration/publicapi	4.101s
+FAIL

@@ -1,0 +1,28 @@
+# label arch configs jobs slot
+hex-def-solo hexagon defconfig 33 0
+
+hex-def-pair hexagon defconfig 17 0
+hex-tiny-pair hexagon tinyconfig 17 1
+
+hex-def-trio hexagon defconfig 11 0
+hex-allno-trio hexagon allnoconfig 11 1
+hex-tiny-trio hexagon tinyconfig 11 2
+
+m68k-a3 m68k_nommu m5272c3_defconfig 11 0
+m68k-b3 m68k_nommu m5307c3_defconfig 11 1
+m68k-c3 m68k_nommu m5249evb_defconfig,m5407c3_defconfig,m5475evb_defconfig 11 2
+
+m68k-a2 m68k_nommu m5272c3_defconfig,m5307c3_defconfig 17 0
+m68k-b2 m68k_nommu m5249evb_defconfig,m5407c3_defconfig,m5475evb_defconfig 17 1
+
+m68k-a5 m68k_nommu m5272c3_defconfig 7 0
+m68k-b5 m68k_nommu m5307c3_defconfig 7 1
+m68k-c5 m68k_nommu m5249evb_defconfig 7 2
+m68k-d5 m68k_nommu m5407c3_defconfig 7 3
+m68k-e5 m68k_nommu m5475evb_defconfig 7 4
+
+alpha-def alpha defconfig 33 0
+
+alpha-allno alpha allnoconfig 33 0
+
+alpha-tiny alpha tinyconfig 33 0

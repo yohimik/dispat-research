@@ -1,0 +1,287 @@
+{
+ "qemu-alpha-master": {
+  "step": 504,
+  "slave": "jupiter",
+  "total": 14
+ },
+ "qemu-arm-aspeed-master": {
+  "step": 1628,
+  "slave": "server",
+  "total": 43
+ },
+ "qemu-arm-master": {
+  "step": 1260,
+  "slave": "saturn",
+  "total": 15
+ },
+ "qemu-arm-v7-master": {
+  "step": 4708,
+  "slave": "desktop",
+  "total": 51
+ },
+ "qemu-arm64-master": {
+  "step": 3870,
+  "slave": "desktop",
+  "total": 30
+ },
+ "qemu-arm64-rt-master": {
+  "step": 2387,
+  "slave": "server",
+  "total": 29
+ },
+ "qemu-loongarch-master": {
+  "step": 914,
+  "slave": "desktop",
+  "total": 7
+ },
+ "qemu-loongarch-rt-master": {
+  "step": 674,
+  "slave": "server",
+  "total": 7
+ },
+ "qemu-m68k-master": {
+  "step": 529,
+  "slave": "neptune",
+  "total": 7
+ },
+ "qemu-mips-master": {
+  "step": 2988,
+  "slave": "desktop",
+  "total": 17
+ },
+ "qemu-mips64-master": {
+  "step": 2721,
+  "slave": "mars",
+  "total": 16
+ },
+ "qemu-mipsel-master": {
+  "step": 1629,
+  "slave": "desktop",
+  "total": 18
+ },
+ "qemu-mipsel64-master": {
+  "step": 671,
+  "slave": "server",
+  "total": 21
+ },
+ "qemu-nios2-master": {
+  "step": 36,
+  "slave": "server",
+  "total": 1
+ },
+ "qemu-openrisc-master": {
+  "step": 70,
+  "slave": "saturn",
+  "total": 1
+ },
+ "qemu-parisc-master": {
+  "step": 947,
+  "slave": "jupiter",
+  "total": 18
+ },
+ "qemu-parisc64-master": {
+  "step": 808,
+  "slave": "saturn",
+  "total": 21
+ },
+ "qemu-ppc-master": {
+  "step": 2508,
+  "slave": "server",
+  "total": 40
+ },
+ "qemu-ppc64-master": {
+  "step": 1452,
+  "slave": "saturn",
+  "total": 31
+ },
+ "qemu-riscv32-master": {
+  "step": 1264,
+  "slave": "mars",
+  "total": 18
+ },
+ "qemu-riscv64-master": {
+  "step": 1064,
+  "slave": "saturn",
+  "total": 24
+ },
+ "qemu-riscv64-rt-master": {
+  "step": 1491,
+  "slave": "saturn",
+  "total": 24
+ },
+ "qemu-s390-master": {
+  "step": 2206,
+  "slave": "jupiter",
+  "total": 9
+ },
+ "qemu-sh-master": {
+  "step": 328,
+  "slave": "desktop",
+  "total": 17
+ },
+ "qemu-sheb-master": {
+  "step": 95,
+  "slave": "saturn",
+  "total": 3
+ },
+ "qemu-sparc-master": {
+  "step": 579,
+  "slave": "server",
+  "total": 15
+ },
+ "qemu-sparc64-master": {
+  "step": 552,
+  "slave": "server",
+  "total": 17
+ },
+ "qemu-x86-master": {
+  "step": 2101,
+  "slave": "neptune",
+  "total": 28
+ },
+ "qemu-x86_64-master": {
+  "step": 2147,
+  "slave": "saturn",
+  "total": 33
+ },
+ "qemu-x86_64-rt-master": {
+  "step": 1466,
+  "slave": "saturn",
+  "total": 26
+ },
+ "qemu-xtensa-master": {
+  "step": 854,
+  "slave": "jupiter",
+  "total": 7
+ },
+ "upstream-alpha-master": {
+  "step": 623,
+  "slave": "saturn",
+  "total": 4
+ },
+ "upstream-arc-master": {
+  "step": 32,
+  "slave": "desktop",
+  "total": 1
+ },
+ "upstream-arcv2-master": {
+  "step": 132,
+  "slave": "server",
+  "total": 6
+ },
+ "upstream-arm-master": {
+  "step": 4648,
+  "slave": "mars",
+  "total": 34
+ },
+ "upstream-arm64-master": {
+  "step": 1528,
+  "slave": "server",
+  "total": 4
+ },
+ "upstream-csky-master": {
+  "step": 1017,
+  "slave": "mars",
+  "total": 4
+ },
+ "upstream-hexagon-master": {
+  "step": 111,
+  "slave": "mars",
+  "total": 3
+ },
+ "upstream-i386-master": {
+  "step": 3673,
+  "slave": "saturn",
+  "total": 1
+ },
+ "upstream-loongarch-master": {
+  "step": 1405,
+  "slave": "server",
+  "total": 4
+ },
+ "upstream-m68k-master": {
+  "step": 799,
+  "slave": "server",
+  "total": 9
+ },
+ "upstream-m68k_nommu-master": {
+  "step": 128,
+  "slave": "jupiter",
+  "total": 5
+ },
+ "upstream-mips-master": {
+  "step": 688,
+  "slave": "server",
+  "total": 14
+ },
+ "upstream-nios2-master": {
+  "step": 75,
+  "slave": "neptune",
+  "total": 3
+ },
+ "upstream-openrisc-master": {
+  "step": 1156,
+  "slave": "desktop",
+  "total": 4
+ },
+ "upstream-parisc-master": {
+  "step": 1592,
+  "slave": "jupiter",
+  "total": 4
+ },
+ "upstream-parisc64-master": {
+  "step": 94,
+  "slave": "server",
+  "total": 2
+ },
+ "upstream-powerpc-master": {
+  "step": 4812,
+  "slave": "mars",
+  "total": 14
+ },
+ "upstream-riscv32-master": {
+  "step": 2387,
+  "slave": "desktop",
+  "total": 5
+ },
+ "upstream-riscv64-master": {
+  "step": 2884,
+  "slave": "jupiter",
+  "total": 6
+ },
+ "upstream-s390-master": {
+  "step": 1,
+  "slave": "jupiter",
+  "total": 5
+ },
+ "upstream-sh-master": {
+  "step": 603,
+  "slave": "mars",
+  "total": 11
+ },
+ "upstream-sparc32-master": {
+  "step": 77,
+  "slave": "desktop",
+  "total": 3
+ },
+ "upstream-sparc64-master": {
+  "step": 1369,
+  "slave": "jupiter",
+  "total": 4
+ },
+ "upstream-um-master": {
+  "step": 24,
+  "slave": "saturn",
+  "total": 1
+ },
+ "upstream-x86_64-master": {
+  "step": 4782,
+  "slave": "neptune",
+  "total": 6
+ },
+ "upstream-xtensa-master": {
+  "step": 3636,
+  "slave": "neptune",
+  "total": 1
+ }
+}

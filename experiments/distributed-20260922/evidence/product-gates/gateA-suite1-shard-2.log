@@ -1,0 +1,19 @@
+--- FAIL: TestPolyrepoSameTagSpellingKeepsCheckpointOwnersSeparate (1.11s)
+    polyrepo_test.go:1582: 
+        	Error Trace:	/Users/yohimik/Projects/dispat-fleet-modes/tests/integration/polyrepo_test.go:1582
+        	Error:      	Not equal: 
+        	            	expected: "1.0.0 -> 1.0.1"
+        	            	actual  : "1.0.0 -> 2.0.0"
+        	            	
+        	            	Diff:
+        	            	--- Expected
+        	            	+++ Actual
+        	            	@@ -1 +1 @@
+        	            	-1.0.0 -> 1.0.1
+        	            	+1.0.0 -> 2.0.0
+        	Test:       	TestPolyrepoSameTagSpellingKeepsCheckpointOwnersSeparate
+        	Messages:   	the second consumer checkpoint already includes the breaking provider change
+FAIL
+FAIL	github.com/yohimik/dispat/tests/integration	468.362s
+FAIL
+shard 2 exit=1

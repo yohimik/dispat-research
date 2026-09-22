@@ -1,0 +1,10 @@
+
+Build reference: v7.3-rc4
+Compiler version: x86_64-linux-gcc (GCC) 16.2.0
+Assembler version: GNU assembler (GNU Binutils) 2.47.20260726
+
+Configuration file workarounds:
+    "s/CONFIG_FRAME_WARN=.*/CONFIG_FRAME_WARN=0/"
+
+Building i386:defconfig ... passed
+Building i386:allyesconfig ... 

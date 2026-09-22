@@ -1,3 +1,25 @@
+# Research continuation, 22 September 2026 — distributed-execution evidence collected
+
+This task owns only `/Users/yohimik/Projects/dispat-research`. Product changes, runtime defects and the pending `1.11.0-rc.4` release dispatch belong to the Dispat product agent; the product repository (`main` = `252216ba`, CCME `3.1.0-rc.2`) is inspected read-only and cited by commit.
+
+## State on 22 September
+
+The conference abstract in `paper/saner/main.tex` is **read-only** at the author's instruction; the delivered PDF is `output/pdf/saner-2027-paper.pdf` (SHA-256 `e47a6585…`, 10+2 pages, 48 references, verified in `output/saner-2027/abstract-final-review-20260922/`). It says Linux and LLVM results will be presented in the technical report, not in the paper. The mandatory abstract registration and any submission remain the author's decision; nothing was submitted.
+
+The product side implemented CCME §28 (worker nodes over a Git mailbox) and measured it twice on Compute Engine on 22 September: Linux kernel parity pairs (hexagon 122.62 s alone versus 92.22/95.89 s with one slower worker; m68k_nommu 138.01 s versus 115.48/115.61 s) and an LLVM matrix pair (41 min 12.02 s on one node versus 27 min 48.94 s with two workers and an orchestrator; a one-heavy-package negative case at 26:47 versus 20:16). One repetition per side, asymmetric hardware, and the specification's own stance, "no speedup of the profile or of the engine is claimed beyond what these pairs measured", travel with every number. Seven LLVM attempts and all four kernel round-1 candidates are preserved as failures, including the dispat CRLF transport defect fixed at `9f649f88`.
+
+The permitted raw material was **copied** (never moved or edited) into `experiments/distributed-20260922/evidence/` with `MANIFEST.json` (631 files, 49 MB, every SHA-256, the LLVM attempt-to-log mapping, binary hashes, and the list of what was left in place). Sources: the worker-nodes session's scratchpad and `/tmp/dispat-cov-*`, the validation session's scratchpad, `git archive` of the two forks (`linux-build-test` `c699bf3d`, `llvm-project` `952c2de4`), and the Codex agent's hash-verified round-1 archive. Secrets and private keys were neither read nor copied. See that directory's README for the caveats and exclusions.
+
+## In progress by a sibling research session
+
+The session "Dispat-research report reproducibility" is writing the Docker + Terraform reproduction kit in `experiments/distributed-20260922/` (everything there except `evidence/`) and revising the full technical report under `paper/` (new `sections/04a-execution.tex` and `11-evaluation.tex`, updated model, guarantees, obligations and conformance sections for CCME `3.1.0-rc.2`: delivery rule §13.4a, owed windows, E201, build readiness §19.2a, §28 placement). Those files are uncommitted and owned by that session until it reports "report sections done"; then the report is handed to this task for integration checks (build, `make check`, numbers traced to the evidence files). Do not edit `paper/sections`, `paper/main.tex`, `paper/macros.tex` or `paper/appendix` before that handoff.
+
+## Rules that continue to apply
+
+Preserve raw observations and failed attempts; corrections need a new run with provenance. Do not pool the kernel rounds, the LLVM fixtures, or measurements from different binaries. Do not present either pair as a general speedup. Russian translation, patents and lawyer material remain out of scope. Nothing is submitted, published or released without explicit authorization.
+
+---
+
 # Research continuation, 10 September 2026 — SANER adaptation complete
 
 This task owns only `/Users/yohimik/Projects/dispat-research`. The product task `01a06e7b-e8ba-7722-ad9c-c6da024126a8` owns `/Users/yohimik/Projects/dispat`; inspect it read-only when needed and route product defects or changes to that task. The research task is `01a08719-8f24-7201-a5fb-417d1ac98823`.

@@ -1,0 +1,4 @@
+ok  	github.com/yohimik/dispat/tests/integration	670.880s
+?   	github.com/yohimik/dispat/tests/integration/cmd/tsmark	[no test files]
+ok  	github.com/yohimik/dispat/tests/integration/internal/harness	1.774s
+ok  	github.com/yohimik/dispat/tests/integration/publicapi	4.378s
