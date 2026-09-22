@@ -1,11 +1,11 @@
 {
-  "date_utc": "2026-09-22T19:09:34+00:00",
+  "date_utc": "2026-09-22T19:33:39+00:00",
   "built_by": "research session \"Dispatch agent research data\" (Claude Fable 5.1) after the handoff from \"Dispat-research report reproducibility\"",
   "command": "tectonic --outdir build --keep-logs main.tex; make check",
   "pdf": {
     "path": "output/pdf/technical-report.pdf",
-    "sha256": "12e038bcc258e89d71aa2fc0b143145e58f5206c86cff8142b328cb33408586a",
-    "pages": 99
+    "sha256": "597736aab5c79222dcd356ef01b03b2d937b9fe37cbc2ce2536f0840d3756c37",
+    "pages": 100
   },
   "checks": {
     "undefined_or_duplicate_references": 0,
@@ -22,24 +22,28 @@
     "paper/sections/03-propagation.tex": "20e0fc673a54a4d2cd2d95adb5d903137caf4897c9374b2e4da9df58568357bb",
     "paper/sections/04-protocol.tex": "e3ba55b018c3559ec4d3b7698dc2bec8cc10b7620053e2e6deaad5576372c54a",
     "paper/sections/04a-execution.tex": "e87b2d7c87799d7d5160a8874c3c12636c88dfd65b1b9a3fb20bd9551d431110",
-    "paper/sections/05-guarantees.tex": "d97c1d63a7f92e1b1580ad3da7ee8d8c3fae7992f26a2cba7ba3471955bb0e32",
+    "paper/sections/05-guarantees.tex": "f61df0936d6ee2fb55cab6f828ae1410e75d248b22a105cdc3ab1112f69868f8",
     "paper/sections/06-determinism.tex": "a0a391357963dfee8351600d67d4f7d83b60caae8265c61037431c65ef616b20",
-    "paper/sections/07-duality.tex": "1c7fc5af9f12108771255659d2367f9362a53be8c5e7bd7a36ba87595f7ceae3",
+    "paper/sections/07-duality.tex": "8e2f28b68d88673817855d126d2f8a96c0df0160d93f4eada947c2470ec03154",
     "paper/sections/08-complexity.tex": "6316ff265a93d156529b42fd5d71c71800ac8d01aa5f1af99f472a24781bc9a2",
-    "paper/sections/09-obligations.tex": "58fce4f79a2c4f9c4e6cbdd637057b2dd94b3abb3fd0bf224a5c98e9e90539d4",
+    "paper/sections/09-obligations.tex": "853db8d00f427501a31e8be7b98ca3e956d4b46935a01f2379203ea8a6649455",
     "paper/sections/10-conformance.tex": "278428d0328c744921797f1a24edbdcee41685610c2ec8ee70d3091f574afbf1",
-    "paper/sections/11-evaluation.tex": "ba67a72bd8f2ead0ded005e78447a6fc366d87af87f103461f4243e14de8ecdc",
+    "paper/sections/11-evaluation.tex": "987bd41507715cbff4f54205a5badf0cd77648d54d22dc46354194a3ad662cee",
     "paper/sections/99-references.tex": "ac5527915ded3dabc606b7a144d5005373e059e4fa62a7bb10abb0f81ac93a60"
   },
   "pages_visually_inspected": [
     1,
     27,
+    37,
+    50,
+    62,
     77,
     86,
     88,
     91,
     92,
     93,
+    95,
     97,
     99
   ],
@@ -53,7 +57,8 @@
     "sections/99-references.tex: the two long URLs (crosstool, Compute Engine) set with \\url so they break; removed both overfull boxes",
     "sections/11-evaluation.tex: the LLVM caveat paragraph no longer explains the specification entry's 2026-09-23 date as a local-calendar effect (the UTC stamps 07:16 to 08:58 exclude that) and explains the 6c1a5fcd/d8fb8408 pair through pair4.out; the kernel first-run paragraph now cites the copied logs and CROSS-CHECK.json; tables 13 and 14 given [!htp] so they no longer float past the bibliography",
     "macros.tex: the \\ex* and \\ev* macros moved here from the two section files",
-    "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures"
+    "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures",
+    "later on 22 September, after a product-side correction: the measured builds credited a unit's whole source set to every reached dependent (fixed on dispat main e461d7d9, unpushed); recorded as a new obligation (ob:attribution) in 09-obligations.tex, as the observed (R) shape in 05-guarantees.tex, as the second shape of rem:owed-reach in 07-duality.tex, and beside the binary pin in 11-evaluation.tex; no effect on the single-source fixtures; the report grew to 100 pages, tables 13 and 14 still inside the evaluation section"
   ],
   "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's own title and abstract were rewritten by the sibling session before the handoff and are left as delivered for the author's decision",
   "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those."

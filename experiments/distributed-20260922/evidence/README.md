@@ -139,6 +139,14 @@ No experiment binary is stored here. `MANIFEST.json` records the hashes:
 | `272772cb`, stamped, clean rebuild | `46bc2cf821dd57479c27bf2a4b7eee63b69e01db6f18fbd6e663ad66e6812ba8` | differs from the deployed one only by Go's `vcs.modified` stamp |
 | kernel round-1 binary (Codex agent) | `a7172a7feb21e27ce882050120b9e04df1e6d4b4ee5f3341ab8a99ba155ba70a` | matches the hash stated in `PARITY-20260922.md` |
 
+Attribution note, reported by the product side on 22 September after these
+copies were made: in the measured builds the bump axis credited a unit's whole
+source set to every reached dependent, against CCME §9.2; fixed on the product
+repository's `main` at `e461d7d9` (unpushed when this was written). The
+measurements are unaffected because every trigger commit in the kernel and LLVM
+fixtures scopes a single package, for which both rules attribute identically;
+the pins above stay valid.
+
 ## Not copied, and why
 
 Listed with hashes in `MANIFEST.json` under `not_copied`: the 22 MB public

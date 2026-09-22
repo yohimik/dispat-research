@@ -115,7 +115,8 @@
       "as_stated_in": "linux-build-test dispat/gce/PARITY-20260922.md",
       "file": "/Users/yohimik/.codex/artifacts/linux-parity-20260922/dispat (hash in not_copied)"
     },
-    "docker_rebuild_recipe": "experiments/distributed-20260922/docker/dispat/Dockerfile (reproducibility session), golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2"
+    "docker_rebuild_recipe": "experiments/distributed-20260922/docker/dispat/Dockerfile (reproducibility session), golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2",
+    "attribution_defect_note": "reported 2026-09-22 by the worker-nodes session: the measured builds (f0c9e959 and 272772cb) credited a unit's whole source set to every reached dependent, against CCME 9.2; fixed on dispat main e461d7d9 (unpushed at the time of the note); no effect on these measurements, whose trigger commits scope single packages"
   },
   "created_by": "research-repository agent session \"Dispatch agent research data\" (Claude Fable 5.1), on the user's instruction to move the permitted logs",
   "destination": "experiments/distributed-20260922/evidence",

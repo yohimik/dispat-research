@@ -46,7 +46,7 @@ delivered source reaches the target and whose owed source does not, and
 \cref{rem:owed-reach} shows what that costs. (K) holds for the default
 \Korder{} and fails for the default \Kblock{}, which excludes
 \code{optionalDependencies} (\cref{def:graph}); \cref{rem:optional} shows what
-that costs. Both are flagged for the specification.
+that costs. Both are flagged for the specification. The reference engine exhibited exactly this shape: in the build the campaigns of \cref{sec:evaluation} ran, \code{1.11.0-rc.4+main.272772cb}, the bump axis credited a unit's whole source set to every dependent the walk reached, so a consumer two edges from one source and one from another was owed by both, and a consumer of only one of the packages a unit was written over was told it releases because of the other. The product repository's \code{main} fixes it at \code{e461d7d9} (``attribute a unit's sources to a dependent within the unit's depth of it'', 22 September 2026, after the snapshot this report transcribes and unpublished when this was written), verified by the planner's differential test, the unit suite and the integration suite; the text of \spec{9.2} still permits the shape, which is why (R) is a hypothesis here and not a theorem (\cref{ob:attribution}).
 
 \subsection{Lemmas}
 

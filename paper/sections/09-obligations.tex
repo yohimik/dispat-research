@@ -97,6 +97,45 @@ integration suite and
 \code{internal/plan} pin the delivery half at an unchanged \Head{}; no test
 in either suite exercises the run the consumer sits out.
 
+\subsubsection{Reached-set attribution in the measured build}
+
+\begin{obligation}[a unit's whole source set was credited to every reached dependent]
+\label{ob:attribution}
+\spec{9.2} attributes to a dependent $d$ the sources of a unit within the
+unit's depth of $d$, and \spec{13.4a} draws the owed set from that reaching
+set. The build that the campaigns of \cref{sec:evaluation} ran,
+\code{1.11.0-rc.4+main.272772cb}, credited a unit's whole source set to every
+dependent the walk reached: for a unit written over several packages, a
+consumer two edges from one source and one from another was owed by both,
+so it was released again on the far source's account after the near source
+had delivered; and a consumer of only one of the packages was told it
+releases because of the other. This is the (R) shape of
+\cref{sec:guarantees} and the second shape of \cref{rem:owed-reach}.
+\end{obligation}
+
+\paragraph{Source.} Reported by the product session that ran the campaigns,
+on 22 September 2026, as a correction of its own earlier statement that the
+engine's attribution matched the specification; this report had not repeated
+that statement. The fix is commit \code{e461d7d9} of the product repository's
+\code{main}, ``attribute a unit's sources to a dependent within the unit's
+depth of it'' (\code{internal/plan/admission.go}, \code{plan.go},
+\code{propagate.go} and their tests; \code{owedSources} now answers a subset
+of the reaching set in name order), after the snapshot \code{252216ba} this
+report transcribes and unpublished when this was written. The commit message
+records that \code{TestMultiScopeSourceOutsideTheManifestsStaysOutOfUpdates}
+had pinned the old attribution and now expects the specified provenance.
+
+\paragraph{Consequence for the evidence.} None for the figures of
+\cref{sec:eval:rq5}: every trigger commit in the kernel and LLVM fixtures
+scopes one package, and for a single-source unit the reaching set equals the
+whole source set, so plans, tags and timings are identical under both rules,
+and the reproduction kit's pin at \code{272772cb} stands. The companion
+campaigns through 1.10.0 predate the delivery rule and are not affected.
+
+\paragraph{Status.} Fixed after the measured build; the specification's text
+still permits the shape, which \cref{rem:owed-reach} records as a
+disagreement between its two formulations rather than an engine matter.
+
 \subsubsection{Two releases on one commit: a stated boundary of completeness}
 
 \begin{obligation}[the same-commit failure case of \diag{E201}]
