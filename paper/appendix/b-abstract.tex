@@ -1,0 +1,154 @@
+\section{The conference abstract, read against this report}
+\label{appendix:abstract}
+
+The companion conference paper's abstract was registered on 22 September
+2026 and is fixed. This appendix takes it sentence by sentence and says where
+this report substantiates each statement, with the precision the retained
+evidence allows, so that no sentence of the abstract is read further than the
+report supports. Statements about product features that this report neither
+models nor measures are marked as such and located in the product repository
+at commit \code{252216ba}, the snapshot this report transcribes. Two facts
+postdate the abstract and appear only here: the reached-set attribution
+defect of the measured builds (\cref{ob:attribution}) and the specification
+entry's wrong date for the LLVM pair (\cref{sec:eval:rq5:llvm}).
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{4.3cm}L{2.5cm}L{7.3cm}@{}}
+\caption{Each sentence of the conference abstract, where the report
+substantiates it, and the precise statement.}
+\label{tab:abstract-map}\\
+\toprule
+Abstract & Where & Precise statement and caveat \\
+\midrule
+\endfirsthead
+\toprule
+Abstract & Where & Precise statement and caveat \\
+\midrule
+\endhead
+``An npm engine feeds a Docker base; another image needs that published base
+and an npm SDK. If the final image fails, its release must remain pending
+after its providers succeed.'' & \cref{sec:model} (\cref{def:window}),
+\cref{thm:g2}; \cref{sec:eval:rq3}, \cref{tab:eval:rq3} & The
+consumer-relative window keeps a contribution admissible until the consumer
+releases it (\cref{thm:g2}). The three- and four-package registry topologies
+of the companion campaigns exercise the npm-to-Docker chain: per topology, 18
+designed failures and 12 repairs at unchanged planned versions, on one Linux
+ARM64 Docker host. Which consumer waits for a publication is the declared
+edge's matter: a Docker consumer built in an isolated registry-based builder
+needs the published base, a consumer that reads local output does not
+(\cref{sec:exec-durations}). \\
+``We present a Git-based protocol that tags completed releases and resumes
+unfinished work through the same release command.'' & \cref{sec:protocol};
+\cref{thm:resumption}; \cref{sec:eval:rq2} & Recorded legs are annotated tags
+and recovery is re-execution of the same command (\cref{thm:resumption}).
+Observed: 20 of 20 recovery episodes converged within four runs in each
+companion campaign, and 130 of 130 repeated-fault rows of the mechanism matrix
+preserved plan and tags (\cref{tab:eval:mechanism}). The theorems concern the
+model under the retry invariant; the implementation's departures are the
+ledger of \cref{sec:obligations-current}. \\
+``Folders define packages and shell commands define stages across languages,
+single-package repositories, monorepos and polyrepos.'' &
+\cref{sec:exec-polyrepo}; product documentation & The report models the
+release computation and transcribes the three history modes of \spec{27}. The
+configuration language (folders as packages, stages as commands) is the
+product's, documented under \evpath{packages/docs/docs/configuration/} at
+\code{252216ba}, and is not modelled here. No campaign of
+\cref{sec:evaluation} evaluates a polyrepo or discovered-history release; those
+semantics are transcribed, not evaluated, and the theorems of
+\cref{sec:guarantees} are stated for a single history. \\
+``Commits select releases, holds, prereleases, dependent updates and tests; an
+agent skill supports diagnostics and automation.'' & \cref{sec:model},
+\cref{sec:propagation}; \cref{sec:eval:rq3}; product
+\evpath{specs/agent-guide/README.md} & Units, scopes, depth, channels and holds
+are the model of \cref{sec:model,sec:propagation}; test selection by commit is
+the CI fixture of \cref{sec:eval:rq3} (three repetitions, 81 predicates). The
+agent guide (version 1.11.0-rc.3 at \code{252216ba}) is a product document for
+coding agents; this report neither models it nor measures its effect, and no
+campaign measures agent effectiveness. \\
+``Shared Windows/Linux configuration, containerized tools and extensible
+manifest readers let provisioned CI reuse its workflow as packages are
+added.'' & product documentation only & Outside this report's model and
+campaigns. Shared platform configuration, containerised tool execution and the
+manifest scanner and writer are product features documented at
+\code{252216ba} (\evpath{packages/docs/docs/configuration/},
+\evpath{packages/docs/docs/cli/scanner.md}, \evpath{cli/writer.md}). No
+campaign measures onboarding effort, and native Windows execution is
+unmeasured everywhere (\cref{sec:eval:threats}). \\
+``Terraform integration reconstructs temporary state from known resources
+before dependent deployments.'' & \cref{sec:protocol}, the recorded-success
+remark; product \evpath{packages/docs/docs/examples/terraform.md} & The
+protocol section states what a Terraform-backed package's tag records and does
+not: that a configuration version completed; it is not Terraform resource
+state and does not prove that every live resource was imported. No campaign
+of \cref{sec:evaluation} exercises the integration. \\
+``Identical inputs produce identical, cacheable plans; the distributed profile
+shares configuration and transports sources and results through Git.'' &
+\cref{sec:determinism}; \cref{sec:complexity}; \cref{sec:exec-distributed};
+\cref{sec:eval:rq5} & Determinism and idempotency are proved for the model
+(\cref{sec:determinism}); the cache-reuse and optimisation claims of
+\spec{13.11} and \spec{20.7} are restated with their qualifications in
+\cref{sec:complexity}; placement invariance of the plan is the invariance
+\cref{sec:exec-distributed} states for \spec{28}. Two releases through
+Git-mailbox workers were measured, once per side (\cref{sec:eval:rq5}). The
+measured builds carried the attribution defect of \cref{ob:attribution}, which
+does not affect single-source units. \\
+``Our evaluated single-history model builds on sagas and version control;
+retry assumptions preserve versions and avoid repeating recorded releases.'' &
+\cref{sec:intro}; \cref{thm:g3,thm:g4,thm:g5,thm:g6} & Version stability, no
+double ledger delivery, no widening and convergence are theorems of the model
+under the explicit retry invariant (\cref{sec:guarantees}); they say nothing
+unconditional about external effects, and convergence counts progress-making
+runs only. Sagas are credited in \cref{sec:intro}. \\
+``All 120 controlled fault cases recovered after repair.'' &
+\cref{sec:eval:rq2}, \cref{tab:eval:mechanism} & The 120 fault episodes of the
+mechanism matrix (five graphs, two channels, four targets, three boundaries),
+each executed twice under the fault, repaired and rerun: 130 of 130 repairs
+left an empty plan (120 fault plus 10 foreign-identity cases) and 140 of 140
+final no-ops left plan and tags unchanged. A designed deterministic matrix,
+not a sample; the after-write fault is an adapter response, not a crash. \\
+``Discarding consumer work at provider completion would instead lose releases
+in seven out of ten cases (analytical comparison, not a tool benchmark).'' &
+\cref{sec:eval:rq1}, \cref{tab:eval:counterfactual} & 84 of the 120 fault
+episodes (70\%), 111 obligations, computed on the completion tags the binary
+produced, with no modified binary run and no competitor; the ten no-fault
+controls lose nothing and the ten foreign-identity cases are reported
+separately. The finite projection finds the same loss in 260 of 772 states. \\
+``Registry, CI, replay and scale experiments include google-cloud-node and
+selected mid-release commit conflicts.'' & \cref{sec:eval:rq3};
+\cref{sec:eval:rq2} (replay, orphan and push scenarios); \cref{sec:eval:rq4}
+& Registry: the two topologies of the companion campaigns. CI: the
+three-repetition fixture. Replay: five releases each of
+\code{google-cloud-node} (36 of 42 exact) and \code{conventional-changelog}
+(7 of 64) under reconstructed layouts. Mid-release conflicts: the E5 cells of
+the 1.8.2 campaign, a clean and a conflicting concurrent push on selected
+interleavings (12 and 14 checks), not a systematic sweep. Scale: the eight
+timing cells of \cref{tab:eval:rq4} on a capped, contended host. \\
+``Module suites include scanner/writer fixtures from real projects; release CI
+requires the full suite regardless of change scope and checks binaries before
+publication and installations afterwards.'' & \cref{sec:conformance}; the
+product's release workflow; evidence
+\evpath{experiments/distributed-20260922/evidence/product-gates/} &
+\cref{sec:conformance} maps this report's results to the integration tests
+behind them. The rest is the product's release policy as written in
+\evpath{.github/workflows/release.yml} at \code{252216ba}: a ``Full suite''
+job runs every package's tests on every release, the publication job depends
+on it, and the workflow's header describes the binary build, the publication
+and the install check as gates on one another. The release candidate's gate
+logs of 22 September (the sharded suite 6 of 6 on \code{272772cb};
+integration-only coverage 94.0\% against a 95\% gate, with a dispatch input to
+lower it; the TinyGo gate skipped by dispatch input) are copied under
+\evpath{product-gates/}. This report did not audit the workflow or the scanner
+and writer fixtures; it reports the policy as read. \\
+``Native Windows and distributed execution are outside these measurements.
+Linux and LLVM results will be presented in the report.'' &
+\cref{sec:eval:rq5}; \cref{sec:eval:threats} & Presented in
+\cref{sec:eval:rq5}: kernel farm round 1 (every candidate rejected), round 2
+(hexagon 95.89 and 92.22~s against 111, m68k\_nommu 115.61 and 115.48~s
+against 128, after one rejected candidate; the single node 122.62 and
+138.01~s) and the LLVM matrix (27:48.94 against 41:12.02, once per side; the
+negative case 26:47.69 against 20:16). One repetition per side, asymmetric
+hardware, no general speedup claimed. Native Windows remains unmeasured. \\
+\bottomrule
+\end{longtable}
+\end{center}

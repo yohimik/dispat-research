@@ -46,10 +46,11 @@ conformance table maps every result to the specification's vectors and to the
 integration test that stands behind it. The final section reports every
 executed campaign with its pinned binary and environment, including the two
 measurements of 22 September 2026 on which the execution profile rests: the
-kernel farm groups that met their public reference times on a second node,
-and the LLVM matrix released through two workers in less time than on one
-node, each once, with the reproduction kit that rebuilds the binaries byte for
-byte and recreates the machines.
+two kernel farm groups that met their public reference times with a second
+node, twice each after one rejected candidate, and an LLVM matrix released
+through two workers in less time than on one node, once per side, with a
+reproduction kit whose binary rebuilds were verified byte for byte and whose
+machine definitions were planned but not applied.
 \end{abstract}
 
 \paragraph{Specification snapshot.}
@@ -80,6 +81,7 @@ CCME 1.0.0 at \texttt{713f1a0b}; the released CCME 2.0.0 at
 
 \appendix
 \input{appendix/a-notation}
+\input{appendix/b-abstract}
 \input{sections/99-references}
 
 \end{document}

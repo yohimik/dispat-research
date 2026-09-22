@@ -1,21 +1,22 @@
 {
-  "date_utc": "2026-09-22T19:33:39+00:00",
+  "date_utc": "2026-09-22T19:46:03+00:00",
   "built_by": "research session \"Dispatch agent research data\" (Claude Fable 5.1) after the handoff from \"Dispat-research report reproducibility\"",
   "command": "tectonic --outdir build --keep-logs main.tex; make check",
   "pdf": {
     "path": "output/pdf/technical-report.pdf",
-    "sha256": "597736aab5c79222dcd356ef01b03b2d937b9fe37cbc2ce2536f0840d3756c37",
-    "pages": 100
+    "sha256": "59260226da4e6c57499149ccb836f37f8484e1f67d48b26e5ebd2881fc9d609e",
+    "pages": 103
   },
   "checks": {
     "undefined_or_duplicate_references": 0,
     "overfull_boxes": 0,
-    "underfull_boxes": 45
+    "underfull_boxes": 46
   },
   "sources_sha256": {
     "paper/appendix/a-notation.tex": "b8d68b97ccb0a97e491761a536238277a16d1bac424babd2c6546738a7745fc7",
+    "paper/appendix/b-abstract.tex": "dcea33ab95bb3e903a2d1f27ae33aa92e99ae19c2422e54862d7b0c414634bff",
     "paper/macros.tex": "727513b5a7105f9e1b99554ca64f2ab2b42d3214cb61a5421f6308c57025650e",
-    "paper/main.tex": "573d5c391b7bc4fc7658ee15e598277dd6672ae4682a596233a049da4f119c74",
+    "paper/main.tex": "b6c50d92b8714713b1b96060abee4db4d73a148f5ddb321af0391417913fa5f2",
     "paper/preamble.tex": "a9808e82ce9e8c11f2d14aaaec1b4b5551ff0a07c7a3fbd6aba2470407847a34",
     "paper/sections/01-introduction.tex": "b1b0ce61acef7573710c203c884937029eb584d9c1329ce381213e5c1b2fbab1",
     "paper/sections/02-model.tex": "c28df98388703f1f1b604b5b996c9be669611f6f703227f158f8f15b3064a1a6",
@@ -45,7 +46,9 @@
     93,
     95,
     97,
-    99
+    99,
+    100,
+    101
   ],
   "peer_delivery": {
     "pdf_sha256": "ee4dd26503bc2960f23534b6a963db1edfaffb7a04cf5dfab685098889cfe831",
@@ -58,8 +61,9 @@
     "sections/11-evaluation.tex: the LLVM caveat paragraph no longer explains the specification entry's 2026-09-23 date as a local-calendar effect (the UTC stamps 07:16 to 08:58 exclude that) and explains the 6c1a5fcd/d8fb8408 pair through pair4.out; the kernel first-run paragraph now cites the copied logs and CROSS-CHECK.json; tables 13 and 14 given [!htp] so they no longer float past the bibliography",
     "macros.tex: the \\ex* and \\ev* macros moved here from the two section files",
     "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures",
-    "later on 22 September, after a product-side correction: the measured builds credited a unit's whole source set to every reached dependent (fixed on dispat main e461d7d9, unpushed); recorded as a new obligation (ob:attribution) in 09-obligations.tex, as the observed (R) shape in 05-guarantees.tex, as the second shape of rem:owed-reach in 07-duality.tex, and beside the binary pin in 11-evaluation.tex; no effect on the single-source fixtures; the report grew to 100 pages, tables 13 and 14 still inside the evaluation section"
+    "later on 22 September, after a product-side correction: the measured builds credited a unit's whole source set to every reached dependent (fixed on dispat main e461d7d9, unpushed); recorded as a new obligation (ob:attribution) in 09-obligations.tex, as the observed (R) shape in 05-guarantees.tex, as the second shape of rem:owed-reach in 07-duality.tex, and beside the binary pin in 11-evaluation.tex; no effect on the single-source fixtures; the report grew to 100 pages, tables 13 and 14 still inside the evaluation section",
+    "on the author's instruction that the conference abstract cannot change and everything must be explained in the report: the report's own abstract now states the kernel groups as twice each after one rejected candidate, the LLVM pair as once per side, and the kit's machine definitions as planned but not applied; new appendix/b-abstract.tex maps every sentence of the conference abstract to the section, table and evidence that substantiate it, with the precise statement and caveat, and marks the product features the report neither models nor measures; 103 pages"
   ],
-  "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's own title and abstract were rewritten by the sibling session before the handoff and are left as delivered for the author's decision",
+  "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's title and abstract were rewritten by the sibling session and then corrected here in two phrases on the author's instruction",
   "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those."
 }
