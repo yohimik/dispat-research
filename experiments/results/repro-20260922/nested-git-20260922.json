@@ -1,0 +1,20 @@
+{
+  "archive": "nested-git-20260922.tar.gz",
+  "sha256": "08dbfb1c3722489fde651b938091c1de91bbf093f58e40c14a3db59d196a1df7",
+  "directories": [
+    "companion-20260909/integration-rerun/integration/results/0-origin.git",
+    "companion-20260909/integration-rerun/integration/results/0/.git",
+    "companion-20260909/integration-rerun/integration/results/1-origin.git",
+    "companion-20260909/integration-rerun/integration/results/1/.git",
+    "companion-20260909/integration-rerun/integration/results/2-origin.git",
+    "companion-20260909/integration-rerun/integration/results/2/.git",
+    "integration/work/integration/results/0-origin.git",
+    "integration/work/integration/results/0/.git",
+    "integration/work/integration/results/1-origin.git",
+    "integration/work/integration/results/1/.git",
+    "integration/work/integration/results/2-origin.git",
+    "integration/work/integration/results/2/.git"
+  ],
+  "recorded_utc": "2026-09-22T19:08:36.420345+00:00",
+  "reason": "Git metadata (working repositories and bare origins) created by the fresh integration-fixture reruns is stored here rather than left as embedded repositories in the results tree, following provenance/generated-fixture-git.tar.gz. The mechanism replay copies were removed after verification because they were byte copies of the retained runs (see mechanisms/*-replay/report.json)."
+}

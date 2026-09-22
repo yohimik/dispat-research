@@ -1,0 +1,11 @@
+# {"argv": ["python3", "experiments/tools/check-manifest.py", "experiments/saner-2027/campaign-1.10.0-20260909/SHA256SUMS.json", "--root", "experiments/saner-2027/campaign-1.10.0-20260909", "--output", "experiments/results/repro-20260922/v1100/check-SHA256SUMS-json.json"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:23.348228+00:00"}
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909/SHA256SUMS.json",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909",
+  "checked_utc": "2026-09-22T19:00:23.386683+00:00",
+  "checked": 103,
+  "ok": 103,
+  "mismatched": [],
+  "missing": [],
+  "status": "PASS"
+}

@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "chore: baseline"
+  ],
+  "cwd": "/campaign/runs/pilot-repro/chain-stable-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

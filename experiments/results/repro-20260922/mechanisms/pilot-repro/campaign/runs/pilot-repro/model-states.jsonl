@@ -1,0 +1,772 @@
+{"edges": [], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"]], "source": "a", "completed": [], "pending": ["a", "b"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"]], "source": "a", "completed": ["a"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"]], "source": "a", "completed": ["a", "b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"]], "source": "a", "completed": [], "pending": ["a", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"]], "source": "a", "completed": ["a"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"]], "source": "a", "completed": ["a", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "b"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "c"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "c"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"]], "source": "a", "completed": [], "pending": ["a", "b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"]], "source": "a", "completed": ["a"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"]], "source": "a", "completed": ["a", "b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"]], "source": "a", "completed": ["a", "c"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"]], "source": "a", "completed": ["a", "b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"]], "source": "a", "completed": [], "pending": ["a", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"]], "source": "a", "completed": ["a"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"]], "source": "a", "completed": ["a", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "c", "d"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "d"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "d"], "pending": ["b", "c"], "source_mutant_lost": ["b", "c"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": [], "pending": ["b", "c"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "b", "completed": ["b", "c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": ["b"], "source_mutant_lost": ["b"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "d"], "pending": ["c"], "source_mutant_lost": ["c"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": [], "pending": ["c"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "c", "completed": ["c"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["b", "d"], "source_mutant_lost": ["b", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": [], "pending": ["a", "b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 16}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a"], "pending": ["b", "c", "d"], "source_mutant_lost": ["b", "c", "d"], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "a", "completed": ["a", "b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": [], "pending": ["b", "c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 8}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b"], "pending": ["c", "d"], "source_mutant_lost": ["c", "d"], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "b", "completed": ["b", "c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": [], "pending": ["c", "d"], "source_mutant_lost": [], "failure_subsets_checked": 4}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c"], "pending": ["d"], "source_mutant_lost": ["d"], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "c", "completed": ["c", "d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": [], "pending": ["d"], "source_mutant_lost": [], "failure_subsets_checked": 2}
+{"edges": [["b", "a"], ["c", "a"], ["c", "b"], ["d", "a"], ["d", "b"], ["d", "c"]], "source": "d", "completed": ["d"], "pending": [], "source_mutant_lost": [], "failure_subsets_checked": 1}

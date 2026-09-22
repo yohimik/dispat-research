@@ -1,0 +1,69 @@
+{
+  "case_checks_completed": 10,
+  "episodes_checked": 10,
+  "errors": [],
+  "model": {
+    "graphs": 64,
+    "progress_transitions": 1054,
+    "projection_violations": 0,
+    "source_instances": 256,
+    "source_mutant_losing_states": 260,
+    "states": 772,
+    "transitions": 2270
+  },
+  "run": "/campaign/runs/pilot-repro",
+  "status": "PASS",
+  "strata": {
+    "beta/after": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "beta/before": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "beta/build": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "beta/foreign": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "beta/none": {
+      "episodes": 1,
+      "mutant_losing_episodes": 0,
+      "mutant_lost_obligations": 0
+    },
+    "stable/after": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "stable/before": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "stable/build": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "stable/foreign": {
+      "episodes": 1,
+      "mutant_losing_episodes": 1,
+      "mutant_lost_obligations": 1
+    },
+    "stable/none": {
+      "episodes": 1,
+      "mutant_losing_episodes": 0,
+      "mutant_lost_obligations": 0
+    }
+  },
+  "verified_utc": "2026-09-22T19:06:31.175170+00:00"
+}

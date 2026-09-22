@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "git",
+    "push",
+    "-q",
+    "origin",
+    "main",
+    "--tags"
+  ],
+  "cwd": "/campaign/runs/pilot-repro/chain-stable-d-foreign/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

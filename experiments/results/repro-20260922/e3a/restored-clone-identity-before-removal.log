@@ -1,0 +1,5 @@
+# {"argv": ["sh", "-c", "git -C experiments/results/repro-20260922/e3a/repos/conventional-changelog rev-parse HEAD; git -C experiments/results/repro-20260922/e3a/repos/conventional-changelog tag | wc -l; git -C experiments/results/repro-20260922/e3a/repos/conventional-changelog worktree list; du -sh experiments/results/repro-20260922/e3a/repos/conventional-changelog"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:07:47.474298+00:00"}
+340ad83ee93939fc4a8c8f2da1bf728111299941
+     878
+/Users/yohimik/Projects/dispat-research/experiments/results/repro-20260922/e3a/repos/conventional-changelog 340ad83e (detached HEAD)
+ 14M	experiments/results/repro-20260922/e3a/repos/conventional-changelog

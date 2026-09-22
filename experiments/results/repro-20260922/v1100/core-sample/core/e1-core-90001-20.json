@@ -1,0 +1,113 @@
+{
+ "summary": {
+  "profile": "core",
+  "instances": 20,
+  "clean": 20,
+  "invalid": 0,
+  "rejected": 0,
+  "divergence_classes": {},
+  "dispat": "dispat 1.10.0 (linux_arm64)"
+ },
+ "rows": [
+  {
+   "seed": 90001,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 90002,
+   "packages": 16,
+   "diffs": []
+  },
+  {
+   "seed": 90003,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 90004,
+   "packages": 12,
+   "diffs": []
+  },
+  {
+   "seed": 90005,
+   "packages": 17,
+   "diffs": []
+  },
+  {
+   "seed": 90006,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 90007,
+   "packages": 20,
+   "diffs": []
+  },
+  {
+   "seed": 90008,
+   "packages": 19,
+   "diffs": []
+  },
+  {
+   "seed": 90009,
+   "packages": 8,
+   "diffs": []
+  },
+  {
+   "seed": 90010,
+   "packages": 20,
+   "diffs": []
+  },
+  {
+   "seed": 90011,
+   "packages": 11,
+   "diffs": []
+  },
+  {
+   "seed": 90012,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 90013,
+   "packages": 17,
+   "diffs": []
+  },
+  {
+   "seed": 90014,
+   "packages": 13,
+   "diffs": []
+  },
+  {
+   "seed": 90015,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 90016,
+   "packages": 20,
+   "diffs": []
+  },
+  {
+   "seed": 90017,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 90018,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 90019,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 90020,
+   "packages": 19,
+   "diffs": []
+  }
+ ]
+}

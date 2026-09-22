@@ -1,0 +1,7 @@
+# {"argv": ["sh", "-c", "docker image inspect dispat-saner:rebuild-nocache-20260922 --format \"{{.Id}} {{.Os}}/{{.Architecture}} {{index .Config.Labels \\\"org.dispat.research.source-image\\\"}}\"; docker run --rm --network none --platform linux/arm64 dispat-saner:rebuild-nocache-20260922 sh -c \"dispat --version | tail -n 1; sha256sum /usr/local/bin/dispat; cat /toolchain-apk.txt\" "], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:59:23.615943+00:00"}
+
+Error response from daemon: No such image: dispat-saner:rebuild-nocache-20260922
+Unable to find image 'dispat-saner:rebuild-nocache-20260922' locally
+docker: Error response from daemon: pull access denied for dispat-saner, repository does not exist or may require 'docker login'
+
+Run 'docker run --help' for more information

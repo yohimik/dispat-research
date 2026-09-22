@@ -1,0 +1,12 @@
+# {"argv": ["docker", "run", "--rm", "--network", "none", "--cpus", "2", "--memory", "4g", "--platform", "linux/arm64", "-v", "/Users/yohimik/Projects/dispat-research/experiments/results/repro-20260922/mechanisms/pilot-repro/campaign:/campaign", "-w", "/campaign", "sha256:6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e", "python3", "execute.py", "runs/pilot-repro", "--pilot"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:06:24.005580+00:00"}
+chain-stable-d-none PASS 
+chain-beta-d-build PASS 
+chain-stable-d-after PASS 
+chain-beta-d-after PASS 
+chain-stable-d-before PASS 
+chain-beta-d-none PASS 
+chain-beta-d-before PASS 
+chain-beta-d-foreign PASS 
+chain-stable-d-foreign PASS 
+chain-stable-d-build PASS 
+{"status": "PASS", "episodes": 10, "passed": 10, "fault_episodes": 6, "controls": 2, "foreign_cases": 2, "source_mutant_losing_episodes": 8, "source_mutant_lost_obligations": 8, "model": {"graphs": 64, "source_instances": 256, "states": 772, "transitions": 2270, "progress_transitions": 1054, "source_mutant_losing_states": 260, "projection_violations": 0}}

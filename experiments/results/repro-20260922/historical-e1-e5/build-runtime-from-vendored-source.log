@@ -1,0 +1,62 @@
+# {"argv": ["docker", "build", "-t", "dispat-exp:repro-20260922-srcbuild", "--target", "runtime", "--build-arg", "BIN_STAGE=build", "experiments/docker"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:59:54.647834+00:00"}
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.26-alpine
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-alpine
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [build 1/5] FROM docker.io/library/golang:1.26-alpine@sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873
+#5 resolve docker.io/library/golang:1.26-alpine@sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873 done
+#5 DONE 0.0s
+
+#6 [runtime 1/5] FROM docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31
+#6 resolve docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31 done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 35.08MB 0.2s done
+#7 DONE 0.2s
+
+#8 [runtime 3/5] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#8 CACHED
+
+#9 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#9 CACHED
+
+#10 [build 2/5] RUN apk add --no-cache git
+#10 CACHED
+
+#11 [build 4/5] WORKDIR /src/services/dispat
+#11 CACHED
+
+#12 [build 3/5] COPY src /src
+#12 CACHED
+
+#13 [build 5/5] RUN --mount=type=cache,target=/go/pkg/mod     --mount=type=cache,target=/root/.cache/go-build     CGO_ENABLED=0 go build -ldflags "-X github.com/yohimik/dispat/services/dispat/internal/cli.Version=exp-342062d3"       -o /out/dispat .
+#13 CACHED
+
+#14 [runtime 4/5] RUN git config --global user.email exp@dispat.dev &&     git config --global user.name exp &&     git config --global init.defaultBranch main
+#14 CACHED
+
+#15 [runtime 5/5] WORKDIR /work
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:234ee9741d6e06b2ce3e57d4fdbb2ff764e09b7867e13d61f5abe9458e87a5d7 done
+#16 exporting config sha256:f1b410ed3ade845c8f369c23c609c4ece9b0e301469d30708f1a1c69d1c41e98 done
+#16 exporting attestation manifest sha256:196f0fda53478e65db1c45d172e9f5b3fb8585a58e98f22af52f61327739aa33 done
+#16 exporting manifest list sha256:f90e395c05d71335847dafc967d004c4c6081c5a1af075f40757cbc3c3b5b477 done
+#16 naming to docker.io/library/dispat-exp:repro-20260922-srcbuild done
+#16 unpacking to docker.io/library/dispat-exp:repro-20260922-srcbuild done
+#16 DONE 0.0s

@@ -1,0 +1,32 @@
+# {"argv": ["python3", "experiments/tools/check-manifest.py", "experiments/results/v180-20260906/SHA256SUMS", "--root", "/private/tmp/claude-501/-Users-yohimik-Projects-dispat/c29b979e-75f7-441e-9a89-975fc4a82ef1/scratchpad/nested-git/experiments", "--output", "experiments/results/repro-20260922/historical-e1-e5/check-v180-SHA256SUMS-nested-git-archive-2.json"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:07:03.510949+00:00"}
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/results/v180-20260906/SHA256SUMS",
+  "root": "/private/tmp/claude-501/-Users-yohimik-Projects-dispat/c29b979e-75f7-441e-9a89-975fc4a82ef1/scratchpad/nested-git/experiments",
+  "checked_utc": "2026-09-22T19:07:03.710005+00:00",
+  "checked": 8131,
+  "ok": 5884,
+  "mismatched": [],
+  "missing": [
+    "results/v180-20260906/README.md",
+    "results/v180-20260906/e1/canonical-manifest.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-133-fixture.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-133-parsed.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-133-stderr.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-133-stdout.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-before-fixture.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-before-parsed.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-before-stderr.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-before-stdout.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-fixture.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-parsed.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-stderr.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-134-stdout.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-135-fixture.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-135-parsed.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-135-stderr.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-135-stdout.jsonl",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-136-fixture.json",
+    "results/v180-20260906/e1/ccme2-vectors-evidence/vector-136-parsed.json"
+  ],
+  "status": "FAIL"
+}

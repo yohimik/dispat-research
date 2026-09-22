@@ -1,0 +1,11 @@
+# {"argv": ["python3", "experiments/tools/check-manifest.py", "experiments/results/v182-20260907/finalize/SHA256SUMS", "--root", "experiments/results/v182-20260907", "--strip-prefix", "/Users/yohimik/Projects/dispat-experiments/results/v182-20260907", "--output", "experiments/results/repro-20260922/v182/check-finalize-SHA256SUMS.json"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:24.040124+00:00"}
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/results/v182-20260907/finalize/SHA256SUMS",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/results/v182-20260907",
+  "checked_utc": "2026-09-22T19:00:24.147807+00:00",
+  "checked": 753,
+  "ok": 753,
+  "mismatched": [],
+  "missing": [],
+  "status": "PASS"
+}

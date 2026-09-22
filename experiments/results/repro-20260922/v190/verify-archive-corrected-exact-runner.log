@@ -1,0 +1,24 @@
+# {"argv": ["python3", "experiments/tools/verify-saner-archive-to.py", "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected", "experiments/results/repro-20260922/v190/archive-verification-corrected"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:10.725220+00:00"}
+{
+  "status": "PASS",
+  "stages": [
+    [
+      "core",
+      0
+    ],
+    [
+      "recovery",
+      0
+    ],
+    [
+      "mixed-docker",
+      0
+    ],
+    [
+      "mixed-4node",
+      0
+    ]
+  ],
+  "archive_sha256": "664b0b118412660fd6c643859e80a61deb60c94a14d9c3e723e2df18eaf6df41",
+  "runner_image": "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f"
+}

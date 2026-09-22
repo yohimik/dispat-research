@@ -1,0 +1,10 @@
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-mechanisms-20260910/FULL-FREEZE.json",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-mechanisms-20260910",
+  "checked_utc": "2026-09-22T19:00:24.012474+00:00",
+  "checked": 9,
+  "ok": 9,
+  "mismatched": [],
+  "missing": [],
+  "status": "PASS"
+}

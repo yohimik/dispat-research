@@ -1,0 +1,5 @@
+# {"argv": ["sh", "-c", "docker image inspect dispat-exp:repro-20260922-srcbuild-nocache --format \"{{.Id}} {{.Os}}/{{.Architecture}}\"; docker run --rm --network none dispat-exp:repro-20260922-srcbuild-nocache sh -c \"dispat --version | tail -n 1; sha256sum /usr/local/bin/dispat\"; docker image inspect golang:1.26-alpine --format \"golang:1.26-alpine {{.Id}} {{.RepoDigests}}\""], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:04:22.472621+00:00"}
+sha256:f1629765d478342e865bde5dd80e2d8f7007a197f0f5567aee5ab63199380590 linux/arm64
+dispat exp-342062d3 (linux_arm64)
+2d33ac7d7e2dad15178e3bec2a550a3eb033442b8431a16ffff69cda481084aa  /usr/local/bin/dispat
+golang:1.26-alpine sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873 [golang@sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873]

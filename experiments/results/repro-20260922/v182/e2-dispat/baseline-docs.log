@@ -1,0 +1,17 @@
+npm notice
+npm notice package: docs@1.0.0
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 80B package.json
+npm notice Tarball Details
+npm notice name: docs
+npm notice version: 1.0.0
+npm notice filename: docs-1.0.0.tgz
+npm notice package size: 194 B
+npm notice unpacked size: 86 B
+npm notice shasum: c9384b4b02273c4dc0236a3783116e13113740b6
+npm notice integrity: sha512-fqjV63XTcRPxE[...]EhqAw7D5vuzSQ==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
++ docs@1.0.0

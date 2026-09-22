@@ -1,0 +1,6 @@
+# {"argv": ["sh", "-c", "docker image inspect dispat-exp:repro-20260922-runtime --format \"{{.Id}} {{.Os}}/{{.Architecture}}\"; docker run --rm --network none dispat-exp:repro-20260922-runtime sh -c \"dispat --version | tail -n 1; sha256sum /usr/local/bin/dispat; python3 --version; git --version\""], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:58:33.435633+00:00"}
+sha256:376e8a66a105d4b295bbf05e35291a6107a7d9369fbb035f72c887ec442c081c linux/arm64
+dispat 1.8.2 (linux_arm64)
+78b0b37b4b74ed393f366ff4d36a98aa69a48fa781cc6a704ad17a0160107a68  /usr/local/bin/dispat
+Python 3.12.14
+git version 2.54.0

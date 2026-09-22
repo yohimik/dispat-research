@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "git",
+    "push",
+    "-q",
+    "origin",
+    "main",
+    "--tags"
+  ],
+  "cwd": "/campaign/runs/pilot-repro/chain-beta-d-build/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

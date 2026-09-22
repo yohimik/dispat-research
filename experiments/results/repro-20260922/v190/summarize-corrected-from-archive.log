@@ -1,0 +1,168 @@
+# {"argv": ["python3", "tools/summarize-saner-campaign.py", "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:03:06.043955+00:00"}
+{
+  "run": "run-v1.9.0-linux-arm64-20260909-corrected",
+  "status": "COMPLETE",
+  "started_utc": "2026-09-09T09:40:14.688706+00:00",
+  "completed_utc": "2026-09-09T10:48:01.027917+00:00",
+  "release_lock": {
+    "dispat_version": "1.9.0",
+    "dispat_version_output": "dispat 1.9.0 (linux_arm64)",
+    "runner_os": "linux",
+    "runner_architecture": "arm64",
+    "dispat_image": "yohimik/dispat-alpine@sha256:bf89800987e88a14683fb86b7dede7e9de1fedef82a454b8669655db98096d35",
+    "dispat_image_index": "yohimik/dispat-alpine@sha256:68b86c1a2508771420d6ac63503b71967228227efe3303f6f9a3f8aa90ea1520",
+    "dispat_binary_sha256": "be3370c472cdbfe66fe4256d3fc1ff78ff19bdd5f041ef222187a52767fa4f35",
+    "runner_image": "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+    "release_run": "https://github.com/yohimik/dispat/actions/runs/34302770429",
+    "gated_source_commit": "8402051e",
+    "release_commit": "37610088"
+  },
+  "protocol_manifest_sha256": "a3366e2fbdc590be7e8f6268bc7390146669cf7a0395837c2531a0af5554dcaa",
+  "provenance_sha256": "c84ac99d2d8fcfc3144cb9aa245180db1ccfe6edbc80bfd5ccbb2557054deeb1",
+  "core": {
+    "status": "INTEGRITY_PASS",
+    "profile": "core",
+    "expected_seeds": [
+      90001,
+      90300
+    ],
+    "rows": 300,
+    "accepted_matching": 300,
+    "matching_including_semantic_rejections": 300,
+    "semantic_rejections": 0,
+    "invalid_executions": 0,
+    "rows_with_differences": 0,
+    "difference_classes": {},
+    "errors": []
+  },
+  "recovery": {
+    "status": "PASS",
+    "episodes": 20,
+    "maximum_runs": 4,
+    "progress_every_run": 20,
+    "raw_command_records": 248,
+    "scope": "retained observations; not a fresh execution or theorem proof",
+    "run_distribution": {
+      "2": 9,
+      "3": 6,
+      "4": 5
+    },
+    "invariant_errors": 0,
+    "converged": 20,
+    "source": "work/recovery/results.json"
+  },
+  "mixed": {
+    "mixed-docker": {
+      "source": "work/mixed-docker/run-20260909-094025/results.json",
+      "executions": 30,
+      "case_counts": {
+        "serialized": 6,
+        "app-failure": 6,
+        "mixed": 6,
+        "base-failure": 6,
+        "missing-barrier": 6
+      },
+      "initial_successes": 12,
+      "initial_failures": 18,
+      "repair_executions": 12,
+      "successful_repairs": 12,
+      "unchanged_executions": 24,
+      "successful_unchanged": 24,
+      "checks": 522,
+      "overlap": [
+        {
+          "case": "mixed-2",
+          "overlap_seconds": 0.101968708
+        },
+        {
+          "case": "mixed-4",
+          "overlap_seconds": 0.108069917
+        },
+        {
+          "case": "mixed-5",
+          "overlap_seconds": 0.114464083
+        },
+        {
+          "case": "mixed-0",
+          "overlap_seconds": 0.1149125
+        },
+        {
+          "case": "mixed-3",
+          "overlap_seconds": 0.117099833
+        },
+        {
+          "case": "mixed-1",
+          "overlap_seconds": 0.128674709
+        }
+      ]
+    },
+    "mixed-4node": {
+      "source": "work/mixed-4node/run-20260909-103333/results.json",
+      "executions": 30,
+      "case_counts": {
+        "serialized": 6,
+        "app-failure": 6,
+        "mixed": 6,
+        "base-failure": 6,
+        "missing-barrier": 6
+      },
+      "initial_successes": 12,
+      "initial_failures": 18,
+      "repair_executions": 12,
+      "successful_repairs": 12,
+      "unchanged_executions": 24,
+      "successful_unchanged": 24,
+      "checks": 798,
+      "overlap": [
+        {
+          "case": "mixed-2",
+          "assets_to_ui_overlap_seconds": 0.068202958,
+          "ui_publication_end_after_base_build_start_seconds": 6.299743128,
+          "ui_to_base_interval_intersection_seconds": -2.988232501,
+          "base_build_completed_before_ui_publish_started": true
+        },
+        {
+          "case": "mixed-4",
+          "assets_to_ui_overlap_seconds": 0.072938333,
+          "ui_publication_end_after_base_build_start_seconds": 6.298757127,
+          "ui_to_base_interval_intersection_seconds": -2.993853335,
+          "base_build_completed_before_ui_publish_started": true
+        },
+        {
+          "case": "mixed-5",
+          "assets_to_ui_overlap_seconds": 0.076652458,
+          "ui_publication_end_after_base_build_start_seconds": 6.305485836,
+          "ui_to_base_interval_intersection_seconds": -2.993200251,
+          "base_build_completed_before_ui_publish_started": true
+        },
+        {
+          "case": "mixed-0",
+          "assets_to_ui_overlap_seconds": 0.07317225,
+          "ui_publication_end_after_base_build_start_seconds": 6.310963377,
+          "ui_to_base_interval_intersection_seconds": -3.007276377,
+          "base_build_completed_before_ui_publish_started": true
+        },
+        {
+          "case": "mixed-3",
+          "assets_to_ui_overlap_seconds": 0.07509675,
+          "ui_publication_end_after_base_build_start_seconds": 6.311190794,
+          "ui_to_base_interval_intersection_seconds": -3.00365796,
+          "base_build_completed_before_ui_publish_started": true
+        },
+        {
+          "case": "mixed-1",
+          "assets_to_ui_overlap_seconds": 0.077008334,
+          "ui_publication_end_after_base_build_start_seconds": 6.306563086,
+          "ui_to_base_interval_intersection_seconds": -2.993335127,
+          "base_build_completed_before_ui_publish_started": true
+        }
+      ]
+    }
+  },
+  "integration": {
+    "status": "PASS",
+    "assertions": 81,
+    "repetitions": 3
+  },
+  "counting_boundary": "Histories, recovery episodes, topology executions, CI repetitions and repeated predicates remain separate units. No pooled success rate."
+}

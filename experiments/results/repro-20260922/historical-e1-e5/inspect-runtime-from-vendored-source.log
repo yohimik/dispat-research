@@ -1,0 +1,4 @@
+# {"argv": ["sh", "-c", "docker image inspect dispat-exp:repro-20260922-srcbuild --format \"{{.Id}} {{.Os}}/{{.Architecture}}\"; docker run --rm --network none dispat-exp:repro-20260922-srcbuild sh -c \"dispat --version | tail -n 1; sha256sum /usr/local/bin/dispat\""], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:59:55.146448+00:00"}
+sha256:f90e395c05d71335847dafc967d004c4c6081c5a1af075f40757cbc3c3b5b477 linux/arm64
+dispat exp-342062d3 (linux_arm64)
+2d33ac7d7e2dad15178e3bec2a550a3eb033442b8431a16ffff69cda481084aa  /usr/local/bin/dispat

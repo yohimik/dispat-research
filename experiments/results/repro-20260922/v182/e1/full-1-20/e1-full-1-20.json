@@ -1,0 +1,227 @@
+{
+ "summary": {
+  "profile": "full",
+  "instances": 20,
+  "clean": 8,
+  "invalid": 0,
+  "rejected": 6,
+  "divergence_classes": {
+   "PG2": 4,
+   "PG3?": 5,
+   "PG1": 8
+  },
+  "dispat": "dispat 1.8.2 (linux_arm64)"
+ },
+ "rows": [
+  {
+   "seed": 1,
+   "packages": 9,
+   "diffs": [
+    [
+     "p06",
+     "PG2"
+    ]
+   ]
+  },
+  {
+   "seed": 2,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 3,
+   "packages": 12,
+   "diffs": [
+    [
+     "p09",
+     "PG3?"
+    ]
+   ]
+  },
+  {
+   "seed": 4,
+   "packages": 12,
+   "diffs": []
+  },
+  {
+   "seed": 5,
+   "packages": 13,
+   "diffs": []
+  },
+  {
+   "seed": 6,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 7,
+   "packages": 15,
+   "diffs": [
+    [
+     "p09",
+     "PG2"
+    ]
+   ]
+  },
+  {
+   "seed": 8,
+   "packages": 12,
+   "diffs": [
+    [
+     "p09",
+     "PG3?"
+    ]
+   ]
+  },
+  {
+   "seed": 9,
+   "packages": 19,
+   "diffs": [
+    [
+     "p05",
+     "PG1"
+    ],
+    [
+     "p08",
+     "PG2"
+    ],
+    [
+     "p12",
+     "PG1"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed9"
+   }
+  },
+  {
+   "seed": 10,
+   "packages": 6,
+   "diffs": [
+    [
+     "p05",
+     "PG1"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed10"
+   }
+  },
+  {
+   "seed": 11,
+   "packages": 19,
+   "diffs": []
+  },
+  {
+   "seed": 12,
+   "packages": 20,
+   "diffs": [
+    [
+     "p15",
+     "PG1"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed12"
+   }
+  },
+  {
+   "seed": 13,
+   "packages": 13,
+   "diffs": [
+    [
+     "p03",
+     "PG3?"
+    ]
+   ]
+  },
+  {
+   "seed": 14,
+   "packages": 8,
+   "diffs": [
+    [
+     "p00",
+     "PG1"
+    ],
+    [
+     "p01",
+     "PG2"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed14"
+   }
+  },
+  {
+   "seed": 15,
+   "packages": 11,
+   "diffs": []
+  },
+  {
+   "seed": 16,
+   "packages": 16,
+   "diffs": []
+  },
+  {
+   "seed": 17,
+   "packages": 18,
+   "diffs": [
+    [
+     "p07",
+     "PG1"
+    ],
+    [
+     "p12",
+     "PG1"
+    ],
+    [
+     "p14",
+     "PG3?"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed17"
+   }
+  },
+  {
+   "seed": 18,
+   "packages": 10,
+   "diffs": [
+    [
+     "p06",
+     "PG1"
+    ]
+   ],
+   "rejection": {
+    "code": "E195",
+    "returncode": 1,
+    "evidence": "rejections-full/seed18"
+   }
+  },
+  {
+   "seed": 19,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 20,
+   "packages": 9,
+   "diffs": [
+    [
+     "p01",
+     "PG3?"
+    ]
+   ]
+  }
+ ]
+}

@@ -1,0 +1,19 @@
+npm notice
+npm notice package: cli@1.0.1
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 81B package.json
+npm notice Tarball Details
+npm notice name: cli
+npm notice version: 1.0.1
+npm notice filename: cli-1.0.1.tgz
+npm notice package size: 196 B
+npm notice unpacked size: 87 B
+npm notice shasum: a92ee2da70f2adc7b6e1387fd458c01030e726fc
+npm notice integrity: sha512-uq7y3CoFS1DQp[...]qKJ/UqpclA35Q==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
+npm error code E400
+npm error 400 Bad request syntax ('{"_id":"cli","name":"cli","dist-tags":{"latest":"1.0.1"},"versions":{"1.0.1":{"name":"cli","version":"1.0.1","dependencies":{"core":"^1.1.0"},"_id":"cli@1.0.1","readme":"ERROR: No README data found!","gitHead":"a927c3449db6c9891ec0444ac0405fc630b1f3c7","_nodeVersion":"22.23.2","_npmVersion":"10.9.8","dist":{"integrity":"sha512-uq7y3CoFS1DQp3DFOCYjB3dTd4FwWaP/1o1ZFzx8Zrz9eiJM66mJrhw9tPH2UPdlLTWCfYUw2qKJ/UqpclA35Q==","shasum":"a92ee2da70f2adc7b6e1387fd458c01030e726fc","tarball":"http://failproxy:4873/cli/-/cli-1.0.1.tgz"}}},"access":null,"_attachments":{"cli-1.0.1.tgz":{"content_type":"application/octet-stream","data":"H4sIAAAAAAAC/+3TQQrCMBCF4axziiFrSWc0jdDDCCENkqppabQIpXeX1iIILrVQzLcZeJBFFn9j7MkcXeZD6e6yiuwHEFErBZ/2Jw1sl2sk0hoVMCTcbwkYsgXc4tW0DPELn0REeN2VyDLoiLPkTzVz//OVVazDwv3T2Pp7/5QrTP0voecggrk4UYCwZy82HETn2ujrME4kUdI0lq5xoXTBehdFAT0HELZup4cHkiRRcBj4kJJKkiRZhQdPS76gAAwAAA==","length":196}}}PUT /cli HTTP/1.1') - PUT http://failproxy:4873/cli
+npm error A complete log of this run can be found in: /root/.npm/_logs/2026-09-22T19_02_48_452Z-debug-0.log

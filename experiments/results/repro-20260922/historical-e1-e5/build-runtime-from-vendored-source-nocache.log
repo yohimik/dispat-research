@@ -1,0 +1,127 @@
+# {"argv": ["docker", "build", "--no-cache", "-t", "dispat-exp:repro-20260922-srcbuild-nocache", "--target", "runtime", "--build-arg", "BIN_STAGE=build", "experiments/docker"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:04:14.097422+00:00"}
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/golang:1.26-alpine
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-alpine
+#3 DONE 0.0s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [build 1/5] FROM docker.io/library/golang:1.26-alpine@sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873
+#5 resolve docker.io/library/golang:1.26-alpine@sha256:c20c649e9cedf9434017488cc805c5986f11dd542460aad982ade13cdc377873 done
+#5 CACHED
+
+#6 [runtime 1/5] FROM docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31
+#6 resolve docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31 done
+#6 CACHED
+
+#7 [internal] load build context
+#7 transferring context: 60.41kB 0.0s done
+#7 DONE 0.0s
+
+#8 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#8 0.633 ( 1/23) Installing bash (5.3.9-r1)
+#8 0.666   Executing bash-5.3.9-r1.post-install
+#8 0.667 ( 2/23) Installing coreutils-env (9.11-r0)
+#8 0.681 ( 3/23) Installing coreutils-fmt (9.11-r0)
+#8 0.697 ( 4/23) Installing coreutils-sha512sum (9.11-r0)
+#8 0.713 ( 5/23) Installing acl-libs (2.3.2-r1)
+#8 0.727 ( 6/23) Installing libattr (2.5.2-r2)
+#8 0.744 ( 7/23) Installing skalibs-libs (2.15.0.0-r0)
+#8 0.761 ( 8/23) Installing utmps-libs (0.1.3.3-r0)
+#8 0.777 ( 9/23) Installing coreutils (9.11-r0)
+#8 0.812 (10/23) Installing brotli-libs (1.2.0-r1)
+#8 0.837 (11/23) Installing c-ares (1.34.8-r0)
+#8 0.856 (12/23) Installing libunistring (1.4.2-r0)
+#8 0.906 (13/23) Installing libidn2 (2.3.8-r0)
+#8 0.924 (14/23) Installing nghttp2-libs (1.69.0-r0)
+#8 0.943 (15/23) Installing libpsl (0.21.5-r3)
+#8 0.961 (16/23) Installing zstd-libs (1.5.7-r2)
+#8 0.989 (17/23) Installing libcurl (8.22.0-r0)
+#8 1.012 (18/23) Installing libexpat (2.8.4-r0)
+#8 1.029 (19/23) Installing pcre2 (10.48-r0)
+#8 1.054 (20/23) Installing git (2.54.0-r0)
+#8 ...
+
+#9 [build 2/5] RUN apk add --no-cache git
+#9 0.634 ( 1/12) Installing brotli-libs (1.2.0-r1)
+#9 0.661 ( 2/12) Installing c-ares (1.34.8-r0)
+#9 0.683 ( 3/12) Installing libunistring (1.4.2-r0)
+#9 0.716 ( 4/12) Installing libidn2 (2.3.8-r0)
+#9 0.735 ( 5/12) Installing nghttp2-libs (1.69.0-r0)
+#9 0.750 ( 6/12) Installing libpsl (0.21.5-r3)
+#9 0.766 ( 7/12) Installing zstd-libs (1.5.7-r2)
+#9 0.788 ( 8/12) Installing libcurl (8.22.0-r0)
+#9 0.814 ( 9/12) Installing libexpat (2.8.4-r0)
+#9 0.833 (10/12) Installing pcre2 (10.48-r0)
+#9 0.854 (11/12) Installing git (2.54.0-r0)
+#9 0.986 (12/12) Installing git-init-template (2.54.0-r0)
+#9 1.006 Executing busybox-1.37.0-r31.trigger
+#9 1.009 OK: 21.5 MiB in 29 packages
+#9 DONE 1.1s
+
+#8 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#8 1.189 (21/23) Installing git-init-template (2.54.0-r0)
+#8 ...
+
+#10 [build 3/5] COPY src /src
+#10 DONE 0.1s
+
+#11 [build 4/5] WORKDIR /src/services/dispat
+#11 DONE 0.0s
+
+#8 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#8 1.203 (22/23) Installing libgcc (15.2.0-r5)
+#8 1.219 (23/23) Installing hyperfine (1.20.0-r0)
+#8 1.483 Executing busybox-1.37.0-r31.trigger
+#8 1.500 OK: 34.0 MiB in 61 packages
+#8 DONE 1.6s
+
+#12 [build 5/5] RUN --mount=type=cache,target=/go/pkg/mod     --mount=type=cache,target=/root/.cache/go-build     CGO_ENABLED=0 go build -ldflags "-X github.com/yohimik/dispat/services/dispat/internal/cli.Version=exp-342062d3"       -o /out/dispat .
+#12 2.032 go: downloading github.com/subosito/gotenv v1.6.0
+#12 2.032 go: downloading github.com/spf13/pflag v1.0.10
+#12 2.032 go: downloading github.com/rs/zerolog v1.35.1
+#12 2.033 go: downloading github.com/pelletier/go-toml/v2 v2.2.4
+#12 2.033 go: downloading github.com/go-viper/mapstructure/v2 v2.4.0
+#12 2.033 go: downloading github.com/spf13/viper v1.21.0
+#12 2.033 go: downloading golang.org/x/mod v0.29.0
+#12 2.034 go: downloading gopkg.in/yaml.v3 v3.0.1
+#12 2.068 go: downloading golang.org/x/text v0.28.0
+#12 2.117 go: downloading github.com/sagikazarmark/locafero v0.11.0
+#12 2.117 go: downloading github.com/fsnotify/fsnotify v1.9.0
+#12 2.117 go: downloading github.com/spf13/afero v1.15.0
+#12 2.117 go: downloading github.com/spf13/cast v1.10.0
+#12 2.117 go: downloading go.yaml.in/yaml/v3 v3.0.4
+#12 2.174 go: downloading github.com/sourcegraph/conc v0.3.1-0.20240121214520-5f936abd7ae8
+#12 2.185 go: downloading golang.org/x/sys v0.47.0
+#12 2.591 go: downloading github.com/mattn/go-colorable v0.1.15
+#12 2.604 go: downloading github.com/mattn/go-isatty v0.0.24
+#12 DONE 6.2s
+
+#13 [runtime 3/5] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#13 DONE 0.0s
+
+#14 [runtime 4/5] RUN git config --global user.email exp@dispat.dev &&     git config --global user.name exp &&     git config --global init.defaultBranch main
+#14 DONE 0.1s
+
+#15 [runtime 5/5] WORKDIR /work
+#15 DONE 0.0s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 0.3s done
+#16 exporting manifest sha256:fd431b00540008248822133480f1b87b4ab4216ecab76209e2b0454656cd6354 done
+#16 exporting config sha256:df4ca44d3eda72dec4390a4bec5ad91e53b71c7bad336f2551eeeda614fa3fbe done
+#16 exporting attestation manifest sha256:8881b17c9fb187f6bad5c93b59219b3aa85c853eb358a9754196ee1077cd4d2d done
+#16 exporting manifest list sha256:f1629765d478342e865bde5dd80e2d8f7007a197f0f5567aee5ab63199380590 done
+#16 naming to docker.io/library/dispat-exp:repro-20260922-srcbuild-nocache done
+#16 unpacking to docker.io/library/dispat-exp:repro-20260922-srcbuild-nocache 0.1s done
+#16 DONE 0.5s

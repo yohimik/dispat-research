@@ -1,0 +1,32 @@
+# {"argv": ["python3", "experiments/tools/check-manifest.py", "experiments/results/v180-20260906/SHA256SUMS", "--root", "experiments", "--output", "experiments/results/repro-20260922/historical-e1-e5/check-v180-SHA256SUMS.json"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:24.249693+00:00"}
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/results/v180-20260906/SHA256SUMS",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments",
+  "checked_utc": "2026-09-22T19:00:24.361301+00:00",
+  "checked": 8131,
+  "ok": 2247,
+  "mismatched": [],
+  "missing": [
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/COMMIT_EDITMSG",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/HEAD",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/config",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/description",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/applypatch-msg.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/commit-msg.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/post-update.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-applypatch.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-commit.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-merge-commit.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-push.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-rebase.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/pre-receive.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/prepare-commit-msg.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/push-to-checkout.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/sendemail-validate.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/hooks/update.sample",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/index",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/info/exclude",
+    "results/v180-20260906/e4/failures/1000-layered-1000-0/.git/info/refs"
+  ],
+  "status": "FAIL"
+}

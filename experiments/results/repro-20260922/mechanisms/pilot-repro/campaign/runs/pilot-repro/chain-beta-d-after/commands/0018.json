@@ -1,0 +1,12 @@
+{
+  "argv": [
+    "git",
+    "commit",
+    "-qm",
+    "feat(a)^^: evolve fixture"
+  ],
+  "cwd": "/campaign/runs/pilot-repro/chain-beta-d-after/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

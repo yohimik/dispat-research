@@ -1,0 +1,16 @@
+{
+  "status": "INTEGRITY_PASS",
+  "profile": "core",
+  "expected_seeds": [
+    90001,
+    90300
+  ],
+  "rows": 300,
+  "accepted_matching": 300,
+  "matching_including_semantic_rejections": 300,
+  "semantic_rejections": 0,
+  "invalid_executions": 0,
+  "rows_with_differences": 0,
+  "difference_classes": {},
+  "errors": []
+}

@@ -1,0 +1,2 @@
+# {"argv": ["python3", "experiments/tools/verify-saner-archive-to.py", "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909", "experiments/results/repro-20260922/v190/archive-verification-failed-attempt"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:13.697280+00:00"}
+run is not COMPLETE; the retained-data verifiers only apply to a completed run

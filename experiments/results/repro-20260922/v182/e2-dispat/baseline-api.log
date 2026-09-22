@@ -1,0 +1,17 @@
+npm notice
+npm notice package: api@1.0.0
+npm notice Tarball Contents
+npm notice 6B index.js
+npm notice 81B package.json
+npm notice Tarball Details
+npm notice name: api
+npm notice version: 1.0.0
+npm notice filename: api-1.0.0.tgz
+npm notice package size: 195 B
+npm notice unpacked size: 87 B
+npm notice shasum: f3f0e59e6451eb14d22dbee3c5e7243dc22c9ccb
+npm notice integrity: sha512-fmqOHAGPTPa1i[...]r6yULoSyyurVg==
+npm notice total files: 2
+npm notice
+npm notice Publishing to http://failproxy:4873/ with tag latest and default access
++ api@1.0.0

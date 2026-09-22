@@ -1,0 +1,263 @@
+{
+ "summary": {
+  "profile": "core",
+  "instances": 50,
+  "clean": 50,
+  "invalid": 0,
+  "rejected": 0,
+  "divergence_classes": {},
+  "dispat": "dispat 1.8.2 (linux_arm64)"
+ },
+ "rows": [
+  {
+   "seed": 1,
+   "packages": 9,
+   "diffs": []
+  },
+  {
+   "seed": 2,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 3,
+   "packages": 12,
+   "diffs": []
+  },
+  {
+   "seed": 4,
+   "packages": 12,
+   "diffs": []
+  },
+  {
+   "seed": 5,
+   "packages": 13,
+   "diffs": []
+  },
+  {
+   "seed": 6,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 7,
+   "packages": 15,
+   "diffs": []
+  },
+  {
+   "seed": 8,
+   "packages": 12,
+   "diffs": []
+  },
+  {
+   "seed": 9,
+   "packages": 19,
+   "diffs": []
+  },
+  {
+   "seed": 10,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 11,
+   "packages": 19,
+   "diffs": []
+  },
+  {
+   "seed": 12,
+   "packages": 20,
+   "diffs": []
+  },
+  {
+   "seed": 13,
+   "packages": 13,
+   "diffs": []
+  },
+  {
+   "seed": 14,
+   "packages": 8,
+   "diffs": []
+  },
+  {
+   "seed": 15,
+   "packages": 11,
+   "diffs": []
+  },
+  {
+   "seed": 16,
+   "packages": 16,
+   "diffs": []
+  },
+  {
+   "seed": 17,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 18,
+   "packages": 10,
+   "diffs": []
+  },
+  {
+   "seed": 19,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 20,
+   "packages": 9,
+   "diffs": []
+  },
+  {
+   "seed": 21,
+   "packages": 10,
+   "diffs": []
+  },
+  {
+   "seed": 22,
+   "packages": 9,
+   "diffs": []
+  },
+  {
+   "seed": 23,
+   "packages": 14,
+   "diffs": []
+  },
+  {
+   "seed": 24,
+   "packages": 17,
+   "diffs": []
+  },
+  {
+   "seed": 25,
+   "packages": 17,
+   "diffs": []
+  },
+  {
+   "seed": 26,
+   "packages": 11,
+   "diffs": []
+  },
+  {
+   "seed": 27,
+   "packages": 20,
+   "diffs": []
+  },
+  {
+   "seed": 28,
+   "packages": 8,
+   "diffs": []
+  },
+  {
+   "seed": 29,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 30,
+   "packages": 14,
+   "diffs": []
+  },
+  {
+   "seed": 31,
+   "packages": 5,
+   "diffs": []
+  },
+  {
+   "seed": 32,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 33,
+   "packages": 10,
+   "diffs": []
+  },
+  {
+   "seed": 34,
+   "packages": 16,
+   "diffs": []
+  },
+  {
+   "seed": 35,
+   "packages": 15,
+   "diffs": []
+  },
+  {
+   "seed": 36,
+   "packages": 15,
+   "diffs": []
+  },
+  {
+   "seed": 37,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 38,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 39,
+   "packages": 11,
+   "diffs": []
+  },
+  {
+   "seed": 40,
+   "packages": 19,
+   "diffs": []
+  },
+  {
+   "seed": 41,
+   "packages": 17,
+   "diffs": []
+  },
+  {
+   "seed": 42,
+   "packages": 8,
+   "diffs": []
+  },
+  {
+   "seed": 43,
+   "packages": 6,
+   "diffs": []
+  },
+  {
+   "seed": 44,
+   "packages": 18,
+   "diffs": []
+  },
+  {
+   "seed": 45,
+   "packages": 13,
+   "diffs": []
+  },
+  {
+   "seed": 46,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 47,
+   "packages": 16,
+   "diffs": []
+  },
+  {
+   "seed": 48,
+   "packages": 15,
+   "diffs": []
+  },
+  {
+   "seed": 49,
+   "packages": 7,
+   "diffs": []
+  },
+  {
+   "seed": 50,
+   "packages": 20,
+   "diffs": []
+  }
+ ]
+}

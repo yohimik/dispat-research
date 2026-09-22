@@ -1,0 +1,3 @@
+# {"argv": ["sh", "-c", "shasum -a 256 provenance/generated-fixture-git.tar.gz; python3 -c \"import json;print('migration.json records:',json.load(open('provenance/migration.json'))['nested_git_archive_sha256'])\""], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:04:44.747520+00:00"}
+12a707907d89900e6fbb646065e5b88b33af1193286188b683644e534240c9eb  provenance/generated-fixture-git.tar.gz
+migration.json records: 12a707907d89900e6fbb646065e5b88b33af1193286188b683644e534240c9eb

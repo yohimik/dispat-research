@@ -1,0 +1,104 @@
+{
+  "started_utc": "2026-09-22T19:00:10.757651+00:00",
+  "run": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909-corrected",
+  "archive_sha256": "664b0b118412660fd6c643859e80a61deb60c94a14d9c3e723e2df18eaf6df41",
+  "runner_image": "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+  "runner_image_is_locked": true,
+  "stages": [
+    {
+      "name": "core",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work:/results",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work/harness:/exp:ro",
+        "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+        "python3",
+        "/results/verify-core.py",
+        "/results/core",
+        "1.9.0"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "recovery",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work:/results",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work/harness:/exp:ro",
+        "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+        "python3",
+        "/results/verify-recovery.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "mixed-docker",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work:/results",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work/harness:/exp:ro",
+        "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+        "python3",
+        "/results/mixed-docker/verify.py",
+        "/results/mixed-docker/run-20260909-094025"
+      ],
+      "exit_code": 0
+    },
+    {
+      "name": "mixed-4node",
+      "argv": [
+        "docker",
+        "run",
+        "--rm",
+        "--network",
+        "none",
+        "--cpus",
+        "2",
+        "--memory",
+        "4g",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work:/results",
+        "-v",
+        "/var/folders/g3/s9rl1h0n3r9g3_8hqcy846t00000gn/T/saner-archive-verify-6sw2uzn1/work/harness:/exp:ro",
+        "sha256:97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f",
+        "python3",
+        "/results/mixed-4node/verify.py",
+        "/results/mixed-4node/run-20260909-103333"
+      ],
+      "exit_code": 0
+    }
+  ],
+  "scope": "Fresh extraction and offline re-verification of retained evidence into a separate output directory; not fresh experiment execution or independent scientific replication.",
+  "status": "PASS",
+  "completed_utc": "2026-09-22T19:00:13.667214+00:00"
+}

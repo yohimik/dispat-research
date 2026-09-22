@@ -1,0 +1,33 @@
+# {"argv": ["python3", "experiments/results/repro-20260922/companion-20260909/copy/mixed-docker/verify.py", "experiments/results/repro-20260922/companion-20260909/copy/mixed-docker/run-20260908-224925"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:04:44.612915+00:00"}
+{
+  "status": "PASS",
+  "assertions": 405,
+  "cases": 30,
+  "recovery_cases": 12,
+  "overlap": [
+    {
+      "case": "mixed-2",
+      "overlap_seconds": 0.119087625
+    },
+    {
+      "case": "mixed-4",
+      "overlap_seconds": 0.124494792
+    },
+    {
+      "case": "mixed-5",
+      "overlap_seconds": 0.118850584
+    },
+    {
+      "case": "mixed-0",
+      "overlap_seconds": 0.125405292
+    },
+    {
+      "case": "mixed-3",
+      "overlap_seconds": 0.120635042
+    },
+    {
+      "case": "mixed-1",
+      "overlap_seconds": 0.114880584
+    }
+  ]
+}

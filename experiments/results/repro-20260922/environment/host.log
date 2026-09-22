@@ -1,0 +1,10 @@
+# {"argv": ["sh", "-c", "uname -a; sw_vers; python3 --version; git --version; tar --version; docker buildx version; date -u"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:58:10.540734+00:00"}
+Darwin ule 27.0.0 Darwin Kernel Version 27.0.0: Tue Aug 11 21:06:40 PDT 2026; root:xnu-13432.1.9~1/RELEASE_ARM64_T6050 arm64
+ProductName:		macOS
+ProductVersion:		27.0
+BuildVersion:		26A428
+Python 3.9.6
+git version 2.54.0 (Apple Git-157)
+bsdtar 3.5.3 - libarchive 3.7.4 zlib/1.2.12 liblzma/5.4.3 bz2lib/1.0.8 
+github.com/docker/buildx v0.35.0-desktop.2 b554ce1decd8b509893b1e7c6227eabfb923d094
+Tue Sep 22 18:58:10 UTC 2026

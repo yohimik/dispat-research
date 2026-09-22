@@ -1,0 +1,10 @@
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/results/v182-20260907/finalize/SHA256SUMS",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/results/v182-20260907",
+  "checked_utc": "2026-09-22T19:00:24.147807+00:00",
+  "checked": 753,
+  "ok": 753,
+  "mismatched": [],
+  "missing": [],
+  "status": "PASS"
+}

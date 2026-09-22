@@ -1,0 +1,9 @@
+# {"argv": ["python3", "tools/summarize-saner-campaign.py", "experiments/saner-2027/campaign-next-release-prepared/runs/run-v1.9.0-linux-arm64-20260909"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:03:08.150869+00:00"}
+Traceback (most recent call last):
+  File "/Users/yohimik/Projects/dispat-research/tools/summarize-saner-campaign.py", line 84, in <module>
+    main()
+  File "/Users/yohimik/Projects/dispat-research/tools/summarize-saner-campaign.py", line 79, in main
+    result = summarize(run, Path(temp) / "work")
+  File "/Users/yohimik/Projects/dispat-research/tools/summarize-saner-campaign.py", line 18, in summarize
+    assert provenance["status"] == "COMPLETE" and (run / "COMPLETE").is_file()
+AssertionError

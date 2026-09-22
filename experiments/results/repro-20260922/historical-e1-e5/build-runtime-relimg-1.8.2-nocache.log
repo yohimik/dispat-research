@@ -1,0 +1,83 @@
+# {"argv": ["docker", "build", "--no-cache", "-t", "dispat-exp:repro-20260922-runtime-nocache", "--target", "runtime", "--build-arg", "DISPAT_VERSION=1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd", "experiments/docker"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:59:31.004927+00:00"}
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/alpine:3
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/python:3.12-alpine
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [official 1/1] FROM docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#6 resolve docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd done
+#6 CACHED
+
+#7 [relimg 1/2] FROM docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+#7 resolve docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b done
+#7 CACHED
+
+#8 [runtime 1/5] FROM docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31
+#8 resolve docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31 done
+#8 CACHED
+
+#9 [relimg 2/2] COPY --from=official /usr/local/bin/dispat /out/dispat
+#9 DONE 0.0s
+
+#10 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#10 1.544 ( 1/23) Installing bash (5.3.9-r1)
+#10 1.702   Executing bash-5.3.9-r1.post-install
+#10 1.705 ( 2/23) Installing coreutils-env (9.11-r0)
+#10 1.846 ( 3/23) Installing coreutils-fmt (9.11-r0)
+#10 1.984 ( 4/23) Installing coreutils-sha512sum (9.11-r0)
+#10 2.122 ( 5/23) Installing acl-libs (2.3.2-r1)
+#10 2.260 ( 6/23) Installing libattr (2.5.2-r2)
+#10 2.398 ( 7/23) Installing skalibs-libs (2.15.0.0-r0)
+#10 2.539 ( 8/23) Installing utmps-libs (0.1.3.3-r0)
+#10 2.679 ( 9/23) Installing coreutils (9.11-r0)
+#10 2.840 (10/23) Installing brotli-libs (1.2.0-r1)
+#10 2.989 (11/23) Installing c-ares (1.34.8-r0)
+#10 3.130 (12/23) Installing libunistring (1.4.2-r0)
+#10 3.283 (13/23) Installing libidn2 (2.3.8-r0)
+#10 3.423 (14/23) Installing nghttp2-libs (1.69.0-r0)
+#10 3.563 (15/23) Installing libpsl (0.21.5-r3)
+#10 3.700 (16/23) Installing zstd-libs (1.5.7-r2)
+#10 3.847 (17/23) Installing libcurl (8.22.0-r0)
+#10 3.990 (18/23) Installing libexpat (2.8.4-r0)
+#10 4.128 (19/23) Installing pcre2 (10.48-r0)
+#10 4.272 (20/23) Installing git (2.54.0-r0)
+#10 4.564 (21/23) Installing git-init-template (2.54.0-r0)
+#10 4.701 (22/23) Installing libgcc (15.2.0-r5)
+#10 4.843 (23/23) Installing hyperfine (1.20.0-r0)
+#10 5.003 Executing busybox-1.37.0-r31.trigger
+#10 5.010 OK: 34.0 MiB in 61 packages
+#10 DONE 5.1s
+
+#11 [runtime 3/5] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#11 DONE 0.0s
+
+#12 [runtime 4/5] RUN git config --global user.email exp@dispat.dev &&     git config --global user.name exp &&     git config --global init.defaultBranch main
+#12 DONE 0.1s
+
+#13 [runtime 5/5] WORKDIR /work
+#13 DONE 0.0s
+
+#14 exporting to image
+#14 exporting layers
+#14 exporting layers 0.3s done
+#14 exporting manifest sha256:fecd6192458ec7d5cbb7b2b96365b560b76cf094ccc6b5ef195e51a4f7907bc3 done
+#14 exporting config sha256:98c694a92f25d6695d6403278b607e6a18ad6600a87b025b72d2584b18f6c65f done
+#14 exporting attestation manifest sha256:9b349fe62c24cdf4df5b2461c193aa06f607ac9358df0463d75dc7bdd079f70e done
+#14 exporting manifest list sha256:7c8232c505aba42d58b1174438e881c5ce305cc59b46b6cab8d7cb0e309ea5b0 done
+#14 naming to docker.io/library/dispat-exp:repro-20260922-runtime-nocache done
+#14 unpacking to docker.io/library/dispat-exp:repro-20260922-runtime-nocache 0.1s done
+#14 DONE 0.5s

@@ -1,0 +1,13 @@
+{
+  "argv": [
+    "git",
+    "init",
+    "-q",
+    "-b",
+    "main"
+  ],
+  "cwd": "/campaign/runs/pilot-repro/chain-beta-d-before/work",
+  "exit": 0,
+  "stderr": "",
+  "stdout": ""
+}

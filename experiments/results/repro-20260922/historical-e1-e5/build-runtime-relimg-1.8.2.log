@@ -1,0 +1,57 @@
+# {"argv": ["docker", "build", "-t", "dispat-exp:repro-20260922-runtime", "--target", "runtime", "--build-arg", "DISPAT_VERSION=1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd", "experiments/docker"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T18:58:33.052743+00:00"}
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 2.98kB done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/alpine:3
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#3 DONE 0.0s
+
+#4 [internal] load metadata for docker.io/library/python:3.12-alpine
+#4 DONE 0.0s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 2B done
+#5 DONE 0.0s
+
+#6 [relimg 1/2] FROM docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b
+#6 resolve docker.io/library/alpine:3@sha256:28bd5fe8b56d1bd048e5babf5b10710ebe0bae67db86916198a6eec434943f8b done
+#6 DONE 0.0s
+
+#7 [official 1/1] FROM docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd
+#7 resolve docker.io/yohimik/dispat-alpine:1.8.2@sha256:4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd done
+#7 DONE 0.0s
+
+#8 [runtime 1/5] FROM docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31
+#8 resolve docker.io/library/python:3.12-alpine@sha256:d09d15e60962ca365d1cd544a48773bac9d33f2fb1b00f2aa0deec78ade7dc31 done
+#8 DONE 0.0s
+
+#9 [runtime 3/5] COPY --from=binsrc /out/dispat /usr/local/bin/dispat
+#9 CACHED
+
+#10 [runtime 4/5] RUN git config --global user.email exp@dispat.dev &&     git config --global user.name exp &&     git config --global init.defaultBranch main
+#10 CACHED
+
+#11 [runtime 2/5] RUN apk add --no-cache git bash hyperfine coreutils
+#11 CACHED
+
+#12 [relimg 2/2] COPY --from=official /usr/local/bin/dispat /out/dispat
+#12 CACHED
+
+#13 [runtime 5/5] WORKDIR /work
+#13 CACHED
+
+#14 exporting to image
+#14 exporting layers done
+#14 exporting manifest sha256:ec996af26fd17a63e3383e801918974399ba963ce1bea05889872bff49c71629 done
+#14 exporting config sha256:a1dd15bd35f542950663ed400076171bc879cbe5fad380e5f8640e8083d6deaf done
+#14 exporting attestation manifest sha256:baf65632ea92987bdea8b41148c9aae40c8b3becfd06703016516b21a24eef3c done
+#14 exporting manifest list sha256:376e8a66a105d4b295bbf05e35291a6107a7d9369fbb035f72c887ec442c081c
+#14 exporting manifest list sha256:376e8a66a105d4b295bbf05e35291a6107a7d9369fbb035f72c887ec442c081c done
+#14 naming to docker.io/library/dispat-exp:repro-20260922-runtime done
+#14 unpacking to docker.io/library/dispat-exp:repro-20260922-runtime done
+#14 DONE 0.0s

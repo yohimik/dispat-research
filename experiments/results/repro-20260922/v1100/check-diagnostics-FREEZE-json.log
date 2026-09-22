@@ -1,0 +1,16 @@
+# {"argv": ["python3", "experiments/tools/check-manifest.py", "experiments/saner-2027/campaign-1.10.0-20260909/diagnostics/FREEZE.json", "--root", "experiments/saner-2027/campaign-1.10.0-20260909/diagnostics", "--output", "experiments/results/repro-20260922/v1100/check-diagnostics-FREEZE-json.json"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:00:24.391851+00:00"}
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909/diagnostics/FREEZE.json",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909/diagnostics",
+  "checked_utc": "2026-09-22T19:00:24.416753+00:00",
+  "checked": 4,
+  "ok": 0,
+  "mismatched": [],
+  "missing": [
+    "frozen_utc",
+    "sha256",
+    "cases",
+    "purpose"
+  ],
+  "status": "FAIL"
+}

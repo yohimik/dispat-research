@@ -1,0 +1,2 @@
+# {"argv": ["python3", "experiments/saner-2027/campaign-mechanisms-20260910/archive.py", "experiments/results/repro-20260922/mechanisms/pilot-repro/campaign/runs/pilot-repro", "--remove-expanded"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:07:46.896061+00:00"}
+{"archive": "expanded-fixtures.tar.gz", "archive_sha256": "60678bdde0829e5aeaf5241cd69e8105cb63cca33e85e2467ad7bca90f701a88", "expanded_removed": true, "regular_files": 1160, "status": "PASS", "uncompressed_bytes": 594209}

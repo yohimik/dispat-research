@@ -1,0 +1,17 @@
+# {"argv": ["python3", "experiments/saner-2027/campaign-1.10.0-20260909/protocol/verify-core.py", "experiments/results/repro-20260922/companion-20260909/copy/core", "1.8.2"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:04:44.667617+00:00"}
+{
+  "status": "INTEGRITY_PASS",
+  "profile": "core",
+  "expected_seeds": [
+    90001,
+    90300
+  ],
+  "rows": 300,
+  "accepted_matching": 300,
+  "matching_including_semantic_rejections": 300,
+  "semantic_rejections": 0,
+  "invalid_executions": 0,
+  "rows_with_differences": 0,
+  "difference_classes": {},
+  "errors": []
+}

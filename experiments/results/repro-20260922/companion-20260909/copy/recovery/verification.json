@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "episodes": 20,
+  "maximum_runs": 5,
+  "progress_every_run": 20,
+  "raw_command_records": 254,
+  "scope": "retained observations; not a fresh execution or theorem proof"
+}

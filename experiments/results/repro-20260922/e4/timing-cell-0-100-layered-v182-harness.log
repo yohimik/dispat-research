@@ -1,0 +1,3 @@
+# {"argv": ["docker", "run", "--rm", "--network", "none", "--cpus", "2", "--memory", "4g", "-e", "E4_FAILURE_DIR=/failures", "-v", "/Users/yohimik/Projects/dispat-research/experiments/prepare-v182/harness:/exp:ro", "-v", "/Users/yohimik/Projects/dispat-research/experiments/results/repro-20260922/e4/failures:/failures", "-w", "/exp", "dispat-exp:repro-20260922-runtime", "python3", "e4/timing.py", "0"], "cwd": "/Users/yohimik/Projects/dispat-research", "started_utc": "2026-09-22T19:02:24.452805+00:00"}
+P,shape,U,pad,edges,median_s,min_s,max_s,maxrss_mb
+100,layered,200,0,185,0.016,0.016,0.017,15

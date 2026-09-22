@@ -1,0 +1,10 @@
+{
+  "manifest": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909/FREEZE.json",
+  "root": "/Users/yohimik/Projects/dispat-research/experiments/saner-2027/campaign-1.10.0-20260909",
+  "checked_utc": "2026-09-22T19:00:23.439095+00:00",
+  "checked": 62,
+  "ok": 62,
+  "mismatched": [],
+  "missing": [],
+  "status": "PASS"
+}
