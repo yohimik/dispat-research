@@ -1,0 +1,35 @@
+\subsection{RQ3: Availability Boundaries and CI}
+The companion Linux ARM64 campaign executes both the three-package
+npm $\to$ Docker $\to$ Docker chain and the four-package running example.
+Build outputs carry fixture content through OCI archives; private Verdaccio
+and Docker registries distinguish local output from publication~\cite{oci,buildkit}.
+Each topology repeats five configurations six times in seeded order: mixed and
+serialized availability, a missing barrier, refused publication, and failed building.
+
+Each topology has 30 initial executions: 12 intended successes and 18 designed
+failures. Per topology, 12 repairable failures completed with unchanged versions; 24
+completed cases then reran without build or publication. Six missing-barrier
+controls were not repaired. Enabled barriers placed app building after base
+publication; without one, the app failed against the unavailable image. In all
+six mixed three-package runs, base building overlapped npm publication.
+
+In the four-package mixed runs, UI building overlapped delayed assets
+publication. All six base builds finished before UI publication started. This
+is a valid local-output schedule: base building need not await UI publication,
+but overlap is not required. Intervals use a shared monotonic clock~\cite{pytime}.
+An earlier protocol-validation attempt incorrectly required strict overlap
+and failed its oracle. We corrected the predicate before a full rerun on that
+earlier binary; the companion campaign reuses the frozen protocol with its
+own binary pin. A focused oracle test accepts completion before publication
+starts and rejects starting after publication ends. The original failure is
+retained separately and is not counted as passing implementation evidence.
+
+The three CI repetitions kept the workflow entry point unchanged while adding
+packages to shared configuration. They selected required tests through the graph,
+blocked release stages for an injected or missing test, propagated a specification
+change to its consumer, and observed a final no-op release rerun. These fixtures
+support selected ordering, recovery, and CI paths on one Linux ARM64 environment.
+\emph{Answer to RQ3.} In these fixtures, configured barriers distinguish local
+build availability from required publication, and both failed and absent
+required tests prevent release; concurrency and onboarding effort are not
+measured outcomes.

@@ -19,7 +19,10 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-Interdependent releases can leave consumers unfinished after providers succeed.
+We analyze three release anomalies: availability inversions (consumers start
+before required artifacts are published), orphaned releases (provider success
+erases unfinished consumer intent), and retry version drift (changed inherited
+channels alter targets).
 We present a saga-inspired protocol combining deterministic planning,
 stage-aware scheduling, and consumer-owned release obligations. Git history and
 records form the ledger without another persistent release-state store.
@@ -31,14 +34,11 @@ fault episodes recover after repair; an analytical source-discharge alternative
 loses work in 84 (70\%). This compares admission rules, not competing
 tools or production failure rates. A skill supports commit release-intent
 diagnostics, plan inspection, and CI releases. Proposed fleet and worker extensions
-preserve source-owned records and reuse verified provider outputs. An
-LLVM-on-Linux release forecast reduces an upstream 154-minute baseline to
-103 minutes (33\%) on 6--10 compatible 16-core
-machines, assuming a wider graph, sharded tests, and five-minute output transfers.
-A Linux kernel build-farm forecast reduces a reported six-machine, 232-minute
-baseline to 65--70 minutes on 24 workers (3.3--3.6$\times$), assuming
-configuration-level tasks and 4--9 minutes overhead on a 61-minute schedule.
-Neither distributed speedup has been measured. Full implementation refinement and
+preserve source-owned records and reuse verified provider outputs.
+The experiments report will include Linux and LLVM distributed-build scenarios:
+pessimistic runtimes above $1\times$ and optimistic runtimes below $1\times$
+each original pipeline's elapsed time. These scenarios are prospective.
+Full implementation refinement and
 external exactly-once effects remain outside the claims.
 \end{abstract}
 \begin{IEEEkeywords}
