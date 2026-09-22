@@ -145,8 +145,8 @@
     "hits": []
   },
   "counts": {
-    "copied_files": 631,
-    "copied_bytes": 48916149,
+    "copied_files": 633,
+    "copied_bytes": 48919416,
     "not_copied_entries": 47
   },
   "files": [
@@ -5469,6 +5469,26 @@
       "source": "/private/tmp/claude-501/-Users-yohimik-Projects-dispat/aba20193-908a-4dbf-a0ef-363528c9fa79/scratchpad/repro (directory, tarred with nested Git metadata)",
       "origin": "Claude session \"CCME spec dispatch RC with worker nodes\" (local_6a5bd54d), scratchpad /private/tmp/claude-501/-Users-yohimik-Projects-dispat/aba20193-908a-4dbf-a0ef-363528c9fa79/scratchpad",
       "note": "remote.git and clones a, b, c after the fix"
+    },
+    {
+      "path": "experiments/distributed-20260922/evidence/spec-validation/proceed_checked.py",
+      "bytes": 2394,
+      "sha256": "fec7ae511cb21e899b20a79f0bac1e304824b8d517852a59a4b9bd7faef0f5e0",
+      "mtime_utc": "2026-09-22T19:11:26+00:00",
+      "source": "/private/tmp/claude-501/-Users-yohimik-Projects-dispat/f39b48fa-c803-4a3c-bdad-c67849bc2faa/scratchpad/proceed_checked.py",
+      "origin": "Claude session \"CCME specs validation and distributed tasks\" (local_299e717b), scratchpad /private/tmp/claude-501/-Users-yohimik-Projects-dispat/f39b48fa-c803-4a3c-bdad-c67849bc2faa/scratchpad",
+      "note": "retained by its author on 22 September after the rerun note: imports proceed.py with the corrected orphan check; source of the quoted 4000/247/0 figures",
+      "added_utc": "2026-09-22T19:12:22+00:00"
+    },
+    {
+      "path": "experiments/distributed-20260922/evidence/spec-validation/relation_docs_example.py",
+      "bytes": 873,
+      "sha256": "1214eecf2eeef190e961caeeed3dd489295e70c61b015876aad5513f06b8287f",
+      "mtime_utc": "2026-09-22T19:11:26+00:00",
+      "source": "/private/tmp/claude-501/-Users-yohimik-Projects-dispat/f39b48fa-c803-4a3c-bdad-c67849bc2faa/scratchpad/relation_docs_example.py",
+      "origin": "Claude session \"CCME specs validation and distributed tasks\" (local_299e717b), scratchpad /private/tmp/claude-501/-Users-yohimik-Projects-dispat/f39b48fa-c803-4a3c-bdad-c67849bc2faa/scratchpad",
+      "note": "retained by its author on 22 September: imports relation.py; source of the specification worked example 36/27/15",
+      "added_utc": "2026-09-22T19:12:22+00:00"
     }
   ],
   "not_copied": [
