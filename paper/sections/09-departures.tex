@@ -1,0 +1,94 @@
+\section{Departures of the implementation and boundaries of the text}
+\label{sec:departures}
+
+The extended edition keeps a ledger of proof obligations open against the
+current specification, CCME 3.1.0-rc.2 at commit \code{252216ba}, and against
+the reference implementation at the same commit, each with the scenario that
+exposes it, its consequence for the results of this report, the repair or the
+recorded status, and the vector and test that pin it. \Cref{tab:departures}
+states each in one row; the F-numbered references open the full entries. The
+sources are \SPEC{} itself, its dated design history and changelog, the
+engine's release notes, the integration test plan, and the test sources of
+the engine and its integration suite. The six obligations found in CCME 1.0.0
+(the prerelease window that never discharged, the suppression lapse, the
+staleness dual without the resolvability test, the one-directional axis
+independence, the inherited channel that read a moving baseline, and the
+bucketing remedy's own edge) were repaired in CCME 2.0.0 and are reproduced
+in the extended edition as provenance with their minimal counterexamples and
+regression vectors (\cref{ob:pre,ob:g5,ob:duality,ob:g8,ob:origin,ob:bucket}).
+
+\begin{center}
+\small
+\begin{longtable}{@{}L{2.2cm}L{6.2cm}L{5.6cm}@{}}
+\caption{Current obligations, ordered by severity: the silent loss of a
+release first, diagnostic metadata last.}
+\label{tab:departures}\\
+\toprule
+Entry & Claim & Status and consequence \\
+\midrule
+\endfirsthead
+\toprule
+Entry & Claim & Status and consequence \\
+\midrule
+\endhead
+\Cref{ob:owed} & \spec{13.3} adds an owed window per dependency edge and
+\spec{19.3} refuses with \diag{E201} a run that would release a provider at
+the baseline commit of a consumer it still owes. The engine implements the
+delivery test and the reconciliation of a proceeding consumer, and neither the
+owed window nor \diag{E201}. & Open; the engine's own design history records
+it. A consumer that sits out the run in which its provider delivers is
+stranded: \cref{thm:g2} holds in the specification and, in the engine, only
+while some pending window still holds the commit. The loss is silent in the
+plan. Pinned by vector 80d; no test exercises the run the consumer sits out. \\
+\Cref{ob:attribution} & In the builds the campaigns ran, the bump axis credited
+a unit's whole source set to every dependent the walk reached, where
+\spec{9.2} attributes only the sources within the unit's depth. & Fixed on the
+product repository's \code{main} at \code{e461d7d9}, after the measured builds
+and unpublished when this was written. No effect on \cref{sec:eval:rq5}: every
+trigger commit there scopes one package, for which both rules attribute
+identically. It is the (R) shape of \cref{sec:guarantees}. \\
+\Cref{ob:samecommit} & \spec{19.3}: if the consumer is published after the
+provider and fails, two releases sit on one commit and no later plan can
+compute the debt; \diag{E201} reports it with its remedy, an explicit
+\code{Release-As}. & A boundary the specification states. Completeness
+(\cref{thm:g2}) reports this state rather than resolving it; the engine, which
+lacks \diag{E201}, does not report it. \\
+\Cref{ob:graduation} & \spec{13.9}'s stable branch computes the graduation
+version from \code{effective(P)} over surviving tuples, while \spec{11.5}
+defines it as the train target accumulated over the pending window. & A
+contradiction inside the text, unchanged since 2.0.0. \Cref{thm:g3} is proved
+for fixed version inputs; which of the two rules an implementation follows is
+pinned by the last row of \spec{11.4}'s table. \\
+\Cref{ob:kinds} & The engine builds one dependency set and uses it for
+propagation, ordering, blocking and the cycle check; the text distinguishes
+\code{propagation.kinds}, \code{publish.orderKinds} and
+\code{publish.blockingKinds}, and excludes a dev-only cycle from \diag{E200}. &
+Open, on the safe side: the engine over-blocks and refuses dev-only cycles it
+should accept. The theorems assume hypothesis (K), which the engine satisfies
+trivially. Pinned by vectors 79 and 100a and edge cases 99a and 100. \\
+\Cref{ob:records} & \spec{19.1}: a release tag is created, never replaced,
+except for the retry of an uncertain write that names the same commit,
+package and version. & The single-repository recorder implements both halves;
+the fleet recorder of \spec{27} implements the rule and not the exception, so
+a retry after an applied-but-unacknowledged push is refused rather than
+recognised. Nothing incorrect is recorded. Open for the fleet path. \\
+\Cref{ob:category} & \spec{28.9} requires a stable machine-readable failure
+class on every listed row. & The class is attached where a distributed run
+loses its lock and not yet at the older recording and lock sites; the engine's
+design history records it as a departure to be closed. Pinned by vector 14 of
+\spec{28.8}. \\
+\Cref{ob:profile} & The design history lists what the engine does not
+implement of \spec{28} and where it departs: reuse of verified outputs across
+runs (vector 20) and the rollback profile of \spec{26} (vector 26) are not
+implemented; the platform check runs before dispatch for released packages
+and at placement for a prepared provider; the summary shape of a prepared
+provider and the phase a cancelled attempt stopped in were added to the text
+from the implementation. & Recorded so that the conformance table of the
+extended edition reads against them; none affects a proved theorem. \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+Beside these, the extended edition records textual defects noticed in passing
+that change no result, and the dates and commits of the design-history entry
+of 22 September 2026 as observed while the product side corrected them.

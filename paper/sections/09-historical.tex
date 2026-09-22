@@ -1,0 +1,365 @@
+\subsection{Historical CCME 1.0.0 obligations}
+\label{sec:obligations-historical}
+
+Formalising CCME 1.0.0 at \texttt{713f1a0b} exposed six failure classes. Each obligation below
+states the claim, a minimal counterexample, the consequences, a repair, and a
+conformance vector. Three concern \spec{13.7c}, one \spec{13.7b}, one
+\spec{9.3}, and one the optimisation advice of \spec{13.11}.
+
+None is a defect in the reference implementation. In two cases
+(\cref{ob:pre,ob:duality}), the implementation already uses a mechanism absent
+from the specification. A second implementation following only the written
+contract would therefore be incorrect. Source references below are
+relative to \code{services/dispat/internal/plan/} and cite the line numbers of
+the released \code{services/dispat/v1.7.2} tag. Those sources have since
+moved: at \code{252216ba}, \code{containedInBaseline} is at \code{plan.go}
+line 2507, \code{Plan.StaleSources} at line 1280, and the per-unit traversal
+of \code{propagate.go} is served from a walk cache (line 76) whose
+composition is checked against the literal walk (\cref{sec:conformance}).
+
+Released CCME 2.0.0 resolves them as follows: \cref{ob:pre} by $W_{\rm fresh}$;
+\cref{ob:g5,ob:origin} by the full retry invariant and fixed-state wording;
+\cref{ob:duality} by applying channel eligibility in the upward audit;
+\cref{ob:g8} by stating axis independence in the bump-to-channel direction
+only; and \cref{ob:bucket} by retaining each unit's own source exclusion when
+bucketed. The counterexamples remain regression evidence for those normative
+conditions. The regression vectors named below as ``the released 2.0.0
+form'', 133 to 138, are in the current text the edge cases 133 to 138 of
+\spec{15.7}, one row each. Except where a paragraph explicitly names CCME 2.0.0 or a current
+theorem, every numbered \spec{} reference and quoted guarantee in this subsection
+refers to the CCME 1.0.0 snapshot at \code{713f1a0b}; present tense describes
+the historical rule being executed, not the released 2.0.0 text.
+
+\subsubsection{The prerelease window never discharges}
+
+\begin{obligation}[the 1.0.0 G4/G6 claims fail on a prerelease train]
+\label{ob:pre}
+Under the 1.0.0 single-window rule, ledger discharge and convergence fail after a successful prerelease publish. Current \cref{thm:g4,thm:g6} use $W_{\rm fresh}$ and do not make that claim.
+\end{obligation}
+
+\paragraph{Counterexample (bump axis).}
+This is \SPEC{} vector 95b, run twice. Baselines
+\code{core@1.5.0-beta.0} and \code{cli@2.0.1-beta.0}, both with an older stable
+baseline; \code{cli} depends on \code{core}; one commit
+\code{fix(core)\^{}: x}.
+
+Run 1 plans \code{core@1.5.0-beta.1} and \code{cli@2.0.1-beta.1} and publishes
+both. Run 2, at the same \Head{}: by \cref{lem:window} neither window changed,
+because \cref{def:window} measures from the last \emph{stable} tag and no
+stable tag was written. Under the 1.0.0 direct and propagated rules, \code{core} and \code{cli} each receive \bpatch{} again, both packages are planned again, and
+\spec{11.4} increments the counters to \code{beta.2}. Run 3 gives
+\code{beta.3}. The plan never empties, and \diag{E199}, the convergence
+check of \spec{19.6}, which admits no exclusion but held packages, fires
+after the first fully successful run of any prerelease train.
+
+\paragraph{Counterexample (channel axis).}
+\Cref{thm:g7} says the channel a package arrived on is not proposed for it
+again. It does not say nothing is proposed. Let $p$ have stable baseline
+\code{1.2.0} and a window containing an older \code{release(p)\%rc} and a
+newer \code{release(p)\%beta}. Run 1: \spec{11.6} precedence gives the newer
+directive, $p$ is released \code{1.2.1-beta.0} (\diag{W186} noting the
+conflict), and the operator's stated intent is honoured. Run 2: the window is
+unchanged, so both directives are still candidates; \code{\%beta} now proposes
+nothing (\diag{W199}, \cref{thm:g7}) and the \emph{older} \code{\%rc},
+which \spec{11.6} had ruled had lost, wins by default and $p$ is released
+\code{1.2.1-rc.0}. Run 3: \code{\%rc} is now inert and \code{\%beta} proposes
+\code{beta} again, computing \code{1.2.1-beta.0}, which does not exceed the
+baseline \code{1.2.1-rc.0}, so the run stops with \diag{E195}. A repository
+that did nothing wrong is wedged, having published a version onto a channel its
+newest directive did not ask for.
+
+\paragraph{What broke in 1.0.0.} Its G4 (no double release), G6 (convergence), and G7 channel-settling claim (the channel axis settles) all fail, and with
+them \spec{17.2}'s idempotency clause and
+\spec{19.6}'s convergence check, for every package on a prerelease train,
+which is to say for the entire feature the prerelease flow exists to support.
+
+\paragraph{The repair.} The window answers one question, what has $p$ not
+yet released, and \spec{13.3} correctly measures it from the stable tag
+because \spec{11.4} recomputes a train's target over the whole train. The
+missing distinction is that the same set is then used to answer a second
+question: is anything still \emph{owed}? Separate them. Define the
+\emph{fresh window}
+\[
+  \Winf{\st}{p} \;=\; \Win{\st}{p} \setminus \Rch{\basec{\st}{p}},
+\]
+which for a package whose baseline is stable equals $\Win{\st}{p}$, and for one
+on a train excludes the commits its own prereleases already published. Then:
+\begin{enumerate}[label=(R\arabic*),leftmargin=3.2em]
+  \item \cref{def:sources} discharges on $\Winf{\st}{p}$, so a package whose
+    prerelease shipped the work counts as a source (which \spec{13.4a} already
+    intends: the artefact is public);
+  \item plan membership (\cref{def:plan}) requires a contribution from a commit
+    in $\Winf{\st}{p}$, while the version computation (\spec{11.4}) keeps
+    reading $\Win{\st}{p}$, so the train's target still accumulates over the
+    whole train;
+  \item candidate collection in \cref{def:phase1,def:channels} is restricted to
+    $\Winf{\st}{p}$, which is what stops the superseded directive of the second
+    counterexample from voting again.
+\end{enumerate}
+With (R1)--(R3), \cref{lem:window} strengthens to $\Winf{\st'}{p} = \emptyset$
+for \emph{every} released $p$, prerelease or not, because $\basec{\st'}{p} =
+\Head$. Fresh discharge repairs the prerelease counterexample. Current \cref{thm:g4,thm:g5,thm:g6} separately state the full retry-invariant conditions needed for persistence, non-widening, and bounded convergence; (R1)--(R3) alone do not imply them.
+
+\paragraph{Evidence.} The reference implementation has exactly this predicate,
+under a different name and undocumented in \SPEC{}:
+\code{containedInBaseline} (\code{plan.go},
+lines 1836--1855) reports whether a commit has already been published by the
+package's baseline tag, and its callers implement (R1) in
+\code{sourcePackages}, (R2) by gating \code{NewWork} on it, and (R3) in both
+\code{resolveChannels} and \code{propagateChannels}. Its comment states the
+consequence the specification does not: without it the engine ``would re-warn
+\dots on every run until graduation''.
+
+\paragraph{Regression vectors.} Vector 133 is the released 2.0.0 form of the bump-axis case. Historically, (i) vector 95b, run twice: the second run's plan
+must be empty. (ii) The two-directive window above, run three times: run 2 must
+be empty, and \diag{E195} must not arise.
+
+\subsubsection{Window-scoped suppression lapses, so the admitted set can grow}
+
+\begin{obligation}[the 1.0.0 G5 claim lacks suppression stability]
+\label{ob:g5}
+The 1.0.0 proof assumed ``same sources, same depth, same graph at \Head{}'', although window-scoped suppression can change the source set. CCME 2.0.0 makes the needed stability part of the full retry invariant used by current \cref{thm:g5}.
+\end{obligation}
+
+The root cause is a design decision taken three times, in three sections, each
+time for a good local reason: suppression is scoped to the window. A
+\code{cancel} stops counting once the package releases (\spec{13.4a}); a hold
+does the same (\spec{13.4a}); and a correction ``reaches only undischarged
+work'', so a \code{Deletes} is a no-op for a package that has released its
+target (\spec{7.4.2}, \cref{rem:corrections}). Each rule is right on its own
+terms. Together they mean that the set of units a package acts as a propagation
+source for is \emph{monotone in the state}, which is precisely what \G{5} says
+it is not.
+
+\paragraph{Counterexample (cancellation).} \code{cli} depends on \code{core}.
+Three commits: $A$ carrying \code{feat(core)\^{}: streaming reader}, then $B$
+carrying \code{cancel(core)}, then $C$ carrying \code{fix(core): unrelated}, in
+that ancestry.
+
+Run 1: $\canc{A}{\code{core}}$ holds and $A \in \Win{\st_1}{\code{core}}$, so
+\code{core} is not in $\srcp{\st_1}{u_A}$ and $u_A$ propagates to nothing;
+\code{core} releases \code{1.4.3} from $C$ alone (\SPEC{} vector 41).
+$\plan{\st_1} = \{\code{core}\}$: \code{cli} is not planned.
+
+Run 2: \code{core} is tagged at \Head{}, so $\Win{\st_2}{\code{core}} =
+\emptyset$, so $\disch{\st_2}{\code{core}}{A}$ holds, so \code{core} re-enters
+$\srcp{\st_2}{u_A}$ by the discharge disjunct of \cref{def:sources}. Now $u_A$
+propagates: $A \in \Win{\st_2}{\code{cli}}$, \code{cli} is not cancelled, and
+the bump is admitted. $\plan{\st_2} = \{\code{cli}\} \not\subseteq
+\plan{\st_1}$.
+
+\paragraph{Counterexample (corrections).} The same shape without any
+\code{cancel}. Let $B$ instead carry \code{chore(core): drop it} with
+\code{Deletes: <A>}. In run 1 the correction discards $A$'s record for
+\code{core}, so $u_A$ has no source and reaches nothing; \code{core} still
+releases, on $C$. In run 2, $\Win{\st_2}{\code{core}}$ is empty, so by
+\spec{7.4.2} the correction is a discharged no-op for \code{core}
+(\diag{W209}), $A$'s record stands again, and $u_A$ propagates to \code{cli}
+exactly as before. This route is worth stating separately because \diag{W209}
+reads as reassurance (the correction did not need to do anything) when it
+is in fact the moment the suppressed propagation returns.
+
+\paragraph{What broke in 1.0.0.} Its unrestricted G5 claim and the ``nothing is added'' step of its G6 proof failed. \Cref{thm:g6}'s conclusion survives here (\code{cli}
+releases in run 2 and run 3 is empty) but the variant argument does not, and
+the security reading of \G{5} does: whether \code{cli} is released at all
+depends on whether \code{core}'s publish succeeded. Inducing a publish failure
+changes the set of packages a commit eventually releases, which is the
+inference \spec{18.1} relies on \G{5} to forbid.
+
+\paragraph{The repair, and why the obvious one is wrong.} The tempting fix is
+to make cancellation sticky, never letting a cancelled package become a source,
+by defining $\disch{\st}{p}{c} \land \lnot\canc{c}{p}$. It is wrong: it
+breaks \SPEC{} vector 72, where \code{cancel(core)} lands \emph{after}
+\code{core} published the work and the consumers' catch-up must still proceed.
+Ancestry cannot separate the two cases, since in both the cancel is in the
+history at \Head{} and in both \code{core} carries a tag at \Head{}. The
+difference is only whether the released version counted the unit, and that is
+not recoverable from the state.
+
+The recommendation is therefore to restate the guarantee rather than change the
+algorithm: \G{5} holds for every unit none of whose sources is suppressed at
+\Head{}, which is hypothesis (H2), and the widening in the remaining case is
+intended behaviour, since neither a \code{cancel} nor a \code{Deletes} touches
+code (\spec{10.1}, \spec{7.4.2}) and the work of $A$ is in fact inside the
+published \code{core@1.4.3}. What the specification should not do is claim a
+subset property that the discharge rule of \spec{13.4a} deliberately violates,
+and \spec{18.1} should not rest a security argument on the unrestricted form.
+
+\paragraph{Evidence.} The cancellation counterexample was run against the
+reference implementation, which follows \spec{13.4a} literally and reproduces
+it: with the history above and \code{core} tagged at \Head{} in the second
+state, the first plan releases \code{core} alone and the second releases the
+consumer as well, reporting it as a \emph{catch-up from core}. The engine is
+doing what the specification says; it is \G{5} that does not describe it.
+
+\paragraph{Regression vector.} Vector 134 is the released 2.0.0 form. In the historical pair, each history above is run twice: run 2
+plans \code{cli}, the plan is documented as a superset of run 1's, and the
+\diag{W193} naming \code{core} as the origin is present so that the widening is
+visible to whoever reads the plan rather than silent.
+
+\subsubsection{The staleness dual omits the resolvability test}
+
+\begin{obligation}[\spec{13.7b}'s two formulations disagree]
+\label{ob:duality}
+\spec{13.7b} states that \code{staleSources(D)} ``is non-empty exactly when
+\S9.2 assigns \code{D} a non-\code{none} propagated bump'', and that
+disagreement is an implementation bug. The procedure tests scope, depth,
+window, and cancellation, but has no counterpart to \cref{a:resolvable}.
+\end{obligation}
+
+\paragraph{Counterexample.} \SPEC{} vector 95 (also edge case 60m):
+\code{feat(core)\^{}\%beta: x} where \code{core} moves onto \code{beta} and its
+consumers stay on \code{stable}. \spec{9.3a} suppresses every consumer's bump
+with \diag{W208}, so $\propb{\st}{\code{ui}} = \bnone$, and \SPEC{} is
+explicit that ``\code{feat(core)\^{}\%beta} releases \code{core} alone''. But
+\code{staleSources(ui)} passes every guard it has and returns the row
+$(\code{core}, u, 1, \bpatch)$. The audit reports \code{ui} as behind a
+dependency for which no release is owed, and by \spec{13.7b}'s own words the
+implementation is now buggy by definition.
+
+\paragraph{The repair.} Add the hoisted predicate of \cref{prop:hoist} to the
+procedure, immediately after the \code{cancelledFor} test:
+\begin{speccode}
+        srcChan = { channel[P] : P in sources }        # §9.3a, as in §9.2
+        if not ('stable' in srcChan or channel[D] in srcChan):  continue
+\end{speccode}
+With it, \cref{thm:duality} holds unconditionally and its hypothesis can be
+dropped.
+
+\paragraph{Evidence.} The reference implementation cannot exhibit the
+disagreement, because \code{Plan.StaleSources}
+(\code{plan.go}, line 1217) returns the rows
+recorded by the downward traversal rather than re-deriving them from an
+independent upward walk. The duality is therefore true there by construction
+and untested; an implementation that follows \spec{13.7b} literally, as a
+second implementation would, disagrees on every prerelease workspace.
+
+\paragraph{Regression vector.} Vector 135 is the released 2.0.0 form; historically, vector 95 was extended: assert that
+\code{staleSources(ui)} is empty, and that the randomised
+down-versus-up cross-check \spec{13.7b} recommends is run on a workspace
+containing at least one prerelease train.
+
+\subsubsection{Axis independence is one-directional}
+
+\begin{obligation}[the ``vice versa'' in \G{8}]
+\label{ob:g8}
+\spec{13.7c} states \G{8} as ``suppressing a bump under \spec{9.3a} never
+suppresses a channel, and vice versa'', and proves it by observing that the two
+passes share only $\chanres{\st}{\cdot}$, which phase 3 reads and never writes. That
+argument proves one direction only, and the other is false.
+\end{obligation}
+
+\paragraph{Counterexample.} Let \code{core} and its consumer \code{app} both
+sit on \stable, and let one commit carry \code{feat(core)\^{}\%beta++1}: the
+caret propagates a bump to \code{app} and the \code{++1} propagates the
+\code{beta} channel to it, which is exactly the pairing \spec{9.3a} prescribes
+for taking consumers along. Suppose \code{app}'s own window also contains
+\code{release(app)\%rc}. By \cref{def:channels} a direct directive beats every
+propagated one, so $\chanres{\st}{\code{app}} = \code{rc}$ and the propagated
+\code{beta} is discarded. Phase 3 then computes
+$\srcch{\st}{u} = \{\code{beta}\}$, finds
+$\chanres{\st}{\code{app}} = \code{rc} \notin \srcch{\st}{u}$ and no source on
+\stable, and suppresses the bump with \diag{W208}. Had the propagated channel
+been applied, \code{app} would have been on \code{beta} and the bump admitted.
+The suppression of a channel proposal caused the suppression of a bump.
+
+\paragraph{The repair.} State \G{8} as \cref{thm:g8} does: the channel
+assignment is computed by phases 1--2 and reads no phase-3 output, so no bump
+suppression can affect it. The dependency in the other direction is real, is
+the entire content of \spec{9.3a}, and should be documented as such rather than
+denied. The operational consequences \spec{13.7c} draws from \G{8} are
+unaffected: they only ever use the direction that holds.
+
+\paragraph{Regression vector.} Vector 136 is the released 2.0.0 form. The historical workspace above asserts that \code{app} is
+released on \code{rc} with no propagated bump and a \diag{W208}, and that the
+\diag{W208} is a consequence of the channel precedence rule rather than of
+anything the caret did.
+
+\subsubsection{Inherited channels read a baseline that release moves}
+
+\begin{obligation}[\spec{9.3}'s replay-independence claim]
+\label{ob:origin}
+\spec{9.3} states of the \code{inherit} resolution that ``the result is
+deterministic, does not depend on which earlier run published the origin''.
+The second half is false: resolution rule 2 reads
+$\chanof{\base{\st}{q}}$, and the origin's own release moves it.
+\end{obligation}
+
+\paragraph{Counterexample.} \code{app} depends on \code{core}; \code{core}
+sits at baseline \code{1.5.0-beta.0} over stable baseline \code{1.4.2};
+\code{app} at \code{2.0.0}. Two commits: $C_1$ carrying
+\code{feat(core)\^{}++1: x} (no explicit channel value, so the propagated
+channel is \code{inherit}) and $C_2$ carrying
+\code{release(core)\%stable: graduate}.
+
+Run 1: \code{core}'s own channel is \stable{} (the direct directive), but
+the inherited value for \code{app} is
+$\chanof{\base{\st_1}{\code{core}}} = \code{beta}$, so \code{app} is
+planned at \code{2.0.1-beta.0} while its provider graduates to
+\code{1.5.0}. Suppose \code{core} publishes and \code{app} fails. Run 2:
+$\chanof{\base{\st_2}{\code{core}}} = \stable$, the proposal is inert
+(\diag{W199}), and \code{app} is planned at \code{2.0.1}. Both runs plan
+\code{app}, at different versions, with every completed release stable:
+the 1.0.0 cross-run version-stability claim fails. CCME 2.0.0 instead fixes inherited baseline-channel state as one component of its full retry invariant, as required by current \cref{thm:g3}. Run against the reference implementation, the two
+plans are exactly as computed here (\code{app}: \code{beta}
+$\rightarrow$ \code{stable}, \code{2.0.1-beta.0} $\rightarrow$
+\code{2.0.1}).
+
+\paragraph{What breaks, and what does not.} Determinism
+(\cref{thm:determinism}) is unaffected: each plan is still a pure function
+of its state. What fails is the \emph{cross-run} half of the specification's
+sentence, and with it channel stability for unreleased dependents of a
+graduating origin. Note also that run 1's own output is operationally odd:
+a consumer is dragged onto a train in the same run that ends it. Both
+effects have one cause, phase 1 reading baselines so that it cannot depend
+on phase 2's output (\spec{9.2}); the price of that layering is that
+\code{inherit} answers with the origin's pre-graduation channel.
+
+\paragraph{The repair.} Scope the specification's sentence to a fixed state
+(determinism per run, which is what \cref{thm:determinism} proves), and
+state the drift explicitly. Resolving \code{inherit} against the origin's
+\emph{resolved} channel instead would remove the drift but requires a
+fourth phase, which \spec{9.2}'s no-circularity argument was written to
+avoid; the fresh window of \cref{ob:pre} does not remove it either, since
+the commit remains pending for the failed dependent. The honest fix is
+documentation plus the vector below.
+
+\paragraph{Regression vector.} Vector 137 is the released 2.0.0 form: the two commits above, two runs: run 2 must
+plan \code{app} at \code{2.0.1} on \stable{}, and the plan should carry the
+\diag{W199} that records why the run-1 proposal lapsed.
+
+\subsubsection{Bucketed traversal over-admits a unit's own sources}
+
+\begin{obligation}[the 1.0.0 bucketing remedy has its own edge]
+\label{ob:bucket}
+CCME 1.0.0 \spec{13.11} warned that subtracting the merged source set from a bucketed
+traversal silently withholds bumps, and prescribes admitting ``any node reached
+across at least one edge within the depth bound''. By \cref{prop:bucket} that
+prescription over-admits the set $X$: a package that is itself a source of the
+unit that reaches it.
+\end{obligation}
+
+\paragraph{Counterexample.} One unit, \code{fix(core,cli)\^{}major: x}, where
+\code{cli} depends on \code{core}. \spec{9.2} seeds \code{seen} with both
+sources, so \code{cli} is not a propagation target and takes the unit's own
+\bpatch. Under the merged rule, \code{cli} is reached from \code{core} across
+one edge inside the depth bound and takes the propagated \bmajor{} as well:
+a two-level difference in the published version, with no diagnostic.
+
+\paragraph{The repair.} Bucket the traversal, then re-decide the few targets
+that are themselves sources. Since the bucket key fixes the propagated bump,
+the only question for such a $d$ is whether \emph{some} unit in the bucket
+admits it, that is whether $\exists i: d \notin S_i \land \dist{S_i}{d} \leq
+\ell$. The candidates are confined to $S$, which is small, and the per-unit
+source sets are already materialised, so the check is cheap. Equivalently, and
+more simply, exclude from bucketing any unit whose own source set contains a
+package reachable from that set within the depth bound.
+
+\paragraph{Evidence.} The reference implementation does not bucket: it
+traverses once per unit (\code{propagate.go},
+line 401), so it is unaffected. The obligation is on the advice, which a
+performance-minded second implementation would follow.
+
+\paragraph{Regression vector.} Vector 138 is the released 2.0.0 form. Historically, \SPEC{} Appendix B.7a, whose vectors test
+exactly this class of almost-equivalence, gains one: \code{fix(core,cli)\^{}major}
+must publish \code{cli} as a patch, bucketed or not.

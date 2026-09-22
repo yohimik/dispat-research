@@ -1,35 +1,43 @@
 {
-  "date_utc": "2026-09-22T19:46:03+00:00",
+  "date_utc": "2026-09-22T19:59:15+00:00",
   "built_by": "research session \"Dispatch agent research data\" (Claude Fable 5.1) after the handoff from \"Dispat-research report reproducibility\"",
   "command": "tectonic --outdir build --keep-logs main.tex; make check",
   "pdf": {
     "path": "output/pdf/technical-report.pdf",
-    "sha256": "59260226da4e6c57499149ccb836f37f8484e1f67d48b26e5ebd2881fc9d609e",
-    "pages": 103
+    "sha256": "b4d0d268c72bd5f891f57a77b6d38d309cc7c157a1cedc4633ff5aae194553fb",
+    "pages": 59,
+    "note": "the condensed edition; see editions"
   },
   "checks": {
     "undefined_or_duplicate_references": 0,
     "overfull_boxes": 0,
-    "underfull_boxes": 46
+    "underfull_boxes": 27
   },
   "sources_sha256": {
     "paper/appendix/a-notation.tex": "b8d68b97ccb0a97e491761a536238277a16d1bac424babd2c6546738a7745fc7",
     "paper/appendix/b-abstract.tex": "dcea33ab95bb3e903a2d1f27ae33aa92e99ae19c2422e54862d7b0c414634bff",
     "paper/macros.tex": "727513b5a7105f9e1b99554ca64f2ab2b42d3214cb61a5421f6308c57025650e",
-    "paper/main.tex": "b6c50d92b8714713b1b96060abee4db4d73a148f5ddb321af0391417913fa5f2",
+    "paper/main.tex": "79bd59a4d7c3aa46b29036510a0f12cfee878719c100dc89242d75f917f1e534",
     "paper/preamble.tex": "a9808e82ce9e8c11f2d14aaaec1b4b5551ff0a07c7a3fbd6aba2470407847a34",
+    "paper/report.tex": "5627befa94f6795ea5aab87f2349b984b7abe8b1635fb106c4b871ae60514e35",
+    "paper/sections/01-findings.tex": "4dd541924fc98d3219a5f26e6d5dea366dccc4c420d6d7d8b41c7d20989714d1",
     "paper/sections/01-introduction.tex": "b1b0ce61acef7573710c203c884937029eb584d9c1329ce381213e5c1b2fbab1",
     "paper/sections/02-model.tex": "c28df98388703f1f1b604b5b996c9be669611f6f703227f158f8f15b3064a1a6",
     "paper/sections/03-propagation.tex": "20e0fc673a54a4d2cd2d95adb5d903137caf4897c9374b2e4da9df58568357bb",
     "paper/sections/04-protocol.tex": "e3ba55b018c3559ec4d3b7698dc2bec8cc10b7620053e2e6deaad5576372c54a",
-    "paper/sections/04a-execution.tex": "e87b2d7c87799d7d5160a8874c3c12636c88dfd65b1b9a3fb20bd9551d431110",
+    "paper/sections/04a-durations.tex": "0531ae434655f527c07017437842a5a18dfd331f19a2a2ba6aecb3af139c227c",
+    "paper/sections/04b-distributed.tex": "edeb353ac5da7da07d2301bc4877020e78aec429e4ff5b4101f22c872b2608fe",
+    "paper/sections/04c-polyrepo.tex": "728028da010bd4d766f35c4f9fcfb6fa0e1134fa725c33dd75892228d57fe8dc",
     "paper/sections/05-guarantees.tex": "f61df0936d6ee2fb55cab6f828ae1410e75d248b22a105cdc3ab1112f69868f8",
     "paper/sections/06-determinism.tex": "a0a391357963dfee8351600d67d4f7d83b60caae8265c61037431c65ef616b20",
     "paper/sections/07-duality.tex": "8e2f28b68d88673817855d126d2f8a96c0df0160d93f4eada947c2470ec03154",
     "paper/sections/08-complexity.tex": "6316ff265a93d156529b42fd5d71c71800ac8d01aa5f1af99f472a24781bc9a2",
-    "paper/sections/09-obligations.tex": "853db8d00f427501a31e8be7b98ca3e956d4b46935a01f2379203ea8a6649455",
+    "paper/sections/09-current.tex": "34b6c90c51b6675e7d069659c4bd320b674790c091dc7be77ed82ab896cdf55e",
+    "paper/sections/09-departures.tex": "a098234daefd2435f025bc0df3d93d79340457043abea5c2f39847df105bb1fb",
+    "paper/sections/09-historical.tex": "3f1f8a83af3f0ececc1100c8c7cb347afb645a26c88a4bcd91899c0cc4b49660",
     "paper/sections/10-conformance.tex": "278428d0328c744921797f1a24edbdcee41685610c2ec8ee70d3091f574afbf1",
     "paper/sections/11-evaluation.tex": "987bd41507715cbff4f54205a5badf0cd77648d54d22dc46354194a3ad662cee",
+    "paper/sections/11-results.tex": "a61713c87c18ae95f043516e49e38bddaa46da24197fa6575ca2382f4437b6c0",
     "paper/sections/99-references.tex": "ac5527915ded3dabc606b7a144d5005373e059e4fa62a7bb10abb0f81ac93a60"
   },
   "pages_visually_inspected": [
@@ -62,8 +70,49 @@
     "macros.tex: the \\ex* and \\ev* macros moved here from the two section files",
     "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures",
     "later on 22 September, after a product-side correction: the measured builds credited a unit's whole source set to every reached dependent (fixed on dispat main e461d7d9, unpushed); recorded as a new obligation (ob:attribution) in 09-obligations.tex, as the observed (R) shape in 05-guarantees.tex, as the second shape of rem:owed-reach in 07-duality.tex, and beside the binary pin in 11-evaluation.tex; no effect on the single-source fixtures; the report grew to 100 pages, tables 13 and 14 still inside the evaluation section",
-    "on the author's instruction that the conference abstract cannot change and everything must be explained in the report: the report's own abstract now states the kernel groups as twice each after one rejected candidate, the LLVM pair as once per side, and the kit's machine definitions as planned but not applied; new appendix/b-abstract.tex maps every sentence of the conference abstract to the section, table and evidence that substantiate it, with the precise statement and caveat, and marks the product features the report neither models nor measures; 103 pages"
+    "on the author's instruction that the conference abstract cannot change and everything must be explained in the report: the report's own abstract now states the kernel groups as twice each after one rejected candidate, the LLVM pair as once per side, and the kit's machine definitions as planned but not applied; new appendix/b-abstract.tex maps every sentence of the conference abstract to the section, table and evidence that substantiate it, with the precise statement and caveat, and marks the product features the report neither models nor measures; 103 pages",
+    "on the author's instruction that 100 pages is too much: split the shared sources at their seams (04a-durations/04b-distributed/04c-polyrepo, 09-current/09-historical), added a condensed edition report.tex with a new findings section, a one-table departures section and a condensed results section, and a label shim so F-numbered references point into the extended edition; technical-report.pdf is now the condensed edition (59 pages) and technical-report-extended.pdf the full text (103 pages)"
   ],
   "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's title and abstract were rewritten by the sibling session and then corrected here in two phrases on the author's instruction",
-  "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those."
+  "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those.",
+  "editions": {
+    "condensed": {
+      "source": "paper/report.tex",
+      "pdf": "output/pdf/technical-report.pdf",
+      "sha256": "b4d0d268c72bd5f891f57a77b6d38d309cc7c157a1cedc4633ff5aae194553fb",
+      "pages": 59,
+      "checks": {
+        "undefined_or_duplicate_references": 0,
+        "overfull_boxes": 0,
+        "underfull_boxes": 27
+      },
+      "contents": "main findings; model; propagation; protocol; readiness durations; the eight guarantees with proofs; determinism; duality; departures table; condensed evaluation; notation; conference-abstract map",
+      "pages_visually_inspected": [
+        1,
+        2,
+        3,
+        4,
+        25,
+        42,
+        44,
+        49,
+        51,
+        52
+      ]
+    },
+    "extended": {
+      "source": "paper/main.tex",
+      "pdf": "output/pdf/technical-report-extended.pdf",
+      "sha256": "de93d4b98f613464ae02e6766435215b08d68ac1f3faa319fbd87bf93e7658b3",
+      "pages": 103,
+      "checks": {
+        "undefined_or_duplicate_references": 0,
+        "overfull_boxes": 0,
+        "underfull_boxes": 46
+      },
+      "contents": "everything: adds the distributed and polyrepository profile transcriptions, the cost analysis, the historical CCME 1.0.0 audit, the conformance table and the full campaign narratives"
+    },
+    "shared_sources": "both editions are built from the same section files; the condensed edition resolves references into the extended one through paper/build/labels-from-full.tex, generated by paper/tools/make-label-shim.py from the extended edition's .aux (numbers carry an F)",
+    "build": "cd paper && make check && make check-report (the extended edition first, with its .aux kept; then the shim; then the condensed edition)"
+  }
 }

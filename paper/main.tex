@@ -5,7 +5,7 @@
 
 \title{The CCME Release Guarantees\\[2mm]
        \large A formal model, with proofs, of the release computation, its publish
-       protocol and its execution profile, with the executed campaigns}
+       protocol and its execution profile, with the executed campaigns (extended edition)}
 \author{Semen Fediukovich}
 \date{September 2026 \\[2mm]
       \normalsize Technical report accompanying \texttt{specs/ccme-spec/SPEC.md} 3.1.0-rc.2\\
@@ -50,7 +50,9 @@ two kernel farm groups that met their public reference times with a second
 node, twice each after one rejected candidate, and an LLVM matrix released
 through two workers in less time than on one node, once per side, with a
 reproduction kit whose binary rebuilds were verified byte for byte and whose
-machine definitions were planned but not applied.
+machine definitions were planned but not applied. A condensed edition built
+from the same sources keeps the findings, the model, the proofs, the ledger
+of departures and the results.
 \end{abstract}
 
 \paragraph{Specification snapshot.}
@@ -70,12 +72,15 @@ CCME 1.0.0 at \texttt{713f1a0b}; the released CCME 2.0.0 at
 \input{sections/02-model}
 \input{sections/03-propagation}
 \input{sections/04-protocol}
-\input{sections/04a-execution}
+\input{sections/04a-durations}
+\input{sections/04b-distributed}
+\input{sections/04c-polyrepo}
 \input{sections/05-guarantees}
 \input{sections/06-determinism}
 \input{sections/07-duality}
 \input{sections/08-complexity}
-\input{sections/09-obligations}
+\input{sections/09-current}
+\input{sections/09-historical}
 \input{sections/10-conformance}
 \input{sections/11-evaluation}
 

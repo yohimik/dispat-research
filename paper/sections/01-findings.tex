@@ -1,0 +1,139 @@
+\section{Main findings}
+\label{sec:intro}
+
+\subsection{The problem}
+
+A workspace is a repository holding many independently versioned packages that
+depend on one another. Releasing it means choosing a new version for each
+package that needs one, writing those versions into manifests, uploading
+artefacts to registries, and recording what happened. The recording is the
+hard part: registries have no transactions, a publish is an irreversible write
+to a service the release tool does not control, several registries may be
+involved, and no coordinator can commit or abort them as a unit. A run that
+publishes seven packages is seven independent, individually fallible writes.
+
+CCME\footnote{\emph{Conventional Commits: Monorepo Extension}, version
+3.1.0-rc.2 at commit \texttt{252216ba}, \code{specs/ccme-spec/SPEC.md} in the
+\code{dispat} repository. Referred to throughout as \SPEC{}, cited by section
+number.} answers this the way a saga does. The release plan is a pure function
+of the repository at a fixed commit; each completed leg is recorded by an
+annotated git tag written immediately after that leg succeeds; and recovery is
+re-execution: run the engine again and it recomputes the same transaction,
+skipping the legs already recorded. That design works only if re-execution is
+well behaved, and \spec{13.7c} states the eight properties that say it is:
+
+\begin{description}[leftmargin=3.2em,style=nextline,font=\normalfont\bfseries]
+  \item[\G{1} termination] propagation halts, whatever the declared depth.
+  \item[\G{2} completeness] a contribution admitted to a dependent survives in
+    every later run until that dependent releases at or after a release of
+    every owed source carrying it; there are no orphans, whether the provider
+    failed or the consumer got ahead of it.
+  \item[\G{3} version stability] a package released late is released at the
+    version it was originally planned at.
+  \item[\G{4} no double ledger delivery] a contribution does not survive its
+    delivery in the tag ledger; this says nothing unconditional about external
+    effects.
+  \item[\G{5} no blast-radius widening] under the retry invariant, later
+    targets are a subset of the first run's.
+  \item[\G{6} restricted convergence] under the retry invariant, repeated
+    successful progress empties the initial plan within as many runs as it had
+    publishable packages.
+  \item[\G{7} channel discharge] a prerelease channel is proposed to a package
+    only until it is released on it.
+  \item[\G{8} one-way axis independence] suppressing a version bump does not
+    suppress a channel change; resolved channels may suppress bumps.
+\end{description}
+
+\subsection{What this report establishes}
+
+The report writes the algorithm down once, formally
+(\cref{sec:model,sec:propagation,sec:protocol}), proves the guarantees inside
+that model (\cref{sec:guarantees}), and reports what the reference
+implementation was observed to do in the campaigns that were executed
+(\cref{sec:evaluation}). The findings, each with the result that carries it:
+
+\begin{enumerate}[leftmargin=2em]
+  \item \textbf{The eight guarantees hold for the model under the explicit
+    retry invariant of \spec{13.7c} and two hypotheses the specification does
+    not state}, (R) that owed sources reach their target and (K) that
+    propagation edges order and block (\cref{thm:g1,thm:g2,thm:g3,thm:g4,thm:g5,thm:g6,thm:g7,thm:g8}).
+    (R) holds outright for a unit with a single source; it can fail for a
+    multi-source unit, and the reference engine exhibited exactly that failure
+    until a fix that postdates the measured builds (\cref{ob:attribution}).
+  \item \textbf{Delivery closes the orphan a consumer reaches by getting ahead
+    of a failed provider.} The candidate admits a propagated contribution
+    until its source has delivered it (\spec{13.4a}); the model transcribes
+    this test (\cref{def:delivery}) and \cref{thm:g2} is proved for it. Two
+    rules follow and are stated as boundaries rather than proved away: an owed
+    window per dependency edge and the refusal \diag{E201}, which the
+    specification states and the engine does not yet implement
+    (\cref{ob:owed}), and the same-commit case that the protocol reports
+    rather than resolves (\cref{ob:samecommit}).
+  \item \textbf{The plan is a deterministic, idempotent function of the fixed
+    inputs, and a run after a partial failure plans the failed packages, the
+    blocked ones and the consumers still owed} (\cref{thm:determinism},
+    \cref{cor:idempotency}, \cref{thm:resumption}).
+  \item \textbf{The staleness audit of \spec{13.7b} never over-reports and
+    under-reports in three shapes}, all with a multi-source unit; the second
+    shape is the engine defect above (\cref{thm:duality}, \cref{rem:owed-reach}).
+  \item \textbf{Build readiness buys wall time in a form that can be stated.}
+    With unlimited slots a run lasts its longest path and a weaker relation
+    never lengthens it; the chain, fan-out and fan-in formulas are exact; under
+    slot budgets a greedy schedule is within the list-scheduling bound and can
+    show Graham's anomaly (\cref{sec:exec-durations}). The placement invariance
+    of the distributed profile, that worker count, placement and completion
+    order do not change the plan, is stated and proved in the extended edition
+    (\cref{prop:exec-placement}).
+  \item \textbf{The implementation departs from the text in eight recorded
+    places}, none of which loses a release silently except the stranded
+    consumer of \cref{ob:owed}; \cref{sec:departures} tabulates them with
+    their status.
+  \item \textbf{The measurements.} In every state of a finite projection and in
+    every completed episode, the consumer-relative window retained exactly the
+    residual obligations, and a source-relative window would have lost
+    obligations in 84 of the 120 designed fault episodes and in 260 of 772
+    states (\cref{sec:eval:rq1}). Recorded progress survived repeated failure
+    without version drift in 130 of 130 rows, and the restricted oracle agreed
+    on all 300 histories of each companion campaign (\cref{sec:eval:rq2}). A
+    configured barrier distinguished local build availability from required
+    publication, and both a failed and an absent required test blocked release
+    (\cref{sec:eval:rq3}). Planning cost rose from 0.017~s at 100 packages to
+    about 19~s at 10,000 on a capped host (\cref{sec:eval:rq4}). On a kernel
+    build farm, two groups met their public reference times with a second node,
+    twice each after one rejected candidate, where the same node alone did
+    not; on an LLVM matrix, a release through two workers took 27:48.94
+    against 41:12.02 on one node, once per side; a one-heavy-package fixture
+    showed the predicted negative case (\cref{sec:eval:rq5}). No speedup of the
+    profile or of the engine is claimed beyond what these pairs measured.
+\end{enumerate}
+
+\subsection{Scope, and how to read this edition}
+
+The subject is the release computation of \spec{13} and the publish protocol
+of \spec{19}, with the execution rules of \specs{19.2a}{28} as transcribed
+obligations. Message syntax (\spec{4}--\spec{8}) is taken as given: units
+arrive already parsed. Outside the theorems, and not spoken for by them, are
+manifest range reconciliation (\spec{9.4}, \spec{19.5}), the diagnostic
+registry of \spec{16} beyond the codes used as labels, executor scheduling
+beyond the stated relations and bounds, shared-version groups
+(\spec{13.9a}), and the adapter and rollback protocols of \specs{25}{26}. The
+report claims no novelty for sagas, idempotent consumers, breadth-first
+search or list scheduling; its contribution is the formal model, corrected
+hypotheses, counterexamples, the ledger of departures, and the record of what
+was measured.
+
+This is the condensed edition. The extended edition, distributed beside it as
+\code{technical-report-extended.pdf} and built from the same sources, adds the
+transcriptions of the distributed profile (\spec{28}) and of the
+repository-local windows (\spec{27}), the cost analysis of
+\specs{13.11}{20.7}, the historical audit of CCME 1.0.0 with its six
+counterexamples, the conformance table that maps every result to the
+specification's vectors and to the integration test behind it, and the full
+narratives of the campaigns, including every discarded attempt. A reference
+whose number carries an F, such as \emph{Proposition F73}, points into the
+extended edition; every other reference is to this document.
+\Cref{appendix:notation} is the symbol table, and \cref{appendix:abstract}
+reads the companion conference abstract against this report sentence by
+sentence. \SPEC{} is licensed GPL-3.0-or-later and this report reproduces its
+definitions and pseudocode; it is distributed under the same licence
+(\code{paper/LICENSE}).

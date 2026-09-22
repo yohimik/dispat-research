@@ -16,7 +16,7 @@ Private working repository for the papers, reproducible experiments, and review 
 - [Released 1.10.0 experiment evidence](paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md), with the completed 14-stage Docker campaign, separate diagnostics checks, and verified archives.
 - [Historical 1.9.0 evidence](paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md), including the preserved failed oracle attempt and corrected campaign.
 - [Campaign protocol and reproduction](experiments/saner-2027/campaign-1.10.0-20260909/CAMPAIGN-PLAN.md) and [complete evidence archives](experiments/saner-2027/campaign-1.10.0-20260909/ARCHIVES.md).
-- [Full English technical report source](paper/main.tex) and [saved PDF](output/pdf/technical-report.pdf), separate from the active conference revision.
+- [Technical report, condensed edition](output/pdf/technical-report.pdf) (main findings, model, proofs, departures, results; source [paper/report.tex](paper/report.tex)) and its [extended edition](output/pdf/technical-report-extended.pdf) (source [paper/main.tex](paper/main.tex)), built from the same section files; separate from the active conference revision. Build with `cd paper && make check && make check-report`.
 
 The obsolete `paper/icse/` working tree is preserved in a [verified archive](paper/archives/README.md). Historical submission and withdrawal receipts remain under `output/conference-submission-2026-09-09/`. These are historical evidence, not a current submission.
 

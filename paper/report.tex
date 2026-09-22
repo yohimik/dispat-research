@@ -1,0 +1,85 @@
+% Condensed edition: main findings, the model and its proofs, the ledger of
+% departures, and the experiment results. Built from the same section files
+% as main.tex (the extended edition). References with an F-numbered target
+% resolve through build/labels-from-full.tex, generated from the extended
+% edition's .aux by tools/make-label-shim.py, and point into that edition.
+\documentclass[11pt,a4paper]{article}
+
+\input{preamble}
+\input{macros}
+\input{build/labels-from-full}
+
+\title{The CCME Release Guarantees\\[2mm]
+       \large Main findings, proofs and experimental results (condensed edition)}
+\author{Semen Fediukovich}
+\date{September 2026 \\[2mm]
+      \normalsize Technical report accompanying \texttt{specs/ccme-spec/SPEC.md} 3.1.0-rc.2\\
+      \normalsize at commit \texttt{252216ba} of \texttt{github.com/yohimik/dispat}}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Releasing interdependent packages is a distributed transaction without a
+coordinator or rollback: each publish is an irreversible write to an
+independent registry. CCME defines a resumable release algorithm and states
+eight guarantees: termination, completeness, version stability, exactly-once
+tag-ledger delivery, retry-invariant non-widening and convergence, channel
+discharge and one-way axis independence.
+
+This report formalises the algorithm of the 3.1.0 release candidate and proves
+the guarantees under its explicit retry invariant. The candidate replaces the
+window test of earlier versions by delivery: a propagated contribution stays
+owed to a consumer until the source has released it and the consumer has
+released after that, which closes the orphan a consumer reaches by getting
+ahead of a failed provider, at the price of an owed window per dependency edge
+and a refusal (\diag{E201}) where two releases on one commit could hide a debt.
+The report also proves the determinism and idempotency requirements of
+\spec{17.2} and the duality of \spec{13.7b}, and states what the build
+readiness relation of \spec{19.2a} buys in run duration.
+
+The current departures of the reference implementation from the candidate are
+tabulated with their status. The final section reports every executed
+campaign with its pinned binary and environment, including the two
+measurements of 22 September 2026 on which the execution profile rests: two
+kernel farm groups that met their public reference times with a second node,
+twice each after one rejected candidate, and an LLVM matrix released through
+two workers in less time than on one node, once per side, with a reproduction
+kit whose binary rebuilds were verified byte for byte and whose machine
+definitions were planned but not applied. The extended edition, built from
+the same sources, adds the transcriptions of the distributed and
+polyrepository profiles, the cost analysis, the historical audit of
+CCME 1.0.0, the conformance table and the full campaign narratives.
+\end{abstract}
+
+\paragraph{Specification snapshot.}
+The normative subject is \texttt{specs/ccme-spec/SPEC.md} as committed at
+\texttt{252216bab9bd4052ba181a2ceb47e21363b8eff3}, stamped 3.1.0-rc.2 and
+pending release as 3.1.0-rc.3 together with dispat 1.11.0-rc.4; its
+\texttt{DESIGN-HISTORY.md} entries of 21 and 22 September 2026 record what the
+engine implements. Where the report says \emph{the current text} it means this
+commit; the released CCME 2.0.0 at \texttt{d3ce8ae6} is cited where a change
+since then matters. A reference whose number carries an F, such as
+Proposition~F73, points into the extended edition
+(\texttt{technical-report-extended.pdf}).\par
+
+\tableofcontents
+\newpage
+
+\input{sections/01-findings}
+\input{sections/02-model}
+\input{sections/03-propagation}
+\input{sections/04-protocol}
+\input{sections/04a-durations}
+\input{sections/05-guarantees}
+\input{sections/06-determinism}
+\input{sections/07-duality}
+\input{sections/09-departures}
+\input{sections/11-results}
+
+\appendix
+\input{appendix/a-notation}
+\input{appendix/b-abstract}
+\input{sections/99-references}
+
+\end{document}

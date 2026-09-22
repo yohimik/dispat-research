@@ -1,0 +1,145 @@
+\subsection{Repository-local windows}
+\label{sec:exec-polyrepo}
+
+\spec{27} plans one package graph whose packages are owned by several linked
+Git repositories. It changes where history and release records are read and
+nothing else: the grammar, the bump lattice, the windows, holds,
+cancellation, corrections, channel rules, the dependency graph and the
+partial-publication rules of \cref{sec:protocol} are unchanged. This
+subsection defines the objects the profile adds and states what it promises;
+it does not extend the single-history theorems of \cref{sec:guarantees} to
+several histories.
+
+\begin{definition}[fleet snapshot and commit identity, \spec{27.2}]
+\label{def:exec-fleet}
+Before parsing history the engine resolves one immutable map from repository
+identity to full commit object identifier, the fixed fleet snapshot; every
+participating repository is an initialised, non-shallow checkout at its
+pinned commit, and a missing, shallow, moved or ambiguous participant is
+\diag{E330}. A commit identity is a pair (repository, full object
+identifier); two equal identifier byte strings in different repositories are
+incomparable. Commit dates, author dates, modification times, tag creation
+dates and fetch order create no ancestry or precedence. The engine reads each
+repository's reachable DAG once for the snapshot, preserves native parent
+order, and manufactures no synthetic fleet DAG or parent edge. Ancestry,
+changed paths, direct pending windows, cancellation barriers, corrections and
+\code{Reverts} are evaluated in the repository that owns the commit.
+\end{definition}
+
+\begin{definition}[repository-local windows, \spec{27.5}, \spec{27.6}, \spec{27.11}]
+\label{def:exec-windows}
+For a source repository $r$ with fixed head $h_r$, write $\exRch{r}{x}$ for
+the ancestors-or-self of a commit $x$ of $r$, and
+\[
+  \exafter{r}{x} \;=\; \exRch{r}{h_r} \setminus \exRch{r}{x},
+  \qquad
+  \exafter{r}{\NONE} \;=\; \exRch{r}{h_r}.
+\]
+For a consumer package $D$ and a repository $r$, let $s_{D,r}$ be the
+revision of $r$ that $D$'s last stable release incorporated and $b_{D,r}$ the
+revision of $r$ that $D$'s newest release of any channel incorporated, each
+$\NONE$ where no such release exists. $D$'s train and fresh windows over $r$
+are
+\[
+  \exWin{D}{r} \;=\; \exafter{r}{s_{D,r}},
+  \qquad
+  \exWinf{D}{r} \;=\; \exafter{r}{s_{D,r}} \cap \exafter{r}{b_{D,r}}.
+\]
+When $r$ owns $D$, the boundaries are the commits of $D$'s own release tags,
+and the windows are those of \cref{def:window}. When $r$ does not own $D$,
+the boundaries are the positions $D$'s releases prove in $r$, and only these
+prove them: a control release checkpoint whose release-commit message names
+$D$'s exact tag, changes $D$'s gitlink to the commit peeled from that tag, and
+pins the revision of each other repository the release incorporated
+(\spec{27.6}); an explicit \code{repositoryBaselines} tuple $(D,
+\text{release tag}, r, \text{revision})$, with stable and prerelease tags as
+separate entries (\spec{27.6}); or, in the linked peer topology, the route of
+fleet links recorded hop by hop from the tree of the release commit that
+names $D$'s tag (\spec{27.11}). A matching object identifier alone proves
+nothing. Missing or ambiguous evidence is \diag{E333}, never a guess and
+never a choice by date or proximity. Admission of a unit $u$ carried by a
+commit of $r$ at a consumer $D$ remains $\cof{u} \in \exWinf{D}{r}$: $D$'s
+last release had not yet incorporated the qualified revision. A source unit
+resolves directly only packages of its own repository and propagates through
+the one combined graph; delivery (\spec{13.4a}) compares $D$'s boundary and
+the release commits of the provider in the provider's repository. A window
+over $r$ is a function of $r$, $h_r$ and one boundary revision of $r$ and of
+nothing else, so packages of any owners share an immutable train window over
+$r$ exactly when their stable boundary there is the same qualified revision,
+and a fresh window exactly when both boundaries are.
+\end{definition}
+
+The identity $\exWinf{D}{r} = \exafter{r}{s_{D,r}} \cap \exafter{r}{b_{D,r}}$
+is the fresh-window identity of \cref{prop:marker-pass}, read per
+repository; it is what lets \cref{sec:complexity} key every window by one
+boundary revision. Newest-wins precedence between competing directives is
+defined within one repository's DAG and within the control history; source
+revisions of different repositories have no such order, and where the
+existing rule requires a single winner among incomparable revisions the
+engine fails with \diag{E334} rather than choosing by date, traversal order,
+repository name or identifier (\spec{27.4}). An explicit control directive can
+resolve the choice, evaluated against the gitlinks its own commit pinned, its
+causal snapshot, so that it cannot rewrite work the control revision had not
+yet observed; in the linked peer topology no repository addresses the whole
+fleet and the conflict is refused outright.
+
+\begin{definition}[recording order, \spec{27.7}, \spec{27.11}]
+\label{def:exec-recording}
+The combined publish sequence is that of \cref{def:order} across all
+repositories, and publication remains non-atomic. Each successful package
+receives its immutable release tag in its owning repository at the ordinary
+tag-after-publish point of \cref{def:tagging}. Where a source release commit
+and push are enabled, the source release is recorded durably first, and only
+after its branch and tags are reachable from the configured remote may a
+control gitlink or a peer's pin advance to it: a pushed pointer never names a
+commit nobody else can fetch. A control checkpoint, when enabled and
+non-empty, follows the source record and never precedes it; no empty commit
+is forced and no checkpoint is required. A failure to record or durably push
+a tag is \diag{E335}; prior successes remain successful and dependents are
+protected by \cref{def:blocking}. If the source record succeeds and the
+control checkpoint then fails, \diag{E335} names the repository, the full
+revision and the tag and requires explicit repair; the next run remains
+\diag{E330} while the checkout and the committed gitlink are unpinned, and
+the engine neither auto-commits the repair, nor forces a checkpoint, nor
+republishes the source, nor infers success from the worktree. A successful
+source tag is never deleted, moved or duplicated to make a checkpoint look
+atomic, and no rollback is inferred. In the linked peer topology the route
+evidence is settled by ordinary commits before publication, deepest hop
+first, all or nothing per package (\diag{E333} otherwise), and each
+settlement is an admitted transition of the repository it was written in.
+The fleet lock covers the control repository, every active source and every
+standalone package as one fleet (\diag{E336} otherwise), is taken in one
+stable total order over lock identities, and is released in reverse.
+\end{definition}
+
+\paragraph{Bounds.}
+\spec{27.9} requires the engine to index the control gitlink transitions
+once per fixed control snapshot, not once per consumer or provider pair; to
+store each parsed (repository, commit) record once; to share window
+membership only under the keys of \cref{def:exec-windows}; and to bound its
+reachability and ancestry caches, because a cache of every queried pair can
+grow quadratically in one repository's history even when that history is
+walked once. With the notation of \cref{sec:complexity}, input traversal is
+$O(G + \sum_q (H_q + A_q))$, window reachability is $O(\sum_q (H_q + A_q)\cdot
+\mathrm{bw}(m_q) + I_w)$ with one marker pass per repository, and in the linked
+peer topology boundary resolution is $O(Q + X \cdot Y)$ lookups over $B$ tree
+reads, with settlement in at most $Q - 1$ commits and at most two in a star.
+Publication revalidation adds $O(\sum_q J_q (1 + T_q))$ comparison work, with
+$J_q$ the fleet or package checks repository $q$ takes part in and $T_q$ its
+relevant tag refs, and retaining every package's input closure costs memory
+linear in the total number of repository memberships across those closures,
+at most $P \cdot Q$. The profile makes no globally linear end-to-end claim and permits
+no synthetic ancestry shortcut.
+
+\begin{remark}[what this subsection does not prove]
+\label{rem:exec-multihistory}
+\Cref{lem:window}, and every theorem of \cref{sec:guarantees} that rests on
+it, is stated for one history with one \Head{}. Under \cref{def:exec-windows}
+a consumer has one window per repository its plan reads, each measured from a
+boundary its own release proves there, and a release of the consumer moves
+every one of those boundaries at once only when the evidence of
+\cref{def:exec-recording} is written. Restating the retry invariant over the
+fleet snapshot and proving the eight guarantees per repository is a separate
+piece of work; this report defines the objects, and \spec{27} promises that
+the single-history rules apply unchanged inside each repository.
+\end{remark}

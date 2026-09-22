@@ -1,0 +1,206 @@
+\section{Execution: what readiness and placement cost}
+\label{sec:execution}
+
+\Cref{sec:protocol} states what must happen before what. This section states
+what that costs in wall time, where the tasks may run, and which history each
+window ranges over when the packages live in several repositories. The duration
+propositions are informative in the sense of \spec{13.11}: they bound
+durations of schedules that respect \cref{def:readiness}, and no conforming
+implementation is required to attain them. The two optional profiles of
+\spec{28} and \spec{27} are transcribed as definitions, with the one invariance
+each promises, in \cref{sec:exec-distributed,sec:exec-polyrepo}. Nothing here
+extends the theorems of \cref{sec:guarantees}, which are stated for a single
+history.
+
+\subsection{Build readiness durations}
+\label{sec:exec-durations}
+
+\spec{19.2a} promises a happens-before relation and no duration; \spec{13.11}
+nevertheless says what each relation buys when nothing else limits the run.
+Throughout, package $i$ has a build of duration $b_i$ and a publication of
+duration $p_i$, both fixed; a task starts as soon as its predecessors in the
+task graph of \cref{def:taskgraph} have finished and a slot is free; and one
+relation is declared on every edge.
+
+\begin{proposition}[the longest path, \spec{13.11}]
+\label{prop:exec-longest}
+With unlimited build and publication slots a run lasts exactly the longest
+path $L$ of its task graph, measured in task durations. A weaker relation
+never lengthens it.
+\end{proposition}
+
+\begin{proof}
+The task graph is acyclic (\cref{prop:readiness-acyclic}), so its tasks can be
+taken in a topological order. With unlimited slots a task starts at the
+greatest finish time of its predecessors, or at $0$ if it has none, and by
+induction along that order its finish time is the longest path ending at it.
+The run ends at the greatest finish time, which is the longest path of the
+graph. A weaker relation contributes a subset of the edges
+(\cref{prop:readiness-acyclic}), so every path of its task graph is a path of
+the stronger one's, and the longest is no longer.
+\end{proof}
+
+\begin{proposition}[a chain, \spec{13.11}]
+\label{prop:exec-chain}
+Let packages $1, \dots, n$ form a chain in which package $k+1$ consumes package
+$k$, under one relation throughout. With unlimited slots the run lasts
+\[
+  \sum_{i=1}^{n} (b_i + p_i) \quad\text{under \code{publish}},\qquad
+  \max_{1 \le k \le n}\Bigl(\sum_{i=1}^{k} b_i + \sum_{i=k}^{n} p_i\Bigr)
+  \quad\text{under \code{build}},
+\]
+\[
+  \max_{1 \le k \le n}\Bigl(b_k + \sum_{i=k}^{n} p_i\Bigr)
+  \quad\text{under \code{none}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Under \code{publish}, $\exbuild{k+1}$ waits for $\expub{k}$, so the $2n$ tasks
+form one path and the sum is its length. Under \code{build}, the builds form
+the path $\exbuild{1} \to \dots \to \exbuild{n}$ and $\exbuild{k}$ ends at
+$B_k = \sum_{i \le k} b_i$; the publication of $k$ waits for $\exbuild{k}$ and
+for $\expub{k-1}$, so its finish $E_k$ satisfies $E_k = \max(B_k, E_{k-1}) +
+p_k$ with $E_0 = 0$. By induction $E_k = \max_{j \le k}\bigl(B_j +
+\sum_{i=j}^{k} p_i\bigr)$: the case $k = 1$ is $B_1 + p_1$, and the step is
+$\max\bigl(B_k + p_k,\ \max_{j < k}(B_j + \sum_{i=j}^{k-1} p_i) + p_k\bigr)$.
+Under \code{none} every build starts at $0$ and $\exbuild{k}$ ends at $b_k$;
+the same recurrence with $b_k$ in place of $B_k$ gives the third form. In each
+case the run lasts $E_n$ by \cref{prop:exec-longest}.
+\end{proof}
+
+\begin{corollary}[equal durations]
+\label{cor:exec-equal}
+With $b_i = b$ and $p_i = p$ for all $i$, the three forms are $n(b+p)$,
+$\max(nb + p,\ b + np)$ and $b + np$. \code{build} saves $(n-1)\min(b,p)$
+over \code{publish}, and \code{none} saves a further $(n-1)\max(b-p, 0)$, so
+the second saving exists only where builds outlast publications.
+\end{corollary}
+
+\begin{proof}
+Under \code{build} the maximand $kb + (n-k+1)p$ is affine in $k$, so the
+maximum is at $k = 1$ or $k = n$. Under \code{none} the maximand $b + (n-k+1)p$
+is greatest at $k = 1$. The differences follow by cases on $b \ge p$.
+\end{proof}
+
+\begin{proposition}[fan-out and fan-in, \spec{13.11}]
+\label{prop:exec-fan}
+For one provider $0$ and consumers $i \ge 1$, each consuming $0$ and nothing
+else, the run lasts
+\[
+  b_0 + p_0 + \max_i (b_i + p_i),\qquad
+  b_0 + \max_i\bigl(\max(b_i, p_0) + p_i\bigr),\qquad
+  \max_i\bigl(\max(b_i,\ b_0 + p_0) + p_i\bigr)
+\]
+under \code{publish}, \code{build} and \code{none} respectively. For providers
+$i \ge 1$ of one consumer $c$, each consumed by $c$ and nothing else, it lasts
+\[
+  \max_i (b_i + p_i) + b_c + p_c,\qquad
+  \max\bigl(\max_i b_i + b_c,\ \max_i (b_i + p_i)\bigr) + p_c,\qquad
+  \max\bigl(b_c,\ \max_i (b_i + p_i)\bigr) + p_c.
+\]
+\end{proposition}
+
+\begin{proof}
+Fan-out. Under \code{publish}, consumer $i$'s build starts at $b_0 + p_0$ and
+its publication follows its build, giving $b_0 + p_0 + b_i + p_i$; take the
+maximum. Under \code{build}, its build starts at $b_0$ and ends at $b_0 + b_i$,
+and its publication waits for that and for $\expub{0}$ at $b_0 + p_0$, giving
+$b_0 + \max(b_i, p_0) + p_i$. Under \code{none}, its build ends at $b_i$ and its
+publication waits for that and for $b_0 + p_0$. Fan-in. Under \code{publish},
+$c$'s build starts when the last provider has published, at $\max_i (b_i +
+p_i)$. Under \code{build}, it starts at $\max_i b_i$ and ends $b_c$ later, and
+$c$'s publication waits for that and for every provider's publication. Under
+\code{none}, $c$'s build ends at $b_c$ and only its publication waits for the
+providers. Each is the longest path of \cref{prop:exec-longest}.
+\end{proof}
+
+\begin{proposition}[one publication lane, \spec{13.11}]
+\label{prop:exec-lane}
+Where one owner's publications are serialised (\spec{27.2}, \spec{28.6}) in
+the order $1, \dots, n$ of \cref{def:order}, let $e_k$ be the instant the build
+of package $k$ ends. Under every relation the run lasts
+\[
+  \max_{1 \le k \le n}\Bigl(e_k + \sum_{i=k}^{n} p_i\Bigr),
+\]
+which is at least $\sum_{i} p_i$ whatever the relation, and a weaker relation
+only lowers the $e_k$.
+\end{proposition}
+
+\begin{proof}
+Publication $k$ starts at $\max(e_k, E_{k-1})$, since it waits for its own
+build and for the lane, and the lane order agrees with \cref{def:order}, so
+every provider of $k$ has published by $E_{k-1}$. The recurrence is that of
+\cref{prop:exec-chain} with $e_k$ in place of $B_k$, and the same induction
+gives the maximum. The term $k = 1$ is $e_1 + \sum_i p_i \ge \sum_i p_i$. For
+the last claim, add the lane edges $\expub{k-1} \to \expub{k}$ to the task
+graph; they follow the publish order, which is a topological order of the
+workspace graph, so the key of \cref{prop:readiness-acyclic} still increases
+along every edge and the graph stays acyclic. With a fixed lane order every
+task starts at the greatest finish of its predecessors, and by induction along
+a topological order each finish time under a subset of the edges is at most
+the finish time under the full set; $e_k$ is such a finish time.
+\end{proof}
+
+\begin{proposition}[budgets, \spec{13.11}]
+\label{prop:exec-budget}
+Let there be $m_b$ build slots and $m_p$ publication slots, and write $W_b =
+\sum_i b_i$, $W_p = \sum_i p_i$ and $L$ for the longest path of the task
+graph. No schedule finishes before $\max(L,\ W_b/m_b,\ W_p/m_p)$. A schedule
+that never leaves a slot of a stage idle while a task of that stage is ready
+finishes within $L + W_b/m_b + W_p/m_p$, which is within three times the best
+possible. Under budgets a weaker relation can lengthen such a schedule, but
+never the best one.
+\end{proposition}
+
+\begin{proof}
+The lower bound: a schedule contains every path, so it lasts at least $L$; it
+performs $W_b$ units of build work on $m_b$ slots, so at least $W_b/m_b$; and
+likewise $W_p/m_p$. The upper bound: let the schedule end at $T$ and let $t_1$
+be a task finishing at $T$. For $j \ge 1$, while $t_j$ has predecessors, let
+$t_{j+1}$ be one that finishes last among them; this gives a chain $t_q \to
+\dots \to t_1$ whose total duration is at most $L$. Consider an instant of
+$[0, T)$ at which no task of the chain is running. It lies between the finish
+of some $t_{j+1}$ and the start of $t_j$ (or before the start of $t_q$), and
+at that instant $t_j$ is ready, since its latest predecessor has finished, and
+has not started; by hypothesis every slot of $t_j$'s stage is then busy. The
+instants at which all $m_b$ build slots are busy total at most $W_b/m_b$, and
+those at which all $m_p$ publication slots are busy at most $W_p/m_p$. Hence $T
+\le L + W_b/m_b + W_p/m_p$, and each summand is at most the lower bound. For
+the last claim, a schedule feasible under a stronger relation is feasible under
+a weaker one, so the best weaker schedule is no longer; that a particular
+greedy schedule can be longer is \cref{ex:exec-anomaly}.
+\end{proof}
+
+The bound is Graham's argument for list scheduling under precedence
+constraints~\cite{graham66,graham69}, applied to two stages with separate
+budgets; \spec{13.11} does not claim it tight for this shape of graph.
+
+\begin{example}[Graham's anomaly, \spec{13.11}]
+\label{ex:exec-anomaly}
+Take two build slots and one publication slot, packages $A = (2, 3)$ and $B =
+(1, 2)$ where $B$ consumes $A$, and an unrelated $C = (8, 3)$, with ready tasks
+taken in the order $A, B, C$. Under \code{build}, $B$'s build is not ready at
+$0$: $A$ builds in $[0,2)$ and $C$ in $[0,8)$ on the two slots; $B$ builds in
+$[2,3)$; $A$ publishes in $[2,5)$, $B$ in $[5,7)$ once $A$ has published, and
+$C$ in $[8,11)$ once its build ends. The run lasts $11$. Under \code{none},
+$B$'s build is ready at $0$ and takes the second slot: $A$ builds in $[0,2)$
+and $B$ in $[0,1)$, so $C$ builds only in $[1,9)$; $A$ publishes in $[2,5)$,
+$B$ in $[5,7)$ and $C$ in $[9,12)$. The run lasts $12$: the consumer's early
+build took the slot the long build would have had. A list that preferred $C$
+to $B$ at $0$ would finish at $11$ under \code{none} as well, which is the
+point: the length depends on the list, not on the relation, and it is why
+\spec{19.2a} promises a happens-before relation and no duration.
+\end{example}
+
+\begin{example}[an infrastructure chain]
+\label{ex:exec-chain}
+Let the infrastructure leg of \cref{ex:terraform} be consumed by a backend
+consumed in turn by a frontend, with $(b, p)$ in minutes of $(4, 6)$ for the
+infrastructure, $(9, 3)$ for the backend and $(12, 2)$ for the frontend. By
+\cref{prop:exec-chain}, under \code{publish} the run lasts $10 + 12 + 14 = 36$
+minutes; under \code{build} it lasts $\max(4 + 11,\ 13 + 5,\ 25 + 2) = 27$;
+under \code{none} it lasts $\max(4 + 11,\ 9 + 5,\ 12 + 2) = 15$. The
+publications still run in order in every case, and the frontend's publication
+still ends the run.
+\end{example}
