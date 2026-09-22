@@ -19,26 +19,26 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-Mixed releases must coordinate local package outputs with published artifacts:
-a Docker base image may include an npm engine, while another image needs that
+An npm engine can feed a Docker base image, while another image needs that
 published base and an npm SDK. Incorrect ordering starts builds too early;
-incomplete recovery can forget unfinished packages or change their versions.
-We present a saga-inspired release protocol that records each package's
-completion in Git and resumes unfinished work through the same release command.
-Commit messages control affected packages, holds and prereleases. Shared
-configuration supports Windows/Linux workflows; an agent skill guides
-commit diagnostics, plan inspection, tests and CI releases.
-Planning is a pure function of fixed inputs, allowing cached plans without
-changing decisions. Specified extensions distribute tasks and releases across
-workers and repositories.
-The model explains when dependencies are available and why each consumer must
-retain its own pending work. It establishes eight conditional guarantees,
-including stable retry versions and idempotent recorded releases.
-Exploratory outreach covers at least 211 repositories, without estimating defect
-prevalence. All 120 controlled fault episodes recover after repair; an analytical
-alternative that discards intent when its provider succeeds loses work in 84.
-Real-registry, CI, historical replay and scale experiments provide complementary
-evidence, including google-cloud-node.
+incomplete recovery forgets unfinished packages or changes their versions.
+We present a saga-inspired protocol using Git completion records to resume
+unfinished work through the same release command.
+Shared configuration supports Windows/Linux CI/CD across languages in
+single-package repositories, monorepos and linked repositories (polyrepos).
+Commits select releases, package holds and prereleases.
+Commit scopes select tests even without file changes; a last-commit window
+narrows retesting after repairs.
+An agent skill guides commit diagnostics, plan review, tests and releases.
+Planning is a deterministic, pure function: identical inputs permit cached results.
+Specified extensions distribute tasks and releases across workers and repositories.
+The model explains availability and preserves each consumer's pending work.
+Eight guarantees hold under explicit retry assumptions, including stable versions
+and idempotent recorded releases.
+Exploratory outreach covers at least 211 repositories, without estimating defect prevalence.
+All 120 controlled fault episodes recover after repair; an analytical alternative
+discarding intent after provider success loses work in 84.
+Registry, CI, replay and scale experiments include google-cloud-node.
 Native Windows equivalence and distributed execution remain unevaluated;
 external effects require safe repetition or reconciliation.
 Linux and LLVM results will be presented in the report.
