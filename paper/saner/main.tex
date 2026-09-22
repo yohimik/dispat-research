@@ -21,21 +21,21 @@
 \begin{abstract}
 An npm engine feeds a Docker base; another image needs that published base
 and an npm SDK. Releases can build too early, forget unfinished work
-or change retry versions. Our saga-inspired protocol tags successful
-completion, so one release command resumes unfinished work.
-Packages are folders; stages are shell scripts, supporting multiple languages
-in single-package repositories, monorepos and linked repositories (polyrepos).
+or change retry versions. Git completion tags let our saga-inspired protocol
+resume unfinished work with one release command.
+Package folders and shell-script stages support multiple languages across
+single-package repositories, monorepos and linked repositories (polyrepos).
 Environment checks (\code{if}) and loops (\code{for}) support Windows/Linux CI/CD.
 Commits control releases, holds, prereleases and how far dependent updates spread.
-Scoped empty commits request tests; last-commit windows target retesting after repairs.
+Scoped empty commits request tests; last-commit windows retest repairs.
 An agent skill guides commit diagnostics, plan review and automation.
-Docker supplies tools; Terraform integration reconstructs temporary state
+Docker supplies tools; a Terraform integration rebuilds temporary state
 from known resources before dependent deployments.
 Pure planning maps identical inputs to identical plans, permitting caches;
 extensions specify distributed tasks and releases.
-Under explicit retry assumptions, the single-history model preserves unfinished
-consumer work and versions across retries, without repeating recorded releases.
-Outreach illustrates failures, not their prevalence.
+We build on sagas, reconciliation and version-control models to retain unfinished
+consumer releases after provider success. Under explicit single-history retry assumptions,
+versions stay fixed and recorded releases are not repeated.
 Across 120 controlled failures, our protocol recovers all pending releases after repair;
 discarding work after provider success loses releases in 70\% of those cases
 (analytical comparison, not a tool benchmark).
