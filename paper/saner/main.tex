@@ -24,8 +24,9 @@ and an npm SDK expose release failures: premature builds, forgotten packages
 and changed retry versions.
 We present a saga-inspired protocol that records per-package completion in Git and resumes
 unfinished work with one release command.
-Shared Windows/Linux CI/CD configuration spans languages, single-package
-repositories, monorepos and linked repositories (polyrepos).
+Environment checks (\code{if}) and loops (\code{for}) support shared Windows/Linux
+CI/CD and releases across languages, single-package repositories, monorepos
+and linked repositories (polyrepos).
 Commits control releases, holds, prereleases and tests; explicit scopes support
 empty commits and a last-commit window targets retesting after repairs.
 An agent skill guides diagnostics, plan review and automation.
