@@ -19,27 +19,29 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-We analyze three release anomalies: availability inversions (consumers start
-before required artifacts are published), orphaned releases (provider success
-erases unfinished consumer intent), and retry version drift (changed inherited
-channels alter targets).
-We present a saga-inspired protocol combining deterministic planning,
-stage-aware scheduling, and consumer-owned release obligations. Git history and
-records form the ledger without another persistent release-state store.
-Consumer windows retain undelivered intent; train and fresh-work windows
-distinguish prerelease targets from completed work. Under an explicit retry
-invariant, the single-history model establishes eight conditional guarantees.
-All 120 controlled
-fault episodes recover after repair; an analytical source-discharge alternative
-loses work in 84 (70\%). This compares admission rules, not competing
-tools or production failure rates. A skill supports commit release-intent
-diagnostics, plan inspection, and CI releases. Proposed fleet and worker extensions
-preserve source-owned records and reuse verified provider outputs.
-The experiments report will include Linux and LLVM distributed-build scenarios:
-pessimistic runtimes above $1\times$ and optimistic runtimes below $1\times$
-each original pipeline's elapsed time. These scenarios are prospective.
-Full implementation refinement and
-external exactly-once effects remain outside the claims.
+Mixed releases must coordinate local package outputs with published artifacts:
+a Docker base image may include an npm engine, while another image needs that
+published base and an npm SDK. Incorrect ordering starts builds too early;
+incomplete recovery can forget unfinished packages or change their versions.
+We present a saga-inspired release protocol that records each package's
+completion in Git and resumes unfinished work through the same release command.
+Commit messages control affected packages, holds and prereleases. Shared
+configuration supports Windows/Linux workflows; an agent skill guides
+commit diagnostics, plan inspection, tests and CI releases.
+Planning is a pure function of fixed inputs, allowing cached plans without
+changing decisions. Specified extensions distribute tasks and releases across
+workers and repositories.
+The model explains when dependencies are available and why each consumer must
+retain its own pending work. It establishes eight conditional guarantees,
+including stable retry versions and idempotent recorded releases.
+Exploratory outreach covers at least 211 repositories, without estimating defect
+prevalence. All 120 controlled fault episodes recover after repair; an analytical
+alternative that discards intent when its provider succeeds loses work in 84.
+Real-registry, CI, historical replay and scale experiments provide complementary
+evidence, including google-cloud-node.
+Native Windows equivalence and distributed execution remain unevaluated;
+external effects require safe repetition or reconciliation.
+Linux and LLVM results will be presented in the report.
 \end{abstract}
 \begin{IEEEkeywords}
 software release engineering, continuous integration and delivery,
