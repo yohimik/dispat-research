@@ -31,14 +31,14 @@ Scoped empty commits request tests; last-commit windows target retesting after r
 An agent skill guides commit diagnostics, plan review and automation.
 Docker supplies tools; Terraform integration reconstructs temporary state
 from known resources before dependent deployments.
-Pure planning gives identical plans for identical inputs, permitting caches;
+Pure planning maps identical inputs to identical plans, permitting caches;
 extensions specify distributed tasks and releases.
-A single-history model gives eight guarantees under explicit retry assumptions:
-unfinished consumers remain pending after provider success, retries preserve
-versions, and recorded releases are not repeated.
-Outreach covers at least 211 repositories without estimating defect prevalence.
-All 120 controlled fault episodes recover after repair; an analytical rule
-forgetting work after provider success loses pending releases in 84.
+Under explicit retry assumptions, the single-history model preserves unfinished
+consumer work and versions across retries, without repeating recorded releases.
+Outreach illustrates failures, not their prevalence.
+Across 120 controlled failures, our protocol recovers all pending releases after repair;
+discarding work after provider success loses releases in 70\% of those cases
+(analytical comparison, not a tool benchmark).
 Registry, CI, replay and scale experiments include google-cloud-node.
 Historical fixtures handle mid-release commits, preserving conflicts for review.
 Native Windows and distributed execution remain unevaluated; external effects
