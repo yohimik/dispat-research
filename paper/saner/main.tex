@@ -19,25 +19,26 @@
 \title{Recovering Versioned Releases Across Build and Publish Boundaries}
 \maketitle
 \begin{abstract}
-An npm engine can feed a Docker base image, while another image needs that
-published base and an npm SDK. Incorrect ordering starts builds too early;
-incomplete recovery forgets unfinished packages or changes their versions.
-We present a saga-inspired protocol using Git completion records to resume
-unfinished work through the same release command.
-Shared configuration supports Windows/Linux CI/CD across languages in
-single-package repositories, monorepos and linked repositories (polyrepos).
-Commits select releases, package holds and prereleases.
-Commit scopes select tests even without file changes; a last-commit window
-narrows retesting after repairs.
-An agent skill guides commit diagnostics, plan review, tests and releases.
-Planning is a deterministic, pure function: identical inputs permit cached results.
-Specified extensions distribute tasks and releases across workers and repositories.
-The model explains availability and preserves each consumer's pending work.
-Eight guarantees hold under explicit retry assumptions, including stable versions
+An npm engine, a Docker base image containing it, and an application image using that published base
+and an npm SDK expose release failures: premature builds, forgotten packages
+and changed retry versions.
+We present a saga-inspired protocol that records per-package completion in Git and resumes
+unfinished work with one release command.
+Shared Windows/Linux CI/CD configuration spans languages, single-package
+repositories, monorepos and linked repositories (polyrepos).
+Commits control releases, holds, prereleases and tests; explicit scopes support
+empty commits and a last-commit window targets retesting after repairs.
+An agent skill guides diagnostics, plan review and automation.
+Docker can supply language runtimes and deployment tools instead of host installations.
+A Terraform integration reconstructs temporary state from cloud resources and
+updates dependent deployments after infrastructure changes.
+Deterministic, pure planning permits caches keyed by unchanged inputs;
+specified extensions distribute tasks and releases.
+Under explicit retry assumptions, the model gives eight guarantees, including stable versions
 and idempotent recorded releases.
-Exploratory outreach covers at least 211 repositories, without estimating defect prevalence.
-All 120 controlled fault episodes recover after repair; an analytical alternative
-discarding intent after provider success loses work in 84.
+Exploratory outreach covers at least 211 repositories without estimating defect
+prevalence. All 120 controlled fault episodes recover after repair; an analytical
+alternative discarding intent after provider success loses work in 84.
 Registry, CI, replay and scale experiments include google-cloud-node.
 Native Windows equivalence and distributed execution remain unevaluated;
 external effects require safe repetition or reconciliation.
