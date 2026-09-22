@@ -1,0 +1,45 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 48,
+  "pdf_sha256": "245e5135be53326a368697b0271333b01ca50a7f8827679fa6f32e47f12b5678",
+  "source_sha256": {
+    "main.tex": "2d9024dab98bfe7c057d86474d0b3c33d007c8353631d8ce50c27259a058943b",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "7651b768ecd071b8d1990becd6a96fa30c6a2002c3e938ab32a2ae4a2ffe724d",
+    "model.tex": "0569d864a77f06f32b2caf8607dc44b61a87cffcabec41f7781e1dd9eb646cea",
+    "guarantees.tex": "508f21e4da62db209b7b0a3cddea36e2d5d0de6379251771a0047114d5ed5682",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "f7b5ab3b77f9eef36a97486479d96fdef7279f38ec3484d1508d0bc9e936c06e",
+    "references.tex": "9e35caadf28a50ee1085e094a5082894ff0713240bb4dd5101ac97d4203d66b4"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits.",
+  "base_commit": "d610805ebece39d884c8a5266ff2bcae2c444e34",
+  "abstract_only": true,
+  "changed_rendered_pages": [
+    1
+  ],
+  "visual_review": "Final page 1 inspected; pages 2-12 render-identical to the preceding verified PDF.",
+  "product_head": "599448fdc239aef6e5ff5239b5833c8fd0ee0ccd",
+  "reviewed_source_sha256": {
+    "../dispat/pkg/scanner/scanner.go": "fa2f035f48888fd011d31c5a36e1e19b8c6356b9fb0fc05aef8c483a7f0f76ee",
+    "../dispat/pkg/scanner/README.md": "7ed2930308539ec91bf3fa1ce4a52838639ca099ca5c181638a6ee573ec627a7",
+    "../dispat/pkg/manifest/format.go": "d9a384ce6a75bd90f7774c6e4bec732fc58c2a374967c3da40e3f1501b4e7ed5",
+    "../dispat/pkg/writer/replace.go": "1b768e596d13dd176d60f3b2887648eb8f2dbe0c25d6729b421884f5aa800d73",
+    "../dispat/packages/docs/docs/editing/replacer.md": "8cee847e05e49958e7e8c792d20b039224d5a9a8c0848ff1e7d0a197ec3f5d6f",
+    "../dispat/specs/ccme-spec/SPEC.md": "cb6fdb1652113457e096327922e27c49a47a9d1851e077dd39100cca1ee845cc"
+  },
+  "ecosystem_inventory": {
+    "ecosystems": 21,
+    "manifest_formats": 36,
+    "method": "Count scanner format-to-ecosystem mappings; confirm exact format-set equality with manifest.Formats. Reader/writer coverage is source inventory, not new experimental validation.",
+    "user_supplied_format_count": 35
+  },
+  "integration_scope": "Built-in readers; configured text replacement and commands extend other formats. Reusing CI assumes existing tools, credentials and runners; new provisioning may still need CI changes.",
+  "distributed_scope": "CCME section 28 explicitly specifies an optional unimplemented execution profile; workers receive resolved release configuration. No multi-machine execution or performance result claimed.",
+  "retained_limits": "External-effect reconciliation and safe repetition remain in the unchanged body; guarantees in the abstract remain conditional and concern recorded releases.",
+  "prior_readiness_review": "output/saner-2027/abstract-readiness-20260922/README.md"
+}
