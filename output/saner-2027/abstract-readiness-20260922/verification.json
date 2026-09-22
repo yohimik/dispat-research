@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 48,
+  "pdf_sha256": "574cc3cc90935af7461addf2ca9bfc7d8ac3df92ee8fe2ca71d99b431a636819",
+  "source_sha256": {
+    "main.tex": "2103fa99e8612029e043029fb606f4ca66ab0ccd801f23ca093067311e2b620b",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "7651b768ecd071b8d1990becd6a96fa30c6a2002c3e938ab32a2ae4a2ffe724d",
+    "model.tex": "0569d864a77f06f32b2caf8607dc44b61a87cffcabec41f7781e1dd9eb646cea",
+    "guarantees.tex": "508f21e4da62db209b7b0a3cddea36e2d5d0de6379251771a0047114d5ed5682",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "f7b5ab3b77f9eef36a97486479d96fdef7279f38ec3484d1508d0bc9e936c06e",
+    "references.tex": "9e35caadf28a50ee1085e094a5082894ff0713240bb4dd5101ac97d4203d66b4"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits.",
+  "checked_utc": "2026-09-22T06:40:27.088257+00:00",
+  "base_commit": "de644d7e0f8d3afb83c077f0048d1787c6cbb4fa",
+  "abstract_only": true,
+  "protected_files_checked": 13824,
+  "changed_rendered_pages": [
+    1
+  ],
+  "visual_review": "Page 1 inspected at full render; all pages reviewed in contact sheets; pages 2-12 render-identical to baseline.",
+  "product_head": "599448fdc239aef6e5ff5239b5833c8fd0ee0ccd",
+  "spec_sha256": "cb6fdb1652113457e096327922e27c49a47a9d1851e077dd39100cca1ee845cc",
+  "unchanged_outreach_inventories": 8,
+  "unchanged_product_evidence_and_source_files": 42,
+  "product_repo_access": "read-only",
+  "new_experimental_runs": 0,
+  "reference_review": "22 DOI metadata records match cited metadata; 25 non-DOI entries checked by URL, one anonymized self-reference checked locally; Gray URL returns 404. Decan online year 2018 differs from correctly cited 2019 print issue.",
+  "font_sizes_pdf_points": {
+    "title": 23.91,
+    "body": 9.96
+  },
+  "submission_made": false
+}

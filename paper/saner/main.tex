@@ -20,31 +20,29 @@
 \maketitle
 \begin{abstract}
 An npm engine feeds a Docker base; another image needs that published base
-and an npm SDK. Releases can start builds prematurely, forget unfinished
-work or change retry versions.
-Git completion records let a saga-inspired protocol resume unfinished work
-with one release command.
-Environment checks (\code{if}) and loops (\code{for}) support shared Windows/Linux
-CI/CD and releases across languages, single-package repositories, monorepos
-and linked repositories (polyrepos).
-Commits control releases, holds and prereleases, limiting which dependent
-packages update and how far updates propagate.
-Scoped empty commits request tests; a last-commit window targets retesting
-after repairs.
-An agent skill guides diagnostics, plan review and automation.
-Docker supplies runtimes and tools without separate host installations.
-A Terraform integration reconstructs temporary state from cloud resources and
-updates dependent deployments after infrastructure changes.
-Deterministic, pure planning permits caches keyed by unchanged inputs;
-specified extensions distribute tasks and releases.
-A self-contained single-history model gives eight guarantees under explicit
-retry assumptions, including stable versions and idempotent recorded releases.
-Outreach covers at least 211 repositories without estimating defect
-prevalence. All 120 controlled fault episodes recover after repair; an analytical
-alternative discarding intent after provider success loses work in 84.
+and an npm SDK. Releases can build too early, forget unfinished work
+or change retry versions. Our saga-inspired protocol tags successful
+completion, so one release command resumes unfinished work.
+Packages are folders; stages are shell scripts, supporting multiple languages
+in single-package repositories, monorepos and linked repositories (polyrepos).
+Environment checks (\code{if}) and loops (\code{for}) support Windows/Linux CI/CD.
+Commits control releases, holds, prereleases and how far dependent updates spread.
+Scoped empty commits request tests; last-commit windows target retesting after repairs.
+An agent skill guides commit diagnostics, plan review and automation.
+Docker supplies tools; Terraform integration reconstructs temporary state
+from known resources before dependent deployments.
+Pure planning gives identical plans for identical inputs, permitting caches;
+extensions specify distributed tasks and releases.
+A single-history model gives eight guarantees under explicit retry assumptions:
+unfinished consumers remain pending after provider success, retries preserve
+versions, and recorded releases are not repeated.
+Outreach covers at least 211 repositories without estimating defect prevalence.
+All 120 controlled fault episodes recover after repair; an analytical rule
+forgetting work after provider success loses pending releases in 84.
 Registry, CI, replay and scale experiments include google-cloud-node.
-Native Windows equivalence and distributed execution remain unevaluated;
-external effects require safe repetition or reconciliation.
+Historical fixtures handle mid-release commits, preserving conflicts for review.
+Native Windows and distributed execution remain unevaluated; external effects
+require safe repetition or reconciliation.
 Linux and LLVM results will be presented in the report.
 \end{abstract}
 \begin{IEEEkeywords}

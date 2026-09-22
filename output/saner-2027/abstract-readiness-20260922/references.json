@@ -1,0 +1,1019 @@
+{
+  "checked_utc": "2026-09-22T06:36:14.614658+00:00",
+  "scope": "Metadata and official URL checks; not independent validation of cited research.",
+  "entries": [
+    {
+      "key": "adams",
+      "urls": [
+        "https://doi.org/10.1109/saner.2016.108"
+      ],
+      "doi": "10.1109/saner.2016.108",
+      "title": [
+        "Modern Release Engineering in a Nutshell -- Why Researchers Should Care"
+      ],
+      "authors": [
+        "Bram Adams",
+        "Shane McIntosh"
+      ],
+      "year": [
+        [
+          2016,
+          3
+        ]
+      ],
+      "venue": [
+        "2016 IEEE 23rd International Conference on Software Analysis, Evolution, and Reengineering (SANER)"
+      ],
+      "pages": "78-90",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "sagas",
+      "urls": [
+        "https://doi.org/10.1145/38713.38742"
+      ],
+      "doi": "10.1145/38713.38742",
+      "title": [
+        "Sagas"
+      ],
+      "authors": [
+        "Hector Garcia-Molina",
+        "Kenneth Salem"
+      ],
+      "year": [
+        [
+          1987
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 1987 ACM SIGMOD international conference on Management of data  - SIGMOD '87"
+      ],
+      "pages": "249-259",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "lerna",
+      "urls": [
+        "https://lerna.js.org/"
+      ],
+      "checks": [
+        {
+          "url": "https://lerna.js.org/",
+          "status": 200,
+          "final_url": "https://lerna.js.org/",
+          "title": "Documentation | Lerna"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "nx",
+      "urls": [
+        "https://nx.dev/"
+      ],
+      "checks": [
+        {
+          "url": "https://nx.dev/",
+          "status": 200,
+          "final_url": "https://nx.dev/",
+          "title": "Smart Monorepos \u00b7 Fast CI | Nx"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "changesets",
+      "urls": [
+        "https://github.com/changesets/changesets"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/changesets/changesets",
+          "status": 200,
+          "final_url": "https://github.com/changesets/changesets",
+          "title": "GitHub - changesets/changesets: \ud83e\udd8b A tool to manage versioning and changelogs with a focus on monorepos \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "releaseplease",
+      "urls": [
+        "https://github.com/googleapis/release-please"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/googleapis/release-please",
+          "status": 200,
+          "final_url": "https://github.com/googleapis/release-please",
+          "title": "GitHub - googleapis/release-please: generate release PRs based on the conventionalcommits.org spec \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "semanticrelease",
+      "urls": [
+        "https://github.com/semantic-release/semantic-release"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/semantic-release/semantic-release",
+          "status": 200,
+          "final_url": "https://github.com/semantic-release/semantic-release",
+          "title": "GitHub - semantic-release/semantic-release: \ud83d\udce6\ud83d\ude80 Fully automated version management and package publishing \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "cc",
+      "urls": [
+        "https://www.conventionalcommits.org/en/v1.0.0/"
+      ],
+      "checks": [
+        {
+          "url": "https://www.conventionalcommits.org/en/v1.0.0/",
+          "status": 200,
+          "final_url": "https://www.conventionalcommits.org/en/v1.0.0/",
+          "title": "Conventional Commits"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "ccme2",
+      "urls": [],
+      "checks": [],
+      "status": "anonymized-self-reference"
+    },
+    {
+      "key": "helland12",
+      "urls": [
+        "https://doi.org/10.1145/2160718.2160734"
+      ],
+      "doi": "10.1145/2160718.2160734",
+      "title": [
+        "Idempotence is not a medical condition"
+      ],
+      "authors": [
+        "Pat Helland"
+      ],
+      "year": [
+        [
+          2012,
+          5
+        ]
+      ],
+      "venue": [
+        "Communications of the ACM"
+      ],
+      "pages": "56-65",
+      "volume": "55",
+      "issue": "5",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "puppetcontrol",
+      "urls": [
+        "https://github.com/puppetlabs/control-repo"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/puppetlabs/control-repo",
+          "status": 200,
+          "final_url": "https://github.com/puppetlabs/control-repo",
+          "title": "GitHub - puppetlabs/control-repo: A control repository template \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "gitopsenv",
+      "urls": [
+        "https://www.gitops.tech/"
+      ],
+      "checks": [
+        {
+          "url": "https://www.gitops.tech/",
+          "status": 200,
+          "final_url": "https://www.gitops.tech/",
+          "title": "GitOps | GitOps is Continuous Deployment for cloud native applications"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "gomod",
+      "urls": [
+        "https://go.dev/doc/modules/publishing",
+        "https://go.dev/ref/mod"
+      ],
+      "checks": [
+        {
+          "url": "https://go.dev/doc/modules/publishing",
+          "status": 200,
+          "final_url": "https://go.dev/doc/modules/publishing",
+          "title": "Publishing a module - The Go Programming Language"
+        },
+        {
+          "url": "https://go.dev/ref/mod",
+          "status": 200,
+          "final_url": "https://go.dev/ref/mod",
+          "title": "Go Modules Reference - The Go Programming Language"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "kahn",
+      "urls": [
+        "https://doi.org/10.1145/368996.369025"
+      ],
+      "doi": "10.1145/368996.369025",
+      "title": [
+        "Topological sorting of large networks"
+      ],
+      "authors": [
+        "A. B. Kahn"
+      ],
+      "year": [
+        [
+          1962,
+          11
+        ]
+      ],
+      "venue": [
+        "Communications of the ACM"
+      ],
+      "pages": "558-562",
+      "volume": "5",
+      "issue": "11",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "mokhov",
+      "urls": [
+        "https://doi.org/10.1145/3236774"
+      ],
+      "doi": "10.1145/3236774",
+      "title": [
+        "Build systems \u00e0 la carte"
+      ],
+      "authors": [
+        "Andrey Mokhov",
+        "Neil Mitchell",
+        "Simon Peyton Jones"
+      ],
+      "year": [
+        [
+          2018,
+          7,
+          30
+        ]
+      ],
+      "venue": [
+        "Proceedings of the ACM on Programming Languages"
+      ],
+      "pages": "1-29",
+      "volume": "2",
+      "issue": "ICFP",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "birdgit",
+      "urls": [
+        "https://doi.org/10.1109/msr.2009.5069475"
+      ],
+      "doi": "10.1109/msr.2009.5069475",
+      "title": [
+        "The promises and perils of mining git"
+      ],
+      "authors": [
+        "Christian Bird",
+        "Peter C. Rigby",
+        "Earl T. Barr",
+        "David J. Hamilton",
+        "Daniel M. German",
+        "Prem Devanbu"
+      ],
+      "year": [
+        [
+          2009,
+          5
+        ]
+      ],
+      "venue": [
+        "2009 6th IEEE International Working Conference on Mining Software Repositories"
+      ],
+      "pages": "1-10",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "mrdt",
+      "urls": [
+        "https://doi.org/10.1145/3360580"
+      ],
+      "doi": "10.1145/3360580",
+      "title": [
+        "Mergeable replicated data types"
+      ],
+      "authors": [
+        "Gowtham Kaki",
+        "Swarn Priya",
+        "KC Sivaramakrishnan",
+        "Suresh Jagannathan"
+      ],
+      "year": [
+        [
+          2019,
+          10,
+          10
+        ]
+      ],
+      "venue": [
+        "Proceedings of the ACM on Programming Languages"
+      ],
+      "pages": "1-29",
+      "volume": "3",
+      "issue": "OOPSLA",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "swierstraloh",
+      "urls": [
+        "https://doi.org/10.1145/2661136.2661137"
+      ],
+      "doi": "10.1145/2661136.2661137",
+      "title": [
+        "The Semantics of Version Control"
+      ],
+      "authors": [
+        "Wouter Swierstra",
+        "Andres L\u00f6h"
+      ],
+      "year": [
+        [
+          2014,
+          10,
+          14
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 2014 ACM International Symposium on New Ideas, New Paradigms, and Reflections on Programming &amp; Software"
+      ],
+      "pages": "43-54",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "hpt",
+      "urls": [
+        "https://doi.org/10.1145/2628136.2628158"
+      ],
+      "doi": "10.1145/2628136.2628158",
+      "title": [
+        "Homotopical patch theory"
+      ],
+      "authors": [
+        "Carlo Angiuli",
+        "Edward Morehouse",
+        "Daniel R. Licata",
+        "Robert Harper"
+      ],
+      "year": [
+        [
+          2014,
+          8,
+          19
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 19th ACM SIGPLAN international conference on Functional programming"
+      ],
+      "pages": "243-256",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "mimram",
+      "urls": [
+        "https://doi.org/10.1016/j.entcs.2013.09.018"
+      ],
+      "doi": "10.1016/j.entcs.2013.09.018",
+      "title": [
+        "A Categorical Theory of Patches"
+      ],
+      "authors": [
+        "Samuel Mimram",
+        "Cinzia Di Giusto"
+      ],
+      "year": [
+        [
+          2013,
+          11
+        ]
+      ],
+      "venue": [
+        "Electronic Notes in Theoretical Computer Science"
+      ],
+      "pages": "283-307",
+      "volume": "298",
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "semver",
+      "urls": [
+        "https://semver.org/spec/v2.0.0.html"
+      ],
+      "checks": [
+        {
+          "url": "https://semver.org/spec/v2.0.0.html",
+          "status": 200,
+          "final_url": "https://semver.org/spec/v2.0.0.html",
+          "title": "Semantic Versioning 2.0.0 | Semantic Versioning"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "oci",
+      "urls": [
+        "https://github.com/opencontainers/image-spec/blob/v1.1.0/spec.md"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/opencontainers/image-spec/blob/v1.1.0/spec.md",
+          "status": 200,
+          "final_url": "https://github.com/opencontainers/image-spec/blob/v1.1.0/spec.md",
+          "title": "image-spec/spec.md at v1.1.0 \u00b7 opencontainers/image-spec \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "buildkit",
+      "urls": [
+        "https://github.com/moby/buildkit"
+      ],
+      "checks": [
+        {
+          "url": "https://github.com/moby/buildkit",
+          "status": 200,
+          "final_url": "https://github.com/moby/buildkit",
+          "title": "GitHub - moby/buildkit: concurrent, cache-efficient, and Dockerfile-agnostic builder toolkit \u00b7 GitHub"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "pytime",
+      "urls": [
+        "https://docs.python.org/3.12/library/time.html"
+      ],
+      "checks": [
+        {
+          "url": "https://docs.python.org/3.12/library/time.html",
+          "status": 200,
+          "final_url": "https://docs.python.org/3.12/library/time.html",
+          "title": "time \u2014 Time access and conversions &#8212; Python 3.12.14 documentation"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "safety",
+      "urls": [
+        "https://doi.org/10.1016/0020-0190(85)90056-0"
+      ],
+      "doi": "10.1016/0020-0190(85)90056-0",
+      "title": [
+        "Defining liveness"
+      ],
+      "authors": [
+        "Bowen Alpern",
+        "Fred B. Schneider"
+      ],
+      "year": [
+        [
+          1985,
+          10
+        ]
+      ],
+      "venue": [
+        "Information Processing Letters"
+      ],
+      "pages": "181-185",
+      "volume": "21",
+      "issue": "4",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "potvin",
+      "urls": [
+        "https://doi.org/10.1145/2854146"
+      ],
+      "doi": "10.1145/2854146",
+      "title": [
+        "Why Google stores billions of lines of code in a single repository"
+      ],
+      "authors": [
+        "Rachel Potvin",
+        "Josh Levenberg"
+      ],
+      "year": [
+        [
+          2016,
+          6,
+          24
+        ]
+      ],
+      "venue": [
+        "Communications of the ACM"
+      ],
+      "pages": "78-87",
+      "volume": "59",
+      "issue": "7",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "pluto",
+      "urls": [
+        "https://doi.org/10.1145/2814270.2814316"
+      ],
+      "doi": "10.1145/2814270.2814316",
+      "title": [
+        "A sound and optimal incremental build system with dynamic dependencies"
+      ],
+      "authors": [
+        "Sebastian Erdweg",
+        "Moritz Lichter",
+        "Manuel Weiel"
+      ],
+      "year": [
+        [
+          2015,
+          10,
+          23
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 2015 ACM SIGPLAN International Conference on Object-Oriented Programming, Systems, Languages, and Applications"
+      ],
+      "pages": "89-106",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "spinnaker",
+      "urls": [
+        "https://spinnaker.io/docs/concepts/pipelines/"
+      ],
+      "checks": [
+        {
+          "url": "https://spinnaker.io/docs/concepts/pipelines/",
+          "status": 200,
+          "final_url": "https://spinnaker.io/docs/concepts/pipelines/",
+          "title": "Pipelines | Spinnaker"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "nix",
+      "urls": [
+        "https://www.usenix.org/legacy/events/lisa04/tech/dolstra.html"
+      ],
+      "checks": [
+        {
+          "url": "https://www.usenix.org/legacy/events/lisa04/tech/dolstra.html",
+          "status": 200,
+          "final_url": "https://www.usenix.org/legacy/events/lisa04/tech/dolstra.html",
+          "title": "LISA '04 Abstract"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "tosca",
+      "urls": [
+        "https://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.3/os/TOSCA-Simple-Profile-YAML-v1.3-os.html"
+      ],
+      "checks": [
+        {
+          "url": "https://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.3/os/TOSCA-Simple-Profile-YAML-v1.3-os.html",
+          "status": 200,
+          "final_url": "https://docs.oasis-open.org/tosca/TOSCA-Simple-Profile-YAML/v1.3/os/TOSCA-Simple-Profile-YAML-v1.3-os.html",
+          "title": "TOSCA Simple Profile in YAML Version 1.3"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "gitops",
+      "urls": [
+        "https://opengitops.dev/"
+      ],
+      "checks": [
+        {
+          "url": "https://opengitops.dev/",
+          "status": 200,
+          "final_url": "https://opengitops.dev/",
+          "title": "Home | OpenGitOps"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "raemaekers",
+      "urls": [
+        "https://doi.org/10.1109/scam.2014.30"
+      ],
+      "doi": "10.1109/scam.2014.30",
+      "title": [
+        "Semantic Versioning versus Breaking Changes: A Study of the Maven Repository"
+      ],
+      "authors": [
+        "Steven Raemaekers",
+        "Arie van Deursen",
+        "Joost Visser"
+      ],
+      "year": [
+        [
+          2014,
+          9
+        ]
+      ],
+      "venue": [
+        "2014 IEEE 14th International Working Conference on Source Code Analysis and Manipulation"
+      ],
+      "pages": "215-224",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "bogart",
+      "urls": [
+        "https://doi.org/10.1145/2950290.2950325"
+      ],
+      "doi": "10.1145/2950290.2950325",
+      "title": [
+        "How to break an API: cost negotiation and community values in three software ecosystems"
+      ],
+      "authors": [
+        "Christopher Bogart",
+        "Christian K\u00e4stner",
+        "James Herbsleb",
+        "Ferdian Thung"
+      ],
+      "year": [
+        [
+          2016,
+          11
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 2016 24th ACM SIGSOFT International Symposium on Foundations of Software Engineering"
+      ],
+      "pages": "109-120",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "decan",
+      "urls": [
+        "https://doi.org/10.1007/s10664-017-9589-y"
+      ],
+      "doi": "10.1007/s10664-017-9589-y",
+      "title": [
+        "An empirical comparison of dependency network evolution in seven software packaging ecosystems"
+      ],
+      "authors": [
+        "Alexandre Decan",
+        "Tom Mens",
+        "Philippe Grosjean"
+      ],
+      "year": [
+        [
+          2018,
+          2,
+          10
+        ]
+      ],
+      "venue": [
+        "Empirical Software Engineering"
+      ],
+      "pages": "381-416",
+      "volume": "24",
+      "issue": "1",
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "edos",
+      "urls": [
+        "https://www.dicosmo.org/Articles/2006-Edos-Ase.pdf"
+      ],
+      "checks": [
+        {
+          "url": "https://www.dicosmo.org/Articles/2006-Edos-Ase.pdf",
+          "status": 200,
+          "final_url": "https://www.dicosmo.org/Articles/2006-Edos-Ase.pdf",
+          "title": null
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "huangci",
+      "urls": [
+        "https://doi.org/10.1109/SANER67736.2026.00060"
+      ],
+      "doi": "10.1109/saner67736.2026.00060",
+      "title": [
+        "Does One Ci-Ze Fit All? How Continuous Integration Performs in Different Contexts"
+      ],
+      "authors": [
+        "Shujun Huang",
+        "Andy Zaidman",
+        "Sebastian Proksch"
+      ],
+      "year": [
+        [
+          2026,
+          3,
+          17
+        ]
+      ],
+      "venue": [
+        "2026 IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER)"
+      ],
+      "pages": "491-502",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "dora2025",
+      "urls": [
+        "https://dora.dev/research/2025/dora-report/"
+      ],
+      "checks": [
+        {
+          "url": "https://dora.dev/research/2025/dora-report/",
+          "status": 200,
+          "final_url": "https://dora.dev/research/2025/dora-report/",
+          "title": "DORA | State of AI-assisted Software Development 2025"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "dora2026tensions",
+      "urls": [
+        "https://dora.dev/insights/balancing-ai-tensions/"
+      ],
+      "checks": [
+        {
+          "url": "https://dora.dev/insights/balancing-ai-tensions/",
+          "status": 200,
+          "final_url": "https://dora.dev/insights/balancing-ai-tensions/",
+          "title": "DORA | Balancing AI tensions: Moving from AI adoption to effective SDLC use"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "cardoen",
+      "urls": [
+        "https://doi.org/10.1109/SANER67736.2026.00028"
+      ],
+      "doi": "10.1109/saner67736.2026.00028",
+      "title": [
+        "An Empirical Analysis of Code Clones in GitHub Actions Workflows"
+      ],
+      "authors": [
+        "Guillaume Cardoen",
+        "Tom Mens",
+        "Alexandre Decan"
+      ],
+      "year": [
+        [
+          2026,
+          3,
+          17
+        ]
+      ],
+      "venue": [
+        "2026 IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER)"
+      ],
+      "pages": "170-180",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "liusmith",
+      "urls": [
+        "https://pl.cs.jhu.edu/projects/new-arch/papers/a-formal-framework-for-component-deployment.pdf",
+        "https://doi.org/10.1145/1167473.1167502"
+      ],
+      "doi": "10.1145/1167473.1167502",
+      "title": [
+        "A formal framework for component deployment"
+      ],
+      "authors": [
+        "Yu David Liu",
+        "Scott F. Smith"
+      ],
+      "year": [
+        [
+          2006,
+          10,
+          16
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 21st annual ACM SIGPLAN conference on Object-oriented programming systems, languages, and applications"
+      ],
+      "pages": "325-344",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "aeolus",
+      "urls": [
+        "https://doi.org/10.1016/j.ic.2014.11.002"
+      ],
+      "doi": "10.1016/j.ic.2014.11.002",
+      "title": [
+        "Aeolus: A component model for the cloud"
+      ],
+      "authors": [
+        "Roberto Di Cosmo",
+        "Jacopo Mauro",
+        "Stefano Zacchiroli",
+        "Gianluigi Zavattaro"
+      ],
+      "year": [
+        [
+          2014,
+          12
+        ]
+      ],
+      "venue": [
+        "Information and Computation"
+      ],
+      "pages": "100-121",
+      "volume": "239",
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "nephele",
+      "urls": [
+        "https://nephele-project.eu/sites/nephele/files/public/content-files/deliverables/nephele_d4.1.pdf"
+      ],
+      "checks": [
+        {
+          "url": "https://nephele-project.eu/sites/nephele/files/public/content-files/deliverables/nephele_d4.1.pdf",
+          "status": 200,
+          "final_url": "https://nephele-project.eu/sites/nephele/files/public/content-files/deliverables/nephele_d4.1.pdf",
+          "title": null
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "bui",
+      "urls": [
+        "https://doi.org/10.1109/SANER67736.2026.00063"
+      ],
+      "doi": "10.1109/saner67736.2026.00063",
+      "title": [
+        "Using Large Language Models to Support Automation of Failure Management in CI/CD Pipelines: A Case Study in SAP HANA"
+      ],
+      "authors": [
+        "Duong Bui",
+        "Stefan Grintz",
+        "Alexander Berndt",
+        "Thomas Bach"
+      ],
+      "year": [
+        [
+          2026,
+          3,
+          17
+        ]
+      ],
+      "venue": [
+        "2026 IEEE International Conference on Software Analysis, Evolution and Reengineering (SANER)"
+      ],
+      "pages": "524-535",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "gray",
+      "urls": [
+        "https://www.vldb.org/conf/1981/P144.PDF"
+      ],
+      "checks": [
+        {
+          "url": "https://www.vldb.org/conf/1981/P144.PDF",
+          "error": "HTTP Error 404: Not Found"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "helland07",
+      "urls": [
+        "https://www.cidrdb.org/cidr2007/papers/cidr07p15.pdf"
+      ],
+      "checks": [
+        {
+          "url": "https://www.cidrdb.org/cidr2007/papers/cidr07p15.pdf",
+          "status": 200,
+          "final_url": "https://www.cidrdb.org/cidr2007/papers/cidr07p15.pdf",
+          "title": null
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "anvil",
+      "urls": [
+        "https://www.usenix.org/conference/osdi24/presentation/sun-xudong"
+      ],
+      "checks": [
+        {
+          "url": "https://www.usenix.org/conference/osdi24/presentation/sun-xudong",
+          "status": 200,
+          "final_url": "https://www.usenix.org/conference/osdi24/presentation/sun-xudong",
+          "title": "Anvil: Verifying Liveness of Cluster Management Controllers | USENIX"
+        }
+      ],
+      "status": "url-checked"
+    },
+    {
+      "key": "klees",
+      "urls": [
+        "https://doi.org/10.1145/3243734.3243804"
+      ],
+      "doi": "10.1145/3243734.3243804",
+      "title": [
+        "Evaluating Fuzz Testing"
+      ],
+      "authors": [
+        "George Klees",
+        "Andrew Ruef",
+        "Benji Cooper",
+        "Shiyi Wei",
+        "Michael Hicks"
+      ],
+      "year": [
+        [
+          2018,
+          10,
+          15
+        ]
+      ],
+      "venue": [
+        "Proceedings of the 2018 ACM SIGSAC Conference on Computer and Communications Security"
+      ],
+      "pages": "2123-2138",
+      "volume": null,
+      "issue": null,
+      "status": "metadata-retrieved"
+    },
+    {
+      "key": "lamport",
+      "urls": [
+        "https://lamport.azurewebsites.net/tla/book.html"
+      ],
+      "checks": [
+        {
+          "url": "https://lamport.azurewebsites.net/tla/book.html",
+          "status": 200,
+          "final_url": "https://lamport.azurewebsites.net/tla/book.html",
+          "title": "Specifying Systems"
+        }
+      ],
+      "status": "url-checked"
+    }
+  ]
+}
