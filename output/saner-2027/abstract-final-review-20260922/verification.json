@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 48,
+  "pdf_sha256": "e47a65859abe91837d3d69be07a4646c1aff8a067bb27e855fd3fb8162694f04",
+  "source_sha256": {
+    "main.tex": "6829ce01d589af76d1ab309199234ad7c2e4c5a36ffa35d19a630a0ed51fefe1",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "7651b768ecd071b8d1990becd6a96fa30c6a2002c3e938ab32a2ae4a2ffe724d",
+    "model.tex": "0569d864a77f06f32b2caf8607dc44b61a87cffcabec41f7781e1dd9eb646cea",
+    "guarantees.tex": "508f21e4da62db209b7b0a3cddea36e2d5d0de6379251771a0047114d5ed5682",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "f7b5ab3b77f9eef36a97486479d96fdef7279f38ec3484d1508d0bc9e936c06e",
+    "references.tex": "9e35caadf28a50ee1085e094a5082894ff0713240bb4dd5101ac97d4203d66b4"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits.",
+  "checked_utc": "2026-09-22T08:13:28.966314+00:00",
+  "base_commit": "921f3c72b01584a18fdc0836c4e99e5d40800e77",
+  "abstract_only": true,
+  "abstract_words": 235,
+  "changed_rendered_pages": [
+    1
+  ],
+  "visual_review": "Final page 1 inspected at full render; all 12 pages inspected in contact sheets. Pages 2-12 are render-identical to the baseline.",
+  "technical_report_unchanged": true,
+  "new_experimental_runs": 0,
+  "submission_made": false,
+  "readiness": "Formatting passes; current CCME delivery semantics are outside the unchanged paper model. Mandatory registration and author eligibility are unconfirmed; Gray reference URL is broken."
+}

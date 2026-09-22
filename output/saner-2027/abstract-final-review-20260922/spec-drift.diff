@@ -1,0 +1,1254 @@
+--- output/saner-2027/distributed-execution-20260921/SPEC-after.md	2026-09-21 11:47:17
++++ ../dispat/specs/ccme-spec/SPEC.md	2026-09-22 11:28:48
+@@ -1,8 +1,8 @@
+ # Conventional Commits: Monorepo Extension (CCME)
+ 
+-**Version:** 3.1.0-rc.1 **Status:** Normative specification; new protocol implementation pending **Extends:** Conventional
+-Commits 1.0.0 **Versioning model:** Semantic Versioning 2.0.0 **Version store:** immutable VCS release records;
+-Git tags of the form `<package>@<version>` by default
++**Version:** 3.1.0-rc.2 **Status:** Normative specification; adapter and rollback protocols pending implementation
++**Extends:** Conventional Commits 1.0.0 **Versioning model:** Semantic Versioning 2.0.0 **Version store:** immutable
++VCS release records; Git tags of the form `<package>@<version>` by default
+ **Conformance:** §17 · **Security considerations:** §18 · **Test vectors:** Appendix B
+ **License:** GPL-3.0-or-later. See [LICENSE](./LICENSE).
+ 
+@@ -11,12 +11,15 @@
+ 
+ **Implementation boundary.** The published CCME 3 line specifies VCS adapters and explicit rollback; the current
+ source also defines the optional polyrepository Git profile of §27 and distributed execution profile of §28.
+-The distributed profile is an unimplemented specification contract with no measured performance result. Implementing
+-one profile does not implement the others or the adapter and rollback protocols. Neither changes the message parser
+-grammar. The version markers are stamped by the specification release process. Publishing a specification does not implement its behavior. The immutable
++The dispat release engine implements the distributed profile over a Git mailbox transport; what it implements, where it
++departs from §28 and what it has measured are stated by date in [DESIGN-HISTORY.md](./DESIGN-HISTORY.md), and no
++speedup is claimed. Implementing one profile does not implement the others or the adapter and rollback protocols.
++Neither changes the message parser grammar. The version markers are stamped by the specification release process.
++Publishing a specification does not implement its behavior. The immutable
+ [CCME 2.0.0 specification](https://github.com/yohimik/dispat/blob/specs/ccme-spec/v2.0.0/specs/ccme-spec/SPEC.md)
+ remains the reference for existing CCME 2 consumers. New protocol examples MUST NOT be presented as runnable dispat
+-configuration for external adapters, rollback or distributed execution. The dated design history is in [DESIGN-HISTORY.md](./DESIGN-HISTORY.md).
++configuration for external adapters or rollback. The dated design history is in
++[DESIGN-HISTORY.md](./DESIGN-HISTORY.md).
+ 
+ ---
+ 
+@@ -69,7 +72,7 @@
+ | 7 | **VCS adapters**: use trusted shell commands behind a fixed snapshot and immutable-record contract | `vcs` configuration; Git remains the default (§25) |
+ | 8 | **Explicit rollback**: withdraw an identified published artifact while retaining its release history | `rollback(api)` + `Rollback-Version: 1.4.2` (§26) |
+ | 9 | **Polyrepository planning**: combine explicitly linked Git histories into one release graph without copying their commits | optional polyrepository profile (§27) |
+-| 10 | **Distributed execution**: assign tasks across nodes and reuse verified build outputs while preserving the release plan and native records | optional execution profile (§28); implementation pending |
++| 10 | **Distributed execution**: assign tasks across nodes and reuse verified build outputs while preserving the release plan and native records | optional execution profile (§28); `execution` node settings |
+ 
+ Capabilities 2 and 5 are two **independent axes** of the same idea. A commit says separately how far a *version bump*
+ travels (`^`, `^^`, `+N`) and how far a *channel* travels (`%%`, `++N`), because the answers differ: a change usually
+@@ -127,10 +130,12 @@
+ | **Release engine**       | The tool implementing this specification.                                                                               |
+ | **Inert**                | Syntactically valid but resolving to zero packages; produces a warning, never an error.                                 |
+ | **Run**                  | One execution of the engine against a fixed `HEAD`: compute a plan (§13), then publish it (§19).                        |
+-| **Admission**            | The test deciding whether a unit propagates to a dependent. Evaluated against the **dependent's** window.               |
+-| **Stale**                | A package that would receive a non-`none` propagated bump: it has not released past a commit that propagates to it.    |
++| **Admission**            | The test deciding whether a unit propagates to a dependent. Evaluated against the **dependent's** releases: what its sources have delivered to it (§13.4a). |
++| **Stale**                | A package that would receive a non-`none` propagated bump: it has not released at or after its provider's release of a commit that propagates to it. |
++| **Delivered**            | A source's contribution to a dependent is delivered once the dependent has released at or after a release of that source carrying the commit (§13.4a). Releasing past the commit alone is not delivery. |
+ | **Catch-up release**     | A release whose entire cause is a propagation from a dependency that has **already** been published (§13.7a).           |
+ | **Publish graph**        | The graph used to order publication, and to decide what a failed publish blocks (§19.2).                                |
++| **Build readiness**      | What a consumer's build waits for in its provider: `none`, `build` or `publish` (§19.2a). Execution policy; it never changes the plan. |
+ | **Blocked**              | Planned, but not attempted in this run because a dependency's publish failed (`W194`).                                  |
+ | **Convergence**          | The property that re-running the engine at a fixed `HEAD` eventually yields an empty plan (§13.7c).                     |
+ | **Publish target**       | The registry a package's artefact is uploaded to, or `none`. Does not affect whether the package is released (§13.10a). |
+@@ -1439,11 +1444,12 @@
+         anyStable = 'stable' in srcChan
+         for (d, level) in reach(edges, sources, u.depth):
+             if d not in pscope:                           continue
+-            if c not in Wfresh(d):                             continue
++            owed = { P in sources : not delivered(P, c, d) }    # admission, §13.4a
++            if owed is empty:                             continue
+             if cancelledFor(c, d):                        continue
+             if not (anyStable or channel[d] in srcChan):  continue # §9.3a, W208
+             prop[d] = max(prop[d], b)
+-            prov[d] = prov[d] | sources
++            prov[d] = prov[d] | owed
+     return prop, prov, chan
+ ```
+ 
+@@ -1484,9 +1490,11 @@
+ * **Depth is measured from the originating source set, always.** It is never recomputed from an intermediate package,
+   and never re-based on a package that happens to be republishing. A unit written `+1` reaches exactly the direct
+   consumers of its own packages, in this run and in every later catch-up run, whatever released in between.
+-* **Admission is the target's window.** A dependent is reached if and only if it has not itself released past the commit
+-  carrying the unit. Every guarantee in §13.7c rests on this one test, and on it being the target's window rather than
+-  the source's.
++* **Admission is the target's releases.** On the channel axis a dependent is reached if and only if it has not itself
++  released past the commit carrying the unit. On the bump axis it is reached if and only if some source of the unit has
++  not yet **delivered** that commit to it: it has not released at or after a release of that source which carries the
++  commit (§13.4a). The two coincide except for a dependent that released past the commit before its source did. Every
++  guarantee in §13.7c rests on this one test, and on it being the target's position rather than the source's.
+ * **Propagation does not cascade its own propagation.** A propagated bump on `B` does not itself trigger a fresh
+   propagation pass from `B`, and a propagated channel on `B` does not carry onward to `B`'s dependents; the depth
+   parameters of the originating unit are the only controls. This keeps the result a pure function of the units and
+@@ -2070,8 +2078,8 @@
+ The complete ordinary-release procedure. It is a pure function of (repository history, immutable release records, workspace graph, configuration) and
+ MUST be deterministic.
+ 
+-Under §28, the complete semantic plan remains `P = Plan(I)`: worker placement and scheduling MUST NOT alter it.
+-A distributed release MUST acquire every participating repository's lock before fixing `I` and computing `P`;
++Under §28, the complete semantic plan remains `plan = Plan(input)`: worker placement and scheduling MUST NOT alter it.
++A distributed release MUST acquire every participating repository's lock before fixing `input` and computing `plan`;
+ read-only planning remains lock-free (§28.3). Preparation and output-transfer prerequisites do not add release
+ intent or discharge pending work.
+ 
+@@ -2112,7 +2120,33 @@
+ 
+ Enumerate tags reachable from `HEAD`, parse per §12.1, and compute `baseline`, `stableBaseline`, `stableCommit` per
+ §12.3.
++
++**Records under the lock.** A run that can write plans from the authoritative store's release records, not from
++whatever its checkout happened to fetch. After it holds every release lock it needs and before it fixes the input of
++this section, the engine MUST compare, for each participating repository, the release records of the store that run
++records to with the records it is about to plan from. A stored release record whose commit is reachable from the
++planned head and which the planning input lacks is incomplete history and is `E196`. A stored release record that names
++another commit than the planning input's record of the same package and version is `E191`. The engine MUST NOT repair
++either difference by planning the package as unreleased, and MUST NOT refresh its records silently after the
++comparison: a run that fetches does so before the comparison and plans from what it then holds. Complete history makes
++reachability decidable locally, because a commit the checkout does not hold cannot be reachable from its head. The lock
++is what makes one comparison sufficient: no other coordinated run can add a record between the comparison and this
++run's own records. Without the comparison the lock serializes runs and isolates nothing, because two runs that never
++overlap still plan the same version when the second one's checkout predates the first one's records. A run that records
++nowhere but its own repository has that repository as its store and nothing to compare, and neither has a repository
++that owns no package. Read-only planning takes no lock and makes no comparison; its result describes the checkout. The
++comparison reads one record inventory per repository, `O(T)` each, and asks one ancestry question per record the input
++lacks, which is none in the ordinary case.
+ 
++Only what §12.1 parses as a release tag of a workspace package is a release record here; a ref the implementation
++moves by design, its lock, and a name that merely resembles a tag format are not. A store whose records cannot be read
++is not a store whose records agree: the run is refused as `E196`, because a plan whose completeness nothing could
++check is a plan over incomplete history. An implementation MAY offer a setting that forgoes the engine's reads of a
++store before it writes there, for a store that refuses them. A run under that setting makes no comparison and has
++exactly the exposure this rule removes; the engine MUST NOT describe its records as compared and SHOULD report the
++omission. A run under an unsafe lock bypass (`W331`) still compares. No lock then holds other runs off after the
++comparison, so it narrows the exposure and does not close it.
++
+ Under §27, enumerate each package's records in its owning repository and reconstruct cross-repository consumer
+ positions from gitlink snapshots or explicit `repositoryBaselines`. Never compare or sort commit IDs from different
+ repositories as if they belonged to one ancestry relation.
+@@ -2124,9 +2158,18 @@
+ freshWindow(P)   = pendingWindow(P) - { c : c reachable from tagCommit(baseline(P)) }
+ ```
+ 
+-If `P` has no stable baseline, `pendingWindow(P)` is every commit reachable from `HEAD`. If `P` has no baseline tag
+-at all, the subtracted reach in `freshWindow(P)` is empty, so `Wfresh(P) = W(P)`.
++If `P` has no stable baseline, `pendingWindow(P)` is every commit reachable from `HEAD`. If `P` has no baseline tag at
++all, the subtracted reach in `freshWindow(P)` is empty, so `Wfresh(P) = W(P)`.
+ 
++**Owed windows.** For every dependency edge `D → P` over `propagation.kinds` where `D` has a baseline, the union of
++pending windows parsed in §13.4 also contains `owedWindow(P, D)`: the commits reachable from `HEAD` and from no release
++commit of `P` that `baselineCommit(D)` reaches. These are the commits `D` released past before `P` released them; once
++`P` has, no window of `P` or of `D` holds them, and the debt `D` is owed (§13.4a) would be invisible. Where
++`baselineCommit(D)` reaches no release of `P`, `D` released before `P`'s first release and `W(D)` already holds
++everything since, so nothing is added; where the newest release of `P` it reaches is `P`'s own boundary, which is so for
++every consumer that never got ahead of its provider, nothing is added either. The added window makes a debt visible;
++whether it is owed is §13.4a's question, and it admits nothing by itself.
++
+ The window is measured from the last **stable** tag, not the last tag of any kind. This single definition serves both
+ cases:
+ 
+@@ -2151,8 +2194,8 @@
+ 
+ ### 13.4 Parse and resolve
+ 
+-For every commit in the union of all pending windows: parse into units (§20), resolve scopes (§6), yielding a set of
+-`(package, commit, unitIndex, unit)` tuples.
++For every commit in the union of all pending windows, the owed windows of §13.3 included: parse into units (§20),
++resolve scopes (§6), yielding a set of `(package, commit, unitIndex, unit)` tuples.
+ 
+ Retention is **purpose-dependent**. A single retention rule serving both purposes cannot be correct, for the reason
+ given in §13.7a. A tuple `(P, C, i, u)` is retained:
+@@ -2176,7 +2219,32 @@
+ 
+ `cancelledFor(C, X)` is true when `C` is an ancestor-or-self of some `cancel` commit whose resolved scope contains `X`
+ (§10.3). `held(P)` is true when `P`'s effective `Release-As` directive is `none` (§13.6a).
++
++**Delivery.** On the bump axis a source's contribution is admitted for a target until the source has **delivered** it:
++
++```
++delivered(P, C, D) =  some release tag of P sits on a commit t
++                      with C in reach(t) and t in reach(baselineCommit(D))
++                      # D released at or after P's release carrying C; false for an unreleased D
++
++owed(u, D)         =  { P in sourcePackages(u) : not delivered(P, commitOf(u), D) }
++```
++
++A unit propagates a bump to `D` while `owed(u, D)` is non-empty (§9.2), and `D`'s provenance names exactly the owed
++sources. `delivered` implies `C ∉ Wfresh(D)`, so a target that has not released past `C` is owed by every source and the
++test reduces to the window; the finer question arises only for a target that released past `C` before its source did: a
++consumer that proceeded on a cause of its own while the source failed (§19.3), or one released while the source was held
++(§13.6a). Such a target is still owed the source's release, and receives it as a catch-up when it comes (§13.7a).
++Releasing past a commit is not delivery; only the source's release, followed by the target's, is. The channel axis keeps
++`C ∈ Wfresh(D)` as its admission, because a channel is carried by the units and needs no release of the source (G7).
+ 
++Two releases on one commit have no order (§13.7b), so `delivered` cannot tell a target that released at commit `t` after
++its source from one that released there in an earlier run whose source then released at `t` too. §19.3 keeps the second
++state from arising unseen: a source is released at the baseline commit of a target it still owes only in a run that
++releases the target after it (`E201`). Under §27, `baselineCommit(D)` and the release commits of `P` are compared in
++`P`'s repository, `D`'s position there being its consumer boundary (§§27.6, 27.11), and the owed window of §13.3 is a
++window over that repository.
++
+ **Suppression applies only to undischarged work, and this is normative.** Once `P` has published the version that
+ carries `u`, the artefact its consumers are owed is public. Nothing landing afterwards can retract that obligation:
+ 
+@@ -2374,16 +2442,26 @@
+ grows with the fan-out. Worse, the same shape arises without any failure at all: a package held by
+ `Release-As: none` past its provider's release reaches exactly the same state when the hold lifts.
+ 
++The same orphan is reached from the other side by a consumer that gets **ahead** of its provider. Let one commit carry
++`feat(core)^` and `feat(cli)`; `core`'s publish fails and `cli`, which has a cause of its own, proceeds (§19.3) and is
++tagged past the commit. If admission were "the target has not released past the commit", `cli` would be owed nothing
++when `core` publishes on the next run, would keep the manifest range it reconciled against `core`'s old version, and
++would never be planned again: one patch behind a dependency it declares, silently. A consumer released on its own
++change while its provider is held reaches the same state when the hold lifts. Hence admission is delivery (§13.4a),
++not release position.
++
+ The root cause is that 1.0.0 tested a *dependent's* eligibility against the *source's* release position. Those are
+ different packages with different tags, and after a partial failure they are exactly the packages whose positions have
+ diverged.
+ 
+-**The rule.** Per §13.4a and §9.2, a unit propagates to a dependent `D` whenever `D`'s own window still contains the
+-unit's commit. No separate catch-up pass exists, and none is needed: catch-up is not a repair mode bolted onto the
+-algorithm, it is what the algorithm does when the ordinary rule is evaluated against the right window. A "catch-up
+-release" is therefore only a *label*: a release whose entire cause is a propagation from a package that is not itself
+-in this run's plan. Implementations MUST report it as such (`W193`), because a package appearing in a plan with no
+-commits of its own and no releasing dependency is otherwise baffling to whoever reviews the plan.
++**The rule.** Per §13.4a and §9.2, a unit propagates a bump to a dependent `D` whenever some source of the unit has not
++yet delivered the unit's commit to `D`: `D` has not released at or after a release of that source carrying it. For a `D`
++that has not released past the commit at all, that is the window test; for a `D` that got ahead of its source, it is the
++source's release that decides. No separate catch-up pass exists, and none is needed: catch-up is not a repair mode
++bolted onto the algorithm, it is what the algorithm does when the ordinary rule is evaluated against the right position.
++A "catch-up release" is therefore only a *label*: a release whose entire cause is a propagation from a package that is
++not itself in this run's plan. Implementations MUST report it as such (`W193`), because a package appearing in a plan
++with no commits of its own and no releasing dependency is otherwise baffling to whoever reviews the plan.
+ 
+ **What catch-up does not do.** It does not re-run, re-time, or re-scope anything:
+ 
+@@ -2401,18 +2479,19 @@
+ 
+ ```
+ staleSources(D):
+-    W     = freshWindow(D)                                # §13.3: the *target's* undelivered window
+     edges = graph.restrictedTo(config.propagation.kinds)  # §8.4: the same edges as §9.2
+     channel = resolveChannelsForAudit()                    # same phase-2 result as §9.2
+     dist  = shortestPathsUp(D, edges)   # P -> edge count of the shortest path P → … → D
+     out   = {}
+-    for u in unitsIn(W):
++    for u in units:                                       # every retained tuple, §13.4
+         if bumpOf(u) == none:                             continue
+         b = (u.propagate == 'inherit') ? bumpOf(u) : u.propagate    # as §9.2
+         if b == none or u.depth == 0:                     continue
+         sources = sourcePackages(u)                       # §13.4a
+         if sources is empty:                              continue
+         if D in sources:                                  continue   # §9.2 seeds seen = sources
++        sources = owed(u, D)                              # §13.4a: what D is still owed
++        if sources is empty:                              continue   # every source delivered
+         reaching = { P in sources : P in dist }
+         if reaching is empty:                             continue
+         if not resolvableBy(sources, D, channel):     continue   # §9.3a
+@@ -2436,6 +2515,9 @@
+   the minimum over `reaching` under-reports exactly the diamond cases.
+ * **Resolvability is the same admission predicate as §9.3a.** Reachability alone is insufficient: a prerelease source
+   on a different line is not installable by `D`, so the downward and upward formulations MUST both reject it.
++* **The units are not those of `D`'s window.** A commit `D` has released past can still be owed to it by a source that
++  released it later (§13.4a); iterating `freshWindow(D)` alone misses exactly the consumers that got ahead of a
++  provider, which are the ones this audit exists to find after a partial failure.
+ * **`b` is the effective propagated bump**, computed the same way as in §9.2: `inherit` resolves to the unit's own
+   bump, and a unit whose propagation resolves to `none`, or whose depth is `0`, is not a source at all (§8.3). Such a
+   unit warns (`W152` where it asked for nothing, `W201` where it named a value the depth then discarded (§8.3b)) but
+@@ -2456,11 +2538,13 @@
+ > `D` is possibly behind `P` if `tagCommit(baseline(P))` is **not** an ancestor-or-self of `tagCommit(baseline(D))`.
+ 
+ That is the "the provider's tag is newer than the consumer's tag" intuition, expressed as ancestry so that it stays
+-deterministic under merges, rebases, and equal commit dates (§10.4). It MUST NOT be used as the authoritative test: it
+-is *necessary but not sufficient*. A provider can legitimately be ahead of a consumer with nothing owed: the units
+-between them may all be `^none`, or `+0`, or scoped away by `Propagate-Scope`, or reach `D` only beyond their declared
+-depth, or be `devDependencies`-only edges. Using the screen to decide releases would manufacture bumps that no commit
+-asked for. Use it to *find* candidates; use §9.2 to decide.
++deterministic under merges, rebases, and equal commit dates (§10.4). It is the shape of `delivered` (§13.4a) with the
++unit's commit left out, which is why it screens: a consumer owed something has a provider release its own release does
++not reach. It MUST NOT be used as the authoritative test: it is *necessary but not sufficient*. A provider can
++legitimately be ahead of a consumer with nothing owed: the units between them may all be `^none`, or `+0`, or scoped
++away by `Propagate-Scope`, or reach `D` only beyond their declared depth, or be `devDependencies`-only edges. Using the
++screen to decide releases would manufacture bumps that no commit asked for. Use it to *find* candidates; use §9.2 to
++decide.
+ 
+ Note also the case the screen cannot see at all: `P` and `D` released at the **same commit**, in the same run, but with
+ `D` published first. Ancestry cannot distinguish them, and no rule over tags can. That case is prevented rather than
+@@ -2485,21 +2569,24 @@
+ **G1, termination.** Propagation halts. Each unit traverses a BFS that marks every package `seen` at most once, so it
+ performs at most `|V|` expansions regardless of depth, cycles, or `+*`; the outer loop is over a finite set of units.
+ 
+-**G2, completeness (no orphans).** Under the retry invariant, if unit `u` in commit `C` admits dependent `D`, then `D` receives
+-at least `u`'s propagated bump in every run until `D` releases at a commit containing `C`. Admission is
+-`C ∈ Wfresh(D)`; only a baseline tag for `D` at such a commit discharges it. A release by the source alone cannot.
++**G2, completeness (no orphans).** Under the retry invariant, if unit `u` in commit `C` admits dependent `D`, then `D`
++receives at least `u`'s propagated bump in every run until `D` releases at or after a release of every owed source
++carrying `C`. Admission is `owed(u, D) ≠ ∅` (§13.4a); only a baseline tag for `D` at such a commit discharges it. A
++release by the source alone cannot, and neither can a release by `D` that precedes the source's.
+ 
+ **G3, version stability.** Under the retry invariant, a package caught up in run *k* receives the same version it was
+ planned at in run 1. `effective(D)` is the same `max()` and the failed run wrote no tag for `D`. A source
+ graduation can change an `inherit` channel, and discharge of a suppressed source can add a tuple; either change requires
+ a newly surfaced plan rather than a claim that the old number is preserved.
+ 
+-**G4, no double ledger delivery.** Once `D` is tagged at commit `T` with `C ∈ reach(T)`, `C ∉ Wfresh(D)`, so the
+-contribution is not re-admitted. Combined with G2 this is exactly-once **in CCME's tag ledger**. It does not promise an
+-exactly-once registry operation: §19.4 explicitly reconciles interruption between external publication and tagging.
++**G4, no double ledger delivery.** Once `D` is tagged at a commit `T` that reaches a release of every source of `u`
++carrying `C`, `owed(u, D)` is empty, so the contribution is not re-admitted. A `D` that proceeded past `C` before a
++source released it is bumped once more when that release comes, and that is the delivery, not a second one. Combined
++with G2 this is exactly-once **in CCME's tag ledger**. It does not promise an exactly-once registry operation: §19.4
++explicitly reconciles interruption between external publication and tagging.
+ 
+ **G5, no blast-radius widening under the retry invariant.** Each unit's later target set is a subset of its initial set:
+-the source, traversal, and channel-admission predicates stay fixed while `Wfresh` only loses commits. Outside the
++the source, traversal, and channel-admission predicates stay fixed while `delivered` only grows. Outside the
+ invariant, publishing a suppressed source (the failure of H2) or changing resolved channel admission may expose finite
+ catch-up targets. Such widening MUST be surfaced for review (§18.1).
+ 
+@@ -2860,21 +2947,21 @@
+ Notation: `P` packages, `E` workspace dependency edges, `H` commits and `A` parent edges in the history reachable from
+ the fixed `HEAD`, `C` commits in the union of all pending windows, `U` units in those commits, `N` total bytes of their
+ messages and changed paths, `T` reachable tags, and `M` tag-record/package-format matches examined while partitioning
+-the inventory (at worst `P · T`). `k` is the number of **distinct** commits carrying a boundary: a stable baseline, or
+-a package's newest baseline of any channel where that is another commit. `m` is the number of distinct **marker**
+-commits, the commits some ancestry question of §13 is asked about: the `k` boundaries, every `cancel` commit, and every
+-commit carrying an `Edits`, `Deletes` or `Reverts` footer. `R` is the
+-actual work of resolving scopes and changed paths against the workspace, including candidates examined when the result
+-is empty. `I` is the number of resulting unit-to-package incidences (and can be `P · U`). `Z` is the number of
+-unit/source/target contribution or provenance incidences retained or emitted. `Zv` counts incidences examined while
+-constructing them, including duplicate insertions; `Zv` may exceed `Z`. Let `Fc` count correction footer selectors,
+-`Jcorr` the package/target incidences examined for correction scope containment, live scopes and application, including
+-unsuccessful probes, and `wildcards` the wildcard selectors. Let `Ic` count cancel-scope incidences, `Pc` the number of
+-packages named by a cancel, and `Jc` the number of cancellation queries across direct admission and **both** propagation
+-axes, including candidates rejected by cancellation. `Jc` is not bounded by direct incidence count `I` or retained
++the inventory (at worst `P · T`). `k` is the number of **distinct** commits carrying a boundary: a stable baseline, a
++package's newest baseline of any channel where that is another commit, or the release of a provider that bounds a
++consumer's owed window (§13.3), of which there are none while no consumer has got ahead of a provider. `m` is the number
++of distinct **marker** commits, the commits some ancestry question of §13 is asked about: the `k` boundaries, every
++`cancel` commit, and every commit carrying an `Edits`, `Deletes` or `Reverts` footer. `R` is the actual work of
++resolving scopes and changed paths against the workspace, including candidates examined when the result is empty. `I` is
++the number of resulting unit-to-package incidences (and can be `P · U`). `Z` is the number of unit/source/target
++contribution or provenance incidences retained or emitted. `Zv` counts incidences examined while constructing them,
++including duplicate insertions; `Zv` may exceed `Z`. Let `Fc` count correction footer selectors, `Jcorr` the
++package/target incidences examined for correction scope containment, live scopes and application, including unsuccessful
++probes, and `wildcards` the wildcard selectors. Let `Ic` count cancel-scope incidences, `Pc` the number of packages
++named by a cancel, and `Jc` the number of cancellation queries across direct admission and **both** propagation axes,
++including candidates rejected by cancellation. `Jc` is not bounded by direct incidence count `I` or retained
+ contribution count `Z`. Write `bw(x) = max(1, ceil(x / wordSize))`, so a zero-marker phase still pays for traversal or
+-query dispatch. `F` is the number of publish failures,
+-and `Oout` is the size of diagnostics and other emitted output.
++query dispatch. `F` is the number of publish failures, and `Oout` is the size of diagnostics and other emitted output.
+ In the per-target row, and there only, `D` is the number of targets one unit reaches, `S` its source-set size, and `Σ`
+ its resolved scope-set size.
+ 
+@@ -2890,6 +2977,10 @@
+ `(repository, revision)` trees whose fleet links are read (`B <= X · Y`). The implementation MUST preserve repository
+ identity in every index and cache key.
+ 
++For the execution profile of §28, let `Tk` be the run's tasks and `Dk` their precedence edges, `Wn` the worker nodes,
++`Po` the packages whose outputs some other task consumes, and `Lr` the coordination refs alive in one transport
++repository.
++
+ | Phase                      | Literal transcription | Achievable            | Note                                        |
+ |----------------------------|-----------------------|-----------------------|---------------------------------------------|
+ | Load workspace (§13.1)     | `O(P + E)`            | `O(P + E)`            |                                             |
+@@ -2907,11 +2998,17 @@
+ | Versions/plan (§13.9–10)   | repeated member/record scans | `O(P + I + Z + Oout)` | Consume already-built aggregates/provenance; scan each disjoint version group once |
+ | Publish order (§19.2)      | `O(P² + E)`           | `O(E + P log P)`      | Scanning the ready set for the least name; a comparison heap instead |
+ | Blocking closure (§19.3)   | **`O(P · (P + E))`**  | `O(P + E)` per run    | A walk per planned package; one multi-source reverse traversal instead |
++| Build readiness (§19.2a)   | `O(P · (P + E))`      | `O(P + E)`            | A search per building pair through the packages between them; a pass-through node per package that does not build, or one memoised visit per package, instead. At most two task edges per dependency edge survive transitive reduction |
+ | Polyrepository snapshots (§27) | repeated control scans | `O(G + sum(Hq + Aq))` input walk | Index control gitlinks once; walk each source snapshot once |
+ | Polyrepository windows (§27) | `O(P · sum(Hq + Aq))` | `O(sum((Hq + Aq) · bw(mq)) + Iw)` | One marker pass per repository; `O(sum(Kq · (Hq + Aq)) + Iw)` with a walk per boundary |
+ | Publication input closure (§27.2) | `O(P · (P + E + V))` | `O((P + E + V) · ceil(Q / wordSize))` | Condense the augmented graph, then one bitset union per edge |
+ | Link evidence (§27.11)     | `O(X · (Q + Y))`, `X · Y` tree reads | `O(Q + X · Y)`, `B` tree reads | Root the link tree once; read each `(repository, revision)` tree once |
+ | Link settlement (§27.11)   | one commit per route hop | one commit per recording repository | Merge a package's routes into one tree: at most `Q - 1` commits, 2 in a star |
++| Record comparison (§13.2)  | `O(T)` per repository | `O(T)` per repository | One inventory read under the lock; one ancestry question per record the input lacks |
++| Task graph and readiness (§28.3) | `O(Tk · (Tk + Dk))` | `O(Tk + Dk)` | Rescanning every task after each completion; indegree counters decrement each successor once |
++| Placement (§28.2)          | `O(Tk · Wn)`          | `O(Tk · Wn)`          | `Wn` is small; a free list per compatibility class removes the scan and is rarely worth its bookkeeping |
++| Output transfer (§28.5)    | up to `Tk · Po` transfers | at most `Po · Wn` transfers | One per distinct `(output set, node)`, not one per consumer task; verified bytes are not fetched again |
++| Coordination polling (§28.4) | `O(Lr)` refs per tick | refs addressed to the polling node per tick | The branch-name prefix routes; one fetch per changed tip; refs of dead runs tax every tick until removed |
+ 
+ The bold rows highlight common multiplicative costs; corrections, cancellation, provenance and retained indexes can
+ also dominate. Each must be charged even when its final result is empty. Window classes safely share history reachability work. Propagation traversal is reusable
+@@ -3083,12 +3180,15 @@
+ an `O(D · (S + Σ))` one, and the unit where that bites is precisely the one an author reaches for when they mean it: a
+ `^^` across a wide scope-set has a large `D`, and re-deriving a two-element channel set thousands of times to answer a
+ question whose inputs never changed is pure waste. Hoisting is not an optimisation to be justified by profiling; it is
+-what the predicate's own dependency structure already says (§9.3a). The inherited origin channel in phase 1 is
+-likewise memoized once per unit when first needed. Deferring it until an admitted target needs it avoids emitting
+-diagnostics from an otherwise unevaluated branch; required diagnostic attribution and order must be preserved.
+-This bound covers the hoisted
+-scope/channel predicates only. Cancellation intersections cost up to `bw(cancels)` per queried target; materialising
+-`prov[d] |= sources` must also charge the source insertions in `Zv`, even when deduplication leaves `Z` unchanged.
++what the predicate's own dependency structure already says (§9.3a). The inherited origin channel in phase 1 is likewise
++memoized once per unit when first needed. Deferring it until an admitted target needs it avoids emitting diagnostics
++from an otherwise unevaluated branch; required diagnostic attribution and order must be preserved. This bound covers the
++hoisted scope/channel predicates only. The delivery test of §13.4a is one window bit for a target that has not released
++past the unit's commit, which is every target in the ordinary case; a target that has costs one ancestry question per
++release of each source past that commit, answered from the marker pass when those releases are markers, and such targets
++exist only after a consumer got ahead of a provider. Cancellation intersections cost up to `bw(cancels)` per queried
++target; materialising `prov[d] |= sources` must also charge the source insertions in `Zv`, even when deduplication
++leaves `Z` unchanged.
+ 
+ The saving compounds with safe traversal caching: caching can reduce the number of graph walks, while hoisting reduces
+ the work in each unit's target loop. Neither subsumes the other, and a wide `^^` unit is the case where both can help.
+@@ -3167,6 +3267,42 @@
+ instance requires that representation or that the complete planner is jointly time- and space-optimal. Correction,
+ reachability, scope and cache choices retain input-dependent tradeoffs.
+ 
++**Build readiness: what a weaker relation can and cannot buy.** Let `b_i` and `p_i` be the build and publication
++durations of package `i`, and let every slot be free. A run then lasts as long as the longest path of the task graph
++of §19.2a, and a weaker relation never lengthens it, because its constraints are a subset of the stronger one's. On a
++chain of `n` packages, each consuming the one before it, under one relation throughout: `publish` gives
++`sum(b_i + p_i)`; `build` gives the greatest over `k` of `b_1 + … + b_k + p_k + … + p_n`; `none` gives the greatest
++over `k` of `b_k + p_k + … + p_n`. With equal durations these are `n · (b + p)`, `max(n · b + p, b + n · p)` and
++`b + n · p`: `build` saves `(n - 1) · min(b, p)` over `publish`, and `none` saves a further `(n - 1) · (b - p)`, and
++only where builds outlast publications. For one provider `0` and consumers `i` the three are
++`b_0 + p_0 + max(b_i + p_i)`, `b_0 + max(max(b_i, p_0) + p_i)` and `max(max(b_i, b_0 + p_0) + p_i)`. For providers `i`
++of one consumer `c` they are `max(b_i + p_i) + b_c + p_c`, `max(max(b_i) + b_c, max(b_i + p_i)) + p_c` and
++`max(b_c, max(b_i + p_i)) + p_c`. Where one owner's publications are serialized (§27.2, §28.6) in the order `1 … n`,
++every relation gives the greatest over `k` of `e_k + p_k + … + p_n`, with `e_k` the instant the build of `k` ends: the
++floor is `sum(p_i)` whatever the relation, and a weaker relation only lowers the `e_k`.
++
++Under budgets of `m_b` build slots and `m_p` publication slots, write `Wb = sum(b_i)`, `Wp = sum(p_i)` and `L` for the
++longest path. No schedule beats `max(L, Wb / m_b, Wp / m_p)`. A placement that never idles a slot of a stage while a
++task of that stage is ready finishes within `L + Wb / m_b + Wp / m_p`, because at every instant either a task of one
++fixed chain is running or the stage that chain waits for has every slot busy; that is within three times the best
++possible, and it is not claimed tight for this shape of graph. The unlimited-slot result does not carry over: under
++budgets a weaker relation can lengthen such a schedule, although never the best one. With two build slots and one
++publication slot, packages `(b, p) = (2, 3)`, `(1, 2)` consuming the first, and an unrelated `(8, 3)` finish at 11
++under `build` and at 12 under `none`, because the consumer's early build takes the slot the long build would have had.
++This is Graham's scheduling anomaly, and it is why §19.2a promises a happens-before relation and no duration.
++
++**Distributed execution: what placement can and cannot buy.** Let `Wk` be the summed duration of a run's command
++tasks, `Lk` the duration of its longest precedence chain, and `s` the task slots usable at once, the lesser of the
++summed node capacities and the applicable run-wide stage limits. No schedule finishes before `max(Lk, Wk / s)`. A
++placement that never leaves a usable slot idle while a compatible task is ready finishes within
++`Wk / s + (1 - 1/s) · Lk`, which is at most `(2 - 1/s)` times the best possible, when slots are interchangeable and
++transfers cost nothing; this is Graham's bound for list scheduling under precedence constraints. Neither premise holds
++in general: nodes differ in platform and speed, and an output transfer delays the consumer it feeds. This section
++therefore states no bound once transfers count, and the measurement §28.7 requires stands in its place. The inequality
++still says what to expect. On a chain `Lk = Wk` and no number of nodes helps. Beyond `s = Wk / Lk` the chain and not
++the pool is the limit: the best possible time is `Lk`, and more nodes can only close the gap between a greedy schedule
++and `Lk`, which is below a factor of two.
++
+ **What none of this may change.** These are all internal representations. The plan, the diagnostics, and their order
+ MUST be identical to the literal reading (§17.2), and an implementation that trades a different plan for speed does not
+ conform however fast it is. Determinism in particular forbids introducing parallelism whose scheduling affects iteration
+@@ -3184,11 +3320,11 @@
+ ## 14. Configuration
+ 
+ CCME 3 additionally defines `vcs` (§25), explicit rollback activation plus package/space handler declarations (§26),
+-the optional polyrepository Git profile (§27), and optional distributed execution (§28). External VCS adapters,
+-rollback and distributed execution remain future engine contracts; implementing one profile does not implement the
+-others. Omitting `vcs` selects Git. Omitting rollback execution enablement never authorizes withdrawal. Omitting all
+-§27 activation inputs preserves the single-history model. Section 28.2 defines prospective `execution` settings,
+-not current dispat CLI options: the default role is orchestrator, and an empty worker list preserves local execution.
++the optional polyrepository Git profile (§27), and optional distributed execution (§28). External VCS adapters and
++rollback remain future engine contracts; implementing one profile does not implement the others. Omitting `vcs`
++selects Git. Omitting rollback execution enablement never authorizes withdrawal. Omitting all §27 activation inputs
++preserves the single-history model. Section 28.2 defines the `execution` node settings: the default role is
++orchestrator, and an empty worker list preserves local execution.
+ 
+ Defaults are chosen so that an unconfigured repository behaves conservatively and predictably.
+ 
+@@ -3454,6 +3590,7 @@
+ | 74  | `0.4.1` with a breaking change, `preserveMajorZero: true`              | `0.5.0`.                                                                                                                                                  |
+ | 75  | Untagged package with a breaking change                                | `initialVersion` (`0.1.0`), not `1.0.0`.                                                                                                                  |
+ | 76  | Shallow clone missing tags or ancestry                                 | The engine MUST detect a shallow repository and fail with `E196` rather than compute from partial history.                                                |
++| 76a | Complete history, but the checkout lacks release records the authoritative store holds (a clone made without tags, or made before another run recorded) | A write-capable run MUST detect this under its lock and fail with `E196` before any build or publication (§13.2). Planning the package as unreleased republishes a released version. |
+ | 77  | Squash-merged PR containing many units                                 | Parsed as a multi-unit message; the primary reason the separator exists.                                                                                 |
+ | 78  | Commit reachable by two merge paths                                    | Counted once (§13.3).                                                                                                                                     |
+ | 79  | Empty commit (`--allow-empty`) carrying only directives                | Fully supported; this is the normal shape of a `release` or `cancel` commit.                                                                              |
+@@ -3667,13 +3804,14 @@
+ | `E181` | Channel name contains uppercase or illegal characters, or is outside `channels.allowed`. Applies to both sides of a transition.                                                                           |
+ | `E182` | Existing prerelease tag uses a non-numeric counter (§15.5 #64). Repository-scoped; no offending unit.                                                                                                     |
+ | `E185` | Graduation would not increase the version (§11.5). Repository-scoped; reachable from hand-edited tags or a pinned train.                                                                                               |
+-| `E191` | Two reachable tags carry the same version for one package on different commits.                                                                                                                           |
++| `E191` | Two reachable tags carry the same version for one package on different commits, or the authoritative store records a version on another commit than the checkout a write-capable run plans from (§13.2). |
+ | `E195` | Computed version not greater than baseline.                                                                                                                                                               |
+-| `E196` | Repository is shallow or grafted; history is incomplete.                                                                                                                                                  |
++| `E196` | Repository is shallow or grafted; history is incomplete. Also a write-capable run whose checkout lacks a reachable release record the authoritative store holds (§13.2).                                  |
+ | `E197` | Publish order violation: a package was published before a workspace dependency also in this run's plan (§19.2). Run-scoped.                                                                               |
+ | `E198` | The registry already holds this version and its identity could not be verified as this run's artefact (§19.4). Run-scoped.                                                                                |
+ | `E199` | Fixed-point exhaustion failed: a non-held plan repeated without discharge or has no permitted state-change explanation (§19.6). Run-scoped.                                                                                                       |
+ | `E200` | The dependency graph contains a cycle over runtime edge kinds (§13.1). Repository-scoped; names the members.                                                                                              |
++| `E201` | A package was released, or would be released, at the baseline commit of a consumer it still owes without that consumer releasing after it in the same run (§19.3). Run-scoped; names the pair. |
+ | `E210` | A correction targets a commit that is unknown, unreachable, or not a proper ancestor of the correction's own commit (§7.4.2).                                                                             |
+ | `E211` | A correction's unit selector is out of range, or a bare sha names a multi-unit commit (§7.4.1).                                                                                                           |
+ | `E212` | A correction targets a control unit (§7.4.2).                                                                                                                                                             |
+@@ -3750,7 +3888,7 @@
+ 
+ ### 17.1 What a conforming implementation must do
+ 
+-An implementation conforms to CCME 3.1.0-rc.1 if and only if it:
++An implementation conforms to CCME 3.1.0-rc.2 if and only if it:
+ 
+ 1. Parses messages per §4 and §5, producing exactly the units, scopes, and directives those sections define.
+ 2. Resolves scopes per §6, including file-derived resolution (§6.2).
+@@ -3785,8 +3923,9 @@
+ 
+ Distributed execution (§28) is a separate **optional conformance profile**. An implementation advertising it MUST
+ satisfy every §28 rule and vector across all three history modes, including transfer and reuse of actual dependent
+-build outputs. Remote command dispatch alone is insufficient. This profile is unimplemented; its vectors specify
+-required behavior and are not executed test results or measured speedups.
++build outputs. Remote command dispatch alone is insufficient. The vectors specify required behavior, not measured
++speedups; an implementation that meets some of them and not others MUST say which (§17.3), as
++[DESIGN-HISTORY.md](./DESIGN-HISTORY.md) does for the dispat engine.
+ 
+ A CCME 2 parser or an engine implementing only the ordinary forward-release projection MUST identify that narrower
+ support and MUST NOT claim full CCME 3 conformance. Specification publication, prose examples, and static protocol
+@@ -3831,7 +3970,7 @@
+ 
+ ### 17.3 Versioning of this specification
+ 
+-This document is CCME **3.1.0-rc.1** and is itself versioned under SemVer:
++This document is CCME **3.1.0-rc.2** and is itself versioned under SemVer:
+ 
+ * **Patch**: clarifications and editorial fixes that cannot change any release plan.
+ * **Minor**: backward-compatible types, footers, inline sigils, diagnostics or configuration keys that preserve existing execution semantics. A 1.x implementation MUST
+@@ -3846,7 +3985,7 @@
+ The activation boundary prevents an engine upgrade from silently executing old rollback-shaped messages.
+ An optional execution profile that preserves the previous plan exactly when omitted is a minor addition; §27 is such a
+ profile. Section 28 is also optional: its task transport and execution obligations apply only to implementations
+-advertising that profile and preserve the semantic plan. Adding this draft does not itself stamp a new version;
++advertising that profile and preserve the semantic plan. Adding the profile does not itself stamp a new version;
+ the specification release process owns the version declarations.
+ 
+ The escape hatches that make minor versions safe are `W140` and `W150`. Implementations MUST NOT convert either into an
+@@ -3988,6 +4127,10 @@
+   makes the version unrecoverable, since §13.3 will treat it as released.
+ * Tags MUST be created **immediately** after that package publishes, not batched to the end of the run (§19.3).
+ * Tags SHOULD be annotated, and MUST NOT be moved or deleted once pushed.
++* A release tag is created, never replaced. Writing it to the authoritative store MUST fail when the store already
++  holds that tag name, unless the stored tag names the same commit for the same package and version, which is the retry
++  of an uncertain write (§19.4). A forced ref update MUST NOT be used for a release tag. A ref an implementation moves
++  by design is not a release record and is outside this rule.
+ * For a package whose target is a private or internal registry, all of the above applies unchanged: it is published
+   there first, then tagged.
+ * For a package whose target is `none` there is no publish step, so there is nothing to wait for: the tag is written
+@@ -4030,29 +4173,91 @@
+ its own unrelated `feat` still resolves its dependency at install time (vector 80a). An `E197` that fires only for
+ propagated pairs is under-reporting.
+ 
++### 19.2a Build readiness
++
++§19.2 orders publication. An engine that also runs the packages' builds has a second question for every edge `C → P`
++between two packages that build in this run: what `C`'s build reads of `P`. The answer is a declared property of the
++edge, its **build readiness relation**, with three values named for what `C`'s build waits for:
++
++| Relation  | `C`'s build reads                                                      | `C`'s build starts after              |
++|-----------|------------------------------------------------------------------------|---------------------------------------|
++| `publish` | `P` as an installer resolves it: the published artefact and its record | `P` is published and recorded (§19.1) |
++| `build`   | what `P`'s build leaves in the workspace                               | `P`'s build has succeeded             |
++| `none`    | nothing that `P`'s build or publication produces in this run           | nothing of `P`                        |
++
++`C`'s build here includes every preparation step of `C` that can read the provider, lockfile regeneration in
++particular. Manifest reconciliation (§19.5) reads planned versions only and waits for nothing.
++
++The values are ordered `none < build < publish`, and each precondition implies the one before it, because a package
++builds before it publishes. Under all three, `P` publishes before `C` does: §19.2 is unchanged, is not a fourth value,
++and cannot be declared away. `none` therefore means build in parallel and publish in order, which is the relation of a
++deployment order: infrastructure before the application that runs on it, a schema before the service that reads it.
++
++* **Declared, never inferred.** `none` states that `C`'s build reads nothing of `P`, and an engine cannot check that. It
++  MUST NOT infer `none` and MUST NOT make it a default. A consumer whose preparation resolves the provider from a
++  registry needs `publish`; one that reads the provider's workspace output needs `build`. An implementation documents
++  where the relation is declared and what its default is.
++* **Policy, not plan.** The relation is execution policy. It never changes which packages release or at which versions,
++  it is no part of the input of §13 or of a plan digest, and two runs of one plan under different relations record the
++  same releases when every task succeeds. Under §28 it travels with the run's resolved configuration, and a node's own
++  settings MUST NOT change it.
++* **Ordered over the whole graph.** Build order, like publication order, is taken over the whole graph and then
++  restricted to the packages that build. For two packages `C` and `P` that build in this run, a path from `C` to `P`
++  with no `none` edge on it places `P`'s build before `C`'s, whether or not the packages between them are in the plan,
++  because `C` can read `P` through them. A `none` edge ends the constraint of every path through it: beyond it nothing
++  is read. Either a pass-through node for each package that does not build, or a memoised index of the nearest building
++  packages each package reaches without a `none` edge, keeps this at `O(P + E)`; a search per pair does not.
++* **No new cycle.** Every build constraint runs along a dependency path and every package builds before it publishes,
++  so the task graph stays acyclic for every choice of relations, and weakening a relation only removes constraints.
++  `E197` cannot arise from a relation, because the publication order does not depend on it.
++* **Failure is §19.3's.** Under `build` and `none`, `C` may be prepared and built against `P`'s planned version
++  (§19.5) before the outcome of `P`'s publication is known. That is sound because §19.3 then either blocks `C` or, where
++  `C` has a cause of its own, reconciles its manifest to `P`'s published version before `C` publishes and leaves `P`'s
++  contribution owed (§13.4a): a manifest naming a version that was never published is never published itself. A build
++  that embedded the planned version is rebuilt, or `C` is blocked; a build finished for a blocked consumer confers
++  nothing. It is not published, discharges no obligation, and the next run builds again or reuses it under the identity
++  rules of §28.5. Restoring the working tree of a blocked consumer is the implementation's business.
++* **Under §28.** A `build` edge is the local-output dependency of §28.5 and a `publish` edge its registry-availability
++  edge. A `none` edge carries no output into the consumer's build task; the requirement that task inputs include every
++  build dependency is met because the declaration says there is none. `C`'s publication task runs after `P`'s
++  publication and MAY read what that publication exported.
++
++§13.11 gives the run durations the three values lead to, and what no value promises.
++
+ ### 19.3 Partial failure
+ 
+ A run that publishes several packages MAY fail partway. Implementations MUST:
+ 
+ * tag each package immediately after that package publishes, so a partial run leaves a consistent, resumable state;
+ * on a failure, **block** every package in the plan that transitively depends on the failed one over
+-  `publish.blockingKinds`, marking each `W194`, and not attempt it. The closure is computed over the **full** workspace
+-  graph, so it traverses packages that are not in the plan: a package with no bump this run is still a path from a
+-  dependent to a failed dependency;
+-* continue publishing packages that are not blocked: an unrelated subtree has no reason to be punished for another's
+-  failure;
++  `publish.blockingKinds` and has no cause of its own, marking each `W194`, and not attempt it. The closure is computed
++  over the **full** workspace graph, so it traverses packages that are not in the plan: a package with no bump this run
++  is still a path from a dependent to a failed dependency. A cause of its own is a fresh direct bump, a channel change,
++  or a contribution from a provider that is neither failed nor blocked, including one that published in an earlier run;
++  a dependent with one **proceeds**, its manifests reconciled to what its providers have published (§19.5), and what the
++  failed provider owed it stays owed (§13.4a) and arrives as a catch-up when that provider publishes; * continue
++  publishing packages that are not blocked: an unrelated subtree has no reason to be punished for another's failure; *
++  not release a package at the baseline commit of a consumer it still owes (§13.4a) unless that consumer is in the plan
++  and is published after it in this run. Two releases on one commit cannot be ordered afterwards, so a consumer that sat
++  the run out, held, deselected or excluded by any other means, would read as served and stay on the old version with
++  nothing left to detect it. Such a run is refused with `E201` before any publication, naming the pair; the remedy is to
++  release the consumer in the same run, or the provider at a later commit, where the debt stays visible (§13.3). If the
++  consumer is published after the provider and fails, the same state arises, and `E201` reports it with its remedy: an
++  explicit `Release-As: <version>` on the consumer (§8.6), because no later plan can compute the debt;
+ * report a completion summary naming what published, what failed, and what was blocked, and exit non-zero;
+ * on re-run, recompute from tags. Packages already tagged fall out of the plan by §13.6; packages that failed or were
+-  blocked remain candidates by §13.4a. Their versions remain unchanged only under G3's stated hypotheses; channel or
++  blocked remain candidates by §13.4a, and a dependent that proceeded returns as a catch-up (`W193`) once the failed
++  provider publishes. Their versions remain unchanged only under G3's stated hypotheses; channel or
+   source-set changes MUST appear in the recomputed plan.
+ 
+ ```
+ run(plan):
+     published, failed, blocked = {}, {}, {}
+     for P in publishOrder(plan, graph):            # a flat sequence, §19.2
+-        if transitiveBlockingDeps(P, graph) & failed:   # full graph, §19.3
++        bad = transitiveBlockingDeps(P, graph) & (failed | blocked)   # full graph, §19.3
++        if bad and ownCauses(P, plan, bad) is empty:
+             blocked[P] = W194; continue
+-        reconcileRanges(P)                         # §9.4
++        reconcileRanges(P, published)              # §9.4, §19.5: providers as published by now
+         try:
+             if publishTarget(P) != none:           # §13.10a
+                 publishTo(publishTarget(P), P, plan[P].version)   # or adopt, §19.4
+@@ -4099,14 +4304,16 @@
+ ### 19.5 Manifest writes
+ 
+ Per §9.4, each released package's manifest MUST be updated so that no released package declares a range excluding the
+-version each workspace dependency will carry **at the end of this run**, that is, its **planned** version if it is in
+-this run's plan, and its current baseline otherwise (`W197` for the latter when the baseline came from an earlier run).
++version each workspace dependency **has published** by the time the package is reconciled: its **planned** version when
++it is in this run's plan and published, and its current baseline otherwise (`W197` when that baseline came from an
++earlier run). A dependency that is in the plan but failed or was blocked has published nothing new: a dependent that
++proceeds past it (§19.3) is reconciled to the baseline, and `W193` follows when the dependency publishes.
+ 
+ Because the graph is acyclic (§13.1) and §19.2 publishes every dependency before its dependents, the planned version and
+-the currently-published one coincide at the moment each package is reconciled. Stating the rule in terms of the
+-**planned** version is nonetheless the better formulation: it is order-independent, so reconciliation can be computed
+-once up front and audited against the plan, and it does not silently become wrong if an implementation's publish order
+-is ever perturbed.
++the published one coincide at the moment each package is reconciled whenever the dependency published. Reconciliation
++MAY therefore be computed once up front from the plan and corrected, before the dependent's publish, only for the
++providers that did not publish; a manifest naming a version that was never published MUST NOT be published, whatever
++was computed up front.
+ 
+ These writes are part of the publish step, not the plan, and MUST NOT be committed back in a way that creates a release
+ loop, that is, a bot commit that itself parses as a bump-producing unit. Bot commits SHOULD use a type mapped to `none`, and
+@@ -5125,6 +5332,48 @@
+ configuration: any package that merely has no bump in this run sits in exactly the position `ui` occupies here, which
+ makes this the most commonly hit vector in B.7.
+ 
++**Vector 80b**: the three build readiness relations on one edge (§19.2a). `api → core`, both in the plan, for an
++engine that runs builds.
++
++| Relation of `api → core` | `api`'s build may start                  | `api` publishes      |
++|--------------------------|------------------------------------------|----------------------|
++| `publish`                | after `core` is published and tagged     | after `core` does    |
++| `build`                  | after `core`'s build has succeeded       | after `core` does    |
++| `none`                   | at once, beside `core`'s build           | after `core` does    |
++
++→ The plan, its versions and its publication order are identical in all three rows. If `core`'s publication fails and
++`api` has no cause of its own, `api` is **blocked** (`W194`) in all three, including the `none` row where `api`'s
++build has already finished: that build is not published and discharges nothing. If `api` has a fresh bump of its own
++it **proceeds** in all three, its manifest naming `core`'s published baseline, and is owed `core`'s contribution until
++`core` publishes (vector 80d). An engine that treats `none` as permission to publish `api` first, or that infers
++`none` for an edge nobody declared it on, fails conformance.
++
++**Vector 80c**: build order through a package that does not build. `app → ui → core`; `app` and `core` build in this
++run and `ui` does not.
++
++| `app → ui` | `ui → core` | Build constraint between `app` and `core`            |
++|------------|-------------|------------------------------------------------------|
++| `build`    | `build`     | `core`'s build before `app`'s                        |
++| `build`    | `none`      | none: `ui`'s build reads nothing of `core`           |
++| `none`     | `build`     | none: `app`'s build reads nothing of `ui`            |
++
++→ In every row `core` publishes before `app` (§19.2, vector 80a). Adding build edges only between a package and its
++direct providers in the plan loses the first row, exactly as inducing the publish graph on the plan loses vector 80a.
++
++**Vector 80d**: a consumer proceeds past its failed provider. One commit `C1` carries two units, `feat(core)^: x` and
++`feat(cli): y`; `cli` consumes `core`. Run 1: `core@1.5.0` fails to publish; `cli` has a cause of its own and
++**proceeds** at its planned `2.1.0`, its manifest naming `core`'s baseline `1.4.0`, and is tagged at `HEAD`.
++
++→ Run 2 plans `core@1.5.0` and, because `core` has not delivered `C1` to `cli` (§13.4a), `cli@2.1.1` as a propagated
++release ordered after `core` and blocked if `core` fails again; it is a catch-up (`W193`) only when `core` published in
++a run `cli` sat out. Once both are tagged, `cli`'s baseline reaches `core`'s release carrying `C1` and nothing is owed.
++Two implementations fail here: one that never plans `cli` again because it released past `C1`, leaving it on
++`core@1.4.0` for ever with no diagnostic; and one that let `cli` publish in run 1 naming `core@1.5.0`, a version that
++did not exist. Two more cases: run 2 at `cli`'s own release commit with `cli` held or left out of the run is refused
++with `E201` before `core` publishes, because after both tags sat on one commit nothing could tell that `cli` came first;
++and `core` published at a later commit in a run `cli` sat out leaves `C1` in `cli`'s owed window (§13.3), so the next
++run plans `cli`'s catch-up.
++
+ **Vector 81**: suppressing a catch-up from the consumer. `C1`: `feat(core)^: x`; run 1 publishes `core@1.5.0` and fails
+ on `cli`. Then a new commit `C2` lands.
+ 
+@@ -5164,6 +5413,14 @@
+ → `cli` receives `patch` (from `C1`, which `core` published) and **not** `minor` from `C3`, which it has not. One
+ package, one hold, two opposite answers, decided per unit by whether `core` released it.
+ 
++**Vector 82c**: a consumer gets ahead of a held provider. `C1`: `feat(core)^: x`; `C2`: `release(core)` +
++`Release-As: none`; `C3`: `fix(cli): y`. Run 1 releases `cli@2.0.1` on its own cause, `core` held, `cli`'s manifest
++naming `core@1.4.0`. `C4`: `release(core)` + `Release-As: auto`.
++
++→ Run 2 releases `core@1.5.0` and `cli@2.0.2` as a catch-up: `core` never delivered `C1` to `cli`, so `cli`'s release
++past `C1` discharged nothing. Together with vector 82b this pins delivery on both sides of a hold: a held source
++propagates nothing (82b), and a target that moved on while it was held is still owed the release (82c).
++
+ ### B.7a Optimisation equivalence
+ 
+ These exist because §13.11 permits a conforming implementation to compute the plan by a faster route. Each is a case
+@@ -6328,8 +6585,14 @@
+ behavior.
+ 
+ Every operation that can hold more than one fleet or worktree lock MUST use one stable total order over the lock
+-resource identities and release them in reverse order. Per-worktree mutation locks cover only the complete native Git
+-transaction that reads, commits, tags, pushes, or checkpoints the affected repositories. Hooks and arbitrary scripts
++resource identities and release them in reverse order. An acquisition that waits for a held lock needs the order to be
++free of deadlock. One that fails instead, releasing what it took, cannot deadlock under any order and needs the order
++for progress: the lock a run stopped at sorts after every lock it held, so among contending runs the chain of who
++stopped whom never closes, and one of them acquires its whole set. The guarantee reaches only runs that spell the
++contended identities alike. Two control repositories that name one source differently may order it differently, and
++both runs can then fail; that is lost progress, never lost exclusion, because each repository's lock is still one lock.
++Per-worktree mutation locks cover only the complete native Git transaction that reads, commits, tags, pushes, or
++checkpoints the affected repositories. Hooks and arbitrary scripts
+ run outside those mutation locks; their changes remain subject to the fixed-input checks of §27.2.
+ 
+ No rollback is inferred after a partial publish. Record every success that can still be recorded, stop dependent work,
+@@ -6381,8 +6644,12 @@
+ repository that has a next hop in it, not once per route. A package therefore settles with at most `Q - 1` commits,
+ and with at most `Y` when it reads one repository. Both topologies of §27.11 use `Q - 1` links, the fewest that join
+ `Q` peers and the only count at which every route is unique. They differ in `Y`: a star bounds every route at two hops
+-and every settlement at two commits, while another tree can reach `Q - 1` of each. A pin that already records the
+-revision to settle costs no commit, so consecutive packages of one repository that read unchanged peers settle once.
++and every settlement at two commits, while another tree can reach `Q - 1` of each. A minimal proposal that joins group
++centres (§27.11) has the least `Y` any proposal keeping the existing links can have. For the groups an engine can see,
++one linked group and unlinked identities, that is the group's own longest route `d`, against `d + 1` when an identity
++is linked to an end of that route; between two linked groups the difference can reach the sum of their radii. A pin
++that already records the revision to settle costs no commit, so consecutive packages of one repository that read
++unchanged peers settle once.
+ 
+ Publication revalidation has a separate output-sensitive cost. If repository `q` participates in `Jq` fleet or
+ package checks and its relevant tag snapshot contains `Tq` refs, a full-ref implementation performs
+@@ -6617,9 +6884,9 @@
+ remote does not hold yet. Nothing is deleted or rewritten to make a settlement look atomic.
+ 
+ **Locks.** The fleet lock of §27.7 covers every participating peer. The order is the participants' identities sorted
+-by name, with no reserved position for any of them, and the locks are released in reverse. The settlement of one
+-package takes the publish lanes of every repository on its route in that same name order and gives back all but the
+-consumer's own before publication begins, which is what keeps two consumers with overlapping routes from waiting on
++byte-wise by name, with no reserved position for any of them, and the locks are released in reverse. The settlement of
++one package takes the publish lanes of every repository on its route in that same name order and gives back all but
++the consumer's own before publication begins, which is what keeps two consumers with overlapping routes from waiting on
+ each other. An unsafe lock bypass stated in a configuration disables the lock of the repository stating it and no
+ other, because one peer cannot decide another peer's safety; an environment kill switch is the invocation's and
+ applies to every repository it releases. `W331` names the repositories releasing without a lock.
+@@ -6634,6 +6901,23 @@
+ **Configuration computation.** `compute --topology minimal` is the default. It MUST preserve existing links and MAY
+ propose the fewest additional links that connect every identity the rosters name, the half of a link only one of its
+ two repositories declares, the checkouts a declared link lacks, and roster entries a participant has not heard of.
++Every such proposal adds the same number of links, one fewer than the number of groups the existing links leave the
++fleet in, so the count does not choose between them; the longest route `Y` does, and §27.9 charges link evidence and
++settlement by it. Among the proposals with the fewest links the computation SHOULD choose one with the least `Y`: take
++a centre of each group, a repository whose farthest group member is nearest, and link the centre of every other group
++to the centre of the group with the greatest radius. With radii `r1 >= r2 >= r3` and `d` the longest route inside any
++group, the result has `Y = max(d, r1 + r2 + 1, r2 + r3 + 2)`, no proposal has less, and the computation is `O(Q)`.
++Ties, between the two centres a group can have and between groups of equal radius, go to the identity that sorts first
++under case folding, so two computations over one fleet propose the same links. A fleet with no links yet has every
++radius zero and receives a star on its first identity.
++
++An engine learns links only from the repositories it composed, and composition follows links from the entry. The groups
++it can see are therefore the entry's group and the identities no composed repository links, each a group of one, and
++the rule reduces to linking each such identity to a centre of the entry's group. That keeps `Y` at the group's own
++longest route, where linking the identity to an end of that route adds a hop. A link is written in a composed end.
++Where no centre of the group is composed, the computation uses the composed member nearest a centre, ties again to the
++identity that sorts first under case folding, and the least `Y` is then not guaranteed; where no end is composed, it
++proposes what it can write and reports the rest.
+ `compute --topology star` MUST propose a direct link from every peer to the entry repository. It is valid only for an
+ identity-linked fleet and MUST fail when existing links are incompatible with that shape. Both modes retain the same
+ repository-local policy and record ownership. Their proposed set MUST be a tree over the fleet, so it never creates
+@@ -6721,14 +7005,18 @@
+ 29. Consumers owned by `web` and by `api` have the same boundary `S0` in `sdk`. **One immutable window over `sdk` may
+     serve both.** A window is keyed by the repository it ranges over and the boundary revision, not by the owner of
+     the package that reads it; two boundaries that differ remain two windows.
++30. Composed repositories `a`, `b`, `c`, `d`, `e` are linked in a chain in that order, and the roster also names `z`,
++    which nothing links. `--topology minimal` **proposes exactly one link, and SHOULD propose the one between `c` and
++    `z`**, which leaves the longest route at 4. Proposing the link between `a` and `z` is conforming and makes it 5;
++    proposing two links, or a link between two members of the chain, is not.
+ 
+ ---
+ 
+ ## 28. Distributed task and release execution
+ 
+-This is an **optional execution profile**, independent of the history-selection modes in §27. It is a
+-specification contract, not a claim that dispat implements distributed execution. No message syntax changes,
+-implemented speedup, or executed distributed conformance results are asserted here. Git is REQUIRED for the
++This is an **optional execution profile**, independent of the history-selection modes in §27. It changes no message
++syntax and asserts no speedup; what the dispat engine implements of it, and where that engine departs from it, is
++stated by date in [DESIGN-HISTORY.md](./DESIGN-HISTORY.md), not here. Git is REQUIRED for the
+ source/result transport defined by this profile; external VCS adapter support does not imply support for it.
+ Omitting worker links preserves local execution. Implementations advertising this profile MUST satisfy all
+ of its safety, output-transfer and conformance requirements, not only remote command dispatch.
+@@ -6739,8 +7027,11 @@
+ configuration schema. It is distinct from a repository peer. One repository
+ may have work on several nodes; one node may work on several repositories.
+ 
+-Every node MUST support both roles. The default role is **orchestrator**; an
+-explicit **worker** role MUST refuse release initiation, including indirect
++Every node MUST support both roles, and one engine provides both. Serving
++delegated tasks MAY be a distinct invocation or process of that same engine,
++for example a long-running serving command; no separate worker product and no
++second configuration format is required. The default role is **orchestrator**;
++an explicit **worker** role MUST refuse release initiation, including indirect
+ initiation from a delegated hook. A worker executes authorized tasks in an
+ existing run and MUST NOT substitute a locally recomputed plan, acquire competing release
+ ownership, dispatch to another pool, or independently finalize a release.
+@@ -6750,8 +7041,10 @@
+ The orchestrator-role node on which CI starts the release is the run's orchestrator. A CI release
+ invoked on an explicit worker MUST fail before acquiring release locks or forwarding an initiation request.
+ The orchestrator owns repository lock acquisition, the fixed planning input, task allocation, result admission, and
+-release finalization. It MAY execute tasks locally under the same rules.
+-There is one orchestrator per run, not a permanent leader of the repositories.
++release finalization. It MAY execute tasks locally under the same rules: a build it keeps is captured, described,
++signed and admitted exactly as a worker's is, and its consumers receive the same identity for the result, so nothing
++about an output says where it was built. There is one orchestrator per run, not a permanent leader of the
++repositories.
+ 
+ Workers MAY be added to **every history mode**: single history (including a
+ large monorepo), specified histories, or discovered histories. They MUST NOT
+@@ -6761,8 +7054,7 @@
+ 
+ ### 28.2 Configuration and concurrency
+ 
+-The same configuration format and schema MUST serve both roles. The following keys belong to this proposed
+-profile; they are **not current dispat CLI configuration**:
++The same configuration format and schema MUST serve both roles. The following keys belong to this profile:
+ 
+ | Key | Default | Contract |
+ | --- | --- | --- |
+@@ -6776,23 +7068,27 @@
+ Endpoint schemes, protocol framing and credential references are implementation-defined and MUST be documented
+ in this same schema; secrets MUST NOT appear in endpoint URLs, receipts or logs. Node names identify authenticated
+ execution endpoints, not repository peers. A node may serve both capabilities, but each assignment has exactly
+-one authority scope.
++one authority scope. A transport the worker polls, as the Git mailbox of §28.4 is, additionally gives the worker its
++own name and the endpoint it polls; those keys belong to the transport and are documented with it.
+ 
+-Prospective example, not runnable configuration for a published dispat version:
++Example, with the Git mailbox transport of §28.4, where an endpoint is a Git repository the nodes share and
++`secretEnv` names the variable holding the secret the mailbox's messages are authenticated with:
+ 
+ ```yaml
+ execution:
+   role: orchestrator
+   concurrency: 2
++  secretEnv: CCME_EXECUTION_SECRET
+   workers:
+     - name: build-a
+-      endpoint: https://build-a.example.invalid/ccme-execution
++      endpoint: https://git.example.invalid/acme/release-mailbox.git
+     - name: build-b
+-      endpoint: https://build-b.example.invalid/ccme-execution
++      endpoint: https://git.example.invalid/acme/release-mailbox.git
+ ```
+ 
+-The corresponding worker uses the same schema with `execution.role: worker`, its own concurrency limit and
+-no worker links. Package configuration, commands and release policy remain the orchestrator's resolved input.
++The corresponding worker uses the same schema with `execution.role: worker`, its own name, the endpoint it polls, its
++own concurrency limit and no worker links. Package configuration, commands and release policy remain the
++orchestrator's resolved input.
+ Node settings select the role, execution concurrency and worker-node links. A worker needs no worker-specific release graph, package
+ policy, version rules or workflow; it receives the run's resolved configuration.
+ Transport credentials and node authentication are deployment prerequisites,
+@@ -6806,8 +7102,9 @@
+ run-wide stage budgets. Transfer, recording and control work MUST have separately documented bounded capacity;
+ recording still takes its owner's publication lane. An in-flight attempt retains its capacity reservation until
+ completion or acknowledged cancellation, or until execution has been safely fenced. A timeout alone cannot free
+-capacity for a possibly overlapping attempt. Shared
+-workspace writes MUST serialize or use separate task worktrees.
++capacity for a possibly overlapping attempt. Capacity is reserved from the claim: an assignment no node has claimed
++is queued work and not an attempt, holds no capacity, and MAY be withdrawn and offered again without any of the
++above. Shared workspace writes MUST serialize or use separate task worktrees.
+ 
+ The orchestrator MUST validate the effective configuration, protocol/toolchain
+ compatibility and output-transfer capability before dispatch. Worker-local
+@@ -6835,35 +7132,49 @@
+ the bypass described for local peer execution in §27.11. Read-only
+ planning remains lock-free and does not dispatch side effects.
+ 
+-Let `I` contain the fixed repository-qualified heads and complete relevant history, release records, graph,
++Let `input` contain the fixed repository-qualified heads and complete relevant history, release records, graph,
+ resolved semantic configuration and explicit release options, plus the verified withdrawal inventory and
+-receipts required by §§13 and 26. The semantic release plan is the pure function `P = Plan(I)`, including
+-both forward-release and applicable rollback projections. Node placement configuration is not semantic input:
++receipts required by §§13 and 26. Its release records are the authoritative stores' records as compared under the
++locks (§13.2): the orchestrator's checkout is one clone among several, and a plan fixed from records it never fetched
++would be signed, digested and dispatched to every node exactly as a correct one is. The semantic release plan is the
++pure function `plan = Plan(input)`, including both forward-release and applicable rollback projections. Node placement
++configuration is not semantic input:
+ worker count, placement, completion order, wall-clock time, run IDs and transport branch names MUST NOT change
+-`P`. A plan digest MUST use a documented canonical serialization of semantic input and plan content;
++`plan`. A plan digest MUST use a documented canonical serialization of semantic input and plan content;
+ transient execution identity MUST be bound separately. The cost obligations of §13.11 still apply to planning;
+ parallel execution is not evidence that a planner satisfies them. Native records
+ and peer settlement retain their narrowly defined admission under §27; they
+ do not authorize replacing the original planning input with an arbitrary ref.
+ 
+-The orchestrator derives a task DAG from `P`, including required preparation,
++The orchestrator derives a task DAG from `plan`, including required preparation,
+ tests, builds, transfers, publications and recording gates. A task can be placed
+ only on a compatible node and only when its exact prerequisites are available.
+ Independent ready tasks MAY run concurrently. The assignment schedule need not
+ be deterministic; selected packages, versions, commands and dependency semantics
+-MUST remain those of the same fixed plan.
++MUST remain those of the same fixed plan. Where a package's stages may be placed, on the orchestrator, on a worker
++or on either, is execution policy of the package or its space, declared beside the relation of §19.2a and, like it,
++no part of `plan`.
+ 
+-Shared manifest/lockfile reconciliation MUST be one explicit preparation task per affected input state,
+-performed once before the affected builds fan out and producing one admitted prepared input snapshot.
++Every reconciliation that writes a shared manifest or lockfile MUST be an explicit task executed under the
++orchestrator's authority, never implicitly by a worker. Such tasks MUST serialize per shared file, and each
++admitted result is one prepared input state. Builds fan out only from an admitted state, and every build MUST
++bind, in its own manifest, the exact admitted prepared input state it consumed.
+ Workers MUST NOT each regenerate and race to merge a workspace-wide lockfile
+ as an implicit part of otherwise independent package builds. A later required
+-shared mutation creates a new dependency gate and invalidates affected outputs;
+-it MUST NOT force all builds in the repository onto one node when their prepared
+-inputs and output write sets allow independent execution.
++shared mutation creates a new prepared input state rather than mutating one a running build consumes; it
++creates a new dependency gate and invalidates affected outputs, and it MUST NOT force all builds in the
++repository onto one node when their prepared inputs and output write sets allow independent execution.
+ 
+ Each assignment MUST identify the run, plan digest, task, attempt, ownership
+-generation, repository-qualified source object IDs, effective configuration and resolved command environment, toolchain/platform requirements, input receipts,
+-permitted writes and outputs. Secret references are separate from logged or transported public metadata.
++generation, repository-qualified source object IDs, effective configuration and command environment,
++toolchain/platform requirements, input receipts, permitted writes and outputs.
++The ownership generation identifies the exclusion the run holds: under the Git
++release-lock convention it is a value derived from the identities of the lock objects the run holds, for
++example the lock tag object IDs of every participating repository, so that a new acquisition always yields a
++new generation. Secret references are separate from logged or transported public metadata. A command
++environment derived from secret references travels as those references and is resolved on the executing node
++from that node's own environment; resolved secret values MUST NOT be written to transport branches,
++manifests, receipts or logs.
+ Workers MUST authenticate the assigning orchestrator and the assignment's integrity; a matching digest alone
+ is not proof of authority. Nested hooks and commands retain the assigned policy, package-root mapping and
+ worker authority; they MUST NOT rediscover policy or source history from a transport checkout.
+@@ -6874,23 +7185,42 @@
+ 
+ ### 28.4 Git synchronization branches
+ 
+-The orchestrator MUST provision isolated task worktrees and temporary branches
+-named `worker-<date>-<random>`, with a collision-resistant random suffix and
+-atomic creation under `refs/heads/`. The date SHOULD use UTC `YYYYMMDD`; the random suffix MUST provide at
+-least 128 bits of cryptographic randomness. The date is a diagnostic label only. A branch is bound to one
+-run, repository and task attempt; parallel attempts MUST NOT share a mutable
+-branch. The manifest, rather than the branch name, identifies node and task.
++The orchestrator MUST provision isolated task worktrees and temporary coordination branches named
++`dispat-worker-<id>-<workinfo>`, created atomically under `refs/heads/`. `<id>` is the node name of the
++execution link the branch is addressed to. `<workinfo>` is `<date>-<kind>-<random>`: the date SHOULD use UTC
++`YYYYMMDD`, `<kind>` is a short lowercase label of the work (for example `probe`, `build`, `publish`,
++`prepare`, `snapshot` or `relay`), and the random suffix MUST provide at least 128 bits of cryptographic
++randomness. The date and the kind are diagnostic labels only. The name is an untrusted routing hint that lets
++a node list only the branches addressed to it; the authenticated manifest, not the branch name, identifies
++node, run, task and attempt, and a node MUST reject a manifest whose node or branch binding disagrees with
++where it was found. A branch is bound to one run, repository and task attempt; parallel attempts MUST NOT
++share a mutable branch.
+ 
+ Workers synchronize declared source changes and result manifests through these
+ branches. Each acknowledged checkpoint MUST identify an exact full object ID;
+ consumers fetch that object and validate its manifest rather than following a
+-moving branch tip. Ref updates and deletions MUST check the expected previous object ID and attempt ownership. Transport-only
+-credentials MUST NOT authorize a worker to update native release branches, tags or fleet settlement refs.
++moving branch tip. A consumer MAY obtain the object by fetching a ref that advertises it and then resolving
++the exact object ID locally; it MUST then read only from that object ID and never from a ref whose tip can
++still move. A tip a node fetched but could not read or verify has not been seen: the node MUST NOT record it as
++observed, or one transient read failure silently costs the attempt its only reading of that message and, with it,
++the rest of its deadline. Both the orchestrator and the assigned worker MAY advance an attempt's branch. Ref updates and
++deletions MUST check the expected previous object ID and attempt ownership, so that an update racing the
++other party's update fails instead of overwriting it. Transport-only credentials MUST NOT authorize a worker
++to update native release branches, tags or fleet settlement refs.
+ Acknowledged checkpoints MUST remain fetchable until all required consumers have retrieved and verified them.
+ Where concurrency permits several tasks at once, use separate branches/worktrees
+ and admit their results independently as their dependencies become ready.
+ Concurrency one still supports the same protocol in sequence.
+ 
++A source snapshot MAY travel without the history behind it. The assignment names the repository-qualified planned
++head the snapshot was taken from, provenance binds to that revision (below), and a task's commands may not read
++history from a transport checkout (§28.3), so a parentless commit or a bare tree carrying the same bytes serves every
++purpose the snapshot has. A snapshot that descends from the planned head carries, on its first transport to a
++mailbox, every object reachable from that head, which for a large history is the dominant cost of the run and is paid
++again whenever cleanup removed the objects with the refs. A mailbox that already holds the repository's objects, the
++repository's own remote for one, a durable ref the mailbox keeps, or a history-free snapshot each avoid it. An
++implementation states which it does.
++
+ Transport commits MUST NOT be treated as release intent, a pending-window
+ boundary, a successful release, or a §27 native-head admission. They MUST NOT
+ be merged wholesale into a release branch or made ancestors of release tags.
+@@ -6911,8 +7241,8 @@
+ when its effective input state still matches; admitting a head is not permission to ignore changed source
+ bytes. Integrating one task MUST NOT silently alter another task's inputs. Overlapping writes require explicit
+ ordering, revalidation and rebuilding when necessary; a change outside permitted native transitions requires
+-a new plan. Transport branches MUST remain outside the heads, release refs and gitlinks supplied to `Plan(I)`. This is not an automatic merge
+-policy for arbitrary generated files.
++a new plan. Transport branches MUST remain outside the heads, release refs and gitlinks supplied to `Plan(input)`.
++This is not an automatic merge policy for arbitrary generated files.
+ 
+ ### 28.5 Dependent build outputs are first-class inputs
+ 
+@@ -6952,7 +7282,11 @@
+ 
+ On the receiving node the engine materializes the consumer's pinned source,
+ applies its admitted release-file state, restores the provider outputs, and
+-links/installs them according to the declared workspace integration. The
++links/installs them according to the declared workspace integration. An input closure is materialized outermost
++first: where one repository's checkout lies inside another's, as a fleet link's does (§27.11), the enclosing
++repository is placed before the one inside it, so that the inner checkout lands in its place and is not overwritten by
++the outer one. The run's root on a node is a path prefix under which the assigned repositories are placed at their
++run-relative paths; it need not itself be a repository the task received. The
+ integration MUST prevent an install lifecycle from rebuilding already supplied
+ providers implicitly. A raw `node_modules` copy is neither required nor a
+ portable default; native outputs require compatible platforms/toolchains.
+@@ -6960,7 +7294,7 @@
+ new release and build-only edges outside the release propagation kinds. The task graph MUST itself be acyclic;
+ an unschedulable build cycle is an execution-configuration error, not a reason to change release intent or to
+ ignore a required build dependency. Required preparation tasks do not create
+-new release obligations or change `P`.
++new release obligations or change `plan`.
+ 
+ For a local-output dependency where package `B` consumes provider `A` (package edge `B → A` in §2),
+ readiness is the following **task precedence**, whose arrows denote happens-before rather than package edges:
+@@ -6969,7 +7303,10 @@
+ 
+ For a registry-availability edge, readiness still requires the provider's
+ publication and all applicable recording gates; transferring local bytes MUST
+-NOT replace that condition. Transfers to different ready consumers MAY overlap
++NOT replace that condition. These are the `build` and `publish` relations of §19.2a. Under its third relation, `none`,
++the edge carries no output and the two builds are independent tasks; only the publications keep their order. A
++provider a consumer reaches only across `none` edges is no input of that consumer and is not prepared for it.
++Transfers to different ready consumers MAY overlap
+ and identical immutable blobs SHOULD be reused. Implementations SHOULD retain
+ incremental Git objects and verified outputs between assignments, but any cache MUST be dispensable and validated against the complete semantic input identity. Cross-run
+ reuse preserves the original output manifest as provenance and requires a new admission receipt bound to the
+@@ -6987,13 +7324,38 @@
+ create release tags, settle peer links or finalize the fleet. The orchestrator
+ performs those native transactions under the existing ownership/locking rules.
+ 
++Hooks that bracket a delegated stage execute with that stage on the executing node, under that assignment's
++worker authority. Run-level hooks, native recording, hooks that observe a completed publication, failure
++hooks and any restoration of a package's working tree after failure execute under the orchestrator.
++
++Authorization to publish is an explicit, single-use step bound to one task attempt. The orchestrator issues
++it only after the package's `beforePublish` hook has completed on the executing node and after the
++relevant-input and lock-ownership checks of this section, which is how §27.2's revalidation immediately after
++`beforePublish` and before the publish command is preserved when that hook runs on a worker. The publisher
++MUST NOT start its publication command before it has observed that authorization for its own attempt, and an
++authorization already issued MUST NOT be reused by another attempt or for another effect.
++
++An implementation MAY bound an authorization in time. The authorization then states the instant after which the
++publisher MUST NOT start its command, the assignment states the deadline at which the executing node itself ends the
++command and everything it started, and the executing node enforces both without waiting to be told. Under a documented
++bound on clock disagreement between nodes, the later of those two instants plus that bound is then a proof of
++quiescence that needs no reply from the node, which no other rule of this section provides for a node that has become
++unreachable. The bound limits when an effect may begin and how long it may run. It is not an expiry of the release
++lock, which still never lapses by itself (VCS-PROTOCOL.md §4), and it authorizes no automatic takeover.
++
+ The orchestrator MUST retain and verify lock ownership for the lifetime of all
+ authorized effects. Assignments and results are bound to its ownership
+ generation; stale results cannot authorize publication or native recording.
+-After lock loss, no new effect may start. A timed-out worker is not proof its
++After lock loss, no new effect may start: the orchestrator issues no further assignment and no further authorization.
++Recording an effect that was authorized before the loss is not a new effect. It MUST still be attempted, as the
++create-only record of §19.1, because a publication left unrecorded is a wedge the next owner can clear only by
++§19.4, and a create-only record cannot overwrite what a successor wrote. A timed-out worker is not proof its
+ publisher stopped: cancellation must be acknowledged, a fencing mechanism must
+ be enforced where the effect occurs, or the outcome must be reconciled before
+-ownership is safely handed over. A generation field alone does not fence an
++ownership is safely handed over. A cancellation and its acknowledgement MUST state where the attempt was when it
++stopped, and in particular whether the command that performs the effect had started: without that, an attempt
++withdrawn before its command is indistinguishable from one whose outcome is unknown, and the run can never report
++the former as not published. A generation field alone does not fence an
+ arbitrary registry command. No automatic takeover may simply expire ownership
+ and republish while the previous process can still act.
+ 
+@@ -7018,8 +7380,28 @@
+ rewriting successful package outcomes; borrowed nodes' unrelated data is never
+ deleted. Repository locks are released only after authorized operations have quiesced or been safely fenced, then
+ in reverse acquisition order. If that cannot be proved, the run MUST fail and retain or restore exclusion
+-rather than report successful cleanup and permit overlapping effects. A changed ownership generation rejects
+-stale receipts but is not, by itself, an external publication fence.
++rather than report successful cleanup and permit overlapping effects. Such a run ends holding its exclusion and
++holding no record of the package whose outcome it could not establish: the retained lock is a ref and never a
++release record, and the next run treats that package as pending until §19.4 says otherwise. An attempt that was
++never authorized to
++perform an external effect, holding neither publication authorization nor permission to write native refs, is
++safely fenced by revoking its coordination ref: its expected-previous-object-ID updates can no longer succeed.
++Revocation fences an attempt nothing has been admitted from; a branch a result was admitted from is a checkpoint
++its consumers may still need (§28.4) and is removed by cleanup, not by revocation.
++Releasing repository locks need not await such an attempt's acknowledgement. An authorized publisher is not
++fenced this way and still requires acknowledged cancellation, an effective fence where the effect occurs, or
++reconciliation. A changed ownership generation rejects stale receipts but is not, by itself, an external
++publication fence.
++
++A run that ended without releasing its locks leaves them for an operator (VCS-PROTOCOL.md §4), and the operator needs
++the same proof of quiescence the run would have needed. Synchronization state is not a recovery ledger for releases,
++but it is the evidence for this one question: an attempt whose coordination branch carries a publication authorization
++and no terminal result may still be publishing. An implementation MUST therefore make an abandoned run findable from
++its lock, by recording the run identity in the lock object or an equivalent documented place, and MUST document the
++order of recovery: revoke the run's coordination refs first, so that no attempt not yet authorized can begin; then
++establish, for every attempt that was authorized and has no result, acknowledged cancellation, an effective fence,
++elapsed authorization bounds where the implementation states them, or the reconciled outcome of §19.4; only then remove
++the lock. The remedy a lock diagnostic prints MUST NOT tell the operator to delete the lock without naming those steps.
+ 
+ ### 28.7 Required example and performance boundary
+ 
+@@ -7046,8 +7428,13 @@
+ declared representative parallel fixture; do not call source-only dispatch or
+ duplicate prerequisite compilation a distributed-build success.
+ 
+-### 28.8 Conformance vectors (specification cases, not executed results)
++### 28.8 Conformance vectors
+ 
++These are required cases. Whether an implementation has executed them is that implementation's claim, made where its
++status is stated, and none of them is evidence of speedup. Some vectors state a condition on the implementation. A
++vector whose condition does not hold for an implementation is not applicable to it: it is neither satisfied nor
++violated, and every remaining vector still applies in full.
++
+ 1. No role or worker list: local orchestrator behavior remains unchanged.
+ 2. A worker receives direct or nested release initiation: refuse before locks
+    or side effects. An orchestrator-capable node accepts a delegated task with
+@@ -7057,7 +7444,7 @@
+ 4. Two CI entry nodes target overlapping repository sets: at most one acquires
+    the complete lock set and dispatches effects; failure releases its partial
+    set. An unsafe lock bypass refuses distributed execution.
+-5. Vary worker count, date, randomness and completion order: `Plan(I)` is
++5. Vary worker count, date, randomness and completion order: `Plan(input)` is
+    unchanged. Concurrency limits hold locally and across the run.
+ 6. Two ready tasks share a repository: use isolated worktrees and branches;
+    conflicting declared release-file writes are detected before admission.
+@@ -7075,10 +7462,12 @@
+ 12. A worker's Git transport commit is fetched: no new intent, release baseline,
+     tag, or admitted native head arises. Temporary commits stay outside release
+     ancestry; only validated release-file changes enter native recording.
+-13. A worker publishes and its reply is lost: reconcile artifact identity before
+-    reauthorization; never infer a failed publish from the timeout.
+-14. A worker disconnects or the orchestrator loses its lock with an in-flight
+-    publisher: no new effects, no unsafe handover, no unfenced duplicate attempt.
++13. Where publication commands execute on workers, a worker publishes and its
++    reply is lost: reconcile artifact identity before reauthorization; never
++    infer a failed publish from the timeout.
++14. A worker disconnects or the orchestrator loses its lock: no new effects and
++    no unsafe handover. Where publication commands execute on workers and a
++    publisher is in flight, no unfenced duplicate attempt arises.
+ 15. A source tag succeeds and later checkpoint/cleanup fails: preserve source
+     success and report the specific failure; no source republication for cleanup.
+ 16. Delete temporary branches/caches after a completed run and replan unchanged
+@@ -7086,16 +7475,21 @@
+     a prepublication failure: unfinished work remains discoverable and rebuildable.
+ 17. Repeat the JS fixture without a separate bundle service: branch-backed
+     transport still carries every declared build output.
+-18. Shared JS manifest/lockfile preparation happens once before fan-out; workers
+-    consume the same admitted prepared state without competing lockfile writes.
++18. Shared JS manifest/lockfile preparation executes under the orchestrator only
++    and serializes per shared file; each build records the admitted prepared
++    state it consumed, consumers of one state see identical bytes, and no worker
++    competes to write the lockfile.
+ 19. Independent builds in one repository overlap, but its publication/recording
+     transactions serialize; cross-owner publication remains dependency-safe.
+-20. A cached output has matching semantic inputs but belongs to an earlier run: verify its original provenance
+-    and issue a current admission receipt before reuse; the old receipt alone authorizes no task or effect.
++20. Where verified outputs are reused across runs, a cached output has matching semantic inputs but belongs to
++    an earlier run: verify its original provenance and issue a current admission receipt before reuse. An old
++    run's receipt alone authorizes no task or effect.
+ 21. A worker pool accepts two runs: its total active command tasks remain within each node's local capacity,
+-    and each run's stage budgets remain global. An unacknowledged timed-out attempt still consumes capacity.
++    and each run's stage budgets remain global. An unacknowledged timed-out attempt still consumes capacity; an
++    assignment no node has claimed consumes none and is offered again.
+ 22. A build-only dependency outside propagation kinds supplies ignored output: transfer it before the consumer
+-    builds. An execution-only cycle fails preflight without changing the semantic release plan.
++    builds. Where the implementation admits execution-only edges that the release graph does not already
++    reject, an execution-only cycle fails preflight without changing the semantic release plan.
+ 23. An authenticated assignment declares `worker` authority but its hook invokes release or writes a native
+     release ref: refuse the operation. A role or endpoint in a linked repository cannot elevate the assignment.
+ 24. A native record changes an in-flight task's relevant effective input bytes: withhold its publication and
+@@ -7103,25 +7497,42 @@
+     invalidate an otherwise matching result.
+ 25. A receiver sees a valid manifest but only part of its file set: remain unready until all required bytes
+     have been verified and installed. A digest, filename or branch reference without retrievable bytes fails.
+-26. Enabled rollback work precedes ordinary publication and records only its §26 completion receipt; a worker
+-    task receipt cannot replace it or discharge a release obligation.
++26. Where the implementation advertises the rollback profile of §26, enabled rollback work precedes ordinary
++    publication and records only its §26 completion receipt. A worker task receipt never replaces that receipt
++    and never discharges a release obligation.
++27. The orchestrator's checkout lacks a release tag that its remote holds on a commit reachable from the planned
++    head: refuse with `E196` under the locks, before the plan is fixed and before any assignment. Planning that
++    package from its older baseline, or replacing the remote tag afterwards, is non-conforming (§13.2, §19.1).
++28. The orchestrator loses its lock after a publication was authorized and before its record is written: issue no
++    further assignment or authorization, and still attempt the create-only record of that publication. A record
++    another owner already wrote is not overwritten.
++29. A run ends with its locks held and one attempt authorized without a terminal result: the lock names the run,
++    and the documented recovery revokes the run's coordination refs and settles that attempt before the lock is
++    removed. A remedy that says only to delete the lock is non-conforming.
++30. Where the implementation bounds authorizations in time, a publisher that observes its authorization after the
++    stated instant does not start its command, and a command still running at its assignment's deadline is ended
++    by the executing node without a request from the orchestrator. The release lock does not lapse in either case.
+ 
+ ### 28.9 Operational diagnostics
+ 
+ The following named categories are normative outcome classes, not allocations of new `E` or `W` numbers.
+-Implementations MUST expose stable machine-readable categories and the applicable run, task, attempt and
+-repository identities without credentials. Existing numbered diagnostics retain their exact §16 conditions;
+-profile-specific failures MUST NOT be recast as malformed commit units or suppressed by parser leniency.
++Implementations MUST expose stable machine-readable categories, named by the identifier each row states, and
++the applicable run, task, attempt and repository identities without credentials. An implementation MAY
++additionally attach its own numbered codes to a category. Existing numbered diagnostics retain their exact
++§16 conditions; profile-specific failures MUST NOT be recast as malformed commit units or suppressed by
++parser leniency.
+ 
+-| Category | Required handling |
+-| --- | --- |
+-| Execution configuration | Invalid role, concurrency, endpoint, protocol, task graph or transfer capability fails before dispatch. |
+-| Execution authority | Worker initiation, unauthenticated assignment, stale ownership or unauthorized writes are refused before the affected operation. A duplicate receipt cannot create a second side effect. |
+-| Input or output integrity | Missing, changed, incomplete, incompatible or escaping input/output data fails the affected prerequisite and blocks required consumers. Preserve unrelated successful work. |
+-| Publication outcome unknown | A lost acknowledgement or unfenced in-flight publisher withholds reauthorization and unsafe lock handover until quiescence, effective fencing or identity reconciliation is proven. Report the run as incomplete and return nonzero. |
+-| Native recording or lock failure | Apply §§19 and 27, preserve successful publication and fail the run; do not retag transport work or release unsafe exclusion. |
+-| Transport cleanup | Report owned temporary refs or bundles that could not be removed. Their existence cannot erase a release record. Harmless retained transport data MAY be a warning; lost exclusion or unresolved effects MUST be an error. |
++| Category | Identifier | Required handling |
++| --- | --- | --- |
++| Execution configuration | `execution-configuration` | Invalid role, concurrency, endpoint, protocol, task graph or transfer capability fails before dispatch. |
++| Execution authority | `execution-authority` | Worker initiation, unauthenticated assignment, stale ownership or unauthorized writes are refused before the affected operation. A duplicate receipt cannot create a second side effect. |
++| Input or output integrity | `io-integrity` | Missing, changed, incomplete, incompatible or escaping input/output data fails the affected prerequisite and blocks required consumers. Preserve unrelated successful work. |
++| Publication outcome unknown | `publication-unknown` | A lost acknowledgement or unfenced in-flight publisher withholds reauthorization and unsafe lock handover until quiescence, effective fencing or identity reconciliation is proven. Report the run as incomplete and return nonzero. |
++| Native recording or lock failure | `native-recording-or-lock` | Apply §§19 and 27, preserve successful publication and fail the run; do not retag transport work or release unsafe exclusion. |
++| Transport cleanup | `transport-cleanup` | Report owned temporary refs or bundles that could not be removed. Their existence cannot erase a release record. Harmless retained transport data MAY be a warning; lost exclusion or unresolved effects MUST be an error. |
+ 
+ The task/run summary MUST distinguish completed computation, admitted outputs, successful publication, durable
+ native recording, blocked dependents and unknown external outcomes. A completed task is not synonymous with a
+-released package. Diagnostic output order follows the semantic order of §17.2, independently of arrival order.
++released package. A prepared provider (vector 9) has the shape completed computation, admitted outputs, no
++publication and no record; the summary states it so, and neither omits the provider nor lists it as released.
++Diagnostic output order follows the semantic order of §17.2, independently of arrival order.

@@ -1,0 +1,211 @@
+{
+  "product_head": "272772cb62a874289e97c5efbfab1a5c33b03efc",
+  "spec_sha256": "4eecaeca2cdb25abd7b53b12871df8f8015e052733c517fea701dfe4a3fa2cab",
+  "prior_spec_sha256": "63210d4eadaf27c5cb610ae822aeeb13c692b5423a48ff95a914ee6e2c4a0875",
+  "spec_version": "**Version:** 3.1.0-rc.2 **Status:** Normative specification; adapter and rollback protocols pending implementation",
+  "outreach_checks": [
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/followup-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/faang-reviewed-projects-2026-09-10.csv",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/spotify-release-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/anthropic-release-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/slack-release-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/openai-release-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/discord-release-audit-2026-09-10.json",
+      "matches": true
+    },
+    {
+      "path": "/Users/yohimik/Projects/dispat/output/outreach/policy-review-2026-09-10/final-dispositions.json",
+      "matches": true
+    }
+  ],
+  "product_snapshot_checks": [
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-changesets/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-changesets/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-changesets/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-dispat/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-dispat/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-dispat/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-lerna/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-lerna/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-lerna/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-nx/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-nx/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-clean-nx/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-changesets/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-changesets/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-changesets/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-dispat/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-dispat/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-dispat/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-lerna/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-lerna/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-lerna/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-nx/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-nx/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/midrelease-conflict-nx/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-changesets/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-changesets/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-changesets/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-dispat/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-dispat/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-dispat/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-lerna/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-lerna/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-lerna/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-nx/observations.jsonl",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-nx/transcript.txt",
+      "matches": true
+    },
+    {
+      "path": "../dispat/coverage/experiments/orphan-nx/verdict.json",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/README.md",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/dispat.yaml",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/propagation/dispat.sh",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/propagation/lerna.sh",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/run.sh",
+      "matches": true
+    },
+    {
+      "path": "../dispat/tests/experiments/tools/package.json",
+      "matches": true
+    }
+  ],
+  "product_access": "read-only; no experiments run"
+}
