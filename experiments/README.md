@@ -238,3 +238,17 @@ For long padding histories, the E4 runner uses `git commit-tree` after a small
 fixture established identical commit IDs, refs, messages and log output versus
 ordinary `git commit`, with both repositories passing `git fsck`. The full
 fixture is also checked before any measurement.
+
+## Distributed-execution evidence (2026-09-22)
+
+The first measured runs of CCME §28 (worker nodes over a Git mailbox) on
+Compute Engine, a Linux kernel build-farm parity experiment and an LLVM
+dependent-build pair, are preserved in
+`distributed-20260922/evidence/` (README, `MANIFEST.json` with every SHA-256
+and the LLVM attempt-to-log mapping, `CROSS-CHECK.json` tracing the reported
+numbers to raw files). They were run by the product side with binaries built
+from `f0c9e959` and `272772cb`, not by the harness in this tree, and they are
+one repetition per side on asymmetric hardware; no general speedup is claimed.
+The reproduction kit is being written in `distributed-20260922/` beside the
+evidence. Peer inventories and permissions are in
+`../provenance/handoffs/2026-09-22/`.
