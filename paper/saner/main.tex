@@ -20,26 +20,25 @@
 \maketitle
 \begin{abstract}
 An npm engine feeds a Docker base; another image needs that published base
-and an npm SDK. Premature builds and failures can lose work or change retry
-versions. Git completion tags enable one-command recovery.
-Package folders and shell stages span single-package repositories, monorepos
-and polyrepos. Built-in readers cover 21 ecosystems and 36 manifest formats;
-text replacement and configured commands integrate others without changing
-provisioned CI workflows.
-Environment checks (\code{if}) and loops (\code{for}) share Windows/Linux CI/CD logic.
-Commits select releases, holds, prereleases and dependent-update scope.
+and an npm SDK. Git completion tags enable one-command recovery.
+Folders and shell stages span single-package repositories, monorepos and polyrepos.
+Readers cover 21 ecosystems and 36 manifest formats; text replacement and commands
+extend support without changing provisioned CI.
+Environment checks and loops share Windows/Linux logic.
+Commits select releases, holds, prereleases and dependent updates.
 Scoped empty commits request tests; last-commit windows retest repairs.
-An agent skill guides commit diagnostics, planning and automation.
-Docker supplies tools; a Terraform integration rebuilds temporary state
-from known resources before dependent deployments.
-Identical inputs yield identical plans, enabling caches.
-Specified workers exchange sources and results through Git, sharing release configuration.
-Our single-history model builds on saga, reconciliation and version-control
-foundations: consumer work survives provider success; explicit retry assumptions
-preserve versions and prevent repeated recorded releases.
-Across 120 controlled failures, our protocol recovers all pending releases after repair;
-discarding work after provider success loses releases in 70\% of those cases
+An agent skill guides diagnostics and automation.
+Docker supplies tools; Terraform imports known resources into temporary state before dependent deployments.
+Identical inputs yield identical, cacheable plans.
+Specified workers share release configuration and exchange sources/results through Git.
+Our single-history model builds on saga, reconciliation and version-control foundations;
+retry assumptions preserve versions and prevent repeated recorded releases.
+Across 120 controlled failures, all pending releases recover after repair;
+discarding consumer work after provider success loses releases in 70\% of cases
 (analytical comparison, not a tool benchmark).
+Module test suites and integration plans include scanner/writer fixtures from real projects.
+Release CI requires the full suite regardless of change scope, checks binaries before
+publication and installations afterwards.
 Registry, CI, replay and scale experiments include google-cloud-node.
 Historical fixtures handle mid-release commits, preserving conflicts for review.
 Native Windows and distributed execution remain unevaluated.

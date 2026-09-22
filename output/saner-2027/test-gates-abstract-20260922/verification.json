@@ -1,0 +1,49 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 48,
+  "pdf_sha256": "a7b79874f33f8251d66d797050dc7f4354569f048c9a94e21095779e225a5ddd",
+  "source_sha256": {
+    "main.tex": "cd0423e979be7f6bce37e9d17f8fe83210fd91a9e4c67fd73b681d23162b4913",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "7651b768ecd071b8d1990becd6a96fa30c6a2002c3e938ab32a2ae4a2ffe724d",
+    "model.tex": "0569d864a77f06f32b2caf8607dc44b61a87cffcabec41f7781e1dd9eb646cea",
+    "guarantees.tex": "508f21e4da62db209b7b0a3cddea36e2d5d0de6379251771a0047114d5ed5682",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "f7b5ab3b77f9eef36a97486479d96fdef7279f38ec3484d1508d0bc9e936c06e",
+    "references.tex": "9e35caadf28a50ee1085e094a5082894ff0713240bb4dd5101ac97d4203d66b4"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits.",
+  "base_commit": "77e612bdfcd7946d3f73455965a4502d09972eed",
+  "abstract_only": true,
+  "changed_rendered_pages": [
+    1
+  ],
+  "visual_review": "Final page 1 visually inspected; pages 2\u201312 render-identical to the preceding verified PDF.",
+  "product_head": "2971ba13632b0b3f8c411d436f4cae1792f97002",
+  "reviewed_source_sha256": {
+    "../dispat/.github/workflows/release.yml": "d82395726f99c4d76a3c2126ba82680339fa92214dcc27dbdc04931418187111",
+    "../dispat/pkg/dispat.yaml": "9cba5687b1995635eac4076407a0999f21ca4b82191ad60b38fbfd0bfd84008a",
+    "../dispat/pkg/scanner/realworld_test.go": "2eff9f9f6d4a91165aff2ce6556a87a070bf26faccb689c3a6cac4172d6e8b6a",
+    "../dispat/pkg/writer/realworld_test.go": "35c2fab8fb6129e232c45d2f413acb19d2e40307e17ce72d0e8104f8875198b8",
+    "../dispat/services/dispat/dispat.yaml": "a180eb0593b09b1320ebddf1d56b15b4730f35a458a45123197b755ca6634856",
+    "../dispat/services/dispat/Dockerfile": "71dda41128857c0c9e675aecb678f18958f45b72098d3b39ec251d538d61b421",
+    "../dispat/Dockerfile.gotest": "9658fbee7a59851eba879e5a40a988eecee9f0d9ce41b1300ca5a7ba90021541",
+    "../dispat/tests/integration/docs/test-plan.md": "7d7bbc77f5aecd81be11dc63b7b4a5985f63fa174a64221bce008e05d5e314b1",
+    "../dispat/tests/integration/docs/qa-requirements.md": "969bf2fad23ab327484c53f343793ca7ec77420bde76fafe9c881f5599cbc0e3",
+    "../dispat/packages/docs/docs/internals/test-results.mdx": "a654210257c467e964bb76ff84fe7b11a1dfcc21a4a2c9faefa6ff603a0cdceb",
+    "../dispat/tools/testreport/testplan.go": "e4d977c9f0041b723ad379b6118a2731edb40129ee4fe36a0377b7c4b3d83673",
+    "../dispat/scripts/check-action.sh": "86fdcb45e91260ff0e8654c0dc6cda2a2c30726d1e837609e9983dfdfabbb3be",
+    "../dispat/tests/experiments/dispat.yaml": "d740e1ee1a52a64e03d22d486e2557354531490a13475905ddd2abbcdf4b8485"
+  },
+  "test_plan_scope": "Module suites document assertions in test names/comments; a separate integration plan and release-candidate requirement matrix map behavior to tests. No claim of a separate large plan for every module or newly passed tests.",
+  "real_project_fixtures": "Scanner and writer embed trimmed public-project manifests; these are fixture tests, not independent production deployments.",
+  "full_suite_gate": "release.yml requires dispat run tests --since all before the release job; selection is not narrowed to changed packages.",
+  "binary_gate_scope": "Dockerfile checks release outputs before export, runs a smoke subset against the native Go release binary, and has TinyGo integration acceptance with an explicit opt-out and a named exclusion. Not all cross-compiled binaries receive the full suite before publication.",
+  "post_release_scope": "Published CLI installation/version checks run on Linux, macOS and Windows; exact npm versions are installed on the configured OS/architecture matrix. These configured checks do not add native-Windows research measurements.",
+  "evidence_limits": "Read-only source inspection; no product tests, experiments or releases executed, and no historical observations changed.",
+  "prior_readiness_review": "output/saner-2027/abstract-readiness-20260922/README.md"
+}
