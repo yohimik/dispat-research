@@ -1,0 +1,3 @@
+runs/*
+!runs/local-kernel-20260922T184954Z/
+runs/local-kernel-20260922T184954Z/fork/

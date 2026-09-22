@@ -1,0 +1,38 @@
+# A laptop-sized end-to-end check of the kernel kit: an orchestrator container
+# and a worker container sharing one mailbox directory, the same images, the
+# same harness, the same generated configurations (with the mailbox on a path
+# both containers see). It proves the pipeline, not the parity: the hardware is
+# whatever runs Docker here, so compare.py rejects the elapsed time by design.
+#
+#   docker compose -f local/kernel-compose.yaml up -d
+#   local/kernel-smoke.sh
+#   docker compose -f local/kernel-compose.yaml down -v
+services:
+  orchestrator:
+    image: ${NODE_IMAGE:-dispat-kernel-node:272772cb-arm64}
+    command: sleep infinity
+    hostname: orchestrator
+    environment:
+      DISPAT_FARM_SOURCE_POOL: /srv/farm/src
+      DISPAT_FARM_RESULTS: /srv/farm/results
+    volumes:
+      - mailbox:/mailbox
+      - farm-orchestrator:/srv/farm
+      - home-orchestrator:/root
+  worker:
+    image: ${NODE_IMAGE:-dispat-kernel-node:272772cb-arm64}
+    command: sleep infinity
+    hostname: worker
+    environment:
+      DISPAT_FARM_SOURCE_POOL: /srv/farm/src
+      DISPAT_FARM_RESULTS: /srv/farm/results
+    volumes:
+      - mailbox:/mailbox
+      - farm-worker:/srv/farm
+      - home-worker:/root
+volumes:
+  mailbox: {}
+  farm-orchestrator: {}
+  farm-worker: {}
+  home-orchestrator: {}
+  home-worker: {}

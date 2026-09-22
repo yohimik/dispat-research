@@ -1,9 +1,9 @@
 {
-  "created_utc": "2026-09-22T18:44:59+00:00",
+  "created_utc": "2026-09-22T19:06:13+00:00",
   "purpose": "Trace the headline numbers of the 22 September reports to raw files in this directory. Agreement is an integrity check on the copies and the reports, not independent replication.",
   "summary": {
-    "checks": 39,
-    "agree": 37,
+    "checks": 43,
+    "agree": 41,
     "disagree": 0
   },
   "checks": [
@@ -298,6 +298,42 @@
       "observed": 44.392,
       "agrees": true,
       "claimed_in": "linux-build-test dispat/gce/PARITY-20260922.md at c699bf3d"
+    },
+    {
+      "claim": "kernel first run build-alpha: claim-to-result s (REPORT.md table, worker claim to done)",
+      "claimed": 2250,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/first-run/gce-logs (w1/, w2/ worker logs via gce-timings.py)",
+      "observed": 2253,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/REPORT.md (dispat-prototype f7691276, copied at c699bf3d)",
+      "note": "one-second log stamps; the report rounds; agreement within 5 s"
+    },
+    {
+      "claim": "kernel first run build-hexagon: claim-to-result s (REPORT.md table, worker claim to done)",
+      "claimed": 324,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/first-run/gce-logs (w1/, w2/ worker logs via gce-timings.py)",
+      "observed": 326,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/REPORT.md (dispat-prototype f7691276, copied at c699bf3d)",
+      "note": "one-second log stamps; the report rounds; agreement within 5 s"
+    },
+    {
+      "claim": "kernel first run build-m68k_nommu: claim-to-result s (REPORT.md table, worker claim to done)",
+      "claimed": 246,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/first-run/gce-logs (w1/, w2/ worker logs via gce-timings.py)",
+      "observed": 246,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/REPORT.md (dispat-prototype f7691276, copied at c699bf3d)",
+      "note": "one-second log stamps; the report rounds; agreement within 5 s"
+    },
+    {
+      "claim": "kernel first run build-um: claim-to-result s (REPORT.md table, worker claim to done)",
+      "claimed": 14,
+      "file": "experiments/distributed-20260922/evidence/kernel-gce/first-run/gce-logs (w1/, w2/ worker logs via gce-timings.py)",
+      "observed": 14,
+      "agrees": true,
+      "claimed_in": "linux-build-test dispat/gce/REPORT.md (dispat-prototype f7691276, copied at c699bf3d)",
+      "note": "one-second log stamps; the report rounds; agreement within 5 s"
     },
     {
       "claim": "public farm reference alpha: seconds",

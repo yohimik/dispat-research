@@ -1,0 +1,90 @@
+{
+  "written": "2026-09-22",
+  "purpose": "Every identity the reproduction of the two parity experiments depends on. Values verified as noted; nothing here is a measurement.",
+  "specification": {
+    "file": "specs/ccme-spec/SPEC.md in github.com/yohimik/dispat",
+    "commit": "252216bab9bd4052ba181a2ceb47e21363b8eff3",
+    "version_stamp": "3.1.0-rc.2",
+    "measurement_record": "specs/ccme-spec/DESIGN-HISTORY.md, entry '2026-09-22: Distributed execution implemented'"
+  },
+  "dispat_binaries": {
+    "recipe": "docker/dispat/Dockerfile: golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2, GOOS=linux GOARCH=amd64 CGO_ENABLED=0 go build -trimpath -buildvcs=false -ldflags '-s -w [-X github.com/yohimik/dispat/services/dispat/internal/cli.Version=<stamp>]' from services/dispat inside the go.work workspace",
+    "kernel_round2": {
+      "commit": "f0c9e9594fc87dda325aa323a1a82de53bd23cca",
+      "stamp": "",
+      "sha256": "63441cc66f68d07b5efbf9a42edd5559304d153d48b82b1dfb037349e20606ed",
+      "verified": "rebuilt byte-identically in Docker on 2026-09-22 (docker/dispat/out-f0c9e959/dispat.sha256); equals the binary the fork's PARITY-20260922-round2.md names"
+    },
+    "llvm_matrix_pair": {
+      "commit": "272772cb62a874289e97c5efbfab1a5c33b03efc",
+      "stamp": "1.11.0-rc.4+main.272772cb",
+      "sha256_clean_rebuild": "46bc2cf821dd57479c27bf2a4b7eee63b69e01db6f18fbd6e663ad66e6812ba8",
+      "sha256_as_deployed": "feba0210d13c90fa (prefix as reported by the session that built it; built in a checkout with uncommitted files, so Go stamped vcs.modified=true; differs from the clean rebuild by that stamp only)",
+      "sha256_unstamped": "f1dec45d48df4d7fe5a681f5244ce946d71e140ccfbe97c2f8f3a6842f69b196",
+      "verified": "both clean hashes rebuilt byte-identically in Docker on 2026-09-22"
+    }
+  },
+  "forks": {
+    "kernel_farm": {
+      "repository": "https://github.com/yohimik/linux-build-test",
+      "branch": "codex/kernel-parity",
+      "commit": "c699bf3da78c6cf95ec347e24c996076d8895258",
+      "upstream": "https://github.com/groeck/linux-build-test",
+      "reports": ["dispat/gce/PARITY-20260922-round2.md", "dispat/gce/PARITY-20260922.md", "dispat/gce/REPORT.md"],
+      "oracle": "dispat/compare.py with dispat/gce/parity-20260922-reference.json",
+      "configurations_regenerated_exactly_by": "scripts/kernel/prepare-farm.sh (flags verified against dispat/gce/round2/{par-c3,solo-c3}/*.yaml on 2026-09-22: byte-identical but for the mailbox path)"
+    },
+    "llvm": {
+      "repository": "https://github.com/yohimik/llvm-project",
+      "branch": "dispat-gce",
+      "commit": "952c2de43cd663fa3dbc74130c8bc59925957490",
+      "llvm_main_commit_under_the_fork": "a9f4d3ff18c599d8be5a1f6ef4d8bc2417de8a34",
+      "baseline_tags": "dispat/<package>/v24.0.0 at a9f4d3ff for llvm, llvm-aarch64, clang, lld, polly, toolchain",
+      "report": ".ci/dispat/gce/REPORT.md",
+      "oracle": ".ci/dispat/gce/compare.py",
+      "recipe": ".ci/dispat/build.py with LLVM_FAST=1 LLVM_SKIP_CHECKS=1 LLVM_BUILD_JOBS=14 LLVM_LINK_JOBS=2 LLVM_TOOLCHAIN_PROVIDERS=llvm,lld,polly LLVM_BUNDLE_COMPRESSION=none"
+    }
+  },
+  "kernel_under_test": {
+    "repository": "https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git",
+    "ref": "v7.3-rc4",
+    "commit": "93f51579e7df248780214094418f205253383cc5"
+  },
+  "node_images": {
+    "base": "ubuntu:24.04@sha256:008173c23f95b170204355c12626cb5a965d779a7e1283b09e9cffbb1bf33ca3",
+    "apt_snapshot": "20260922T000000Z (snapshot.ubuntu.com; the measured VMs installed from the live archive on 2026-09-22)",
+    "kernel_node_packages": "docker/kernel-node/Dockerfile; identities the oracle checks: Ubuntu clang 18.1.3 (1ubuntu1), alpha-linux-gcc and m68k-linux-gcc (GCC) 16.2.0 with GNU assembler 2.47.20260726",
+    "crosstool": {
+      "source": "https://mirrors.edge.kernel.org/pub/tools/crosstool/files/bin/<host>/16.2.0/",
+      "x86_64-gcc-16.2.0-nolibc-alpha-linux.tar.xz": "0031e472c330e657925912958bc9d9f5f2879a45ecbaab9c34bc59e51aad69ca",
+      "x86_64-gcc-16.2.0-nolibc-m68k-linux.tar.xz": "7b00cafd56e3699055ca5df5c260be558332502a918df62cbe272ba3902e5b33",
+      "arm64-gcc-16.2.0-nolibc-alpha-linux.tar.xz": "56b2c1a569d3fafac4d21d2effc85ebe07cf45e24160d74e3c98b198a92a6ea0",
+      "arm64-gcc-16.2.0-nolibc-m68k-linux.tar.xz": "f58fc7fc39e0bc2ff830d2d1c94c603a8384833d1874591483cd23543d4deca8"
+    },
+    "llvm_node_packages": "docker/llvm-node/Dockerfile; the measured runs used g++ 13.3.0-6ubuntu2~24.04.1, cmake 3.28.3, ninja 1.11.1"
+  },
+  "machines": {
+    "image": "projects/ubuntu-os-cloud/global/images/ubuntu-2404-noble-amd64-v20260918 (what the family ubuntu-2404-lts-amd64 resolved to on 2026-09-22; the measured VMs were created from the family)",
+    "kernel_round2": {
+      "project": "dispat-linux-parity",
+      "orchestrator": "c3-standard-22, us-central1-a, 100 GB pd-balanced (par-c3: Intel Xeon Platinum 8481C, 11 cores, two threads each)",
+      "worker": "t2d-standard-8, us-central1-b, 100 GB pd-balanced (par-t2d: AMD EPYC Milan, 8 cores, no SMT)",
+      "solo": "c3-standard-22, us-central1-b (solo-c3)",
+      "lifetime": "--max-run-duration 2h --instance-termination-action DELETE"
+    },
+    "llvm_pair": {
+      "project": "dispat",
+      "orchestrator": "e2-standard-4, us-central1-a, 80 GB pd-balanced (lb-orch)",
+      "workers": "2 x n2-custom-14-49152, us-central1-a, 150 GB pd-balanced (lb-w1, lb-w2; 7 cores, 14 threads, 48 GiB)",
+      "lifetime": "--max-run-duration 8h --instance-termination-action DELETE"
+    }
+  },
+  "public_references": {
+    "kerneltests_org": "builds 332 (alpha, 623 s), 330 (hexagon, 111 s), 331 (m68k_nommu, 128 s) of the upstream-<arch>-master builders, retained in the fork's dispat/gce/parity-20260922-reference.json",
+    "note": "other hardware; compare.py accepts elapsed <= reference, it does not compare machines"
+  },
+  "expected_outcomes": {
+    "kernel": "compare.py accepted hexagon at 95.89 s and 92.22 s (reference 111 s) and m68k_nommu at 115.61 s and 115.48 s (reference 128 s) on 2026-09-22; the solo node was rejected on elapsed time alone (122.62 s, 138.01 s). One rejected first candidate (111.47 s) preceded the accepted hexagon trials.",
+    "llvm": "distributed 27:48.94 against 41:12.02 on one node, exit 0 both, five packages; compare.py prints NO PARITY because the products embed the checkout's revision, build-id and paths, and lists exactly those differences (libLLVMCore.a identical). One repetition per side on 2026-09-22."
+  }
+}

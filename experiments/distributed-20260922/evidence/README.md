@@ -3,9 +3,11 @@
 Raw observations of the first measured runs of the CCME §28 distributed
 execution profile: a Linux kernel build-farm parity experiment and an LLVM
 dependent-build pair, both on Google Compute Engine. The measurements were
-made by the Dispat product side on 22 September 2026 (UTC; the LLVM matrix pair
-is dated 23 September in the specification entry because of the local
-calendar). This directory holds unaltered copies of the logs, drivers,
+made by the Dispat product side on 22 September 2026 UTC. The specification
+entry dates the LLVM matrix pair 23 September; the retained logs and `.start`
+files are stamped 22 September 07:16 to 08:58 UTC, which no time zone moves to
+the next day, so the entry's date is an error the product side has been told
+about and is correcting; the copies here are not edited. This directory holds unaltered copies of the logs, drivers,
 receipts and reports, with `MANIFEST.json` recording every file's origin and
 SHA-256. Nothing here was edited, and nothing was deleted at its source.
 
@@ -174,7 +176,8 @@ EOF
 specification entry to a raw file here: the five LLVM GNU `time` wall clocks and
 exit statuses, the six kernel round-2 elapsed values, the source-lease and
 calibration figures, the four round-1 candidates, the control and the public
-references; all 37 comparable values agree. It also records two round-2 trials
+references, and the kernel first run's claim-to-result seconds against the
+copied worker logs; all 41 comparable values agree. It also records two round-2 trials
 that are not headline numbers: a first hexagon candidate rejected at 111.47 s
 (against 111 s, with a 12 s lease wait) and a 3.83 s run that planned nothing.
 Both are disclosed in the fork's `PARITY-20260922-round2.md`; the specification
