@@ -33,7 +33,7 @@ An agent skill guides commit diagnostics, planning and automation.
 Docker supplies tools; a Terraform integration rebuilds temporary state
 from known resources before dependent deployments.
 Identical inputs yield identical plans, enabling caches.
-Specified workers reuse release configuration across machines.
+Specified workers exchange sources and results through Git, sharing release configuration.
 Our single-history model builds on saga, reconciliation and version-control
 foundations: consumer work survives provider success; explicit retry assumptions
 preserve versions and prevent repeated recorded releases.

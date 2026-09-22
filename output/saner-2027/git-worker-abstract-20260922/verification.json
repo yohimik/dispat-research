@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "pages": 12,
+  "content_pages": 10,
+  "reference_pages": 2,
+  "references": 48,
+  "pdf_sha256": "34154770e2c379bd25e54d525f1bf09b80c7c8a8021d49c169bb28b0aefc5d65",
+  "source_sha256": {
+    "main.tex": "d871da778fa4abd9f6c3e7e4ac6e7ceceeec3610f85d88fe0a48a9303189e538",
+    "introduction.tex": "21bed392259b6dba084e0d2022e9445d56397f3259a92edd299f6bc67757c642",
+    "system.tex": "7651b768ecd071b8d1990becd6a96fa30c6a2002c3e938ab32a2ae4a2ffe724d",
+    "model.tex": "0569d864a77f06f32b2caf8607dc44b61a87cffcabec41f7781e1dd9eb646cea",
+    "guarantees.tex": "508f21e4da62db209b7b0a3cddea36e2d5d0de6379251771a0047114d5ed5682",
+    "evaluation.tex": "921a0e8f3ca034cc15142ec62add931daf35268b1205949cdf37a587f68efefc",
+    "mixed-results.tex": "2c1e871738f74220b3b95bcd5da1bbb1747db4c6b09b8584b775d8f6ea1aa31f",
+    "discussion.tex": "f7b5ab3b77f9eef36a97486479d96fdef7279f38ec3484d1508d0bc9e936c06e",
+    "references.tex": "9e35caadf28a50ee1085e094a5082894ff0713240bb4dd5101ac97d4203d66b4"
+  },
+  "limits": "Structural checks do not prove mathematics, anonymous eligibility, or empirical validity. Visually inspect after edits.",
+  "base_commit": "a1fed52bfb564dcd1710723d7997794c23ff82ba",
+  "abstract_only": true,
+  "changed_rendered_pages": [
+    1
+  ],
+  "visual_review": "Final page 1 inspected; pages 2\u201312 render-identical to the preceding verified PDF.",
+  "product_head": "599448fdc239aef6e5ff5239b5833c8fd0ee0ccd",
+  "ccme_spec_sha256": "cb6fdb1652113457e096327922e27c49a47a9d1851e077dd39100cca1ee845cc",
+  "supported_claim": "CCME section 28 specifies Git source/result transport and shared resolved release configuration; this is an optional proposed execution profile, not implemented or evaluated distributed execution.",
+  "priority_claim": "First in history was not added: available local Linux/LLVM records contain forecasts rather than completed distributed runs; this targeted prior-work check does not establish priority for Git-native transport.",
+  "reviewed_local_evidence": [
+    "output/saner-2027/linux-forecast-20260922/README.md",
+    "output/saner-2027/llvm-forecast-20260921/README.md"
+  ],
+  "prior_work_review": [
+    {
+      "url": "https://github.com/icecc/icecream",
+      "scope": "Established distributed compilation; not evidence of identical Git transport or release protocol."
+    },
+    {
+      "url": "https://www.llvm.org/docs/HowToAddABuilder.html",
+      "scope": "Existing LLVM build-worker infrastructure; not evidence of the same protocol or of one LLVM build split across machines."
+    }
+  ],
+  "retained_linux_llvm_statement": "Linux and LLVM results will be presented in the report.",
+  "prior_readiness_review": "output/saner-2027/abstract-readiness-20260922/README.md"
+}
