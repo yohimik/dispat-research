@@ -1,0 +1,637 @@
+\section{Execution: build readiness, distributed placement, and repository-local windows}
+\label{sec:execution}
+
+\Cref{sec:protocol} states what must happen before what. This section states
+what that costs in wall time, where the tasks may run, and which history each
+window ranges over when the packages live in several repositories. Its first
+subsection is informative in the sense of \spec{13.11}: the propositions bound
+durations of schedules that respect \cref{def:readiness}, and no conforming
+implementation is required to attain them. Its second and third subsections
+transcribe the two optional profiles of \spec{28} and \spec{27} as definitions
+and state the one invariance each profile promises. Neither extends the
+theorems of \cref{sec:guarantees}, which are stated for a single history.
+
+\subsection{Build readiness durations}
+\label{sec:exec-durations}
+
+\spec{19.2a} promises a happens-before relation and no duration; \spec{13.11}
+nevertheless says what each relation buys when nothing else limits the run.
+Throughout, package $i$ has a build of duration $b_i$ and a publication of
+duration $p_i$, both fixed; a task starts as soon as its predecessors in the
+task graph of \cref{def:taskgraph} have finished and a slot is free; and one
+relation is declared on every edge.
+
+\begin{proposition}[the longest path, \spec{13.11}]
+\label{prop:exec-longest}
+With unlimited build and publication slots a run lasts exactly the longest
+path $L$ of its task graph, measured in task durations. A weaker relation
+never lengthens it.
+\end{proposition}
+
+\begin{proof}
+The task graph is acyclic (\cref{prop:readiness-acyclic}), so its tasks can be
+taken in a topological order. With unlimited slots a task starts at the
+greatest finish time of its predecessors, or at $0$ if it has none, and by
+induction along that order its finish time is the longest path ending at it.
+The run ends at the greatest finish time, which is the longest path of the
+graph. A weaker relation contributes a subset of the edges
+(\cref{prop:readiness-acyclic}), so every path of its task graph is a path of
+the stronger one's, and the longest is no longer.
+\end{proof}
+
+\begin{proposition}[a chain, \spec{13.11}]
+\label{prop:exec-chain}
+Let packages $1, \dots, n$ form a chain in which package $k+1$ consumes package
+$k$, under one relation throughout. With unlimited slots the run lasts
+\[
+  \sum_{i=1}^{n} (b_i + p_i) \quad\text{under \code{publish}},\qquad
+  \max_{1 \le k \le n}\Bigl(\sum_{i=1}^{k} b_i + \sum_{i=k}^{n} p_i\Bigr)
+  \quad\text{under \code{build}},
+\]
+\[
+  \max_{1 \le k \le n}\Bigl(b_k + \sum_{i=k}^{n} p_i\Bigr)
+  \quad\text{under \code{none}}.
+\]
+\end{proposition}
+
+\begin{proof}
+Under \code{publish}, $\exbuild{k+1}$ waits for $\expub{k}$, so the $2n$ tasks
+form one path and the sum is its length. Under \code{build}, the builds form
+the path $\exbuild{1} \to \dots \to \exbuild{n}$ and $\exbuild{k}$ ends at
+$B_k = \sum_{i \le k} b_i$; the publication of $k$ waits for $\exbuild{k}$ and
+for $\expub{k-1}$, so its finish $E_k$ satisfies $E_k = \max(B_k, E_{k-1}) +
+p_k$ with $E_0 = 0$. By induction $E_k = \max_{j \le k}\bigl(B_j +
+\sum_{i=j}^{k} p_i\bigr)$: the case $k = 1$ is $B_1 + p_1$, and the step is
+$\max\bigl(B_k + p_k,\ \max_{j < k}(B_j + \sum_{i=j}^{k-1} p_i) + p_k\bigr)$.
+Under \code{none} every build starts at $0$ and $\exbuild{k}$ ends at $b_k$;
+the same recurrence with $b_k$ in place of $B_k$ gives the third form. In each
+case the run lasts $E_n$ by \cref{prop:exec-longest}.
+\end{proof}
+
+\begin{corollary}[equal durations]
+\label{cor:exec-equal}
+With $b_i = b$ and $p_i = p$ for all $i$, the three forms are $n(b+p)$,
+$\max(nb + p,\ b + np)$ and $b + np$. \code{build} saves $(n-1)\min(b,p)$
+over \code{publish}, and \code{none} saves a further $(n-1)\max(b-p, 0)$, so
+the second saving exists only where builds outlast publications.
+\end{corollary}
+
+\begin{proof}
+Under \code{build} the maximand $kb + (n-k+1)p$ is affine in $k$, so the
+maximum is at $k = 1$ or $k = n$. Under \code{none} the maximand $b + (n-k+1)p$
+is greatest at $k = 1$. The differences follow by cases on $b \ge p$.
+\end{proof}
+
+\begin{proposition}[fan-out and fan-in, \spec{13.11}]
+\label{prop:exec-fan}
+For one provider $0$ and consumers $i \ge 1$, each consuming $0$ and nothing
+else, the run lasts
+\[
+  b_0 + p_0 + \max_i (b_i + p_i),\qquad
+  b_0 + \max_i\bigl(\max(b_i, p_0) + p_i\bigr),\qquad
+  \max_i\bigl(\max(b_i,\ b_0 + p_0) + p_i\bigr)
+\]
+under \code{publish}, \code{build} and \code{none} respectively. For providers
+$i \ge 1$ of one consumer $c$, each consumed by $c$ and nothing else, it lasts
+\[
+  \max_i (b_i + p_i) + b_c + p_c,\qquad
+  \max\bigl(\max_i b_i + b_c,\ \max_i (b_i + p_i)\bigr) + p_c,\qquad
+  \max\bigl(b_c,\ \max_i (b_i + p_i)\bigr) + p_c.
+\]
+\end{proposition}
+
+\begin{proof}
+Fan-out. Under \code{publish}, consumer $i$'s build starts at $b_0 + p_0$ and
+its publication follows its build, giving $b_0 + p_0 + b_i + p_i$; take the
+maximum. Under \code{build}, its build starts at $b_0$ and ends at $b_0 + b_i$,
+and its publication waits for that and for $\expub{0}$ at $b_0 + p_0$, giving
+$b_0 + \max(b_i, p_0) + p_i$. Under \code{none}, its build ends at $b_i$ and its
+publication waits for that and for $b_0 + p_0$. Fan-in. Under \code{publish},
+$c$'s build starts when the last provider has published, at $\max_i (b_i +
+p_i)$. Under \code{build}, it starts at $\max_i b_i$ and ends $b_c$ later, and
+$c$'s publication waits for that and for every provider's publication. Under
+\code{none}, $c$'s build ends at $b_c$ and only its publication waits for the
+providers. Each is the longest path of \cref{prop:exec-longest}.
+\end{proof}
+
+\begin{proposition}[one publication lane, \spec{13.11}]
+\label{prop:exec-lane}
+Where one owner's publications are serialised (\spec{27.2}, \spec{28.6}) in
+the order $1, \dots, n$ of \cref{def:order}, let $e_k$ be the instant the build
+of package $k$ ends. Under every relation the run lasts
+\[
+  \max_{1 \le k \le n}\Bigl(e_k + \sum_{i=k}^{n} p_i\Bigr),
+\]
+which is at least $\sum_{i} p_i$ whatever the relation, and a weaker relation
+only lowers the $e_k$.
+\end{proposition}
+
+\begin{proof}
+Publication $k$ starts at $\max(e_k, E_{k-1})$, since it waits for its own
+build and for the lane, and the lane order agrees with \cref{def:order}, so
+every provider of $k$ has published by $E_{k-1}$. The recurrence is that of
+\cref{prop:exec-chain} with $e_k$ in place of $B_k$, and the same induction
+gives the maximum. The term $k = 1$ is $e_1 + \sum_i p_i \ge \sum_i p_i$. For
+the last claim, add the lane edges $\expub{k-1} \to \expub{k}$ to the task
+graph; they follow the publish order, which is a topological order of the
+workspace graph, so the key of \cref{prop:readiness-acyclic} still increases
+along every edge and the graph stays acyclic. With a fixed lane order every
+task starts at the greatest finish of its predecessors, and by induction along
+a topological order each finish time under a subset of the edges is at most
+the finish time under the full set; $e_k$ is such a finish time.
+\end{proof}
+
+\begin{proposition}[budgets, \spec{13.11}]
+\label{prop:exec-budget}
+Let there be $m_b$ build slots and $m_p$ publication slots, and write $W_b =
+\sum_i b_i$, $W_p = \sum_i p_i$ and $L$ for the longest path of the task
+graph. No schedule finishes before $\max(L,\ W_b/m_b,\ W_p/m_p)$. A schedule
+that never leaves a slot of a stage idle while a task of that stage is ready
+finishes within $L + W_b/m_b + W_p/m_p$, which is within three times the best
+possible. Under budgets a weaker relation can lengthen such a schedule, but
+never the best one.
+\end{proposition}
+
+\begin{proof}
+The lower bound: a schedule contains every path, so it lasts at least $L$; it
+performs $W_b$ units of build work on $m_b$ slots, so at least $W_b/m_b$; and
+likewise $W_p/m_p$. The upper bound: let the schedule end at $T$ and let $t_1$
+be a task finishing at $T$. For $j \ge 1$, while $t_j$ has predecessors, let
+$t_{j+1}$ be one that finishes last among them; this gives a chain $t_q \to
+\dots \to t_1$ whose total duration is at most $L$. Consider an instant of
+$[0, T)$ at which no task of the chain is running. It lies between the finish
+of some $t_{j+1}$ and the start of $t_j$ (or before the start of $t_q$), and
+at that instant $t_j$ is ready, since its latest predecessor has finished, and
+has not started; by hypothesis every slot of $t_j$'s stage is then busy. The
+instants at which all $m_b$ build slots are busy total at most $W_b/m_b$, and
+those at which all $m_p$ publication slots are busy at most $W_p/m_p$. Hence $T
+\le L + W_b/m_b + W_p/m_p$, and each summand is at most the lower bound. For
+the last claim, a schedule feasible under a stronger relation is feasible under
+a weaker one, so the best weaker schedule is no longer; that a particular
+greedy schedule can be longer is \cref{ex:exec-anomaly}.
+\end{proof}
+
+The bound is Graham's argument for list scheduling under precedence
+constraints~\cite{graham66,graham69}, applied to two stages with separate
+budgets; \spec{13.11} does not claim it tight for this shape of graph.
+
+\begin{example}[Graham's anomaly, \spec{13.11}]
+\label{ex:exec-anomaly}
+Take two build slots and one publication slot, packages $A = (2, 3)$ and $B =
+(1, 2)$ where $B$ consumes $A$, and an unrelated $C = (8, 3)$, with ready tasks
+taken in the order $A, B, C$. Under \code{build}, $B$'s build is not ready at
+$0$: $A$ builds in $[0,2)$ and $C$ in $[0,8)$ on the two slots; $B$ builds in
+$[2,3)$; $A$ publishes in $[2,5)$, $B$ in $[5,7)$ once $A$ has published, and
+$C$ in $[8,11)$ once its build ends. The run lasts $11$. Under \code{none},
+$B$'s build is ready at $0$ and takes the second slot: $A$ builds in $[0,2)$
+and $B$ in $[0,1)$, so $C$ builds only in $[1,9)$; $A$ publishes in $[2,5)$,
+$B$ in $[5,7)$ and $C$ in $[9,12)$. The run lasts $12$: the consumer's early
+build took the slot the long build would have had. A list that preferred $C$
+to $B$ at $0$ would finish at $11$ under \code{none} as well, which is the
+point: the length depends on the list, not on the relation, and it is why
+\spec{19.2a} promises a happens-before relation and no duration.
+\end{example}
+
+\begin{example}[an infrastructure chain]
+\label{ex:exec-chain}
+Let the infrastructure leg of \cref{ex:terraform} be consumed by a backend
+consumed in turn by a frontend, with $(b, p)$ in minutes of $(4, 6)$ for the
+infrastructure, $(9, 3)$ for the backend and $(12, 2)$ for the frontend. By
+\cref{prop:exec-chain}, under \code{publish} the run lasts $10 + 12 + 14 = 36$
+minutes; under \code{build} it lasts $\max(4 + 11,\ 13 + 5,\ 25 + 2) = 27$;
+under \code{none} it lasts $\max(4 + 11,\ 9 + 5,\ 12 + 2) = 15$. The
+publications still run in order in every case, and the frontend's publication
+still ends the run.
+\end{example}
+
+\subsection{Distributed execution}
+\label{sec:exec-distributed}
+
+\spec{28} is an optional execution profile that changes no message syntax and
+asserts no speedup. The definitions below transcribe its obligations; the one
+proposition is the invariance it promises.
+
+\begin{definition}[nodes and roles, \spec{28.1}]
+\label{def:exec-roles}
+An execution node is a machine or runner executing the same release engine and
+configuration schema; it is distinct from a repository peer. Every node
+supports two roles, and one engine provides both. The default role is
+\emph{orchestrator}. An explicit \emph{worker} refuses release initiation,
+including indirect initiation from a delegated hook, and executes authorised
+tasks in an existing run; it never substitutes a locally recomputed plan,
+acquires competing release ownership, dispatches to another pool, or
+independently finalises a release. An orchestrator-capable node that accepts
+a delegated task has only worker authority for it. The node on which CI starts
+the release is the run's orchestrator, of which there is one per run; it owns
+lock acquisition, the fixed planning input, task allocation, result admission
+and release finalisation, and may execute tasks locally under the same rules
+as a worker. Workers may be added to every history mode; execution links are
+not fleet links and alter neither source discovery nor release scope.
+\end{definition}
+
+\begin{definition}[lock, snapshot, plan, assign, \spec{28.3}]
+\label{def:exec-input}
+Before creating a write-capable run the orchestrator identifies every
+participating repository, acquires all release locks in one stable total
+order, verifies ownership, and revalidates discovery under those locks; a
+changed participant set releases the partial acquisition and acquires the
+complete set again. Discovery and compatibility inspection before locking are
+read-only, and an unsafe lock bypass is refused. The run input $\exI$ contains
+the fixed repository-qualified heads and complete relevant history, the release
+records of the authoritative stores as compared under the locks
+(\cref{def:records-lock}), the graph, the resolved semantic configuration, the
+explicit release options, and the withdrawal inventory and receipts of
+\spec{26}. The semantic release plan is the pure function $\exPlan(\exI)$.
+Node placement configuration is not semantic input: worker count, placement,
+completion order, wall-clock time, run identifiers and transport branch names
+do not change $\exPlan(\exI)$. A plan digest is computed over a canonical
+serialisation of semantic input and plan content, and transient execution
+identity is bound separately. The orchestrator derives a task graph from the
+plan, including preparation, tests, builds, transfers, publications and
+recording gates; a task is placed only on a compatible node and only when its
+exact prerequisites are available; the schedule need not be deterministic.
+Where a package's stages may be placed is execution policy declared beside
+\cref{def:readiness} and, like it, no part of the plan. Every reconciliation
+that writes a shared manifest or lockfile is an explicit task under the
+orchestrator's authority, serialised per shared file; each admitted result is
+one prepared input state, builds fan out only from an admitted state, and
+every build binds the state it consumed. An assignment identifies the run,
+plan digest, task, attempt, ownership generation, repository-qualified source
+object identifiers, effective configuration and command environment,
+toolchain and platform requirements, input receipts, permitted writes and
+outputs; workers authenticate the assigning orchestrator and the assignment's
+integrity; duplicate delivery is recognised; only one attempt is authorised
+to perform a given external side effect; and a task receipt is execution
+evidence, never a release record.
+\end{definition}
+
+\begin{proposition}[placement invariance]
+\label{prop:exec-placement}
+For a fixed input $\exI$, the plan $\plan{\st}$, the versions
+$\vers{\st}{\cdot}$ and the publish order of \cref{def:order} do not depend on
+the placement of tasks, on the number of nodes, or on the order in which tasks
+complete.
+\end{proposition}
+
+\begin{proof}
+By \cref{thm:determinism} the plan, the versions and the planned publish
+order are functions of $(\st, \Head, \mathrm{config})$ alone. $\exI$ fixes all
+three: \st{} is the set of release records compared under the locks
+(\cref{def:records-lock}), \Head{} is the fixed repository-qualified head, and
+the configuration is the run's resolved semantic configuration. Nothing a node
+contributes reaches those arguments: the node-startup settings of \spec{28.2}
+(role, capacity, worker links) do not override package policy, planned
+versions, commands or inputs; the build readiness relation and the placement
+policy are execution policy outside the plan (\cref{def:readiness},
+\cref{def:exec-input}); and placement, node count and completion order are
+excluded from $\exI$ by \cref{def:exec-input}. A function of fixed arguments
+takes one value. Vectors 3 and 5 of \spec{28.8} are this statement.
+\end{proof}
+
+\begin{definition}[Git synchronisation branches, \spec{28.4}]
+\label{def:exec-branches}
+The orchestrator provisions isolated task worktrees and temporary coordination
+branches named \code{dispat-worker-<id>-<workinfo>}, created atomically under
+\code{refs/heads/}, where \code{<id>} is the node the branch is addressed to
+and \code{<workinfo>} carries a date, a kind label and at least 128 bits of
+randomness. The name is an untrusted routing hint that lets a node list the
+branches addressed to it; the authenticated manifest, not the name,
+identifies node, run, task and attempt, and a node rejects a manifest whose
+binding disagrees with where it was found. Each acknowledged checkpoint
+identifies an exact full object identifier, and a consumer reads only from
+that object, never from a tip that can still move; a tip fetched but not read
+or verified has not been seen. Ref updates and deletions check the expected
+previous object identifier and attempt ownership, so that an update racing
+another party's update fails instead of overwriting it. Transport credentials
+do not authorise a worker to update native release branches, tags or fleet
+settlement refs. A source snapshot may travel without the history behind it,
+as a parentless commit or bare tree, because a task's commands may not read
+history from a transport checkout. Transport commits are never release intent,
+a window boundary, a successful release or an admitted native head; they are
+neither merged into a release branch nor made ancestors of release tags, and
+only validated release-file changes enter native recording through the
+ordinary transaction. Artefact provenance binds the exact source revision and
+admitted release-file state used for the build.
+\end{definition}
+
+\begin{definition}[outputs as first-class inputs, \spec{28.5}]
+\label{def:exec-outputs}
+A provider's revision does not make its ignored or generated outputs
+available on another machine, so a conforming implementation transports the
+outputs a local-output dependency needs, declared ignored and generated files
+included; it neither reclones and rebuilds the provider closure on every
+consumer node nor pins the connected graph to one worker. A successful build
+emits a manifest binding its outputs to the run, plan, task, attempt,
+repository-qualified source revision, admitted release-file state, package and
+version, toolchain and platform, and input and output digests. Identity is by
+content: consumers verify the authenticated manifest, content integrity and
+compatibility before their stage becomes ready; installation is atomic at the
+task-input boundary; a completed build publishes one admitted output set for
+its exact attempt; and a missing, stale, incomplete or incompatible output
+fails the prerequisite and is never substituted with registry contents or a
+new build under a different input. Bytes travel through the coordination
+branch or through immutable content-addressed bundles whose references and
+digests are in it; a reference alone is not a transfer. For package edge $B
+\to A$ under the \code{build} relation, readiness is the task precedence
+$\exbuild{A} \to \mathrm{export}(A) \to \mathrm{verify/materialise}(A
+\text{ at } B\text{'s node}) \to \exbuild{B}$; under \code{publish} it
+requires $A$'s publication and every applicable recording gate, which local
+bytes never replace; under \code{none} the edge carries no output and the two
+builds are independent tasks. A provider a consumer reaches only across
+\code{none} edges is no input of that consumer and is not prepared for it:
+the input closure ends at a \code{none} provider. Task inputs include every
+required build dependency, including packages needing no new release and
+build-only edges outside the propagation kinds; the task graph is acyclic,
+and an unschedulable cycle is an execution-configuration error, never a
+reason to change release intent. Verified outputs may be reused across runs
+only under a new admission receipt bound to the current run, plan and task
+attempt.
+\end{definition}
+
+\begin{definition}[publication, recording and recovery, \spec{28.6}, \spec{28.2}]
+\label{def:exec-publication}
+The orchestrator alone admits results and authorises publication, after the
+ordinary test, dependency, settlement and relevant-input checks; it serialises
+publication and recording within one owner, a single-history monorepo
+included, while isolated builds within that owner may overlap and independent
+owners keep their publication concurrency. A worker never moves release
+branches, creates release tags, settles peer links or finalises the fleet.
+Authorisation to publish is explicit, single-use and bound to one task
+attempt: it is issued only after the package's \code{beforePublish} hook has
+completed on the executing node and after the relevant-input and lock-ownership
+checks, the publisher does not start its command before it has observed the
+authorisation for its own attempt, and an authorisation is never reused by
+another attempt or for another effect. An authorisation may be bounded in
+time, with a start instant after which the publisher does not begin and a
+deadline at which the executing node ends the command itself; the bound
+limits when an effect may begin and how long it runs, is not an expiry of the
+release lock, and authorises no takeover. The orchestrator retains and
+verifies lock ownership for the lifetime of all authorised effects, and
+assignments and results are bound to its ownership generation. After lock
+loss no new effect starts: no further assignment and no further
+authorisation. Recording an effect authorised before the loss is not a new
+effect and is still attempted, as the create-only record of
+\cref{def:tagging}, because a publication left unrecorded is a wedge the next
+owner can clear only by \cref{def:reconcile}, and a create-only record cannot
+overwrite what a successor wrote. A timed-out worker is not proof that its
+publisher stopped: before ownership is handed over, cancellation is
+acknowledged with the phase the attempt stopped in, or a fence is enforced
+where the effect occurs, or the outcome is reconciled; a generation field
+alone fences no registry command, and no takeover expires ownership while the
+previous process can still act. Capacity returns only on evidence: an
+in-flight attempt retains its reservation until completion, acknowledged
+cancellation or safe fencing, a timeout alone frees nothing, and an
+assignment no node has claimed holds no capacity and may be withdrawn and
+offered again. A worker that fails before publication is retried under a new
+attempt without discharging the package; a publication that may have
+succeeded is reconciled by \cref{def:reconcile} before another attempt, since
+neither a missing reply nor a missing tag proves failure; only the durable
+source release record discharges the obligation. Locks are released only after
+authorised operations have quiesced or been fenced, in reverse acquisition
+order; if that cannot be proved the run fails holding its exclusion and no
+record of the uncertain package, which the next run treats as pending. An
+attempt never authorised to perform an external effect is fenced by revoking
+its coordination ref; an authorised publisher is not. An abandoned run is
+findable from its lock, and recovery revokes the run's coordination refs,
+settles every authorised attempt without a result, and only then removes the
+lock.
+\end{definition}
+
+\begin{example}[the required example, \spec{28.7}]
+\label{ex:exec-required}
+In one large JavaScript repository let $\code{assets} \Rightarrow \{\code{ui},
+\code{docs}\} \Rightarrow \code{app}$ denote task precedence: \code{ui} and
+\code{docs} consume \code{assets}, and \code{app} consumes both; the package
+edges of \cref{def:graph} point the other way. Worker $A$ builds \code{assets}
+once and exports its required outputs. Workers $B$ and $C$ receive verified
+outputs and build \code{ui} and \code{docs} concurrently. The assigned
+\code{app} worker receives both output sets and builds \code{app}.
+Publication and source recording then obey \cref{def:order} and the owner
+lane of \cref{def:exec-publication}. Neither $B$ nor $C$ rebuilds
+\code{assets}, and the \code{app} worker rebuilds neither closure. The
+example works without converting the monorepo to a polyrepo or publishing
+private intermediate packages solely for transport.
+\end{example}
+
+\begin{remark}[the performance boundary, \spec{28.7}]
+\label{rem:exec-boundary}
+The required gain is the distribution and reuse of dependent builds with
+parallel ready branches; universal speedup is not a semantic guarantee. Git
+provides source and result transport; it does not schedule tasks, transfer
+omitted build products, guarantee compatible environments or make effects
+exactly-once. A strictly serial chain retains its critical path, and transfer
+and setup overhead can outweigh saved compute on small jobs. Before an
+implementation claims a performance gain it compares the same pinned fixture
+locally and on several nodes, reporting cold and warm setup, per-node
+resources, transfer bytes and time, task execution counts, total work, wall
+time, repetitions and variability, and artefact equivalence, with the fixture
+and environment identified; skipped or failed trials are not speedups, and
+neither source-only dispatch nor duplicated prerequisite compilation is a
+distributed-build success.
+\end{remark}
+
+\begin{proposition}[list scheduling under placement, \spec{13.11}]
+\label{prop:exec-graham}
+Let $W_k$ be the summed duration of a run's command tasks, $L_k$ the duration
+of its longest precedence chain, and $s$ the task slots usable at once, the
+lesser of the summed node capacities and the applicable run-wide stage
+limits. No schedule finishes before $\max(L_k,\ W_k/s)$. When slots are
+interchangeable and transfers cost nothing, a placement that never leaves a
+usable slot idle while a compatible task is ready finishes within $W_k/s +
+(1 - 1/s)\,L_k$, which is at most $(2 - 1/s)$ times the best possible. On a
+chain $L_k = W_k$ and no number of nodes helps.
+\end{proposition}
+
+\begin{proof}
+The lower bound is that of \cref{prop:exec-budget} with one stage. For the
+upper bound take the chain $t_q \to \dots \to t_1$ of that proof. At every
+instant either a chain task runs or all $s$ slots are busy, and in the latter
+case the work done off the chain is at most $W_k - L'$ where $L' \le L_k$ is
+the chain's length; so the off-chain time is at most $(W_k - L')/s$ and the
+makespan at most $L' + (W_k - L')/s = W_k/s + (1 - 1/s)L' \le W_k/s + (1 -
+1/s)L_k$. Each of $W_k/s$ and $L_k$ is at most the optimum, giving the factor.
+This is Graham's bound for list scheduling under precedence
+constraints~\cite{graham66,graham69}. On a chain every task is on the
+longest path, so $L_k = W_k$ and the lower bound is $W_k$ for every $s$.
+\end{proof}
+
+Neither premise holds in general: nodes differ in platform and speed, and an
+output transfer delays the consumer it feeds. \spec{13.11} therefore states no
+bound once transfers count and puts the measurement of
+\cref{rem:exec-boundary} in its place. The inequality still says what to
+expect: once $s \ge W_k/L_k$ the lower bound is $L_k$, so the chain and not the
+pool is the limit, and more nodes can only close the gap between a greedy
+schedule and $L_k$, which is below a factor of two.
+
+\paragraph{Implementation status.}
+The design history of \SPEC{} dated 2026-09-22 records that the dispat
+release engine implements the profile in every history mode over the Git
+mailbox transport of \cref{def:exec-branches}: every message is a signed tree
+on a branch, every transition one compare-and-swap ref update, a worker
+polls, and nothing connects to a worker. Builds and publications run on
+workers, a publication is delegated only by an explicit placement, a space
+that logs in to its registry publishes on the orchestrator, the orchestrator
+is one more node of the pool chosen last, and a provider the run does not
+release is prepared once per run when a consumer reads its outputs. Outputs
+travel as result trees on the branches, with no bundle service, which is
+vector 17 of \spec{28.8}. Not implemented, so their conditional vectors do
+not apply: reuse of verified outputs across runs (vector 20) and the rollback
+profile of \spec{26} (vector 26); the durable mailbox ref and the
+history-free snapshot that \spec{28.4} permits are likewise unimplemented, so
+a snapshot descending from the planned head carries the repository's whole
+history to a mailbox that starts empty. Departures from the profile as
+written: the platform check of \spec{28.2} runs before dispatch for the
+packages a run releases and, for a prepared provider, at its placement; and
+the \code{native-recording-or-lock} class is attached where a distributed run
+loses its lock and not yet at the older recording and lock sites. The same
+history records that the owed windows of \spec{13.3} and \diag{E201}
+(\cref{def:owed-commit}) are not yet implemented, so a consumer that sits out
+the run in which its provider releases the owed commit is still stranded in
+that engine. What was measured, on which fixtures, is reported in
+\cref{sec:evaluation}.
+
+\subsection{Repository-local windows}
+\label{sec:exec-polyrepo}
+
+\spec{27} plans one package graph whose packages are owned by several linked
+Git repositories. It changes where history and release records are read and
+nothing else: the grammar, the bump lattice, the windows, holds,
+cancellation, corrections, channel rules, the dependency graph and the
+partial-publication rules of \cref{sec:protocol} are unchanged. This
+subsection defines the objects the profile adds and states what it promises;
+it does not extend the single-history theorems of \cref{sec:guarantees} to
+several histories.
+
+\begin{definition}[fleet snapshot and commit identity, \spec{27.2}]
+\label{def:exec-fleet}
+Before parsing history the engine resolves one immutable map from repository
+identity to full commit object identifier, the fixed fleet snapshot; every
+participating repository is an initialised, non-shallow checkout at its
+pinned commit, and a missing, shallow, moved or ambiguous participant is
+\diag{E330}. A commit identity is a pair (repository, full object
+identifier); two equal identifier byte strings in different repositories are
+incomparable. Commit dates, author dates, modification times, tag creation
+dates and fetch order create no ancestry or precedence. The engine reads each
+repository's reachable DAG once for the snapshot, preserves native parent
+order, and manufactures no synthetic fleet DAG or parent edge. Ancestry,
+changed paths, direct pending windows, cancellation barriers, corrections and
+\code{Reverts} are evaluated in the repository that owns the commit.
+\end{definition}
+
+\begin{definition}[repository-local windows, \spec{27.5}, \spec{27.6}, \spec{27.11}]
+\label{def:exec-windows}
+For a source repository $r$ with fixed head $h_r$, write $\exRch{r}{x}$ for
+the ancestors-or-self of a commit $x$ of $r$, and
+\[
+  \exafter{r}{x} \;=\; \exRch{r}{h_r} \setminus \exRch{r}{x},
+  \qquad
+  \exafter{r}{\NONE} \;=\; \exRch{r}{h_r}.
+\]
+For a consumer package $D$ and a repository $r$, let $s_{D,r}$ be the
+revision of $r$ that $D$'s last stable release incorporated and $b_{D,r}$ the
+revision of $r$ that $D$'s newest release of any channel incorporated, each
+$\NONE$ where no such release exists. $D$'s train and fresh windows over $r$
+are
+\[
+  \exWin{D}{r} \;=\; \exafter{r}{s_{D,r}},
+  \qquad
+  \exWinf{D}{r} \;=\; \exafter{r}{s_{D,r}} \cap \exafter{r}{b_{D,r}}.
+\]
+When $r$ owns $D$, the boundaries are the commits of $D$'s own release tags,
+and the windows are those of \cref{def:window}. When $r$ does not own $D$,
+the boundaries are the positions $D$'s releases prove in $r$, and only these
+prove them: a control release checkpoint whose release-commit message names
+$D$'s exact tag, changes $D$'s gitlink to the commit peeled from that tag, and
+pins the revision of each other repository the release incorporated
+(\spec{27.6}); an explicit \code{repositoryBaselines} tuple $(D,
+\text{release tag}, r, \text{revision})$, with stable and prerelease tags as
+separate entries (\spec{27.6}); or, in the linked peer topology, the route of
+fleet links recorded hop by hop from the tree of the release commit that
+names $D$'s tag (\spec{27.11}). A matching object identifier alone proves
+nothing. Missing or ambiguous evidence is \diag{E333}, never a guess and
+never a choice by date or proximity. Admission of a unit $u$ carried by a
+commit of $r$ at a consumer $D$ remains $\cof{u} \in \exWinf{D}{r}$: $D$'s
+last release had not yet incorporated the qualified revision. A source unit
+resolves directly only packages of its own repository and propagates through
+the one combined graph; delivery (\spec{13.4a}) compares $D$'s boundary and
+the release commits of the provider in the provider's repository. A window
+over $r$ is a function of $r$, $h_r$ and one boundary revision of $r$ and of
+nothing else, so packages of any owners share an immutable train window over
+$r$ exactly when their stable boundary there is the same qualified revision,
+and a fresh window exactly when both boundaries are.
+\end{definition}
+
+The identity $\exWinf{D}{r} = \exafter{r}{s_{D,r}} \cap \exafter{r}{b_{D,r}}$
+is the fresh-window identity of \cref{prop:marker-pass}, read per
+repository; it is what lets \cref{sec:complexity} key every window by one
+boundary revision. Newest-wins precedence between competing directives is
+defined within one repository's DAG and within the control history; source
+revisions of different repositories have no such order, and where the
+existing rule requires a single winner among incomparable revisions the
+engine fails with \diag{E334} rather than choosing by date, traversal order,
+repository name or identifier (\spec{27.4}). An explicit control directive can
+resolve the choice, evaluated against the gitlinks its own commit pinned, its
+causal snapshot, so that it cannot rewrite work the control revision had not
+yet observed; in the linked peer topology no repository addresses the whole
+fleet and the conflict is refused outright.
+
+\begin{definition}[recording order, \spec{27.7}, \spec{27.11}]
+\label{def:exec-recording}
+The combined publish sequence is that of \cref{def:order} across all
+repositories, and publication remains non-atomic. Each successful package
+receives its immutable release tag in its owning repository at the ordinary
+tag-after-publish point of \cref{def:tagging}. Where a source release commit
+and push are enabled, the source release is recorded durably first, and only
+after its branch and tags are reachable from the configured remote may a
+control gitlink or a peer's pin advance to it: a pushed pointer never names a
+commit nobody else can fetch. A control checkpoint, when enabled and
+non-empty, follows the source record and never precedes it; no empty commit
+is forced and no checkpoint is required. A failure to record or durably push
+a tag is \diag{E335}; prior successes remain successful and dependents are
+protected by \cref{def:blocking}. If the source record succeeds and the
+control checkpoint then fails, \diag{E335} names the repository, the full
+revision and the tag and requires explicit repair; the next run remains
+\diag{E330} while the checkout and the committed gitlink are unpinned, and
+the engine neither auto-commits the repair, nor forces a checkpoint, nor
+republishes the source, nor infers success from the worktree. A successful
+source tag is never deleted, moved or duplicated to make a checkpoint look
+atomic, and no rollback is inferred. In the linked peer topology the route
+evidence is settled by ordinary commits before publication, deepest hop
+first, all or nothing per package (\diag{E333} otherwise), and each
+settlement is an admitted transition of the repository it was written in.
+The fleet lock covers the control repository, every active source and every
+standalone package as one fleet (\diag{E336} otherwise), is taken in one
+stable total order over lock identities, and is released in reverse.
+\end{definition}
+
+\paragraph{Bounds.}
+\spec{27.9} requires the engine to index the control gitlink transitions
+once per fixed control snapshot, not once per consumer or provider pair; to
+store each parsed (repository, commit) record once; to share window
+membership only under the keys of \cref{def:exec-windows}; and to bound its
+reachability and ancestry caches, because a cache of every queried pair can
+grow quadratically in one repository's history even when that history is
+walked once. With the notation of \cref{sec:complexity}, input traversal is
+$O(G + \sum_q (H_q + A_q))$, window reachability is $O(\sum_q (H_q + A_q)\cdot
+\mathrm{bw}(m_q) + I_w)$ with one marker pass per repository, and in the linked
+peer topology boundary resolution is $O(Q + X \cdot Y)$ lookups over $B$ tree
+reads, with settlement in at most $Q - 1$ commits and at most two in a star.
+Publication revalidation adds $O(\sum_q J_q (1 + T_q))$ comparison work, with
+$J_q$ the fleet or package checks repository $q$ takes part in and $T_q$ its
+relevant tag refs, and retaining every package's input closure costs memory
+linear in the total number of repository memberships across those closures,
+at most $P \cdot Q$. The profile makes no globally linear end-to-end claim and permits
+no synthetic ancestry shortcut.
+
+\begin{remark}[what this subsection does not prove]
+\label{rem:exec-multihistory}
+\Cref{lem:window}, and every theorem of \cref{sec:guarantees} that rests on
+it, is stated for one history with one \Head{}. Under \cref{def:exec-windows}
+a consumer has one window per repository its plan reads, each measured from a
+boundary its own release proves there, and a release of the consumer moves
+every one of those boundaries at once only when the evidence of
+\cref{def:exec-recording} is written. Restating the retry invariant over the
+fleet snapshot and proving the eight guarantees per repository is a separate
+piece of work; this report defines the objects, and \spec{27} promises that
+the single-history rules apply unchanged inside each repository.
+\end{remark}

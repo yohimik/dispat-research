@@ -82,3 +82,40 @@
 
 % ---- guarantee labels ------------------------------------------------------
 \newcommand{\G}[1]{\textbf{G#1}}
+
+% ---- delivery (SPEC 13.3, 13.4a, 19.3; added for the 3.1.0-rc.2 text) ------
+\newcommand{\relc}[2]{\ensuremath{T_{#1}(#2)}}                        % release commits of a package
+\newcommand{\deliv}[4]{\ensuremath{\mathrm{dlv}_{#1}(#2,#3,#4)}}       % delivered(P, C, D)
+\newcommand{\owed}[3]{\ensuremath{\mathrm{owed}_{#1}(#2,#3)}}          % owed(u, D)
+\newcommand{\Wowed}[3]{\ensuremath{W^{\mathrm{ow}}_{#1}(#2,#3)}}       % owedWindow(P, D)
+\newcommand{\owes}[3]{\ensuremath{\mathrm{owes}_{#1}(#2,#3)}}          % P still owes D
+\newcommand{\owncause}[3]{\ensuremath{\mathrm{own}_{#1}(#2,#3)}}       % a cause of its own, §19.3
+\newcommand{\wf}[1]{\ensuremath{\mathrm{wf}(#1)}}                      % E201 well-formedness of a state
+\newcommand{\pubset}[2]{\ensuremath{S(#1,#2)}}                         % the packages a run publishes
+\newcommand{\blocked}[2]{\ensuremath{B(#1,#2)}}                        % the packages a run blocks
+\newcommand{\stale}[2]{\ensuremath{\mathrm{stale}_{#1}(#2)}}           % the upward audit, §13.7b
+\newcommand{\Kprop}{\ensuremath{K_{\mathrm{prop}}}}                    % propagation.kinds
+\newcommand{\Korder}{\ensuremath{K_{\mathrm{order}}}}                  % publish.orderKinds
+\newcommand{\Kblock}{\ensuremath{K_{\mathrm{block}}}}                  % publish.blockingKinds
+
+% ---- execution section (moved from sections/04a-execution.tex) --------------
+% Symbols of the execution section, prefixed \ex.
+\newcommand{\exafter}[2]{\ensuremath{A_{#1}(#2)}}          % after-set in repository #1 of boundary #2
+\newcommand{\exRch}[2]{\ensuremath{\mathrm{reach}_{#1}(#2)}} % reachability inside one repository
+\newcommand{\exWin}[2]{\ensuremath{W(#1;\,#2)}}             % train window of consumer #1 over repository #2
+\newcommand{\exWinf}[2]{\ensuremath{W^{\circ}(#1;\,#2)}}    % fresh window of consumer #1 over repository #2
+\newcommand{\exPlan}{\ensuremath{\mathrm{Plan}}}            % the pure planning function of §28.3
+\newcommand{\exI}{\ensuremath{\mathcal{I}}}                 % the fixed run input of §28.3
+\newcommand{\exbuild}[1]{\ensuremath{\mathrm{build}(#1)}}
+\newcommand{\expub}[1]{\ensuremath{\mathrm{publish}(#1)}}
+
+% ---- evaluation section (moved from sections/11-evaluation.tex) -------------
+% \evpath sets a file path in monospace and lets it break after / . _ and -,
+% through the url package that hyperref already loads. \evhash lets a hex
+% digest break anywhere, since nothing in it is a word.
+\DeclareUrlCommand\evpath{\urlstyle{tt}\def\UrlBreaks{\do\/\do\.\do\_\do\-\do\@\do\:}}
+\newcommand{\evRQ}[1]{\textbf{RQ#1}}
+\makeatletter
+\newcommand{\evhash}[1]{\texttt{\ev@split#1\@nil}}
+\def\ev@split#1#2\@nil{#1\ifx\relax#2\relax\expandafter\@gobble\else\expandafter\@firstofone\fi{\allowbreak\ev@split#2\@nil}}
+\makeatother

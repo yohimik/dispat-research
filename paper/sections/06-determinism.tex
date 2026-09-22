@@ -15,7 +15,8 @@ conforming implementations, on two machines, at two times, produce identical pla
 \begin{proof}
 Every quantity in \cref{sec:model,sec:propagation} is defined by a closed
 expression in $\st$, \Head{} and the configuration:
-\cref{def:window,def:sources} from ancestry and tags;
+\cref{def:window,def:sources} from ancestry and tags, \cref{def:delivery} and
+the owed windows of \cref{def:unit} from the same;
 \cref{def:unit} from commit messages and the configured types, separator and
 limits; \cref{def:reach} from the graph at \Head{};
 \cref{def:propchan,def:phase1,def:channels,def:resolvable,def:admission} from
@@ -35,43 +36,71 @@ iteration order is observable. A function of fixed inputs with all ties broken
 by total orders is single-valued.
 \end{proof}
 
+\begin{theorem}[resumption after partial failure]
+\label{thm:resumption}
+Assume the retry invariant and $\wf{\st_1}$. Let $\st_2 = \Run{\st_1}{F}$
+with blocked set $B = \blocked{\st_1}{F}$ and published set $\pubset{\st_1}{F}$,
+and suppose the run reports \diag{E201} for no package. Then
+\[
+  \plan{\st_2} \;=\; F \cup B \cup A,
+  \qquad
+  A = \bigl\{\, p \in \pubset{\st_1}{F} \;:\; \owes{\st_2}{P}{p}
+      \text{ for some } P \in F \cup B \,\bigr\},
+\]
+and $\vers{\st_2}{p} = \vers{\st_1}{p}$ for every $p \in F \cup B$.
+\end{theorem}
+
+\begin{proof}
+$\subseteq$: $\plan{\st_2} \subseteq \plan{\st_1}$ by \cref{lem:plan-mono},
+and every member of $\plan{\st_1}$ lies in $F$, in $B$ or in
+$\pubset{\st_1}{F}$. Take $p \in \plan{\st_2} \cap \pubset{\st_1}{F}$. It is
+tagged at \Head{} in $\st_2$, so by \cref{lem:tagged-target} its only cause is
+a unit $u$ with $\admit{\st_2}{u}{p}$, and every $P \in \owed{\st_2}{u}{p}$ is
+in $\plan{\st_2} \subseteq \plan{\st_1}$ and untagged at \Head{}, hence not
+published in run 1, hence in $F \cup B$; so $p \in A$.
+$\supseteq$: each $p \in F \cup B$ was planned in run 1 and not released, and
+the run reported \diag{E201} for nothing, so \cref{thm:g3} with $k = 2$ gives
+$p \in \plan{\st_2}$ at the same version. Each $p \in A$ has an admitted unit
+with a non-empty owed set, so $\propb{\st_2}{p} \neq \bnone$, and $\held{p}$
+is constant and false; so $p \in \plan{\st_2}$.
+\end{proof}
+
+The set $A$ is new with delivery: the consumers that proceeded past a commit
+on a cause of their own while a provider failed or was blocked, and are owed
+that provider's release. They return to the plan at a version their catch-up
+computes, not at the version they were first planned at (\cref{thm:g3} says
+nothing about a released package), and they are ordered after the provider
+(\cref{lem:tagged-target}). Under the window test of CCME 2.0.0, $A$ was
+empty, because a published package could not be planned again at the same
+\Head{}; that is the orphan of \cref{ex:orphan}, second shape.
+
+\Cref{thm:resumption} is the exact statement of what the operator is promised
+after a failed run under the retry invariant: the next run does the rest of
+the same job, at the same numbers for what never released and at the owed
+catch-up for what proceeded, without coordinator state to clean up. An
+ambiguous external publish outcome still requires \spec{19.4} reconciliation.
+It is also what \spec{19.6} checks. After a run in which nothing failed or was
+blocked, $F \cup B = \emptyset$, so $A = \emptyset$ and the re-planned set must
+be empty; a non-empty one is \diag{E199}. Inside the retry invariant it
+contradicts \cref{thm:resumption}; outside it, \spec{19.6} reports the changed
+admission inputs for renewed review.
+
 \begin{corollary}[idempotency]
 \label{cor:idempotency}
 Running the engine twice with no intervening commits and no publish yields the
-same plan. Under the retry invariant, running it after a fully successful publish yields the
-empty plan.
+same plan. Under the retry invariant, running it after a fully successful
+publish from a well-formed state yields the empty plan.
 \end{corollary}
 
 \begin{proof}
 The first is \cref{thm:determinism}: the state is unchanged, so the plan is.
-The second is \cref{thm:g4} applied to each $p \in \plan{\st_1}$, which is
-\cref{thm:g6} with $n$ reached in one run; the invariant excludes both input drift and newly visible catch-up.
+The second is \cref{thm:resumption} with $F = \emptyset$: then $B = \emptyset$,
+no \diag{E201} is reported (it needs a failed package), and $A = \emptyset$
+because nothing is left to owe; so $\plan{\st_2} = \emptyset$. Equivalently,
+every $p \in \plan{\st_1}$ is tagged at \Head{} in $\st_2$ together with every
+package it was owed by, so \cref{lem:tagged-target} leaves it no cause; the
+invariant excludes both input drift and newly visible catch-up.
 \end{proof}
-
-\begin{theorem}[resumption after partial failure]
-\label{thm:resumption}
-Assume the retry invariant. Let $\st_2 = \Run{\st_1}{F}$ with induced blocked set
-$B$. Then
-\[
-  \plan{\st_2} \;=\; F \cup B,
-  \qquad\text{and}\qquad
-  \vers{\st_2}{p} = \vers{\st_1}{p} \ \text{ for every } p \in F \cup B.
-\]
-\end{theorem}
-
-\begin{proof}
-$\subseteq$: $\plan{\st_2} \subseteq \plan{\st_1}$ by the first paragraph of
-the proof of \cref{thm:g6}, and every $p \in \plan{\st_1} \setminus (F\cup B)$
-was published, hence excluded by \cref{thm:g4}.
-$\supseteq$ and the version equality: each $p \in F \cup B$ was planned in run
-$1$ and not released, so \cref{thm:g3} applies verbatim.
-\end{proof}
-
-\Cref{thm:resumption} is the exact statement of what the operator is promised
-after a failed run under the retry invariant: the next run does the rest of the same job, at the same
-numbers without coordinator state to clean up. An ambiguous external publish outcome still requires \spec{19.4} reconciliation. It is also what
-\spec{19.6} checks. After a run in which nothing failed or was blocked, $F \cup
-B = \emptyset$, so the re-planned set must be empty; a non-empty one is \diag{E199}. Inside the retry invariant it contradicts \cref{thm:resumption}; outside it, \spec{19.6} reports the changed admission inputs for renewed review.
 
 \begin{remark}[what determinism forbids]
 \Cref{thm:determinism} is the reason \spec{13.11} may permit

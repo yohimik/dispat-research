@@ -15,11 +15,12 @@ index), and there is no coordinator that can commit or abort them as a unit. A
 run that publishes seven packages is seven independent, individually fallible
 writes; it may finish having done four of them.
 
-CCME\footnote{\emph{Conventional Commits: Monorepo Extension}, version 2.0.0,
-\code{specs/ccme-spec/SPEC.md} in the \code{dispat} repository. Referred to throughout
-as \SPEC{}, cited by section number.} answers this the way a saga
-does. There is no external state file, no lock service, and no registry polling.
-The release plan is a pure function of the repository at a fixed commit; each
+CCME\footnote{\emph{Conventional Commits: Monorepo Extension}, version
+3.1.0-rc.2 at commit \texttt{252216ba}, \code{specs/ccme-spec/SPEC.md} in the
+\code{dispat} repository. Referred to throughout as \SPEC{}, cited by section
+number.} answers this the way a saga does. There is no external state file, no
+lock service beyond the release lock itself, and no registry polling. The
+release plan is a pure function of the repository at a fixed commit; each
 completed leg of the transaction is recorded by an annotated git tag written
 immediately after that leg succeeds; and recovery is re-execution: run the
 engine again and it recomputes the same transaction, skipping the legs already
@@ -31,22 +32,28 @@ the eight properties that say it is:
 \begin{description}[leftmargin=3.2em,style=nextline,font=\normalfont\bfseries]
   \item[\G{1} termination] propagation halts, whatever the declared depth.
   \item[\G{2} completeness] a contribution admitted to a dependent survives in
-    every later run until that dependent releases it; there are no orphans.
+    every later run until that dependent releases at or after a release of
+    every owed source carrying it; there are no orphans, whether the provider
+    failed or the consumer got ahead of it.
   \item[\G{3} version stability] a package released late is released at the
     version it was originally planned at.
   \item[\G{4} no double ledger delivery] a contribution does not survive its
-    tag-ledger discharge; this says nothing unconditional about external effects.
+    delivery in the tag ledger; a consumer that proceeded past a commit before
+    its source released it is bumped once more when that release comes, and
+    that is the delivery, not a second one. This says nothing unconditional
+    about external effects.
   \item[\G{5} no blast-radius widening] under the retry invariant, later
     targets are a subset of the first run's.
   \item[\G{6} restricted convergence] under the retry invariant, repeated
-    successful progress empties the initial plan.
+    successful progress empties the initial plan within as many runs as it had
+    publishable packages.
   \item[\G{7} channel discharge] a prerelease channel is proposed to a package
     only until it is released on it.
   \item[\G{8} one-way axis independence] suppressing a version bump does not
     suppress a channel change; resolved channels may suppress bumps.
 \end{description}
 
-\subsection{Why formalise them}
+\subsection{Why formalise them, and what changed}
 
 The specification proves each property briefly, while the algorithm is spread
 across prose and pseudocode. This report writes the algorithm down once,
@@ -57,42 +64,89 @@ determinism and idempotency obligations of \spec{17.2}
 (\cref{sec:duality}), and the cost bounds and optimisation-equivalence claims
 of \specs{13.11}{20.7} (\cref{sec:complexity}).
 
-CCME 2.0.0 states the cross-run retry invariant explicitly and separates the
-train window from the undelivered window. The proofs below transcribe those
-conditions. \Cref{sec:obligations} preserves the six counterexample classes
-found in 1.0.0 and records how 2.0.0 resolves each one; none is presented as a
-current normative defect.
+Earlier editions of this report formalised CCME 2.0.0, whose contribution was
+to state the cross-run retry invariant explicitly and to separate the train
+window from the undelivered window. The current text keeps both and changes
+the admission test of the bump axis: where 2.0.0 admitted a propagated
+contribution while the unit's commit lay in the dependent's undelivered
+window, the candidate admits it while some source of the unit has not
+\emph{delivered} that commit to the dependent, that is, while the dependent has
+not released at or after a release of that source carrying it (\spec{13.4a}).
+The two tests agree for every dependent that has not released past the commit.
+They differ for a dependent that released past it before its provider did,
+which the candidate's own publish protocol now allows: a consumer with a cause
+of its own proceeds past a failed provider (\spec{19.3}) instead of being
+blocked. Under the old test such a consumer was never planned again once the
+provider published, an orphan reached from the consumer's side. Delivery
+closes it, and two further rules follow from it: a window per dependency edge
+that keeps the debt visible once the provider has released (\spec{13.3}), and a
+refusal, \diag{E201}, where a provider would release at the very commit a
+consumer it still owes was released at, because two releases on one commit
+cannot be ordered afterwards. \Cref{sec:model,sec:propagation,sec:guarantees}
+transcribe and prove the candidate's form; \cref{ob:samecommit} states the one
+place where the ledger reports a loss instead of preventing it.
 
-CCME 3.0.0 is the historical first disclosure of a future VCS and rollback
-design. Released CCME 3.0.1~\cite{ccme301} corrects its algorithm and cost guidance. Dispat
-1.8.2 implements neither 3.0 release. The definitions, proofs and E1--E5
-experiments concern the implemented CCME 2.0 model; no 3.0 property is used as
-evidence for them.
+Around the computation the candidate adds what an engine that runs builds and
+publishes across machines needs, and \cref{sec:protocol,sec:execution}
+transcribe it as definitions and propositions rather than as narrative:
+release records compared with the authoritative store under the lock before
+planning (\spec{13.2}); a create-only rule for release tags (\spec{19.1}); the
+three-valued build readiness relation of an edge, \code{none}, \code{build} or
+\code{publish}, which is execution policy and never changes a plan
+(\spec{19.2a}), with the run durations each value leads to; the distributed
+execution profile (\spec{28}), where the plan is fixed under the lock before
+any task is placed, outputs travel as verified first-class inputs, and
+publication and recording stay serialised per owner; and the repository-local
+windows of the polyrepository profile (\spec{27}). The single-history theorems
+are not extended to several histories here; the report says so where the
+objects are defined.
+
+The reference implementation, dispat, implements the delivery admission and
+the reconciliation of a proceeding consumer, and does not yet implement the
+owed windows and \diag{E201}. \Cref{sec:obligations} keeps two ledgers: the
+current departures of the engine from the candidate, each with the scenario
+that exposes it, and the six failure classes found in CCME 1.0.0 with their
+minimal counterexamples, which 2.0.0 repaired and which remain regression
+evidence. \Cref{sec:conformance} maps each result to the specification's
+conformance vectors and to the integration test that stands behind it.
+
+\Cref{sec:evaluation} is new to this edition. It reports every executed
+campaign with its pinned binary and environment: the differential validations
+of the planner, the recovery and mixed-registry campaigns, the controlled fault
+matrix with its finite projection, the planning-cost cells, and the two
+measurements of 22 September 2026 on which the execution profile rests, the
+Linux kernel farm groups and the LLVM matrix, each once, with the kit that
+reproduces them.
 
 \subsection{Scope, and what this is not}
 
-The subject is the release computation of \spec{13} and the publish protocol of
-\spec{19}, which are joint: the guarantees are properties of the two together,
-and no separation of them is meaningful. Message syntax (\spec{4}--\spec{8}) is
-taken as given: units arrive already parsed, with their scope-sets resolved and
-their corrections applied, which is what \specs{13.4}{13.4b} deliver to
-\spec{13.5} onwards. The one exception is \cref{prop:parse}, which states the
-parser's linearity because \spec{18.3} depends on it.
+The subject is the release computation of \spec{13}, the publish protocol of
+\spec{19} and, as transcribed obligations, the execution rules of
+\specs{19.2a}{28}; the guarantees are properties of the computation and the
+protocol together, and no separation of them is meaningful. Message syntax
+(\spec{4}--\spec{8}) is taken as given: units arrive already parsed, with their
+scope-sets resolved and their corrections applied, which is what
+\specs{13.4}{13.4b} deliver to \spec{13.5} onwards. The one exception is
+\cref{prop:parse}, which states the parser's linearity because \spec{18.3}
+depends on it.
 
-Four things a complete account would also cover are deliberately outside the
-model, and no theorem below should be read as saying anything about them:
-manifest range reconciliation (\spec{9.4}, \spec{19.5}), which happens at
-publish time and does not feed back into the plan; the diagnostic registry of
-\spec{16}, of which only the codes naming a suppression are mentioned, as
-labels; the concurrency and scheduling of the executor, which is an
-implementation concern that \spec{17.2} constrains only by forbidding
-observable non-determinism; and shared-version groups, a feature of the
-reference implementation (\code{versioning: fixed}) that \SPEC{} does not
-define and that changes which packages release together.
+Five things a complete account would also cover are outside the theorems, and
+no theorem below should be read as saying anything about them: manifest range
+reconciliation (\spec{9.4}, \spec{19.5}), which happens at publish time and
+feeds back into the plan only through the published versions the protocol
+names; the diagnostic registry of \spec{16}, of which only the codes naming a
+suppression or a refusal are mentioned, as labels; the scheduling of the
+executor beyond the happens-before relations and the duration bounds
+\cref{sec:execution} states; shared-version groups (\spec{13.9a}), whose
+member target floor and independent counter and channel axes are a
+specification contract this report does not prove; and the adapter and
+rollback protocols of \specs{25}{26}, which the current text marks as pending
+implementation.
 
 The report makes no novelty claim for the underlying patterns: sagas,
-idempotent consumers and breadth-first search. Its contribution is the formal
-model, corrected hypotheses, counterexamples and conformance obligations.
+idempotent consumers, breadth-first search and list scheduling. Its
+contribution is the formal model, corrected hypotheses, counterexamples,
+conformance obligations, and the record of what was measured.
 
 \subsection{Implementation examples outside the model}
 
@@ -136,13 +190,13 @@ dispat if OS=Windows_NT \
   --else 'dispat --config linux.yaml status'
 \end{speccode}
 \code{OS=Windows\_NT} tests an environment value; it is not host detection.
-Here the non-Windows branch assumes a Linux runner. Dispat~1.8.2 executes
-\code{if} branches through \code{/bin/sh -c} without reading configuration;
-the child invocation then loads its platform shell. Thus the selector needs
-\code{/bin/sh}, even though the Windows configuration names PowerShell.
-A native Windows user can invoke the Windows configuration directly instead.
-The example assumes CMake is installed and \code{app/build} is already configured.
-It does not establish native Windows execution coverage.
+Here the non-Windows branch assumes a Linux runner. The evaluated releases
+execute \code{if} branches through \code{/bin/sh -c} without reading
+configuration; the child invocation then loads its platform shell. Thus the
+selector needs \code{/bin/sh}, even though the Windows configuration names
+PowerShell. A native Windows user can invoke the Windows configuration directly
+instead. The example assumes CMake is installed and \code{app/build} is already
+configured. It does not establish native Windows execution coverage.
 
 A shared \code{dispat for Debug Release --do "dispat exec build-one"}
 can likewise pass each build configuration through \code{DISPAT\_ITEM} to a
@@ -167,12 +221,15 @@ integration remains in progress.
 
 \Cref{sec:model} is definitional and dense; a reader who wants the results
 first can read \cref{sec:guarantees} directly, following the macro names back
-to \cref{sec:model} as needed. \Cref{appendix:notation} is the symbol table.
-Every definition names the specification section it transcribes, and every
-theorem names the guarantee it formalises, so the report can be read beside its
-source. \Cref{sec:conformance} maps each result to the conformance vectors of
-\SPEC{} Appendix B and to the test in the reference implementation that
-exercises it.
+to \cref{sec:model} as needed. \Cref{sec:execution} can be read on its own by
+anyone interested in what placement and the readiness relation can and cannot
+buy; \cref{sec:evaluation} likewise, by anyone who wants the numbers and their
+provenance before the mathematics. \Cref{appendix:notation} is the symbol
+table. Every definition names the specification section it transcribes, and
+every theorem names the guarantee it formalises, so the report can be read
+beside its source. \Cref{sec:conformance} maps each result to the conformance
+vectors of \SPEC{} Appendix B and to the test in the reference implementation
+that exercises it.
 
 \subsection{Licence}
 

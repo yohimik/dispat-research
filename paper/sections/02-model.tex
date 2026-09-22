@@ -23,7 +23,9 @@ parent edges, including $c$ itself. Write $c' \anc c$ for $c' \in \Rch{c}$
 \begin{remark}
 Ancestry, not commit date or log order, is the only ordering used. This is what
 makes cancellation deterministic under merges and rebases (\spec{10.4}) and
-what lets the model ignore clocks entirely.
+what lets the model ignore clocks entirely. One consequence is used without
+comment below: since $\Head$ reaches every commit considered and the graph is
+acyclic, $\Head \anc c$ holds for no $c \neq \Head$.
 \end{remark}
 
 \subsection{Workspace}
@@ -31,10 +33,14 @@ what lets the model ignore clocks entirely.
 \begin{definition}[workspace graph, \spec{13.1}, \spec{8.4}]
 \label{def:graph}
 \Pkgs{} is the finite set of packages present at \Head{}. For a fixed set of
-edge kinds $K$ (the configured \code{propagation.kinds}), $\Edges \subseteq
+edge kinds \Kprop{} (the configured \code{propagation.kinds}), $\Edges \subseteq
 \Pkgs \times \Pkgs$ contains $(a,b)$ when $a$ declares a dependency on $b$ of a
-kind in $K$. The \emph{dependents} of $p$ are $\Dep{p} = \{d : (d,p) \in
-\Edges\}$. The graph $(\Pkgs, \Edges)$ is acyclic.
+kind in \Kprop{}. The \emph{dependents} of $p$ are $\Dep{p} = \{d : (d,p) \in
+\Edges\}$. The graph $(\Pkgs, \Edges)$ is acyclic. Two further kind sets,
+\Korder{} (\code{publish.orderKinds}) and \Kblock{}
+(\code{publish.blockingKinds}), select the edges of the publish order and of
+failure blocking (\spec{19.2}, \spec{19.3}); by default \Kprop{} and \Korder{}
+contain \code{optionalDependencies} and \Kblock{} does not (\spec{14}).
 \end{definition}
 
 Acyclicity is an assumption the model may make because the engine enforces it:
@@ -103,7 +109,9 @@ $S=\{\code{core}\}$ are $\dist{S}{\code{cli}} = \dist{S}{\code{ui}} =
 For $S \subseteq \Pkgs$ and $d \in \Pkgs$, $\dist{S}{d}$ is the least $n$ for
 which there are $p_0 \in S$ and $p_1,\dots,p_n = d$ with $p_{i+1} \in
 \Dep{p_i}$ for all $i$, and $\infty$ if no such chain exists. Note
-$\dist{S}{d} = 0$ exactly when $d \in S$.
+$\dist{S}{d} = 0$ exactly when $d \in S$. We say $p$ \emph{reaches} $d$ when
+$\dist{\{p\}}{d} < \infty$; equivalently, $d$ depends on $p$ transitively over
+\Kprop{}.
 \end{definition}
 
 \subsection{Bumps and versions}
@@ -145,6 +153,8 @@ A state \st{} is a finite set of release tags $(p, v, c) \in \Pkgs \times \Vers
 \times \Cmts$ with $c \anc \Head$. States are ordered by inclusion,
 $\st \leq \st'$ iff $\st \subseteq \st'$. From \st{}:
 \begin{itemize}
+  \item $\relc{\st}{p} = \{\,c : (p,v,c) \in \st\,\}$ is the set of
+    \emph{release commits} of $p$;
   \item $\base{\st}{p}$ is the highest-precedence version among the tags of $p$
     in \st{}, undefined if there are none;
   \item $\basec{\st}{p}$ is the commit of that tag;
@@ -153,14 +163,18 @@ $\st \leq \st'$ iff $\st \subseteq \st'$. From \st{}:
 \end{itemize}
 Where $\base{\st}{p}$ is undefined, $\chanof{\base{\st}{p}} = \stable$ by
 convention (\spec{11.1}): a never-released package is graduated by nothing and
-is put on a train by any directive naming it.
+is put on a train by any directive naming it. We say $p$ is \emph{tagged at
+\Head} in \st{} when $\Head \in \relc{\st}{p}$.
 \end{definition}
 
 The baseline functions additionally assume a unique highest-precedence
 reachable tag for each package and each stable baseline. States with tied
 precedence and different commits need a specified tie rule and are outside
 this proof's domain. Operational lock and temporary refs are not release tags
-and are not members of $\st$.
+and are not members of $\st$. In every state considered here a tag at \Head{},
+where there is one, is the baseline: it was written by a run at \Head{}
+(\cref{def:run}) at a version exceeding the baseline of that run
+(\diag{E195}), so $\Head \in \relc{\st}{p}$ implies $\basec{\st}{p} = \Head$.
 
 That release-tag states only ever grow is not an assumption about tidy operators; it is
 normative. \spec{19.1} forbids moving or deleting a pushed tag and \spec{12.4}
@@ -184,8 +198,74 @@ with an empty subtracted set when $p$ has no baseline tag.
 
 $\Win{\st}{p}$ is the train window used to aggregate a prerelease target from
 its stable base. $\Winf{\st}{p}$ is the fresh-admission window for direct
-work, corrections, channels, and propagation to dependent $p$. For a stable
-baseline they coincide; on a train they must not be conflated.
+work, corrections, channels, and propagated channels to dependent $p$. For a
+stable baseline they coincide; on a train they must not be conflated.
+
+\begin{definition}[delivery, \spec{13.4a}]
+\label{def:delivery}
+For packages $P, D$ and a commit $C$,
+\[
+  \deliv{\st}{P}{C}{D} \;\equiv\;
+  \exists\, t \in \relc{\st}{P} :\; C \anc t \;\land\; t \anc \basec{\st}{D},
+\]
+and $\deliv{\st}{P}{C}{D}$ is false when $D$ has no baseline. Read: $D$ has
+released at or after a release of $P$ that carries $C$.
+\end{definition}
+
+Delivery is a relation between two packages' release positions, decided by
+ancestry alone. Releasing past a commit is not delivery: a $D$ whose baseline
+reaches $C$ but reaches no release of $P$ carrying $C$ has not had $C$
+delivered by $P$. Only the source's release, followed by the target's, is
+(\spec{13.4a}).
+
+\begin{definition}[owed window, \spec{13.3}]
+\label{def:owedwindow}
+For every edge $(D,P) \in \Edges$ where $D$ has a baseline,
+\[
+  \Wowed{\st}{P}{D} \;=\; \Rch{\Head} \setminus
+    \bigcup\,\bigl\{\, \Rch{t} \;:\; t \in \relc{\st}{P},\ t \anc \basec{\st}{D} \,\bigr\},
+\]
+the commits reachable from \Head{} and from no release commit of $P$ that
+$\basec{\st}{D}$ reaches.
+\end{definition}
+
+\begin{lemma}[the owed window is the undelivered set]
+\label{lem:owedwindow}
+For $(D,P) \in \Edges$ with $D$ having a baseline, and every $c \anc \Head$,
+$c \in \Wowed{\st}{P}{D}$ iff $\lnot\deliv{\st}{P}{c}{D}$.
+\end{lemma}
+
+\begin{proof}
+$c \notin \Wowed{\st}{P}{D}$ iff $c \in \Rch{t}$ for some $t \in \relc{\st}{P}$
+with $t \anc \basec{\st}{D}$, which is \cref{def:delivery} verbatim.
+\end{proof}
+
+\spec{13.3} adds the owed windows to the union of windows that \spec{13.4}
+parses, so that a debt $D$ is owed stays \emph{visible} after $D$ has
+released past the commit and $P$ has released it: once $P$ has, no window of
+$P$ holds the commit, and if $D$ released past it before $P$ did, no window of
+$D$ does either. The window makes a debt visible; whether it is owed is
+\cref{def:sources}'s question, and the window admits nothing by itself.
+
+\begin{remark}[two cases \spec{13.3} describes, and one it does not]
+\label{rem:owedwindow-cases}
+\spec{13.3} says that where the newest release of $P$ that $\basec{\st}{D}$
+reaches is $P$'s own baseline, nothing is added. That is right: then
+$\Rch{\basec{\st}{P}}$ is among the subtracted reaches, so $\Wowed{\st}{P}{D}
+\subseteq \Winf{\st}{P} \subseteq \Win{\st}{P}$, and this is the position of
+every consumer that never got ahead of its provider. It also says that where
+$\basec{\st}{D}$ reaches no release of $P$ nothing is added, because $D$
+released before $P$'s first release and $\Win{\st}{D}$ already holds everything
+since. \Cref{def:owedwindow} read literally gives $\Wowed{\st}{P}{D} =
+\Rch{\Head}$ in that case, which is not ``nothing''; and the prose's reason
+covers only commits after $D$'s release, while a commit $c \anc \basec{\st}{D}$
+that $P$ first released at a commit $\basec{\st}{D}$ does not reach is, by
+\cref{def:delivery}, undelivered and owed, and lies in neither
+$\Win{\st}{D}$ (for a stable $D$) nor $\Win{\st}{P}$. The model follows the
+formula, which is the reading the guarantees need; the two sentences of
+\spec{13.3} need reconciling, and that is reported as a specification
+obligation rather than resolved here.
+\end{remark}
 
 \begin{example}[windows]
 \label{ex:window}
@@ -199,7 +279,19 @@ Let the history be $c_0 \to c_1 \to c_2 = \Head$ with $\st_0$ of
 the second because a package with no stable baseline has the whole reachable
 history pending: \spec{12.5} makes an unreleased package's first release
 account for everything, which is also why adopting the engine on an existing
-repository does not need a migration step.
+repository does not need a migration step. The owed window
+$\Wowed{\st_0}{\code{core}}{\code{cli}}$ subtracts $\Rch{c_0}$, the one
+\code{core} release that $\basec{\st_0}{\code{cli}} = c_0$ reaches, and equals
+$\Win{\st_0}{\code{core}}$: nothing is added for a consumer level with its
+provider. Now let $\st_1 = \st_0 \cup \{\code{cli@2.1.0}\ \text{at}\ c_2\}$,
+the state after \code{cli} has proceeded past $c_2$ on a cause of its own
+while \code{core} failed (\cref{ex:orphan}). Then $\Winf{\st_1}{\code{cli}} =
+\emptyset$, $\Win{\st_1}{\code{cli}} = \emptyset$, and still
+$\Wowed{\st_1}{\code{core}}{\code{cli}} = \Rch{c_2}\setminus\Rch{c_0} =
+\{c_1, c_2\}$, because $\basec{\st_1}{\code{cli}} = c_2$ reaches no
+\code{core} release newer than $c_0$. If \code{core} then releases at
+$c_2$, $\Wowed{}{}{}$ becomes empty as well: \code{core} has delivered $c_2$
+to \code{cli}, or the ledger reads as if it had (\cref{prop:loss}).
 \end{example}
 
 \begin{remark}[the window is measured from the last \emph{stable} tag]
@@ -215,9 +307,14 @@ $\Win{\st}{p}$.
 
 \subsection{Units}
 
-\begin{definition}[units, \spec{4.4}, \spec{13.4}, \spec{13.4b}]
+\begin{definition}[units, \spec{4.4}, \spec{13.3}, \spec{13.4}, \spec{13.4b}]
 \label{def:unit}
-\Units{} is the set of units carried by commits in $\bigcup_{p}\Win{\st}{p}$,
+\Units{} is the set of units carried by commits in
+\[
+  \bigcup_{p \in \Pkgs}\Win{\st}{p}
+  \;\cup\;
+  \bigcup_{(D,P) \in \Edges,\ D \text{ has a baseline}} \Wowed{\st}{P}{D},
+\]
 after parsing (\spec{20}), scope resolution (\spec{6}) and the application of
 corrections (\spec{13.4b}). For $u \in \Units$:
 $\cof{u} \in \Cmts$ is its commit; $\scopef{u} \subseteq \Pkgs$ its resolved
@@ -265,10 +362,30 @@ package releases. This matters in exactly one place, and it is the same place
 that a lapsed cancellation matters: \cref{ob:g5}. Everywhere else the two
 readings coincide, because a released package's own window is empty and its
 direct contribution is therefore already spent, so the notation
-$\Units{}$ is kept unindexed below.
+$\Units{}$ is kept unindexed below. The retry invariant of
+\cref{sec:guarantees} fixes the corrected stream outright, which also fixes
+the parsed set.
 \end{remark}
 
-\begin{definition}[suppression and source packages, \spec{13.4a}]
+\begin{remark}[what the owed windows make visible, and what they do not]
+\label{rem:owed-depth}
+The owed windows of \cref{def:unit} range over the \emph{direct} edges of
+\Edges{}. A debt, by \cref{def:delivery}, is between a unit's source and any
+target the unit reaches, at any depth. For a target at distance $1$ the two
+coincide: if $P$ owes $D$ and $(D,P) \in \Edges$, then $\cof{u} \in
+\Wowed{\st}{P}{D}$ by \cref{lem:owedwindow}, and the unit is parsed. For a
+target at distance $2$ or more it need not: with $D \to M \to P$, the commit
+$\cof{u}$ is parsed for $D$'s sake only through $\Win{}{}$ of some package or
+through $\Wowed{}{P}{M}$ and $\Wowed{}{M}{D}$, and once $M$ has been delivered
+$\cof{u}$ by $P$ and $D$ has been delivered $\cof{u}$ by $M$ (which says nothing
+about $P$'s release reaching $D$), every one of those windows can be empty while
+$\deliv{\st}{P}{\cof{u}}{D}$ is still false. The model transcribes
+\spec{13.3} as written; the theorems of \cref{sec:guarantees} fix the parsed
+stream by the retry invariant and are unaffected. The gap is reported as a
+specification obligation rather than repaired here.
+\end{remark}
+
+\begin{definition}[suppression, source packages and owed sources, \spec{13.4a}]
 \label{def:sources}
 $\canc{c}{p}$ holds when $c$ is an ancestor-or-self of some \code{cancel} commit
 whose resolved scope contains $p$ (\spec{10.3}); $\held{p}$ holds when $p$'s
@@ -284,14 +401,46 @@ and then
        \disch{\st}{p}{\cof{u}} \;\lor\;
        \lnot\bigl(\canc{\cof{u}}{p} \lor \held{p}\bigr) \,\bigr\}.
 \]
+For a target $D$, the \emph{owed sources} of $u$ are
+\[
+  \owed{\st}{u}{D} \;=\;
+    \bigl\{\, P \in \srcp{\st}{u} \;:\; \lnot\deliv{\st}{P}{\cof{u}}{D} \,\bigr\},
+\]
+and $P$ \emph{still owes} $D$, written $\owes{\st}{P}{D}$, when $P \in
+\owed{\st}{u}{D}$ for some unit $u$ with $\admit{\st}{u}{D}$
+(\cref{def:admission}).
 \end{definition}
 
-The disjunction is the normative content of \spec{13.4a}: suppression applies
+The disjunction in $\srcp{}{}$ is the normative content of \spec{13.4a}: suppression applies
 only to \emph{undischarged} work. Once $p$ has published the version carrying
 $u$, the artefact its consumers are owed is public, and neither a later
 \code{cancel} (a no-op, \diag{W170}) nor a later hold may retroactively strand
 those consumers. \Cref{ob:g5} shows that this clause, and not the traversal, is
-where \G{5} is decided.
+where \G{5} is decided. The owed set is the other half of the same section: on
+the bump axis a unit propagates to $D$ while $\owed{\st}{u}{D}$ is non-empty,
+and $D$'s provenance names exactly the owed sources.
+
+\begin{lemma}[delivery implies discharge at the target]
+\label{lem:deliv-window}
+If $\deliv{\st}{P}{c}{D}$ then $c \notin \Winf{\st}{D}$. Consequently, if
+$\cof{u} \in \Winf{\st}{D}$ then $\owed{\st}{u}{D} = \srcp{\st}{u}$.
+\end{lemma}
+
+\begin{proof}
+Delivery gives $t$ with $c \anc t \anc \basec{\st}{D}$, so $c \in
+\Rch{\basec{\st}{D}}$, which \cref{def:window} subtracts from $\Winf{\st}{D}$.
+For the consequence, no source of $u$ has delivered $\cof{u}$ to $D$, so none is
+removed from $\srcp{\st}{u}$.
+\end{proof}
+
+So for a target that has not released past the commit, the owed set is the
+whole source set and \spec{13.4a}'s delivery test reduces to the window test of
+CCME 2.0.0. The finer question arises only for a target that released past
+$\cof{u}$ before its source did: a consumer that proceeded on a cause of its own
+while the source failed (\spec{19.3}), or one released while the source was
+held (\spec{13.6a}). Under the polyrepository profile the comparison of
+\cref{def:delivery} is made in $P$'s repository (\spec{27}); that profile is
+outside this report.
 
 \subsection{Runs}
 
@@ -312,6 +461,12 @@ $\effb{\st}{p} = \dirb{\st}{p} \sqcup \propb{\st}{p}$. The plan is
 each $p \in \plan{\st}$ carrying the version $\vers{\st}{p}$ of \spec{13.9}. The fresh bumps above decide whether work is newly admissible; they are not by themselves the prerelease target. On a train, the intended calculation aggregates the surviving corrected units in $\Win{\st}{p}$ from the stable baseline, including work already delivered to an earlier prerelease. For graduation, the model applies the specific rule of \spec{11.5}: publish that same train target without a prerelease suffix. The generic summary in \spec{13.9} is inconsistent with this rule; \cref{ob:graduation} records the textual obligation.
 \end{definition}
 
+Of the disjuncts, the direct bump, the channel change and the exact version
+all read $\Winf{\st}{p}$, and are therefore absent for a package tagged at
+\Head{}; only $\propb{\st}{p}$ can put such a package in the plan
+(\cref{lem:tagged-target}). That asymmetry is what \spec{19.3}'s ``cause of
+its own'' is about.
+
 \begin{remark}[\plan{\st} is the released set, not the printed one]
 \label{rem:plan-held}
 \spec{13.9} computes a would-be version for a held package too, and \spec{13.6a}
@@ -324,24 +479,66 @@ one: the two are reading the same word differently, and only \spec{19.6}'s
 reading has to be told about held packages.
 \end{remark}
 
+\begin{definition}[a cause of its own, \spec{19.3}]
+\label{def:owncause}
+For $p \in \plan{\st}$ and a set $X \subseteq \Pkgs$ of packages that have
+failed or been blocked earlier in the run, $p$ has a \emph{cause of its own}
+relative to $X$, written $\owncause{\st}{p}{X}$, when at least one of the
+following holds: $\dirb{\st}{p} \neq \bnone$; $\chanres{\st}{p} \neq
+\chanof{\base{\st}{p}}$; $p$ has an applicable exact \code{Release-As} in
+$\Winf{\st}{p}$; or there is a unit $u$ with $\admit{\st}{u}{p}$ and
+$\owed{\st}{u}{p} \not\subseteq X$, a contribution from a provider that is
+neither failed nor blocked, including one that published in an earlier run.
+\end{definition}
+
+\spec{19.3} lists a fresh direct bump, a channel change and a contribution
+from an unfailed provider; the model adds the exact-version disjunct of
+\cref{def:plan}, which the section does not name, because a package pinned
+by \code{Release-As} has a cause that is its own by any reading. The
+addition is flagged for the specification. The reference implementation
+follows the section as written: its test of a cause of its own is a fresh unit
+with a bump other than \bnone{}, a channel change, or an update from a
+provider that did not fail, so a consumer whose only cause is an exact
+\code{Release-As} is blocked behind a failed provider there, and the
+theorems below read the engine with the disjunct removed.
+
+\begin{definition}[well-formed state, \spec{19.3}, \diag{E201}]
+\label{def:wf}
+$\wf{\st}$ holds when for every $P \in \plan{\st}$ and every $D$ with
+$\basec{\st}{D} = \Head$ and $\owes{\st}{P}{D}$: $D \in \plan{\st}$ and $P$
+precedes $D$ in the publish order of \cref{def:order}.
+\end{definition}
+
+A run from a state that is not well-formed would release a package at the
+baseline commit of a consumer it still owes without that consumer releasing
+after it. Two releases on one commit have no order (\spec{13.7b}), so
+afterwards nothing could tell that the consumer came first: it would read as
+served and stay on the old version with nothing left to detect it. \spec{19.3}
+therefore refuses such a run with \diag{E201} before any publication, naming
+the pair; the remedy is to release the consumer in the same run, or the
+provider at a later commit, where the debt stays visible (\cref{def:owedwindow}).
+
 \begin{definition}[run, \spec{19.1}--\spec{19.3}]
 \label{def:run}
 A run from \st{} is parameterised by a set $F \subseteq \plan{\st}$ of
-publishes that fail. It induces the blocked set
-\begin{align*}
-  B \;=\; \{\, p \in \plan{\st}\setminus F \;:\;
-    &\ p \text{ transitively depends on some } q \in F \\[-1mm]
-    &\ \text{over } \code{publish.blockingKinds} \,\},
-\end{align*}
-publishes $\plan{\st} \setminus (F \cup B)$ in the order of \spec{19.2}, and
-yields
+publishes that fail. If $\lnot\wf{\st}$ the run is refused: $\Run{\st}{F} =
+\st$. Otherwise the plan is processed in the publish order of \cref{def:order}.
+Let $X_p$ be the set of packages before $p$ in that order that failed or were
+blocked. Then $p$ is \emph{blocked} (\diag{W194}) when it transitively depends
+over \Kblock{}, in the full workspace graph, on a member of $X_p$ and
+$\lnot\owncause{\st}{p}{X_p}$; it \emph{fails} when it is not blocked and $p
+\in F$; and it is \emph{published} otherwise. Write $\blocked{\st}{F}$ for the
+blocked set and $\pubset{\st}{F} = \plan{\st}\setminus(F \cup
+\blocked{\st}{F})$ for the published set. The run yields
 \[
   \Run{\st}{F} \;=\; \st \;\cup\;
-  \bigl\{\,(p, \vers{\st}{p}, \Head) \;:\; p \in \plan{\st}\setminus(F\cup B)\,\bigr\}.
+  \bigl\{\,(p, \vers{\st}{p}, \Head) \;:\; p \in \pubset{\st}{F}\,\bigr\}.
 \]
+The run \emph{reports \diag{E201} for $D$} when $\Head \in \relc{\st}{D}$, $D
+\in F$, and some $P \in \pubset{\st}{F}$ has $\owes{\st}{P}{D}$.
 \end{definition}
 
-Three features of this definition carry weight later.
+Four features of this definition carry weight later.
 
 $F$ is chosen adversarially and independently on each run. The guarantees are
 claims about \emph{every} failure schedule, not about a well-behaved one; a
@@ -350,15 +547,56 @@ purpose is to survive what does not usually happen.
 
 Every tag is written at \Head{}, never at the commit the work arrived in
 (\spec{19.1}). This is what makes \cref{lem:window} a two-case statement rather
-than an argument about which commits a tag covers.
+than an argument about which commits a tag covers, and what makes
+\cref{lem:deliv} a statement about one commit.
 
 A package is tagged if it is released, whatever its publish target, including
 targets of \code{none} that upload nothing (\spec{13.10a}). \Cref{prop:tagall}
 shows this is forced: the alternative is a permanent hole in \G{6}.
 
+Blocking is not the transitive closure of failure. A dependent with a cause of
+its own \emph{proceeds}, its manifests reconciled to what its providers have
+published by then (\spec{19.5}), and what the failed provider owed it stays
+owed and arrives as a catch-up when that provider publishes. This is the
+consumer-ahead shape of \spec{13.7a}, and it is why $\pubset{\st}{F}$ may
+contain a package that was already tagged at \Head{}.
+
+\begin{proposition}[the one loss, \spec{19.3}]
+\label{prop:loss}
+Let $\wf{\st}$, $\st' = \Run{\st}{F}$, and let the run report \diag{E201} for
+$D$ because of $P \in \pubset{\st}{F}$. Then for every unit $u$,
+$P \notin \owed{\st'}{u}{D}$, although $D$ published nothing after $P$. If
+$\owed{\st'}{u}{D} = \emptyset$ for every $u$ with $\admit{\st}{u}{D}$, then $D
+\notin \plan{\st'}$, and no state reachable from $\st'$ by runs at this or any
+later \Head{} plans the contribution again.
+\end{proposition}
+
+\begin{proof}
+$D$ was not released, so $\basec{\st'}{D} = \basec{\st}{D} = \Head$, and
+$\Head \in \relc{\st'}{P}$. For any $u$, $\cof{u} \anc \Head \anc
+\basec{\st'}{D}$ with $t = \Head$, so $\deliv{\st'}{P}{\cof{u}}{D}$ and $P$ is
+not owed. If every admitted unit's owed set is now empty, $\propb{\st'}{D} =
+\bnone$ (\cref{def:propagated}); $\Winf{\st'}{D} = \emptyset$ since
+$\basec{\st'}{D} = \Head$, so no other disjunct of \cref{def:plan} holds. A
+later state adds tags, which keeps the witness $t = \Head$, and a later
+\Head{} changes neither $\relc{}{P}$ nor $\basec{}{D}$ while $D$ is
+unreleased; so $\deliv{}{P}{\cof{u}}{D}$ persists and the owed set stays empty
+until $D$ itself releases, which nothing in the ledger now asks for.
+\end{proof}
+
+This is the one place where the ledger loses an obligation. The run reports
+it with its remedy, an explicit \code{Release-As} on the consumer at a later
+commit (\spec{8.6}), because no later plan can compute the debt: two tags on
+one commit have no order. Everywhere else the protocol refuses before the fact
+(\cref{def:wf}) or catches up after it (\cref{thm:g2}). The theorems of
+\cref{sec:guarantees} state where they exclude this event.
+
 \begin{definition}[run sequence]
 \label{def:seq}
 A \emph{run sequence} at \Head{} is $\st_1 \leq \st_2 \leq \cdots$ with
-$\st_{k+1} = \Run{\st_k}{F_k}$ for some $F_k \subseteq \plan{\st_k}$. By
-\cref{def:run} it is monotone: $\st_k \subseteq \st_{k+1}$.
+$\wf{\st_1}$ and $\st_{k+1} = \Run{\st_k}{F_k}$ for some $F_k \subseteq
+\plan{\st_k}$. By \cref{def:run} it is monotone: $\st_k \subseteq \st_{k+1}$,
+and $\relc{\st_{k+1}}{p} \setminus \relc{\st_k}{p} \subseteq \{\Head\}$ for
+every $p$. \Cref{lem:wf} shows that under the retry invariant every $\st_k$ is
+then well-formed, so no run of the sequence is refused.
 \end{definition}

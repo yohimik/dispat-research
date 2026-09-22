@@ -1,85 +1,259 @@
 \section{Cost}
 \label{sec:complexity}
 
-CCME 3.0.1 makes \spec{13.11} normative for semantic equivalence and
-informative for cost and technique. An implementation must produce the plan
-\spec{13} defines, but need not attain any bound below. The accounting assumes
-decoded, indexed inputs; comparison, allocation, adapter, matching and emitted
-output costs remain. This section states safe transformations and the parser
-bound \spec{18.3} relies on; it makes no general optimality claim.
+The current \SPEC{} (3.1.0-rc.2) makes \spec{13.11} normative for semantic
+equivalence and informative for cost and technique. An implementation must
+produce the plan \spec{13} defines, but need not use or attain any bound
+below. The accounting assumes decoded, indexed inputs with fixed-width or
+interned identifiers and adjacency and precedence inputs already in their
+specified order; comparison, decoding, sorting, allocation, adapter, record
+matching and emitted output costs remain, and hash-table operations are
+expected constant time under the chosen hashing assumptions. This section
+transcribes the phase table, proves the transformations it relies on and the
+parser bound \spec{18.3} depends on, and states the space ledger; it makes no
+global optimality claim.
 
-Notation: $P$ packages, $E$ edges, $N$ commits and $M$ parent edges reachable from \Head{}, $C$ commits in the union windows, $U$ units, $B$ input bytes, $T$ tags, $R$ scope and changed-path resolution work, $I=\sum_u|\scopef{u}|$ resolved unit-to-package incidences, and $Z$ contribution/provenance incidences. Per unit, $D$ is the number of targets it reaches, $S$ its
-source-set size and $\Sigma$ its resolved scope-set size.
+Notation follows \spec{13.11} so that the table can be read beside it. $P$
+packages, $E$ workspace dependency edges, $H$ commits and $A$ parent edges in
+the history reachable from \Head{}, $C$ commits in the union of all pending
+windows, $U$ units in those commits, $N$ total bytes of their messages and
+changed paths, $T$ reachable tags, and $M$ tag-record and package-format
+matches examined while partitioning the inventory (at worst $P \cdot T$). $k$
+is the number of distinct commits carrying a boundary: a stable baseline, a
+package's newest baseline of any channel where that is another commit, or the
+release of a provider that bounds a consumer's owed window (\spec{13.3}), of
+which there are none while no consumer has got ahead of a provider. $m$ is the
+number of distinct marker commits, the commits some ancestry question of
+\spec{13} is asked about: the $k$ boundaries, every \code{cancel} commit, and
+every commit carrying an \code{Edits}, \code{Deletes} or \code{Reverts}
+footer. $R$ is the work of resolving scopes and changed paths, $I$ the number
+of unit-to-package incidences (up to $P \cdot U$), $Z$ the retained or
+emitted contribution and provenance incidences and $Z_v$ those examined while
+constructing them, $I_w$ the stored or emitted package-window memberships (up
+to $P \cdot C$). $F_c$ counts correction footer selectors, $J_{corr}$ the
+package-target incidences examined for correction containment and
+application, $I_c$ cancel-scope incidences, $P_c$ packages named by a cancel,
+and $J_c$ cancellation queries across direct admission and both propagation
+axes. $\mathrm{bw}(x) = \max(1, \lceil x / w \rceil)$ for word size $w$, so a
+zero-marker phase still pays for traversal. $F$ is the number of publish
+failures and $O_{out}$ the size of emitted output. In the per-target row only,
+$D$ is the number of targets one unit reaches, $S$ its source-set size and
+$\Sigma$ its resolved scope-set size. For the polyrepository profile, $Q$ is
+the number of repositories, $H_q$ and $A_q$ one repository's reachable commits
+and parent edges, $G$ the control gitlink transitions examined, $K_q$ the
+distinct boundary revisions used in repository $q$, $m_q$ the markers in $q$,
+$V$ the package memberships in shared-version groups, $X$ the (consumer
+release tag, repository) boundaries resolved under \spec{27.11}, $Y$ the
+longest route between two peers and $B$ the distinct (repository, revision)
+trees read. For the execution profile, $T_k$ is the run's tasks, $D_k$ their
+precedence edges, $W_n$ the worker nodes, $P_o$ the packages whose outputs
+another task consumes, and $L_r$ the coordination refs alive in one transport
+repository.
 
 \begin{center}
-\small
-\begin{tabular}{@{}L{4.6cm}L{2.6cm}L{3.4cm}L{3.4cm}@{}}
+\footnotesize
+\begin{longtable}{@{}L{3.4cm}L{2.7cm}L{3.2cm}L{4.9cm}@{}}
 \toprule
-Phase & Literal & Achievable & Proved in \\
+Phase & Literal & Achievable & Note \\
 \midrule
-Train/fresh windows (\spec{13.3}) & $O(P(N+M))$ & $O((k_s+k_f+2)(N+M))$      & \cref{prop:windows} \\
-Candidate traversals (\spec{13.7}) & $O(U(P+E))$ & input-dependent $+O(Z)$ & \cref{thm:g1}, \cref{prop:bucket} \\
-Per-target predicates (\spec{9.3a}) & $O(D(S+\Sigma))$  & $O(D+S+\Sigma)$     & \cref{prop:hoist} \\
-Channel resolution (\spec{13.8})  & $O(P \cdot U)$      & $O(U + I + P)$      & \cref{prop:invert} \\
-Publish order (\spec{19.2})       & historical $O(P + E)$ & $O(P \log P + E)$ & \cref{prop:order} \\
-Parse/resolve (\spec{13.4}, \spec{20.7}) & --- & $O(B+R+I)$; lexing linear & \cref{prop:parse} \\
+\endhead
+Load workspace (\spec{13.1}) & $O(P + E)$ & $O(P + E)$ & \\
+Load tags (\spec{13.2}) & $O(T \log T + M)$ & $O(T + M)$ & running maximum per package; hash (package, version) for \diag{E191} \\
+Pending windows (\spec{13.3}) & $O(P \cdot (H + A))$ & $O((H + A)\,\mathrm{bw}(m) + I_w)$ & one marker pass, \cref{prop:marker-pass}; $O((k+1)(H+A) + I_w)$ with a walk per boundary, \cref{prop:windows} \\
+Parse and resolve (\spec{13.4}) & $O(N + R + I)$ & $O(N + R + I)$ & lexing and resolution have different cache keys; \cref{prop:parse} \\
+Corrections (\spec{13.4b}) & repeated ancestry and scope scans & $O(H + F_c + J_{corr} + \mathrm{wildcards} \cdot I + O_{out})$ & indexed ancestry charged in the marker pass; package-target probes counted even without wildcards \\
+Cancellation predicates (\spec{13.5}, \spec{9.2}) & a cancel scan per query & $O(I_c + (P_c + J_c)\,\mathrm{bw}(\mathrm{cancels}))$ & per-package cancel masks; ancestry charged in the marker pass \\
+Direct bumps (\spec{13.6}) & $O(U + I)$ & $O(U + I)$ & consume resolved incidences \\
+Holds (\spec{13.6a}) & $O(U + I)$ & $O(U + I)$ & consume resolved incidences \\
+Propagation graph walks (\spec{13.7}) & $O(U \cdot (P + E))$ & input-dependent & reuse a walk only when its full inputs match; \cref{thm:g1}, \cref{prop:bucket} \\
+Propagation materialisation & repeated set unions & $O(Z_v + Z)$ & in-place indexed insertion; only unique required output has the lower bound $\Omega(Z)$ \\
+Per-target predicates (\spec{9.3a}) & $O(D \cdot (S + \Sigma))$ & $O(D + S + \Sigma)$ & per unit; hoist the source-channel set and scope; \cref{prop:hoist} \\
+Channel resolution (\spec{13.8}) & $O(P \cdot U)$ & $O(U + I + P)$ & invert unit-to-package incidences; \cref{prop:invert} \\
+Versions and plan (\spec{13.9}, \spec{13.10}) & repeated member and record scans & $O(P + I + Z + O_{out})$ & consume built aggregates; scan each disjoint version group once \\
+Publish order (\spec{19.2}) & $O(P^2 + E)$ & $O(E + P \log P)$ & a comparison heap over the ready set; \cref{prop:heap} \\
+Blocking closure (\spec{19.3}) & $O(P \cdot (P + E))$ & $O(P + E)$ per run & one multi-source reverse traversal; \cref{prop:closure} \\
+Build readiness (\spec{19.2a}) & $O(P \cdot (P + E))$ & $O(P + E)$ & a pass-through node per non-building package, or a memoised index; \cref{prop:readiness-cost} \\
+Polyrepository snapshots (\spec{27}) & repeated control scans & $O(G + \sum_q (H_q + A_q))$ & index control gitlinks once; walk each source snapshot once \\
+Polyrepository windows (\spec{27}) & $O(P \cdot \sum_q (H_q + A_q))$ & $O(\sum_q (H_q + A_q)\,\mathrm{bw}(m_q) + I_w)$ & one marker pass per repository; $O(\sum_q K_q (H_q + A_q) + I_w)$ with a walk per boundary \\
+Publication input closure (\spec{27.2}) & $O(P \cdot (P + E + V))$ & $O((P + E + V)\lceil Q / w\rceil)$ & condense the group-augmented graph, one bitset union per edge \\
+Link evidence (\spec{27.11}) & $O(X \cdot (Q + Y))$, $X \cdot Y$ tree reads & $O(Q + X \cdot Y)$, $B$ tree reads & root the link tree once; read each (repository, revision) tree once \\
+Link settlement (\spec{27.11}) & one commit per route hop & one commit per recording repository & at most $Q - 1$ commits, two in a star \\
+Record comparison (\spec{13.2}) & $O(T)$ per repository & $O(T)$ per repository & one inventory read under the lock; \cref{def:records-lock} \\
+Task graph and readiness (\spec{28.3}) & $O(T_k \cdot (T_k + D_k))$ & $O(T_k + D_k)$ & indegree counters decrement each successor once \\
+Placement (\spec{28.2}) & $O(T_k \cdot W_n)$ & $O(T_k \cdot W_n)$ & $W_n$ is small; a free list per compatibility class is rarely worth its bookkeeping \\
+Output transfer (\spec{28.5}) & up to $T_k \cdot P_o$ transfers & at most $P_o \cdot W_n$ transfers & one per distinct (output set, node); verified bytes are not fetched again \\
+Coordination polling (\spec{28.4}) & $O(L_r)$ refs per tick & refs addressed to the polling node & the name prefix routes; one fetch per changed tip; dead runs tax every tick until removed \\
 \bottomrule
-\end{tabular}
+\end{longtable}
 \end{center}
 
-The candidate-traversal row is not a bound on the complete planner. A cached
-walk can safely be reused when its source set, depth and edge kinds are
-identical; it must retain each unit's own distance, fresh-window membership,
-cancellation, channel eligibility, self-source exclusion, and provenance.
-Even outside the merged source set, a nearby ineligible unit cannot lend its
-short distance to a farther eligible unit. Per-unit predicate checks and output
-construction add work; this report does not prove that all such work fits the
-bucket traversal bound. The proposition below proves a geometric candidate-set
-relation, not full semantic equivalence of an unannotated merged traversal.
-
-The publish-order row reads differently from the others: the historical
-CCME 3.0.0 bound $O(P+E)$ holds for an arbitrary topological order, while
-CCME 3.0.1 accounts for the bytewise-least ready package that \spec{19.2}
-requires at every step.
-Selecting it is an extract-min over the ready set, so the achievable cost is
-$O(P \log P + E)$ with a binary heap (each package enters and leaves the heap
-once, each edge is relaxed once), and \cref{prop:order} proves that this
-order is well defined and machine independent, not that it is linear.
+Multiplicative costs, corrections, cancellation, provenance and retained
+indexes can each dominate and must be charged even when their final result is
+empty. The candidate-traversal row is not a bound on the complete planner: a
+cached walk is reusable only when its source set, depth and edge kinds are
+identical, and it must retain each unit's own distance, fresh-window
+membership, cancellation, channel eligibility, self-source exclusion and
+provenance. Per-unit predicate checks and output construction add work, and
+this report does not prove that all such work fits the bucket traversal
+bound. The polyrepository and execution rows are sums over repositories and
+counts of tasks respectively; neither is a globally linear end-to-end claim.
 
 \subsection{Windows}
 
 \begin{proposition}[window bucketing]
 \label{prop:windows}
-$\{\Win{\st}{p} : p \in \Pkgs\}$ has at most $k_s+1$ distinct members, where $k_s$
-is the number of distinct defined values of $\stcommit{\st}{\cdot}$. Computing
-$\Rch{\cdot}$ once per distinct baseline commit and testing membership by
-lookup costs $O((k_s+1)(N+M))$ reachability work and, after restricting membership to the $C$ candidate commits, $O((k_s+1) \cdot C)$ bits.
+$\{\Win{\st}{p} : p \in \Pkgs\}$ has at most $k_s + 1$ distinct members, where
+$k_s \le k$ is the number of distinct defined values of $\stcommit{\st}{\cdot}$.
+Computing $\Rch{\cdot}$ once per distinct boundary commit, once more for
+packages with no stable baseline, and testing membership by lookup costs
+$O((k+1)(H + A))$ reachability work and $O(I_w)$ for the memberships stored
+or emitted.
 \end{proposition}
 
 \begin{proof}
 By \cref{def:window}, $\Win{\st}{p}$ depends on $p$ only through
-$\stcommit{\st}{p}$; packages sharing a baseline commit share a window, and
-packages with no stable baseline share $\Rch{\Head}$. So the map from the $k_s$
-baseline commits (plus the undefined case) onto distinct windows is surjective,
-giving the count. The costs follow: $k_s+1$ traversals of at most $N$ commits and $M$ parent edges, followed by $C$ membership bits per distinct window.
+$\stcommit{\st}{p}$; packages sharing a stable baseline commit share a window,
+and packages with no stable baseline share $\Rch{\Head}$. So the map from the
+$k_s$ stable boundary commits, plus the undefined case, onto distinct windows
+is surjective, giving the count. Each traversal visits at most $H$ commits and
+$A$ parent edges, there are at most $k + 1$ of them when every boundary of
+\spec{13.3}, newest-baseline and owed-window boundaries included, gets one,
+and each membership stored or emitted is charged once in $I_w$.
 \end{proof}
 
-The fresh window is determined by the pair $(\stcommit{\st}{p},\basec{\st}{p})$ and likewise has at most $k_f+1$ classes. Both $k_s$ and $k_f$ can be as large as $P$, and the added one accounts for packages without a baseline. Commit-generation numbers can reject candidates and bound a walk but cannot prove ancestry across branches. A positive result still needs a reachability query or a precomputed index. These $(N+M)$-sensitive bounds correct the historical 3.0.0 $C$-only row; 3.0.1 accounts for reachable history. $C$ bounds stored candidate membership, not necessarily the history visited to establish ancestry.
+The traversals range over the reachable history, so the bound is in $H + A$
+and not in $C$: proving that a commit is outside a window may require walking
+commits that never enter the union. Commit-graph generation numbers can
+reject candidates and bound a walk but cannot prove ancestry across branches;
+a positive answer still needs a reachability query or a precomputed index. $k$
+counts distinct boundary commits, not release runs, and can exceed $P$, since
+a release may record packages at different commits and a provider's releases
+can bound several consumers' owed windows.
+
+\begin{proposition}[one marker pass, \spec{13.11}]
+\label{prop:marker-pass}
+Give each of the $m$ markers one bit, and visit the reachable history once,
+children before parents: when a commit is visited, set its own marker bit if
+it is a marker, then OR its mask into the mask of each of its parents. When
+the pass ends, bit $x$ of $\mathrm{mask}(c)$ is set exactly when $c \in
+\Rch{x}$. The pass costs $O((H + A)\,\mathrm{bw}(m))$ word operations, against
+$O(m \cdot (H + A))$ for a walk per marker, and dense rows occupy $H \cdot
+\lceil m / w \rceil$ words.
+\end{proposition}
+
+\begin{proof}
+$c \in \Rch{x}$ exactly when $c = x$ or some child $c'$ of $c$ satisfies $c'
+\in \Rch{x}$, since a path from $x$ down to $c \ne x$ ends with an edge from a
+child of $c$ to $c$. Claim: when a commit is visited its mask is final. By
+induction along the visiting order: every child of $c$ is visited before $c$,
+each child's mask is final at its visit by the induction hypothesis, and each
+child ORs that final mask into $\mathrm{mask}(c)$ at its visit; nothing else
+writes $\mathrm{mask}(c)$ after the children, apart from $c$'s own bit set at
+its visit. So at the end bit $x$ of $\mathrm{mask}(c)$ is set iff $c = x$ or
+bit $x$ is set in some child's final mask, which by the same induction is iff
+$c = x$ or some child is in $\Rch{x}$, that is, iff $c \in \Rch{x}$. Each
+commit is visited once and each parent edge relaxed once, with one
+$\lceil m / w \rceil$-word OR per relaxation and one traversal step even when
+$m = 0$, giving the cost.
+\end{proof}
+
+Children-before-parents is the reverse of the order \spec{25} requires of an
+adapter, which returns parents first. Afterwards $c \in \mathrm{after}(b)$ is
+one clear bit, a cancellation test is a non-empty intersection of
+$\mathrm{mask}(c)$ with the cancel markers whose scope contains the package,
+and the proper-ancestor test of \spec{13.4b} is one set bit together with $c
+\ne x$. Under \spec{27} the pass runs once per repository over that
+repository's own markers, with repository identity in every key
+(\cref{def:exec-windows}). A pass confined to the union of the pending windows
+and the parent edges inside it sets the same bits for the union's commits,
+because a window is closed under descendants and no path leaves the union and
+returns to it; what remains in $H + A$ is finding the union.
+
+\begin{corollary}[the fresh-window identity]
+\label{cor:fresh-identity}
+With $\mathrm{after}(b) = \Rch{\Head} \setminus \Rch{b}$, a commit $c$ is in
+$\Winf{\st}{p}$ exactly when $c \in \mathrm{after}(\stcommit{\st}{p})$ and $c
+\in \mathrm{after}(\basec{\st}{p})$. Every window is therefore a function of
+one boundary commit, a fresh membership test is the conjunction of two
+lookups, and no reachability set is keyed by a $(\text{stable}, \text{fresh})$
+pair; the identity holds whether or not the newest baseline descends from the
+stable one.
+\end{corollary}
+
+\begin{proof}
+By \cref{def:window}, $\Winf{\st}{p} = (\Rch{\Head} \setminus
+\Rch{\stcommit{\st}{p}}) \setminus \Rch{\basec{\st}{p}} = \Rch{\Head} \cap
+\overline{\Rch{\stcommit{\st}{p}}} \cap \overline{\Rch{\basec{\st}{p}}} =
+\mathrm{after}(\stcommit{\st}{p}) \cap \mathrm{after}(\basec{\st}{p})$, with
+an empty subtracted set where a boundary is undefined. Nothing in the
+derivation relates the two boundaries to each other.
+\end{proof}
+
+Window storage may still be shared only inside one plan and one fixed
+snapshot, between packages whose boundary identity is equal, and the shared
+set must be immutable; a materialised fresh window is shared only when both
+boundaries are equal. Storing $\Win{\st}{p}$ explicitly per package costs
+$O(P \cdot C)$ memory; $k + 1$ dense bitsets of $H$ bits, or $O((k+1) \cdot
+C)$ bits over the union once it is known, or a sparse $O(I_w)$, each make
+admission a lookup and none turns the history traversal into $O(C)$.
+
+\begin{proposition}[early stop, \spec{13.11}]
+\label{prop:early-stop}
+Let the pass of \cref{prop:marker-pass} visit commits in an order known to be
+children-before-parents without a full walk, decreasing commit-graph
+generation number for instance. Once every unvisited commit that has a visited
+child carries all $k$ boundary bits, every unvisited commit lies in no
+window and is named by no tuple of \spec{13.4}, so the pass may stop. The stop
+is sound only when no package lacks a stable baseline, and only after every
+commit named by an \code{Edits}, \code{Deletes} or \code{Reverts} footer has
+been visited.
+\end{proposition}
+
+\begin{proof}
+\Head{} has the greatest generation number among reachable commits, since the
+number increases strictly along child edges, so \Head{} is visited first. Let
+$c$ be unvisited and take any path $\Head = c_0 \to c_1 \to \dots \to c_j =
+c$. It has a first unvisited commit $c_i$ with $i \ge 1$, whose child $c_{i-1}$
+on the path is visited, so $c_i$ carries every boundary bit: $c_i \in \Rch{x}$
+for every boundary $x$, and $c$, an ancestor of $c_i$, is in every $\Rch{x}$
+too. Every train window is $\Rch{\Head} \setminus \Rch{x}$ for a stable
+boundary $x$ when every package has one, every fresh window is a subset of a
+train window, and every owed window of \spec{13.3} excludes $\Rch{x}$ for the
+provider release $x$ that bounds it, which is among the $k$ boundaries; so $c$
+is in no window. A package without a stable baseline keeps $\Rch{\Head}$ as
+its window, which no boundary bit excludes, and the diagnostics \diag{E210}
+and \diag{W213} of \spec{13.4b} read the ancestry of a correction target that
+lies outside every window; each is the stated condition.
+\end{proof}
+
+\begin{remark}[the delivery test]
+\label{rem:delivery-cost}
+The delivery test of \cref{def:sources} is one window bit for a target that
+has not released past the unit's commit, which is every target in the ordinary
+case. A target that has costs one ancestry question per release of each source
+past that commit, answered from the marker pass when those releases are
+markers, and such targets exist only after a consumer got ahead of a provider.
+The owed windows those targets add are counted in $k$, and are empty while no
+consumer has got ahead.
+\end{remark}
 
 \subsection{Safe traversal reuse}
 
 The superseded bucketing proposal grouped units by window class and directive
 tuple and traversed from the union of their sources. That key is insufficient:
 unit identity affects admission, cancellation, scope, inherited channel,
-self-source exclusion and output provenance. CCME 3.0.1 removes the proposal
-and identifies identical graph-walk inputs as one safe memoisation key. Other
-optimisations still require an equivalence argument. The following historical
-result characterises why the naive merge is unsafe.
+self-source exclusion and output provenance. \spec{13.11} identifies identical
+graph-walk inputs as the one safe memoisation key, and additionally permits
+one unbounded walk per (source package, edge kinds) whose union across the
+sources of one unit, minus those sources, at the least level per target, is
+exact within that unit. Other optimisations still require an equivalence
+argument. The following historical result characterises why the naive merge
+across units is unsafe.
 
-\begin{definition}
+\begin{definition}[the naive merged candidate set, \spec{13.11}]
 For $S \subseteq \Pkgs$ let $\delta^{+}(S,d)$ be the least length of a chain of
 \emph{at least one} edge from a member of $S$ to $d$, and $\reachset{S}{\ell}^{+}
-= \{d : \delta^{+}(S,d) \leq \ell\}$. This is the naive positive-edge candidate set; CCME 2.0.0 additionally requires attribution to an eligible unit and that unit's self-source exclusion.
+= \{d : \delta^{+}(S,d) \leq \ell\}$. This is the naive positive-edge candidate set; \SPEC{} additionally requires attribution to an eligible unit and that unit's self-source exclusion.
 \end{definition}
 
 \begin{proposition}[limit of naive merged bucketing]
@@ -174,7 +348,10 @@ across a wide scope-set admits thousands of targets from a source set of one or
 two packages, and the literal reading re-walks those sources thousands of times
 to re-derive an answer that never changed. Hoisting is not an optimisation to
 be justified by profiling; it is what the predicate's own dependency structure
-already says.
+already says. The bound covers the hoisted scope and channel predicates only;
+cancellation intersections cost up to $\mathrm{bw}(\mathrm{cancels})$ per
+queried target, and materialising provenance charges the source insertions in
+$Z_v$ even when deduplication leaves $Z$ unchanged.
 
 \subsection{Inverted channel resolution}
 
@@ -205,16 +382,197 @@ list, not the prefix examined before the winner was found, so the list must be
 complete before it is read; an implementation that fuses the two passes and
 evaluates a package as soon as its first candidate arrives loses \diag{W186}.
 
+\subsection{Deterministic order and failure closure}
+
+\begin{proposition}[the publish heap]
+\label{prop:heap}
+The order of \cref{def:order} is computable in $O(E + P \log P)$ with a
+comparison heap over the ready set, against $O(P^2 + E)$ for scanning the
+ready set for its least name at every step. No comparison-based structure
+improves the bound for unsorted names: a workspace with $P$ unsorted names and
+no edges makes the sequence a sort of its names.
+\end{proposition}
+
+\begin{proof}
+Kahn's algorithm~\cite{kahn} visits each package and relaxes each edge once;
+with the zero-indegree packages kept in a heap keyed by name, each package
+enters and leaves the heap once at $O(\log P)$ and each relaxation is $O(1)$,
+giving $O(E + P \log P)$. A linear scan of the ready set at each of $P$ steps
+costs $O(P)$ each. For the lower bound, with no edges every package is ready
+at once and \cref{def:order} returns the names in byte-wise order, so any
+method that decides the order by comparisons performs a comparison sort of
+$P$ keys, which needs $\Omega(P \log P)$ comparisons. This is a worst-case
+statement for unsorted comparison keys and not an instance-optimality result:
+where name ranks or sorted names are already provided, the reduction proves
+no new lower bound, and any other structure must provably return the same
+least element at every step.
+\end{proof}
+
+The historical bound of $O(P + E)$ for an arbitrary topological order predates
+the byte-wise tie-break \spec{19.2} now requires; \cref{prop:order} proves
+that the required order is well defined and machine independent, not that it
+is linear.
+
+\begin{proposition}[the blocking closure]
+\label{prop:closure}
+The blocked set of \cref{def:blocking} is computable in $O(P + E)$ traversal
+work per run, plus one read of each planned package's recorded causes, by
+adding each failure to an incremental multi-source reverse traversal over
+\code{publish.blockingKinds} on the full workspace graph and marking each
+newly reached consumer once. The literal \code{run} of \spec{19.3}, which
+tests each planned package by a fresh transitive walk, is $O(P \cdot (P +
+E))$ whatever the number of failures, and a walk from each failure is $O(F
+\cdot (P + E))$.
+\end{proposition}
+
+\begin{proof}
+A package transitively depends on a failed or blocked package exactly when it
+transitively depends on a failed one, since a blocked package itself depends
+on a failed one; so the set \code{bad} of \code{run} is non-empty for $d$
+exactly when $d$ is reached from $F$ over the reversed edges. Marking a
+package on first reach and never expanding it twice visits each package and
+each reversed edge at most once across all failures, which is $O(P + E)$
+however the failures interleave with publication. Whether a reached package is
+blocked or proceeds is then the own-cause test, which reads the causes the
+plan already retains for that package and excludes those from failed or
+blocked providers; packages are examined in publish order, so every
+provider's status is known when its dependent is examined. Recording every
+failed ancestor or path adds output-sized work, and the first cause and the
+\diag{W194} order still follow the deterministic publish and failure order
+rather than queue or hash iteration order.
+\end{proof}
+
+\begin{proposition}[build readiness in linear time]
+\label{prop:readiness-cost}
+The build-stage edges of \cref{def:taskgraph} are computable in $O(P + E)$:
+give every package that does not build a pass-through node, direct one relay
+edge from provider to consumer for every dependency edge not declared
+\code{none}, and take the build constraints as reachability in that relay
+graph. A search per building pair through the packages between them is $O(P
+\cdot (P + E))$. After transitive reduction at most two task edges per
+dependency edge survive.
+\end{proposition}
+
+\begin{proof}
+A path in the relay graph from $P$'s node to $C$'s node is exactly a
+dependency path from $C$ to $P$ with no \code{none} edge, since relay edges
+exist for precisely the edges not declared \code{none} and pass-through
+nodes relay without constraint; so $\exbuild{P}$ precedes $\exbuild{C}$ in the
+relay graph exactly as \cref{def:readiness} requires. Building the relay graph
+touches each package and each edge once. Scheduling then follows the relay
+edges, which the executor already does for the publish stage, so no
+per-pair search is needed. Alternatively a memoised index of the nearest
+building packages each package reaches without a \code{none} edge is built in
+one visit per package in reverse topological order, at the cost of the set
+unions it stores, which are output-sized. For the last claim, each dependency
+edge $C \to P$ contributes at most one build-stage constraint (build-to-build
+or publish-to-build, by its relation) and one publish-stage constraint, and a
+constraint carried through intermediate packages is implied by the relayed
+edges, so the reduction keeps at most two per dependency edge.
+\end{proof}
+
+\subsection{The profile rows}
+
+The polyrepository rows are sums over repositories and deliberately not
+globally linear in fleet history: distinct boundaries can require distinct
+reachability sets, output can contain $P \cdot U$ scope incidences, and
+propagation can still materialise $Z$ contributions. Snapshots: the control
+gitlink transitions are indexed in one pass per fixed control snapshot and
+each source snapshot is walked once, $O(G + \sum_q (H_q + A_q))$, never once
+per consumer. Windows: one marker pass per repository, $O(\sum_q (H_q +
+A_q)\,\mathrm{bw}(m_q) + I_w)$, with the boundaries of \cref{def:exec-windows}
+counted per repository in $K_q$ as revisions and not as $(\text{stable},
+\text{fresh})$ pairs. Publication input closure: the graph augmented with
+shared-version-group membership can contain cycles, so its strongly connected
+components are condensed in $O(P + E + V)$ and visited in reverse topological
+order with one bitset union per condensed edge, $O((P + E + V)\lceil Q /
+w\rceil)$; a dense representation costs $O(P \lceil Q / w\rceil)$ words and an
+expansion into name lists up to $O(P \cdot Q)$. Link evidence and settlement:
+the link tree is rooted once in $O(Q)$, each (repository, revision) tree is
+read at most once per plan, and a package settles with one commit per
+recording repository, at most $Q - 1$ and two in a star. Record comparison:
+one inventory per repository under the lock, $O(T)$ each
+(\cref{def:records-lock}). Every index and cache key preserves repository
+identity, no cache synthesises ancestry between repositories, and ancestry
+and walk caches are bounded by configured memory or an eviction policy over
+all their tiers, because a cache of every queried pair grows quadratically in
+$H_q$; recomputation after eviction preserves semantics and may lose the
+cached time bound, a trade-off an implementation states.
+
+The execution rows count tasks and nodes. Task graph and readiness: a
+counter of unfinished predecessors per task, decremented once per completed
+predecessor, makes readiness $O(T_k + D_k)$ over the run, where rescanning
+every task after each completion is $O(T_k \cdot (T_k + D_k))$. Placement:
+choosing a compatible free node per task is $O(T_k \cdot W_n)$, and $W_n$ is
+small enough that a free list per compatibility class is rarely worth its
+bookkeeping. Output transfer: one transfer per distinct (output set, node)
+pair bounds the count by $P_o \cdot W_n$ where a transfer per consumer task
+would reach $T_k \cdot P_o$, and verified bytes are not fetched again
+(\cref{def:exec-outputs}). Coordination polling: the branch-name prefix of
+\cref{def:exec-branches} lets a node list only the refs addressed to it and
+fetch once per changed tip, where listing every live ref is $O(L_r)$ per tick,
+and the refs of dead runs tax every tick until removed. None of these rows
+bounds transfer bytes or command durations, which \cref{sec:execution} treats
+separately.
+
+\subsection{Space}
+
+Memory is counted in machine words, except input and output byte buffers,
+with indexed inputs retained.
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}L{4.2cm}L{4.0cm}L{6.4cm}@{}}
+\toprule
+Representation & Retained or auxiliary space & Qualification \\
+\midrule
+\endhead
+Package and history adjacency & $O(P + E + H + A)$ & input indexes; not repeated per package \\
+Parsed messages and resolved incidences & $O(N + U + I)$ & byte buffers plus unit and incidence records; cached resolution has its own key \\
+Dense history marker rows & $O(H \lceil m / w \rceil)$ & plus traversal state; zero markers need no rows \\
+Explicit package windows & $O(I_w)$ & optional materialisation; shared boundary indexes can avoid it \\
+Cancel masks & $O(P_c \lceil \mathrm{cancels} / w \rceil)$ & plus scoped-package lookup and diagnostic state \\
+One propagation BFS & $O(P)$ auxiliary & on top of shared adjacency; retained walk caches have a separate budget \\
+Direct channel candidates & $O(P + I)$ as lists, or $O(P)$ summaries & summaries require the deferred-output rule of \spec{13.8}; diagnostics and provenance are additional \\
+Contribution and provenance records & $O(Z)$ & streaming reduces retention only where later phases and output permit \\
+Heap publish order, blocking membership & $O(P)$ auxiliary & shared graph excluded; all-cause or path diagnostics add output-sized storage \\
+Publication input closure bitsets & $O(P \lceil Q / w \rceil)$ & shared component sets may reduce storage; expanded lists cost up to $O(P \cdot Q)$ \\
+Link evidence cache & retained pins plus keys & $B$ counts trees, not their entries or bytes; dense hub revisions can be large \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+No implementation should add every alternative in this ledger by default.
+Peak simultaneously live allocations, construction scratch space, immutable
+input buffers, retained output and cache keys are what count; batching the
+marker computation limits scratch space but does not bound retained marker
+columns, and a transposed per-marker layout has the same $H \cdot m$ logical
+bits as the row layout with neither universally better. Linear scanning is
+worst-case time-optimal when every input byte must be inspected, explicit
+output needs time at least its size, a single adjacency traversal and the
+blocking closure have tight linear bounds, and the publish heap matches the
+comparison-sorting lower bound for unsorted names. These are conditional,
+phase-specific statements: neither $\Omega(Z)$ output work nor a dense $H
+\times m$ or $P \times Q$ representation proves that every instance requires
+that representation or that the complete planner is jointly time- and
+space-optimal.
+
 \subsection{Parsing}
 
 Lexical parsing and resolution have distinct cache keys. Lexing is pure in the
-repository identity, immutable record identity, parser/schema identity and
+repository identity, immutable record identity, parser and schema identity and
 parsing configuration. Scope and changed-path resolution additionally depends
-on the workspace package/path index, graph and resolution configuration. A
+on the workspace package and path index, graph and resolution configuration. A
 lexical cache hit therefore does not cache $R$ or $I$, and record immutability
-does not imply a whole-plan cache. Vectors 82h--82j exercise direct-channel
-resolution, inherited-channel provenance and per-unit admission; they do not
-exhaustively validate these cache keys.
+does not imply a whole-plan cache. File ownership is a longest-prefix probe of
+the path's own ancestor directories, a literal scope term is one map lookup, a
+glob whose only \code{*} is its last byte selects a contiguous range of the
+sorted names in $O(\log P)$ plus its matches, and a scope-set depends on its
+commit only through \code{.} and, under \spec{27}, through the owning
+repository, so it may be resolved once per distinct text; none of this changes
+$I$, which is output. Vectors 82h to 82j exercise direct-channel resolution,
+inherited-channel provenance and per-unit admission; they do not exhaustively
+validate these cache keys.
 
 \begin{proposition}[linear parsing, \spec{20.7}]
 \label{prop:parse}
@@ -242,3 +600,15 @@ messages authored by anyone who can open a pull request. A superlinear parser
 would make that a denial-of-service surface in CI; \cref{prop:parse} is why the
 specification prescribes an index scan and relegates regular expressions to an
 appendix.
+
+\subsection{What none of this may change}
+
+Every representation above is internal. The plan, the diagnostics and their
+order must be identical to the literal reading (\spec{17.2},
+\cref{thm:determinism}), and an implementation that trades a different plan
+for speed does not conform however fast it is. Appendix B.7a of \SPEC{} tests
+exactly the transformations that are almost equivalence-preserving, a hoist
+that collapses a multi-channel source set, an inversion that loses
+\spec{11.6} order, a fused pass that miscounts \diag{W186}, a skipped channel
+pass that leaves a channel unset; it is not exhaustive, and an optimisation it
+does not name is still the implementer's to justify.

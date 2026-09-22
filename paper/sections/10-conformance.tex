@@ -1,152 +1,146 @@
 \section{Conformance}
 \label{sec:conformance}
 
-Each result below is testable, and most are already tested. The table maps
-every theorem to the specification section it formalises, the conformance
-vectors of \SPEC{} Appendix B that exercise it, and the test in the
-reference implementation
-(\code{services/dispat/internal/plan/}) that stands behind it. The point of the
-mapping is that a result with no vector and no test is a claim resting on the
-proof alone, and the last column is where that shows.
+Each result below is testable, and most are tested. The table maps every
+result to the specification section it formalises, the conformance cases
+that exercise it, and the test that stands behind it. Cases are numbered as
+the specification numbers them: a bare number is a vector of \SPEC{}
+Appendix~B (B.7 for partial failure and catch-up, B.7a for optimisation
+equivalence, B.9 for the channel axis, B.12 for shared-version groups),
+``ec'' a row of the edge-case tables of \spec{15}, and ``\S27.10'',
+``\S27.12'' and ``\S28.8'' the numbered vectors of those sections. Appendix~B
+numbers two vectors 82c, so the table says which. A test name set alone is
+in \code{services/dispat/internal/plan}; ``(int.)'' marks the black-box
+integration suite \code{tests/integration}, whose plan states the claim each
+test proves and, for the execution tests, the vector each one is written
+against. The point of the mapping is that a result with no case and no test
+is a claim resting on the proof alone, and the last two columns are where
+that shows. The last block of the table runs the other way: protocol
+requirements that have cases and tests but no numbered result in this
+report.
 
+% Test names cannot hyphenate, so inside this table they are set through
+% url.sty with a break allowed after every letter; the change is scoped to
+% the group around the table.
+\begingroup
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z}
+\newcommand{\tn}[1]{\nolinkurl{#1}}
 \begin{center}
 \footnotesize
-\begin{longtable}{@{}L{3.0cm}L{1.5cm}L{1.8cm}L{8.0cm}@{}}
+\begin{longtable}{@{}L{2.9cm}L{1.6cm}L{2.7cm}L{7.0cm}@{}}
 \toprule
-Result & \SPEC{} & Vectors & Test \\
+Result & \SPEC{} & Cases & Test \\
 \midrule
 \endhead
-\cref{thm:g1} (\G{1}) & 13.7c & 67, 68 & \code{TestPropagationDepthIsShortestPath} \\
-\cref{thm:g2} (\G{2}) & 13.7c & 66, 74, 76 & \code{TestCatchUpAfterConsumerFailure}, \code{TestCatchUpForNeverReleasedConsumer} \\
-\cref{thm:g3} (\G{3}) & 13.7c & 70, 84, 137 & \code{TestCatchUpOnATrainWithPublishedOwnWork} \\
-\cref{thm:g4} (\G{4}) & 13.7c & 66, 83, 133 & \code{TestCatchUpDischargesExactlyOnce} \\
-\cref{thm:g5} (\G{5}) & 13.7c & 67, 68, 134 & \code{TestCatchUpNeverWidensBlastRadius} \\
-\cref{thm:g6} (\G{6}) & 13.7c, 19.6 & 77, 77a, 133 & \code{TestPrereleaseTrainConvergesAfterRelease}, \code{TestPropagatedTrainWorkConverges} \\
-\cref{prop:tagall} & 13.10a & 77, 77a & \code{TestFixedConvergesWhenNothingPending} \\
-\cref{thm:g7} (\G{7}) & 13.7c, 9.3 & 60r, 97c & \code{TestChannelAxisConverges}, \code{TestTransitionIsIdempotent} \\
-\cref{thm:g8} (\G{8}) & 13.7c, 9.2 & 94, 95, 97, 136 & \code{TestPropagatedStableNeverGraduates}, \code{TestCaretAloneDoesNotDragConsumersOntoATrain} \\
-\cref{thm:determinism} & 17.2 & 82 & \code{TestConflictingDirectChannelsPickTheNewest}, \code{TestConflictingPropagatedChannelsPickTheNewest} \\
-\cref{cor:idempotency} & 17.2 & 82, 83 & \code{TestNoCatchUpWhenConsumerIsFresh} \\
-\cref{thm:resumption} & 17.2, 19.3 & 70, 84 & \code{TestCatchUpAfterConsumerFailure} \\
-\cref{thm:duality} & 13.7b & 135 & \code{TestStaleSourcesAgreesWithPropagation} \\
-\cref{prop:screen} & 13.7b & --- & --- \\
-\cref{prop:order} & 19.2 & 69, 80a & --- (executor, outside \code{plan}) \\
-\cref{prop:windows} & 13.11 & --- & \code{TestPlanningQueriesGitOncePerPackage} \\
-\cref{prop:bucket} & 13.11 & 82c--82j, 138 & --- (no traversal reuse implemented) \\
-\cref{prop:hoist} & 9.3a, 13.11 & 82c, 82d & \code{TestCaretAloneDoesNotDragConsumersOntoATrain} \\
-\cref{prop:invert} & 13.8, 13.11 & 82e, 82f & \code{TestDirectChannelBeatsPropagated} \\
-\cref{prop:parse} & 20.7 & 99 & \code{FuzzParse} (\code{pkg/ccme}) \\
+\cref{thm:g1} (\G{1}) & 13.7c, 9.2 & 67, 68 & \tn{TestPropagationDepthIsShortestPath} \\
+\cref{thm:g2} (\G{2}) & 13.7c, 13.4a & 66, 74, 76, 80d, 82c (B.7); ec 87, 88 & \tn{TestCatchUpAfterConsumerFailure}, \tn{TestCatchUpForNeverReleasedConsumer}, \tn{TestAdmissionCatchesUpAConsumerThatOvertookItsProvider}, \tn{TestAdmissionOwedSetNamesOnlyTheProvidersStillOwed}; \tn{TestAdmissionCatchesUpAConsumerThatProceededOnItsOwn}, \tn{TestAdmissionCatchesUpAConsumerThatOvertookAHeldProvider} (int.) \\
+\cref{thm:g3} (\G{3}) & 13.7c & 70; ec 84, 137 & \tn{TestCatchUpOnATrainWithPublishedOwnWork}, \tn{TestSpec2SourceGraduationChangesInheritedRetry} \\
+\cref{thm:g4} (\G{4}) & 13.7c & 66; ec 83, 89, 133 & \tn{TestCatchUpDischargesExactlyOnce} \\
+\cref{thm:g5} (\G{5}) & 13.7c & 67, 68; ec 92, 134 & \tn{TestCatchUpNeverWidensBlastRadius}, \tn{TestSpec2SuppressionLapseCanExposeCatchUp} \\
+\cref{thm:g6} (\G{6}) & 13.7c, 19.6 & 77, 77a, 80; ec 133 & \tn{TestPrereleaseTrainConvergesAfterRelease}, \tn{TestPropagatedTrainWorkConverges} \\
+\cref{prop:progress}, \cref{lem:wf} & 13.7c, 19.3 & 80d; ec 88 & \tn{TestAdmissionCatchesUpAConsumerThatProceededOnItsOwn} (int.); no test of the optional-edge case of \cref{rem:optional} \\
+\cref{prop:loss} & 19.3, 13.4a & 80d (last case) & --- (\diag{E201} unimplemented, \cref{ob:owed}) \\
+\cref{prop:tagall} & 13.10a & 77, 77a; ec 98 & \tn{TestFixedConvergesWhenNothingPending} \\
+\cref{thm:g7} (\G{7}) & 13.7c, 9.3 & 97c; ec 60r & \tn{TestChannelAxisConverges}, \tn{TestTransitionIsIdempotent} \\
+\cref{thm:g8} (\G{8}) & 13.7c, 9.3a & 94, 95, 97; ec 136 & \tn{TestPropagatedStableNeverGraduates}, \tn{TestCaretAloneDoesNotDragConsumersOntoATrain}, \tn{TestSpec2RejectedBumpDoesNotSuppressChannel} \\
+\cref{thm:determinism} & 17.2 & ec 82; \S28.8 5 & \tn{TestConflictingDirectChannelsPickTheNewest}, \tn{TestConflictingPropagatedChannelsPickTheNewest}, \tn{TestPlanDigestIsStableAcrossRecomputation} \\
+\cref{cor:idempotency} & 17.2 & ec 82, 83 & \tn{TestNoCatchUpWhenConsumerIsFresh} \\
+\cref{thm:resumption} & 17.2, 19.3 & 70; ec 84, 87, 91 & \tn{TestCatchUpAfterConsumerFailure}; \tn{TestPlanConsumerFailureCatchesUpAfterProviderPublished}, \tn{TestPlanProviderBuildFailureBlocksConsumerThenHeals} (int.) \\
+\cref{thm:duality} & 13.7b & ec 135 & \tn{TestStaleSourcesAgreesWithPropagation}, \tn{TestSpec2RejectedBumpProducesNoStaleSourceRow} \\
+\cref{prop:screen} & 13.7b & --- & \tn{TestPossiblyBehind} (the screen's shape only; see below) \\
+\cref{prop:order} & 19.2 & 69, 80a; ec 93, 103 & \tn{TestOrderChainRunsInTopologicalOrder}, \tn{TestPublishOrderHoldsThroughAPackageThatIsNotReleasing} (int.) \\
+\cref{prop:readiness-acyclic} & 19.2a & 80b, 80c & \tn{TestStageRelationOrdersBuildsThroughAPackageThatDoesNotBuild}, \tn{TestStageRelationBuildsOverlapWhilePublishesFollowTheProvider}, \tn{TestStageRelationBooleansKeepTheirMeaning}, \tn{TestStageRelationNoneCarriesNoBuildOutputs} (int.) \\
+\cref{prop:exec-placement} & 17.2, 28.3 & \S28.8 1, 3, 5, 9 & \tn{TestExecutionAbsentKeepsLocalReleaseUnchanged}, \tn{TestExecutionModesPlanIsIndependentOfWorkers}, \tn{TestExecutionPlanDigestIgnoresPlacementAndTime}, \tn{TestExecutionPlanIsIndependentOfWorkers}, \tn{TestExecutionPreparationLeavesThePlanDigestUnchanged} (int.) \\
+\cref{prop:marker-pass} & 13.11 & --- & \tn{TestAncestryIndexAgreesWithAWalk}, \tn{TestUnionReadPlansExactlyAsPerBoundaryReads} \\
+\cref{prop:windows} & 13.11, 27.9 & \S27.10 20; \S27.12 29 & \tn{TestPlanningQueriesGitOncePerPackage}, \tn{TestPlanningSharesHistoryForDifferentTagsAtTheSameCommit}, \tn{TestComposedUnionReadPlansExactlyAsPerBoundaryReads}, \tn{TestDistinctBoundaryWindowsRetainCanonicalPayloadOnce}; \tn{TestPolyrepoPrereleaseAndStableWindowsStayRepositoryLocal} (int.) \\
+\cref{prop:bucket} & 13.11 & 82c (B.7a) to 82k; ec 138 & \tn{TestCachedWalkIsTheLiteralWalk}, \tn{TestWalkResultCannotReachItsSharedTail}, \tn{TestSpec2SelfSourceCheckIsPerUnit} \\
+\cref{prop:hoist} & 9.3a, 13.11 & 82c (B.7a), 82d & \tn{TestCaretAloneDoesNotDragConsumersOntoATrain} \\
+\cref{prop:invert} & 13.8, 13.11 & 82e, 82f, 82k & \tn{TestDirectChannelBeatsPropagated}, \tn{TestConflictingDirectChannelsPickTheNewest} \\
+\cref{prop:parse} & 20.7 & 99 & \tn{FuzzParse} (\tn{pkg/ccme}) \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Protocol requirements with cases and tests but no numbered result}} \\
+\midrule
+Blocking closure (\cref{def:blocking}) & 19.3 & 70, 80a; ec 91, 104 & \tn{TestPublishOrderBlocksAConsumerBehindAFailedProviderItDoesNotNameDirectly}, \tn{TestOrderProviderFailureSkipsTheWaitingConsumer}, \tn{TestStageRelationBlockingSkipsAConsumerWithItsOwnChanges} (int.) \\
+Records under the lock & 13.2, 19.1 & \S28.8 27; ec 76a & \tn{TestReleaseRecordsRefuseACloneWithoutTheRemoteTags}, \tn{TestReleaseRecordsNeverMoveAPublishedTag}, \tn{TestReleaseRecordsRefuseATagAtAnotherCommit}, \tn{TestReleaseRecordsCreateOnlyPush}, \tn{TestReleaseRecordsInAComposedWorkspace} (int.) \\
+Output identity & 28.5 & \S28.8 8, 10, 17, 25 & \tn{TestExecutionIgnoredOutputsReachConsumersOnOtherWorkers}, \tn{TestExecutionBranchTransportCarriesEveryDeclaredOutput}, \tn{TestExecutionDefectiveOutputFailsThePrerequisite}, \tn{TestExecutionPartialOutputSetStaysUnready}, \tn{TestExecutionCraftedOutputSetsNeverReachAConsumer}, \tn{TestExecutionOutputBytesIgnoreTheCheckoutAttributes} (int.) \\
+Ready/go handshake & 28.6 & \S28.8 13, 30 & \tn{TestExecutionPublishRunsOnWorkersUnderAuthorization}, \tn{TestExecutionUnauthorizedPublisherNeverStarts}, \tn{TestExecutionCraftedPublicationAuthorizations}, \tn{TestExecutionLostPublishReplyIsNeverRepublished} (int.) \\
+Lock loss & 28.6 & \S28.8 14 & \tn{TestExecutionLockLossStopsNewEffects}, \tn{TestExecutionKilledWorkerBlocksDependentsAndKeepsCapacity}, \tn{TestExecutionLostLockIsRememberedForEveryLaterTask}, \tn{TestExecutionLockLostDuringTheHookWithdrawsTheWaitingPublisher}, \tn{TestExecutionUnansweredPublisherRetainsTheLock} (int.) \\
+Capacity on evidence & 28.2 & \S28.8 21 & \tn{TestExecutionQueuedWorkIsNotATimeout}, \tn{TestExecutionWorkerCapacityHoldsAcrossRuns}, \tn{TestExecutionTaskTimeoutLeaksTheSlot}, \tn{TestExecutionQueuedAssignmentIsReplacedAndThenRefused} (int.) \\
+Consumer boundaries & 27.6, 27.11 & \S27.10 11, 12, 19; \S27.12 10, 13, 28 & \tn{TestPolyrepoReleaseCheckpointProvidesNextConsumerBaseline}, \tn{TestPolyrepoCrossRepositoryBaselineRequiresEvidence}, \tn{TestPolyrepoSinceControlRevisionProjectsSourceGitlinks}, \tn{TestChoreographyReadsTheBoundaryFromTheReleasedLink}, \tn{TestChoreographyRelaysTheBoundaryAlongTheRoute}, \tn{TestChoreographySettlesTheProviderRevisionBeforePublishing} (int.) \\
 \bottomrule
 \end{longtable}
 \end{center}
+\endgroup
 
-Three rows deserve comment.
+Several rows deserve comment.
 
 \Cref{thm:duality} has a test, and the test cannot fail. As
 \cref{ob:duality} records, \code{Plan.StaleSources} returns the rows the
-downward traversal recorded, so \code{TestStaleSourcesAgreesWithPropagation}
-compares a quantity with itself. That is a reasonable engineering choice (an
-independent upward walk would be a second implementation of the same rule, with
-its own bugs) but it means the duality is asserted rather than checked here,
-and it is the reason \cref{ob:duality} went unnoticed. The randomised
-cross-check \spec{13.7b} recommends is the thing that would catch it, and it
+downward traversal recorded, and it still does: at \code{252216ba} it
+returns \code{r.Sources} of the release, so
+\code{TestStaleSourcesAgreesWithPropagation} compares a quantity with
+itself. That is a reasonable engineering choice (an independent upward walk
+would be a second implementation of the same rule, with its own bugs) but it
+means the duality is asserted rather than checked here, and it is the reason
+\cref{ob:duality} went unnoticed.
+\code{TestSpec2RejectedBumpProducesNoStaleSourceRow} exercises the
+observable eligibility result of edge case 135; the randomised cross-check
+\spec{13.7b} recommends is the thing that would catch a disagreement, and it
 needs a workspace with a prerelease train to do so.
 
-\Cref{thm:g6} is the row whose test predates the normative CCME 2.0.0 fresh-window rule. \code{TestPrereleaseTrainConvergesAfterRelease}
-opens with the words ``the reported bug'': a package that entered a beta train
-and published \code{1.0.0-beta.0} re-appeared in every subsequent plan as
-\code{beta.1}, \code{beta.2}, and so on. That is exactly \cref{ob:pre}, found
-in operation rather than on paper, and fixed in the engine. CCME 2.0.0 now
-specifies $W_{\rm fresh}$, so a second implementation following the current
-text discharges the prerelease work as the engine does.
+\Cref{prop:screen} has no case and a test that checks the screen's shape
+only. \code{TestPossiblyBehind} asserts that a provider's tag outside the
+consumer's ancestry flags the consumer, that a never-released provider owes
+nothing, that the ancestor relation clears the flag, and that no claim is
+made without ancestry. Nothing checks the converse the proposition is about,
+that a flagged consumer may owe nothing; the proposition rests on its proof.
 
-\Cref{prop:bucket} has vectors and no test because the reference
-implementation does not perform the optimisation the vectors are about. Its
-traversal is per unit (\code{propagate.go}), which is the literal reading and
-is trivially correct. The vectors of Appendix B.7a exist for implementations
-that do optimise, and \cref{ob:bucket} adds one more.
+\Cref{thm:g6} is the row whose test predates the normative fresh-window rule.
+\code{TestPrereleaseTrainConvergesAfterRelease} opens with the words ``the
+reported bug'': a package that entered a beta train and published
+\code{1.0.0-beta.0} re-appeared in every subsequent plan as \code{beta.1},
+\code{beta.2}, and so on. That is exactly \cref{ob:pre}, found in operation
+rather than on paper, and fixed in the engine. CCME 2.0.0 then specified
+$W_{\rm fresh}$ and the current text keeps it, so a second implementation
+following the text discharges the prerelease work as the engine does.
 
-\subsection*{Randomised differential validation}
+\Cref{prop:bucket} had cases and no test when the engine traversed once per
+unit. It no longer does: \code{propagate.go} serves every walk from a cache
+keyed by source set, depth and edge kinds, holding each package's unbounded
+walk and composing a unit's walk from its sources' walks when the unit names
+at most eight of them, and walking outright otherwise. The vectors of
+Appendix~B.7a are therefore no longer passed trivially.
+\code{TestCachedWalkIsTheLiteralWalk} compares every route the cache can
+take against the literal walk of \spec{9.2}, target for target and in order,
+over 150 random workspaces that are dense on purpose, since diamonds and
+sources that reach one another are where a composition goes wrong. The set
+$X$ of \cref{prop:bucket} cannot arise, because the self-source exclusion is
+applied per unit after composition, which
+\code{TestSpec2SelfSourceCheckIsPerUnit} pins as edge case 138.
 
-After this report was written, its model was validated differentially
-against the reference implementation, most recently in the historical campaign
-with the released \code{v1.7.2} binary (the \code{v1.4.0}, \code{v1.6.0}, \code{v1.7.0} and
-\code{v1.7.2} campaigns agree per-seed on all 3{,}000 instances, so the figures below
-hold for those releases): a $\sim$300-line oracle implementing the report model as it stood against the 1.0.0 snapshot, a seeded generator
-of instances (5--20 packages, layered graphs, 4--12 units, mixed tag
-states), and a realiser turning each instance into a real repository
-for the binary to plan.
+\Cref{prop:marker-pass} has no case: the cost workload at the end of
+Appendix~B.7a is informative and states no threshold. Its test is the
+definition itself: \code{TestAncestryIndexAgreesWithAWalk} checks the
+bit-parallel marker pass against a walk per ancestry question over random
+DAGs whose rank and topology are drawn independently, and
+\code{TestUnionReadPlansExactlyAsPerBoundaryReads} runs the planner with the
+union read hidden, one window per boundary, as it ran before the pass
+existed, and requires the same plan.
 
-On 1{,}500 instances inside the historical premises then called (H1) and (H2), across two disjoint
-seed ranges, the two plans agreed
-\emph{exactly}: package sets, versions, bumps and channels. On
-1{,}000 instances over the full directive grammar the 1{,}097
-divergent package-rows classified \emph{completely} into four
-predicted classes and none outside them: 240 prerelease-train
-discharges and 58 suppression-lapse and downstream-cascade variants
-are \cref{ob:pre,ob:g5}
-observed at scale; 409 channel-entry patches are \SPEC{}~\S11.4's
-deliberate one-patch rule (\diag{W204}), which neither this report's
-model nor the companion article's transcribes; and 390 bump-axis
-liveness cases arise because the oracle implements the companion
-article's compact admission, which drops this report's clause
-\ref{a:live}, a transcription gap of the article, caught by the
-differential run exactly as intended. The obligations plus these two
-recorded omissions form a complete divergence taxonomy for the grammar
-exercised, which is the strongest empirical statement this historical campaign
-makes about its scope. These records do not validate changed CCME 2.0.0
-admission.
+The rows of \cref{prop:exec-placement} and of the last block rest on
+the integration plan's claims. Each execution test names in its comment the
+vector of \spec{28.8} it is written against, and the plan's Goal 57 states
+the claim each proves; the section has thirty vectors, of which 20 and 26 do
+not apply to the engine (\cref{ob:profile}). Vectors 28 and 29 of that
+section, the create-only record after a lost lock and the documented
+recovery of an abandoned one, are not named by any test, and the lock-loss
+row does not claim them.
 
-The fresh 7 September 2026 E1 campaign used the released
-\code{dispat 1.8.2 (linux\_arm64)} binary on 3{,}000 generated instances. The
-runner validates Git fixtures and CLI exits. All 1{,}500 core instances agreed
-with no invalid sample. The full profile intentionally generates regressive
-prereleases: 997 plans were accepted, of which 546 matched the historical
-oracle, while 503 complete diagnostic plans were semantically refused with
-\diag{E195}. Four refused dossiers had no row difference, so 550 comparisons
-were diagnostic-clean. All proposed regression package sets in the 503
-dossiers were independently checked, including held proposals. The full
-profile had 1{,}914 divergent package rows, assigned by the campaign's heuristic
-classifier to PG1 862, PG2 375, PG2x 14, and PG3? 663, with zero unclassified
-rows. The canonical manifest binds all four shards to extractor SHA-256
-\code{3d5eef3e...11e52}; its paths and hashes identify the four records used
-for these totals. Because the oracle
-implements the historical model and the labels---especially PG3?---are
-heuristic, these counts are taxonomy evidence, not CCME 2.0.0 conformance.
-
-E1 uses tmpfs and pre-run \code{git fsck}; the revised exit checker separates
-validated E195 refusals from execution failures. The first stopped attempt
-and the 1.8.1 records remain preserved. Seed 580's earlier invalid fixture
-remains unresolved; its fresh success is not a product-fix claim, since
-planner source is unchanged and the fixture environment changed.
-
-A separate check in the 7 September 2026 campaign ran vectors 133--138 against the released
-Dispat 1.8.2 binary; all six passed. The retained raw before/after plan streams
-for 134 and 137 confirm package counts, versions and catch-up behaviour. Vector
-135 exercises the observable downward eligibility result; it is not an
-independent implementation of the upward audit, so the proof remains the
-support for full duality. This is selected conformance evidence, not an
-exhaustive proof of the specification.
-
-
-The official image is
-\code{yohimik/dispat-alpine@sha256:4c0ad4b8...e7bfd}. The provenance bundle
-fixes peeled release tag commit \code{a7011cbcb9e8} and verifies the official
-binary against its release asset. All 753 files in the final checksum
-manifest and all eight completion/identity markers verified. The same bundle records the other
-fresh checks without converting
-them into proof claims. E2 repeated orphan recovery twice: no refused tag, the
-same recovered version, then an empty third plan. E3 reproduced the established
-historical replay profile over five releases per repository (36/42 exact for
-\code{google-cloud-node}, 7/64 for \code{conventional-changelog}); it does not
-claim those releases followed CCME. E4's two recovery repetitions converged in
-24/24 episodes within four runs (31 and 32 total runs) with no structural G3/G5 errors. Its eight
-fresh timing cells span 100--10{,}000 packages: medians range from 0.017 s for
-the 100-package layered case to 19.354 s for the 10{,}000-package chain, with
-15--118 MiB observed maximum RSS. The recorded fixtures passed \code{git fsck};
-the pad generator was used only after a small fixture matched the ordinary
-generator's commit IDs, refs, messages, and log output. Measurements used a
-contended Apple-silicon Docker host capped at two CPUs and 4 GiB, so they are
-observations rather than clean comparisons. E5 freshly reran its orphan,
-clean concurrent-push and conflicting concurrent-push Dispat cells; their
-8, 12, and 14 checks passed. Its nine competitor cells remain historical evidence.
+Three gaps are the ones the obligations name. Vectors 79 and 100a, the
+optional dependency that does not block and the cycle that exists only
+through \code{devDependencies}, have no test and fail against the engine
+(\cref{ob:kinds}). The last two cases of vector 80d, the run the consumer
+sits out and the refusal with \diag{E201}, have no test and the engine does
+not implement them (\cref{ob:owed}). And the retry of a fleet record that
+annotates the same commit has no test on the fleet path
+(\cref{ob:records}).

@@ -1,21 +1,45 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{99}
 
 \bibitem{ccme}
-\emph{Conventional Commits: Monorepo Extension (CCME) 2.0.0}.
-\href{https://github.com/yohimik/dispat/blob/d3ce8ae637232908ced82efb5cda550f60ed2fdf/specs/ccme-spec/SPEC.md}{\texttt{released CCME 2.0.0}}, \texttt{github.com/yohimik/dispat}. The historical audit uses the
-\href{https://github.com/yohimik/dispat/blob/713f1a0b/pkg/ccme/SPEC.md}{\texttt{CCME 1.0.0 snapshot}}. GPL-3.0-or-later.
-Cited throughout as \SPEC{}.
+\emph{Conventional Commits: Monorepo Extension (CCME) 3.1.0-rc.2}.
+\href{https://github.com/yohimik/dispat/blob/252216bab9bd4052ba181a2ceb47e21363b8eff3/specs/ccme-spec/SPEC.md}{\texttt{specs/ccme-spec/SPEC.md} at \texttt{252216ba}},
+\texttt{github.com/yohimik/dispat}, 21 September 2026. The current normative
+subject, cited throughout as \SPEC{}. GPL-3.0-or-later.
+
+\bibitem{ccme-history}
+\emph{CCME design history and changelog}.
+\href{https://github.com/yohimik/dispat/blob/252216bab9bd4052ba181a2ceb47e21363b8eff3/specs/ccme-spec/DESIGN-HISTORY.md}{\texttt{specs/ccme-spec/DESIGN-HISTORY.md}}
+and \texttt{CHANGELOG.md} at \texttt{252216ba}. Dated entries stating what the
+engine implements and where it departs; the entries of 21 and 22 September
+2026 are quoted in \cref{sec:obligations,sec:evaluation}.
+
+\bibitem{ccme2}
+\emph{CCME 2.0.0}.
+\href{https://github.com/yohimik/dispat/blob/d3ce8ae637232908ced82efb5cda550f60ed2fdf/specs/ccme-spec/SPEC.md}{\texttt{released CCME 2.0.0}}
+at \texttt{d3ce8ae6}. The version the earlier editions of this report
+formalised; the historical audit uses the
+\href{https://github.com/yohimik/dispat/blob/713f1a0b/pkg/ccme/SPEC.md}{\texttt{CCME 1.0.0 snapshot}}
+at \texttt{713f1a0b}.
 
 \bibitem{ccme301}
-\emph{Conventional Commits: Monorepo Extension (CCME) 3.0.1}.
-\href{https://github.com/yohimik/dispat/blob/8238e2465670b39609f8dcf5a8a5d34ea71d3db1/specs/ccme-spec/SPEC.md}{\texttt{released CCME 3.0.1}},
-\texttt{github.com/yohimik/dispat}. Corrected algorithm guidance; not an
-implementation or experimental subject of this report.
+\emph{CCME 3.0.1}.
+\href{https://github.com/yohimik/dispat/blob/8238e2465670b39609f8dcf5a8a5d34ea71d3db1/specs/ccme-spec/SPEC.md}{\texttt{released CCME 3.0.1}}.
+Corrected algorithm and cost guidance between 2.0.0 and the current text.
 
 \bibitem{dispat}
-\emph{dispat}: a release engine for polyglot monorepositories.
-\texttt{github.com/yohimik/dispat}. The reference implementation; the release
-computation discussed here is \texttt{services/dispat/internal/plan}.
+\emph{dispat}: a release engine for polyglot monorepositories and
+polyrepositories. \texttt{github.com/yohimik/dispat}, commit
+\texttt{252216ba}; latest released candidate \texttt{services/dispat/v1.11.0-rc.3}.
+The reference implementation; the release computation is
+\texttt{services/dispat/internal/plan}, the execution profile
+\texttt{services/dispat/internal/execution}.
+
+\bibitem{testplan}
+\emph{dispat integration test plan and requirement matrix}.
+\href{https://github.com/yohimik/dispat/blob/252216bab9bd4052ba181a2ceb47e21363b8eff3/tests/integration/docs/test-plan.md}{\texttt{tests/integration/docs/test-plan.md}}
+and \texttt{qa-requirements.md} at \texttt{252216ba}. Sixty goals, the claim
+each integration test proves, the regression and bug fences; the source of the
+integration rows of \cref{sec:conformance}.
 
 \bibitem{cc}
 \emph{Conventional Commits 1.0.0}. \texttt{conventionalcommits.org}. CCME is a
@@ -38,9 +62,52 @@ protocol of \cref{sec:protocol} implements, with git tags as the log.
 A.~B.~Kahn. \emph{Topological sorting of large networks}. Communications of the
 ACM 5(11), 1962. The publish order of \cref{prop:order}.
 
+\bibitem{graham66}
+R.~L.~Graham. \emph{Bounds for certain multiprocessing anomalies}. Bell System
+Technical Journal 45(9), pages 1563 to 1581, 1966. The scheduling anomaly of
+\cref{ex:exec-anomaly}.
+
+\bibitem{graham69}
+R.~L.~Graham. \emph{Bounds on multiprocessing timing anomalies}. SIAM Journal
+on Applied Mathematics 17(2), pages 416 to 429, 1969. The list-scheduling bound
+of \cref{prop:exec-graham}.
+
 \bibitem{git}
 S.~Chacon and B.~Straub. \emph{Pro Git}, 2nd edition. Apress, 2014. The commit
 DAG, reachability and tags of \cref{def:history,def:state}.
+
+\bibitem{kerneltests}
+G.~Roeck. \emph{kerneltests.org}: the Linux kernel build and boot test farm,
+\texttt{https://kerneltests.org/}, builders \texttt{upstream-<arch>-master}
+builds 330 (hexagon), 331 (m68k\_nommu) and 332 (alpha) for v7.3-rc4, read on
+22 September 2026 and retained in
+\texttt{dispat/gce/parity-20260922-reference.json} of the fork
+\texttt{github.com/yohimik/linux-build-test}. The public reference times of
+\cref{sec:evaluation}.
+
+\bibitem{linuxfork}
+\emph{linux-build-test}, fork of G.~Roeck's farm configuration with the dispat
+prototype. \texttt{github.com/yohimik/linux-build-test}, branch
+\texttt{codex/kernel-parity} at \texttt{c699bf3d}; reports
+\texttt{dispat/gce/REPORT.md}, \texttt{PARITY-20260922.md} and
+\texttt{PARITY-20260922-round2.md}; oracle \texttt{dispat/compare.py}.
+
+\bibitem{llvmfork}
+\emph{llvm-project}, fork with the dispat recipe. \texttt{github.com/yohimik/llvm-project},
+branch \texttt{dispat-gce} at \texttt{952c2de4}; report
+\texttt{.ci/dispat/gce/REPORT.md}; recipe \texttt{.ci/dispat/build.py}; oracle
+\texttt{.ci/dispat/gce/compare.py}.
+
+\bibitem{crosstool}
+\emph{kernel.org cross toolchains}. \url{https://mirrors.edge.kernel.org/pub/tools/crosstool/},
+release 16.2.0 (GCC 16.2.0, binutils 2.47) for x86\_64 and arm64 hosts, with
+published SHA-256 sums; the alpha and m68k compilers of the kernel farm.
+
+\bibitem{gce}
+\emph{Google Compute Engine machine families}.
+\url{https://cloud.google.com/compute/docs/machine-resource}, read 22 September 2026:
+\texttt{c3-standard-22}, \texttt{t2d-standard-8}, \texttt{n2-custom-14-49152}
+and \texttt{e2-standard-4}, the shapes of \cref{sec:evaluation}.
 
 \bibitem{holguard}
 Semyon F. (yohimik). \emph{HOL Guard pull request 2813: opt-in Dispat release-start

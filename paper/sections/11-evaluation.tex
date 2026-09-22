@@ -1,0 +1,1358 @@
+% Evaluation: the executed campaigns. Every figure in this section is copied
+% from a retained record, and the sentence or table note that carries it names
+% that record. Paths are repository-relative for files in dispat-research and
+% absolute otherwise. Campaigns are never pooled; failed attempts are reported.
+% \evpath, \evhash and \evRQ are defined in macros.tex.
+
+\section{Evaluation: the executed campaigns}
+\label{sec:evaluation}
+
+The proofs of \cref{sec:guarantees} say what the algorithm does; this section
+reports what the reference implementation~\cite{dispat} was observed to do, in
+the campaigns that were actually executed, with the binary, the environment and
+the counting unit of each one stated separately. Five questions organise the
+account. \evRQ{1} asks whether the consumer-relative admission window retains
+the residual obligations that a source-relative window loses. \evRQ{2} asks
+whether versions and completion records stay stable through repeated failure,
+repair and identity conflict, and how far the plans agree with an independent
+model. \evRQ{3} asks whether execution respects artefact availability and CI
+gates. \evRQ{4} asks what planning costs as the graph, the intent and the
+history grow. \evRQ{5}, new in this report, asks what the distributed execution
+profile of \spec{28} measured on two real build graphs, and what it did not.
+
+The discipline of the section is that every number is transcribed from a
+retained file that the sentence or the table note names, that no campaign is
+pooled with another, and that failed and discarded attempts appear beside the
+completed ones. Deterministic designed matrices are reported as counts with
+their denominators and receive no $p$-values.
+
+\subsection{Evidence boundaries and units}
+\label{sec:eval:boundaries}
+
+Seven bodies of evidence are used. \Cref{tab:eval:boundaries} pins each one to
+its binary, its environment and its counting unit. The units differ and are
+not interchangeable: a \emph{history} is one generated repository planned once;
+an \emph{episode} is one fixture driven through fault, retry and repair; a
+\emph{state} or a \emph{transition} is an enumeration unit of the finite model;
+a \emph{command record} is one invocation the verifier replayed; a
+\emph{predicate} is one verifier check applied repeatedly to fixtures; a
+\emph{release} is one \code{dispat release} from invocation to exit under
+GNU \code{time}. Predicate counts are implementation checks, not independent
+observations, and are never summed across campaigns.
+
+\begin{center}
+\footnotesize
+\begin{longtable}{@{}L{2.4cm}L{4.2cm}L{3.4cm}L{4.3cm}@{}}
+\caption{Evidence boundaries. Sources: \protect\evpath{experiments/README.md} and
+\protect\evpath{experiments/results/compare-v140-v160.md} (historical differential);
+\protect\evpath{output/experiments-v182-summary.json} and
+\protect\evpath{experiments/results/v182-20260907/README.md} (1.8.2);
+\protect\evpath{paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md} (1.9.0);
+\protect\evpath{paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md} and
+\protect\evpath{experiments/saner-2027/campaign-1.10.0-20260909/summary.json} (1.10.0);
+\protect\evpath{experiments/saner-2027/campaign-mechanisms-20260910/RESULTS.md}
+(mechanisms); \protect\evpath{/Users/yohimik/Projects/linux-build-test/dispat/gce/PARITY-20260922.md}
+and \protect\evpath{PARITY-20260922-round2.md} beside it (kernel);
+\protect\evpath{.ci/dispat/gce/REPORT.md} on branch \code{origin/dispat-gce} of
+\protect\evpath{/Users/yohimik/Projects/llvm-project} (LLVM).}
+\label{tab:eval:boundaries}\\
+\toprule
+Campaign & Binary under test & Environment & Counting unit and record \\
+\midrule
+\endfirsthead
+\toprule
+Campaign & Binary under test & Environment & Counting unit and record \\
+\midrule
+\endhead
+Historical differential, from 30 August 2026 & Released \code{dispat 1.4.0
+(linux\_arm64)} from the official \evpath{yohimik/dispat-alpine:1.4.0} image
+(release commit \code{5e3a2337}); repeated on 1.6.0 (\code{f9c2acf2}), 1.7.0
+and 1.7.2 & Docker on an Apple-silicon host; one container at a time &
+History (generated instance); \evpath{experiments/results/v140}, \evpath{v160},
+\evpath{v170}, \evpath{v172} and the \evpath{compare-*.md} notes beside them \\
+1.8.2 E1 to E5, 7 September 2026 & \code{dispat 1.8.2 (linux\_arm64)}, CLI
+commit \evhash{a7011cbcb9e88e52e7336f6fc8f1b207a8e7a311}, image
+\evpath{yohimik/dispat-alpine@sha256:}\allowbreak\evhash{4c0ad4b8268dd10dbb136008798c1b07ffc1c0c7c534b8465a9f5edcab0e7bfd}
+& Docker, two CPUs and 4~GiB per container, contended host & History (E1),
+repetition (E2), release row (E3), episode and timing cell (E4), check (E5);
+\evpath{experiments/results/v182-20260907}, 753 files under its manifest \\
+1.9.0 companion, 9 September 2026 & \code{dispat 1.9.0 (linux\_arm64)}, SHA-256
+\evhash{be3370c472cdbfe66fe4256d3fc1ff78ff19bdd5f041ef222187a52767fa4f35},
+runner image \evpath{sha256:}\allowbreak\evhash{97363c9dbac292599987e66241d6da56abd7540df965b24bc20d20573fcac31f}
+& Docker Desktop Linux ARM64, two CPUs and 4~GiB, no network except private
+registries & History, episode, execution, CI repetition, predicate;
+\evpath{experiments/saner-2027/campaign-next-release-prepared/runs}, one failed
+and one completed attempt \\
+1.10.0 companion, 9 September 2026 & \code{dispat 1.10.0 (linux\_arm64)},
+SHA-256 \evhash{03d1ba5fbaef35b69582e9489f40b5438f81ae6926e02ea6d02716b5b73d92fd},
+runner image \evpath{sha256:}\allowbreak\evhash{6f92932fbba5d33d61d777073f5fc155133063f4c3d4b2f950e3e5b9ed9a263e}
+& As above & As above; \evpath{experiments/saner-2027/campaign-1.10.0-20260909},
+archive of 9,157 files \\
+Mechanism matrix, 9 September 2026 & The same 1.10.0 binary and runner image
+as the row above & Docker, network disabled, two CPUs, 4~GiB & Episode,
+state, transition; \evpath{experiments/saner-2027/campaign-mechanisms-20260910},
+16,464 fixture files archived \\
+Kernel farm rounds, 22 September 2026 & Round 1: a development build, SHA-256
+\evhash{a7172a7feb21e27ce882050120b9e04df1e6d4b4ee5f3341ab8a99ba155ba70a}.
+Round 2: the feature branch at \code{f0c9e959}, static linux/amd64, SHA-256
+\evhash{63441cc66f68d07b5efbf9a42edd5559304d153d48b82b1dfb037349e20606ed} &
+Google Compute Engine~\cite{gce}: \code{c3-standard-22} and
+\code{t2d-standard-8}, region us-central1 & Release (GNU \code{time} elapsed),
+per-cell script seconds; \evpath{dispat/gce} of the fork at \code{c699bf3d}, copied under \evpath{experiments/distributed-20260922/evidence/kernel-gce} \\
+LLVM pair, 22 September 2026 & Attempts 1 to 8: the feature branch at
+\code{f0c9e959}; attempt 9: \code{1.11.0-rc.4+main.272772cb} as printed in its
+release log & Google Compute Engine: \code{e2-standard-4} orchestrator, two
+\code{n2-custom-14-49152} workers, zone us-central1-a & Release; the fork's
+\evpath{.ci/dispat/gce/REPORT.md} and the retained logs under
+\evpath{experiments/distributed-20260922/evidence/llvm-gce/logs} \\
+\bottomrule
+\end{longtable}
+\end{center}
+
+None of these campaigns measures a release-candidate feature outside
+\evRQ{5}. The parser in every campaign through 1.10.0 is CCME 2.0.0
+(\evpath{paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md}); the kernel and
+LLVM rounds run the \spec{28} execution profile of the 1.11.0 release candidate
+and are the only evidence about it.
+
+\subsection{RQ1: the consumer-window mechanism}
+\label{sec:eval:rq1}
+
+The consumer-relative window of \cref{def:window} is the mechanism behind
+\G{2}. The mechanism campaign tests it two ways, from
+\evpath{experiments/saner-2027/campaign-mechanisms-20260910/PROTOCOL.md}: a
+finite projection of the model, and a counterfactual computed on the
+completion states the binary actually produced.
+
+\paragraph{The finite projection.}
+The projection enumerates every DAG consistent with one fixed order of four
+named vertices, each of four single intent sources, every completion set
+reachable by repeatedly recording an enabled package, and every subset of the
+remaining packages designated as failed. It checks exact residual obligations,
+no widening, no double ledger delivery, and strict decrease exactly when
+progress occurs. It then applies the source-window mutant, which discards a
+unit when its originating package completes, to the same states. The counts,
+from the \code{executor.model} object of
+\evpath{experiments/saner-2027/campaign-mechanisms-20260910/summary.json}, are
+64 graphs, 256 source instances, 772 reachable completion states, 2,270
+failure-subset transitions of which 1,054 made progress, 0 projection
+violations, and 260 states in which the source-window mutant lost obligations.
+States and transitions are enumeration units, not samples. The projection is a
+stable-channel, one-intent model of four vertices; it is not a mechanised proof
+of the full language, of arbitrary graphs or of implementation refinement
+(\evpath{RESULTS.md}, section ``Finite projection'').
+
+\paragraph{The binary-derived counterfactual.}
+The counterfactual takes each episode's original obligation set and its
+observed completion tags and asks what the source-window rule would have
+discarded. It runs no modified binary and compares no competitor
+(\evpath{RESULTS.md}, section ``Source-window counterfactual'').
+\Cref{tab:eval:counterfactual} transcribes the strata of \evpath{summary.json}.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Source-window counterfactual by stratum. Every figure is the
+\code{episodes}, \code{source\_mutant\_losing\_episodes} or
+\code{source\_mutant\_lost\_obligations} field of the corresponding
+\code{strata} entry in
+\protect\evpath{experiments/saner-2027/campaign-mechanisms-20260910/summary.json}; the
+same figures appear in \protect\evpath{RESULTS.md} beside it. Units are episodes and
+obligations.}
+\label{tab:eval:counterfactual}
+\begin{tabular}{@{}llrrr@{}}
+\toprule
+Stratum & Value & Episodes & Losing episodes & Lost obligations \\
+\midrule
+Class & fault matrix & 120 & 84 & 111 \\
+      & no-fault control & 10 & 0 & 0 \\
+      & foreign identity & 10 & 10 & 10 \\
+\midrule
+Boundary & build & 40 & 28 & 41 \\
+         & before publication & 40 & 28 & 35 \\
+         & after artefact write & 40 & 28 & 35 \\
+         & foreign & 10 & 10 & 10 \\
+         & none & 10 & 0 & 0 \\
+\midrule
+Channel & stable & 70 & 47 & 61 \\
+        & beta & 70 & 47 & 60 \\
+\midrule
+Graph & chain & 28 & 20 & 38 \\
+      & diamond & 28 & 20 & 25 \\
+      & fan-out & 28 & 20 & 20 \\
+      & two disconnected pairs & 28 & 14 & 14 \\
+      & chain with shortcuts & 28 & 20 & 24 \\
+\midrule
+All & & 140 & 94 & 121 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The figures the conference account quotes are the fault-matrix row: 111
+obligations lost in 84 of the 120 fault episodes, with 28 of 40 episodes at
+each of the three boundaries and 47 of 70 in each channel. The ten no-fault
+controls lose nothing, which is the expected null. The ten foreign-identity
+cases lose one obligation each and are reported separately because they test a
+different intervention (\cref{sec:eval:rq2}). The counts are the sensitivity
+of a deficient analytical rule under designed cases, not a win rate.
+
+\emph{Answer to \evRQ{1}.} In every state the projection reached and in every
+episode the binary completed, the consumer-relative window retained exactly the
+residual set, and a source-relative window would have lost obligations in 260
+of the 772 states and in 84 of the 120 fault episodes.
+
+\subsection{RQ2: retry and identity stability}
+\label{sec:eval:rq2}
+
+\paragraph{The mechanism matrix.}
+The matrix crosses five four-package topologies (chain, diamond, fan-out, two
+disconnected pairs, chain with shortcuts) with stable and beta baselines, four
+fault targets and three injection boundaries, giving 120 fault episodes; ten
+no-fault controls and ten foreign-identity cases bring it to 140. Each fault
+episode executes the same fault twice, repairs it and runs a final no-op; the
+order is fixed by seed 20260910; build and publish concurrency are one
+(\evpath{PROTOCOL.md}). The run took 113.653827~s, from 2026-09-09
+20:39:05.988761 to 20:40:59.642604 UTC, and passed 140 of 140 episodes with no
+failed, invalid or excluded case (\evpath{summary.json}, \code{execution} and
+\code{executor}). \Cref{tab:eval:mechanism} gives the five checks.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Mechanism checks of the 140-episode matrix, from the
+\code{mechanism\_checks} object of
+\protect\evpath{experiments/saner-2027/campaign-mechanisms-20260910/summary.json}.
+The 130 denominator is the 120 fault episodes plus the ten foreign-identity
+cases; the ten no-fault controls do not enter it (\protect\evpath{RESULTS.md}).}
+\label{tab:eval:mechanism}
+\begin{tabular}{@{}L{9cm}r@{}}
+\toprule
+Check & Passed / denominator \\
+\midrule
+Repeated fault preserved the residual plan and tags & 130 / 130 \\
+Successful repair left an empty plan & 130 / 130 \\
+Exactly one durable artefact write per obligation & 140 / 140 \\
+Foreign artefact identity conflict was refused & 10 / 10 \\
+Final no-op left the plan empty and tags unchanged & 140 / 140 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per stratum, 40 of 40 episodes passed at each boundary, 70 of 70 in each
+channel and 28 of 28 on each graph (\evpath{summary.json}, \code{strata}). The
+after-write injector lets the supplied local publisher write the artefact
+durably and then return a nonzero exit; it simulates neither \code{SIGKILL}
+nor a network partition nor power loss. The foreign-identity cases test that
+adapter's immutable version-and-content identity, not an npm or OCI registry
+(\evpath{summary.json}, \code{interpretation}). An independently implemented
+offline checker reconstructed every plan from the raw command output, checked
+tags, publisher events and the four stored artefact identities per case, and
+re-enumerated the finite model; it reported no discrepancy over 140 episodes
+(\evpath{summary.json}, \code{offline\_consistency\_check}). A negative check
+on a corrupted copy failed as intended (\evpath{RESULTS.md}, ``Evidence
+integrity'').
+
+\paragraph{Reference agreement on the companion campaigns.}
+The 1.10.0 companion campaign planned 300 generated histories, seeds 90001 to
+90300, against the restricted core oracle: 300 accepted matching rows, 0
+semantic rejections, 0 invalid executions, 0 rows with differences
+(\evpath{experiments/saner-2027/campaign-1.10.0-20260909/summary.json},
+\code{core}). The corrected 1.9.0 campaign reports the same 300 of 300 on the
+same seeds (\evpath{paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md}). The
+oracle is the historical model of the conference paper's restricted profile;
+300 of 300 on a fixed sample is agreement on that sample, not a universal
+conformance result.
+
+The recovery stage of each companion campaign drives 20 episodes over graphs
+of 20 and 100 packages with failure probabilities .1 and .3 and seeds 100 to
+104. In 1.10.0 all 20 converged with progress on every run and at most four
+runs, distributed as nine episodes in two runs, five in three and six in four,
+over 251 raw command records with no invariant error (\evpath{summary.json},
+\code{recovery}). In the corrected 1.9.0 run the same 20 episodes converged in
+at most four runs over 248 command records, distributed nine, six and five
+(\evpath{EXPERIMENTS-1.9.0-20260909.md}). The two campaigns are not pooled.
+\evpath{runs/run-v1.10.0-linux-arm64-20260909/recovery-comparison.json} locates
+the difference in one episode, graph size 100, probability .3, seed 100: the
+first attempt left 20 packages pending in 1.10.0 against 18 in 1.9.0, so the
+later seeded deny sets diverged and the remaining counts ran 20, 2, 1, 0
+against 18, 2, 0, which accounts for one extra release, tag and status
+triplet (\evpath{EXPERIMENTS-1.10.0-20260909.md}). The traces do not attribute
+the difference to the 1.10.0 feature; fixed seeds do not fix a concurrent
+executor's schedule.
+
+\paragraph{The 1.8.2 full-profile campaign.}
+The 7 September 2026 campaign on the released 1.8.2 binary planned 3,000
+generated instances in four shards: core seeds 1 to 1000 and 5001 to 5500, and
+full-profile seeds over the same ranges
+(\evpath{output/experiments-v182-summary.json}, \code{E1.shards}). Both core
+shards agreed exactly, 1,000 of 1,000 and 500 of 500, with 0 invalid
+executions. The full profile deliberately generates regressive prereleases:
+of its 1,500 instances, 503 were refused with a validated \diag{E195}
+diagnostic and 997 were accepted; of the accepted, 546 matched the historical
+oracle; four refused dossiers also had no row difference, so 550 comparisons
+were diagnostic-clean; the divergent package rows numbered 1,914, classified
+by the campaign's heuristic classifier as PG1 862, PG2 375, PG2x 14 and PG3?
+663 with none unclassified (\evpath{output/experiments-v182-summary.json},
+\code{E1.totals} and \code{E1.divergence\_classes};
+\evpath{experiments/results/v182-20260907/README.md}). Per shard the
+full-profile figures were 343 refusals, 353 accepted-clean and 356
+diagnostic-clean rows with classes 572, 240, 9 and 442 for seeds 1 to 1000,
+and 160, 193, 194 and classes 290, 135, 5 and 221 for seeds 5001 to 5500
+(\evpath{E1.shards}). The canonical manifest binds the four shards to extractor
+SHA-256 \evhash{3d5eef3ef2bf87de7876ddf6d04e852028b72091dd2417ce4943c96e48011e52}
+(\evpath{experiments/results/v182-20260907/e1/canonical-manifest.json}). A
+refused diagnostic plan is not an executable release plan, the oracle
+implements the historical CCME 1 model, and the PG3? label is heuristic, so
+these counts are taxonomy evidence rather than CCME 2.0.0 conformance
+(\evpath{output/experiments-v182-summary.json}, \code{limits}).
+
+The first 1.8.2 attempt is retained at
+\evpath{experiments/results/v182-20260907-attempt1}: its strict exit checker
+classified the expected \diag{E195} refusals as invalid executions, and the
+corrected campaign reran every seed from scratch rather than patching the
+records (\evpath{experiments/results/v182-20260907/README.md}). Seed 580 of
+the core profile, which produced an invalid fixture under 1.8.1, succeeded
+under 1.8.2 in a changed fixture environment (tmpfs and a pre-run \code{git
+fsck}); planner source is unchanged between the two releases, so the success
+is not a product fix (\evpath{README.md}; \code{E1.normalized\_changes\_from\_v181}
+lists that one core seed and 503 full-profile seeds).
+
+A separate check in the same campaign ran \SPEC{} Appendix~B vectors 133 to
+138 against the released 1.8.2 binary: 6 of 6 passed
+(\evpath{output/experiments-v182-summary.json}, \code{CCME2}). Vector 135
+exercises the observable downward eligibility result and is not an independent
+implementation of the upward audit, so the proof remains the support for
+\cref{thm:duality}.
+
+\paragraph{The historical differential campaigns.}
+The oracle of E1 (\evpath{experiments/e1/oracle.py}) implements the model of
+this report as it stood against the CCME 1.0.0 snapshot; the generator
+(\evpath{experiments/e1/gen.py}) produces layered instances and the realiser
+(\evpath{experiments/shared/realize.py}) turns each into a real repository
+(\evpath{experiments/README.md}). On the released 1.4.0 binary the core
+profile agreed 1,000 of 1,000 on seeds 1 to 1000 and 500 of 500 on seeds 5001
+to 5500. The full profile over seeds 1 to 1000 left 412 instances clean and
+classified every divergent row as PG1 409, PG2 240, PG2x 58 or PG3 390, and
+over seeds 5001 to 5500 left 222 clean with PG1 182, PG2 135, PG2x 23 and PG3
+200, with zero unclassified (\evpath{experiments/README.md}, ``v1.4.0
+campaign, remaining results''; \evpath{experiments/results/compare-v140-v160.md}).
+The first shard's 1,097 divergent rows are the four predicted classes and
+none outside them: the 240 PG2 prerelease-train discharges and the 58 PG2x
+suppression-lapse and cascade variants are \cref{ob:pre,ob:g5} observed at
+scale; the 409 PG1 channel-entry patches are the deliberate one-patch rule of
+\spec{11.4} (\diag{W204}), which the report model does not transcribe; and the
+390 PG3 bump-axis liveness rows arise because the oracle implements the
+companion article's compact admission, which drops clause~\ref{a:live}. The
+1.6.0, 1.7.0 and 1.7.2 campaigns reproduce the per-seed rows on all 3,000
+instances with only the version string differing
+(\evpath{experiments/results/compare-v140-v160.md},
+\evpath{v170/compare-v160-v170.md}, \evpath{v172/compare-v170-v172.md}). These
+records validate the CCME 1.0.0 model against those binaries; they do not
+validate CCME 2.0.0 admission, whose window is the subject of \evRQ{1}.
+
+\paragraph{Orphan recovery and mid-release pushes.}
+E2 drives a six-package npm fixture against a Verdaccio registry behind a
+failing proxy that answers 502 to named PUTs
+(\evpath{experiments/README.md}). In the 1.8.2 campaign both repetitions
+recorded the failed publish untagged, a same-version recovery and a final plan
+releasing nothing (\evpath{output/experiments-v182-summary.json}, \code{E2}).
+E5's three fresh 1.8.2 cells passed 8 checks for the orphan scenario, 12 for
+a clean concurrent push and 14 for a conflicting concurrent push
+(\code{E5}); the two push scenarios distinguish a completed release tag from a
+concurrent source change on selected interleavings, not on a systematic sweep.
+Its nine competitor cells were not rerun and remain historical (\code{limits}).
+
+\paragraph{Historical competitor observations.}
+The competitor phases of 30 August 2026 pin the newest versions published on
+that date: Lerna 10.0.1, Nx 23.1.2, Turborepo 2.10.12 with Changesets 3.0.1,
+and release-please 17.11.2 (\evpath{experiments/README.md}, ``Competitor tool
+pins''). Each phase was run twice with identical protocol-relevant transcript
+lines. Lerna tagged at version time, before publish; the denied \code{cli}
+left \code{cli@1.0.1} tagged and orphaned, and recovery was blocked by
+\code{EUNCOMMIT} until manual cleanup. Nx also tagged before publish and
+propagated a patch to all five dependents of a minor change; its recovery is
+\code{nx release publish} again, which skips already-published versions by
+registry query. Changesets tagged after publish, left no tag for the denied
+package, recovered by registry query, and gated propagation by version range;
+its release intent is a changeset file consumed at version time, so the plan
+is not a function of Git history and cannot be replayed. Turborepo neither
+versions nor publishes. release-please has no local publish step and was
+observed only through the E3a replay (\evpath{experiments/README.md}, ``E2
+extension results''). These are observations of the pinned configurations,
+not properties of every mode those tools expose.
+
+\paragraph{Historical replay.}
+E3a replays five releases each of two public repositories under a
+reconstructed layout and policy. The 1.8.2 campaign reproduced the established
+profile: 36 of 42 released package-versions exact for
+\code{google-cloud-node} and 7 of 64 for \code{conventional-changelog}
+(\evpath{experiments/results/v182-20260907/README.md}, and \code{E3} of
+\evpath{output/experiments-v182-summary.json}, which records
+\code{metrics\_equal\_v181} true for all ten rows). The per-release rows are
+in \evpath{experiments/results/e3a/gcn.json} (released 1, 22, 11, 7, 1 and
+exact 1, 17, 11, 6, 1) and \evpath{experiments/results/e3a/cc.json} (released
+20, 8, 9, 6, 21 and exact 2, 3, 1, 0, 1). Neither project used the modelled
+intent language, and the mismatches may reflect the reconstruction as much as
+the projects' conventions; the experiment shows the limit of policy transfer
+and does not claim those releases followed CCME.
+
+\emph{Answer to \evRQ{2}.} Across the designed graph, channel, target and
+fault factors of the 140-episode matrix, recorded progress survived repeated
+failure without version drift, repair emptied the plan, and the identity
+check refused every foreign artefact. The restricted oracle agreed on all 300
+histories of each companion campaign and on all 1,500 core instances of the
+1.8.2 campaign; the 1,914 divergent full-profile rows and the 1,097 rows of the
+historical campaign are retained and classified, and they mark where the
+restricted models stop rather than where the implementation fails.
+
+\subsection{RQ3: availability boundaries and CI}
+\label{sec:eval:rq3}
+
+The companion campaigns execute two registry topologies and one CI fixture.
+The three-package topology is an npm package, a Docker base image and a Docker
+application; the four-package extension is \code{assets} (npm), \code{ui}
+(npm), \code{base} (Docker) and \code{app} (Docker), where \code{ui} reads the
+predecessor's local \code{dist} output and performs no registry install
+(\evpath{experiments/saner-2027/campaign-next-release-prepared/CAMPAIGN-PLAN.md}).
+Each topology repeats five configurations six times in a frozen seeded order:
+mixed local-output scheduling, fully serialised controls, a missing barrier,
+an injected base-publication failure with repair, and an injected app-build
+failure with repair.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{The 1.10.0 companion campaign. Executions, initial outcomes, repairs,
+no-op reruns and predicate counts are the \code{mixed} and \code{integration}
+objects of \protect\evpath{experiments/saner-2027/campaign-1.10.0-20260909/summary.json};
+the intervals are the six-decimal figures of
+\protect\evpath{paper/saner/evidence/EXPERIMENTS-1.10.0-20260909.md}, whose
+nine-decimal originals are the \code{overlap} arrays of the same
+\protect\evpath{summary.json}. Predicates are repeated verifier checks, not samples.}
+\label{tab:eval:rq3}
+\begin{tabular}{@{}L{3.1cm}rrrrrr@{}}
+\toprule
+Topology & Executions & \shortstack[r]{Initial\\successes} &
+\shortstack[r]{Designed\\failures} & Repairs & \shortstack[r]{No-op\\reruns} &
+Predicates \\
+\midrule
+Three-package & 30 & 12 & 18 & 12 & 24 & 522 \\
+Four-package & 30 & 12 & 18 & 12 & 24 & 798 \\
+CI fixture & 3 repetitions & & & & & 81 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Per topology the 18 designed failures are six of each negative configuration;
+all 12 repairable executions completed at unchanged planned versions; the six
+missing-barrier cases intentionally have no repair; the other 24 completed
+cases performed no build or publication on their final unchanged run
+(\evpath{EXPERIMENTS-1.10.0-20260909.md}). In the three-package mixed fixtures
+the base build overlapped npm publication in all six observations, by
+0.110716 to 0.151483~s. In the four-package mixed fixtures the \code{ui} build
+overlapped the deliberately delayed \code{assets} publication by 0.070128 to
+0.073725~s, and the base build started 6.292152 to 6.393487~s before the
+\code{ui} publication ended and completed before that publication began in
+all six cases. The latter is an admissible schedule: a build that reads local
+output need not wait for its provider's publication, and the fixture's delays
+expose availability rather than measure throughput. The three CI repetitions
+each cover baseline publication, a specification change, a consumer change,
+an injected failing test, a missing required test, repair and an unchanged
+run; the three failing-test and three missing-test negatives blocked the
+release stages, the failing-test attempts wrote no release tag, repairs
+propagated the specification release to its consumer, and unchanged runs
+executed the selected tests without release stages.
+
+\paragraph{The corrected 1.9.0 campaign.}
+The completed 1.9.0 run, \evpath{run-v1.9.0-linux-arm64-20260909-corrected},
+has the same 12, 18, 12 and 24 counts per topology, the same 522, 798 and 81
+predicate counts, overlaps of 0.101969 to 0.128675~s in the three-package
+fixtures and 0.068203 to 0.077008~s between \code{ui} and \code{assets}, with
+the base build starting 6.298757 to 6.311191~s before \code{ui} publication
+ended (\evpath{paper/saner/evidence/EXPERIMENTS-1.9.0-20260909.md}). Its
+provenance records all 14 stages passed and a \code{COMPLETE} marker written
+at 2026-09-09T10:48:01 UTC
+(\evpath{runs/run-v1.9.0-linux-arm64-20260909-corrected/provenance.json}).
+
+\paragraph{The preserved failed oracle attempt.}
+The first 1.9.0 attempt, \evpath{runs/run-v1.9.0-linux-arm64-20260909}, ran
+from 05:35:36 to 07:37:14 UTC, passed its first thirteen stages and failed
+the fourteenth, \code{mixed-4node-verification}, with exit code 1
+(\evpath{provenance.json} of that run, \code{status: FAILED}). Its verifier
+log ends in the assertion ``\code{mixed-2: base local build overlaps ui
+publication}'' (\evpath{mixed-4node-verification.log}): the original oracle
+required the base-build and \code{ui}-publication intervals to overlap
+strictly, and the traces showed the valid schedule in which the base build
+completed before \code{ui} publication began. The predicate was corrected
+before the full rerun to the dependency-relevant condition, that the base
+build starts before \code{ui} publication ends, with overlap and
+completed-before-start both recorded descriptively
+(\evpath{CAMPAIGN-PLAN.md}). The failed attempt has no \code{COMPLETE} marker
+and is not counted as passing evidence; its recovery stage had reached a
+maximum of five runs over 251 raw command records where the corrected run
+reached four over 248, which is why the two are not pooled
+(\evpath{EXPERIMENTS-1.9.0-20260909.md}). The 1.10.0 campaign reuses the
+corrected protocol byte for byte, protocol manifest SHA-256
+\evhash{a3366e2fbdc590be7e8f6268bc7390146669cf7a0395837c2531a0af5554dcaa}, with
+no further oracle change (\evpath{campaign-1.10.0-20260909/summary.json}).
+
+A separately frozen diagnostics addendum in the 1.10.0 campaign passed 16 of
+16 purpose-selected cases for the standalone diagnostics command; it is
+engineering evidence outside the 14-stage campaign and its sample counts
+(\evpath{EXPERIMENTS-1.10.0-20260909.md}).
+
+\emph{Answer to \evRQ{3}.} In these fixtures, on one Linux ARM64 environment,
+a configured barrier distinguishes local build availability from required
+publication, and both a failed and an absent required test prevent release;
+the campaign measures neither concurrency at scale nor onboarding effort.
+
+\subsection{RQ4: planning cost}
+\label{sec:eval:rq4}
+
+The E4 timing cells plan generated workspaces of $P$ packages with $U$ intent
+units, in three graph shapes, with an optional padding history of commits that
+touch no package. \Cref{tab:eval:rq4} transcribes the eight cells of the 1.8.2
+campaign.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Planning cost, 1.8.2 campaign: the eight rows of
+\protect\evpath{experiments/results/v182-20260907/e4/timing.csv}, verbatim. Seconds
+are the median, minimum and maximum of the cell's repetitions; MiB is the
+maximum resident set size. The container was capped at two CPUs and 4~GiB on a
+contended Apple-silicon Docker host
+(\protect\evpath{experiments/results/v182-20260907/README.md}).}
+\label{tab:eval:rq4}
+\begin{tabular}{@{}rlrrrrrrr@{}}
+\toprule
+$P$ & Shape & $U$ & Padding & Edges & Median s & Min s & Max s & MiB \\
+\midrule
+100 & layered & 200 & 0 & 185 & 0.017 & 0.017 & 0.017 & 15 \\
+1,000 & layered & 200 & 0 & 2,002 & 0.250 & 0.235 & 0.252 & 21 \\
+10,000 & layered & 200 & 0 & 19,919 & 19.272 & 18.992 & 20.000 & 92 \\
+1,000 & chain & 200 & 0 & 999 & 0.254 & 0.241 & 0.258 & 26 \\
+10,000 & chain & 200 & 0 & 9,999 & 19.354 & 18.933 & 19.645 & 118 \\
+1,000 & star & 200 & 0 & 999 & 0.244 & 0.237 & 0.247 & 19 \\
+1,000 & layered & 1,000 & 0 & 2,002 & 0.290 & 0.280 & 0.302 & 26 \\
+1,000 & layered & 200 & 5,000 & 2,002 & 0.664 & 0.640 & 0.665 & 30 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The medians rise from 0.017~s at 100 layered packages to 19.272~s at 10,000,
+and the 10,000-package chain records 19.354~s and 118~MiB, the largest of
+both columns. Multiplying the intent five-fold at 1,000 packages moves the
+median from 0.250 to 0.290~s; adding 5,000 padding commits moves it to
+0.664~s, the history term of \cref{sec:complexity} showing through. The
+fixture generator uses \code{git commit-tree} for long padding histories only
+after a small fixture matched the ordinary generator's commit IDs, refs,
+messages and log output, and every fixture passed \code{git fsck}
+(\evpath{experiments/README.md}, gotcha 18 and the paragraph following it).
+
+\paragraph{The loaded-host repetitions.}
+The earlier campaigns measured the same headline cells under a different
+harness and report much larger figures: in the 1.4.0 campaign the headline
+cells were re-measured in five containers each, giving about 0.6~s at 100
+packages, 2.8 to 6.7~s at 1,000 and 110 to 149~s at 10,000, with the spread
+attributed to bimodal container placement on the host, and the
+1.6.0 comparison records medians of medians of 0.61, 6.49 and 143.1~s against
+0.60, 6.43 and 142.4~s (\evpath{experiments/README.md}, ``v1.4.0 campaign,
+remaining results''; \evpath{experiments/results/compare-v140-v160.md}). Those
+figures are not comparable with \cref{tab:eval:rq4}: the runner then retained
+every generated workspace until the container exited and divided the resident
+set size twice, and it was rewritten before the 1.8.x campaigns
+(\evpath{experiments/README.md}, gotcha 17). The two sets are reported side
+by side as what each harness measured; neither is a cross-version benchmark.
+
+The E4 recovery cells of the 1.8.2 campaign converged in 24 of 24 episodes
+within four runs, 31 total runs in the first repetition and 32 in the second
+(\evpath{output/experiments-v182-summary.json}, \code{E4.recovery}); the 1.4.0
+campaign's 24 episodes converged with a maximum of five runs and the 1.6.0
+campaign's with four (\evpath{compare-v140-v160.md}).
+
+\emph{Answer to \evRQ{4}.} On the capped host the observed cost grows sharply
+between the 1,000- and 10,000-package cells and with history length; the
+design isolates neither a general asymptotic bound nor an end-to-end figure,
+and the loaded-host repetitions show how far the same cells move with the
+harness.
+
+\subsection{RQ5: distributed execution}
+\label{sec:eval:rq5}
+
+The execution profile of \spec{28} places build and publish stages on worker
+nodes that share a Git repository with the orchestrator as their only
+transport. Two build graphs were measured on 22 September 2026, both on Google
+Compute Engine~\cite{gce}: the Linux kernel image-build farm of
+kerneltests.org~\cite{kerneltests}, whose cells are independent, and the LLVM
+monorepo, whose cells consume one another's outputs. The specification's own
+record of the implementation and of both measurements is the entry
+``2026-09-22: Distributed execution implemented'' of
+\evpath{/Users/yohimik/Projects/dispat/specs/ccme-spec/DESIGN-HISTORY.md},
+which this subsection follows in substance and cites for the figures it
+states. The claim the measurements support is narrow and is stated once here:
+on these fixtures, once each, a distributed release took no longer than the
+same recipe on one node. No speedup of the profile or of the engine is claimed
+beyond that. The raw observations of both graphs are copied, unedited, into
+\evpath{experiments/distributed-20260922/evidence/} (the evidence tree below),
+whose \evpath{MANIFEST.json} records every file's origin and SHA-256 and whose
+\evpath{CROSS-CHECK.json} traces the headline figures of the two fork reports
+and the specification entry to those raw files: 39 checks, 37 agreeing, 0
+disagreeing, and two additional kernel trials that are disclosed there and
+reported below rather than counted as headline figures.
+
+\paragraph{Acceptance oracles.}
+Each fork carries its own comparison script, and a run counts only if the
+script accepts it. The kernel fork's \evpath{dispat/compare.py} accepts a
+measured run only if its cases, kernel revision, compiler and assembler
+identities match the retained public reference exactly, every cell succeeded,
+no configuration is missing or duplicated, and the elapsed time is no greater
+than the reference (\evpath{dispat/README.md} and \evpath{dispat/PARITY.md} of
+\evpath{/Users/yohimik/Projects/linux-build-test}). The LLVM fork's
+\evpath{.ci/dispat/gce/compare.py} compares the install tree of every package
+file by file between the single-node and the distributed checkouts, with the
+install prefix masked, the executable bit and symlink targets recorded, and
+the toolchain archive compared by member list, sizes and modes; it prints the
+receipts' own fingerprints beside the masked comparison and exits nonzero on
+any difference. Neither script measures speed on its own; the kernel gate
+folds elapsed time in, the LLVM pair reports it beside the product comparison.
+
+\subsubsection{The kernel farm}
+\label{sec:eval:rq5:kernel}
+
+\paragraph{References.}
+The public reference for each architecture group is the build step of the
+upstream builder on kerneltests.org for kernel v7.3-rc4 at
+\evhash{93f51579e7df248780214094418f205253383cc5}, read from the public build
+pages and retained in \evpath{dispat/gce/parity-20260922-reference.json} of
+the fork and in
+\evpath{experiments/distributed-20260922/evidence/kernel-gce/round1-codex/baseline.json}:
+alpha 623~s (build 332),
+hexagon 111~s (build 330) and m68k\_nommu 128~s (build 331), with
+\code{alpha-linux-gcc (GCC) 16.2.0} and \code{m68k-linux-gcc (GCC) 16.2.0}
+over GNU assembler 2.47.20260726 from the kernel.org crosstool
+builds~\cite{crosstool}, and \code{Ubuntu clang version 18.1.3 (1ubuntu1)} for
+hexagon. The exact case lines are four for alpha, three for hexagon and five
+for m68k\_nommu. These are individual build-step durations measured on the
+farm's own machines while sharing them with another build, not the wall time
+of a farm run, and they are other hardware: they bound acceptance and are not
+compared numerically beyond the gate. For context only, the first fork report
+records that the farm's 57 upstream builders took 23.0 machine-hours in
+3~h~52~min of wall time for v7.3-rc4 on six machines
+(\evpath{dispat/gce/REPORT.md}); that figure was read from public pages and
+enters no comparison here.
+
+\paragraph{The first run.}
+The first real run, on the \code{dispat-prototype} branch with a worker-nodes
+build at commit \code{1146c210}, three VMs (an \code{e2-standard-4}
+orchestrator and two \code{n2-custom-14-28672} spot workers) and kernel.org
+crosstool gcc 14.3.0, is recorded in \evpath{dispat/gce/REPORT.md}; its
+orchestrator and worker logs are copied under
+\evpath{experiments/distributed-20260922/evidence/kernel-gce/first-run}. It is
+not parity evidence: the compiler is not the reference compiler, the exported
+pass, fail and skip counts were not retained, the wrapper accepted the
+script's exit code as success although the farm script accumulates errors and
+exits zero, and the raw logs were not found in the fork itself
+(\evpath{dispat/PARITY.md}). What it established was the coordination profile
+and two engine defects. Four groups finished; \code{m68k} was lost when
+Compute Engine preempted its worker 18~minutes into the build; the run was
+restarted twice because the worker's idle timer stopped a node five seconds
+after a 38-minute build and stopped a fresh node after 34~s. Claim-to-result
+was 2,250~s for alpha against the 623~s reference, 324~s for hexagon against
+111 and 246~s for m68k\_nommu against 128, ratios of 3.5, 2.3 and 1.8 of the
+script body to the reference step; the probe round trip was 4~s, assignment
+to claim 37~s cold and 3~s warm, and a result reached the orchestrator in 5~s
+(\evpath{dispat/gce/REPORT.md}). The copied logs bear these figures out:
+\evpath{gce-timings.py} run over \evpath{first-run/gce-logs} reads the
+worker's claim and completion stamps as 00:04:47 to 00:42:20 for alpha,
+01:07:28 to 01:12:54 for hexagon, 01:07:27 to 01:11:33 for m68k\_nommu and
+01:11:40 to 01:11:54 for um, within three seconds of the report's
+claim-to-result figures at the logs' one-second resolution
+(\evpath{CROSS-CHECK.json}, the first-run entries).
+
+\paragraph{Round 1: every candidate failed the gate.}
+Round 1 (\evpath{dispat/gce/PARITY-20260922.md}) installed the reference
+toolchains, ran the development binary of SHA-256
+\code{a7172a7f\ldots} named in \cref{tab:eval:boundaries} on an
+\code{e2-standard-2} orchestrator, a \code{c3-standard-22} worker (11 cores,
+22 threads) and a \code{t2d-standard-8} worker (8 cores, 8 threads), and
+measured a grouped control and four candidates, each once. The gate is GNU
+\code{time} elapsed of \code{dispat release} from invocation to exit,
+including source transport, assignment and claim polling, worker checkout, the
+complete build script, result transport and reporting; VM provisioning,
+toolchain setup and one-time source preparation are outside it.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Kernel round 1, from the results table of
+\protect\evpath{/Users/yohimik/Projects/linux-build-test/dispat/gce/PARITY-20260922.md};
+the release seconds are also the \code{phase-timing.json} of each candidate in
+\protect\evpath{experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz}.
+Script seconds are the complete build-script body per cell. One trial per
+candidate. The reference is the kerneltests.org build step.}
+\label{tab:eval:kernel1}
+\begin{tabular}{@{}L{3.0cm}L{5.4cm}rrL{2.4cm}@{}}
+\toprule
+Candidate & Placement and script seconds & Release s & Reference s & Gate \\
+\midrule
+split hexagon & c3: defconfig 69; t2d: tinyconfig 54, allnoconfig 76 &
+170.07 & 111 & fail, elapsed only \\
+split m68k\_nommu & c3: m5272 35, m5407 34, m5249 35; t2d: m5307 65, m5475 49
+& 159.03 & 128 & fail, elapsed only \\
+batched hexagon & c3: allnoconfig+tinyconfig 65; t2d: defconfig 147 & 165.30
+& 111 & fail, elapsed only \\
+batched m68k\_nommu & c3: first two cases 66; t2d: last three 167 & 196.23 &
+128 & fail, elapsed only \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\code{compare.py} accepted the cases, toolchain identities and revision of
+every candidate and rejected only the elapsed time. The cold grouped control
+ran the three groups sequentially on the C3 worker in 1,797.75~s of release,
+of which the three script bodies were 1,608~s (hexagon 130, m68k\_nommu 154,
+alpha 1,324); alpha's script alone exceeded its 623~s reference, so no
+removal of dispatch overhead could have carried it. The first control
+transported the full 1.4~GB repository and 1.9~GB working tree, its source
+phase taking 45~s of which the recorded push was 44.392~s; an image-only
+export reduced the transport to about 512~KB and later pushes recorded 0.031
+to 0.050~s. Per cell, warm kernel fetches took 0.446 to 0.571~s and worktree
+checkouts 7.026 to 8.327~s; assignment to claim took 1 to 4~s and completion
+to coordinator receipt 1 to 5~s, with a 0~s scheduler queue gap. About 89\% of
+the control's elapsed time was inside the build scripts
+(\evpath{PARITY-20260922.md}). The failed setup attempt
+\code{batched-hexagon-setup-failure} is retained apart from the timed
+candidates; distcc was prepared and never measured. The round's raw evidence is
+the curated archive named in that file, SHA-256
+\evhash{2fcc02ec891df09044b45a8b9d783015545e984abafe7eff745edac21cf08255}, 145
+files, copied to
+\evpath{experiments/distributed-20260922/evidence/kernel-gce/round1-codex/curated-linux-parity-evidence.tar.gz};
+the release elapsed figures of \cref{tab:eval:kernel1}, the control's
+1,797.75~s, alpha's 1,324~s of script, the per-group 229, 173 and 1,340~s and
+the 44.392~s push are the \evpath{*/phase-timing.json} members of that
+archive, as \evpath{CROSS-CHECK.json} traces them.
+
+\paragraph{Round 2: calibration.}
+Round 2 (\evpath{dispat/gce/PARITY-20260922-round2.md}) first measured the
+farm's own script bodies outside dispat, on prepared source trees, with
+\evpath{dispat/gce/calibrate.sh}; the raw lines are
+\evpath{dispat/gce/round2/calibration/cal-c3.txt} and \evpath{cal-t2d.txt}, and
+the installed toolchains are confirmed in
+\evpath{cal-c3-toolchains.txt}. On \code{c3-standard-22}, hexagon defconfig
+alone at 33 jobs took 73.92~s; the three hexagon configurations started
+together at 11 jobs each took 120.11, 81.04 and 63.67~s, the group finishing
+after 120.12~s; the five m68k\_nommu configurations started together at 7 jobs
+each took 128.16, 127.41, 126.65, 127.04 and 103.16~s, the group finishing
+after 128.17~s; alpha defconfig, allnoconfig and tinyconfig alone at 33 jobs
+took 68.48, 33.16 and 24.04~s (\evpath{cal-c3.txt}). On \code{t2d-standard-8},
+hexagon allnoconfig alone took 87.51~s and the two-batch m68k\_nommu split took
+236.18 and 295.49~s (\evpath{cal-t2d.txt}); round 1 had measured hexagon
+defconfig at 147~s there. Three facts followed: a single m68k\_nommu build
+leaves part of the C3 machine idle, so several may share it; the three
+hexagon configurations crowd each other on one machine; and the T2D machine
+cannot hold hexagon defconfig inside the reference.
+
+\paragraph{Round 2: topologies and results.}
+The budget for the longest cell is the reference less the release's fixed
+overhead, measured at 3 to 8~s from release start to \code{worker ready}:
+102~s for hexagon and 119~s for m68k\_nommu. The topologies, generated into
+\evpath{dispat/gce/round2/par-c3/dispat.hexagon.yaml} and
+\evpath{dispat.m68k_nommu.yaml}, pin cells to the machine that starts the
+release with \code{runOnly: orchestrator} and leave the rest to the worker.
+For hexagon, \code{execution.concurrency} is 2: defconfig at 24 jobs and
+tinyconfig at 9 jobs on \code{par-c3}, allnoconfig at 12 jobs on the
+\code{t2d-standard-8} worker \code{w1}. For m68k\_nommu it is 4: the four
+costliest configurations at 8 jobs each on \code{par-c3}, \code{m5475evb} at
+12 jobs on \code{w1}. Both files carry \code{runOnly: [worker, orchestrator]}
+at the top so that a worker's cell is built on the worker and recorded by the
+orchestrator. \Cref{tab:eval:kernel2} transcribes every timed release of
+the round: the rejected first candidate, the no-op rerun that planned
+nothing, the four accepted trials and the two single-node runs. The fork's
+files are copied unchanged under
+\evpath{experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2/},
+and the paths below are relative to that directory in both places.
+
+\begin{table}[ht]
+\centering\footnotesize
+\caption{Kernel round 2, every timed release. Elapsed is the \code{elapsed=}
+field of the GNU \code{time} record in \protect\evpath{par-c3/*.time} and
+\protect\evpath{solo-c3/*.time} (also \protect\evpath{*.elapsed}); script and
+lease seconds per cell and the \code{compare.py} verdict with its
+\code{speedup} ratio (reference over elapsed) are from
+\protect\evpath{verdicts.txt}; all under \protect\evpath{dispat/gce/round2} of
+the fork and under
+\protect\evpath{experiments/distributed-20260922/evidence/kernel-gce/fork-codex-kernel-parity-c699bf3d/dispat/gce/round2}.
+The reference is the kerneltests.org build step. Each row is one release.}
+\label{tab:eval:kernel2}
+\begin{tabular}{@{}L{2.4cm}L{4.9cm}rrL{3.3cm}@{}}
+\toprule
+Run & Cells: script s (lease s) & Elapsed s & Ref.\ s & Verdict, ratio \\
+\midrule
+hexagon, first candidate & c3: tinyconfig 60 (12.0), defconfig 84 (12.0);
+w1: allnoconfig 80 (12.0) & 111.47 & 111 & reject, elapsed only;
+0.9957836189109177 \\
+hexagon, rerun of the unchanged configuration & no cell built: every package
+reported \code{unchanged} & 3.83 & 111 & not compared; planned nothing \\
+hexagon, trial 1 & c3: tinyconfig 70 (0.0), defconfig 85 (0.0); w1: allnoconfig
+82 (0.0) & 95.89 & 111 & accept; 1.1575763896130984 \\
+hexagon, trial 2 & c3: tinyconfig 71 (0.0), defconfig 84 (0.0); w1: allnoconfig
+81 (0.0) & 92.22 & 111 & accept; 1.2036434612882239 \\
+m68k\_nommu, trial 1 & c3: m5249evb 95 (1.0), m5272c3 96 (1.0), m5407c3 96
+(14.0), m5307c3 97 (15.0); w1: m5475evb 50 (0.0) & 115.61 & 128 & accept;
+1.1071706599775106 \\
+m68k\_nommu, trial 2 & c3: m5249evb 105 (0.0), m5407c3 105 (0.0), m5307c3 106
+(0.0), m5272c3 107 (0.0); w1: m5475evb 51 (0.0) & 115.48 & 128 & accept;
+1.1084170419120194 \\
+hexagon, one node alone & solo: tinyconfig 91 (13.0), allnoconfig 105 (13.0),
+defconfig 110 (12.0) & 122.62 & 111 & reject, elapsed only;
+0.9052356874898059 \\
+m68k\_nommu, one node alone & solo: m5475evb 56 (0.0), m5407c3 91 (0.0),
+m5307c3 92 (0.0), m5272c3 73 (58.0), m5249evb 72 (66.0) & 138.01 & 128 &
+reject, elapsed only; 0.9274690239837694 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\code{compare.py} accepted the exact case lines, the compiler, the assembler
+and the revision in all seven releases that built cells and rejected three of
+them on elapsed time alone; every cell reported \code{passed}, three cases for
+hexagon and five for m68k\_nommu, with no skips and no unrecognised lines
+(\evpath{verdicts.txt}). The eighth release, \evpath{par-c3/hexagon-2}, was a
+rerun of the unchanged hexagon configuration before the release tags were
+reset: it planned nothing, logged \code{unchanged} for every package and
+exited in 3.83~s (\evpath{par-c3/hexagon-2.elapsed} and
+\evpath{hexagon-2.release.log.gz}); it is a release with nothing to do and is
+listed so that no run of the round is omitted. The gate was therefore met
+twice for hexagon after one rejected candidate, at 95.89 and 92.22~s against
+111, and twice for m68k\_nommu with no rejected candidate, at 115.61 and
+115.48~s against 128. The rejected first candidate reached 111.47~s against
+the 111~s reference with a 12.0~s lease wait on each of its three cells; it
+preceded the leased-tree change described below. Their margins, 13 to 17\% and 10\%, exceed
+the 3.7~s spread between the two hexagon trials and say nothing about other
+groups (\evpath{PARITY-20260922-round2.md}, ``Limits'').
+\evpath{dispat/gce/round2/timing.txt}, produced by \evpath{dispat/timing.py}
+over the coordinator and worker logs, reports the same overheads from the
+worker's side across the five paired runs: the initial source push at
+0.000~s with 0.009 to 0.024~s of Git work, assignment to claim in 0 to 3~s,
+the per-cell farm checkout in 0 to 1~s, a finished cell reaching the
+coordinator in 0 to 5~s, and the release's own Git subprocesses at 7.205 to
+7.231~s in every run.
+
+\paragraph{What the harness changes bought.}
+Three changes separate round 1's split hexagon at 170.07~s from round 2's
+trial 2 at 92.22~s on the same two machine shapes
+(\evpath{PARITY-20260922-round2.md}, ``What each harness change bought'').
+First, a leased source tree replaced the per-cell worktree: a node prepares
+one pristine tree per build slot during setup and a cell leases one under an
+advisory lock after checking its revision and cleanliness, which cost 0.0~s in
+every warm run against round 1's 7.026 to 8.327~s per cell. The check is not
+free on a tree nothing has read: the first candidate recorded 12.0~s of lease
+on all three cells and m68k\_nommu trial 1 recorded 14.0 and 15.0~s on two
+slots used for the first time (\evpath{verdicts.txt}); the startup script now
+performs that read once per slot, a change made after these runs and credited
+with none of the figures. Second, recording a worker cell on the orchestrator:
+in the first candidate the worker's build finished at $+106$~s and the release
+exited at 111.47~s because the publish stage went back to the worker for one
+more poll, a four-second authorisation and a report; \code{runOnly: [worker,
+orchestrator]} removed 5.5~s from the end of every release, and trials 1 and 2
+exit within a second of their last build. Third, a generator that writes the
+topology down (\code{--orchestrator}, \code{--concurrency},
+\code{--cell-jobs}, \code{--batch}, \code{--publish-on-orchestrator}) so that
+placement, slots, jobs and batching are regenerated rather than edited. None of
+the three is an engine change; the first is the fork's, the second a
+configuration the engine already offered, the third tooling.
+
+\paragraph{The same-hardware pairs.}
+To say what the second machine is worth, each group ran once more on a single
+\code{c3-standard-22} with no worker and nothing else changed: the same cells,
+per-cell jobs, build-slot setting and recipe, with \code{runOnly:
+orchestrator} and no \code{workers} key
+(\evpath{dispat/gce/round2/solo-c3/dispat.hexagon.solo.yaml} and
+\evpath{dispat.m68k_nommu.solo.yaml}). The single node reports the same
+processor as \code{par-c3}, Intel Xeon Platinum 8481C at 2.70~GHz, 11 cores
+and two threads each, in zone us-central1-b because the shape had become
+unavailable in us-central1-a. Both single-node runs built every case correctly
+and were rejected on elapsed time alone: hexagon at 122.62~s and m68k\_nommu
+at 138.01~s, ratios 0.9052356874898059 and 0.9274690239837694 of the reference
+(\evpath{verdicts.txt}). Against the paired trials the second machine, a
+slower one of another family, is what carries both groups under the gate.
+
+Two features of the single-node runs are stated rather than hidden. First,
+\code{execution.concurrency} did not bound a release that names no worker:
+hexagon was configured with two build slots and started all three cells at
+once, m68k\_nommu with four and started all five; such a release emits no
+assignment, claim or probe, which also removes the 3 to 8~s of preflight the
+paired runs pay, so the single-node figures are the best the machine can do
+with the recipe, not a throttled version of it. Second, the lease and
+freshness check dominated the m68k\_nommu run: five cells checked five trees
+at the same moment on one disk, and two recorded 58 and 66~s of
+\code{source\_lease\_seconds} with build scripts of only 73 and 72~s
+(\evpath{solo-c3/results/build-m68k_nommu-m5272c3_defconfig.g5NdBk/result.json}
+and \evpath{build-m68k_nommu-m5249evb_defconfig.LEf7Hy/result.json}, field
+\code{timings.source\_lease\_seconds}, in the fork's
+\evpath{dispat/gce/round2} and in the evidence tree's copy); the three hexagon
+cells recorded 12.0
+to 13.0~s (\evpath{verdicts.txt}). The 138.01~s figure is therefore pessimistic
+by some part of that cost. The conclusion does not rest on the single-node
+runs alone: the calibration measured the same shape building each whole group
+outside dispat and without any lease, the hexagon trio in 120.12~s and the
+five m68k\_nommu cells in 128.17~s of script body
+(\evpath{cal-c3.txt}), both at or above their references before a second of
+release overhead.
+
+\paragraph{alpha, and why it was not run.}
+The alpha group was not attempted. Its \code{allmodconfig} is one
+configuration of one cell and cannot be split. The calibration put the other
+three alpha cases at 68.48, 33.16 and 24.04~s on \code{c3-standard-22}, 125.68~s
+together, and round 1 had measured all four as one script body on the same
+shape at 1,324~s; the subtraction gives \code{allmodconfig} a lower bound of
+about 1,198~s, lower because round 1's small cases shared a build directory
+with it. With about 9~s of fixed overhead the budget for the cell is about
+610~s, a factor of 1.96 over what the largest machine the project's 32-vCPU
+quota allows can do. The fork estimates that a \code{c3-standard-88} would
+clear the budget at 60\% scaling efficiency and a \code{c3-standard-44} would
+not at the measured 0.78; both are estimates and neither was provisioned
+(\evpath{PARITY-20260922-round2.md}, ``alpha: the capacity this project does
+not have''). alpha is therefore a group the experiment could not measure, not
+one it measured and failed.
+
+\paragraph{What the engine cannot express, and what it logged.}
+The engine has two placement classes and no per-worker pinning; it places a
+ready package on any free node without regard to speed. The two classes
+sufficed here only because each group needed exactly two machines and the
+class pinned to the release's own machine was the fast one; a second
+\code{t2d-standard-8} worker could receive hexagon defconfig, at 147~s there,
+and lose the group. In the m68k\_nommu trials the worker finished at $+56$ and
+$+66$~s and sat idle for 59 and 49~s while the orchestrator finished four
+cells; the fork estimates a perfect split near 100~s of build against the
+107~s measured (\evpath{PARITY-20260922-round2.md}, ``The placement dispat
+cannot express''). The worker logged one \diag{E226} ``assignment rejected,
+unreadable'' warning per release for the snapshot branch, five lines in all
+and the only warnings a worker produced; a release refused to plan without a
+pushable \code{origin} for its lock tag, so source and coordination refs now
+share the mailbox repository; a package \code{env} may not carry a key with the
+\code{DISPAT\_} prefix, so the node-describing variables moved to the node's
+environment; a second run of an unchanged configuration planned nothing and
+exited in 3.83~s (\evpath{par-c3/hexagon-2.elapsed}, the row of
+\cref{tab:eval:kernel2}), so repeated trials begin by removing the release
+tags; and the preflight probe,
+a poll round trip whose back-off reaches 5~s while a worker is idle, is the
+largest fixed overhead left at 3 to 8~s. The round's five VMs lived 10 to
+22~minutes each and were deleted; the list-price estimate for the round is
+about USD~1.48 (\evpath{PARITY-20260922-round2.md}, ``Cost'').
+
+\subsubsection{The LLVM pair}
+\label{sec:eval:rq5:llvm}
+
+\paragraph{Fixture and machines.}
+The question is whether a dispat release of the fork's own recipe, with its
+build stages delegated to workers, produces the same products as the same
+release on one machine and takes no longer. The fork is
+\code{yohimik/llvm-project}, branch \code{dispat-gce}, LLVM \code{main} at
+\code{a9f4d3ff} (24.0.0git); the report is \evpath{.ci/dispat/gce/REPORT.md}
+at the branch tip \code{952c2de4}, and every fork figure below is from it
+unless another file is named. The recipe \evpath{.ci/dispat/build.py} runs with
+\code{LLVM\_FAST=1} (assertions, examples, docs and benchmarks off),
+\code{LLVM\_SKIP\_CHECKS=1} (no \code{check-*} targets), the X86 target only,
+\code{LLVM\_BUILD\_JOBS=14}, \code{LLVM\_LINK\_JOBS=2} and
+\code{LLVM\_TOOLCHAIN\_PROVIDERS=llvm,lld,polly}; the same values appear in
+\evpath{.ci/dispat/gce/dispat.gce.yaml} (two workers, mailbox the
+orchestrator's own bare \code{origin.git}) and \evpath{dispat.local.yaml} (the
+same recipe with no \code{execution} object). Baselines
+\code{dispat/<pkg>/v24.0.0} are tagged at \code{a9f4d3ff}, so every plan is
+24.0.0 to 24.1.0. The machines are \code{lb-orch}, an \code{e2-standard-4}
+with 80~GB, and \code{lb-w1} and \code{lb-w2}, \code{n2-custom-14-49152} (7
+cores, 14 threads) with 150~GB, zone us-central1-a, on-demand, all on Ubuntu
+24.04.5 with g++ 13.3.0, cmake 3.28.3 and ninja 1.11.1. The recipe's identity
+record embeds the compiler, cmake and ninja versions, the source revision and
+the recipe's own hash into every receipt (\evpath{build.py},
+\code{identity}), and a consumer refuses a provider whose receipt does not
+match the tree it installed (\code{verify\_provider}).
+
+\paragraph{Nine attempts.}
+\Cref{tab:eval:llvm-attempts} lists every attempt. Six have a retained
+orchestrator log and five of those a GNU \code{time} record, copied from the
+measuring session's scratchpad into
+\evpath{experiments/distributed-20260922/evidence/llvm-gce/logs/}; the mapping
+of file to attempt is the \code{llvm\_attempt\_mapping} object of
+\evpath{experiments/distributed-20260922/evidence/MANIFEST.json}, and the wall
+times below were read from those \code{.time} files. Attempts 1, 3 and 6 have
+no orchestrator log; attempts 1 and 6 are covered only by cumulative worker
+logs, attempt 3 by nothing, its log having been overwritten on the node
+(\evpath{MANIFEST.json}).
+
+\begin{table}[!htp]
+\centering\footnotesize
+\caption{The nine LLVM attempts, from the attempts table of
+\protect\evpath{.ci/dispat/gce/REPORT.md} on \code{origin/dispat-gce} of
+\protect\evpath{/Users/yohimik/Projects/llvm-project}. Wall times and exit statuses in
+the last column are the \code{Elapsed (wall clock) time} and \code{Exit
+status} lines of the named \code{release-*.time} file under
+\protect\evpath{experiments/distributed-20260922/evidence/llvm-gce/logs/},
+and the published and failed counts are the \code{done} line of the matching
+\code{release-*.log}; a wall time with exit 1 includes the failed bundle step;
+``none'' means no orchestrator log was retained.}
+\label{tab:eval:llvm-attempts}
+\begin{tabular}{@{}rL{1.5cm}L{6.6cm}L{4.4cm}@{}}
+\toprule
+\# & When (UTC) & What happened & Retained log; wall; exit \\
+\midrule
+1 & 03:54 to 04:38 & \code{llvm} built and published through \code{w1};
+\code{lld} and \code{polly} refused its transported tree because the recipe's
+fingerprint hashed full file and directory modes, which are the creating
+process's umask. Discarded; the fingerprint now records the executable bit and
+link targets only. & none \\
+2 & 04:40 to 05:07 & \code{llvm}, \code{lld}, \code{polly} built and published
+through the workers in 27~min~21~s; the \code{toolchain} bundle failed at once
+on an orchestrator with no C++ compiler for the identity record. Discarded; a
+provisioning omission. & \code{release-dist2}; no \code{.time}; \code{done}:
+3 published, 1 failed \\
+3 & 05:20 to 05:21 & Baseline attempt; the clone on \code{w2} lacked the
+\code{dispat/*/v24.0.0} tags, so the plan started from the initials and the
+recipe refused the major. Discarded; the tags were pushed. & none \\
+4 & 05:45 to 06:12 & Distributed: \code{llvm} on \code{w1}, \code{lld} on
+\code{w2}, \code{polly} on \code{w1}, all published; the bundle refused
+\code{polly}'s transported tree while \code{llvm} and \code{lld} passed. &
+\code{release-dist3}; 26:47.69; exit 1; 3 published, 1 failed \\
+5 & 06:13 to 06:49 & Baseline on \code{w2} alone, four packages published:
+\code{llvm} 18:03, \code{lld} and \code{polly} in parallel to 06:33:24, the
+bundle 15:53 of single-threaded xz. & \code{release-local}; 36:09.09; exit 0;
+4 published \\
+6 & 06:51 to 07:14 & Distributed again with the recipe at \code{2b03be6a}
+(directory records left out of the fingerprint). Interrupted when the fixture
+changed to the matrix. & none \\
+7 & 07:16 to 07:45 & The matrix, distributed: \code{llvm} on \code{w1} 22:23,
+\code{llvm-aarch64} on \code{w2} 23:06, \code{lld} and \code{polly} to
+07:43:28, four published; the bundle refused \code{polly} once more. Diagnosed
+as a dispat defect: captured outputs passed through the checkout's
+\code{.gitattributes} text conversion, which rewrote CRLF pairs inside three
+libraries. & \code{release-dist5}; 28:45.63; exit 1; 4 published, 1 failed \\
+8 & 07:46 to 08:27 & The matrix on \code{w2} alone: five published, the two
+heavy builds sharing the node for 38:38 and 38:51, \code{lld} and \code{polly}
+to 08:27:14 and 08:27:28, the bundle 18~s. & \code{release-local3};
+41:12.02; exit 0; 5 published \\
+9 & 08:29 on & The matrix, distributed, with the fixed dispat
+\code{1.11.0-rc.4+main.272772cb}: five published. & \code{release-dist6};
+27:48.94; exit 0; 5 published \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The single-heavy fixture of attempts 1 to 6 was replaced by the matrix because
+one package held nine tenths of the work: the matrix adds
+\code{llvm-aarch64}, the same sources built for the AArch64 target as a package
+that depends on nothing (\evpath{.ci/dispat/packages/llvm-aarch64.yaml}), so
+that a single node must serialise two heavy builds and a pool need not, and
+it sets \code{LLVM\_BUNDLE\_COMPRESSION=none} on both sides because a
+single-threaded xz of the whole install tree was a 16-minute serial step on
+either side and says nothing about placement (\evpath{REPORT.md}, ``The matrix
+fixture'').
+
+\paragraph{The matrix result.}
+\Cref{tab:eval:llvm-matrix} is the pair. The distributed release took 27:48.94
+against 41:12.02 on one node, five packages published and exit 0 on both
+sides, the same recipe and the same per-package settings. The distributed
+side had been measured once before with the same placement, attempt 7, at
+28:45.63 to the same point plus a bundle that failed on the dispat defect;
+that attempt is not a second repetition of the accepted pair.
+
+\begin{table}[!htp]
+\centering\footnotesize
+\caption{The LLVM matrix pair, attempts 8 and 9. Per-package figures are the
+results table of \protect\evpath{.ci/dispat/gce/REPORT.md}; the whole-release wall
+times are the \code{Elapsed (wall clock) time} lines of
+\protect\evpath{release-local3.time} and \protect\evpath{release-dist6.time}
+under \protect\evpath{experiments/distributed-20260922/evidence/llvm-gce/logs/},
+and the \code{done} lines of the matching logs record 5 published and 0
+failed on both sides. One repetition per side.}
+\label{tab:eval:llvm-matrix}
+\begin{tabular}{@{}L{4.6cm}L{3.6cm}L{5cm}@{}}
+\toprule
+& Baseline, \code{w2} alone & Distributed, \code{w1} + \code{w2} +
+\code{lb-orch} \\
+\midrule
+\code{llvm} (X86) & 38:38, sharing the node & 22:08 on \code{w1}, including
+the 1.4~GB result push \\
+\code{llvm-aarch64} & 38:51, sharing the node & 23:22 on \code{w2}, including
+its result push \\
+\code{lld} + \code{polly} & 2:16 & 2:13 on the two workers, after \code{llvm}'s
+outputs reached them \\
+bundle (uncompressed tar) & 0:18 & 0:32 on \code{lb-orch} \\
+whole release, GNU \code{time} & 41:12.02, exit 0 & 27:48.94, exit 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The design-history entry adds the transfer volumes: \code{llvm}'s declared
+outputs, 1.4~GB in 2,647 files, were pushed once and fetched by two consumers
+and the orchestrator, \code{llvm-aarch64}'s about the same, \code{lld}'s
+420~MB and \code{polly}'s 22~MB likewise, and the bundle's 1.85~GB never
+travelled; \code{lld} took 1~min~47~s and \code{polly} 2~min~13~s on the
+opposite workers once \code{llvm}'s outputs had reached them
+(\evpath{DESIGN-HISTORY.md}, entry of 2026-09-22). What the pair shows is the
+mechanism \spec{28.7} names as the profile's required gain, at work on a real
+dependent graph: \code{lld} and \code{polly} consumed \code{llvm}'s outputs on
+nodes that never built \code{llvm}.
+
+\paragraph{Products.}
+The bundle on the orchestrator passed the recipe's own integrity check for
+every provider it merged: the receipt each worker wrote describes, file by
+file, the tree the orchestrator installed, so the transport is byte-faithful.
+\code{compare.py} then finds the two sides differ in bytes, and every
+difference is of the reproducible-builds kind: every tool of equal size
+differs first at its \code{.note.gnu.build-id} and then only in the compiled-in
+VCS revision, since LLVM embeds the checkout's commit (\code{6c1a5fcd} on the
+single node, the snapshot commit \code{dbc1e8a7} on a worker, which builds
+from the prepared input state rather than from the trigger commit) and the
+build id is a hash over that content; \code{llvm-config} and \code{lld} also
+embed the repository string, which differs in length between the two
+checkouts; \code{LLVMPolly.so}, \code{libPolly.a}, \code{libPollyISL.a} and
+\code{liblldCommon.a} differ by a few kilobytes of RPATH and \code{\_\_FILE\_\_}
+strings that carry the checkout's absolute path; and \code{libLLVMCore.a},
+which embeds none of these, is byte-identical (\evpath{REPORT.md},
+``Products''). Byte identity throughout is a recipe matter,
+\code{-DLLVM\_APPEND\_VC\_REV=OFF}, a file prefix map and a relative RPATH,
+which this recipe does not set. The claim the pair supports is therefore: the
+same five products, built by the same recipe on two placements, verified by
+the recipe's own receipts, differing only in the revision, build-id and path
+strings the recipe chooses to embed.
+
+\paragraph{The single-heavy negative case.}
+Attempts 4 and 5 are the case \spec{28.7} predicts against distribution. On
+\code{w2} alone, \code{llvm} built in 18:03, \code{lld} and \code{polly} in
+2:13 in parallel, and the three were published at 20:16; the xz bundle then
+took 15:53 for a whole release of 36:09.09. Distributed, \code{llvm} took
+22:11 on \code{w1} including its 1.4~GB result push, \code{lld} and
+\code{polly} 2:07 and 2:19 on \code{w2} and \code{w1}, and the three were
+published at 26:47.69, a wall time that includes the bundle step failing on
+the orchestrator's missing compiler and ends in exit 1 (\evpath{REPORT.md},
+``The single-heavy fixture''; \evpath{release-local.time} and
+\evpath{release-dist3.time} in the evidence tree). With one
+package holding nine tenths of the work, moving a 1.4~GB install tree to
+consumers that build in two minutes cannot pay for itself; the matrix is the
+fixture that says what the profile is for.
+
+\paragraph{What the pair measured about the engine.}
+A cold worker's first claim comes minutes after a warm one's, because the
+node's poll fetches the snapshot branch before it can read the assignment,
+about 10~minutes for the 3.6~GB history on a cold cache and 6~s warm.
+Coordination is cheap beside the builds: probe 1 to 4~s, claim 3 to 6~s warm,
+a result noticed within 5~s, authorisation to publish command 8 to 12~s.
+Placement is first-free, and the pair's workers are equal, so nothing here
+says what an unequal pool would do; the kernel rounds do
+(\evpath{REPORT.md}, ``What the pair measured about dispat''). The
+design-history entry records the earlier LLVM coordination measurements the
+implementation was tuned on: a probe answering in about 4~s, an assignment
+claimed 3~s after it is written on a warm node and 37~s on a cold one, a
+result noticed within 5~s, and a first snapshot transport that carried the
+repository's whole history, 7.3~million objects, in 17 to 20~minutes from a
+small orchestrator and was paid on every run until the repository's own
+remote became the mailbox (\evpath{DESIGN-HISTORY.md}, entry of 2026-09-22).
+
+\paragraph{Three defects found and fixed.}
+The pair found one defect in the fork's recipe and two in the engine. The
+recipe's integrity fingerprint hashed full file and directory modes, which are
+the creating process's umask; a worker built directories 0775 and the engine
+installs files as 0644 or 0755 and recreates directories, so a faithfully
+transported tree failed its receipt (attempt 1). The fingerprint now records
+the executable bit and symlink targets only, and directories not at all
+(\evpath{build.py}, \code{fingerprint\_records}); attempt 4's diagnosis
+confirmed that every one of the 124 entries \code{w1} captured was byte- and
+mode-identical to the file the orchestrator installed. In the engine, a result
+carrying outputs reported under a fixed 30~s bound that killed the 1.4~GB
+push; the fix, at \code{f0c9e959} on the feature branch, ``give a result that
+carries build outputs the transfer window to report'', makes the report use
+\code{execution.transfer.timeout} (commit subject from \code{git log} of
+\evpath{/Users/yohimik/Projects/dispat}; \evpath{REPORT.md}). And captured
+outputs passed through the checkout's \code{.gitattributes}: \code{polly}'s
+tree is marked as text, and \code{git add} rewrote every CRLF pair inside
+three binaries, so the bundle refused the tree in attempts 4 and 7; the fix on
+\code{main} at \code{9f649f88}, ``capture build outputs as the build wrote
+them, whatever the checkout's attributes say'', hashes captured outputs with
+no filter and fills the index by hand, and \code{272772cb} adds the
+integration test that reads a library with CRLF pairs through a checkout
+marked as text (\code{git log}; \evpath{DESIGN-HISTORY.md}).
+
+\paragraph{The binaries.}
+Attempt 9 ran \code{1.11.0-rc.4+main.272772cb}, the version string its
+release log prints (\evpath{release-dist6.log}, field \code{dispat}). The
+\code{binaries} object of \evpath{MANIFEST.json} records the deployed binary
+by its SHA-256 prefix \code{feba0210d13c90fa} only, with the note that it was
+built in a checkout carrying uncommitted documentation edits, so that Go
+stamped it \code{vcs.modified=true}, and that it differs from a clean stamped
+build only by that stamp; it is not reproducible from the commit alone. The
+reproduction kit's recipe
+\evpath{experiments/distributed-20260922/docker/dispat/Dockerfile} rebuilds
+the pinned binaries from clean checkouts, and the hashes it wrote are in
+\evpath{docker/dispat/verified-20260922/*/dispat.sha256}: \code{f0c9e959} unstamped gives
+\evhash{63441cc66f68d07b5efbf9a42edd5559304d153d48b82b1dfb037349e20606ed},
+byte-identical to the binary of kernel round 2 and LLVM attempts 1 to 8;
+\code{272772cb} stamped gives
+\evhash{46bc2cf821dd57479c27bf2a4b7eee63b69e01db6f18fbd6e663ad66e6812ba8}
+and unstamped
+\evhash{f1dec45d48df4d7fe5a681f5244ce946d71e140ccfbe97c2f8f3a6842f69b196}.
+The version string in the log and the clean rebuild together are the pin this
+report can offer for attempt 9.
+
+\paragraph{Caveats, as the specification states them.}
+The design-history entry qualifies both pairs, and the qualifications are
+repeated here without softening. One repetition per side on both graphs, so
+variability is unmeasured; the kernel's second node is a slower machine of
+another family, so each kernel pair is one node against that node plus a
+second, slower one; the kernel groups have only independent cells to
+distribute and do not exercise the transfer of dependent outputs; the LLVM
+matrix's two heavy builds are one project for two targets, a fair matrix but
+not two projects; the LLVM distributed side had two build nodes against one;
+and the single-node m68k\_nommu figure includes 58 to 66~s of source-lease
+contention on two of its cells (\evpath{DESIGN-HISTORY.md}, entry of
+2026-09-22). Two details of the entry disagree with the retained files and
+are recorded as observed on 22 September, the product side having been told:
+the entry dates the LLVM pair 2026-09-23, while every retained log and
+\code{.start} file is stamped 2026-09-22 UTC, 07:16 to 08:58, which no time
+zone of the author's moves to the next day; and it names the fixture commit
+\code{6c1a5fcd}, where the fork's own commit of the matrix fixture is
+\code{d8fb8408} and the report's is \code{952c2de4}. The driver record
+\evpath{llvm-gce/drivers/pair4.out} in the evidence tree explains the second:
+the recipe change was applied on the orchestrator as a patch
+(\evpath{llvm-gce/drivers/0001-feat-llvm-aarch64-build-the-AArch64-target-as-a-pack.patch})
+and the resulting tip there, \code{6c1a5fcd}, is the commit under test that
+the workers built, so the two hashes name the same change on two checkouts,
+as the fork report says of its earlier pair (\code{fbc4dcf8} on the
+orchestrator, \code{022f7284} locally, ``same tree''). Tree identity for the
+matrix pair was not verified here, because \code{6c1a5fcd} exists only on the
+deleted machine.
+
+\paragraph{Public reference timings, as context only.}
+Two public figures were gathered on 21 September 2026 and are retained; they
+were read from public pages, concern other hardware and other recipes, and are
+not compared numerically with the pairs. The upstream
+\code{llvm/llvm-project} workflow run 34549173201 of 2026-09-11 ran 294.9166666666667
+minutes from start to last update, and its \code{ubuntu-22.04} release-package
+job took 154.1 minutes on a runner labelled \code{depot-ubuntu-22.04-16}, of
+which 95.51666666666667 minutes were the build step and 56.35 the tests
+(\evpath{output/saner-2027/llvm-forecast-20260921/timing-summary.json},
+\code{runs[0]}; the README beside it records the same job as 154.10 minutes
+and notes that it corrects an earlier approximate figure of 153). That run
+builds the full release binaries with tests; the pair builds a 40-minute
+fixture with no checks, so the two are not the same work. For the kernel farm,
+the figure of 23.0 machine-hours in 3~h~52~min on six machines is already
+cited above from \evpath{dispat/gce/REPORT.md}, with the same caveat.
+
+\emph{Answer to \evRQ{5}.} On the kernel fixture the distributed release met
+the public reference gate twice for each of two groups (hexagon 95.89 and
+92.22~s against 111, after one rejected candidate at 111.47~s; m68k\_nommu
+115.61 and 115.48~s against 128, with no rejected candidate) where the
+same recipe on the same single node did not (122.62 and 138.01~s), each
+single-node run once; alpha was outside the project's capacity and was not
+run. On the LLVM fixture the distributed release of a five-package matrix took
+27:48.94 against 41:12.02 on one node, produced the same five products under
+the recipe's receipts, and the negative case predicted by \spec{28.7} was
+observed at 26:47.69 against 20:16. On these fixtures, once each, distributed
+took no longer than single node; nothing more is claimed.
+
+\subsection{Threats to validity}
+\label{sec:eval:threats}
+
+\paragraph{Mechanism matrix and finite projection.}
+The matrix is a designed, deterministic set of 140 episodes, not a sample of
+production releases; the counts are exhaustive over the design and carry no
+population inference. The after-write injector is an adapter response, not a
+crash; the identity check is the supplied local publisher's, not a registry's.
+The projection is four vertices, one intent and the stable channel; the
+counterfactual runs no modified binary. The runner image cannot be rebuilt
+bit-for-bit on a fresh machine because \code{apk add} consults an external
+repository, so an exact rerun needs the locally present image
+\code{sha256:6f92932f\ldots} (\evpath{campaign-mechanisms-20260910/README.md}).
+
+\paragraph{Companion campaigns.}
+The oracle of the 300-history stage is the restricted core profile and cannot
+support a refinement claim; the recovery, topology and CI stages report
+repeated verifier predicates, which are not independent observations; the
+artificial delays in the mixed fixtures expose availability and are not
+throughput; the environment is one Linux ARM64 Docker host and validates
+nothing about native Windows. The failed 1.9.0 attempt shows that a verifier
+can encode a wrong expectation, which is why its correction is documented
+rather than the attempt deleted.
+
+\paragraph{1.8.2 and historical campaigns.}
+The E1 oracle is the CCME 1.0.0 model, so its divergence classes are taxonomy
+against that model and the PG3? label is heuristic; a refused diagnostic plan
+is not a release plan. The E3a replay reconstructs layouts and policies the
+projects never declared. The competitor observations are of pinned versions in
+one configuration each. Planning-cost figures are host-sensitive, taken on a
+capped and contended host, and the earlier harness measured the same cells
+very differently; none is a cross-version or cross-tool benchmark. The seed
+580 change between 1.8.1 and 1.8.2 is not attributable to the product.
+
+\paragraph{Kernel rounds.}
+One pair of machine shapes, one region, one kernel revision, two trials per
+accepted topology and one single-node run per group; the gate compares
+against public build-step times measured on the farm's own, different,
+hardware while it shared each machine with another build. The single-node
+runs are penalised by the cold-metadata lease cost on two m68k\_nommu cells and
+freed of the preflight the paired runs pay; the calibration outside dispat is
+the corroboration. alpha, every QEMU group and the 57-group matrix are
+unmeasured; distcc is unmeasured; the raw evidence of round 1 is a curated
+archive copied into the evidence tree rather than files in the fork, and the
+first run's logs, which the fork's \evpath{PARITY.md} could not find, are in
+the evidence tree's \evpath{first-run} directory.
+
+\paragraph{LLVM pair.}
+One repetition per side; the distributed side had two build nodes against
+one; the two heavy builds are the same sources for two targets; the recipe
+omits the check targets and the assertions and is not the fork's release
+recipe; six of nine attempts failed or were discarded for the reasons the table gives
+and the accepted pair is attempts 8 and 9 only; the deployed binary carried
+\code{vcs.modified=true} and is recorded by hash prefix only; and the raw
+logs were copied from the measuring session's scratchpad into the evidence
+tree, where \evpath{MANIFEST.json} records their origin, and are not in the
+fork.
+
+\subsection{Reproduction}
+\label{sec:eval:repro}
+
+The Docker and Terraform kit for the distributed measurements is at
+\evpath{experiments/distributed-20260922/}: \evpath{README.md} and
+\evpath{pins.json}; the \evpath{docker/} recipes (\evpath{dispat},
+\evpath{kernel-node}, \evpath{llvm-node}); \evpath{terraform/kernel} and
+\evpath{terraform/llvm} with a shared node module; \evpath{scripts/kernel/run.sh}
+and \evpath{scripts/llvm/run.sh}, which drive a bare fleet to
+\evpath{verdicts.txt} and \evpath{compare.txt} respectively; and a
+\evpath{local/} Compose check. The \evpath{evidence/} directory beside them
+holds the copied raw observations with their \evpath{MANIFEST.json} and
+\evpath{CROSS-CHECK.json}.
+
+What the kit pins, and what was verified on 22 September 2026 on an Apple
+silicon workstation with Docker Desktop 29.6.1 and Terraform 1.16.3. The
+experiment binaries rebuild byte for byte from their commits in a
+digest-pinned \code{golang:1.26.5-alpine} with the flags of the original
+builds: \code{f0c9e959} unstamped gives
+\evhash{63441cc66f68d07b5efbf9a42edd5559304d153d48b82b1dfb037349e20606ed},
+the binary the kernel round-2 report names; \code{272772cb} stamped
+\code{1.11.0-rc.4+main.272772cb} gives
+\evhash{46bc2cf821dd57479c27bf2a4b7eee63b69e01db6f18fbd6e663ad66e6812ba8},
+the clean form of the LLVM matrix binary, whose deployed copy differs by Go's
+\code{vcs.modified} stamp alone (records under
+\evpath{docker/dispat/verified-20260922/}). The node images take Ubuntu 24.04
+by digest, every package from the Ubuntu archive snapshot
+\code{20260922T000000Z}, and the kernel.org crosstool 16.2.0 tarballs by
+checksum; the kernel node image reports the identities the fork's oracle
+requires (Ubuntu clang 18.1.3, GCC 16.2.0 with GNU assembler 2.47.20260726).
+The four round-2 configurations are regenerated by the fork's own generator
+with flags that reproduce the retained files byte for byte apart from the
+mailbox path. Both Terraform roots validate and plan against the original
+projects (thirteen resources each: network, subnet, two firewall rules, two
+keys, the signing secret, three nodes and their secret files); the machine
+shapes, zones, disk sizes, image and lifetimes are those of the measured
+fleets. \code{terraform apply} was not run by the author of this section, so
+the cloud pairs were not re-measured here; the kit is the recipe, and its
+README states the expected verdicts and the cost.
+
+The pipeline itself was run end to end on the workstation: two containers of
+the kernel node image, an orchestrator and a worker sharing a mailbox
+directory, the exported harness at the fork's commit, the generated
+\code{hexagon} configuration, one \code{dispat release}. The worker built
+\code{allnoconfig}, the orchestrator \code{defconfig} and \code{tinyconfig},
+the release exited 0 and the fork's \code{compare.py} accepted the run: three
+cases, the kernel revision \code{93f51579}, the compiler identity, and 63.47 s
+of elapsed time (\evpath{experiments/distributed-20260922/runs/local-kernel-20260922T184954Z/verdict.json}).
+That elapsed time is a laptop's on an arm64 toolchain and says nothing about
+the parity of \cref{sec:eval:rq5:kernel}; what the run shows is that the
+placement, the mailbox transport, the cell harness and the oracle work as
+wired, from the pinned images alone.

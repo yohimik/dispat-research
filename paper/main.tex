@@ -4,11 +4,12 @@
 \input{macros}
 
 \title{The CCME Release Guarantees\\[2mm]
-       \large A formal model, with proofs, of the eight properties of \S13.7c}
+       \large A formal model, with proofs, of the release computation, its publish
+       protocol and its execution profile, with the executed campaigns}
 \author{Semen Fediukovich}
 \date{September 2026 \\[2mm]
-      \normalsize Technical report accompanying \texttt{specs/ccme-spec/SPEC.md} 2.0.0\\
-      \normalsize \texttt{github.com/yohimik/dispat}}
+      \normalsize Technical report accompanying \texttt{specs/ccme-spec/SPEC.md} 3.1.0-rc.2\\
+      \normalsize at commit \texttt{252216ba} of \texttt{github.com/yohimik/dispat}}
 
 \begin{document}
 \maketitle
@@ -21,16 +22,45 @@ eight guarantees: termination, completeness, version stability, exactly-once
 tag-ledger delivery, retry-invariant non-widening and convergence, channel
 discharge and one-way axis independence.
 
-This report formalises the 2.0.0 algorithm and proves the guarantees under its
-explicit retry invariant, together with the determinism and idempotency requirements of
-\spec{17.2}, the duality of \spec{13.7b}, and analyses the cost and optimisation bounds of \specs{13.11}{20.7}, qualifying them where ancestry and output work add terms. It preserves an audit of six failure classes in the
-1.0.0 rules, with minimal counterexamples, repairs, and conformance vectors.
-CCME 2.0.0 incorporates those six repairs; the historical audit is provenance. A separate current obligation records an inconsistency between the specific graduation rule of \spec{11.5} and its \spec{13.9} summary.
+This report formalises the algorithm of the 3.1.0 release candidate and proves
+the guarantees under its explicit retry invariant. The candidate replaces the
+window test of earlier versions by delivery: a propagated contribution stays
+owed to a consumer until the source has released it and the consumer has
+released after that, which closes the orphan a consumer reaches by getting
+ahead of a failed provider, at the price of an owed window per dependency edge
+and a refusal (\diag{E201}) where two releases on one commit could hide a debt.
+The report also proves the determinism and idempotency requirements of
+\spec{17.2}, the duality of \spec{13.7b}, and transcribes what the candidate
+adds around the computation: records read under the release lock
+(\spec{13.2}), the three-valued build readiness relation of \spec{19.2a} with
+the run durations it leads to, the distributed execution profile of \spec{28}
+with the placement invariance and list-scheduling bounds it admits, and the
+repository-local windows of \spec{27}. The cost bounds of \specs{13.11}{20.7}
+are restated for the current text, including the single marker pass over
+history.
+
+Two ledgers of obligations follow: the current departures of the reference
+implementation from the candidate, and the six failure classes found in
+CCME 1.0.0 with their minimal counterexamples, kept as provenance. A
+conformance table maps every result to the specification's vectors and to the
+integration test that stands behind it. The final section reports every
+executed campaign with its pinned binary and environment, including the two
+measurements of 22 September 2026 on which the execution profile rests: the
+kernel farm groups that met their public reference times on a second node,
+and the LLVM matrix released through two workers in less time than on one
+node, each once, with the reproduction kit that rebuilds the binaries byte for
+byte and recreates the machines.
 \end{abstract}
 
 \paragraph{Specification snapshot.}
-The normative subject is released CCME 2.0.0 at repository commit
-\texttt{d3ce8ae637232908ced82efb5cda550f60ed2fdf}. Section~\ref{sec:obligations} records one current 2.0.0 textual obligation, then separately audits CCME 1.0.0 at \texttt{713f1a0b}; the latter six defect statements and counterexamples are historical.\par
+The normative subject is \texttt{specs/ccme-spec/SPEC.md} as committed at
+\texttt{252216bab9bd4052ba181a2ceb47e21363b8eff3}, stamped 3.1.0-rc.2 and
+pending release as 3.1.0-rc.3 together with dispat 1.11.0-rc.4; its
+\texttt{DESIGN-HISTORY.md} entries of 21 and 22 September 2026 record what the
+engine implements. Where the report says \emph{the current text} it means this
+commit. The historical audit of \cref{sec:obligations-historical} concerns
+CCME 1.0.0 at \texttt{713f1a0b}; the released CCME 2.0.0 at
+\texttt{d3ce8ae6} is cited where a change since then matters.\par
 
 \tableofcontents
 \newpage
@@ -39,12 +69,14 @@ The normative subject is released CCME 2.0.0 at repository commit
 \input{sections/02-model}
 \input{sections/03-propagation}
 \input{sections/04-protocol}
+\input{sections/04a-execution}
 \input{sections/05-guarantees}
 \input{sections/06-determinism}
 \input{sections/07-duality}
 \input{sections/08-complexity}
 \input{sections/09-obligations}
 \input{sections/10-conformance}
+\input{sections/11-evaluation}
 
 \appendix
 \input{appendix/a-notation}

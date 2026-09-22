@@ -1,0 +1,60 @@
+{
+  "date_utc": "2026-09-22T19:09:34+00:00",
+  "built_by": "research session \"Dispatch agent research data\" (Claude Fable 5.1) after the handoff from \"Dispat-research report reproducibility\"",
+  "command": "tectonic --outdir build --keep-logs main.tex; make check",
+  "pdf": {
+    "path": "output/pdf/technical-report.pdf",
+    "sha256": "12e038bcc258e89d71aa2fc0b143145e58f5206c86cff8142b328cb33408586a",
+    "pages": 99
+  },
+  "checks": {
+    "undefined_or_duplicate_references": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 45
+  },
+  "sources_sha256": {
+    "paper/appendix/a-notation.tex": "b8d68b97ccb0a97e491761a536238277a16d1bac424babd2c6546738a7745fc7",
+    "paper/macros.tex": "727513b5a7105f9e1b99554ca64f2ab2b42d3214cb61a5421f6308c57025650e",
+    "paper/main.tex": "573d5c391b7bc4fc7658ee15e598277dd6672ae4682a596233a049da4f119c74",
+    "paper/preamble.tex": "a9808e82ce9e8c11f2d14aaaec1b4b5551ff0a07c7a3fbd6aba2470407847a34",
+    "paper/sections/01-introduction.tex": "b1b0ce61acef7573710c203c884937029eb584d9c1329ce381213e5c1b2fbab1",
+    "paper/sections/02-model.tex": "c28df98388703f1f1b604b5b996c9be669611f6f703227f158f8f15b3064a1a6",
+    "paper/sections/03-propagation.tex": "20e0fc673a54a4d2cd2d95adb5d903137caf4897c9374b2e4da9df58568357bb",
+    "paper/sections/04-protocol.tex": "e3ba55b018c3559ec4d3b7698dc2bec8cc10b7620053e2e6deaad5576372c54a",
+    "paper/sections/04a-execution.tex": "e87b2d7c87799d7d5160a8874c3c12636c88dfd65b1b9a3fb20bd9551d431110",
+    "paper/sections/05-guarantees.tex": "d97c1d63a7f92e1b1580ad3da7ee8d8c3fae7992f26a2cba7ba3471955bb0e32",
+    "paper/sections/06-determinism.tex": "a0a391357963dfee8351600d67d4f7d83b60caae8265c61037431c65ef616b20",
+    "paper/sections/07-duality.tex": "1c7fc5af9f12108771255659d2367f9362a53be8c5e7bd7a36ba87595f7ceae3",
+    "paper/sections/08-complexity.tex": "6316ff265a93d156529b42fd5d71c71800ac8d01aa5f1af99f472a24781bc9a2",
+    "paper/sections/09-obligations.tex": "58fce4f79a2c4f9c4e6cbdd637057b2dd94b3abb3fd0bf224a5c98e9e90539d4",
+    "paper/sections/10-conformance.tex": "278428d0328c744921797f1a24edbdcee41685610c2ec8ee70d3091f574afbf1",
+    "paper/sections/11-evaluation.tex": "ba67a72bd8f2ead0ded005e78447a6fc366d87af87f103461f4243e14de8ecdc",
+    "paper/sections/99-references.tex": "ac5527915ded3dabc606b7a144d5005373e059e4fa62a7bb10abb0f81ac93a60"
+  },
+  "pages_visually_inspected": [
+    1,
+    27,
+    77,
+    86,
+    88,
+    91,
+    92,
+    93,
+    97,
+    99
+  ],
+  "peer_delivery": {
+    "pdf_sha256": "ee4dd26503bc2960f23534b6a963db1edfaffb7a04cf5dfab685098889cfe831",
+    "pages": 99,
+    "overfull_boxes": 2,
+    "note": "the sibling session's build before the changes below; PDF hashes differ between builds in any case because the PDF embeds build timestamps"
+  },
+  "changes_by_research_session": [
+    "sections/99-references.tex: the two long URLs (crosstool, Compute Engine) set with \\url so they break; removed both overfull boxes",
+    "sections/11-evaluation.tex: the LLVM caveat paragraph no longer explains the specification entry's 2026-09-23 date as a local-calendar effect (the UTC stamps 07:16 to 08:58 exclude that) and explains the 6c1a5fcd/d8fb8408 pair through pair4.out; the kernel first-run paragraph now cites the copied logs and CROSS-CHECK.json; tables 13 and 14 given [!htp] so they no longer float past the bibliography",
+    "macros.tex: the \\ex* and \\ev* macros moved here from the two section files",
+    "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures"
+  ],
+  "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's own title and abstract were rewritten by the sibling session before the handoff and are left as delivered for the author's decision",
+  "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those."
+}

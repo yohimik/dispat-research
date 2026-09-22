@@ -6,6 +6,79 @@ each package a propagated channel, resolves every package's channel, and then
 assigns propagated bumps. The phase order is forced: phase 3 reads what phase 2
 produces, and \spec{9.2} forbids fusing them.
 
+\subsection{The procedure, as written}
+
+The pseudo-code is reproduced from \spec{9.2} unchanged, so that a reader can
+diff it against \code{SPEC.md}. The definitions that follow are its
+clauses, one by one.
+
+\begin{speccode}[fontsize=\footnotesize]
+propagate(units, graph, held, W):
+    edges = graph.restrictedTo(config.propagation.kinds)          # §8.4
+
+    # ---------- shared, computed once ----------
+    # sourcePackages is a pure function of the unit (§13.4a) and both passes read it.
+    # Computing it inside each pass evaluates it twice for every unit carrying both axes.
+    src = { u: sourcePackages(u) for u in units }                 # §13.4a
+
+    # ---------- phase 1: channel axis ----------
+    chan = {}                                   # package -> (channel, commit, unitIndex)
+    for u in units:
+        if u.channelDepth == 0:                     continue      # §8.3a: default
+        if u.propagateChannel == none:              continue
+        sources = src[u]
+        if sources is empty:                        continue
+        c      = commitOf(u)                                      # loop-invariant
+        pscope = resolve(u.propagateChannelScope)                 # §8.5a: resolved once,
+        origin = UNCOMPUTED                                     # memoized on first admitted target
+        for (d, level) in reach(edges, sources, u.channelDepth):  #   never per target
+            if d not in pscope:                           continue
+            if c not in Wfresh(d):                             continue # admission, §13.4a
+            if cancelledFor(c, d):                        continue # §13.5a
+            if u.propagateChannel == 'inherit' and origin == UNCOMPUTED:
+                origin = originChannel(u)
+            v = propagatedChannelFor(u, d, origin)                 # §9.3; origin computed once
+            if v is NONE:                                 continue
+            chan[d] = newerOf(chan[d], (v, u))                     # W160 on conflict
+
+    # ---------- phase 2: channel resolution ----------
+    channel = resolveChannels(chan, units)                         # §13.8
+
+    # ---------- phase 3: bump axis ----------
+    prop = {}                                   # package -> bump
+    prov = {}                                   # package -> set of origin packages
+    for u in units where bumpOf(u) != none:
+        b = (u.propagate == 'inherit') ? bumpOf(u) : u.propagate
+        if b == none or u.depth == 0:                continue
+        sources = src[u]
+        if sources is empty:                        continue
+        c       = commitOf(u)
+        pscope  = resolve(u.propagateScope)                        # §8.5: once per unit
+        # §9.3a resolvability depends only on the unit's sources, so it is decided here,
+        # once, and reduces to membership in the distinct source-channel set per target.
+        srcChan   = { channel[P] : P in sources }                  # §9.3a
+        anyStable = 'stable' in srcChan
+        for (d, level) in reach(edges, sources, u.depth):
+            if d not in pscope:                           continue
+            owed = { P in sources : not delivered(P, c, d) }    # admission, §13.4a
+            if owed is empty:                             continue
+            if cancelledFor(c, d):                        continue
+            if not (anyStable or channel[d] in srcChan):  continue # §9.3a, W208
+            prop[d] = max(prop[d], b)
+            prov[d] = prov[d] | owed
+    return prop, prov, chan
+\end{speccode}
+
+The two axes admit differently, and the difference is the subject of this
+report's revision. Phase 1 tests \code{c not in Wfresh(d)}: a dependent is
+reached on the channel axis if and only if it has not itself released past the
+commit carrying the unit. Phase 3 tests \code{owed is empty}: a dependent is
+reached on the bump axis if and only if some source of the unit has not yet
+\emph{delivered} that commit to it (\cref{def:delivery}). The two coincide
+except for a dependent that released past the commit before its source did
+(\cref{lem:deliv-window}), and \code{prov[d]} records exactly the owed
+sources.
+
 \subsection{The traversal}
 
 \begin{definition}[reach, \spec{9.2}]
@@ -21,9 +94,9 @@ and each $d \in \reachset{S}{\ell}$ carries the level $\dist{S}{d}$.
 \begin{speccode}
 reach(edges, sources, depth):
     frontier = sources
-    seen     = set(sources)      # a unit never reaches its own packages
-    out      = {}                # package -> level
-    for level in 1 .. depth:     # 'all' => until frontier is empty
+    seen     = set(sources)                     # a unit never reaches its own packages
+    out      = {}                               # package -> level
+    for level in 1 .. depth:                    # 'all' => until frontier is empty
         next = {}
         for p in frontier:
             for d in edges.dependentsOf(p):
@@ -135,6 +208,10 @@ $d \in \pcscope{u}$; $\cof{u} \in \Winf{\st}{d}$; $\lnot\canc{\cof{u}}{d}$; and
 $\mathrm{pcf}_{\st}(u,d) \neq \NONE$. It is undefined if no unit qualifies.
 \end{definition}
 
+The channel axis keeps $\cof{u} \in \Winf{\st}{d}$ as its admission because a
+channel is carried by the units and needs no release of the source
+(\spec{13.4a}, \G{7}); it has no notion of delivery.
+
 \subsection{Phase 2: channel resolution}
 
 \begin{definition}[channel resolution, \spec{13.8}]
@@ -177,7 +254,9 @@ A bump is a claim that the dependent has something new to pick up, and across a
 channel boundary the claim is false: a stable consumer resolves a
 beta-releasing dependency by its stable range exactly as before, so a
 republished consumer would contain byte-for-byte what its predecessor
-contained. Suppression is reported per suppressed pair as \diag{W208}.
+contained. Suppression is reported per suppressed pair as \diag{W208}. Note
+that \code{srcChan} in the pseudo-code is computed over the whole source set,
+not over the owed sources; \cref{sec:duality} returns to this.
 
 \begin{example}[a caret that reaches and does not bump: \SPEC{} vector 95]
 \label{ex:resolvable}
@@ -208,7 +287,7 @@ For $u \in \Units$ and $d \in \Pkgs$, $\admit{\st}{u}{d}$ holds iff all of:
   \item $\srcp{\st}{u} \neq \emptyset$ and
     $d \in \reachset{\srcp{\st}{u}}{\pdepth{u}}$; \label{a:reach}
   \item $d \in \pscope{u}$; \label{a:scope}
-  \item $\cof{u} \in \Winf{\st}{d}$; \label{a:window}
+  \item $\owed{\st}{u}{d} \neq \emptyset$; \label{a:window}
   \item $\lnot\canc{\cof{u}}{d}$; \label{a:cancel}
   \item $\resolv{\st}{u}{d}$. \label{a:resolvable}
 \end{enumerate}
@@ -227,26 +306,38 @@ both empty joins being \bnone. Then $\effb{\st}{p} = \dirb{\st}{p} \sqcup
 \end{definition}
 
 \Cref{a:window} is the load-bearing clause of the entire design, and it is
-worth being explicit about what it is not. It tests the \emph{target's} window,
-not the source's. \spec{13.7a} shows what the other reading costs: with
-retention governed by the source's window, a dependent whose publish failed
-while its provider's succeeded is silently orphaned, permanently one patch
-behind a dependency it declares, with no diagnostic, because from the engine's
-point of view nothing is pending. Every guarantee in \cref{sec:guarantees}
-rests on \cref{a:window} being the target's window; \cref{thm:g2} is where that
-is used.
+worth being explicit about what it is and is not. It tests the \emph{target's}
+position against its \emph{sources'} releases: $d$ is admitted while some
+source has not delivered $\cof{u}$ to it. It does not test the source's window,
+and it does not test the target's window either. \spec{13.7a} shows what each
+of the other readings costs. With retention governed by the source's window, a
+dependent whose publish failed while its provider's succeeded is silently
+orphaned, permanently one patch behind a dependency it declares, with no
+diagnostic, because from the engine's point of view nothing is pending. With
+admission governed by the target's window, the rule of CCME 2.0.0, the same
+orphan is reached from the other side: a dependent that proceeded past the
+commit on a cause of its own while its provider failed is owed nothing once
+the provider publishes, and keeps the range it reconciled against the old
+version. By \cref{lem:deliv-window} the delivery test agrees with the window
+test on every target that has not released past $\cof{u}$; it differs only on
+a target that has, where it asks the finer question. Every guarantee in
+\cref{sec:guarantees} rests on \cref{a:window} being this test, and
+\cref{thm:g2} is where that is used.
 
-\begin{example}[the orphan, in sets: \SPEC{} vector 66]
+\begin{example}[the orphan, from both sides: \SPEC{} vectors 66 and 80d]
 \label{ex:orphan}
-One commit $C = \Head$ on the workspace of \cref{ex:workspace} carrying the
-unit $u$ = \code{feat(core)\^{}: streaming reader}. So $\scopef{u} =
+Both shapes use the history of \cref{ex:window}, $c_0 \to c_1 \to c_2 =
+\Head$, with the tags of $\st_0$ at $c_0$ and the unit $u$ =
+\code{feat(core)\^{}: streaming reader} at $C = c_2$. So $\scopef{u} =
 \{\code{core}\}$, $\bumpof{u} = \bminor$, $\pbump{u} = \bpatch$ (the default of
 \cref{def:unit}) and $\pdepth{u} = 1$.
 
-Run 1 evaluates \cref{def:admission} with $\st_0$. All of \code{cli}, \code{ui},
+\emph{Provider fails to deliver; the consumer waits} (vector 66). Run 1
+evaluates \cref{def:admission} with $\st_0$. All of \code{cli}, \code{ui},
 \code{api} lie in $\reachset{\{\code{core}\}}{1}$, none is cancelled, all are
-on \stable{} as is \code{core}, and $C \in \Win{\st_0}{d}$ for each, so all
-three are admitted and
+on \stable{} as is \code{core}, and $C \in \Winf{\st_0}{d}$ for each, so by
+\cref{lem:deliv-window} $\owed{\st_0}{u}{d} = \{\code{core}\}$, all three are
+admitted and
 \[
   \plan{\st_0} = \{\code{core},\code{cli},\code{ui},\code{api}\},\qquad
   \vers{\st_0}{\code{core}} = 1.5.0,\quad
@@ -254,32 +345,89 @@ three are admitted and
 \]
 Suppose \code{core}, \code{ui} and \code{api} publish and \code{cli} fails, so
 \[
-  \st_1 = \st_0 \cup \{\code{core@1.5.0},\ \code{ui@0.9.2},\ \code{api@1.2.1}\}.
+  \st_1 = \st_0 \cup \{\code{core@1.5.0},\ \code{ui@0.9.2},\ \code{api@1.2.1}\}
+  \quad\text{at } C.
 \]
-Run 2 is where the two readings of \cref{a:window} separate:
+Run 2 is where the readings of \cref{a:window} separate. Under delivery, the
+normative reading, $C \not\anc \basec{\st_1}{\code{cli}} = c_0$, so
+$\lnot\deliv{\st_1}{\code{core}}{C}{\code{cli}}$ and
+$\owed{\st_1}{u}{\code{cli}} = \{\code{core}\}$: \code{cli} is admitted. Under
+the target's window, the reading of CCME 2.0.0, $C \in \Winf{\st_1}{\code{cli}}
+= \{c_1, C\}$: \code{cli} is admitted. Under the source's window, the trap,
+$C \notin \Win{\st_1}{\code{core}} = \emptyset$: $u$ reaches nobody.
+The first two agree, as \cref{lem:deliv-window} says they must for a
+\code{cli} that has not released past $C$. For \code{ui}, which has,
+$\deliv{\st_1}{\code{core}}{C}{\code{ui}}$ holds with $t = C \anc C =
+\basec{\st_1}{\code{ui}}$: nothing is owed, and \code{ui} is out. Under the
+normative rule $\plan{\st_1} = \{\code{cli}\}$ at the version run 1 planned,
+marked \diag{W193}, and $\plan{\st_2} = \emptyset$. Under the trap
+$\plan{\st_1} = \emptyset$ and \code{cli} is never released, on this run or any
+later one, with no diagnostic anywhere.
+
+\emph{Consumer gets ahead of its provider} (vector 80d). Let $C$ carry a
+second unit $u'$ = \code{feat(cli): y} beside $u$. Then $\dirb{\st_0}{\code{cli}}
+= \bminor$, and run 1 plans $\plan{\st_0} =
+\{\code{core},\code{cli},\code{ui},\code{api}\}$ with $\vers{\st_0}{\code{cli}}
+= 2.1.0$. Suppose \code{core} fails. \code{ui} and \code{api} have no cause of
+their own relative to $X = \{\code{core}\}$ and are blocked (\diag{W194});
+\code{cli} has one, its direct minor, and \emph{proceeds}
+(\cref{def:owncause}): it is published at $2.1.0$ with its manifest reconciled
+to \code{core}'s published baseline $1.4.2$, and tagged at $C$. So
 \[
-\begin{array}{@{}ll@{}}
-  \text{target's window (normative):}
-    & C \in \Win{\st_1}{\code{cli}} = \{C\}
-      \ \Rightarrow\ \code{cli}\ \text{admitted},\\[1mm]
-  \text{source's window (the trap):}
-    & C \notin \Win{\st_1}{\code{core}} = \emptyset
-      \ \Rightarrow\ u\ \text{reaches nobody}.
-\end{array}
+  \st_1 = \st_0 \cup \{\code{cli@2.1.0}\ \text{at}\ C\},\qquad
+  \Winf{\st_1}{\code{cli}} = \emptyset .
 \]
-Under the normative rule $\plan{\st_1} = \{\code{cli}\}$ at the version run 1
-planned, and $\plan{\st_2} = \emptyset$. Under the trap $\plan{\st_1} =
-\emptyset$ and \code{cli} is never released, on this run or any later one, with
-no diagnostic anywhere. One membership test, evaluated against a different
-package, is the whole difference.
+Run 2. \code{core} is planned by its direct minor. For \code{cli}, the window
+reading says $C \notin \Winf{\st_1}{\code{cli}}$ and admits nothing: \code{cli}
+keeps the range it reconciled against $1.4.2$, is never planned again, and is
+one minor behind a dependency it declares, silently. The delivery reading
+asks whether \code{core} has delivered $C$ to \code{cli}: $\relc{\st_1}{\code{core}}
+= \{c_0\}$ and $C \not\anc c_0$, so $\owed{\st_1}{u}{\code{cli}} =
+\{\code{core}\}$, \code{cli} is admitted with $\propb{\st_1}{\code{cli}} =
+\bpatch$, and
+\[
+  \plan{\st_1} = \{\code{core},\code{cli},\code{ui},\code{api}\},\qquad
+  \vers{\st_1}{\code{cli}} = 2.1.1,
+\]
+ordered after \code{core} and blocked if \code{core} fails again. $\st_1$ is
+well-formed (\cref{def:wf}): \code{core} would be released at $C =
+\basec{\st_1}{\code{cli}}$ and still owes \code{cli}, and \code{cli} is in the
+plan after it. Once both are tagged, $\deliv{\st_2}{\code{core}}{C}{\code{cli}}$
+holds with $t = C$, nothing is owed, and $\plan{\st_2} = \emptyset$. The plan
+of run 2 equals the plan of run 1 although run 1 published a package; that is
+the observation \cref{thm:g6} has to accommodate.
+\end{example}
+
+\begin{example}[two tags on one commit: \diag{E201}, vector 80d continued]
+\label{ex:e201}
+Continue the second shape from $\st_1$. Suppose run 2 publishes \code{core},
+\code{api} and \code{ui} and \code{cli} fails. Then $\st_2 = \st_1 \cup
+\{\code{core@1.5.0}, \code{api@1.2.1}, \code{ui@0.9.2}\}$ at $C$, and now
+$\deliv{\st_2}{\code{core}}{C}{\code{cli}}$ holds with $t = C \anc C =
+\basec{\st_2}{\code{cli}}$: the ledger reads \code{cli} as served, although
+\code{cli@2.1.1} was never published and \code{cli@2.1.0} still names
+$1.4.2$. $\owed{\st_2}{u}{\code{cli}} = \emptyset$, $\plan{\st_2} = \emptyset$,
+and no later plan at any commit will compute the debt, because two tags on one
+commit have no order. This is \cref{prop:loss}: run 2 reports \diag{E201}
+for the pair, and the remedy is an explicit \code{Release-As} on \code{cli}
+at a later commit. The other route to the same state is prevented rather
+than reported: a run 2 in which \code{cli} sat out, held or deselected, would
+release \code{core} at \code{cli}'s baseline commit without \code{cli}
+following, and \spec{19.3} refuses it before any publication. Had \code{core}
+instead published at a later commit $c_3$ in a run \code{cli} sat out, $C$
+would stay in $\Wowed{}{\code{core}}{\code{cli}} = \Rch{c_3}\setminus\Rch{c_0}$
+(\cref{def:owedwindow}) and the next run would plan \code{cli}'s catch-up.
 \end{example}
 
 \begin{remark}[catch-up is not a mode]
 There is no separate catch-up pass in this model, and none in the
-specification. A ``catch-up release'' is a label for a release whose entire
-cause is a propagation from a package not itself in the run's plan
-(\diag{W193}); the engine does nothing different to produce it. It does not
-widen depth, resurrect a cancelled contribution, release a held package, change
-a planned version, or propagate onward from the catching-up package; each of
-which is a property of \cref{def:admission} rather than a rule about catch-up.
+specification. Catch-up is what the algorithm does when the ordinary rule is
+evaluated against the right position (\spec{13.7a}). A ``catch-up release'' is
+a label for a release whose entire cause is a propagation from a package not
+itself in the run's plan (\diag{W193}); the engine does nothing different to
+produce it, and vector 80d's second run is not one, since \code{core} is in
+that plan. Catch-up does not widen depth, resurrect a cancelled contribution,
+release a held package, change a planned version, or propagate onward from the
+catching-up package; each of which is a property of \cref{def:admission}
+rather than a rule about catch-up.
 \end{remark}

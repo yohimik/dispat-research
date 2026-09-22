@@ -11,6 +11,7 @@ Symbol & Meaning & Defined \\
 \Cmts, \Head & commits; the fixed HEAD & \cref{def:history} \\
 $\Rch{c}$, $c' \anc c$ & ancestors-or-self of $c$; $c'$ is one of them & \cref{def:history} \\
 \Pkgs, \Edges, $\Dep{p}$ & packages; dependency edges; dependents of $p$ & \cref{def:graph} \\
+\Kprop, \Korder, \Kblock & the propagation, ordering and blocking edge kinds & \cref{def:graph} \\
 $\dist{S}{d}$ & least edge count from a member of $S$ to $d$ & \cref{def:dist} \\
 $\reachset{S}{\ell}$ & the traversal: $\{d \notin S : \dist{S}{d} \le \ell\}$ & \cref{def:reach} \\
 \Bumps, $\sqcup$ & $\bnone<\bpatch<\bminor<\bmajor$; their join & \cref{def:bump} \\
@@ -18,10 +19,13 @@ $\reachset{S}{\ell}$ & the traversal: $\{d \notin S : \dist{S}{d} \le \ell\}$ & 
 $\chanof{v}$, $\coreof{v}$, $\cntof{v}$ & channel, core triple, prerelease counter of $v$ & \cref{def:version} \\
 $\applyb{v}{b}$ & $v$ with bump $b$ applied & \cref{def:version} \\
 \st, $\st\le\st'$ & engine state (the reachable tags); inclusion & \cref{def:state} \\
+$\relc{\st}{p}$ & release commits of $p$; $\Head \in \relc{\st}{p}$: tagged at \Head & \cref{def:state} \\
 $\base{\st}{p}$, $\basec{\st}{p}$ & baseline version of $p$; its commit & \cref{def:state} \\
 $\stbase{\st}{p}$, $\stcommit{\st}{p}$ & stable baseline of $p$; its commit & \cref{def:state} \\
 $\Win{\st}{p}$ & train window of $p$ & \cref{def:window} \\
 $\Winf{\st}{p}$ & undelivered (fresh-admission) window & \cref{def:window} \\
+$\deliv{\st}{P}{C}{D}$ & $P$ has delivered $C$ to $D$ & \cref{def:delivery} \\
+$\Wowed{\st}{P}{D}$ & owed window: what $P$ has not delivered to $D$ & \cref{def:owedwindow} \\
 \Units, $\cof{u}$, $\scopef{u}$ & units; a unit's commit; its resolved scope-set & \cref{def:unit} \\
 $\bumpof{u}$ & the bump $u$'s type and \code{!} map to & \cref{def:unit} \\
 $\pbump{u}$, $\pdepth{u}$, $\pscope{u}$ & bump-axis directives of $u$ & \cref{def:unit} \\
@@ -29,18 +33,22 @@ $\pchan{u}$, $\pcdepth{u}$, $\pcscope{u}$ & channel-axis directives of $u$ & \cr
 $\canc{c}{p}$, $\held{p}$ & the two suppressors & \cref{def:sources} \\
 $\disch{\st}{p}{c}$ & $p$ has already released the work in $c$ & \cref{def:sources} \\
 $\srcp{\st}{u}$ & source packages of $u$ & \cref{def:sources} \\
+$\owed{\st}{u}{D}$ & sources of $u$ that have not delivered $\cof{u}$ to $D$ & \cref{def:sources} \\
+$\owes{\st}{P}{D}$ & $P$ is owed to $D$ by some admitted unit & \cref{def:sources} \\
 $\srcch{\st}{u}$ & channels of $u$'s sources & \cref{def:resolvable} \\
 $\resolv{\st}{u}{d}$ & $d$ can resolve what $u$'s sources release & \cref{def:resolvable} \\
 $\admit{\st}{u}{d}$ & $u$ propagates to $d$ & \cref{def:admission} \\
 $\chanres{\st}{p}$ & the channel $p$ is released on & \cref{def:channels} \\
 $\dirb{\st}{p}$, $\propb{\st}{p}$, $\effb{\st}{p}$ & direct, propagated, effective bump & \cref{def:propagated} \\
 $\plan{\st}$, $\vers{\st}{p}$ & the plan; $p$'s planned version & \cref{def:plan} \\
-$\Run{\st}{F}$ & one run, failing on $F$ & \cref{def:run} \\
-$\mathrm{stale}_{\st}(d)$ & the upward audit of \spec{13.7b} & \cref{def:stale} \\
-(H1), (H2) & standing hypotheses & \cref{sec:guarantees} \\
+$\owncause{\st}{p}{X}$ & $p$ has a cause of its own relative to $X$ & \cref{def:owncause} \\
+$\wf{\st}$ & no provider planned at the baseline commit of a consumer it owes without that consumer following (\diag{E201}) & \cref{def:wf} \\
+$\Run{\st}{F}$, $\pubset{\st}{F}$, $\blocked{\st}{F}$ & one run, failing on $F$; what it publishes; what it blocks & \cref{def:run} \\
+$\stale{\st}{d}$ & the upward audit of \spec{13.7b} & \cref{def:stale} \\
+(H1), (H2), (R), (K) & standing hypotheses & \cref{sec:guarantees} \\
 \bottomrule
 \end{longtable}
 \end{center}
 
-Diagnostic codes (\diag{E200}, \diag{W208}, and the rest) are those of
-\spec{16} and are used here with their registry meanings.
+Diagnostic codes (\diag{E200}, \diag{E201}, \diag{W208}, and the rest) are
+those of \spec{16} and are used here with their registry meanings.

@@ -2,7 +2,7 @@
 \label{sec:guarantees}
 
 Throughout this section, \Head{} and the configuration are fixed and
-$\st_1 \leq \st_2 \leq \cdots$ is a run sequence (\cref{def:seq}). Two
+$\st_1 \leq \st_2 \leq \cdots$ is a run sequence (\cref{def:seq}). Four
 hypotheses are stated once and used by name.
 
 \begin{description}[leftmargin=3.4em,style=nextline,font=\normalfont\bfseries]
@@ -13,33 +13,59 @@ hypotheses are stated once and used by name.
     whether by cancellation, by a hold (\cref{def:sources}), or by a correction
     (\cref{rem:corrections}), $p$ is not released at \Head{} in the
     sequence.
+  \item[(R) owed sources reach their target] for every $u$ and $d$ with
+    $\admit{\st}{u}{d}$, every $P \in \owed{\st}{u}{d}$ reaches $d$
+    (\cref{def:dist}), and $\dist{\owed{\st}{u}{d}}{d} =
+    \dist{\srcp{\st}{u}}{d}$.
+  \item[(K) propagation edges order and block] $\Kprop \subseteq \Korder$ and
+    $\Kprop \subseteq \Kblock$.
 \end{description}
 
-The \emph{retry invariant} of CCME 2.0.0 additionally fixes, for every
-outstanding unit, the corrected tuple stream, source sets, graph, scope and
-depth predicates, target baselines, and resolved source/target channel
-admission. The only permitted state changes are baseline tags written for
-packages that successfully release. Thus it entails the constancies used
-below; (H1) and (H2) name two historically problematic components, not a
-weaker substitute for the full invariant.
+The \emph{retry invariant} of \spec{13.7c} fixes, for every outstanding unit,
+the corrected tuple stream, source sets, graph, scope and depth predicates,
+target baselines, and resolved source/target channel admission. The only
+permitted state changes are baseline tags written for packages that
+successfully release. Thus it entails the constancies used below; (H1) and
+(H2) name two historically problematic components, not a weaker substitute
+for the full invariant. One consequence the invariant states in its own terms
+is that $\deliv{}{}{}{}$ only grows (\G{5}); \cref{lem:deliv} derives it.
 
-Both clauses are explicit parts of CCME 2.0.0's retry invariant. They are
-named because the 1.0.0 proof audit isolated them in counterexamples
-(\cref{ob:origin,ob:g5}); they are not sufficient on their own. The 2.0.0
-fresh window resolves the prerelease-discharge defect of \cref{ob:pre}, while
-retries still require every other input listed above to remain fixed. Every
-theorem below states when it needs that full invariant.
+(H1) and (H2) are explicit parts of the invariant. They are named because the
+1.0.0 proof audit isolated them in counterexamples (\cref{ob:origin,ob:g5});
+they are not sufficient on their own. The fresh window of CCME 2.0.0 resolves
+the prerelease-discharge defect of \cref{ob:pre}, while retries still require
+every other input listed above to remain fixed. Every theorem below states when
+it needs that full invariant.
 
-\subsection{Three lemmas}
+(R) and (K) are not in \SPEC{}. (R) holds automatically for a unit with a
+single source, since an admitted singleton is owed and reaches $d$ by
+\cref{a:reach}, and for a target that has not released past $\cof{u}$, where
+the owed set is the whole source set (\cref{lem:deliv-window}) so that only
+the reaching clause is at issue. It can fail for a multi-source unit whose
+delivered source reaches the target and whose owed source does not, and
+\cref{rem:owed-reach} shows what that costs. (K) holds for the default
+\Korder{} and fails for the default \Kblock{}, which excludes
+\code{optionalDependencies} (\cref{def:graph}); \cref{rem:optional} shows what
+that costs. Both are flagged for the specification.
+
+\subsection{Lemmas}
 
 \begin{lemma}[window antitonicity]
 \label{lem:window}
-Let $\st' = \Run{\st}{F}$. For every $p \in \Pkgs$:
+Let $\st' = \Run{\st}{F}$ with $\wf{\st}$. For every $p \in \Pkgs$:
 \[
   \Win{\st'}{p} =
   \begin{cases}
     \emptyset & \text{if $p$ published a non-prerelease version in the run,}\\
-    \Win{\st}{p} & \text{otherwise.}
+    \Win{\st}{p} & \text{otherwise,}
+  \end{cases}
+\]
+and
+\[
+  \relc{\st'}{p} =
+  \begin{cases}
+    \relc{\st}{p} \cup \{\Head\} & \text{if } p \in \pubset{\st}{F},\\
+    \relc{\st}{p} & \text{otherwise.}
   \end{cases}
 \]
 In particular $\Win{\st'}{p} \subseteq \Win{\st}{p}$, and along a run sequence
@@ -50,7 +76,8 @@ prerelease, gives $\Winf{\st'}{p}=\emptyset$; otherwise it is unchanged.
 
 \begin{proof}
 By \cref{def:run} the run adds only tags of the form $(p, \vers{\st}{p},
-\Head)$. If $p$ is not among them, its tag set is unchanged, hence so are
+\Head)$ for $p \in \pubset{\st}{F}$, which is the claim about $\relc{}{}$. If
+$p$ is not among them, its tag set is unchanged, hence so are
 $\stcommit{\st}{p}$ and its window. Suppose $p$ is among them and
 $\vers{\st}{p}$ is not a prerelease. Then $\vers{\st}{p}$ exceeds
 $\base{\st}{p}$ in SemVer precedence, and therefore exceeds
@@ -72,6 +99,40 @@ untouched, is not an oversight in \cref{def:window} but its stated purpose
 (\cref{rem:stable-window}). Admission nevertheless uses the empty undelivered window. \Cref{ob:pre} records the 1.0.0 defect that motivated this separation.
 \end{remark}
 
+\begin{lemma}[delivery is monotone]
+\label{lem:deliv}
+Let $\st' = \Run{\st}{F}$ with $\wf{\st}$. For all packages $P, D$ and
+commits $C \anc \Head$:
+\begin{enumerate}[label=(\alph*),leftmargin=2.4em]
+  \item $\deliv{\st}{P}{C}{D}$ implies $\deliv{\st'}{P}{C}{D}$; \label{dl:mono}
+  \item if $\Head \notin \relc{\st'}{D}$ then $\deliv{\st'}{P}{C}{D}$ iff
+    $\deliv{\st}{P}{C}{D}$; \label{dl:unrel}
+  \item if $\Head \in \relc{\st'}{D}$ then $\deliv{\st'}{P}{C}{D}$ iff some
+    $t \in \relc{\st'}{P}$ has $C \anc t$: iff $P$ has released $C$ at all.
+    \label{dl:tagged}
+\end{enumerate}
+Consequently, under the retry invariant, $\owed{\st'}{u}{D} \subseteq
+\owed{\st}{u}{D}$ for every unit $u$, with equality whenever $\Head \notin
+\relc{\st'}{D}$; and along a run sequence $\deliv{\st_j}{P}{C}{D}$ is
+non-decreasing in $j$ and $\owed{\st_j}{u}{D}$ is non-increasing.
+\end{lemma}
+
+\begin{proof}
+\ref{dl:mono}: $\relc{\st}{P} \subseteq \relc{\st'}{P}$, and
+$\basec{\st'}{D}$ is either $\basec{\st}{D}$ or \Head{}, which reaches
+$\basec{\st}{D}$; so a witness $t$ for \st{} is one for $\st'$.
+\ref{dl:unrel}: $D$ gained no tag, so $\basec{\st'}{D} = \basec{\st}{D} =: b$
+with $b \neq \Head$, and every tag the run added is at \Head{}; $\Head \anc b$
+would put \Head{} in $\Rch{b}$, so $b \anc \Head$ and acyclicity forbid it.
+Hence no added tag is a witness and the witness set is unchanged. (If $D$ has
+no baseline both sides are false.)
+\ref{dl:tagged}: $\basec{\st'}{D} = \Head$ (\cref{def:state}) and every
+release commit is an ancestor-or-self of \Head{}, so the second conjunct of
+\cref{def:delivery} is vacuous. The consequences restate \ref{dl:mono} and
+\ref{dl:unrel} over $\srcp{}{u}$, which the retry invariant fixes, and
+induction along the sequence gives the last claim.
+\end{proof}
+
 \begin{lemma}[outstanding-input stability]
 \label{lem:source}
 Assume the retry invariant. For every outstanding unit $u$ and unreleased
@@ -88,16 +149,20 @@ constancies are separate clauses of the invariant and cannot be derived from
 H1 and H2 alone.
 \end{proof}
 
-\begin{lemma}[window restriction]
+\begin{lemma}[admission restriction]
 \label{lem:channel}
-Under the retry invariant, admission of an outstanding unit at an unreleased
-target can change only by restriction of the target's undelivered window. A
-successful release of the target empties that window.
+Under the retry invariant, admission of an outstanding unit $u$ at a target
+$d$ can change only through \cref{a:window}, that is through
+$\owed{\st}{u}{d}$, which is non-increasing along the sequence. It becomes
+empty exactly when $d$ is tagged at \Head{} and every source of $u$ has
+released $\cof{u}$.
 \end{lemma}
 
 \begin{proof}
-All other admission inputs are fixed by the retry invariant. The first assertion
-then follows from \cref{def:admission}; the second is \cref{lem:window}.
+All other clauses of \cref{def:admission} are fixed by the retry invariant
+(\cref{lem:source}). The monotonicity is \cref{lem:deliv}; the
+characterisation of emptiness is \cref{lem:deliv}\ref{dl:unrel} (an untagged
+$d$ keeps its owed set) and \ref{dl:tagged}.
 \end{proof}
 
 \begin{remark}[why H1 is part of the invariant]
@@ -105,9 +170,51 @@ then follows from \cref{def:admission}; the second is \cref{lem:window}.
 Without H1, the origin channel of an \code{inherit} unit can change when a
 source baseline moves from a train to \stable{}. That can change an unreleased
 dependent's resolved channel and planned version between retries.
-\Cref{ob:origin} preserves the 1.0.0 counterexample; CCME 2.0.0 prevents it by
+\Cref{ob:origin} preserves the 1.0.0 counterexample; \SPEC{} prevents it by
 fixing inherited baseline-channel state in the retry invariant.
 \end{remark}
+
+\begin{lemma}[a planned package tagged at \Head]
+\label{lem:tagged-target}
+Let $\Head \in \relc{\st}{D}$ and $D \in \plan{\st}$. Then $\dirb{\st}{D} =
+\bnone$, $\chanres{\st}{D} = \chanof{\base{\st}{D}}$, $D$ has no applicable
+exact \code{Release-As}, and some unit $u$ has $\admit{\st}{u}{D}$. For every
+such $u$ and every $P \in \owed{\st}{u}{D}$:
+\begin{enumerate}[label=(\roman*),leftmargin=2.4em]
+  \item no release of $P$ reaches $\cof{u}$; in particular $\Head \notin
+    \relc{\st}{P}$; \label{tt:norel}
+  \item $\cof{u} \in \Winf{\st}{P}$; \label{tt:fresh}
+  \item $\lnot\canc{\cof{u}}{P}$, $\lnot\held{P}$, $\dirb{\st}{P} \geq
+    \bumpof{u} \neq \bnone$, hence $P \in \plan{\st}$; \label{tt:plan}
+  \item if $\wf{\st}$, $P$ precedes $D$ in the publish order. \label{tt:order}
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+$\basec{\st}{D} = \Head$ gives $\Winf{\st}{D} = \Win{\st}{D}\setminus\Rch{\Head}
+= \emptyset$. \Cref{def:direct}, both candidate sets of \cref{def:channels}
+and the exact-version disjunct of \cref{def:plan} all require a commit in
+$\Winf{\st}{D}$, so the first three claims hold and $D \in \plan{\st}$ forces
+$\propb{\st}{D} \neq \bnone$: some unit is admitted.
+\ref{tt:norel}: by \cref{lem:deliv}\ref{dl:tagged}, $P$ owed means no $t \in
+\relc{\st}{P}$ has $\cof{u} \anc t$; \Head{} reaches $\cof{u}$.
+\ref{tt:fresh}: $\stcommit{\st}{P}$ and $\basec{\st}{P}$ are release commits
+of $P$ when defined, so neither reaches $\cof{u}$, and $\cof{u} \anc \Head$;
+by \cref{def:window} $\cof{u} \in \Winf{\st}{P}$.
+\ref{tt:plan}: by \ref{tt:fresh} $\lnot\disch{\st}{P}{\cof{u}}$, so $P \in
+\srcp{\st}{u}$ (\cref{def:sources}) forces $\lnot(\canc{\cof{u}}{P} \lor
+\held{P})$. Then $P \in \srcp{\st}{u} \cap \scopef{u}$ and $\cof{u} \in
+\Winf{\st}{P}$ put $\bumpof{u}$ into the join of \cref{def:direct}, and
+$\bumpof{u} \neq \bnone$ by \cref{a:live}; an unheld package with a non-\bnone{}
+bump is in the plan.
+\ref{tt:order}: $P \in \plan{\st}$, $\basec{\st}{D} = \Head$ and
+$\owes{\st}{P}{D}$; \cref{def:wf} orders $P$ before $D$.
+\end{proof}
+
+The lemma is the formal content of \spec{19.3}'s ``a dependent with no cause
+of its own'': a package already tagged at \Head{} can be in the plan for one
+reason only, an owed provider that is itself in the plan, untagged, and
+ordered before it.
 
 \subsection{G1: termination}
 
@@ -117,7 +224,7 @@ Every traversal of \cref{def:reach} halts after at most $|\Pkgs|$ insertions
 into \code{seen} and $O(|\Pkgs| + |\Edges|)$ work, regardless of the declared
 depth, including $\infty$ (\code{+*}), and regardless of whether the graph
 is acyclic. Propagation performs at most $2|\Units|$ such traversals, so it
-halts, in $O(|\Units|\cdot(|\Pkgs|+|\Edges|))$.
+halts, in $O(|\Units|\cdot(|\Pkgs|+|\Edges|))$ traversal work.
 \end{theorem}
 
 \begin{proof}
@@ -132,7 +239,8 @@ must occur within $|\Pkgs|$ iterations since each non-empty frontier consumes
 at least one distinct unvisited package. No step of this argument uses
 acyclicity: a cycle merely means some edge leads to a package already in
 \code{seen}, and that edge is skipped. The outer loops of \spec{9.2} run over
-the finite set \Units{} once per axis.
+the finite set \Units{} once per axis; the per-target work of phase 3 (the
+owed set and the resolvability test) is finite and adds no traversal.
 \end{proof}
 
 \begin{remark}
@@ -148,60 +256,104 @@ louder failure.
 
 \begin{theorem}[\G{2}, completeness: no orphans]
 \label{thm:g2}
-Assume the retry invariant. If $\admit{\st_1}{u}{d}$, then for every $j$, either $d$
-was released in some run $i < j$, or $\admit{\st_j}{u}{d}$. Consequently
-$\propb{\st_j}{d} \geq \pbump{u}$ in every run until $d$ releases at a commit
-whose ancestry contains $\cof{u}$.
+Assume the retry invariant. If $\admit{\st_1}{u}{D}$, then for every $j$
+either $\owed{\st_j}{u}{D} = \emptyset$ or $\admit{\st_j}{u}{D}$, and in the
+latter case $\propb{\st_j}{D} \geq \pbump{u}$. Moreover $\owed{\st_j}{u}{D} =
+\emptyset$ holds only if $D$ is tagged at \Head{} in $\st_j$ and every $P \in
+\srcp{\st}{u}$ has a release reaching $\cof{u}$. A release by a source alone
+does not discharge the contribution, and neither does a release by $D$ at a
+commit reaching no release of some source carrying $\cof{u}$.
 \end{theorem}
 
 \begin{proof}
-Suppose $d$ has not been released in runs $1..j-1$. Take the conjuncts of
-\cref{def:admission} in turn. \Cref{a:live} depends only on the unit.
-\Cref{a:scope} and \cref{a:cancel} depend only on \Head{} and the
-configuration. \Cref{a:reach} is $d \in
-\reachset{\srcp{\st_j}{u}}{\pdepth{u}}$, and by the retry invariant
-the source set is unchanged, as are the graph and the depth, so the traversal
-is literally the same computation. \Cref{a:window} is $\cof{u} \in
-\Winf{\st_j}{d}$; $d$ gained no tag, so by \cref{lem:window} its window is
-unchanged. \Cref{a:resolvable} is constant by \cref{lem:channel}. So every
-conjunct still holds.
+Take the conjuncts of \cref{def:admission} in turn. \Cref{a:live} depends only
+on the unit. \Cref{a:scope} and \cref{a:cancel} depend only on \Head{} and the
+configuration. \Cref{a:reach} is $D \in \reachset{\srcp{\st_j}{u}}{\pdepth{u}}$,
+and by the retry invariant the source set is unchanged, as are the graph and
+the depth, so the traversal is literally the same computation.
+\Cref{a:resolvable} is constant by \cref{lem:source}. \Cref{a:window} is the
+one clause that varies, and it is exactly the disjunction in the statement. So
+whenever $\owed{\st_j}{u}{D} \neq \emptyset$ every conjunct holds, and
+$\propb{\st_j}{D}$, a join over the admitted units (\cref{def:propagated}) with
+$u$ among them, is at least $\pbump{u}$.
 
-For the final claim: $\propb{\st_j}{d}$ is a join over the admitted units
-(\cref{def:propagated}) and $u$ is among them, so the join is at least
-$\pbump{u}$. The only way \cref{a:window} can fail is for $\cof{u}$ to leave
-$\Winf{\st_j}{d}$, which by \cref{lem:window} requires $d$ to be released at
-\Head{}; and $\cof{u} \anc \Head$, so that release carries $\cof{u}$ in its
-ancestry.
+For the ``moreover'': $\owed{\st_1}{u}{D} \neq \emptyset$ by
+\cref{a:window} at $\st_1$, so some $P \in \srcp{\st}{u}$ has gone from
+undelivered to delivered between $\st_1$ and $\st_j$. If $\Head \notin
+\relc{\st_j}{D}$, \cref{lem:deliv}\ref{dl:unrel} applied along the sequence
+says nothing changed; so $D$ is tagged at \Head{} in $\st_j$, and then
+\cref{lem:deliv}\ref{dl:tagged} makes $\owed{\st_j}{u}{D} = \emptyset$
+equivalent to every source of $u$ having a release reaching $\cof{u}$. The two
+final sentences are the contrapositive read against the same lemma: a source's
+release leaves $\Head \notin \relc{}{D}$ untouched, and a release of $D$ at
+\Head{} with some source still lacking a release reaching $\cof{u}$ leaves that
+source owed.
 \end{proof}
 
-The theorem is the formal content of ``there are no orphans''. What it excludes
-is the failure \spec{13.7a} describes: a provider publishes, a consumer's
-publish fails, and the consumer is thereafter permanently one patch behind a
-dependency it declares, with its manifest range never reconciled and no
-diagnostic fired, because nothing appears to be pending. Note where the proof
-would break under the other reading of \cref{a:window}. If admission tested
-$\cof{u} \in \Win{\st_j}{p}$ for the unit's own package $p$, then $p$'s
-successful release would empty \emph{that} window, the unit would cease to be a
-propagation source, and $d$ would never be released, in this run or any later
-one. Nothing else in the model changes; that one substitution is the whole
-difference between a resumable release and a silently lossy one.
+The theorem is the formal content of ``there are no orphans'', and it now
+covers both shapes of \spec{13.7a}. A provider that publishes while a
+consumer's publish fails leaves the consumer's owed set intact
+(\cref{lem:deliv}\ref{dl:unrel}), so the consumer is planned again until it
+releases. A consumer that proceeds past the commit on a cause of its own while
+its provider fails is tagged at \Head{} with the provider unreleased; by
+\cref{lem:deliv}\ref{dl:tagged} the provider is still owed, and the consumer is
+planned again, ordered after the provider (\cref{lem:tagged-target}), until
+both have released. Note where the proof would break under the readings of
+\cref{a:window} that \cref{ex:orphan} contrasts. Against the source's window,
+the provider's successful release would empty \emph{that} window, the unit
+would cease to be a propagation source, and the waiting consumer would never
+be released. Against the target's window, the proceeding consumer's own
+release would empty \emph{that} window, and the consumer that got ahead would
+never be planned again. One membership test, evaluated against the right
+relation, is the whole difference between a resumable release and a silently
+lossy one.
+
+\begin{remark}[the discharge that is not a delivery]
+\label{rem:g2-loss}
+The ``moreover'' clause is satisfied, and the contribution leaves the plan, in
+one situation where nothing was delivered: $D$ already tagged at \Head{} when
+the sequence starts, its owed provider $P$ publishing at \Head{} in a run in
+which $D$ then fails. \Cref{prop:loss} describes it; the run reports
+\diag{E201} and the theorem does not claim otherwise. Where $D$ is not tagged
+at \Head{} in $\st_1$ the situation cannot arise, since then $\Head \notin
+\relc{\st_j}{D}$ until $D$ itself releases in the sequence.
+\end{remark}
 
 \subsection{G3: version stability}
 
 \begin{theorem}[\G{3}, version stability]
 \label{thm:g3}
-Assume the retry invariant. If $d \in \plan{\st_1}$ and $d$ is not released in runs
-$1..k-1$, then $d \in \plan{\st_k}$ and $\vers{\st_k}{d} = \vers{\st_1}{d}$.
+Assume the retry invariant. If $d \in \plan{\st_1}$, $d$ is not released in
+runs $1..k-1$, and no run $i < k$ reports \diag{E201} for $d$
+(\cref{def:run}), then $d \in \plan{\st_k}$ and $\vers{\st_k}{d} =
+\vers{\st_1}{d}$. The third hypothesis is vacuous when $\Head \notin
+\relc{\st_1}{d}$.
 \end{theorem}
 
 \begin{proof}
-$d$ gained no tag, so $\base{\st_k}{d} = \base{\st_1}{d}$ and
-$\stbase{\st_k}{d} = \stbase{\st_1}{d}$, and by \cref{lem:window} its window is
-unchanged. Then $\dirb{\st_k}{d} = \dirb{\st_1}{d}$, because
+First, $\owed{\st_k}{u}{d} = \owed{\st_1}{u}{d}$ for every unit $u$. If
+$\Head \notin \relc{\st_1}{d}$ then, $d$ having gained no tag, $\Head \notin
+\relc{\st_k}{d}$ and \cref{lem:deliv}\ref{dl:unrel} gives equality run by
+run; this is also why the third hypothesis is then vacuous, since reporting
+\diag{E201} for $d$ requires $\Head \in \relc{\st_i}{d}$. If $\Head \in
+\relc{\st_1}{d}$, then $\basec{\st_i}{d} = \Head$ throughout, and by
+\cref{lem:deliv}\ref{dl:tagged} the owed set can shrink only when some $P \in
+\owed{\st_i}{u}{d}$ receives a tag at \Head{} in run $i < k$, that is $P \in
+\pubset{\st_i}{F_i}$. Since $\owed{\st_i}{u}{d} \neq \emptyset$ and the other
+clauses are constant, $\admit{\st_i}{u}{d}$, so $\owes{\st_i}{P}{d}$. Run $i$
+published something, so it was not refused and $\wf{\st_i}$ holds
+(\cref{def:run}); hence $d \in \plan{\st_i}$ after $P$. $d$ was
+not released in run $i$, and it was not blocked, because $P \notin X_d$ gives
+it a cause of its own (\cref{def:owncause}); so $d \in F_i$, and run $i$
+reports \diag{E201} for $d$, which the hypothesis excludes.
+
+Now $d$ gained no tag, so $\base{\st_k}{d} = \base{\st_1}{d}$ and
+$\stbase{\st_k}{d} = \stbase{\st_1}{d}$, and by \cref{lem:window} its windows
+are unchanged. Then $\dirb{\st_k}{d} = \dirb{\st_1}{d}$, because
 \cref{def:direct} reads the window, $\scopef{u}$, and $\srcp{\st}{u}$, the last
-constant by the retry invariant. And $\propb{\st_k}{d} = \propb{\st_1}{d}$: the
-$\geq$ direction is \cref{thm:g2} applied to each unit admitted in run $1$, and
-the $\leq$ direction is \cref{thm:g5}. Hence $\effb{\st_k}{d} = \effb{\st_1}{d}$. Its resolved and baseline channels, changed-provider status, and applicable exact \code{Release-As} cause are also fixed by the retry invariant. Thus whichever disjunct of \cref{def:plan} put $d$ in the initial plan still holds. For a fixed version function, \spec{13.9} reads unchanged stable and current baselines, resolved channel, applicable exact version, and corrected train records. Those inputs are fixed for an unreleased target by the retry invariant, so its result is unchanged. This proves replay stability. The graduation core itself follows the specific train-target rule of \spec{11.5}; \cref{ob:graduation} records the inconsistent \spec{13.9} summary rather than treating that intent as absent.
+constant by the retry invariant. And $\propb{\st_k}{d} = \propb{\st_1}{d}$:
+every clause of \cref{def:admission} is constant for every unit, \cref{a:window}
+by the first paragraph and the rest by \cref{lem:source}. Hence $\effb{\st_k}{d} = \effb{\st_1}{d}$. Its resolved and baseline channels, changed-provider status, and applicable exact \code{Release-As} cause are also fixed by the retry invariant. Thus whichever disjunct of \cref{def:plan} put $d$ in the initial plan still holds. For a fixed version function, \spec{13.9} reads unchanged stable and current baselines, resolved channel, applicable exact version, and corrected train records. Those inputs are fixed for an unreleased target by the retry invariant, so its result is unchanged. This proves replay stability. The graduation core itself follows the specific train-target rule of \spec{11.5}; \cref{ob:graduation} records the inconsistent \spec{13.9} summary rather than treating that intent as absent.
 \end{proof}
 
 \begin{remark}[the prerelease case survives, for a different reason]
@@ -219,15 +371,19 @@ released, and is a convergence failure, not a stability failure.
 \Cref{thm:g3} is as much an operational property as a formal one: after a
 partial failure, the re-run publishes the same numbers the operator already
 reviewed. It is what makes a resumed release a continuation rather than a fresh
-decision.
+decision. It says nothing about a package that \emph{was} released: a
+consumer that proceeded is planned again at a patch on its new baseline
+(\code{cli@2.1.1} in \cref{ex:orphan}), which is the version its catch-up is
+owed, not the one it was first planned at.
 
-\begin{example}[four theorems in one table]
+\begin{example}[four theorems in two tables]
 \label{ex:runtable}
-\Cref{tab:runs} continues \cref{ex:orphan} through an adversarial schedule:
-run 1 loses \code{cli}, run 2 loses it again, run 3 succeeds. Each column is a
-theorem. \code{docs-site} and \code{@acme/theme} never appear, at any distance
-$2$, in any run: the unit said \code{\^{}}, and \cref{thm:g5} forbids a later
-run from reconsidering that.
+\Cref{tab:runs} continues the first shape of \cref{ex:orphan} through an
+adversarial schedule: run 1 loses \code{cli}, run 2 loses it again, run 3
+succeeds. \Cref{tab:ahead} runs the second shape, where \code{cli} proceeds.
+Each column is a theorem. \code{docs-site} and \code{@acme/theme} never appear,
+at any distance $2$, in any run: the unit said \code{\^{}}, and \cref{thm:g5}
+forbids a later run from reconsidering that.
 \end{example}
 
 \begin{table}[t]
@@ -246,11 +402,12 @@ Run & State \st{} & Plan $\plan{\st}$ & Published & Empty? \\
   & \code{cli} 2.0.1
   & \code{cli} & no \\
 4 & $\st_3 = \st_2 \cup \{\code{cli@2.0.1}\}$
-  & $\emptyset$ & --- & yes \\
+  & $\emptyset$ & (none) & yes \\
 \bottomrule
 \end{tabular}
-\caption{The run sequence of \cref{ex:runtable}. \Cref{thm:g2}: \code{cli} is
-in every plan until it publishes. \Cref{thm:g3}: it is at \code{2.0.1} in all
+\caption{The waiting consumer of \cref{ex:runtable}. \Cref{thm:g2}: \code{cli} is
+in every plan until it publishes, its owed set $\{\code{core}\}$ unchanged by
+\cref{lem:deliv}. \Cref{thm:g3}: it is at \code{2.0.1} in all
 of them. \Cref{thm:g4}: \code{core}, \code{ui} and \code{api} leave after run
 1. \Cref{thm:g5}: nothing new ever enters. \Cref{thm:g6}: the plan shrinks to
 empty. Run 2 publishes nothing, which \cref{thm:g6} treats as the hard-error
@@ -258,29 +415,73 @@ case rather than the partial-failure one.}
 \label{tab:runs}
 \end{table}
 
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}L{1.1cm}L{3.3cm}L{3.4cm}L{4.4cm}L{1.6cm}@{}}
+\toprule
+Run & State \st{} & Plan $\plan{\st}$ & Published & Progress? \\
+\midrule
+1 & $\st_0$, $C$ carrying $u$ and $u'$
+  & \code{core} 1.5.0, \code{cli} 2.1.0, \code{ui} 0.9.2, \code{api} 1.2.1
+  & \code{cli} proceeds; \code{core} fails; \code{ui}, \code{api} blocked & yes \\
+2 & $\st_1 = \st_0 \cup \{\code{cli@2.1.0}\}$
+  & \code{core} 1.5.0, \code{cli} 2.1.1, \code{ui} 0.9.2, \code{api} 1.2.1
+  & all four & yes \\
+3 & $\st_2 = \st_1 \cup 4$ tags
+  & $\emptyset$ & (none) & \\
+\bottomrule
+\end{tabular}
+\caption{The proceeding consumer of \cref{ex:runtable}, \SPEC{} vector 80d.
+\Cref{thm:g2}: \code{cli} stays admitted after its own release because
+\code{core} has not delivered $C$ to it. \Cref{thm:g3}: \code{ui} and
+\code{api} keep their numbers. \Cref{thm:g4}: after run 2 nothing is owed.
+\Cref{thm:g6}: run 1 published a package and the plan did not shrink; what it
+did was tag \code{cli} at \Head{} for the first time, which is the measure the
+proof uses.}
+\label{tab:ahead}
+\end{table}
+
 \subsection{G4: no double release}
 
 \begin{theorem}[\G{4}, no double ledger delivery]
 \label{thm:g4}
-If $d$ is released in run $k$ at a commit whose ancestry contains $\cof{u}$,
-then $\admit{\st_j}{u}{d}$ is false for every $j>k$.
+Assume the retry invariant. If $D$ is released in run $k$ and, after run
+$k$, every $P \in \srcp{\st}{u}$ has a release reaching $\cof{u}$, then
+$\admit{\st_j}{u}{D}$ is false for every $j>k$.
 \end{theorem}
 
 \begin{proof}
-The successful tag is at \Head{} and contains $\cof{u}$ in its ancestry, so
-$\cof{u}\notin\Winf{\st_j}{d}$. Clause~\ref{a:window} of admission therefore
-fails. The full train window may retain $\cof{u}$ for aggregate prerelease
-version arithmetic; it cannot re-admit the contribution.
+$\Head \in \relc{\st_{k+1}}{D}$, so by \cref{lem:deliv}\ref{dl:tagged} every
+source of $u$ has delivered $\cof{u}$ to $D$ and $\owed{\st_{k+1}}{u}{D} =
+\emptyset$. The owed set is non-increasing (\cref{lem:deliv}), so it stays
+empty and \cref{a:window} fails at every later $\st_j$. The full train window
+may retain $\cof{u}$ for aggregate prerelease version arithmetic; it cannot
+re-admit the contribution.
 \end{proof}
+
+A $D$ that proceeded past $\cof{u}$ before a source released it does not meet
+the hypothesis: that source still lacks a release reaching $\cof{u}$, $D$ is
+admitted again (\cref{lem:deliv}\ref{dl:tagged}), and it is bumped once more
+when the release comes. That later release is the delivery, not a second one.
+The sufficient condition of CCME 2.0.0, ``released at a commit whose ancestry
+contains $\cof{u}$'', is no longer sufficient on its own, and \cref{ex:orphan}
+shows why it must not be.
 
 \begin{corollary}[exactly-once ledger discharge]
 \label{cor:exactly-once}
-Under the retry invariant, a contribution admitted to $d$ remains outstanding until $d$ releases (\cref{thm:g2}) and cannot be delivered in the tag ledger again after that release (\cref{thm:g4}). If retries eventually publish $d$, it is therefore discharged exactly once in that ledger.
+Under the retry invariant, a contribution admitted to $D$ remains admitted
+until $D$ is tagged at \Head{} with every source of $u$ having released
+$\cof{u}$ (\cref{thm:g2}), and is never re-admitted after that
+(\cref{thm:g4}). If the sequence delivers it, it is therefore discharged in the
+tag ledger exactly once. $D$ may be published more than once meanwhile, a
+consumer that proceeded being the case, but the discharging release is the
+last of those. The single exception is the reported loss of \cref{prop:loss},
+where the ledger records a discharge that no release of $D$ performed.
 \end{corollary}
 
 This is the idempotent-consumer property of the saga, obtained without a
-deduplication table: the git tag is the record, and the window is the query
-against it. This is not an exactly-once guarantee for external side effects.
+deduplication table: the git tags are the record, and delivery is the query
+against them. This is not an exactly-once guarantee for external side effects.
 A publish can succeed before its tag is recorded; recovery across that gap
 requires the verified adoption of \spec{19.4} or an idempotent publisher.
 The ledger proof alone cannot prevent a repeated external operation.
@@ -300,9 +501,10 @@ Compare the conjuncts of \cref{def:admission}, as in \cref{thm:g2}, but now in
 the direction of restriction. \Cref{a:live,a:scope,a:cancel} are constant.
 \Cref{a:reach} is constant by the retry invariant: the traversal has
 the same source set, the same depth and the same graph, all fixed at \Head{}.
-\Cref{a:resolvable} is constant under the retry invariant; for a target that has been released \cref{a:window} fails by \cref{lem:window}. \Cref{a:window} is antitone by
-\cref{lem:window}. A conjunction of constant and antitone predicates is
-antitone.
+\Cref{a:resolvable} is constant under the retry invariant. \Cref{a:window},
+$\owed{\st_j}{u}{d} \neq \emptyset$, is antitone in $j$ by \cref{lem:deliv}:
+$\deliv{}{}{}{}$ only grows. A conjunction of constant and antitone predicates
+is antitone.
 \end{proof}
 
 \begin{remark}[why this is a security property]
@@ -311,41 +513,145 @@ runs, an attacker able to induce a publish failure (by exhausting a
 registry quota, say) could enlarge the set of packages a commit releases
 \emph{after} that commit had been reviewed and merged. The theorem says the
 achievable effect of inducing a failure is confined to delaying a subset of
-what was already going to be released.
+what was already going to be released. Delivery preserves this: a target it
+admits that the window test would not is one that released past $\cof{u}$ on
+its own account while within the unit's reach, and the unit's traversal,
+scope and depth are what they were, so nothing outside the unit's declared
+blast radius is reached.
 \end{remark}
+
+\begin{lemma}[the plan is non-increasing]
+\label{lem:plan-mono}
+Assume the retry invariant. Then $\plan{\st_{j+1}} \subseteq \plan{\st_j}$ for
+every $j$, hence $\plan{\st_j} \subseteq \plan{\st_1}$.
+\end{lemma}
+
+\begin{proof}
+Take $p \in \plan{\st_{j+1}}$; $\held{p}$ is constant, so $p$ is not held at
+$\st_j$ either. If $p$ was released in run $j$, then $\Winf{\st_{j+1}}{p} =
+\emptyset$ (\cref{lem:window}) and by \cref{lem:tagged-target} its only cause
+is a unit $u$ with $\admit{\st_{j+1}}{u}{p}$; by \cref{thm:g5}
+$\admit{\st_j}{u}{p}$, so $\propb{\st_j}{p} \neq \bnone$ and $p \in
+\plan{\st_j}$. If $p$ was not released, its windows and tags are unchanged, so
+$\dirb{\st}{p}$ and the exact-version disjunct are unchanged,
+$\propb{\st}{p}$ can only have shrunk (\cref{thm:g5} applied to each unit),
+and $\chanres{\st}{p}$ and $\chanof{\base{\st}{p}}$ are unchanged under the
+retry invariant; so every disjunct of \cref{def:plan} that holds at
+$\st_{j+1}$ held at $\st_j$.
+\end{proof}
+
+What the lemma no longer gives is strict decrease. A package released in run
+$j$ can be in $\plan{\st_{j+1}}$: it proceeded past a commit its provider has
+not delivered. \Cref{thm:g6} therefore counts something else.
+
+\begin{lemma}[well-formedness is preserved]
+\label{lem:wf}
+Assume the retry invariant, (R), and $\Kprop \subseteq \Korder$. If
+$\wf{\st_j}$ then $\wf{\st_{j+1}}$. Hence every state of a run sequence is
+well-formed and no run of it is refused.
+\end{lemma}
+
+\begin{proof}
+Let $P \in \plan{\st_{j+1}}$, $\basec{\st_{j+1}}{D} = \Head$ and
+$\owes{\st_{j+1}}{P}{D}$ through a unit $u$. By \cref{thm:g5}
+$\admit{\st_j}{u}{D}$, and by \cref{lem:deliv} $P \in \owed{\st_j}{u}{D}$, so
+$P \in \plan{\st_j}$ (\cref{lem:plan-mono}) and $\owes{\st_j}{P}{D}$. Since
+$\owed{\st_{j+1}}{u}{D} \neq \emptyset$ and $\held{D}$ is constant, $D \in
+\plan{\st_{j+1}}$ once $D \in \plan{\st_j}$ or $\propb{\st_{j+1}}{D} \neq
+\bnone$; the latter holds outright. For the order: by (R) $P$ reaches $D$ over
+\Kprop{}, hence over \Korder{}, and the topological order of \cref{def:order}
+places $P$ before $D$. The second sentence is induction from $\wf{\st_1}$
+(\cref{def:seq}).
+\end{proof}
 
 \subsection{G6: convergence}
 
+Say that run $j$ \emph{makes progress} when it publishes a package $p$ with
+$\Head \notin \relc{\st_j}{p}$: a package tagged at \Head{} for the first time.
+
 \begin{theorem}[\G{6}, convergence]
 \label{thm:g6}
-Assume the retry invariant, and suppose every run whose plan is nonempty publishes at least one package. Let
-$n = |\plan{\st_1}|$. Then $\plan{\st_{n+1}} = \emptyset$.
+Assume the retry invariant, and suppose every run whose plan is non-empty
+makes progress. Let $n = |\plan{\st_1}|$. Then $\plan{\st_{n+1}} = \emptyset$.
 \end{theorem}
 
-\begin{proof}
-First, $\plan{\st_{j+1}} \subseteq \plan{\st_j}$. Take $p \in
-\plan{\st_{j+1}}$. If $p$ was released in run $j$, its new baseline at
-\Head{} empties $\Winf{\st_{j+1}}{p}$, so no old direct, propagated, channel,
-or exact-version cause can re-admit it under the invariant. Thus it was not
-released, and by \cref{lem:window} its window is unchanged
-and its tags are unchanged. Then $\dirb{\st}{p}$ is unchanged, $\propb{\st}{p}$ can
-only have shrunk (\cref{thm:g5} applied to each unit), $\chanres{\st}{p}$ and
-$\chanof{\base{\st}{p}}$ are unchanged under the retry invariant,
-and the \code{Release-As} disjunct is unchanged; so every disjunct of
-\cref{def:plan} that holds at $\st_{j+1}$ held at $\st_j$, and $\held{p}$ is
-constant.
+A refused run (\cref{def:run}) publishes nothing, so the hypothesis entails
+that no run with a non-empty plan is refused; \cref{lem:wf} says when that is
+automatic.
 
-Now let $\mu_j = |\plan{\st_j}|$. Run $j$ publishes some $p \in \plan{\st_j}$,
-whose undelivered work is absent from $\plan{\st_{j+1}}$, while by the
-paragraph above nothing is added. So $\mu_{j+1} < \mu_j$. A strictly
-decreasing sequence in $\mathbb{N}$ bounded below by $0$ reaches $0$ within
-$\mu_1 = n$ steps.
+\begin{proof}
+First, $\plan{\st_{j+1}} \subseteq \plan{\st_j}$, so $\plan{\st_j} \subseteq
+\plan{\st_1}$ for every $j$ (\cref{lem:plan-mono}).
+
+Let $\mu_j = |\{\,p \in \plan{\st_1} : \Head \notin \relc{\st_j}{p}\,\}|$, the
+planned packages not yet tagged at \Head{}. Tags only accumulate, so $\mu$ is
+non-increasing, and $\mu_1 \leq n$. If run $j$ makes progress, the package
+it tags for the first time lies in $\plan{\st_j} \subseteq \plan{\st_1}$, so
+$\mu_{j+1} < \mu_j$. And if $\plan{\st_j} \neq \emptyset$ then $\mu_j \geq 1$:
+take $p \in \plan{\st_j}$; either $\Head \notin \relc{\st_j}{p}$, or by
+\cref{lem:tagged-target} there is $P \in \plan{\st_j} \subseteq \plan{\st_1}$
+with $\Head \notin \relc{\st_j}{P}$. So while the plan is non-empty each run
+strictly decreases a quantity that is at least $1$ and at most $n$; the plan is
+therefore empty by run $n+1$, and once empty it stays empty by the first
+paragraph.
 \end{proof}
 
-The bound is restricted to the invariant domain. Publishing a suppressed
+The old measure, $|\plan{\st_j}|$, fails here: in \cref{tab:ahead} run 1
+publishes \code{cli} and $|\plan{\st_2}| = |\plan{\st_1}|$. The bound $n$
+survives because every package is tagged at \Head{} for the first time at most
+once, and a plan cannot be non-empty without containing such a package. The
+bound is restricted to the invariant domain. Publishing a suppressed
 source or changing channel admission may expose a finite follow-up obligation;
 \spec{19.6} requires re-planning and renewed review, not an unconditional
 global-convergence claim. Held packages remain excluded.
+
+\begin{proposition}[when publishing anything is progress]
+\label{prop:progress}
+Assume the retry invariant, (R) and $\Kprop \subseteq \Kblock$. Then every
+well-formed run that publishes at least one package makes progress. Under
+these hypotheses \cref{thm:g6} therefore holds with its hypothesis weakened
+to ``every run whose plan is non-empty publishes at least one package''.
+\end{proposition}
+
+\begin{proof}
+Let run $j$ publish a non-empty set, and let $p$ be the first published
+package in the publish order. Suppose $\Head \in \relc{\st_j}{p}$. By
+\cref{lem:tagged-target}, $p$'s only causes are units $u$ with
+$\admit{\st_j}{u}{p}$, and every $P \in \owed{\st_j}{u}{p}$ is in
+$\plan{\st_j}$, untagged at \Head{}, with $\dirb{\st_j}{P} \neq \bnone$, and
+precedes $p$ in the order. No such $P$ was published, since $p$ is the first;
+none was blocked, since a direct bump is a cause of its own; so every such $P$
+failed and lies in $X_p$. Then $\owed{\st_j}{u}{p} \subseteq X_p$ for every
+admitted $u$, and with the first three disjuncts of \cref{def:owncause} absent,
+$\lnot\owncause{\st_j}{p}{X_p}$. By (R) some owed $P$ reaches $p$ over
+\Kprop{}, hence over \Kblock{}, so $p$ transitively depends on a member of
+$X_p$ and is blocked: a contradiction with its being published. Hence $\Head
+\notin \relc{\st_j}{p}$ and the run makes progress.
+\end{proof}
+
+\begin{remark}[a non-blocking propagation edge]
+\label{rem:optional}
+Under the default configuration \Kprop{} contains
+\code{optionalDependencies} and \Kblock{} does not, so (K) fails and
+\cref{prop:progress} does not apply. The weaker hypothesis then does not
+suffice. Let $p$ optionally depend on $P$, let one commit carry
+\code{feat(P)\^{}}, and let $P$ fail on every run. In run 1, $p$ is not
+blocked, since the edge is not in \Kblock{}, and it has no cause of its own;
+it proceeds anyway, is reconciled to $P$'s old baseline, and is tagged at
+\Head{}. In run 2 it is owed $P$'s release (\cref{lem:deliv}\ref{dl:tagged}),
+is planned after $P$, and, $P$ failing again, is published again with nothing
+new. Every run publishes a package; no run makes progress; the plan never
+empties. The count $n$ of \cref{thm:g6} bounds the runs that make progress,
+not the runs that publish, and a spec-level reading of ``successful-progress
+run'' must say so. The republished $p$ carries nothing its predecessor lacked,
+which is a second cost of the same configuration. Both are flagged for the
+specification. The reference implementation does not exhibit the scenario:
+it blocks over every declared dependency kind and treats an update from a
+failed provider as no cause (\cref{ob:kinds}), so the caught-up consumer of
+vector 80d is planned again each run and blocked with \diag{W194} until its
+provider publishes, each such run exiting non-zero; the remark concerns the
+specification's default kinds, not the engine.
+\end{remark}
 
 \begin{proposition}[universal tagging is necessary, \spec{13.10a}]
 \label{prop:tagall}
@@ -356,13 +662,13 @@ every $j$, and \cref{thm:g6} fails.
 \end{proposition}
 
 \begin{proof}
-$p$ gains no tag in any run, so by \cref{lem:window} $\Winf{\st_j}{p} =
-\Winf{\st_1}{p}$ for all $j$, and $\dirb{\st_j}{p} = \dirb{\st_1}{p} \neq
-\bnone$ if the bump was direct (and, by \cref{thm:g2}, $\propb{\st_j}{p} \geq
-\propb{\st_1}{p}$ if it was propagated, since $p$ never releases at \Head{} in
-the sense \cref{lem:window} requires). Either way the plan's first disjunct
-holds at every $\st_j$, so $\mu_j \geq 1$ for all $j$ and no run empties the
-plan.
+$p$ gains no tag in any run, so $\Head \notin \relc{\st_j}{p}$ for all $j$; by
+\cref{lem:window} $\Winf{\st_j}{p} = \Winf{\st_1}{p}$, and by
+\cref{lem:deliv}\ref{dl:unrel} $\owed{\st_j}{u}{p} = \owed{\st_1}{u}{p}$ for
+every unit. Hence $\dirb{\st_j}{p} = \dirb{\st_1}{p}$ and, every clause of
+\cref{def:admission} being constant, $\propb{\st_j}{p} = \propb{\st_1}{p}$.
+The plan's first disjunct holds at every $\st_j$, so $\mu_j \geq 1$ for all $j$
+in the proof of \cref{thm:g6} and no run empties the plan.
 \end{proof}
 
 This is why \spec{13.10a} tags whatever is released, including private,
@@ -393,19 +699,27 @@ $f \neq t$, and for $f = *$ with $t = \stable$ the match requires
 $cur \neq \stable$, which fails.
 \end{proof}
 
-\begin{corollary}[common ledger discharge]
+\begin{corollary}[channel-axis ledger discharge]
 \label{cor:g7}
-After any release, $\Winf{}$ excludes every delivered directive. The no-op and
-transition checks of \cref{thm:g7} independently prevent re-proposing the
-channel already recorded in the baseline. These are complementary checks;
-the baseline comparison is not a substitute for fresh-work admission.
+After any release of $d$, $\Winf{}$ excludes every delivered channel
+directive (\cref{lem:window}), and \cref{def:phase1} admits none of them. The
+no-op and transition checks of \cref{thm:g7} independently prevent
+re-proposing the channel already recorded in the baseline. These are
+complementary checks; the baseline comparison is not a substitute for
+fresh-work admission.
 \end{corollary}
 
-Both axes therefore discharge through the common undelivered window, with the
-channel axis adding its no-op check. Under the retry invariant both survive a
-partial failure unchanged. This also marks the boundary of what
-\cref{thm:g7} gives. It says the channel $d$ arrived on is not re-proposed; it
-does \emph{not} say nothing is proposed. The historical CCME 1.0.0 counterexample in \cref{ob:pre} used its unsplit window to let a second, older directive propose a different channel on every run. CCME 2.0.0's fresh-window gate discharges that directive after release.
+The two axes discharge differently. The channel axis discharges through the
+target's undelivered window, with the no-op check on top; the bump axis
+discharges through delivery (\cref{thm:g4}), which on a target that has not
+released past the commit is the same window and on one that has is stricter.
+Under the retry invariant both survive a partial failure unchanged. This also
+marks the boundary of what \cref{thm:g7} gives. It says the channel $d$
+arrived on is not re-proposed; it does \emph{not} say nothing is proposed. The
+historical CCME 1.0.0 counterexample in \cref{ob:pre} used its unsplit window
+to let a second, older directive propose a different channel on every run. The
+fresh-window gate, normative since CCME 2.0.0, discharges that directive after
+release.
 
 \subsection{G8: axis independence}
 
@@ -424,8 +738,9 @@ By \cref{def:phase1}, phase 1 reads the units' channel directives, $\srcp{\st}{u
 the traversal, $\Winf{\st}{\cdot}$, $\canc{\cdot}{\cdot}$, and, through
 \cref{def:propchan}, $\base{\st}{\cdot}$. By \cref{def:channels}, phase 2
 reads phase 1's output and the same fixed quantities. None of these is a
-phase-3 output: $\propb{\st}{\cdot}$, $\effb{\st}{\cdot}$ and the admission
-predicate appear nowhere in \cref{def:propchan,def:phase1,def:channels}. So
+phase-3 output: $\propb{\st}{\cdot}$, $\effb{\st}{\cdot}$, the admission
+predicate and $\owed{\st}{\cdot}{\cdot}$ appear nowhere in
+\cref{def:propchan,def:phase1,def:channels}. So
 $\chanres{\st}{\cdot}$ is determined before phase 3 runs and is invariant under
 any change confined to phase-3 inputs.
 \end{proof}
@@ -441,7 +756,7 @@ channel change, and neither shape indicates a defect.
 \begin{remark}[the converse does not hold]
 \label{rem:g8-converse}
 CCME 1.0.0 stated \G{8} as ``suppressing a bump under \spec{9.3a} never
-suppresses a channel, \emph{and vice versa}''. CCME 2.0.0 states only the
+suppresses a channel, \emph{and vice versa}''. \SPEC{} states only the
 one-way result above. The old proof observed that
 the passes share only $\chanres{\st}{\cdot}$, which phase 3 reads and never writes.
 That argument establishes exactly the direction proved above. The converse is

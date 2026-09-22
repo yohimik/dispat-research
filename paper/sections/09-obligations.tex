@@ -1,6 +1,387 @@
 \section{Proof obligations}
 \label{sec:obligations}
 
+This section keeps two ledgers. The first, \cref{sec:obligations-current},
+holds the obligations open against the current specification, CCME
+3.1.0-rc.2 at repository commit \code{252216ba}, and against the reference
+implementation at the same commit: places where the normative text
+contradicts itself, where the text states a boundary of a guarantee rather
+than a rule, and where the engine departs from the text. Each states the
+claim, a minimal scenario, the consequence for the results of this report, the
+repair or the recorded status, and the case and test that pin it. They are
+ordered by severity, the silent loss of a release first and diagnostic
+metadata last. The second ledger, \cref{sec:obligations-historical}, is the
+audit of CCME 1.0.0 at \code{713f1a0b} that this report was first written for.
+Its six obligations are provenance: the released 2.0.0 text incorporated
+their repairs and the current text keeps them, so they are reproduced
+unchanged.
+
+Every \SPEC{} reference in \cref{sec:obligations-current} is to the current
+text. In \cref{sec:obligations-historical}, except where a paragraph
+explicitly names CCME 2.0.0 or a current theorem, every numbered reference
+and quoted guarantee refers to the 1.0.0 snapshot, and present tense
+describes the historical rule being executed.
+
+\subsection{Current obligations}
+\label{sec:obligations-current}
+
+The sources consulted are \SPEC{} itself, its dated design history and
+changelog, the release notes of the engine, the integration test plan, and
+the test sources of the engine and of its integration suite. Where the design
+history names a departure, the obligation quotes it; where it does not, the
+obligation says what the code does and where.
+
+\subsubsection{The owed window and \diag{E201} are specified but not implemented}
+
+\begin{obligation}[a consumer that sits out the run in which its provider delivers is stranded]
+\label{ob:owed}
+\spec{13.4a} admits a bump-axis contribution for a target until the source
+has \emph{delivered} it. \spec{13.3} adds, for every edge $D \to P$ where $D$
+has a baseline, an owed window \code{owedWindow(P, D)} to the union of
+windows parsed in \spec{13.4}, so that a debt survives the release of the
+provider; and \spec{19.3} refuses with \diag{E201} a run that would release a
+provider at the baseline commit of a consumer it still owes unless the
+consumer releases after it in the same run. The reference implementation
+implements the delivery test and the reconciliation of a proceeding consumer,
+and neither the owed window nor \diag{E201}.
+\end{obligation}
+
+\paragraph{Source.} The design history entry of 22 September 2026,
+``Delivery discharges a propagated contribution'', ends: ``The dispat engine
+implements the delivery admission and the reconciliation of a proceeding
+consumer; the owed windows and \code{E201} are not yet implemented, and a
+consumer that sits out the run in which its provider releases the owed commit
+is therefore still stranded in that engine, which its release notes list as a
+departure.'' The engine's sources at the same commit contain no \code{E201}
+and no owed window; \code{admission.go} carries \code{isDelivered} and
+\code{owedSources}, the delivery half. The release notes at this commit do
+not yet carry the departure: \code{services/dispat/CHANGELOG.md} ends at
+\code{v1.11.0-rc.3} of 20 September, two days before the entry, and
+\code{announce/rc/notes.yaml} does not mention it.
+
+\paragraph{Scenario.} One commit $C_1$ carries \code{feat(core)\^{}: x} and
+\code{feat(cli): y}, with \code{cli} consuming \code{core}. Run 1:
+\code{core} fails to publish; \code{cli} has a cause of its own, proceeds at
+\code{2.1.0} with its manifest naming \code{core}'s baseline \code{1.4.0},
+and is tagged at $C_1$ (\spec{19.3}; vector 80d). A commit $C_2$ lands. Run 2
+releases \code{core@1.5.0} at $C_2$ in a run \code{cli} sits out, held or
+deselected. Now $W(\code{core}) = \emptyset$ and $W(\code{cli}) = \{C_2\}$:
+$C_1$ lies in no window of either package, so the unit is never parsed,
+\code{cli} is never planned, and its manifest names \code{core@1.4.0} for
+ever. The delivery test would answer correctly if it were asked, since
+\code{core}'s release commit $C_2$ is not reached by \code{cli}'s baseline
+$C_1$; the owed window is what asks it. Vector 80d states the case in its
+last sentence: ``\code{core} published at a later commit in a run \code{cli}
+sat out leaves \code{C1} in \code{cli}'s owed window (\S13.3), so the next run
+plans \code{cli}'s catch-up.''
+
+\paragraph{Consequence.} In the specification, \cref{thm:g2} holds as
+stated: the owed window keeps the contribution admissible until \code{cli}
+releases at or after \code{core}'s release carrying $C_1$. In the engine, the
+theorem holds only while some pending window still holds the commit, which
+is every case but this one. The loss is silent in the plan. The tag-level
+screen of \cref{prop:screen} does fire, because \code{core}'s stable commit
+is not an ancestor of \code{cli}'s baseline, so a scheduled \spec{13.7b}
+audit reports \diag{W195}; nothing releases it.
+
+\paragraph{Repair.} Add the owed windows to the parsed union and \diag{E201}
+to the publish protocol, as written. Until then the operator-side remedy is
+the one \spec{19.3} states for the refused run: release the consumer in the
+same run as the provider, or pin it with an explicit \code{Release-As}.
+
+\paragraph{Pin.} Vector 80d, last two cases. The tests
+\code{TestAdmissionCatchesUpAConsumerThatProceededOnItsOwn} and
+\code{TestAdmissionCatchesUpAConsumerThatOvertookAHeldProvider} of the
+integration suite and
+\code{TestAdmissionCatchesUpAConsumerThatOvertookItsProvider} of
+\code{internal/plan} pin the delivery half at an unchanged \Head{}; no test
+in either suite exercises the run the consumer sits out.
+
+\subsubsection{Two releases on one commit: a stated boundary of completeness}
+
+\begin{obligation}[the same-commit failure case of \diag{E201}]
+\label{ob:samecommit}
+\spec{19.3} states: ``If the consumer is published after the provider and
+fails, the same state arises, and \code{E201} reports it with its remedy: an
+explicit \code{Release-As: <version>} on the consumer (\S8.6), because no
+later plan can compute the debt.'' The protocol reports this state; it does
+not resolve it. Completeness (\cref{thm:g2}) therefore has a boundary the
+specification itself states.
+\end{obligation}
+
+\paragraph{Scenario.} The state of \cref{ob:owed} after run 1, and run 2 at
+the same \Head{} $= C_1$ with both packages in the plan: \code{core@1.5.0}
+publishes and is tagged at $C_1$, then \code{cli@2.1.1} fails. Both
+\code{core}'s release commit and \code{cli}'s baseline are $C_1$. By
+\spec{13.4a}, \code{delivered(core, C1, cli)} asks whether some release
+commit $t$ of \code{core} carrying $C_1$ lies in the reach of \code{cli}'s
+baseline commit; $t = C_1$ does, so nothing is owed, although \code{cli}
+still names \code{core@1.4.0}. \spec{13.4a} says why no rule over tags can do
+better: ``Two releases on one commit have no order (\S13.7b), so
+\code{delivered} cannot tell a target that released at commit \code{t} after
+its source from one that released there in an earlier run whose source then
+released at \code{t} too.''
+
+\paragraph{Consequence.} \Cref{thm:g2} discharges a contribution when $d$
+releases at a commit whose ancestry contains $\cof{u}$. Ancestry is a partial
+order on commits and says nothing about two records on one commit, so the
+theorem is exact only under the hypothesis that a provider is never released
+at the baseline commit of a consumer it owes unless that consumer releases
+after it in the same run and succeeds. \spec{19.3} enforces the first half
+before publication and reports the second with a remedy. The closing remark
+of \cref{prop:screen}, that this case is prevented rather than detected,
+holds with the qualification that the prevention is a refusal and the
+residue is a report.
+
+\paragraph{Status.} A boundary, stated. In the engine it is unreported,
+because \diag{E201} is not implemented (\cref{ob:owed}); the state arises
+exactly as described and leaves no diagnostic. Vector 80d names the refused
+run; no vector or test exercises the failure after the provider's
+publication.
+
+\subsubsection{The version summary still contradicts the graduation rule}
+
+\begin{obligation}[\spec{13.9} does not preserve \spec{11.5}'s train target]
+\label{ob:graduation}
+\spec{11.5} states the graduation version as ``\code{applyBump(S, E)}, the
+same \code{target} as \S11.4, with no prerelease suffix'', where \spec{11.4}
+defines $E$ as ``the effective bump accumulated over the pending window
+(\S13.3)'', the train window $W(P)$. \spec{13.9}'s stable branch instead
+reads ``\code{next = applyBump(stableBaseline(P), effective(P))}'', and
+\code{effective(P)} is \code{max(direct(P), propagated(P))} (\spec{13.7})
+with \code{direct(P)} taken ``over surviving tuples for \code{P} whose commit
+is in \code{Wfresh(P)}'' (\spec{13.6}). On a channel-only graduation the
+fresh effective bump is \bnone{} although an older minor or major change
+established the train; read literally, the summary loses the aggregate the
+specific rule requires. This report follows \spec{11.5}; the summary should
+delegate to it or carry a separately named train target.
+\end{obligation}
+
+\paragraph{What changed since 2.0.0.} The obligation as first recorded had a
+second half: \spec{11.5} said \diag{E185} fires when the target is not
+greater than the ``baseline core'', which would have refused every ordinary
+graduation. The current text resolves it: ``Graduation never lowers a
+version: if \code{target} is lower than the core of the baseline, \code{E185}
+is raised. A \code{target} equal to that core is the ordinary graduation,
+because \code{1.3.0} ranks above \code{1.3.0-rc.1}.'' The same section now
+also carries the channel-entry patch on the way out of a train (\diag{W204}
+on graduation, vector 39b), which removes the dead end in which a train
+entered by the patch could not graduate. Both are implemented. The first
+half of the obligation stands: \spec{13.6}'s own second paragraph says that
+``\S11.4 then uses the full \code{W(P)} to compute that admitted
+prerelease's aggregate target'', and the window table of \spec{13.3} assigns
+the aggregate to $W(P)$, but \spec{13.9} is the section an implementer
+transcribes and it names neither.
+
+\paragraph{Consequence.} \Cref{thm:g3} proves that fixed version inputs give
+the same result on retry; it does not decide between two formulas.
+\Cref{def:plan} follows \spec{11.5}. A second implementation transcribing
+\spec{13.9} alone graduates a channel-only train to its stable baseline,
+which \spec{13.9}'s own last guard then refuses as \diag{E195}.
+
+\paragraph{Pin.} The last row of \spec{11.4}'s table (``\code{1.3.0-rc.1};
+nothing new, \code{E} is still the window's \code{minor}; \code{stable};
+\code{1.3.0}; graduation'') and edge case 61 of \spec{15.5}: ``Graduation
+with no pending bumps: publishes the accumulated \code{target}.'' The engine
+follows the specific rule: \code{computeVersion} in \code{plan.go} applies
+the bump held over the whole train to the stable baseline, and
+\code{TestTrainGraduationCountsPublishedWork} asserts that ``the bump of the
+already-published breaking change must still be in force even though it
+alone would not have re-released the train'';
+\code{TestGraduationUpdatesSpanTheTrain} and
+\code{TestTrainEnteredByTheEntryPatchGraduates} pin the record and the
+patch.
+
+\subsubsection{One edge-kind set orders, blocks and refuses cycles}
+
+\begin{obligation}[no \code{orderKinds} or \code{blockingKinds} in the engine]
+\label{ob:kinds}
+\spec{13.1} requires the graph to be acyclic ``over the edge kinds of
+\code{propagation.kinds} and \code{publish.orderKinds}'', and adds that a
+cycle ``existing only through [\code{devDependencies}] is not a cycle for
+this purpose and does not trigger \code{E200}, which is the common and
+legitimate case''. \spec{19.2} orders over \code{publish.orderKinds},
+``which includes \code{optionalDependencies}''; \spec{19.3} blocks over
+\code{publish.blockingKinds}, ``which excludes \code{optionalDependencies}''.
+The engine has neither key. Every declared edge, whatever its kind, enters
+the one graph that the cycle check, the publish order and the failure
+closure read; only propagation honours a kind set.
+\end{obligation}
+
+\paragraph{Where.} \code{config.go} builds one \code{model.Dependency} per
+declared edge, carrying its kind and dropping none; \code{loadWorkspace} in
+\code{plan.go} adds each to the graph and reports \diag{E200} on any cycle
+of it; the publish order is that graph's topological order; and the blocking
+closure of \code{release/executor.go} reads a per-relation boolean,
+\code{isBlocking}, not the edge's kind. The kind set of
+\code{parser.propagation.kinds} is consulted by the propagation walk alone,
+which is what the integration test plan states as the purpose of
+\code{TestPropagationKindsSelectTheEdgesTraversed}. Neither the design
+history, the changelog, the release notes nor the documentation records the
+difference; the documentation of \code{propagation.kinds} describes the walk
+only.
+
+\paragraph{Scenario.} Two packages that list each other under
+\code{devDependencies}, a test fixture depending back on the package it
+exercises. The specification accepts the workspace (vector 100a, edge case
+99a); the engine refuses it with \diag{E200} before any plan. Separately,
+\code{docs-site} depending on \code{ui} under \code{optionalDependencies}
+with \code{ui}'s publish failing: the specification publishes
+\code{docs-site} (vector 79, edge case 100); the engine blocks it with
+\diag{W194} unless its relation declares \code{isBlocking: false}.
+
+\paragraph{Consequence.} The departure is on the safe side. The engine's
+graph is a superset of the one \spec{19.2} orders, so any topological order
+of it is an order the specification accepts and \cref{prop:order} is
+unaffected; the blocked set of \cref{def:blocking} is computed over a
+superset of \code{blockingKinds}, so it is a superset of the specified one
+and the $F \cup B$ of \cref{thm:resumption} is larger, never smaller.
+Nothing the specification forbids is published. What is lost is admission: a
+workspace with a development-only cycle cannot release at all, and an
+optional dependent waits for a provider it does not need.
+
+\paragraph{Repair.} Either implement the two keys with the specified
+defaults, or record the departure where the design history records the
+others and restrict \diag{E200} to the runtime kinds. The second is a
+one-line change to the graph the cycle check reads.
+
+\paragraph{Pin.} Vectors 79 and 100a and edge cases 99a and 100 are the
+conformance cases; none has a test, and both vectors fail against the engine
+as it stands. \code{TestFatalDependencyCycle} of the integration suite and
+\code{TestCycleIsRejected} of \code{internal/plan} pin \diag{E200} over
+runtime edges; \code{TestExecutionDevDependencyOutputReachesConsumer} shows a
+\code{devDependencies} edge ordering builds under \spec{28}, which is what
+vector 22 of \spec{28.8} asks.
+
+\subsubsection{The fleet recorder rejects a retry that annotates the same commit}
+
+\begin{obligation}[the create-only rule's exception is implemented on one of two paths]
+\label{ob:records}
+\spec{19.1} states: ``A release tag is created, never replaced. Writing it
+to the authoritative store MUST fail when the store already holds that tag
+name, unless the stored tag names the same commit for the same package and
+version, which is the retry of an uncertain write (\S19.4).'' The
+single-repository recorder implements both halves; the fleet recorder of
+\spec{27} implements the first and not the exception.
+\end{obligation}
+
+\paragraph{Where.} \code{gitx/records.go} leases every record on the name
+being absent and, when the store refuses, reads the stored tag back peeled:
+the same commit is ``this run's own write arriving twice and is a success'',
+another commit is a published record left where it is (\diag{E221}). Its
+inventory compares peeled lines because ``two runs annotating the same
+commit write different tag objects, and a comparison on those would call one
+release two''. The fleet recorder's \code{PushRelease} in
+\code{gitx/polyrepo\_write.go} pushes each source tag with a plain unforced
+\code{git push}, which Git rejects whenever the remote holds a different tag
+object under that name, the same commit included; the rejection surfaces as
+\diag{E335} after the publication.
+
+\paragraph{Scenario.} One run's tag push is applied by the remote and its
+acknowledgement is lost, or two checkouts of one source repository record
+the same version at the same head in turn. The next push of that name
+carries a new annotation of the same commit. In a single repository the push
+is reported as \diag{W223}, ``tag already exists on the remote at this
+release's commit, skipped''; in a fleet it is refused, the run reports
+\diag{E335}, and the dependent legs are blocked (\spec{27.7}).
+
+\paragraph{Consequence.} Nothing incorrect is recorded: the refused write is
+the identity the store already holds, and the next run reads it as released.
+The cost is a failed run and blocked consumers for a retry the specification
+defines as successful. \Cref{cor:exactly-once} is unaffected, since the
+ledger holds one record either way.
+
+\paragraph{Status.} Open for the fleet path; resolved for the
+single-repository path by the design history entry of 21 September 2026,
+``Record authority under the lock''. Neither the design history, the
+changelog nor the test plan records the fleet path's difference.
+\code{TestReleaseRecordsCreateOnlyPush} pins the single-repository
+behaviour (``the same commit is the retry of a lost write and succeeds'');
+\code{TestReleaseRecordsInAComposedWorkspace} pins the fleet's comparison
+under the lock, not its push. Cases: \spec{28.8} vectors 27 and 28; edge case
+76a.
+
+\subsubsection{The failure category travels only from a distributed lock loss}
+
+\begin{obligation}[the class of \spec{28.9} is attached at the new sites only]
+\label{ob:category}
+\spec{28.9} requires implementations to ``expose stable machine-readable
+categories, named by the identifier each row states''. The design history
+entry of 22 September 2026 states the engine's position: ``the existing
+\code{E220} to \code{E222}, \code{E335} and \code{E336} carry
+\code{native-recording-or-lock} as their class; the field is attached where
+a distributed run loses its lock, and not yet at the older recording and
+lock sites, which is a departure to be closed by attaching it there.''
+\end{obligation}
+
+\paragraph{Consequence.} A reader that switches on the class, which is what
+\spec{28.9} designs the class for, sees a lost lock in a distributed run and
+not the same lost lock in a local one, nor a refused record. No release
+outcome depends on it. \code{execution/codes.go} names the mapping in one
+place, so the repair is to emit the field at the five older sites.
+
+\paragraph{Pin.} Vector 14 of \spec{28.8} and
+\code{TestExecutionLockLossStopsNewEffects} of the integration suite cover
+the site that carries the field; row EXE-12 of the requirement matrix
+asserts \diag{E226} with its \code{execution-authority} class. No test
+asserts the class on a local \diag{E221} or \diag{E336}.
+
+\subsubsection{Profile departures and inapplicable vectors}
+
+\begin{obligation}[what the engine records as not implemented or done otherwise]
+\label{ob:profile}
+The design history entry of 22 September 2026 lists, beside
+\cref{ob:category}, the remaining departures of the engine from \spec{28}
+and the vectors that do not apply to it. They are recorded here so that the
+table of \cref{sec:conformance} reads against them.
+\end{obligation}
+
+\begin{itemize}
+  \item ``Not implemented, so the conditional vectors do not apply: reuse of
+    verified outputs across runs (vector 20) and the rollback profile of
+    section 26 (vector 26).'' \spec{28.8} states the rule the entry relies
+    on: a vector whose condition does not hold for an implementation ``is
+    neither satisfied nor violated''.
+    \code{TestExecutionOldRunReceiptGrantsNothing} and
+    \code{TestExecutionTaskReceiptDischargesNothing} pin the halves of those
+    vectors that hold regardless.
+  \item ``Departures from the profile as written: the platform check of
+    section 28.2 runs before dispatch for the packages a run releases and,
+    for a prepared provider, at its placement, where an unsatisfiable
+    platform fails the provider's consumers.'' \spec{28.2} asks that
+    unsupported target platforms ``fail preflight''.
+    \code{TestExecutionPreparedProviderObeysItsOwnPlatforms} and
+    \code{TestExecutionOrchestratorOnlyBuildIsNotHeldToTheWorkersPlatforms}
+    pin the engine's timing.
+  \item \spec{28.4} ``now also permits a durable mailbox ref or a
+    history-free snapshot, and neither is implemented''. These are
+    permissions, not requirements; the entry records the cost of the mode in
+    use, a first transport of a whole history.
+  \item The specification's own header keeps the VCS adapters of \spec{25}
+    and the explicit rollback of \spec{26} ``pending implementation''. The
+    forward-publish projection this report models is unaffected;
+    \spec{13.7c} says its guarantees are claims about that projection.
+\end{itemize}
+
+\subsubsection{Textual defects noticed in passing}
+
+Four defects of the text, none of which changes a rule, are recorded for the
+specification's owner because they affect citation. Appendix B numbers two
+vectors ``82c'': the consumer that gets ahead of a held provider (B.7) and
+the hoisting of \code{resolvableBy} over a mixed source set (B.7a); this
+report cites them as ``82c (B.7)'' and ``82c (B.7a)''. In \spec{19.3} the
+bullets ``continue publishing packages that are not blocked'' and ``not
+release a package at the baseline commit of a consumer it still owes'' are
+run into the preceding bullet's line rather than set as items. The design
+history says the release notes list the departure of \cref{ob:owed}, and at
+this commit they do not. And the window table of \spec{13.3} cites
+\spec{13.6} as a consumer of the aggregate train window, while the formula
+of \spec{13.6} reads the undelivered one and only its prose defers the
+aggregate to \spec{11.4}, the seam \cref{ob:graduation} sits on.
+
+\subsection{Historical CCME 1.0.0 obligations}
+\label{sec:obligations-historical}
+
 Formalising CCME 1.0.0 at \texttt{713f1a0b} exposed six failure classes. Each obligation below
 states the claim, a minimal counterexample, the consequences, a repair, and a
 conformance vector. Three concern \spec{13.7c}, one \spec{13.7b}, one
@@ -11,7 +392,11 @@ None is a defect in the reference implementation. In two cases
 from the specification. A second implementation following only the written
 contract would therefore be incorrect. Source references below are
 relative to \code{services/dispat/internal/plan/} and cite the line numbers of
-the released \code{services/dispat/v1.7.2} tag.
+the released \code{services/dispat/v1.7.2} tag. Those sources have since
+moved: at \code{252216ba}, \code{containedInBaseline} is at \code{plan.go}
+line 2507, \code{Plan.StaleSources} at line 1280, and the per-unit traversal
+of \code{propagate.go} is served from a walk cache (line 76) whose
+composition is checked against the literal walk (\cref{sec:conformance}).
 
 Released CCME 2.0.0 resolves them as follows: \cref{ob:pre} by $W_{\rm fresh}$;
 \cref{ob:g5,ob:origin} by the full retry invariant and fixed-state wording;
@@ -19,42 +404,14 @@ Released CCME 2.0.0 resolves them as follows: \cref{ob:pre} by $W_{\rm fresh}$;
 \cref{ob:g8} by stating axis independence in the bump-to-channel direction
 only; and \cref{ob:bucket} by retaining each unit's own source exclusion when
 bucketed. The counterexamples remain regression evidence for those normative
-conditions. Except where a paragraph explicitly names CCME 2.0.0 or a current
-theorem, every numbered \spec{} reference and quoted guarantee in this section
+conditions. The regression vectors named below as ``the released 2.0.0
+form'', 133 to 138, are in the current text the edge cases 133 to 138 of
+\spec{15.7}, one row each. Except where a paragraph explicitly names CCME 2.0.0 or a current
+theorem, every numbered \spec{} reference and quoted guarantee in this subsection
 refers to the CCME 1.0.0 snapshot at \code{713f1a0b}; present tense describes
 the historical rule being executed, not the released 2.0.0 text.
 
-\subsection{Current obligation: the graduation summary contradicts its specific rule}
-
-\begin{obligation}[CCME 2.0.0 §13.9 does not preserve §11.5's train target]
-\label{ob:graduation}
-Section 11.5 explicitly defines graduation as $\applyb{S}{E}$ using the same
-aggregate $E$ over the train window as §11.4. That rule supplies the intended
-stable core. Section 13.6, however, defines the direct bump from fresh work and
-phase 3 likewise produces fresh propagation; §13.9's generic stable branch
-then applies their \code{effective(P)} to the stable baseline. On a channel-only
-graduation, fresh effective can be \bnone{} although an older minor or major
-change established the train. Read literally, the summary loses the aggregate
-that §11.5 requires. The model follows the more specific §11.5 rule; the
-specification should make §13.9 delegate to it or carry a separately named
-train target.
-\end{obligation}
-
-A second wording inconsistency occurs inside §11.5: E185 is said to fire when
-the target is not greater than the ``baseline core'', although normal
-graduation in its own table removes the prerelease suffix while retaining the
-same core. The meaningful monotonicity comparison is full SemVer precedence
-against the prerelease baseline, under which the stable version is greater.
-This is a specification-text obligation, not evidence of a runtime failure.
-Current \cref{thm:g3} proves only that fixed version inputs produce the same
-result on retry; it does not resolve contradictory formulas by itself. A
-conformance vector should enter a train on an aggregate minor or major target,
-then perform a channel-only graduation and require that target's stable version
-without E185.
-
-\subsection{Historical 1.0.0 obligations}
-
-\subsection{The prerelease window never discharges}
+\subsubsection{The prerelease window never discharges}
 
 \begin{obligation}[the 1.0.0 G4/G6 claims fail on a prerelease train]
 \label{ob:pre}
@@ -138,7 +495,7 @@ consequence the specification does not: without it the engine ``would re-warn
 must be empty. (ii) The two-directive window above, run three times: run 2 must
 be empty, and \diag{E195} must not arise.
 
-\subsection{Window-scoped suppression lapses, so the admitted set can grow}
+\subsubsection{Window-scoped suppression lapses, so the admitted set can grow}
 
 \begin{obligation}[the 1.0.0 G5 claim lacks suppression stability]
 \label{ob:g5}
@@ -221,7 +578,7 @@ plans \code{cli}, the plan is documented as a superset of run 1's, and the
 \diag{W193} naming \code{core} as the origin is present so that the widening is
 visible to whoever reads the plan rather than silent.
 
-\subsection{The staleness dual omits the resolvability test}
+\subsubsection{The staleness dual omits the resolvability test}
 
 \begin{obligation}[\spec{13.7b}'s two formulations disagree]
 \label{ob:duality}
@@ -263,7 +620,7 @@ second implementation would, disagrees on every prerelease workspace.
 down-versus-up cross-check \spec{13.7b} recommends is run on a workspace
 containing at least one prerelease train.
 
-\subsection{Axis independence is one-directional}
+\subsubsection{Axis independence is one-directional}
 
 \begin{obligation}[the ``vice versa'' in \G{8}]
 \label{ob:g8}
@@ -299,7 +656,7 @@ released on \code{rc} with no propagated bump and a \diag{W208}, and that the
 \diag{W208} is a consequence of the channel precedence rule rather than of
 anything the caret did.
 
-\subsection{Inherited channels read a baseline that release moves}
+\subsubsection{Inherited channels read a baseline that release moves}
 
 \begin{obligation}[\spec{9.3}'s replay-independence claim]
 \label{ob:origin}
@@ -352,7 +709,7 @@ documentation plus the vector below.
 plan \code{app} at \code{2.0.1} on \stable{}, and the plan should carry the
 \diag{W199} that records why the run-1 proposal lapsed.
 
-\subsection{Bucketed traversal over-admits a unit's own sources}
+\subsubsection{Bucketed traversal over-admits a unit's own sources}
 
 \begin{obligation}[the 1.0.0 bucketing remedy has its own edge]
 \label{ob:bucket}

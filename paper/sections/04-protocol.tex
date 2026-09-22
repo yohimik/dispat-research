@@ -3,24 +3,82 @@
 
 The guarantees are joint properties of the computation and the protocol that
 writes the state the next computation reads. \spec{19} says so explicitly: they
-do not survive an implementation that gets this section wrong. Three
-obligations are used in the proofs.
+do not survive an implementation that gets this section wrong. This section
+transcribes the obligations the proofs use, in the order a run meets them: the
+comparison of release records under the lock, tagging, publication order, build
+readiness, partial failure, reconciliation, and manifest writes. The durations
+these obligations lead to, and their distributed and multi-repository forms,
+are the subject of \cref{sec:execution}.
 
-\subsection{Tag after, immediately, and always}
+\subsection{Records under the lock}
+
+\Cref{def:state} takes the state \st{} to be the set of release tags reachable
+from \Head{}. \spec{13.2} says whose tags: the authoritative store's, not the
+checkout's.
+
+\begin{definition}[records under the lock, \spec{13.2}]
+\label{def:records-lock}
+A write-capable run plans from the release records of the authoritative store
+it records to, not from whatever its checkout fetched. After it holds every
+release lock it needs and before it fixes the input of \spec{13.2}, it
+compares, for each participating repository, the release records of the store
+with the records it is about to plan from. A stored record whose commit is
+reachable from the planned head and which the planning input lacks is
+incomplete history, \diag{E196}. A stored record that names another commit
+than the planning input's record of the same package and version is
+\diag{E191}. Neither difference is repaired by planning the package as
+unreleased, and the records are not refreshed after the comparison: a run that
+fetches does so before it and plans from what it then holds. Only what
+\spec{12.1} parses as a release tag of a workspace package is a record here; a
+ref the implementation moves by design, its lock, and a name that merely
+resembles a tag are not. A store whose records cannot be read is \diag{E196}.
+Read-only planning takes no lock and makes no comparison; its result describes
+the checkout. The comparison reads one record inventory per repository, $O(T)$
+each, and asks one ancestry question per record the input lacks, which is none
+in the ordinary case.
+\end{definition}
+
+The lock alone serialises runs and isolates nothing: two runs that never
+overlap still plan the same version when the second one's checkout predates
+the first one's records. The comparison is what the lock makes sufficient,
+because no other coordinated run can add a record between the comparison and
+this run's own. Complete history makes reachability decidable locally, since a
+commit the checkout does not hold cannot be reachable from its head. A run
+under an unsafe lock bypass (\diag{W331}) still compares; nothing then holds
+other runs off after the comparison, so the exposure is narrowed and not
+closed. Under \spec{27} the inventory is read per owning repository and
+cross-repository consumer positions are reconstructed as
+\cref{sec:exec-polyrepo} describes; commit identifiers of different
+repositories are never compared as one ancestry relation.
+
+\subsection{Tag after, immediately, always, and once}
 
 \begin{definition}[tagging, \spec{19.1}]
 \label{def:tagging}
 For each released package: the tag is created at \Head{}; \emph{after} that
 package's publish succeeds, never before; \emph{immediately} after it, not
-batched to the end of the run; and for every released package whatever its
-publish target, including targets that upload no artefact at all.
+batched to the end of the run; for every released package whatever its
+publish target, including targets that upload no artefact at all; and
+\emph{once}. A release tag is created, never replaced. Writing it to the
+authoritative store fails when the store already holds that tag name, unless
+the stored tag names the same commit for the same package and version, which
+is the retry of an uncertain write (\cref{def:reconcile}). A forced ref update
+is never used for a release tag, and a tag is not moved or deleted once
+pushed. A ref the implementation moves by design is not a release record and
+is outside this rule. For a target of \code{none} there is no publish step:
+the tag is written once the package's manifest write succeeds.
 \end{definition}
 
 Each clause excludes a specific failure. Tagging before publishing makes the
 version unrecoverable, because \cref{def:window} will treat it as released.
 Batching tags to the end of a run makes a mid-run failure republish everything
 already published, which most registries reject outright. Tagging only what
-uploads an artefact is the subject of \cref{prop:tagall}.
+uploads an artefact is the subject of \cref{prop:tagall}. The create-only
+clause is what makes \cref{def:state} monotone in fact and not only by
+convention: a record, once written, is never overwritten by a later writer,
+which is also what \spec{28.6} relies on when an orchestrator records a
+publication it authorised before losing its lock
+(\cref{def:exec-publication}).
 
 \subsection{Order}
 
@@ -61,24 +119,214 @@ before its dependency carries a range reconciled against the dependency's old
 version, and both land at the same commit, so no ancestry test can tell
 afterwards that anything is wrong (\spec{13.7b}). The inconsistency is
 undetectable after the fact, which is why it is prevented rather than
-diagnosed.
+diagnosed. \diag{E197} is scoped to \cref{def:order} and not to propagation:
+every workspace dependency edge between two planned packages constrains the
+order, whether or not either package's bump arrived by propagation, because a
+dependent planned for its own unrelated \code{feat} still resolves its
+dependency at install time (\spec{22}, vector 80a). An \diag{E197} that fires
+only for propagated pairs is under-reporting.
+
+\subsection{Build readiness}
+
+\Cref{def:order} orders publication. An engine that also runs the packages'
+builds has a second question for every edge between two packages that build
+in this run: what the consumer's build reads of the provider.
+
+\begin{definition}[build readiness relation, \spec{19.2a}]
+\label{def:readiness}
+For every workspace dependency edge $C \to P$ between two packages that build
+in this run, the edge carries a declared \emph{build readiness relation} with
+one of three values, ordered $\code{none} < \code{build} < \code{publish}$:
+\begin{itemize}
+  \item \code{publish}: $C$'s build reads $P$ as an installer resolves it, the
+    published artefact and its record, and starts after $P$ is published and
+    recorded (\cref{def:tagging});
+  \item \code{build}: $C$'s build reads what $P$'s build leaves in the
+    workspace, and starts after $P$'s build has succeeded;
+  \item \code{none}: $C$'s build reads nothing that $P$'s build or publication
+    produces in this run, and waits for nothing of $P$.
+\end{itemize}
+$C$'s build includes every preparation step of $C$ that can read the provider,
+lockfile regeneration in particular; manifest reconciliation
+(\cref{def:manifests}) reads planned versions only and waits for nothing. Each
+precondition implies the one before it, because a package builds before it
+publishes. Under all three values $P$ publishes before $C$ does:
+\cref{def:order} is unchanged, is not a fourth value, and cannot be declared
+away. The relation is \emph{declared, never inferred}: an engine cannot check
+that a build reads nothing, so it neither infers \code{none} nor makes it a
+default. It is \emph{policy, not plan}: it never changes which packages release
+or at which versions, is no part of the input of \spec{13} or of a plan
+digest, and two runs of one plan under different relations record the same
+releases when every task succeeds; under \spec{28} it travels with the run's
+resolved configuration and a node's own settings cannot change it. It is
+\emph{ordered over the whole graph}: for two packages $C$ and $P$ that build
+in this run, a dependency path from $C$ to $P$ with no \code{none} edge on it
+places $P$'s build before $C$'s, whether or not the packages between them are
+in the plan, and a \code{none} edge ends the constraint of every path through
+it.
+\end{definition}
+
+The reference implementation reads the relation at the consumer's own edge
+only, and carries build and publish \emph{order} through a non-building
+intermediate by a memoised reach (\code{release/stagerelation.go}), never the
+intermediate's relation value; that is the reading taken here for a
+\code{publish} edge behind a package that does not build, and the question is
+flagged for the specification (\cref{sec:obligations}).
+
+\code{none} therefore means build in parallel and publish in order, which is
+the relation of a deployment order: infrastructure before the application that
+runs on it, a schema before the service that reads it. Vector 80c of
+\spec{22} is the whole-graph clause: with $\code{app} \to \code{ui} \to
+\code{core}$ where \code{app} and \code{core} build and \code{ui} does not,
+\code{core}'s build precedes \code{app}'s when both edges are \code{build}, and
+no build constraint exists when either edge is \code{none}, while \code{core}
+publishes before \code{app} in every row. Adding build edges only between a
+package and its direct providers in the plan loses the first row, exactly as
+inducing the publish graph on the plan loses vector 80a.
+
+\begin{definition}[task graph, \spec{19.2a}]
+\label{def:taskgraph}
+The \emph{task graph} of a run has a node $\mathrm{build}(X)$ for every package
+$X$ that builds and a node $\mathrm{publish}(X)$ for every $X \in \plan{\st}$,
+and the edges (arrows denote happens-before): $\mathrm{build}(X) \to
+\mathrm{publish}(X)$; $\mathrm{publish}(P) \to \mathrm{publish}(C)$ whenever
+$P$ precedes $C$ in \cref{def:order} along a dependency path;
+$\mathrm{build}(P) \to \mathrm{build}(C)$ for every dependency path from $C$ to
+$P$ with no \code{none} edge, both building; and $\mathrm{publish}(P) \to
+\mathrm{build}(C)$ for every edge $C \to P$ declared \code{publish}.
+\end{definition}
+
+\begin{proposition}[no new cycle, \spec{19.2a}]
+\label{prop:readiness-acyclic}
+For every choice of relations the task graph is acyclic. Weakening a relation
+only removes edges. \diag{E197} cannot arise from a relation.
+\end{proposition}
+
+\begin{proof}
+Let $r$ number the packages in a topological order of the workspace graph with
+providers first, so that $r(P) < r(C)$ whenever $C$ depends on $P$ over a
+dependency path. Give each task the key $(r(X), s)$ with $s = 0$ for a build
+and $s = 1$ for a publication, ordered lexicographically. Every edge of
+\cref{def:taskgraph} strictly increases the key: $\mathrm{build}(X) \to
+\mathrm{publish}(X)$ raises $s$ at fixed $r$, and the three remaining forms
+raise $r$, since each runs along a dependency path from a consumer $C$ to a
+provider $P$ with $r(P) < r(C)$. A cycle would return to its starting key,
+which a strictly increasing key cannot do. The only edges a relation
+contributes are of the third and fourth forms; \code{publish} contributes both,
+\code{build} the third, \code{none} neither, so a weaker value contributes a
+subset. The publication order of \cref{def:order} reads no relation, so a
+violation of it (\diag{E197}) cannot be caused by one.
+\end{proof}
+
+Failure is the business of \cref{def:blocking}. Under \code{build} and
+\code{none}, $C$ may be prepared and built against $P$'s planned version before
+the outcome of $P$'s publication is known. That is sound because
+\cref{def:blocking} then either blocks $C$ or, where $C$ has a cause of its
+own, reconciles its manifest to $P$'s published version before $C$ publishes
+and leaves $P$'s contribution owed (\cref{def:sources}): a manifest naming a
+version that was never published is never published itself. A build that
+embedded the planned version is rebuilt, or $C$ is blocked; a build finished
+for a blocked consumer confers nothing, is not published, discharges no
+obligation, and the next run builds again or reuses it under the identity rules
+of \spec{28.5}. Under \spec{28} a \code{build} edge is the local-output
+dependency and a \code{publish} edge the registry-availability edge of
+\cref{def:exec-outputs}; a \code{none} edge carries no output into the
+consumer's build task, and the requirement that task inputs include every
+build dependency is met because the declaration says there is none.
 
 \subsection{Partial failure}
 
-\begin{definition}[blocking, \spec{19.3}]
+\begin{definition}[own causes, blocking, and proceeding, \spec{19.3}]
 \label{def:blocking}
-On a failure, every package in the plan that transitively depends on the failed
-one over \code{publish.blockingKinds} is \emph{blocked} (\diag{W194}): planned,
-but not attempted in this run. The closure is computed over the full workspace
-graph, so it traverses packages that are not in the plan. Packages that are not
-blocked continue to publish.
+Let $F \subseteq \plan{\st}$ be the packages whose publish failed. A package
+$d \in \plan{\st}$ that transitively depends over \code{publish.blockingKinds},
+through the \emph{full} workspace graph, on a member of $F$ or on a blocked
+package is \emph{blocked} (\diag{W194}) when it has no cause of its own, and
+\emph{proceeds} otherwise. A cause of its own is a fresh direct bump, a channel
+change, or a contribution from a provider that is neither failed nor blocked,
+including one that published in an earlier run. A blocked package is planned
+but not attempted in this run. A proceeding package publishes at its planned
+version with its manifests reconciled to what its providers have published
+(\cref{def:manifests}); what the failed provider owed it stays owed
+(\cref{def:sources}) and arrives as a catch-up (\diag{W193}) when that
+provider publishes. Packages that depend on no failed or blocked package
+continue to publish: an unrelated subtree is not punished for another's
+failure. The run reports what published, what failed and what was blocked,
+and exits non-zero.
 \end{definition}
 
-Ordering and blocking use different edge-kind sets, and the asymmetry is
-deliberate: \code{orderKinds} includes optional dependencies, because an
-optional dependency should still be available before its dependent, while
-\code{blockingKinds} excludes them, because a missing optional dependency does
-not break an install and a missing required one does.
+The closure traverses packages that are not in the plan: a package with no
+bump this run is still a path from a dependent to a failed dependency
+(vector 80a). Ordering and blocking use different edge-kind sets, and the
+asymmetry is deliberate: \code{orderKinds} includes optional dependencies,
+because an optional dependency should still be available before its
+dependent, while \code{blockingKinds} excludes them, because a missing
+optional dependency does not break an install and a missing required one
+does. The pseudo-code of \spec{19.3} is transcribed verbatim (the section sign is mapped to \code{\S} for the typewriter font
+and nothing else is changed):
+
+{\catcode`\§=\active \gdef§{\S}}%
+\begin{speccode}[codes={\catcode`\§=\active}]
+run(plan):
+    published, failed, blocked = {}, {}, {}
+    for P in publishOrder(plan, graph):            # a flat sequence, §19.2
+        bad = transitiveBlockingDeps(P, graph) & (failed | blocked)   # full graph, §19.3
+        if bad and ownCauses(P, plan, bad) is empty:
+            blocked[P] = W194; continue
+        reconcileRanges(P, published)              # §9.4, §19.5: providers as published by now
+        try:
+            if publishTarget(P) != none:           # §13.10a
+                publishTo(publishTarget(P), P, plan[P].version)   # or adopt, §19.4
+            tag(P, plan[P].version, HEAD)          # §19.1: always, immediately
+            published[P] = plan[P].version
+        except PublishError as e:
+            failed[P] = e
+            if config.publish.onFailure == 'abort': return report(...)
+    return report(published, failed, blocked)
+\end{speccode}
+
+\code{publishOrder} returns a flat, totally ordered sequence, not levels, so
+\code{run} iterates it directly. Publishing strictly one at a time is the
+normative reading; an implementation may publish concurrently only if it
+preserves the same happens-before relation and reports in the sequence order
+regardless (\spec{17.2}). On re-run the plan is recomputed from tags: packages
+already tagged fall out by \spec{13.6}, packages that failed or were blocked
+remain candidates by \cref{def:sources}, and a dependent that proceeded
+returns as a catch-up once the failed provider publishes.
+
+\begin{remark}[the blocked set of \cref{def:run}]
+\label{rem:run-blocked}
+\Cref{def:run} takes blocking in exactly this sense: its blocked set is the
+closure of the failed set restricted to packages without a cause of their own
+relative to what failed or was blocked before them in the publish order
+(\cref{def:owncause}), and a proceeding dependent belongs to its published
+set at its planned version. The proofs of \cref{sec:guarantees} that quantify
+over $F \cup B$ use only that a package in $F \cup B$ gained no tag. What a
+proceeding dependent is still owed is the subject of \cref{def:sources} and
+of the delivery rule it transcribes, not of the blocking closure.
+\end{remark}
+
+\begin{definition}[the owed-commit rule, \spec{19.3}]
+\label{def:owed-commit}
+A package $P$ is not released at the baseline commit of a consumer $D$ it
+still owes (\cref{def:sources}) unless $D$ is in the plan and is published
+after $P$ in this run. Such a run is refused with \diag{E201} before any
+publication, naming the pair; the remedy is to release the consumer in the same
+run, or the provider at a later commit, where the debt stays visible in the
+owed window of \spec{13.3}. If $D$ is published after $P$ and fails, the same
+state arises, and \diag{E201} reports it with its remedy, an explicit
+\code{Release-As: <version>} on the consumer (\spec{8.6}), because no later
+plan can compute the debt.
+\end{definition}
+
+\Cref{def:wf} states the rule as a well-formedness condition on the state a
+run starts from, and \cref{def:run} refuses a run from a state that violates
+it. Two releases on one commit cannot be ordered afterwards (\spec{13.7b}). A
+consumer that sat the run out, held, deselected or excluded by any other
+means, would then read as served: the delivery test of \spec{13.4a} finds a
+release of $P$ on a commit that $D$'s baseline reaches, namely $D$'s own
+baseline commit, and nothing is left to detect that $D$ came first. The rule
+prevents that state rather than diagnosing it.
 
 \begin{example}[an infrastructure leg]
 \label{ex:terraform}
@@ -88,9 +336,12 @@ explicitly configured live resources and writes a plan, and its publish stage
 applies that plan before the release tag is written. The tag records that this
 version of the configuration completed successfully. It is not Terraform
 resource state, does not prove that every live resource was imported, and does
-not make applying an arbitrary configuration externally idempotent. Application
-builds may overlap the apply; only their publication waits for the
-infrastructure publish edge.
+not make applying an arbitrary configuration externally idempotent. The edge
+from the application to the infrastructure package is the case
+\cref{def:readiness} names: the application's build reads nothing the apply
+produces, so the edge is declared \code{none}, the two builds overlap, and
+only the application's publication waits for the infrastructure publish.
+\Cref{ex:exec-chain} gives the durations.
 \end{example}
 
 \begin{remark}[recorded-success abstraction]
@@ -102,6 +353,8 @@ publish-target-specific idempotence contract is required. Terraform likewise
 needs its own state or an explicit, complete import boundary before a plan can
 safely describe existing resources.
 \end{remark}
+
+\subsection{Reconciliation and manifest writes}
 
 \begin{definition}[reconciliation, \spec{19.4}]
 \label{def:reconcile}
@@ -118,3 +371,24 @@ abstraction meets a third outcome, that it already happened, and
 safe: without it, adopting a version published by something other than this run
 would enrol a foreign artefact into the release lineage, which is a
 supply-chain vulnerability rather than a convenience.
+
+\begin{definition}[manifest writes, \spec{19.5}]
+\label{def:manifests}
+Before a released package publishes, its manifest is updated so that it
+declares no range excluding the version each workspace dependency has
+\emph{published} by the time the package is reconciled: the dependency's
+planned version when it is in this run's plan and has published, and its
+current baseline otherwise (\diag{W197} when that baseline came from an earlier
+run). A dependency that is in the plan but failed or was blocked has published
+nothing new; a dependent that proceeds past it (\cref{def:blocking}) is
+reconciled to the baseline, and \diag{W193} follows when the dependency
+publishes. Because the graph is acyclic and \cref{def:order} publishes every
+dependency before its dependents, the planned and published versions coincide
+at the moment each package is reconciled whenever the dependency published;
+reconciliation may therefore be computed once up front from the plan and
+corrected, before the dependent's publish, only for the providers that did not
+publish. A manifest naming a version that was never published is never
+published, whatever was computed up front. The writes are part of the publish
+step, not the plan, and are not committed back in a way that itself parses as
+a bump-producing unit.
+\end{definition}
