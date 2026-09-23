@@ -629,10 +629,15 @@ hexagon 111~s (build 330) and m68k\_nommu 128~s (build 331), with
 over GNU assembler 2.47.20260726 from the kernel.org crosstool
 builds~\cite{crosstool}, and \code{Ubuntu clang version 18.1.3 (1ubuntu1)} for
 hexagon. The exact case lines are four for alpha, three for hexagon and five
-for m68k\_nommu. These are individual build-step durations measured on the
-farm's own machines while sharing them with another build, not the wall time
-of a farm run, and they are other hardware: they bound acceptance and are not
-compared numerically beyond the gate. For context only, the first fork report
+for m68k\_nommu. These are individual build-step durations on the farm's
+own, different, hardware, not the wall time of a farm run. The farm's
+configuration gives image builds an exclusive lock, one per machine
+(\evpath{master/master.cfg}, unchanged in the fork from upstream
+\code{336111e3}), and its maintainer reports that the build directory is a RAM
+disk that holds a single build (correspondence of 23 September 2026). The
+fork's first report describes the reference steps as shared with another
+build; the configuration does not support that. The references bound
+acceptance and are not compared numerically beyond the gate. For context only, the first fork report
 records that the farm's 57 upstream builders took 23.0 machine-hours in
 3~h~52~min of wall time for v7.3-rc4 on six machines
 (\evpath{dispat/gce/REPORT.md}); that figure was read from public pages and
@@ -895,6 +900,17 @@ outside dispat and without any lease, the hexagon trio in 120.12~s and the
 five m68k\_nommu cells in 128.17~s of script body
 (\evpath{cal-c3.txt}), both at or above their references before a second of
 release overhead.
+
+\paragraph{Why these layouts do not transfer to the farm.} The paired
+layouts ran two hexagon or four m68k\_nommu image builds at once on the
+\code{c3-standard-22}, the single-node runs three and five, and the
+calibration the same stacking, each build in its own directory under a
+\code{/tmp} on the boot disk (the image's default; no mount output was
+retained). The farm runs one image build per machine in a RAM disk that holds
+one build, so none of these layouts fits its machines as they are, and the
+measured build directories were disk-backed where the farm's are in memory.
+The round shows what a second machine bought on this hardware; it does not
+show that the farm would finish sooner.
 
 \paragraph{alpha, and why it was not run.}
 The alpha group was not attempted. Its \code{allmodconfig} is one
@@ -1284,7 +1300,9 @@ very differently; none is a cross-version or cross-tool benchmark. The seed
 One pair of machine shapes, one region, one kernel revision, two trials per
 accepted topology and one single-node run per group; the gate compares
 against public build-step times measured on the farm's own, different,
-hardware while it shared each machine with another build. The single-node
+hardware, where each image build has its machine to itself and builds in a RAM
+disk, while the measured layouts stacked two to five builds on one machine in
+disk-backed directories. The single-node
 runs are penalised by the cold-metadata lease cost on two m68k\_nommu cells and
 freed of the preflight the paired runs pay; the calibration outside dispat is
 the corroboration. alpha, every QEMU group and the 57-group matrix are

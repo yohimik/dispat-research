@@ -404,9 +404,14 @@ alpha 623~s, hexagon 111~s and m68k\_nommu 128~s, with GCC 16.2.0 over GNU
 assembler 2.47.20260726 from the kernel.org crosstool
 builds~\cite{crosstool} and Ubuntu clang 18.1.3 for hexagon
 (\evpath{evidence/kernel-gce/round1-codex/baseline.json}). These are
-build-step durations on the farm's own machines while sharing them with
-another build, on other hardware: they bound acceptance and enter no other
-comparison. A first run on 22 September established the coordination profile
+build-step durations on the farm's own, different, hardware. The farm's
+configuration gives image builds an exclusive lock, one per machine
+(\evpath{master/master.cfg}, unchanged in the fork from upstream
+\code{336111e3}), and its maintainer reports that the build directory is a RAM
+disk that holds a single build (correspondence of 23 September 2026). The
+fork's first report describes the reference steps as shared with another
+build; the configuration does not support that. The references bound
+acceptance and enter no other comparison. A first run on 22 September established the coordination profile
 and two engine defects and is not parity evidence (wrong compiler, results
 not retained). Round 1 then installed the reference toolchains on a
 \code{c3-standard-22} and a \code{t2d-standard-8} worker and measured a
@@ -424,9 +429,13 @@ configurations started together at 11 jobs each finished after 120.12~s, the
 five m68k\_nommu configurations at 7 jobs each after 128.17~s, both at or above
 their references before any release overhead. It then pinned each group's
 costliest cells to the \code{c3-standard-22} that starts the release and gave
-the rest to the \code{t2d-standard-8} worker, leased a prepared source tree
-per build slot instead of a per-cell worktree, and recorded the worker's cell
-on the orchestrator. \Cref{tab:eval:kernel2} transcribes every timed release
+the rest to the \code{t2d-standard-8} worker, set \code{-j} per cell from the calibration instead of the
+script's default of 1.5 times the processor count, leased a prepared source
+tree per build slot instead of a per-cell worktree, and recorded the worker's
+cell on the orchestrator. The build commands are the farm's; the fork's
+\code{stable-build-arch.sh} adds only the environment overrides for the build
+folder, the log, the job count and the compiler directory, and the selection
+of a subset of configurations. \Cref{tab:eval:kernel2} transcribes every timed release
 of the round, including the rejected first candidate and a rerun that planned
 nothing.
 
@@ -491,6 +500,17 @@ and no per-worker pinning, which sufficed because each group needed exactly
 two machines; the worker sat idle 59 and 49~s in the m68k\_nommu trials while
 the orchestrator finished four cells. Fixed overhead per release was 3 to 8~s
 of preflight; the round's five VMs lived 10 to 22 minutes each.
+
+\paragraph{Why these layouts do not transfer to the farm.} The paired
+layouts ran two hexagon or four m68k\_nommu image builds at once on the
+\code{c3-standard-22}, the single-node runs three and five, and the
+calibration the same stacking, each build in its own directory under a
+\code{/tmp} on the boot disk (the image's default; no mount output was
+retained). The farm runs one image build per machine in a RAM disk that holds
+one build, so none of these layouts fits its machines as they are, and the
+measured build directories were disk-backed where the farm's are in memory.
+The round shows what a second machine bought on this hardware; it does not
+show that the farm would finish sooner.
 
 \subsubsection{The LLVM pair}
 \label{sec:eval:rq5:llvm}
@@ -625,7 +645,8 @@ the projects never declared; planning-cost figures are host-sensitive and
 no cross-version benchmark. The kernel rounds are one pair of machine shapes,
 one region, one kernel revision, two trials per accepted topology and one
 single-node run per group, gated against public build-step times from other
-hardware; alpha, every QEMU group and the 57-group matrix are unmeasured. The
+hardware, with image builds stacked on one machine in disk-backed directories
+where the farm runs one per machine in a RAM disk; alpha, every QEMU group and the 57-group matrix are unmeasured. The
 LLVM pair is one repetition per side with two build nodes against one, the
 same sources for two targets, a recipe without the check targets, six of nine
 attempts failed or discarded, a deployed binary recorded by hash prefix only,

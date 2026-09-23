@@ -1,10 +1,10 @@
 {
-  "date_utc": "2026-09-22T19:59:15+00:00",
+  "date_utc": "2026-09-23T05:44:16+00:00",
   "built_by": "research session \"Dispatch agent research data\" (Claude Fable 5.1) after the handoff from \"Dispat-research report reproducibility\"",
   "command": "tectonic --outdir build --keep-logs main.tex; make check",
   "pdf": {
     "path": "output/pdf/technical-report.pdf",
-    "sha256": "b4d0d268c72bd5f891f57a77b6d38d309cc7c157a1cedc4633ff5aae194553fb",
+    "sha256": "533f01fe884587b85a16c62b3fc0013677d36428cb6fcb2b8d3d1e8c569a96ec",
     "pages": 59,
     "note": "the condensed edition; see editions"
   },
@@ -36,8 +36,8 @@
     "paper/sections/09-departures.tex": "a098234daefd2435f025bc0df3d93d79340457043abea5c2f39847df105bb1fb",
     "paper/sections/09-historical.tex": "3f1f8a83af3f0ececc1100c8c7cb347afb645a26c88a4bcd91899c0cc4b49660",
     "paper/sections/10-conformance.tex": "278428d0328c744921797f1a24edbdcee41685610c2ec8ee70d3091f574afbf1",
-    "paper/sections/11-evaluation.tex": "987bd41507715cbff4f54205a5badf0cd77648d54d22dc46354194a3ad662cee",
-    "paper/sections/11-results.tex": "a61713c87c18ae95f043516e49e38bddaa46da24197fa6575ca2382f4437b6c0",
+    "paper/sections/11-evaluation.tex": "7290304ae56fd8299fa72b45e6b82970020d1c1bcfb0664101fec9c3e6c0c52f",
+    "paper/sections/11-results.tex": "107368147bc3346228422508764f4d0c55981350ac6c26a11f80cba7a13e0e67",
     "paper/sections/99-references.tex": "ac5527915ded3dabc606b7a144d5005373e059e4fa62a7bb10abb0f81ac93a60"
   },
   "pages_visually_inspected": [
@@ -71,7 +71,8 @@
     "evidence/README.md: the same date correction; CROSS-CHECK.json extended with four first-run checks (43 checks, 41 comparable, all agreeing); spec-validation/RUN-20260922.md records the rerun of the three validation scripts, including that the copied proceed.py does not print its author's quoted figures",
     "later on 22 September, after a product-side correction: the measured builds credited a unit's whole source set to every reached dependent (fixed on dispat main e461d7d9, unpushed); recorded as a new obligation (ob:attribution) in 09-obligations.tex, as the observed (R) shape in 05-guarantees.tex, as the second shape of rem:owed-reach in 07-duality.tex, and beside the binary pin in 11-evaluation.tex; no effect on the single-source fixtures; the report grew to 100 pages, tables 13 and 14 still inside the evaluation section",
     "on the author's instruction that the conference abstract cannot change and everything must be explained in the report: the report's own abstract now states the kernel groups as twice each after one rejected candidate, the LLVM pair as once per side, and the kit's machine definitions as planned but not applied; new appendix/b-abstract.tex maps every sentence of the conference abstract to the section, table and evidence that substantiate it, with the precise statement and caveat, and marks the product features the report neither models nor measures; 103 pages",
-    "on the author's instruction that 100 pages is too much: split the shared sources at their seams (04a-durations/04b-distributed/04c-polyrepo, 09-current/09-historical), added a condensed edition report.tex with a new findings section, a one-table departures section and a condensed results section, and a label shim so F-numbered references point into the extended edition; technical-report.pdf is now the condensed edition (59 pages) and technical-report-extended.pdf the full text (103 pages)"
+    "on the author's instruction that 100 pages is too much: split the shared sources at their seams (04a-durations/04b-distributed/04c-polyrepo, 09-current/09-historical), added a condensed edition report.tex with a new findings section, a one-table departures section and a condensed results section, and a label shim so F-numbered references point into the extended edition; technical-report.pdf is now the condensed edition (59 pages) and technical-report-extended.pdf the full text (103 pages)",
+    "23 September: the kernel reference steps were described as shared with another build; the farm's master.cfg (unchanged from upstream 336111e3) makes image builds exclusive, one per machine, and the maintainer reports a single-build RAM disk; both editions now say so, add why the stacked, disk-backed layouts do not transfer to the farm, and state that round 2 set -j per cell and selected configurations through the fork's environment overrides"
   ],
   "not_changed": "paper/saner/main.tex (the conference abstract) is untouched at HEAD; the report's title and abstract were rewritten by the sibling session and then corrected here in two phrases on the author's instruction",
   "limits": "Structural and visual checks. They do not review the proofs, the transcription of the specification, or the scientific claims; the sibling session's four section agents and their spec-inconsistency lists are the review record for those.",
@@ -79,7 +80,7 @@
     "condensed": {
       "source": "paper/report.tex",
       "pdf": "output/pdf/technical-report.pdf",
-      "sha256": "b4d0d268c72bd5f891f57a77b6d38d309cc7c157a1cedc4633ff5aae194553fb",
+      "sha256": "533f01fe884587b85a16c62b3fc0013677d36428cb6fcb2b8d3d1e8c569a96ec",
       "pages": 59,
       "checks": {
         "undefined_or_duplicate_references": 0,
@@ -96,6 +97,7 @@
         42,
         44,
         49,
+        50,
         51,
         52
       ]
@@ -103,7 +105,7 @@
     "extended": {
       "source": "paper/main.tex",
       "pdf": "output/pdf/technical-report-extended.pdf",
-      "sha256": "de93d4b98f613464ae02e6766435215b08d68ac1f3faa319fbd87bf93e7658b3",
+      "sha256": "70eae949e0241fd4c1c370d863f34464756495222a4b043ea9e2754e81d3b67a",
       "pages": 103,
       "checks": {
         "undefined_or_duplicate_references": 0,
